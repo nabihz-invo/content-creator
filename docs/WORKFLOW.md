@@ -92,14 +92,14 @@ exits quietly — idempotent), writes outputs via RPC, calls `complete_job` or
 
 | ID | Name | Trigger | Steps |
 |----|------|---------|-------|
-| A | Intake | Telegram webhook, `/api/content-projects`, `/api/imports/csv` | validate → normalize → dedupe → create project → create analysis job → reply with project ID |
+| A | Intake | — | **Implemented in Edge Functions, not n8n** (ADR-0005): `/api/content-projects`, `/api/imports/csv`, `telegram-webhook` validate → normalize → dedupe → `create_project()` → dispatch `analyze` → reply |
 | B | Analyze & question | job `analysis` | load brand settings → fetch/extract URL (untrusted) → AI analysis → validate `analysis.schema` → AI questionnaire → validate `questionnaire.schema` → save → status `awaiting_answers` → notify |
 | C | Answer submission | job `brief` | validate answers → required check → contradiction / missing-facts AI check → either `needs_clarification` (append clarification questions as new questionnaire version) or generate brief → validate → save → create script job |
 | D | Script generation | job `script` | load brief + brand → AI script (by content_type) → validate schema + required sections → hash → save version → `script_in_review` → notify reviewer |
 | E | Creative generation | job `creative` | build `content-spec` → insert `creative_worker` job → (worker runs) → on completion: record creative version → `creative_in_review` → notify |
 | F | Rendering | job `render` | insert `render_worker` job → (worker runs) → on completion: save media rows → `media_in_review` → notify |
 | G | Publishing | job `publish` | validate package vs approval manifest → verify account → Buffer submit/schedule → store external IDs → status by provider response → notify |
-| R | Recovery cron | every 5 min | requeue expired leases, retry due jobs, escalate exhausted jobs, notify admin |
+| R | Recovery cron | every 5 min | `recover_jobs()`; re-dispatch `n8n` jobs still `queued` > 2 min after `next_run_at` (lost dispatch); notify admin of `needs_attention` |
 
 Retry policy: transient errors (HTTP 429/5xx, timeouts) → `fail_job(retryable=true)`
 with exponential backoff (1m, 5m, 25m); schema-invalid AI output → retry

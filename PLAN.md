@@ -70,12 +70,12 @@ starting the next one (blueprint §14).
 | P1-T04 | Migration: workflow_jobs/events, idempotency, job + transition RPCs | done | P1-T03, P0-T02 | claude/sweet-rubin-5q9utc |
 | P1-T05 | Migration: artifact tables (questionnaires → publishing_jobs, approvals) + immutability triggers | done | P1-T04 | claude/sweet-rubin-5q9utc |
 | P1-T06 | RLS policies + pgTAP tests | done | P1-T05 | claude/sweet-rubin-5q9utc |
-| P1-T07 | Edge Functions shared lib | todo | P1-T04, P0-T05 | |
-| P1-T08 | `POST /api/content-projects` with dedupe | in-progress | P1-T07 | claude/sweet-rubin-5q9utc |
-| P1-T09 | `POST /api/imports/csv` | todo | P1-T08 | |
-| P1-T10 | `POST /api/webhooks/telegram` (text + URL) | todo | P1-T08 | |
-| P1-T11 | Safe URL fetch + text extraction | todo | P1-T07 | |
-| P1-T12 | n8n Workflow A (Intake) + Telegram replies | todo | P1-T10, P1-T11 | |
+| P1-T07 | Edge Functions shared lib | done | P1-T04, P0-T05 | claude/sweet-rubin-5q9utc |
+| P1-T08 | `POST /api/content-projects` with dedupe | done | P1-T07 | claude/sweet-rubin-5q9utc |
+| P1-T09 | `POST /api/imports/csv` | done | P1-T08 | claude/sweet-rubin-5q9utc |
+| P1-T10 | `POST /api/webhooks/telegram` (text + URL) | done | P1-T08 | claude/sweet-rubin-5q9utc |
+| P1-T11 | Safe URL fetch + text extraction | done | P1-T07 | claude/sweet-rubin-5q9utc |
+| P1-T12 | Intake replies + Telegram webhook setup (Workflow A folded into Edge Functions, ADR-0005) | done | P1-T10, P1-T11 | claude/sweet-rubin-5q9utc |
 | P1-T13 | CRM scaffold: auth, layout, i18n/RTL, API client | todo | P0-T03, P1-T06 | |
 | P1-T14 | CRM Brand manager | todo | P1-T13 | |
 | P1-T15 | CRM Idea inbox (manual, CSV mapping, list/search/tags, duplicates) | todo | P1-T13, P1-T09 | |
@@ -105,7 +105,7 @@ starting the next one (blueprint §14).
 
 **P1-T11** — server-side fetcher: http/https only, DNS-resolve + block private ranges, 10 s timeout, 2 MB cap, readability-style text extraction, stores `fetched_title`, `extracted_text` in `source_metadata`. Acceptance: tests for SSRF block list, oversize, non-HTML. Refs: `SECURITY.md`.
 
-**P1-T12** — `n8n/workflows/A-intake.json`: Telegram trigger path → Edge Function; reply with project ID + CRM link. Acceptance: Telegram text and URL each create a project (blueprint §13).
+**P1-T12** — Superseded by ADR-0005: the `telegram-webhook` function replies inline with the project link; `scripts/telegram-set-webhook.sh` registers the webhook. No n8n Workflow A. Acceptance: Telegram text and URL each create a project (blueprint §13) — covered by `supabase/functions/tests/telegram.test.ts`.
 
 **P1-T13** — Vite + React app (`apps/crm`): Supabase auth (email magic link), app shell with nav for all modules A–J (placeholders ok), `en`/`ar` i18n, RTL switching, `lib/api.ts`, generated DB types. Acceptance: login works; switching to Arabic flips layout.
 

@@ -69,14 +69,12 @@ This repository is a monorepo. Paths are fixed so agents can find things.
 ├── supabase/
 │   ├── config.toml
 │   ├── migrations/               timestamped SQL: tables, enums, indexes, RLS, RPCs
-│   ├── functions/                Edge Functions — one folder per endpoint group
-│   │   ├── _shared/              auth, validation, idempotency, n8n client, errors
-│   │   ├── content-projects/
-│   │   ├── imports-csv/
-│   │   ├── webhooks-telegram/
-│   │   ├── approvals/
-│   │   ├── render-jobs/
-│   │   └── publishing-jobs/
+│   ├── functions/                Edge Functions (ADR-0005)
+│   │   ├── _shared/              auth, db, validation, idempotency, rate limit, n8n client,
+│   │   │                         intake, csv-import, url-extract, vendor/ (synced from packages/shared)
+│   │   ├── api/                  Hono router for every /api/* endpoint (app.ts + index.ts)
+│   │   ├── telegram-webhook/     Telegram intake with inline replies
+│   │   └── tests/                Deno tests against the local database
 │   ├── seed.sql                  demo brand + admin role
 │   └── tests/                    pgTAP tests for RLS, constraints, state transitions
 ├── n8n/
@@ -124,7 +122,7 @@ See `docs/adr/0002-creative-source-repository.md`.
 ## 4. Request and job flow
 
 1. **Client action** (CRM button, Telegram message, CSV upload) calls an Edge
-   Function under `/api/*`.
+   Function (`api` or `telegram-webhook`).
 2. The Edge Function authenticates the user, validates the payload against
    `packages/shared/schemas`, checks the transition is allowed, writes rows in
    one transaction (including a `workflow_jobs` row with an

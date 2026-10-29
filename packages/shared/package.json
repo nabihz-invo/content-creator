@@ -10,7 +10,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "transitions:sql": "node --experimental-strip-types scripts/transitions-sql.ts"
+    "transitions:sql": "node --experimental-strip-types scripts/transitions-sql.ts",
+    "sync:edge": "node --experimental-strip-types scripts/sync-edge.ts"
   },
   "devDependencies": {
     "vitest": "^3.2.4"

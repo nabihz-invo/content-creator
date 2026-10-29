@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/intake-record.schema.json",
+  "title": "Normalized intake record",
+  "description": "Every intake channel normalizes its submission to this shape before create_project().",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["input_source"],
+  "anyOf": [{ "required": ["original_idea"] }, { "required": ["source_url"] }],
+  "properties": {
+    "input_source": { "enum": ["manual", "telegram", "csv", "url"] },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "original_idea": { "type": "string", "minLength": 1, "maxLength": 20000 },
+    "source_url": { "type": "string", "format": "uri", "pattern": "^https?://", "maxLength": 2048 },
+    "source_reference": { "type": "string", "maxLength": 200 },
+    "source_metadata": { "type": "object" },
+    "brand_id": { "type": "string", "format": "uuid" },
+    "content_type": { "enum": ["static", "carousel", "video"] },
+    "language": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
+    "submitted_at": { "type": "string", "format": "date-time" },
+    "tags": {
+      "type": "array",
+      "maxItems": 20,
+      "items": { "type": "string", "minLength": 1, "maxLength": 50 }
+    }
+  }
+}

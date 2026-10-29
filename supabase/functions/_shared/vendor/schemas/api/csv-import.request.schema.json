@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/csv-import.request.schema.json",
+  "title": "POST /api/imports/csv (non-file form fields)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mapping"],
+  "properties": {
+    "workspace_id": { "type": "string", "format": "uuid" },
+    "brand_id": { "type": "string", "format": "uuid" },
+    "dry_run": { "type": "boolean", "default": false },
+    "auto_analyze": { "type": "boolean", "default": true },
+    "mapping": {
+      "description": "Target field → CSV column header.",
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["idea"] }, { "required": ["url"] }],
+      "properties": {
+        "idea": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "brand": { "type": "string", "minLength": 1 },
+        "tags": { "type": "string", "minLength": 1 },
+        "content_type": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

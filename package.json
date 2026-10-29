@@ -16,7 +16,8 @@
     "db:start": "bash scripts/db.sh start",
     "db:stop": "bash scripts/db.sh stop",
     "db:reset": "bash scripts/db.sh reset",
-    "db:test": "bash scripts/db.sh test"
+    "db:test": "bash scripts/db.sh test",
+    "sync:edge": "pnpm --filter @cc/shared sync:edge"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",

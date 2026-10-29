@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/create-project.request.schema.json",
+  "title": "POST /api/content-projects",
+  "type": "object",
+  "additionalProperties": false,
+  "anyOf": [{ "required": ["original_idea"] }, { "required": ["source_url"] }],
+  "properties": {
+    "workspace_id": { "type": "string", "format": "uuid" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "original_idea": { "type": "string", "minLength": 1, "maxLength": 20000 },
+    "source_url": { "type": "string", "format": "uri", "pattern": "^https?://", "maxLength": 2048 },
+    "brand_id": { "type": "string", "format": "uuid" },
+    "content_type": { "enum": ["static", "carousel", "video"] },
+    "language": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
+    "tags": {
+      "type": "array",
+      "maxItems": 20,
+      "items": { "type": "string", "minLength": 1, "maxLength": 50 }
+    },
+    "allow_duplicate": { "type": "boolean", "default": false },
+    "auto_analyze": { "type": "boolean", "default": true }
+  }
+}

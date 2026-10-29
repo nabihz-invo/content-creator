@@ -1,8 +1,13 @@
 # Backend API Contracts
 
-Implemented as Supabase Edge Functions under `supabase/functions/`. Paths below
-are logical; the deployed URL is `https://<project>.supabase.co/functions/v1/<fn>/…`
-and the CRM wraps them in `apps/crm/src/lib/api.ts`.
+Implemented as two Supabase Edge Functions (ADR-0005):
+
+- `api` — Hono router; every path below lives under it:
+  `https://<ref>.supabase.co/functions/v1/api/content-projects` etc.
+- `telegram-webhook` — `https://<ref>.supabase.co/functions/v1/telegram-webhook`.
+
+The CRM wraps them in `apps/crm/src/lib/api.ts`. Request schemas:
+`packages/shared/schemas/api/*.schema.json`.
 
 ## Common rules
 
@@ -32,22 +37,44 @@ and the CRM wraps them in `apps/crm/src/lib/api.ts`.
 | POST /api/render-jobs | admin, editor |
 | GET /api/render-jobs/{id} | any member |
 | POST /api/publishing-jobs | admin, editor (with publish permission) |
+| POST /api/telegram/link-code | any signed-in user |
+| POST /api/internal/url-extract | n8n (HMAC `X-CC-Signature`) |
 
 ## Endpoints
 
-### POST /api/content-projects
-Body: intake record (`CONTRACTS.md §1`) minus server fields.
+### POST /api/content-projects  (implemented P1-T08)
+Body (`create-project.request.schema.json`): `original_idea` and/or `source_url`, optional `workspace_id`, `title`, `brand_id`, `content_type`, `language`, `tags`, `allow_duplicate`, `auto_analyze` — i.e. the intake record (`CONTRACTS.md §1`) minus server fields.
 `201 { project_id, status: "analyzing", duplicate_of: null }`;
 `200 { project_id: <existing>, duplicate_of: <existing> }` when `dedupe_hash` matches and `allow_duplicate` is not set.
 
-### POST /api/imports/csv
+### POST /api/imports/csv  (implemented P1-T09)
 `multipart/form-data`: `file` (≤ 5 MB, ≤ 1000 rows), `mapping` JSON
 (`{ "idea": "Column A", "url": "Link", "brand": "Brand", "tags": "Tags" }`), `brand_id?`, `dry_run?`.
-`200 { import_batch_id, totals: { rows, created, failed, duplicate }, rows: [{ row, status: created|failed|duplicate, project_id?, error? }] }`.
-CSV cells are sanitized (formula-injection prefixes `= + - @` stripped/escaped).
+`200 { import_batch_id, dry_run, headers, totals: { rows, created, failed, duplicate, valid }, rows: [{ row, status: created|failed|duplicate|valid, project_id?, duplicate_of?, error? }] }`.
+`row` is the spreadsheet row number (header = 1; blank rows skipped but counted).
+Mapping keys: `idea`, `url`, `title`, `brand` (matched by name), `tags` (`,;|`-separated), `content_type`, `language`.
+CSV cells are sanitized (leading `= + @` and `-`-before-non-digit stripped); UTF-8 (BOM ok) or Windows-1256.
+Each row uses source key `csv:<batch>:<row>`. The file is stored at `imports/<workspace>/<batch>/<file>`.
 
-### POST /api/webhooks/telegram
-Telegram Update body. Text → idea; URL entity → URL intake; voice → stored, transcription in Phase 5+ (initial release replies "voice notes not yet supported"); photo → stored as reference asset. Always `200` quickly; work handed to n8n Workflow A. Unknown chat → ignored + logged.
+### POST /telegram-webhook  (implemented P1-T10)
+Telegram Update body; header `X-Telegram-Bot-Api-Secret-Token` must match.
+Private chats only. The reply is the HTTP response (`{"method":"sendMessage",…}`).
+- `/link <code>` (or `/start <code>`) links the Telegram account to a CRM user.
+- Unlinked users get linking instructions; replies are Arabic when the profile locale is `ar`.
+- Text → `telegram` intake; the first URL becomes `source_url`; a bare link → `url` intake.
+- Photo with caption → caption is the idea, photo `file_id` kept in `source_metadata`.
+- Voice/audio → "not supported yet" (Phase 5).
+- Idempotency: `telegram:<update_id>`; a replay returns the same project.
+
+### POST /api/telegram/link-code  (implemented P1-T10)
+`200 { code, expires_in_seconds: 900, instructions }` — 8-char one-time code.
+
+### POST /api/internal/url-extract  (implemented P1-T11)
+Called by n8n Workflow B. HMAC-signed body `{ project_id }`. Fetches the
+project's `source_url` with SSRF protection (public IPs only on every redirect,
+10 s, 2 MB, HTML/text), stores `{ title, description, language, text,
+truncated, final_url, fetched_at }` under `source_metadata.extracted`, and logs
+`source.extracted` / `source.extract_failed`.
 
 ### POST /api/content-projects/{id}/analyze
 Re-queues analysis (allowed from `new`, `failed`, or to regenerate the questionnaire).
