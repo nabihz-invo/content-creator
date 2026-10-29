@@ -13,7 +13,7 @@ starting the next one (blueprint §14).
 | Phase | Goal | Release | Status |
 |-------|------|---------|--------|
 | P0 | Foundation: repo, tooling, shared package, decisions | initial | done |
-| P1 | Database, auth, brand settings, dashboard, intake | initial | in-progress |
+| P1 | Database, auth, brand settings, dashboard, intake | initial | done |
 | P2 | Questionnaire, brief, script generation, approvals | initial | todo |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
 | P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
@@ -76,12 +76,12 @@ starting the next one (blueprint §14).
 | P1-T10 | `POST /api/webhooks/telegram` (text + URL) | done | P1-T08 | claude/sweet-rubin-5q9utc |
 | P1-T11 | Safe URL fetch + text extraction | done | P1-T07 | claude/sweet-rubin-5q9utc |
 | P1-T12 | Intake replies + Telegram webhook setup (Workflow A folded into Edge Functions, ADR-0005) | done | P1-T10, P1-T11 | claude/sweet-rubin-5q9utc |
-| P1-T13 | CRM scaffold: auth, layout, i18n/RTL, API client | todo | P0-T03, P1-T06 | |
-| P1-T14 | CRM Brand manager | todo | P1-T13 | |
-| P1-T15 | CRM Idea inbox (manual, CSV mapping, list/search/tags, duplicates) | todo | P1-T13, P1-T09 | |
-| P1-T16 | CRM Overview dashboard | todo | P1-T13 | |
-| P1-T17 | CRM Project detail shell + event timeline | todo | P1-T13 | |
-| P1-VERIFY | Phase 1 end-to-end verification | todo | P1-T01…T17 | |
+| P1-T13 | CRM scaffold: auth, layout, i18n/RTL, API client | done | P0-T03, P1-T06 | claude/sweet-rubin-5q9utc |
+| P1-T14 | CRM Brand manager | done | P1-T13 | claude/sweet-rubin-5q9utc |
+| P1-T15 | CRM Idea inbox (manual, CSV mapping, list/search/tags, duplicates) | done | P1-T13, P1-T09 | claude/sweet-rubin-5q9utc |
+| P1-T16 | CRM Overview dashboard | done | P1-T13 | claude/sweet-rubin-5q9utc |
+| P1-T17 | CRM Project detail shell + event timeline | done | P1-T13 | claude/sweet-rubin-5q9utc |
+| P1-VERIFY | Phase 1 end-to-end verification | done | P1-T01…T17 | claude/sweet-rubin-5q9utc |
 
 **P1-T01** — `profiles`, `workspaces`, `workspace_members` (role enum admin/editor/reviewer), `set_updated_at()` trigger, `is_member(workspace_id, roles[])`, auto-create profile + personal workspace on signup. Acceptance: new user gets a workspace with role admin. Refs: `DATA_MODEL.md §2, §6`.
 
@@ -128,7 +128,7 @@ starting the next one (blueprint §14).
 | P2-T01 | JSON schemas + validators + generated TS types | todo | P0-T02 | |
 | P2-T02 | Prompt templates v1 + `ai_settings` wiring | todo | P2-T01 | |
 | P2-T03 | n8n Workflow B (Analyze & question) | todo | P2-T02, P1-T12 | |
-| P2-T04 | `POST /api/content-projects/{id}/analyze` | todo | P1-T08 | |
+| P2-T04 | `POST /api/content-projects/{id}/analyze` + inbox bulk "analyze" action | todo | P1-T08 | |
 | P2-T05 | Questionnaire submit endpoint (shared conditional-logic validator) | todo | P2-T01 | |
 | P2-T06 | n8n Workflow C (validation, clarification, brief) | todo | P2-T03, P2-T05 | |
 | P2-T07 | n8n Workflow D + script generate / manual edit endpoints | todo | P2-T06 | |
@@ -142,6 +142,8 @@ starting the next one (blueprint §14).
 **P2-T01** — schemas: `analysis`, `questionnaire`, `answers`, `brief`, `script.video`, `script.carousel`, `script.static`; ajv validators; `json-schema-to-typescript` generation. Acceptance: valid/invalid fixtures per schema. Refs: `CONTRACTS.md §2–5`.
 
 **P2-T02** — `packages/shared/prompts/{analysis,questionnaire,brief,clarification,script}.v1.md` with: role, brand context block, `<untrusted_source>` wrapping, output schema, "do not ask what is already known" rule, Arabic support. `ai_settings` rows select model + prompt version per stage. Acceptance: prompts render with fixture data; reviewed for injection resistance.
+
+**P2-T04** — endpoint per `docs/API.md`; also add the inbox bulk-select "Analyze" action that was deferred from P1-T15.
 
 **P2-T03** — Workflow B per `WORKFLOW.md §4`; schema-invalid output retried once with error feedback. Acceptance: fixture idea + brand produces a valid questionnaire that omits questions answered by brand settings; status `awaiting_answers` (blueprint §13).
 

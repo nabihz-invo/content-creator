@@ -14,4 +14,6 @@ const app = createApp({
   config,
 });
 
-Deno.serve(app.fetch);
+const port = Deno.env.get("PORT");
+if (port) Deno.serve({ port: Number(port) }, app.fetch);
+else Deno.serve(app.fetch);

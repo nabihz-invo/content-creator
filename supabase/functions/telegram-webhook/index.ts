@@ -14,4 +14,6 @@ const handler = createTelegramHandler({
   config,
 });
 
-Deno.serve(handler);
+const port = Deno.env.get("PORT");
+if (port) Deno.serve({ port: Number(port) }, handler);
+else Deno.serve(handler);

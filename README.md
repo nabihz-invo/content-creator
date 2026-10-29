@@ -5,8 +5,15 @@ media content — scripts, HTML/CSS creatives, PNG / carousel / MP4 renders —
 and publishes them to connected platforms, with an explicit approval gate and
 a full audit trail at every stage.
 
-**Status:** planning complete, implementation not started. See
-[`PLAN.md`](./PLAN.md).
+**Status:** Phase 0 and Phase 1 done (database, auth, brands, dashboard,
+intake from dashboard / CSV / Telegram / links). Next: Phase 2
+(questionnaire, brief, scripts, approvals). See [`PLAN.md`](./PLAN.md).
+
+| Overview | Project | Arabic (RTL) | Mobile |
+|---|---|---|---|
+| ![Overview](docs/screenshots/01-overview.png) | ![Project](docs/screenshots/04-project-detail.png) | ![Arabic](docs/screenshots/06-overview-ar.png) | ![Mobile](docs/screenshots/08-inbox-mobile.png) |
+
+Quick start: [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md).
 
 ## Stack
 
@@ -31,4 +38,5 @@ a full audit trail at every stage.
 - [`docs/API.md`](./docs/API.md) — backend endpoints
 - [`docs/SECURITY.md`](./docs/SECURITY.md) — security and reliability rules
 - [`docs/CONVENTIONS.md`](./docs/CONVENTIONS.md) — coding conventions
+- [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md) — run, test, local stack, e2e
 - [`docs/PROGRESS_LOG.md`](./docs/PROGRESS_LOG.md) — work log

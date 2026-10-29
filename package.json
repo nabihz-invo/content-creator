@@ -17,12 +17,17 @@
     "db:stop": "bash scripts/db.sh stop",
     "db:reset": "bash scripts/db.sh reset",
     "db:test": "bash scripts/db.sh test",
-    "sync:edge": "pnpm --filter @cc/shared sync:edge"
+    "sync:edge": "pnpm --filter @cc/shared sync:edge",
+    "stack:up": "bash scripts/local-stack/stack.sh up",
+    "stack:down": "bash scripts/local-stack/stack.sh down",
+    "e2e": "node scripts/e2e/crm-smoke.mjs",
+    "dev:crm": "pnpm --filter @cc/crm dev"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
     "@types/node": "^26.6.6",
     "eslint": "^9.39.0",
+    "eslint-plugin-react-hooks": "7.1.1",
     "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "supabase": "^2.122.0",

@@ -37,6 +37,7 @@ idea intake → analysis → questionnaire → answers + brief → script
 | `docs/API.md` | Backend endpoint contracts. |
 | `docs/SECURITY.md` | Secrets, RLS, sandboxing, idempotency, retries. |
 | `docs/CONVENTIONS.md` | Code style, naming, commits, testing. |
+| `docs/DEVELOPMENT.md` | **How to run and test everything** (local stack, pgTAP, Deno, e2e). |
 | `docs/adr/` | Architecture decisions. Add one when you make a non-obvious choice. |
 
 ## 3. How to work on a task
@@ -52,7 +53,9 @@ idea intake → analysis → questionnaire → answers + brief → script
 4. Read the docs listed in the task's `Refs`. Build exactly the listed
    deliverables at the listed paths.
 5. Verify every acceptance criterion of the task (tests, lint, typecheck,
-   manual check). Do not mark a task `done` on untested code.
+   manual check). Do not mark a task `done` on untested code. UI work is
+   verified in a real browser against the local stack (`docs/DEVELOPMENT.md`);
+   extend `scripts/e2e/crm-smoke.mjs` for new screens.
 6. Set status to `done`, then append an entry to `docs/PROGRESS_LOG.md`
    (template at the top of that file).
 7. If you are blocked, set status to `blocked`, write the reason in the log,

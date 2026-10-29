@@ -28,7 +28,7 @@ Deno.test("CSV helpers", async (t) => {
   });
   await t.step("decodes UTF-8 with BOM and legacy Windows-1256 Arabic", () => {
     assertEquals(
-      decodeCsv(new TextEncoder().encode("﻿idea\nمرحبا")).replace(/^﻿/, ""),
+      decodeCsv(new TextEncoder().encode("\uFEFFidea\nمرحبا")).replace(/^\uFEFF/, ""),
       "idea\nمرحبا",
     );
     // "مرحبا" in Windows-1256

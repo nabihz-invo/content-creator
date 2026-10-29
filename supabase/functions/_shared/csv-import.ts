@@ -10,6 +10,7 @@ import { type IntakeRecord, intakeIdea, normalizeRecord } from "./intake.ts";
 import type { Dispatcher } from "./n8n.ts";
 import { stripFormula } from "./sanitize.ts";
 import { formatErrors, validate } from "./validate.ts";
+import { dedupeHash } from "./vendor/src/hash.ts";
 
 export const CSV_MAX_BYTES = 5 * 1024 * 1024;
 export const CSV_MAX_ROWS = 1000;
@@ -182,6 +183,8 @@ export async function importCsv(
   }
 
   const report: RowReport[] = [];
+  // Dry runs predict duplicates the same way create_project() will detect them.
+  const seenInFile = new Map<string, number>();
   for (const { row: rowNumber, cells: row } of rows) {
     try {
       const record = rowToRecord(
@@ -193,8 +196,24 @@ export async function importCsv(
         input.batchId,
       );
       if (dryRun) {
-        validate("intakeRecord", normalizeRecord(record));
-        report.push({ row: rowNumber, status: "valid" });
+        const rec = validate<IntakeRecord>("intakeRecord", normalizeRecord(record));
+        const hash = await dedupeHash(rec.original_idea, rec.source_url);
+        const [existing] = await sql<{ id: string }[]>`
+          select id from public.content_projects
+          where workspace_id = ${input.workspaceId} and dedupe_hash = ${hash} and status <> 'cancelled'
+          order by created_at limit 1`;
+        if (existing) {
+          report.push({ row: rowNumber, status: "duplicate", duplicate_of: existing.id });
+        } else if (seenInFile.has(hash)) {
+          report.push({
+            row: rowNumber,
+            status: "duplicate",
+            error: `same idea as row ${seenInFile.get(hash)}`,
+          });
+        } else {
+          seenInFile.set(hash, rowNumber);
+          report.push({ row: rowNumber, status: "valid" });
+        }
         continue;
       }
       const r = await intakeIdea(sql, dispatcher, record, {
