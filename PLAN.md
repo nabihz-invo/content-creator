@@ -1,0 +1,284 @@
+# Implementation Plan
+
+This is the single tracker for **what to build and what is already built**.
+Agents: follow the procedure in `CLAUDE.md §3`. Update the `Status` and
+`Owner` columns here, and log finished work in `docs/PROGRESS_LOG.md`.
+
+**Status values:** `todo` · `in-progress` · `done` · `blocked` · `deferred`
+**Rule:** finish and test a phase (its last `…-VERIFY` task is `done`) before
+starting the next one (blueprint §14).
+
+## Phase board
+
+| Phase | Goal | Release | Status |
+|-------|------|---------|--------|
+| P0 | Foundation: repo, tooling, shared package, decisions | initial | todo |
+| P1 | Database, auth, brand settings, dashboard, intake | initial | todo |
+| P2 | Questionnaire, brief, script generation, approvals | initial | todo |
+| P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
+| P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
+| P5 | Video rendering, FFmpeg validation, resumable renders, voice notes | second | todo |
+| P6 | Buffer publishing, scheduling, calendar, retries, monitoring | second | todo |
+| P7 | Later enhancements (teams, analytics, repurposing, …) | later | deferred |
+
+---
+
+## P0 — Foundation
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P0-T01 | Monorepo scaffold and CI | todo | — | |
+| P0-T02 | Shared package skeleton (status enums, transitions, hashing) | todo | P0-T01 | |
+| P0-T03 | Decide Lovable repo layout (ADR-0001) | todo | — | |
+| P0-T04 | Local Supabase project init | todo | P0-T01 | |
+| P0-T05 | n8n integration conventions + credentials inventory | todo | — | |
+| P0-VERIFY | Phase 0 verification | todo | P0-T01…T05 | |
+
+**P0-T01 Monorepo scaffold and CI**
+- Deliverables: `package.json`, `pnpm-workspace.yaml`, `tsconfig.base.json`, ESLint/Prettier config, `.gitignore` (env, media, node_modules), `.editorconfig`, `.github/workflows/ci.yml` (install, lint, typecheck, test, secret scan).
+- Acceptance: `pnpm install && pnpm lint && pnpm typecheck && pnpm test` pass on an empty workspace; CI green.
+- Refs: `docs/ARCHITECTURE.md §3`, `docs/CONVENTIONS.md`.
+
+**P0-T02 Shared package skeleton**
+- Deliverables: `packages/shared/src/status.ts` (project status enum, stage keys, transition table from `WORKFLOW.md §3`, `canTransition()`), `src/hash.ts` (canonical JSON + SHA-256), `schemas/` folder with README, Vitest tests.
+- Acceptance: tests cover every allowed transition and reject a sample of disallowed ones; hash is stable regardless of key order.
+- Refs: `docs/WORKFLOW.md §2–3`, `docs/CONTRACTS.md`.
+
+**P0-T03 Decide Lovable repo layout**
+- Deliverables: update `docs/adr/0001-monorepo-and-lovable.md` from `proposed` to `accepted` with the chosen option (needs user input — ask).
+- Acceptance: ADR accepted; `ARCHITECTURE.md §3` matches.
+
+**P0-T04 Local Supabase project init**
+- Deliverables: `supabase/config.toml`, `supabase/seed.sql` (empty placeholder), `supabase/README.md` (start/reset/test commands), root scripts `db:start`, `db:reset`, `db:test`.
+- Acceptance: `supabase start` + `supabase db reset` succeed locally.
+
+**P0-T05 n8n integration conventions**
+- Deliverables: `n8n/README.md` — how to import/export workflows, credential names (no values), webhook URL pattern, HMAC signing scheme (`X-Signature: sha256=<hmac(body)>`, timestamp header, 5-min window), environment variables.
+- Acceptance: document reviewed; Edge Function and n8n sides can be implemented from it independently.
+- Refs: `docs/ARCHITECTURE.md §4, §6`.
+
+**P0-VERIFY** — all P0 acceptance criteria re-checked; phase board updated.
+
+---
+
+## P1 — Database, auth, brand settings, dashboard, intake
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P1-T01 | Migration: tenancy, profiles, roles, helpers | todo | P0-T04 | |
+| P1-T02 | Migration: brands, brand history, brand assets, storage buckets | todo | P1-T01 | |
+| P1-T03 | Migration: content_projects, analyses, tags, import_batches | todo | P1-T02 | |
+| P1-T04 | Migration: workflow_jobs/events, idempotency, job + transition RPCs | todo | P1-T03, P0-T02 | |
+| P1-T05 | Migration: artifact tables (questionnaires → publishing_jobs, approvals) + immutability triggers | todo | P1-T04 | |
+| P1-T06 | RLS policies + pgTAP tests | todo | P1-T05 | |
+| P1-T07 | Edge Functions shared lib | todo | P1-T04, P0-T05 | |
+| P1-T08 | `POST /api/content-projects` with dedupe | todo | P1-T07 | |
+| P1-T09 | `POST /api/imports/csv` | todo | P1-T08 | |
+| P1-T10 | `POST /api/webhooks/telegram` (text + URL) | todo | P1-T08 | |
+| P1-T11 | Safe URL fetch + text extraction | todo | P1-T07 | |
+| P1-T12 | n8n Workflow A (Intake) + Telegram replies | todo | P1-T10, P1-T11 | |
+| P1-T13 | CRM scaffold: auth, layout, i18n/RTL, API client | todo | P0-T03, P1-T06 | |
+| P1-T14 | CRM Brand manager | todo | P1-T13 | |
+| P1-T15 | CRM Idea inbox (manual, CSV mapping, list/search/tags, duplicates) | todo | P1-T13, P1-T09 | |
+| P1-T16 | CRM Overview dashboard | todo | P1-T13 | |
+| P1-T17 | CRM Project detail shell + event timeline | todo | P1-T13 | |
+| P1-VERIFY | Phase 1 end-to-end verification | todo | P1-T01…T17 | |
+
+**P1-T01** — `profiles`, `workspaces`, `workspace_members` (role enum admin/editor/reviewer), `set_updated_at()` trigger, `is_member(workspace_id, roles[])`, auto-create profile + personal workspace on signup. Acceptance: new user gets a workspace with role admin. Refs: `DATA_MODEL.md §2, §6`.
+
+**P1-T02** — `brands` (+`settings_version`), `brand_settings_history`, `brand_assets`, Storage buckets `brand-assets`, `imports`, `previews`, `media` with policies. Acceptance: updating `brand_settings` bumps version and writes history row (trigger). Refs: `DATA_MODEL.md §3, §7`.
+
+**P1-T03** — `content_projects` with status/stage enums, `dedupe_hash` unique partial index, full-text index; `project_analyses`; `tags`, `project_tags`; `import_batches`. Refs: `DATA_MODEL.md §3–4`, `WORKFLOW.md §2`.
+
+**P1-T04** — `workflow_jobs`, `workflow_events`, `idempotency_keys`; RPCs `transition_project`, `create_job`, `claim_job`, `heartbeat_job`, `complete_job`, `fail_job`. Transition table in SQL must match `packages/shared/src/status.ts` (add a test that compares them). Acceptance: pgTAP — invalid transition raises; duplicate idempotency key returns existing job; two concurrent claims never get the same job; failed retryable job gets backoff `next_run_at`. Refs: `DATA_MODEL.md §5`, `ADR-0003`.
+
+**P1-T05** — `questionnaires`, `questionnaire_answers`, `content_briefs`, `scripts`, `creative_versions`, `render_jobs`, `media_assets`, `approvals`, `publishing_jobs`, `connected_accounts`, `ai_settings`. Unique `(project_id, version)`; triggers: block content updates on approved rows, block UPDATE/DELETE on `approvals` and `workflow_events`. Acceptance: pgTAP proves immutability. Refs: `DATA_MODEL.md §3`.
+
+**P1-T06** — RLS on all tables per `DATA_MODEL.md §6`. pgTAP tests per role (admin/editor/reviewer/non-member). Acceptance: non-member sees nothing; reviewer cannot write brands or drafts; nobody can insert approvals directly.
+
+**P1-T07** — `supabase/functions/_shared/`: JWT auth + role lookup, schema validation (ajv with `packages/shared/schemas`), error envelope, idempotency middleware, rate limiter, signed n8n webhook client. Acceptance: unit tests for each middleware. Refs: `API.md` common rules.
+
+**P1-T08** — create project from manual idea: normalize, compute `dedupe_hash`, insert, create `analysis` job, event, call n8n. Duplicate → return existing. Acceptance: Deno tests for create, duplicate, validation error, unauthorized. Refs: `API.md`, `CONTRACTS.md §1`.
+
+**P1-T09** — CSV import with mapping, dry-run, formula-injection sanitizing, per-row report, idempotency by `batch_id:row`. Acceptance: fixture CSV with valid, invalid, duplicate rows yields correct totals; re-running the same batch creates no new projects (blueprint §13).
+
+**P1-T10** — verify Telegram secret header, map `from.id` → `profiles.telegram_user_id`, text/URL → project via same service as T08, idempotency key `telegram:<update_id>`. Voice → reply "not yet supported" (Phase 5). Acceptance: replayed update does not duplicate.
+
+**P1-T11** — server-side fetcher: http/https only, DNS-resolve + block private ranges, 10 s timeout, 2 MB cap, readability-style text extraction, stores `fetched_title`, `extracted_text` in `source_metadata`. Acceptance: tests for SSRF block list, oversize, non-HTML. Refs: `SECURITY.md`.
+
+**P1-T12** — `n8n/workflows/A-intake.json`: Telegram trigger path → Edge Function; reply with project ID + CRM link. Acceptance: Telegram text and URL each create a project (blueprint §13).
+
+**P1-T13** — Lovable app: Supabase auth (email magic link), app shell with nav for all modules A–J (placeholders ok), `en`/`ar` i18n, RTL switching, `lib/api.ts`, generated DB types. Acceptance: login works; switching to Arabic flips layout.
+
+**P1-T14** — Brand manager: CRUD brand, settings form (voice, palette, typography, audiences, platform rules, CTA, claims), asset upload (logos, fonts, references) with versioning. Acceptance: settings history visible; assets stored under correct path.
+
+**P1-T15** — Idea inbox: manual form, URL submission, CSV upload with column-mapping UI and import report, list with search/filter by status/source/brand/tag, tagging, duplicate badge, bulk "analyze".
+
+**P1-T16** — Overview: counts per status group (blueprint §4A) via a SQL view `project_status_counts`; failed/attention list.
+
+**P1-T17** — Project page shell: header (status, stage, brand), tabs for Idea / Questionnaire / Brief / Scripts / Creative / Media / Publishing / History; History renders `workflow_events`.
+
+**P1-VERIFY** — Manual + automated: an idea from dashboard, CSV, Telegram text, and Telegram URL each creates exactly one project; CSV report correct; all tests green; RLS tests green.
+
+---
+
+## P2 — Questionnaire, brief, script, approvals
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P2-T01 | JSON schemas + validators + generated TS types | todo | P0-T02 | |
+| P2-T02 | Prompt templates v1 + `ai_settings` wiring | todo | P2-T01 | |
+| P2-T03 | n8n Workflow B (Analyze & question) | todo | P2-T02, P1-T12 | |
+| P2-T04 | `POST /api/content-projects/{id}/analyze` | todo | P1-T08 | |
+| P2-T05 | Questionnaire submit endpoint (shared conditional-logic validator) | todo | P2-T01 | |
+| P2-T06 | n8n Workflow C (validation, clarification, brief) | todo | P2-T03, P2-T05 | |
+| P2-T07 | n8n Workflow D + script generate / manual edit endpoints | todo | P2-T06 | |
+| P2-T08 | `record_approval` RPC + `POST /api/approvals` + outdated cascade | todo | P1-T05 | |
+| P2-T09 | CRM Questionnaire editor | todo | P2-T05, P1-T17 | |
+| P2-T10 | CRM Script editor | todo | P2-T07, P2-T08 | |
+| P2-T11 | Telegram notifications for B–D | todo | P2-T03 | |
+| P2-T12 | n8n Workflow R (recovery cron) | todo | P1-T04 | |
+| P2-VERIFY | Phase 2 end-to-end verification | todo | P2-T01…T12 | |
+
+**P2-T01** — schemas: `analysis`, `questionnaire`, `answers`, `brief`, `script.video`, `script.carousel`, `script.static`; ajv validators; `json-schema-to-typescript` generation. Acceptance: valid/invalid fixtures per schema. Refs: `CONTRACTS.md §2–5`.
+
+**P2-T02** — `packages/shared/prompts/{analysis,questionnaire,brief,clarification,script}.v1.md` with: role, brand context block, `<untrusted_source>` wrapping, output schema, "do not ask what is already known" rule, Arabic support. `ai_settings` rows select model + prompt version per stage. Acceptance: prompts render with fixture data; reviewed for injection resistance.
+
+**P2-T03** — Workflow B per `WORKFLOW.md §4`; schema-invalid output retried once with error feedback. Acceptance: fixture idea + brand produces a valid questionnaire that omits questions answered by brand settings; status `awaiting_answers` (blueprint §13).
+
+**P2-T05** — server-side evaluation of `required`, `show_if`, `validation`; drafts; resubmit creates new answers row and marks downstream outdated. Shared validator used by CRM too. Acceptance: missing required answer → 422 and status unchanged (blueprint §13).
+
+**P2-T06** — Workflow C: resolve brand defaults and "AI decide" (recorded in `brief.assumptions`), contradiction/missing-facts check → `needs_clarification` (new questionnaire version with only clarification questions) or brief → `generating_script`. Acceptance: script job is never created while required info is missing.
+
+**P2-T07** — Workflow D by content type; required-section check; `content_hash`; status `script_in_review`. Endpoints: generate (full or selected sections → new version) and manual edit (new version). Acceptance: each edit/regeneration creates a new immutable version.
+
+**P2-T08** — RPC verifies role, `artifact_hash`, project status; inserts approval; transitions; runs `mark_downstream_outdated`. Acceptance: approving a stale hash → 409; approval of v2 doesn't affect v1 rows; reviewer approval is the only way to reach `generating_creative`.
+
+**P2-T09** — grouped sections, all field types, conditional display, brand defaults prefilled, "Let AI decide", save draft, submit, edit & resubmit, missing-info highlights, RTL.
+
+**P2-T10** — structured editor per content type (hook, scenes with timing, VO, on-screen text, visual direction, transitions, sound, caption, CTA); version list + diff; inline comments; regenerate section; approve / request changes / reject bound to version + hash.
+
+**P2-T11** — notifications per `WORKFLOW.md §6` with deep links.
+
+**P2-T12** — Workflow R: requeue expired leases, run due retries, escalate to `needs_attention` → project `failed`, notify admin.
+
+**P2-VERIFY** — idea → questionnaire → answers (incl. one clarification round) → brief → script v1 → changes requested → v2 → approved; audit trail complete; killing n8n mid-job and restarting recovers via Workflow R without duplicates.
+
+---
+
+## P3 — Creative generation (GitHub + Claude Code), isolated preview
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P3-T01 | Creative source repository setup (ADR-0002) | todo | P2-VERIFY | |
+| P3-T02 | `workers/common` job client, storage, logging | todo | P1-T04 | |
+| P3-T03 | content-spec schema + builder | todo | P2-T01 | |
+| P3-T04 | Starter templates: static post + carousel (RTL-ready) | todo | P3-T01 | |
+| P3-T05 | creative-worker: isolated workspace + Claude Code invocation | todo | P3-T02, P3-T03, P3-T04 | |
+| P3-T06 | Generated-code static validator | todo | P3-T05 | |
+| P3-T07 | Commit, preview bundle, thumbnails, upload, result | todo | P3-T06 | |
+| P3-T08 | Preview origin + CSP + sandboxed iframe (ADR-0004) | todo | P1-T02 | |
+| P3-T09 | n8n Workflow E + `creative/generate` endpoint | todo | P3-T07, P2-T08 | |
+| P3-T10 | CRM Creative studio | todo | P3-T08, P3-T09 | |
+| P3-VERIFY | Phase 3 verification | todo | P3-T01…T10 | |
+
+**P3-T01** — create `content-creatives` repo, folder convention `projects/<project_id>/v<n>/`, fine-grained token (contents:write on that repo only), branch protection on `main` (worker pushes to `main` via commits only, no force push). Document in `workers/creative-worker/README.md`.
+
+**P3-T02** — claim/heartbeat/complete/fail client over Supabase RPC, signed upload helper with checksum, structured logger, graceful cancellation check.
+
+**P3-T03** — `content-spec.schema.json` + builder that pulls approved script, brand snapshot (`settings_version`), dimensions per platform, assets, revision notes. Refs: `CONTRACTS.md §6`.
+
+**P3-T04** — `templates/static-post/`, `templates/carousel/`: pure HTML/CSS, fonts bundled locally, data-driven from `content-spec.json`, `dir` aware, each slide addressable (`?slide=n`). Include a creative-workspace `CLAUDE.md` describing rules for Claude Code inside the workspace.
+
+**P3-T05** — per-job temp dir, sparse clone of creatives repo, copy template + spec + script, run Claude Code headless with the spec and workspace `CLAUDE.md`, network allowlist, CPU/mem/time limits, empty env except its own API key. Revision jobs start from the previous version's folder plus `revision_notes`.
+
+**P3-T06** — reject remote URLs, `fetch`/XHR/WebSocket/`eval`/dynamic remote import, oversized files, disallowed file types; html-validate + stylelint. Acceptance: malicious fixtures are rejected.
+
+**P3-T07** — commit as one commit per version (message `project <id> creative v<n>`), record SHA; build static preview bundle; Playwright thumbnails per slide (network off); upload to `previews/`; compute `content_hash`; return `worker-result`. Acceptance: creative traceable to its GitHub commit (blueprint §13).
+
+**P3-T08** — preview served from separate origin; CSP `connect-src 'none'`; CRM `PreviewFrame` component uses `sandbox="allow-scripts"` only. Acceptance: a test creative that tries `fetch` and `parent.document` access fails.
+
+**P3-T09** — Workflow E per `WORKFLOW.md §4`; endpoint requires approved script; revisions create new versions and supersede old ones.
+
+**P3-T10** — preview frame, version selector, per-slide inspector, script + spec side panel, thumbnails, asset list, request changes (with notes) / approve exact version / send back to script.
+
+**P3-VERIFY** — approved script → creative v1 → changes → v2 → approved; v1 preserved; commit SHAs resolve on GitHub; preview isolation tests pass.
+
+---
+
+## P4 — PNG & carousel rendering, media library, final approval
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P4-T01 | render-worker container + sandbox | todo | P3-T02 | |
+| P4-T02 | PNG renderer + validation | todo | P4-T01 | |
+| P4-T03 | Carousel renderer + manifest | todo | P4-T02 | |
+| P4-T04 | `render-jobs` endpoints + n8n Workflow F | todo | P4-T03, P3-VERIFY | |
+| P4-T05 | Media manifest approval + outdated marking | todo | P4-T04, P2-T08 | |
+| P4-T06 | CRM Media library | todo | P4-T04 | |
+| P4-T07 | CRM final media review | todo | P4-T05 | |
+| P4-T08 | Manual publishing preparation (`publishing-jobs`, download bundle) | todo | P4-T05 | |
+| P4-T09 | CRM Workflow monitor (retry / cancel) | todo | P2-T12 | |
+| P4-VERIFY | Initial release acceptance (blueprint §13) | todo | P4-T01…T09 | |
+
+**P4-T01** — `workers/render-worker/Dockerfile` (Node 20, Playwright Chromium, FFmpeg, non-root), network disabled for the browser (local static server only), per-job temp dir cleanup, concurrency + timeout config.
+
+**P4-T02** — checkout creative at `commit_sha`, serve locally, wait for `document.fonts.ready` + images + `window.__ready`, screenshot at exact dimensions, validate (dimensions, non-blank via pixel variance, size), checksum, upload, `media_assets` rows. Acceptance: output dimensions match config (blueprint §13).
+
+**P4-T03** — render each slide independently, consistent dimensions, order check, `manifest` asset per `CONTRACTS.md §8`.
+
+**P4-T04** — `POST /api/render-jobs` (requires approved creative, idempotency key), `GET /api/render-jobs/{id}`; Workflow F. Acceptance: retrying same key creates no second job.
+
+**P4-T05** — approval of `media_manifest` by `manifest_hash`; rerender / return to creative / reject paths; new creative version marks old renders `outdated`.
+
+**P4-T06** — grid/list of assets with filters (type, project, status), dimensions, size, version, approval state, preview + signed download links.
+
+**P4-T07** — shows actual rendered files (not HTML), slide-by-slide, checksum/dimension info, approve / rerender / back to creative / reject / download.
+
+**P4-T08** — `POST /api/publishing-jobs` validates approval + manifest hash + platform constraints; creates job `ready`; generates zip (media in order + `caption.txt` + hashtags) for manual posting; "mark as posted manually" records URL. Acceptance: no package possible without approved media (blueprint §13).
+
+**P4-T09** — list of `workflow_jobs` / `render_jobs` with stage, times, attempts, last error, related versions; retry/cancel for admin.
+
+**P4-VERIFY** — run the full blueprint §13 checklist; record results in `docs/PROGRESS_LOG.md`. Initial release ready for production testing.
+
+---
+
+## P5 — Video rendering (second release)
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | todo | P4-VERIFY | |
+| P5-T02 | Three.js / animated video template | todo | P5-T01 | |
+| P5-T03 | Frame capture + FFmpeg MP4 encode (+ audio track) | todo | P5-T01 | |
+| P5-T04 | ffprobe validation, thumbnail, contact sheet | todo | P5-T03 | |
+| P5-T05 | Resumable render jobs (frame-chunk checkpoints) | todo | P5-T03 | |
+| P5-T06 | CRM video preview / playback | todo | P5-T04 | |
+| P5-T07 | Telegram voice-note transcription | todo | P4-VERIFY | |
+| P5-VERIFY | Phase 5 verification | todo | P5-T01…T07 | |
+
+Key acceptance: same creative + commit renders byte-identical frames; MP4 duration/fps/dimensions/audio validated; a killed render resumes from last checkpoint; voice note creates a project from its transcript.
+
+---
+
+## P6 — Publishing (second release)
+
+| ID | Task | Status | Depends on | Owner |
+|----|------|--------|-----------|-------|
+| P6-T01 | Connected accounts management + Buffer credentials in n8n | todo | P4-VERIFY | |
+| P6-T02 | Platform constraint validators (dimensions, types, caption limits) | todo | P6-T01 | |
+| P6-T03 | n8n Workflow G: submit / schedule via Buffer | todo | P6-T02 | |
+| P6-T04 | Confirmation (poll/webhook); `published` only on provider confirm | todo | P6-T03 | |
+| P6-T05 | Publishing error handling + retries + idempotency | todo | P6-T03 | |
+| P6-T06 | CRM Publishing calendar | todo | P6-T03 | |
+| P6-T07 | Additional platform integrations / direct APIs | deferred | P6-VERIFY | |
+| P6-VERIFY | Phase 6 verification | todo | P6-T01…T06 | |
+
+Key acceptance: publishing impossible without media approval; retrying a publish never double-posts; external post ID + URL + actual time stored; failures visible in calendar and monitor.
+
+---
+
+## P7 — Later enhancements (deferred)
+
+Multi-user teams and client workspaces · performance analytics · recommendations
+from results · automated repurposing across formats/languages · template
+marketplace · campaign planning. Plan these when P6 is done.
