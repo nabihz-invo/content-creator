@@ -123,7 +123,30 @@ manifest — enforced by constraint trigger.
 | `claim_job(kind, worker_id, lease_seconds)` | workers | `FOR UPDATE SKIP LOCKED`, sets lease, increments attempts. |
 | `heartbeat_job(job_id, worker_id, progress)` | workers | Extends lease. |
 | `complete_job(job_id, output)` / `fail_job(job_id, error, retryable)` | workers, n8n | Final state; retryable failures get `next_run_at` with backoff; over `max_attempts` → `needs_attention`. |
-| `mark_downstream_outdated(artifact_type, artifact_id)` | internal | Cascade rule from `WORKFLOW.md §5`. |
+| `mark_downstream_outdated(artifact_type, artifact_id)` | internal | Cascade rule from `WORKFLOW.md §5`. (P2-T08) |
+| `create_project(workspace, actor, record, dedupe_hash, allow_duplicate, source_key, auto_analyze, import_batch)` | API | Atomic intake: role check, source-key replay, advisory-locked dedupe, insert, `analysis` job, `new → analyzing`. Returns `{project_id, created, replayed, duplicate_of, status, job_id}`. |
+| `cancel_job(job, actor)` / `retry_job(job, actor)` | API (monitor) | Cancel; or requeue a `needs_attention` job and return a `failed` project to `failed_from_status`. |
+| `recover_jobs()` | n8n Workflow R | Requeue expired leases, escalate exhausted ones. |
+| `log_event(project, type, data, actor, job)` | API, n8n | Append to `workflow_events`. |
+
+All of the above are `security definer`, `search_path = ''`, executable by
+`service_role` only (Edge Functions authorize the user first). User-callable
+RPCs (e.g. `record_approval`) derive the actor from `auth.uid()`.
+
+### Implemented details (P1)
+- `content_projects.failed_from_status` — admin retry may only return there.
+- `content_projects.source_idempotency_key` (unique) — `telegram:<update_id>`,
+  `csv:<batch>:<row>`; replays return the existing project.
+- A trigger rejects any change to `status` / `current_stage` outside
+  `transition_project()` (it sets the transaction-local flag `cc.in_transition`).
+- `private.guard_immutable(mutable_cols, open_statuses)` freezes version rows;
+  `private.guard_status_flow()` keeps approved → superseded/outdated only.
+- `questionnaires.kind` (`initial` / `clarification`), `scripts.origin`
+  (`ai` / `manual_edit` / `section_regeneration`), `scripts.parent_script_id`.
+- `creative_versions` cannot leave `generating` without `commit_sha`,
+  `content_hash`, `preview_path` (traceability, blueprint §13).
+- `publishing_jobs` insert requires an `approved` `media` approval of a
+  `media_manifest` whose hash equals `manifest_hash`; manifest is frozen after.
 
 ## 6. RLS summary
 

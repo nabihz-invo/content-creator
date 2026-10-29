@@ -13,7 +13,7 @@ starting the next one (blueprint §14).
 | Phase | Goal | Release | Status |
 |-------|------|---------|--------|
 | P0 | Foundation: repo, tooling, shared package, decisions | initial | done |
-| P1 | Database, auth, brand settings, dashboard, intake | initial | todo |
+| P1 | Database, auth, brand settings, dashboard, intake | initial | in-progress |
 | P2 | Questionnaire, brief, script generation, approvals | initial | todo |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
 | P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
@@ -64,14 +64,14 @@ starting the next one (blueprint §14).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P1-T01 | Migration: tenancy, profiles, roles, helpers | todo | P0-T04 | |
-| P1-T02 | Migration: brands, brand history, brand assets, storage buckets | todo | P1-T01 | |
-| P1-T03 | Migration: content_projects, analyses, tags, import_batches | todo | P1-T02 | |
-| P1-T04 | Migration: workflow_jobs/events, idempotency, job + transition RPCs | todo | P1-T03, P0-T02 | |
-| P1-T05 | Migration: artifact tables (questionnaires → publishing_jobs, approvals) + immutability triggers | todo | P1-T04 | |
-| P1-T06 | RLS policies + pgTAP tests | todo | P1-T05 | |
+| P1-T01 | Migration: tenancy, profiles, roles, helpers | done | P0-T04 | claude/sweet-rubin-5q9utc |
+| P1-T02 | Migration: brands, brand history, brand assets, storage buckets | done | P1-T01 | claude/sweet-rubin-5q9utc |
+| P1-T03 | Migration: content_projects, analyses, tags, import_batches | done | P1-T02 | claude/sweet-rubin-5q9utc |
+| P1-T04 | Migration: workflow_jobs/events, idempotency, job + transition RPCs | done | P1-T03, P0-T02 | claude/sweet-rubin-5q9utc |
+| P1-T05 | Migration: artifact tables (questionnaires → publishing_jobs, approvals) + immutability triggers | done | P1-T04 | claude/sweet-rubin-5q9utc |
+| P1-T06 | RLS policies + pgTAP tests | done | P1-T05 | claude/sweet-rubin-5q9utc |
 | P1-T07 | Edge Functions shared lib | todo | P1-T04, P0-T05 | |
-| P1-T08 | `POST /api/content-projects` with dedupe | todo | P1-T07 | |
+| P1-T08 | `POST /api/content-projects` with dedupe | in-progress | P1-T07 | claude/sweet-rubin-5q9utc |
 | P1-T09 | `POST /api/imports/csv` | todo | P1-T08 | |
 | P1-T10 | `POST /api/webhooks/telegram` (text + URL) | todo | P1-T08 | |
 | P1-T11 | Safe URL fetch + text extraction | todo | P1-T07 | |

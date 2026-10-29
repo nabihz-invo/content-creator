@@ -25,10 +25,15 @@ reachable.
 
 ## Testing as a user inside pgTAP
 
+Each test file starts with `begin; \ir _helpers.sql` and ends with `rollback;`.
+`_helpers.sql` provides:
+
 ```sql
-select tests.as_user('<uuid>');   -- sets role authenticated + request.jwt.claims
-select tests.as_service();        -- service_role
-select tests.as_anon();
+select tests.create_user('a@example.com');      -- auth user (+ profile + admin workspace via trigger)
+select tests.workspace_of(uid);  select tests.add_member(ws, uid, 'editor');
+select tests.as_user(uid);  select tests.as_service();  select tests.as_anon();  select tests.reset_role();
+select tests.new_project(ws, uid, 'idea text', auto_analyze);
 ```
 
-Helpers are created by `tests/00_helpers.sql`... see that file.
+`scripts/db-platform-shim.sql` adds storage columns the bare image lacks
+(the Storage API adds them in real deployments). It is never a migration.

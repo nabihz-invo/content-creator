@@ -44,6 +44,9 @@ stop() { docker rm -f "$NAME" >/dev/null 2>&1 || true; }
 
 migrate() {
   shopt -s nullglob
+  # Platform shim runs as the image superuser (storage tables belong to supabase_storage_admin).
+  psql -h 127.0.0.1 -p "$PORT" -U supabase_admin -d postgres -X -q -v ON_ERROR_STOP=1 \
+    -f "$ROOT/scripts/db-platform-shim.sql"
   for f in "$ROOT"/supabase/migrations/*.sql; do
     echo "  migrate $(basename "$f")"
     "${PSQL[@]}" -f "$f"
@@ -64,9 +67,9 @@ run_tests() {
   shopt -s nullglob
   local failed=0 total=0 out
   "${PSQL[@]}" -c "create extension if not exists pgtap with schema extensions" >/dev/null
-  for f in "$ROOT"/supabase/tests/*.sql; do
+  for f in "$ROOT"/supabase/tests/[0-9]*.sql; do
     total=$((total + 1))
-    if ! out=$("${PSQL[@]}" -t -A -f "$f" 2>&1); then
+    if ! out=$(cd "$ROOT/supabase/tests" && "${PSQL[@]}" -t -A -f "$f" 2>&1); then
       echo "FAIL $(basename "$f") (error)"; echo "$out" | sed 's/^/    /'; failed=$((failed + 1)); continue
     fi
     if grep -qE '^not ok|Looks like' <<<"$out"; then
