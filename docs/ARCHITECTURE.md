@@ -19,7 +19,7 @@
 ```
               ┌────────────────────────────── Users ─────────────────────────────┐
               │                                                                   │
-        Telegram bot                     CRM (Lovable / React)          Isolated preview origin
+        Telegram bot                     CRM (Vite / React)             Isolated preview origin
               │                          │  supabase-js (anon key + JWT)        (sandboxed iframe)
               ▼                          ▼                                       ▲
    ┌──────────────────────────────── Supabase ───────────────────────────────┐  │
@@ -56,7 +56,7 @@ This repository is a monorepo. Paths are fixed so agents can find things.
 ├── CLAUDE.md / AGENTS.md / README.md / PLAN.md
 ├── docs/                         planning + reference docs, ADRs, progress log
 ├── apps/
-│   └── crm/                      Lovable app (React + TS + shadcn/ui + Tailwind)
+│   └── crm/                      Vite app (React + TS + shadcn/ui + Tailwind)    
 │       ├── src/
 │       │   ├── pages/            Overview, Inbox, Projects, ProjectDetail, Brands,
 │       │   │                     Questionnaire, ScriptEditor, CreativeStudio,
@@ -99,9 +99,8 @@ This repository is a monorepo. Paths are fixed so agents can find things.
 └── .github/workflows/            CI: lint, typecheck, unit tests, SQL tests
 ```
 
-> **Lovable note:** Lovable's GitHub sync expects the app at the repository
-> root. See `docs/adr/0001-monorepo-and-lovable.md` for how `apps/crm` is
-> handled.
+> The CRM is written directly by agents — no Lovable (see
+> `docs/adr/0001-monorepo-layout.md`).
 
 ### Creative source repository
 

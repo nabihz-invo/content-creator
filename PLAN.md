@@ -12,7 +12,7 @@ starting the next one (blueprint §14).
 
 | Phase | Goal | Release | Status |
 |-------|------|---------|--------|
-| P0 | Foundation: repo, tooling, shared package, decisions | initial | todo |
+| P0 | Foundation: repo, tooling, shared package, decisions | initial | done |
 | P1 | Database, auth, brand settings, dashboard, intake | initial | todo |
 | P2 | Questionnaire, brief, script generation, approvals | initial | todo |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
@@ -27,12 +27,12 @@ starting the next one (blueprint §14).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P0-T01 | Monorepo scaffold and CI | todo | — | |
-| P0-T02 | Shared package skeleton (status enums, transitions, hashing) | todo | P0-T01 | |
-| P0-T03 | Decide Lovable repo layout (ADR-0001) | todo | — | |
-| P0-T04 | Local Supabase project init | todo | P0-T01 | |
-| P0-T05 | n8n integration conventions + credentials inventory | todo | — | |
-| P0-VERIFY | Phase 0 verification | todo | P0-T01…T05 | |
+| P0-T01 | Monorepo scaffold and CI | done | — | claude/sweet-rubin-5q9utc |
+| P0-T02 | Shared package skeleton (status enums, transitions, hashing) | done | P0-T01 | claude/sweet-rubin-5q9utc |
+| P0-T03 | Decide frontend repo layout (ADR-0001) | done | — | claude/sweet-rubin-5q9utc |
+| P0-T04 | Local Supabase project init | done | P0-T01 | claude/sweet-rubin-5q9utc |
+| P0-T05 | n8n integration conventions + credentials inventory | done | — | claude/sweet-rubin-5q9utc |
+| P0-VERIFY | Phase 0 verification | done | P0-T01…T05 | claude/sweet-rubin-5q9utc |
 
 **P0-T01 Monorepo scaffold and CI**
 - Deliverables: `package.json`, `pnpm-workspace.yaml`, `tsconfig.base.json`, ESLint/Prettier config, `.gitignore` (env, media, node_modules), `.editorconfig`, `.github/workflows/ci.yml` (install, lint, typecheck, test, secret scan).
@@ -44,9 +44,8 @@ starting the next one (blueprint §14).
 - Acceptance: tests cover every allowed transition and reject a sample of disallowed ones; hash is stable regardless of key order.
 - Refs: `docs/WORKFLOW.md §2–3`, `docs/CONTRACTS.md`.
 
-**P0-T03 Decide Lovable repo layout**
-- Deliverables: update `docs/adr/0001-monorepo-and-lovable.md` from `proposed` to `accepted` with the chosen option (needs user input — ask).
-- Acceptance: ADR accepted; `ARCHITECTURE.md §3` matches.
+**P0-T03 Decide frontend repo layout**
+- Decision: no Lovable; Vite CRM in `apps/crm/` built by agents. See `docs/adr/0001-monorepo-layout.md` (accepted).
 
 **P0-T04 Local Supabase project init**
 - Deliverables: `supabase/config.toml`, `supabase/seed.sql` (empty placeholder), `supabase/README.md` (start/reset/test commands), root scripts `db:start`, `db:reset`, `db:test`.
@@ -108,7 +107,7 @@ starting the next one (blueprint §14).
 
 **P1-T12** — `n8n/workflows/A-intake.json`: Telegram trigger path → Edge Function; reply with project ID + CRM link. Acceptance: Telegram text and URL each create a project (blueprint §13).
 
-**P1-T13** — Lovable app: Supabase auth (email magic link), app shell with nav for all modules A–J (placeholders ok), `en`/`ar` i18n, RTL switching, `lib/api.ts`, generated DB types. Acceptance: login works; switching to Arabic flips layout.
+**P1-T13** — Vite + React app (`apps/crm`): Supabase auth (email magic link), app shell with nav for all modules A–J (placeholders ok), `en`/`ar` i18n, RTL switching, `lib/api.ts`, generated DB types. Acceptance: login works; switching to Arabic flips layout.
 
 **P1-T14** — Brand manager: CRUD brand, settings form (voice, palette, typography, audiences, platform rules, CTA, claims), asset upload (logos, fonts, references) with versioning. Acceptance: settings history visible; assets stored under correct path.
 

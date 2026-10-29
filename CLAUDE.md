@@ -91,7 +91,7 @@ Task status values: `todo` · `in-progress` · `done` · `blocked` · `deferred`
 See `docs/ARCHITECTURE.md §3` for full detail.
 
 ```
-apps/crm/                 Lovable React + TS + shadcn/ui dashboard
+apps/crm/                 Vite + React + TS + shadcn/ui dashboard (no Lovable, ADR-0001)
 supabase/                 migrations, edge functions, seed, RLS tests
 n8n/workflows/            exported n8n workflow JSON (A–G) + README
 workers/creative-worker/  Claude Code generation worker (Node.js)

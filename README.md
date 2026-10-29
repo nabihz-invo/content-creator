@@ -12,7 +12,7 @@ a full audit trail at every stage.
 
 | Layer | Technology |
 |-------|-----------|
-| CRM frontend | Lovable, React, TypeScript, shadcn/ui, Supabase client (RTL-ready) |
+| CRM frontend | Vite, React, TypeScript, shadcn/ui, Supabase client (RTL-ready) |
 | System of record | Supabase Postgres, Auth, Storage, RLS, Edge Functions |
 | Orchestration | Self-hosted n8n (webhooks, Telegram, AI calls, schedules, retries) |
 | Creative generation | Claude Code in an isolated worker, GitHub for source |

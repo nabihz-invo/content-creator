@@ -51,6 +51,7 @@ table. (Mirror: `packages/shared/src/status.ts`.)
 |------|----|---------|
 | new | analyzing | analysis job created (auto after intake, or `/analyze`) |
 | analyzing | awaiting_answers | questionnaire saved |
+| awaiting_answers | analyzing | analysis re-run requested |
 | awaiting_answers | validating_answers | answers submitted |
 | validating_answers | needs_clarification | contradictions / missing essentials |
 | needs_clarification | validating_answers | clarification answers submitted |
@@ -70,11 +71,12 @@ table. (Mirror: `packages/shared/src/status.ts`.)
 | ready_to_publish | scheduled | publishing job scheduled (provider confirmed) |
 | ready_to_publish / scheduled | publishing | publish now / schedule fired |
 | publishing | published | **provider confirmed** |
+| ready_to_publish | published | user confirms a **manual** publication (records URL) |
 | publishing | ready_to_publish | publish failed, retryable after review |
 | any non-terminal | failed | job reached `needs_attention` |
 | failed | (previous status) | admin retry |
 | any non-terminal | cancelled | user cancel |
-| awaiting_answers … media_in_review | awaiting_answers | user edits & resubmits questionnaire (downstream outdated) |
+| validating_answers … media_in_review | awaiting_answers | user edits & resubmits questionnaire (downstream outdated) |
 
 Phase 1–4 (initial release) stop at `ready_to_publish` with **manual
 download + publishing preparation**; automated `scheduled / publishing /

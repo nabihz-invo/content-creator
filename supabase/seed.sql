@@ -1,0 +1,1 @@
+-- Seed data for local development. Applied after migrations by scripts/db.sh and supabase db reset.

@@ -29,7 +29,7 @@ resumable, versioned, and independently retryable.
 
 ## 2. Technology stack
 
-**Frontend:** Lovable · React and TypeScript · shadcn/ui · Supabase client ·
+**Frontend:** ~~Lovable~~ (superseded by ADR-0001: Vite app built by Claude Code) · React and TypeScript · shadcn/ui · Supabase client ·
 responsive desktop and mobile dashboard · RTL support for Arabic.
 
 **Backend:** Supabase PostgreSQL · Supabase Authentication · Supabase Storage ·
