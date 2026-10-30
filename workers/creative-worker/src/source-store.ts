@@ -47,6 +47,7 @@ export async function ensureLocalRepo(repoUrl: string, workDir: string) {
   const path = repoUrl.slice("file://".length);
   if (existsSync(join(path, "HEAD"))) return;
   mkdirSync(path, { recursive: true });
+  mkdirSync(workDir, { recursive: true });
   await git(["init", "--bare", "--initial-branch=main", path], workDir);
   const seed = mkdtempSync(join(workDir, "seed-"));
   await git(["init", "--initial-branch=main", seed], seed);

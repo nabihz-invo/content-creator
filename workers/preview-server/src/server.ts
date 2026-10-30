@@ -59,6 +59,10 @@ export function createPreviewServer(opts: {
     "x-content-type-options": "nosniff",
     "referrer-policy": "no-referrer",
     "cross-origin-opener-policy": "same-origin",
+    // The sandboxed frame has an opaque ("null") origin, and module scripts and fonts are
+    // CORS requests, so its own files must be readable cross-origin. Access is still gated
+    // by the signed token in the path, and no credentials are ever involved.
+    "access-control-allow-origin": "*",
     "permissions-policy":
       "camera=(), microphone=(), geolocation=(), payment=(), usb=(), clipboard-read=(), clipboard-write=()",
   };

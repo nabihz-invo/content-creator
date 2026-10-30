@@ -65,6 +65,7 @@ const errors = [];
 async function newPage(viewport) {
   const ctx = await browser.newContext({ viewport, locale: "en-US" });
   await ctx.addInitScript((s) => {
+    if (window !== window.top) return; // the sandboxed creative preview has no storage
     localStorage.setItem("sb-127-auth-token", JSON.stringify(s));
     localStorage.setItem("cc.theme", "light");
     if (!localStorage.getItem("cc.locale")) localStorage.setItem("cc.locale", "en");
@@ -320,7 +321,10 @@ check(
 
 await page.getByRole("button", { name: "Approve script" }).click();
 await page.getByText("Script approved").waitFor();
-await page.locator('[data-status="generating_creative"]').first().waitFor();
+await page
+  .locator('[data-status="generating_creative"], [data-status="creative_in_review"]')
+  .first()
+  .waitFor();
 check(true, "approving the script unlocks creative generation");
 await page.getByRole("tab", { name: "Creative" }).click();
 const prompt = await page.getByTestId("creative-prompt").textContent();
@@ -335,6 +339,103 @@ check(
   "creative prompt uses the brand accent",
 );
 await shot(page, "13-creative-prompt");
+
+console.log("phase 3: creative worker → sandboxed preview → approval");
+const creativeProjectUrl = page.url();
+await page
+  .getByRole("button", { name: "Approve creative" })
+  .waitFor({ timeout: 120000 })
+  .catch(async (e) => {
+    await shot(page, "debug-creative");
+    console.log(errors.join("\n"));
+    throw e;
+  });
+check(true, "the creative worker builds v1 from the approved script");
+const iframe = page.getByTestId("creative-iframe");
+await iframe.waitFor();
+check(
+  (await iframe.getAttribute("sandbox")) === "allow-scripts",
+  "preview iframe is sandboxed with allow-scripts only",
+);
+const previewSrc = await iframe.getAttribute("src");
+check(
+  previewSrc.startsWith("http://127.0.0.1:54400/"),
+  "preview loads from the separate preview origin",
+);
+const previewRes = await fetch(previewSrc);
+const csp = previewRes.headers.get("content-security-policy") ?? "";
+check(
+  previewRes.ok && csp.includes("connect-src 'none'") && csp.includes("frame-ancestors"),
+  "preview origin serves the creative with a locked-down CSP",
+);
+check(
+  (await fetch(previewSrc.replace(/\/p\/([^./]+)\.[^/]+\//, "/p/$1.forged/"))).status === 403,
+  "preview origin rejects a forged token",
+);
+const creativeFrame = await (async () => {
+  for (let i = 0; i < 100; i++) {
+    const f = page.frames().find((fr) => fr.url().startsWith("http://127.0.0.1:54400/"));
+    if (f) return f;
+    await page.waitForTimeout(100);
+  }
+  throw new Error("preview frame did not attach");
+})();
+await creativeFrame
+  .waitForFunction(() => window.__ready === true, null, { timeout: 30000 })
+  .catch((e) => {
+    console.log(errors.join("\n"));
+    throw e;
+  });
+check(true, "the creative runs inside the sandbox and signals ready");
+check(
+  await creativeFrame.evaluate(() => {
+    try {
+      return window.parent.document && false;
+    } catch {
+      return true;
+    }
+  }),
+  "the sandboxed creative cannot reach the CRM document",
+);
+await page.getByText("Code checks passed").waitFor();
+await page.locator("button > img").first().waitFor();
+check(true, "stills rendered by the worker are shown");
+await shot(page, "14-creative-review");
+
+await page.getByRole("button", { name: "Request changes" }).click();
+await page.locator("#creative-comment").fill("Slow the camera down and make the CTA bigger.");
+await page.getByRole("dialog").getByRole("button", { name: "Request changes" }).click();
+await page.getByText("Revision of v1").waitFor({ timeout: 120000 });
+await page.getByRole("button", { name: "Approve creative" }).waitFor({ timeout: 120000 });
+check(true, "requesting changes produces creative v2 from the v1 source");
+check(
+  await page.getByText("Slow the camera down").first().isVisible(),
+  "revision notes are recorded on the new version",
+);
+await page.getByRole("button", { name: "Approve creative" }).click();
+await page
+  .getByText("Approved. Final rendering")
+  .waitFor({ timeout: 30000 })
+  .catch(async (e) => {
+    await shot(page, "debug-creative");
+    throw e;
+  });
+await page.locator('[data-status="rendering"]').first().waitFor();
+check(true, "approving the creative queues the render and moves the project to rendering");
+await shot(page, "15-creative-approved");
+
+await nav(page, "Creative studio");
+await page.getByTestId("studio-card").first().waitFor();
+check(
+  (await page.getByTestId("studio-card").filter({ hasText: "Rendering" }).count()) > 0,
+  "creative studio lists the project with its status",
+);
+await page.getByTestId("studio-card").first().locator("img").waitFor();
+await page.waitForFunction(() => [...document.images].every((i) => i.complete));
+check(true, "studio cards show the worker's still");
+await shot(page, "16-creative-studio");
+await page.goto(creativeProjectUrl);
+await page.getByRole("tab", { name: "Brief" }).waitFor();
 await page.getByRole("tab", { name: "Brief" }).click();
 await page.getByText("Key message").waitFor();
 await shot(page, "12-brief");

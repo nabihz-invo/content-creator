@@ -183,7 +183,7 @@ Phase 3 (3D motion graphics / HTML).
 | P3-T04 | DB: creative RPCs, creative approvals, worker job kind + pgTAP | done | P2-T04 | claude/sweet-rubin-5q9utc |
 | P3-T05 | `workers/creative-worker`: job loop, workspace, generators (template / Claude Code), git source store, preview bundle, thumbnails, upload | done | P3-T01…T04 | claude/sweet-rubin-5q9utc |
 | P3-T06 | `workers/preview-server` (separate origin, signed URLs, CSP) + API preview-url and creative approvals | done | P3-T04 | claude/sweet-rubin-5q9utc |
-| P3-T07 | CRM creative studio (sandboxed preview, versions, slides, thumbnails, approve / request changes / regenerate) | todo | P3-T05, P3-T06 | |
+| P3-T07 | CRM creative studio (sandboxed preview, versions, slides, thumbnails, approve / request changes / regenerate) | done | P3-T05, P3-T06 | claude/sweet-rubin-5q9utc |
 | P3-T08 | Creatives GitHub repository + production deployment notes (needs the owner: create repo, token) | todo | P3-T05 | |
 | P3-VERIFY | Phase 3 verification | todo | P3-T01…T07 | |
 

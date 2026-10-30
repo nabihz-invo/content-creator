@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 import { BriefPanel } from "./BriefPanel";
 import { ConfigPanel } from "./config/ConfigPanel";
-import { CreativePromptPanel } from "./CreativePromptPanel";
+import { CreativePanel } from "./creative/CreativePanel";
 import { eventLabel } from "./event-label";
 import { ScriptPanel } from "./script/ScriptPanel";
 
@@ -55,7 +55,9 @@ function tabFor(status: string): string {
     return "configuration";
   if (status === "validating_answers") return "brief";
   if (["generating_script", "script_in_review"].includes(status)) return "script";
-  if (["generating_creative", "creative_in_review"].includes(status)) return "creative";
+  // Until Phase 4 adds the media tab, a rendering project shows the approved creative.
+  if (["generating_creative", "creative_in_review", "rendering"].includes(status))
+    return "creative";
   return "idea";
 }
 
@@ -78,6 +80,7 @@ export function ProjectDetailPage() {
       "brief",
       "scripts",
       "approvals",
+      "creatives",
     ]) {
       void qc.invalidateQueries({ queryKey: [key] });
     }
@@ -261,7 +264,7 @@ export function ProjectDetailPage() {
             <ScriptPanel project={p} />
           </TabsContent>
           <TabsContent value="creative">
-            <CreativePromptPanel project={p} />
+            <CreativePanel project={p} />
           </TabsContent>
 
           {LATER_TABS.map((tab) => (

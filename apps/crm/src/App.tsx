@@ -11,6 +11,7 @@ import { OverviewPage } from "@/features/overview/OverviewPage";
 import { PlaceholderPage } from "@/features/placeholders/PlaceholderPage";
 import { ProjectDetailPage } from "@/features/projects/ProjectDetailPage";
 import { SettingsPage } from "@/features/settings/SettingsPage";
+import { StudioPage } from "@/features/studio/StudioPage";
 import { AuthProvider, useAuth } from "@/lib/auth";
 import { I18nProvider, useI18n } from "@/lib/i18n";
 import { WorkspaceProvider } from "@/lib/workspace";
@@ -35,13 +36,7 @@ const router = createBrowserRouter([
       { path: "settings", element: <SettingsPage /> },
       {
         path: "creative",
-        element: (
-          <PlaceholderPage
-            title="nav.creative"
-            description="placeholder.creative"
-            phase="Phase 3"
-          />
-        ),
+        element: <StudioPage />,
       },
       {
         path: "media",

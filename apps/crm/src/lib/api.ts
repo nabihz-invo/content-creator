@@ -150,8 +150,14 @@ export const api = {
       idempotencyKey,
     }),
 
+  previewUrl: (creativeVersionId: string) =>
+    apiRequest<{ url: string; base: string; expires_at: string }>(
+      `/creative-versions/${creativeVersionId}/preview`,
+      { method: "GET" },
+    ),
+
   decide: (input: {
-    artifact_type: "script";
+    artifact_type: "script" | "creative_version";
     artifact_id: string;
     artifact_version: number;
     artifact_hash: string;

@@ -419,3 +419,109 @@ export function useApprovals(projectId: string | undefined) {
     },
   });
 }
+
+// ── Phase 3: creative versions ──────────────────────────────────────────────
+export interface CreativeVersionRow {
+  id: string;
+  version: number;
+  script_id: string;
+  status:
+    | "generating"
+    | "in_review"
+    | "changes_requested"
+    | "approved"
+    | "rejected"
+    | "superseded"
+    | "failed";
+  repository_url: string | null;
+  commit_sha: string | null;
+  source_path: string | null;
+  preview_path: string | null;
+  content_hash: string | null;
+  revision_notes: string | null;
+  generator: "template" | "claude-code" | null;
+  created_at: string;
+  configuration: {
+    format?: "static" | "carousel" | "video";
+    width?: number;
+    height?: number;
+    duration_s?: number | null;
+    style?: string;
+    files?: { path: string; committed: boolean }[];
+    thumbnails?: { name: string; query: string; path: string }[];
+    checks?: { ok: boolean; files: number; bytes: number };
+    generator?: { name: string; summary: string; cost_usd: number | null; turns: number | null };
+    base_version?: number | null;
+  };
+}
+
+export function useCreativeVersions(projectId: string | undefined, poll = false) {
+  return useQuery({
+    queryKey: ["creatives", projectId],
+    enabled: !!projectId,
+    refetchInterval: poll ? 2500 : false,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("creative_versions")
+        .select(
+          "id, version, script_id, status, repository_url, commit_sha, source_path, preview_path, content_hash, revision_notes, generator, created_at, configuration",
+        )
+        .eq("project_id", projectId!)
+        .order("version", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as CreativeVersionRow[];
+    },
+  });
+}
+
+/** Signed URLs for thumbnails in the private previews bucket (RLS: project members). */
+export function useSignedUrls(paths: string[]) {
+  return useQuery({
+    queryKey: ["signed", paths],
+    enabled: paths.length > 0,
+    staleTime: 50 * 60_000,
+    queryFn: async () => {
+      const { data, error } = await supabase.storage.from("previews").createSignedUrls(paths, 3600);
+      if (error) throw error;
+      return Object.fromEntries(
+        (data ?? []).flatMap((d) =>
+          d.path && d.signedUrl ? [[d.path, d.signedUrl] as const] : [],
+        ),
+      ) as Record<string, string>;
+    },
+  });
+}
+
+export interface StudioRow {
+  id: string;
+  title: string;
+  status: ContentProject["status"];
+  updated_at: string;
+  creative_versions: {
+    id: string;
+    version: number;
+    status: string;
+    configuration: CreativeVersionRow["configuration"];
+  }[];
+}
+
+/** Projects with creative work in progress or waiting for review. */
+export function useStudioProjects(workspaceId: string | null) {
+  return useQuery({
+    queryKey: ["studio", workspaceId],
+    enabled: !!workspaceId,
+    refetchInterval: 10_000,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("content_projects")
+        .select(
+          "id, title, status, updated_at, creative_versions(id, version, status, configuration)",
+        )
+        .eq("workspace_id", workspaceId!)
+        .in("status", ["generating_creative", "creative_in_review", "rendering"])
+        .order("updated_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as unknown as StudioRow[];
+    },
+  });
+}

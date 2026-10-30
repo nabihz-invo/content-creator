@@ -55,3 +55,13 @@ test("versions are committed under projects/<id>/v<n>, concurrently, and checked
   assert.equal(readFileSync(join(dest, "index.html"), "utf8"), "<h1>A1</h1>");
   assert.equal(readFileSync(join(dest, "lib/runtime.js"), "utf8"), "export {}");
 });
+
+test("the local repository is created even when the work directory does not exist yet", async () => {
+  const root = mkdtempSync(join(tmpdir(), "cc-git-"));
+  const url = `file://${join(root, "creatives.git")}`;
+  await ensureLocalRepo(url, join(root, "not-yet", "work"));
+  assert.equal(
+    await git(["rev-parse", "--abbrev-ref", "HEAD"], join(root, "creatives.git")),
+    "main",
+  );
+});

@@ -28,6 +28,9 @@ test("serves files of the signed creative with a strict CSP and no cookies", asy
   assert.match(res.headers.get("content-security-policy")!, /frame-ancestors http:\/\/crm\.test/);
   assert.equal(res.headers.get("x-content-type-options"), "nosniff");
   assert.equal(res.headers.get("set-cookie"), null);
+  // Module scripts in an opaque-origin sandbox are CORS requests.
+  assert.equal(res.headers.get("access-control-allow-origin"), "*");
+  assert.equal(res.headers.get("access-control-allow-credentials"), null);
   const js = await fetch(`${base}/p/${await token()}/main.js`);
   assert.equal(js.headers.get("content-type"), "text/javascript; charset=utf-8");
 });

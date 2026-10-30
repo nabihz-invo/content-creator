@@ -88,10 +88,10 @@ up() {
   pkill -f "creative-worker/src/main.ts" 2>/dev/null || true
   (cd "$ROOT/workers/preview-server" && PORT=54400 PREVIEW_SIGNING_SECRET=local-preview-secret SUPABASE_URL=http://127.0.0.1:54321 \
      SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" CRM_ALLOWED_ORIGINS=http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:4173 \
-     setsid node --experimental-strip-types src/main.ts </dev/null >"$RUN/preview.log" 2>&1 &)
+     setsid node --experimental-strip-types "$ROOT/workers/preview-server/src/main.ts" </dev/null >"$RUN/preview.log" 2>&1 &)
   (cd "$ROOT/workers/creative-worker" && DATABASE_URL=postgres://postgres:postgres@127.0.0.1:54322/postgres SUPABASE_URL=http://127.0.0.1:54321 \
      SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" CREATIVE_GENERATOR="${CREATIVE_GENERATOR:-template}" ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-}" \
-     POLL_MS=1500 setsid node --experimental-strip-types src/main.ts </dev/null >"$RUN/creative-worker.log" 2>&1 &)
+     POLL_MS=1500 setsid node --experimental-strip-types "$ROOT/workers/creative-worker/src/main.ts" </dev/null >"$RUN/creative-worker.log" 2>&1 &)
   wait_http http://127.0.0.1:54400/health
   echo "stack is up"
   env_out
