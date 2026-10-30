@@ -1,0 +1,11 @@
+#gl,
+#overlay {
+  position: absolute;
+  inset: 0;
+  width: var(--w);
+  height: var(--h);
+  display: block;
+}
+#overlay {
+  pointer-events: none;
+}

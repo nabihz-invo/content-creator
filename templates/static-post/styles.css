@@ -1,0 +1,34 @@
+.safe {
+  justify-content: space-between;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--unit) * 3.5);
+  padding: calc(var(--unit) * 6);
+  max-height: 78%;
+}
+.headline {
+  max-height: calc(var(--unit) * 40);
+}
+.body-text {
+  max-height: calc(var(--unit) * 22);
+}
+.decor .shape:nth-child(1) {
+  width: calc(var(--unit) * 34);
+  height: calc(var(--unit) * 34);
+  inset-inline-end: calc(var(--unit) * -8);
+  top: calc(var(--unit) * 6);
+}
+.decor .shape:nth-child(2) {
+  width: calc(var(--unit) * 16);
+  height: calc(var(--unit) * 16);
+  inset-inline-start: calc(var(--unit) * 8);
+  bottom: calc(var(--unit) * 26);
+}
+.decor .shape:nth-child(3) {
+  width: calc(var(--unit) * 9);
+  height: calc(var(--unit) * 9);
+  inset-inline-end: calc(var(--unit) * 22);
+  bottom: calc(var(--unit) * 10);
+}

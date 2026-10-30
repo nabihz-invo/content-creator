@@ -1,0 +1,21 @@
+{
+  "name": "@cc/creative-worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/check.test.ts",
+    "test:render": "node --experimental-strip-types --test test/templates.test.ts"
+  },
+  "dependencies": {
+    "@cc/shared": "workspace:*",
+    "@fontsource/ibm-plex-sans-arabic": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/tajawal": "5.3.0",
+    "@supabase/supabase-js": "2.118.0",
+    "postgres": "3.4.9",
+    "three": "0.187.0"
+  }
+}

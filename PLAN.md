@@ -15,7 +15,7 @@ starting the next one (blueprint §14).
 | P0 | Foundation: repo, tooling, shared package, decisions | initial | done |
 | P1 | Database, auth, brand settings, dashboard, intake | initial | done |
 | P2 | AI configuration (approved by user), brief, script generation, approvals | initial | done |
-| P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
+| P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | in-progress |
 | P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
 | P5 | Video rendering, FFmpeg validation, resumable renders, voice notes | second | todo |
 | P6 | Buffer publishing, scheduling, calendar, retries, monitoring | second | todo |
@@ -173,45 +173,35 @@ Phase 3 (3D motion graphics / HTML).
 
 ---
 
-## P3 — Creative generation (GitHub + Claude Code), isolated preview
+## P3 — Creative generation (Claude Code worker), git-traced source, isolated preview (ADR-0007)
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P3-T01 | Creative source repository setup (ADR-0002) | todo | P2-VERIFY | |
-| P3-T02 | `workers/common` job client, storage, logging | todo | P1-T04 | |
-| P3-T03 | content-spec schema + builder | todo | P2-T01 | |
-| P3-T04 | Starter templates: static post + carousel (RTL-ready) | todo | P3-T01 | |
-| P3-T05 | creative-worker: isolated workspace + Claude Code invocation | todo | P3-T02, P3-T03, P3-T04 | |
-| P3-T06 | Generated-code static validator | todo | P3-T05 | |
-| P3-T07 | Commit, preview bundle, thumbnails, upload, result | todo | P3-T06 | |
-| P3-T08 | Preview origin + CSP + sandboxed iframe (ADR-0004) | todo | P1-T02 | |
-| P3-T09 | n8n Workflow E + `creative/generate` endpoint | todo | P3-T07, P2-T08 | |
-| P3-T10 | CRM Creative studio | todo | P3-T08, P3-T09 | |
-| P3-VERIFY | Phase 3 verification | todo | P3-T01…T10 | |
+| P3-T01 | Content spec builder (shared) | done | P2-VERIFY | claude/sweet-rubin-5q9utc |
+| P3-T02 | Starter templates: static post, carousel, 3D motion (Three.js) + workspace rules | done | P3-T01 | claude/sweet-rubin-5q9utc |
+| P3-T03 | Generated-code validator | done | P3-T02 | claude/sweet-rubin-5q9utc |
+| P3-T04 | DB: creative RPCs, creative approvals, worker job kind + pgTAP | todo | P2-T04 | |
+| P3-T05 | `workers/creative-worker`: job loop, workspace, generators (template / Claude Code), git source store, preview bundle, thumbnails, upload | todo | P3-T01…T04 | |
+| P3-T06 | `workers/preview-server` (separate origin, signed URLs, CSP) + API preview-url and creative approvals | todo | P3-T04 | |
+| P3-T07 | CRM creative studio (sandboxed preview, versions, slides, thumbnails, approve / request changes / regenerate) | todo | P3-T05, P3-T06 | |
+| P3-T08 | Creatives GitHub repository + production deployment notes (needs the owner: create repo, token) | todo | P3-T05 | |
+| P3-VERIFY | Phase 3 verification | todo | P3-T01…T07 | |
 
-**P3-T01** — create `content-creatives` repo, folder convention `projects/<project_id>/v<n>/`, fine-grained token (contents:write on that repo only), branch protection on `main` (worker pushes to `main` via commits only, no force push). Document in `workers/creative-worker/README.md`.
+**P3-T01** — `buildContentSpec({ project, brief, script, brand, version, revisionNotes })`: dimensions, fps/duration, direction, palette roles, fonts, copy, units (scenes/slides/post). Acceptance: unit tests per format.
 
-**P3-T02** — claim/heartbeat/complete/fail client over Supabase RPC, signed upload helper with checksum, structured logger, graceful cancellation check.
+**P3-T02** — `templates/_common` (runtime: spec loading, fonts, readiness, seeded PRNG, easing, RTL text fitting), `templates/static-post`, `templates/carousel` (`?slide=N`), `templates/motion` (Three.js, deterministic `window.__render.seek(t)`, camera keyframes from scenes, 2D overlay, style-specific materials, bloom/grain per post-FX). Workspace `CLAUDE.md`. Acceptance: each template renders every visual style in headless Chromium without errors, Arabic and English.
 
-**P3-T03** — `content-spec.schema.json` + builder that pulls approved script, brand snapshot (`settings_version`), dimensions per platform, assets, revision notes. Refs: `CONTRACTS.md §6`.
+**P3-T03** — validator: file types/sizes/count, forbidden APIs (network, eval, storage, parent/top access, `Math.random`), remote URLs, required readiness hooks. Acceptance: malicious fixtures rejected; templates pass.
 
-**P3-T04** — `templates/static-post/`, `templates/carousel/`: pure HTML/CSS, fonts bundled locally, data-driven from `content-spec.json`, `dir` aware, each slide addressable (`?slide=n`). Include a creative-workspace `CLAUDE.md` describing rules for Claude Code inside the workspace.
+**P3-T04** — `save_creative_version`, creative `record_approval` (approve → render job; changes requested → revision job; rejected → regenerate from scratch), script approval queues a `creative_worker` job. Acceptance (pgTAP): traceability fields required; stale hash refused; approval of v2 leaves v1 intact.
 
-**P3-T05** — per-job temp dir, sparse clone of creatives repo, copy template + spec + script, run Claude Code headless with the spec and workspace `CLAUDE.md`, network allowlist, CPU/mem/time limits, empty env except its own API key. Revision jobs start from the previous version's folder plus `revision_notes`.
+**P3-T05** — worker per ADR-0007. Acceptance: integration test runs a job end to end against the local stack (git commit exists, thumbnails uploaded, version in review); replay/cancel safe; Claude Code invocation contract tested with a stub CLI.
 
-**P3-T06** — reject remote URLs, `fetch`/XHR/WebSocket/`eval`/dynamic remote import, oversized files, disallowed file types; html-validate + stylelint. Acceptance: malicious fixtures are rejected.
+**P3-T06** — preview server + `GET /api/creative-versions/:id/preview`. Acceptance: expired/forged tokens refused; CSP blocks network; iframe cannot reach the CRM.
 
-**P3-T07** — commit as one commit per version (message `project <id> creative v<n>`), record SHA; build static preview bundle; Playwright thumbnails per slide (network off); upload to `previews/`; compute `content_hash`; return `worker-result`. Acceptance: creative traceable to its GitHub commit (blueprint §13).
+**P3-T07** — creative tab: sandboxed live preview scaled to fit, slide picker, version list, thumbnails, files and commit, validation report, approve / request changes / regenerate; global "Creative studio" list of creatives awaiting review. e2e.
 
-**P3-T08** — preview served from separate origin; CSP `connect-src 'none'`; CRM `PreviewFrame` component uses `sandbox="allow-scripts"` only. Acceptance: a test creative that tries `fetch` and `parent.document` access fails.
-
-**P3-T09** — Workflow E per `WORKFLOW.md §4`; endpoint requires approved script; revisions create new versions and supersede old ones.
-
-**P3-T10** — preview frame, version selector, per-slide inspector, script + spec side panel, thumbnails, asset list, request changes (with notes) / approve exact version / send back to script.
-
-**P3-VERIFY** — approved script → creative v1 → changes → v2 → approved; v1 preserved; commit SHAs resolve on GitHub; preview isolation tests pass.
-
----
+**P3-T08** — owner action: create the `content-creatives` repository, a fine-grained token (contents:write on that repo only), set `CREATIVES_REPO_URL`; deploy worker and preview server.
 
 ## P4 — PNG & carousel rendering, media library, final approval
 

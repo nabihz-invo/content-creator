@@ -130,6 +130,30 @@ importers:
         specifier: ^3.2.4
         version: 3.2.7(@types/node@26.6.6)(jiti@2.7.0)(jsdom@26.1.0)(lightningcss@1.32.0)
 
+  workers/creative-worker:
+    dependencies:
+      '@cc/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@fontsource/ibm-plex-sans-arabic':
+        specifier: 5.3.0
+        version: 5.3.0
+      '@fontsource/inter':
+        specifier: 5.3.0
+        version: 5.3.0
+      '@fontsource/tajawal':
+        specifier: 5.3.0
+        version: 5.3.0
+      '@supabase/supabase-js':
+        specifier: 2.118.0
+        version: 2.118.0
+      postgres:
+        specifier: 3.4.9
+        version: 3.4.9
+      three:
+        specifier: 0.187.0
+        version: 0.187.0
+
 packages:
 
   '@adobe/css-tools@4.5.0':
@@ -467,6 +491,15 @@ packages:
 
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
+
+  '@fontsource/ibm-plex-sans-arabic@5.3.0':
+    resolution: {integrity: sha512-ZZ4g+JDgQY0NqSh4o0MNWU1sHQmtcee1g++aKAwyJvZxnT5y51JXsN1cIXnaQaMd40dcbK6QFYa+Z1LbaiNuqA==}
+
+  '@fontsource/inter@5.3.0':
+    resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
+
+  '@fontsource/tajawal@5.3.0':
+    resolution: {integrity: sha512-R2GUdHHAebeZ+CyYvulaSECfZe3BWbNjEWX3TXG0Csnx4RADO/zyqk6Y//NYdSx5n74zRJh9HTvd61mpX/UzZQ==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -2317,6 +2350,10 @@ packages:
     resolution: {integrity: sha512-LJlKCCAUFKOuZxipUdYw1NzIITEsPcgyOG9LkvRJvuKj/bRzbuRY0ARXvL0pWGpsZvn8jku+LMep2eU0seHp8g==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postgres@3.4.9:
+    resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
+    engines: {node: '>=12'}
+
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -2507,6 +2544,9 @@ packages:
   tapable@2.3.3:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
+
+  three@0.187.0:
+    resolution: {integrity: sha512-Qiu7R+Cmh8CstZsY1uJOSWnVlfo7ZtNLV7mF8Jltk3LB3AtDu9cRZlcnRKkAk8Y4z6KKw35z7Y7Urd7jWY8etA==}
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -3035,6 +3075,12 @@ snapshots:
       react-dom: 19.3.1(react@19.3.1)
 
   '@floating-ui/utils@0.2.12': {}
+
+  '@fontsource/ibm-plex-sans-arabic@5.3.0': {}
+
+  '@fontsource/inter@5.3.0': {}
+
+  '@fontsource/tajawal@5.3.0': {}
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -4863,6 +4909,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.2
 
+  postgres@3.4.9: {}
+
   prelude-ls@1.2.1: {}
 
   prettier@3.9.10: {}
@@ -5097,6 +5145,8 @@ snapshots:
   tailwindcss@4.3.3: {}
 
   tapable@2.3.3: {}
+
+  three@0.187.0: {}
 
   tinybench@2.9.0: {}
 

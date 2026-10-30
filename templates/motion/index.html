@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Creative</title>
+    <link rel="stylesheet" href="lib/base.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="importmap">
+      { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+    </script>
+    <script src="spec.js"></script>
+  </head>
+  <body>
+    <main class="canvas">
+      <canvas id="gl"></canvas>
+      <canvas id="overlay"></canvas>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
