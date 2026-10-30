@@ -14,7 +14,7 @@ starting the next one (blueprint §14).
 |-------|------|---------|--------|
 | P0 | Foundation: repo, tooling, shared package, decisions | initial | done |
 | P1 | Database, auth, brand settings, dashboard, intake | initial | done |
-| P2 | AI configuration (approved by user), brief, script generation, approvals | initial | in-progress |
+| P2 | AI configuration (approved by user), brief, script generation, approvals | initial | done |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
 | P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
 | P5 | Video rendering, FFmpeg validation, resumable renders, voice notes | second | todo |
@@ -139,10 +139,11 @@ Phase 3 (3D motion graphics / HTML).
 | P2-T06 | Stage executors + `/internal/run-job` + `/internal/recover` | done | P2-T02, P2-T04, P2-T05 | claude/sweet-rubin-5q9utc |
 | P2-T07 | API: analyze, questionnaire submit (draft/approve), scripts generate/edit, approvals | done | P2-T04 | claude/sweet-rubin-5q9utc |
 | P2-T08 | n8n workflow exports (stage runner, notify, recovery) + local n8n shim | done | P2-T06 | claude/sweet-rubin-5q9utc |
-| P2-T09 | CRM: AI configuration review + analysis summary + brief view | todo | P2-T07 | |
-| P2-T10 | CRM: script review, versions, edit, regenerate, approvals, creative prompt preview | todo | P2-T07, P2-T03 | |
-| P2-T11 | Inbox bulk "analyze" + overview wording | todo | P2-T07 | |
-| P2-VERIFY | Phase 2 end-to-end verification | todo | P2-T01…T11 | |
+| P2-T09 | CRM: AI configuration review + analysis summary + brief view | done | P2-T07 | claude/sweet-rubin-5q9utc |
+| P2-T10 | CRM: script review, versions, edit, regenerate, approvals, creative prompt preview | done | P2-T07, P2-T03 | claude/sweet-rubin-5q9utc |
+| P2-T11 | Inbox bulk "analyze" + overview wording | done | P2-T07 | claude/sweet-rubin-5q9utc |
+| P2-T12 | Scene-level inline comments + section regeneration | todo | P2-T10 | |
+| P2-VERIFY | Phase 2 end-to-end verification | done | P2-T01…T11 | claude/sweet-rubin-5q9utc |
 
 **P2-T01** — `packages/shared/src/config-catalog.ts` (stable question IDs, bilingual labels, options, `show_if` per format, brand-default mapping); schemas `analysis-stage.output`, `questionnaire`, `answers`, `brief-stage.output`, `script.{video,carousel,static}`; `validateAnswers()` (visibility, required, options, validation) shared by API and CRM. Acceptance: unit tests for conditional visibility, required checks, option validation, AI-decide.
 
@@ -165,6 +166,8 @@ Phase 3 (3D motion graphics / HTML).
 **P2-T10** — script tab: version list, per-format view (scene timeline / slides / post), edit → new version, regenerate with instructions, approve / request changes / reject (bound to version + hash), approval history; creative prompt preview for the approved script.
 
 **P2-T11** — inbox bulk-select "Analyze" for `new`/`failed` projects; overview "Configurations awaiting review".
+
+**P2-T12** (follow-up, todo) — Inline comments on individual scenes/slides and per-section regeneration (blueprint §4F); P2 ships whole-script comments and regeneration.
 
 **P2-VERIFY** — e2e: idea → AI configuration → edit + approve → brief → script v1 → changes requested → v2 → approved → creative prompt visible; audit trail complete; recovery re-dispatch works; all suites green.
 

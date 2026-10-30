@@ -1,7 +1,10 @@
 # JSON Contracts
 
-Canonical JSON Schemas live in `packages/shared/schemas/*.schema.json`
-(draft 2020-12). This file shows the shape and intent of each; when the schema
+Canonical schemas: AI stage outputs live in `packages/shared/src/ai-schemas.ts`
+(strict structured-output compatible; ADR-0006), the configuration catalog in
+`packages/shared/src/config-catalog.ts`, questionnaire/answer types and the
+validator in `packages/shared/src/questionnaire.ts`, and HTTP request bodies in
+`packages/shared/schemas/api/*.schema.json` (draft 2020-12). This file shows the shape and intent of each; when the schema
 files exist they win. Every AI stage must output JSON matching these, and is
 validated before saving.
 

@@ -40,6 +40,17 @@ pnpm dev:crm             # http://localhost:5173
 pnpm stack:down
 ```
 
+The stack includes `n8n-shim.mjs` (stands in for n8n), so ideas flow through
+analysis → configuration review → brief → script on their own. AI runs with
+the deterministic fake provider by default; to use Claude:
+
+```bash
+AI_PROVIDER=anthropic ANTHROPIC_API_KEY=sk-ant-... pnpm stack:up
+```
+
+Notifications are written to `tmp/local-stack/notifications.log`.
+Regenerate prompt examples: `node --experimental-strip-types scripts/examples/render-prompts.ts`.
+
 Logs: `tmp/local-stack/*.log`. Keys are local-only (well-known dev JWT secret).
 Sign-in emails are not delivered locally; create users via the GoTrue admin
 API (see `scripts/e2e/crm-smoke.mjs`) — new users get a workspace automatically.

@@ -1,11 +1,23 @@
 import { OVERVIEW_GROUPS } from "@cc/shared";
-import { ChevronLeft, ChevronRight, Copy, Link2, Plus, Search, Upload } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Copy,
+  Link2,
+  Plus,
+  Search,
+  Sparkles,
+  Upload,
+} from "lucide-react";
+import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { EmptyState, ErrorState, ListSkeleton, PageHeader } from "@/components/States";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import {
@@ -16,6 +28,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { api } from "@/lib/api";
 import { formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import type { MessageKey } from "@/lib/i18n/en";
@@ -75,6 +88,32 @@ export function InboxPage() {
     if ((params.get("q") ?? "") !== debounced) setParam("q", debounced);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounced]);
+
+  const qc = useQueryClient();
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const analyzable = (status: string) => status === "new" || status === "failed";
+  const toggle = (id: string) =>
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  const analyze = useMutation({
+    mutationFn: async (ids: string[]) => {
+      const results = await Promise.allSettled(ids.map((id) => api.analyze(id)));
+      const failed = results.filter((r) => r.status === "rejected") as PromiseRejectedResult[];
+      if (failed.length) throw new Error(failed.map((f) => (f.reason as Error).message).join("; "));
+      return ids.length;
+    },
+    onSuccess: (n) => toast.success(t("inbox.analyzed", { n })),
+    onError: (e) => toast.error(e.message),
+    onSettled: () => {
+      setSelected(new Set());
+      void qc.invalidateQueries({ queryKey: ["projects"] });
+      void qc.invalidateQueries({ queryKey: ["status-counts"] });
+    },
+  });
 
   const total = projects.data?.count ?? 0;
   const page = filters.page ?? 0;
@@ -186,11 +225,27 @@ export function InboxPage() {
         <EmptyState message={hasFilters ? t("inbox.empty") : t("inbox.emptyAll")} />
       ) : (
         <>
+          {selected.size > 0 && (
+            <div className="mb-3 flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 px-4 py-2">
+              <Button
+                size="sm"
+                onClick={() => analyze.mutate([...selected])}
+                disabled={analyze.isPending}
+              >
+                <Sparkles />
+                {t("inbox.analyzeSelected", { n: selected.size })}
+              </Button>
+              <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
+                {t("common.cancel")}
+              </Button>
+            </div>
+          )}
           {/* Desktop table */}
           <div className="hidden overflow-hidden rounded-xl border bg-card md:block">
             <Table>
               <TableHeader>
                 <TableRow>
+                  {can("edit") && <TableHead className="w-10" />}
                   <TableHead className="w-[50%]">{t("inbox.col.idea")}</TableHead>
                   <TableHead>{t("inbox.col.source")}</TableHead>
                   <TableHead>{t("inbox.col.brand")}</TableHead>
@@ -200,7 +255,22 @@ export function InboxPage() {
               </TableHeader>
               <TableBody>
                 {projects.data.rows.map((p) => (
-                  <TableRow key={p.id} className="cursor-pointer">
+                  <TableRow
+                    key={p.id}
+                    className="cursor-pointer"
+                    data-state={selected.has(p.id) ? "selected" : undefined}
+                  >
+                    {can("edit") && (
+                      <TableCell className="w-10">
+                        {analyzable(p.status) && (
+                          <Checkbox
+                            aria-label={`${t("inbox.selectRow")}: ${p.title}`}
+                            checked={selected.has(p.id)}
+                            onCheckedChange={() => toggle(p.id)}
+                          />
+                        )}
+                      </TableCell>
+                    )}
                     <TableCell className="max-w-0">
                       <IdeaCell project={p} />
                     </TableCell>

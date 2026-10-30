@@ -1,5 +1,13 @@
 /** Read-side data hooks. Reads go straight to Postgres through RLS; writes that start workflows use lib/api.ts. */
-import { OVERVIEW_GROUPS, type ProjectStatus } from "@cc/shared";
+import {
+  type Analysis,
+  type Answers,
+  type Brief,
+  OVERVIEW_GROUPS,
+  type ProjectStatus,
+  type Questionnaire,
+  type Script,
+} from "@cc/shared";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import type {
   Brand,
@@ -98,6 +106,11 @@ export function useProject(id: string | undefined) {
   return useQuery({
     queryKey: ["project", id],
     enabled: !!id,
+    // Follow the pipeline live while the system is working on the project.
+    refetchInterval: (q) =>
+      q.state.data && WORKING_STATUSES.has((q.state.data as { status: string }).status)
+        ? 2500
+        : 15_000,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("content_projects")
@@ -245,6 +258,164 @@ export function useTags(workspaceId: string | null) {
         .order("name");
       if (error) throw error;
       return (data ?? []) as Tag[];
+    },
+  });
+}
+
+// ── Phase 2: configuration, brief, scripts, approvals ──────────────────────
+
+/** Poll faster while the system is working on a project. */
+export const WORKING_STATUSES = new Set([
+  "analyzing",
+  "validating_answers",
+  "generating_script",
+  "generating_creative",
+  "rendering",
+  "publishing",
+]);
+
+export interface QuestionnaireRow {
+  id: string;
+  version: number;
+  kind: "initial" | "clarification";
+  status: "awaiting_answers" | "answered" | "superseded";
+  questions: Questionnaire;
+  analysis_id: string | null;
+  created_at: string;
+  questionnaire_answers: {
+    id: string;
+    answers: Answers;
+    is_draft: boolean;
+    status: string;
+    submitted_at: string | null;
+  }[];
+}
+
+export function useQuestionnaires(projectId: string | undefined, poll = false) {
+  return useQuery({
+    queryKey: ["questionnaires", projectId],
+    enabled: !!projectId,
+    refetchInterval: poll ? 2500 : false,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("questionnaires")
+        .select(
+          "id, version, kind, status, questions, analysis_id, created_at, questionnaire_answers(id, answers, is_draft, status, submitted_at)",
+        )
+        .eq("project_id", projectId!)
+        .neq("status", "superseded")
+        .order("version", { ascending: true });
+      if (error) throw error;
+      return (data ?? []) as unknown as QuestionnaireRow[];
+    },
+  });
+}
+
+export function useAnalysis(analysisId: string | null | undefined) {
+  return useQuery({
+    queryKey: ["analysis", analysisId],
+    enabled: !!analysisId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("project_analyses")
+        .select("id, version, analysis, model, created_at")
+        .eq("id", analysisId!)
+        .maybeSingle();
+      if (error) throw error;
+      return data as {
+        id: string;
+        version: number;
+        analysis: Analysis;
+        model: string | null;
+        created_at: string;
+      } | null;
+    },
+  });
+}
+
+export interface BriefRow {
+  id: string;
+  version: number;
+  brief: Brief;
+  validation_status: "valid" | "needs_clarification" | "invalid";
+  validation_details: { contradictions?: { en: string; ar: string }[] } | null;
+  created_at: string;
+}
+
+export function useCurrentBrief(projectId: string | undefined, poll = false) {
+  return useQuery({
+    queryKey: ["brief", projectId],
+    enabled: !!projectId,
+    refetchInterval: poll ? 2500 : false,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("content_briefs")
+        .select("id, version, brief, validation_status, validation_details, created_at")
+        .eq("project_id", projectId!)
+        .order("version", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (error) throw error;
+      return data as BriefRow | null;
+    },
+  });
+}
+
+export interface ScriptRow {
+  id: string;
+  version: number;
+  brief_id: string;
+  content: Script;
+  content_hash: string;
+  origin: "ai" | "manual_edit" | "section_regeneration";
+  status: "in_review" | "changes_requested" | "approved" | "rejected" | "superseded";
+  model: string | null;
+  created_at: string;
+}
+
+export function useScripts(projectId: string | undefined, poll = false) {
+  return useQuery({
+    queryKey: ["scripts", projectId],
+    enabled: !!projectId,
+    refetchInterval: poll ? 2500 : false,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("scripts")
+        .select("id, version, brief_id, content, content_hash, origin, status, model, created_at")
+        .eq("project_id", projectId!)
+        .order("version", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as ScriptRow[];
+    },
+  });
+}
+
+export interface ApprovalRow {
+  id: string;
+  stage: "config" | "script" | "creative" | "media" | "publish";
+  artifact_type: string;
+  artifact_id: string;
+  artifact_version: number;
+  decision: "approved" | "changes_requested" | "rejected";
+  comment: string | null;
+  reviewer_id: string;
+  created_at: string;
+}
+
+export function useApprovals(projectId: string | undefined) {
+  return useQuery({
+    queryKey: ["approvals", projectId],
+    enabled: !!projectId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("approvals")
+        .select(
+          "id, stage, artifact_type, artifact_id, artifact_version, decision, comment, reviewer_id, created_at",
+        )
+        .eq("project_id", projectId!)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as ApprovalRow[];
     },
   });
 }

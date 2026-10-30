@@ -1,7 +1,7 @@
 import { STAGES, type Stage } from "@cc/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Check, Copy, ExternalLink, Pencil, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { toast } from "sonner";
 import { EmptyState, ErrorState, ListSkeleton } from "@/components/States";
@@ -19,12 +19,16 @@ import { useProject, useProjectEvents, useProjectJobs } from "@/lib/queries";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
+import { BriefPanel } from "./BriefPanel";
+import { ConfigPanel } from "./config/ConfigPanel";
+import { CreativePromptPanel } from "./CreativePromptPanel";
 import { eventLabel } from "./event-label";
+import { ScriptPanel } from "./script/ScriptPanel";
 
 /** Pipeline steps shown in the stepper (review stages are folded into their producer). */
 const STEPS: { stage: Stage; label: MessageKey }[] = [
   { stage: "intake", label: "project.tab.idea" },
-  { stage: "questionnaire", label: "project.tab.questionnaire" },
+  { stage: "questionnaire", label: "project.tab.configuration" },
   { stage: "brief", label: "project.tab.brief" },
   { stage: "script", label: "project.tab.scripts" },
   { stage: "creative", label: "project.tab.creative" },
@@ -41,19 +45,43 @@ const stepIndex = (stage: Stage) => {
 };
 
 const LATER_TABS: { value: string; label: MessageKey; phase: string }[] = [
-  { value: "questionnaire", label: "project.tab.questionnaire", phase: "Phase 2" },
-  { value: "brief", label: "project.tab.brief", phase: "Phase 2" },
-  { value: "scripts", label: "project.tab.scripts", phase: "Phase 2" },
-  { value: "creative", label: "project.tab.creative", phase: "Phase 3" },
   { value: "media", label: "project.tab.media", phase: "Phase 4" },
   { value: "publishing", label: "project.tab.publishing", phase: "Phase 4" },
 ];
+
+/** The tab that needs the user's attention for a status. */
+function tabFor(status: string): string {
+  if (["analyzing", "awaiting_answers", "needs_clarification"].includes(status))
+    return "configuration";
+  if (status === "validating_answers") return "brief";
+  if (["generating_script", "script_in_review"].includes(status)) return "script";
+  if (["generating_creative", "creative_in_review"].includes(status)) return "creative";
+  return "idea";
+}
 
 export function ProjectDetailPage() {
   const { id } = useParams();
   const { t, locale, dir } = useI18n();
   const { can } = useWorkspace();
   const project = useProject(id);
+  // null = follow the project's status; a click pins the chosen tab.
+  const [tab, setTab] = useState<string | null>(null);
+  const qc = useQueryClient();
+  const status = project.data?.status;
+  // A status change means jobs, history, and artifacts moved: refresh them now rather than on the next poll.
+  useEffect(() => {
+    if (!status) return;
+    for (const key of [
+      "project-jobs",
+      "project-events",
+      "questionnaires",
+      "brief",
+      "scripts",
+      "approvals",
+    ]) {
+      void qc.invalidateQueries({ queryKey: [key] });
+    }
+  }, [status, qc]);
   const events = useProjectEvents(id);
   const jobs = useProjectJobs(id);
 
@@ -147,9 +175,13 @@ export function ProjectDetailPage() {
       </nav>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
-        <Tabs defaultValue="idea" dir={dir}>
+        <Tabs value={tab ?? tabFor(p.status)} onValueChange={setTab} dir={dir}>
           <TabsList>
             <TabsTrigger value="idea">{t("project.tab.idea")}</TabsTrigger>
+            <TabsTrigger value="configuration">{t("project.tab.configuration")}</TabsTrigger>
+            <TabsTrigger value="brief">{t("project.tab.brief")}</TabsTrigger>
+            <TabsTrigger value="script">{t("project.tab.scripts")}</TabsTrigger>
+            <TabsTrigger value="creative">{t("project.tab.creative")}</TabsTrigger>
             {LATER_TABS.map((tab) => (
               <TabsTrigger key={tab.value} value={tab.value}>
                 {t(tab.label)}
@@ -217,6 +249,19 @@ export function ProjectDetailPage() {
                 </CardContent>
               </Card>
             )}
+          </TabsContent>
+
+          <TabsContent value="configuration">
+            <ConfigPanel project={p} />
+          </TabsContent>
+          <TabsContent value="brief">
+            <BriefPanel project={p} />
+          </TabsContent>
+          <TabsContent value="script">
+            <ScriptPanel project={p} />
+          </TabsContent>
+          <TabsContent value="creative">
+            <CreativePromptPanel project={p} />
           </TabsContent>
 
           {LATER_TABS.map((tab) => (

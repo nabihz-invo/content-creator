@@ -3,6 +3,7 @@
  * user's JWT; mutating calls get an Idempotency-Key so a retried click never
  * creates a second project.
  */
+import type { Answers } from "@cc/shared";
 import { API_URL, supabase } from "./supabase";
 
 export interface ApiErrorBody {
@@ -121,6 +122,42 @@ export const api = {
     if (input.dryRun) form.set("dry_run", "true");
     return apiRequest<CsvImportResult>("/imports/csv", { form });
   },
+
+  analyze: (projectId: string) =>
+    apiRequest<{ job_id: string; status: string; retried: boolean }>(
+      `/content-projects/${projectId}/analyze`,
+      { json: {} },
+    ),
+
+  submitConfiguration: (
+    projectId: string,
+    input: { questionnaire_id: string; answers: Answers; draft?: boolean },
+  ) =>
+    apiRequest<{ status?: string; saved?: boolean; job_id?: string }>(
+      `/content-projects/${projectId}/questionnaire/submit`,
+      { json: input },
+    ),
+
+  regenerateScript: (projectId: string, instructions: string) =>
+    apiRequest<{ job_id: string; status: string }>(
+      `/content-projects/${projectId}/scripts/generate`,
+      { json: { instructions } },
+    ),
+
+  editScript: (projectId: string, baseScriptId: string, content: unknown, idempotencyKey: string) =>
+    apiRequest<{ script_id: string; version: number }>(`/content-projects/${projectId}/scripts`, {
+      json: { base_script_id: baseScriptId, content },
+      idempotencyKey,
+    }),
+
+  decide: (input: {
+    artifact_type: "script";
+    artifact_id: string;
+    artifact_version: number;
+    artifact_hash: string;
+    decision: "approved" | "changes_requested" | "rejected";
+    comment?: string;
+  }) => apiRequest<{ approval_id: string; status: string }>("/approvals", { json: input }),
 
   telegramLinkCode: () =>
     apiRequest<{ code: string; expires_in_seconds: number; instructions: string }>(

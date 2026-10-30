@@ -38,6 +38,8 @@ The CRM wraps them in `apps/crm/src/lib/api.ts`. Request schemas:
 | GET /api/render-jobs/{id} | any member |
 | POST /api/publishing-jobs | admin, editor (with publish permission) |
 | POST /api/telegram/link-code | any signed-in user |
+| POST /api/content-projects/{id}/scripts | admin, editor |
+| POST /api/internal/run-job, /api/internal/recover | n8n (HMAC) |
 | POST /api/internal/url-extract | n8n (HMAC `X-CC-Signature`) |
 
 ## Endpoints
@@ -76,7 +78,7 @@ project's `source_url` with SSRF protection (public IPs only on every redirect,
 truncated, final_url, fetched_at }` under `source_metadata.extracted`, and logs
 `source.extracted` / `source.extract_failed`.
 
-### POST /api/content-projects/{id}/analyze
+### POST /api/content-projects/{id}/analyze  (implemented P2-T07)
 Re-queues analysis (allowed from `new`, `failed`, or to regenerate the questionnaire).
 `202 { job_id, status: "analyzing" }`.
 
@@ -109,3 +111,15 @@ approved media approval whose `manifest_hash` matches. Validates platform
 constraints. Initial release: creates job with status `ready` and returns a
 download bundle URL (manual publishing). Phase 6: submits to Buffer.
 `202 { publishing_job_id, status }`.
+
+## Phase 2 (implemented, ADR-0006)
+
+All project endpoints check the caller's role in the project's workspace **before** validating input (404 for foreign projects).
+
+- `POST /api/content-projects/{id}/analyze` → `202 { job_id, status, retried }`. Allowed for `new`, `awaiting_answers` (re-run), or `failed` during analysis (retries the failed job).
+- `POST /api/content-projects/{id}/questionnaire/submit` — body `{ questionnaire_id, answers, draft? }` (`questionnaire-submit.request.schema.json`). `draft: true` saves only. Otherwise the shared `validateAnswers()` runs (visibility, required, options, `ai_decide` rules); errors → `422 { details.fields: { q_id: code } }`. Success records the **configuration approval** and returns `202 { answers_id, approval_id, job_id, status: "validating_answers", content_hash }`. Resubmitting an approved configuration supersedes the brief/scripts and cancels queued downstream jobs.
+- `POST /api/content-projects/{id}/scripts/generate` — `{ instructions }` → new AI version from the one in review (`202`).
+- `POST /api/content-projects/{id}/scripts` — `{ base_script_id, content }` manual edit → validated against the format schema and timing/slide checks → new version (`201`, `Idempotency-Key` supported).
+- `POST /api/approvals` — `{ artifact_type: "script", artifact_id, artifact_version, artifact_hash, decision, comment? }`. Stale version/hash → `409 hash_mismatch`; `changes_requested` needs a comment and queues an AI revision; `approved` queues the creative job; `rejected` cancels the project. Reviewers may decide; only editors/admins edit.
+- `POST /api/internal/run-job` (HMAC) — `{ job_id }`; runs analysis / brief / script stages (background on Supabase, `202`). Other stages → `{ accepted: false }`. Replays are no-ops.
+- `POST /api/internal/recover` (HMAC) — Workflow R: `recover_jobs()` + re-dispatch queued jobs older than 2 minutes.

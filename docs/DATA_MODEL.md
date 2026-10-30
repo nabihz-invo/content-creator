@@ -133,6 +133,9 @@ All of the above are `security definer`, `search_path = ''`, executable by
 `service_role` only (Edge Functions authorize the user first). User-callable
 RPCs (e.g. `record_approval`) derive the actor from `auth.uid()`.
 
+### Phase 2 RPCs (P2-T04, all service-role only; the API passes the verified user)
+`start_job` (claim a specific delivered job) · `request_analysis` · `save_analysis` · `save_answers_draft` · `submit_answers` (inserts the `config` approval) · `save_brief` (valid → script job; needs_clarification → clarification questionnaire) · `save_script` (`ai` / `manual_edit`) · `request_script_regeneration` · `record_approval` (scripts) · `mark_downstream_outdated` · `notification_target`. Each `save_*` completes its job in the same transaction. `approval_stage` gained `config`; `questionnaire_answers.content_hash`; briefs/scripts record `model` and `prompt_version`.
+
 ### Implemented details (P1)
 - `content_projects.failed_from_status` — admin retry may only return there.
 - `content_projects.source_idempotency_key` (unique) — `telegram:<update_id>`,

@@ -104,6 +104,8 @@ await page.getByRole("button", { name: "Add color" }).click();
 await page.getByPlaceholder("Name").first().fill("Espresso");
 await page.getByRole("button", { name: "Add color" }).click();
 await page.getByPlaceholder("Name").nth(1).fill("Saffron");
+await page.getByPlaceholder("Role").nth(0).fill("background");
+await page.getByPlaceholder("Role").nth(1).fill("accent");
 await page
   .locator('input[type="color"]')
   .nth(0)
@@ -150,8 +152,8 @@ await dlg.getByLabel(/Tags/).fill("winter, offers");
 await dlg.getByRole("button", { name: "Add idea" }).click();
 await page.waitForURL(/\/projects\/[0-9a-f-]{36}$/);
 const projectUrl = page.url();
-await page.getByText("Analyzing").first().waitFor();
-check(true, "new idea created and moved to Analyzing");
+await page.locator('[data-status="analyzing"], [data-status="awaiting_answers"]').first().waitFor();
+check(true, "new idea created and sent to AI analysis");
 await page.getByRole("tab", { name: "History" }).click();
 await page.getByText("Status: New → Analyzing").waitFor();
 check(true, "history shows the audited status change");
@@ -230,6 +232,137 @@ await page.getByText("Recent ideas").waitFor();
 await page.waitForTimeout(500);
 await shot(page, "01-overview");
 
+console.log("phase 2: AI configuration → script");
+await nav(page, "Idea inbox");
+await page.getByRole("button", { name: "New idea" }).click();
+dlg = page.getByRole("dialog");
+await dlg
+  .getByLabel("Idea", { exact: true })
+  .fill("A 3D motion video announcing our winter offer: two drinks for the price of one");
+await dlg.getByLabel("Brand").selectOption({ label: "Noor Café" });
+await dlg.getByRole("button", { name: "Add idea" }).click();
+await page.waitForURL(/\/projects\/[0-9a-f-]{36}$/);
+
+await page.getByText("Review the proposed configuration").waitFor({ timeout: 30000 });
+check(
+  (await page.getByRole("tab", { name: "AI configuration" }).getAttribute("aria-selected")) ===
+    "true",
+  "the configuration tab opens automatically",
+);
+check(
+  await page.getByText("What the AI understood").isVisible(),
+  "the AI's analysis is summarized",
+);
+const fmt = page.locator('[data-question="q_format"]');
+check(
+  await fmt.getByRole("radio", { name: /Motion graphics video/ }).isChecked(),
+  "AI pre-selected the video format",
+);
+check(
+  await page.locator('[data-question="q_accent_color"]').getByText("From brand").isVisible(),
+  "brand accent colour is proposed from the brand",
+);
+const accentValue = await page.locator("#field-q_accent_color").inputValue();
+check(
+  accentValue === "#e8a33d",
+  `accent colour value comes from the brand palette (${accentValue})`,
+);
+await shot(page, "10-config-review");
+
+await page.getByRole("button", { name: "Approve & write the script" }).click();
+await page.locator('[data-question="q_custom_offer_end_date"]').getByText("Required").waitFor();
+check(true, "approval is blocked until the AI's essential question is answered");
+await page.locator('[data-question="q_custom_offer_end_date"] input').fill("End of February");
+await page
+  .locator('[data-question="q_visual_style"]')
+  .getByText(/^Claymorphism/)
+  .click();
+check(
+  await page.locator('[data-question="q_visual_style"]').getByText("Edited").isVisible(),
+  "changed suggestions are marked as edited",
+);
+await page.locator('[data-question="q_hook"]').getByText("Let AI decide").click();
+await page.getByRole("button", { name: "Approve & write the script" }).click();
+await page.getByRole("button", { name: "Approve script" }).waitFor({ timeout: 30000 });
+check(true, "approval runs brief and script; the script tab opens for review");
+check(
+  await page.getByText(/20 seconds · 4 scenes/).isVisible(),
+  "video script shows its scene timeline",
+);
+await shot(page, "11-script-review");
+
+await page.getByRole("button", { name: "Request changes" }).click();
+await page
+  .getByRole("dialog")
+  .getByLabel("What should change?")
+  .fill("Make the opening scene warmer and mention the offer earlier.");
+await page.getByRole("dialog").getByRole("button", { name: "Request changes" }).click();
+await page.getByRole("button", { name: /Version 2/ }).waitFor({ timeout: 30000 });
+await page.getByRole("button", { name: "Approve script" }).waitFor({ timeout: 30000 });
+check(true, "requesting changes produces version 2 from the AI");
+check(
+  await page.getByText("Changes requested").first().isVisible(),
+  "review history records the requested changes",
+);
+
+await page.getByRole("button", { name: "Edit text" }).click();
+await page
+  .getByRole("dialog")
+  .getByLabel("Caption")
+  .fill("Two winter drinks for the price of one — this weekend only at Noor Café.");
+await page.getByRole("dialog").getByRole("button", { name: "Save" }).click();
+await page.getByText("Saved as version 3").waitFor();
+await page.getByRole("button", { name: /Version 3/ }).waitFor();
+check(
+  await page.getByText("Changed").first().isVisible(),
+  "the edited caption is marked as changed against v2",
+);
+
+await page.getByRole("button", { name: "Approve script" }).click();
+await page.getByText("Script approved").waitFor();
+await page.locator('[data-status="generating_creative"]').first().waitFor();
+check(true, "approving the script unlocks creative generation");
+await page.getByRole("tab", { name: "Creative" }).click();
+const prompt = await page.getByTestId("creative-prompt").textContent();
+check(
+  prompt.includes("3D Motion Graphics Architect") &&
+    prompt.includes("Soft Claymorphism") &&
+    prompt.includes("1080×1920"),
+  "creative prompt is built from the approved configuration",
+);
+check(
+  prompt.includes("One high-contrast accent: **#e8a33d**"),
+  "creative prompt uses the brand accent",
+);
+await shot(page, "13-creative-prompt");
+await page.getByRole("tab", { name: "Brief" }).click();
+await page.getByText("Key message").waitFor();
+await shot(page, "12-brief");
+await page.getByRole("tab", { name: "History" }).click();
+await page.getByText("Status: Script in review → Building creative").waitFor();
+check(true, "every step is in the audit trail");
+
+console.log("bulk analyze");
+const parked = await (
+  await fetch(`${SUPA}/functions/v1/api/content-projects`, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${session.access_token}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ original_idea: `Parked idea ${run}`, auto_analyze: false }),
+  })
+).json();
+check(parked.status === "new", "an idea can be parked without analysis");
+await nav(page, "Idea inbox");
+await page.reload(); // the idea was created outside this page
+await page.getByRole("checkbox", { name: `Select: Parked idea ${run}` }).click();
+await page.getByRole("button", { name: "Analyze 1 selected" }).click();
+await page.getByText("Analysis started for 1 ideas").waitFor();
+check(true, "bulk analyze starts analysis for selected ideas");
+await nav(page, "Overview");
+await page.getByText("Recent ideas").waitFor();
+
 console.log("arabic / rtl");
 await page.getByRole("button", { name: "العربية" }).click();
 await page.getByRole("heading", { name: "نظرة عامة" }).waitFor();
@@ -239,7 +372,11 @@ check(
 );
 await shot(page, "06-overview-ar");
 await page.goto(projectUrl);
-await page.getByText("الفكرة الأصلية").waitFor();
+await page.getByText("راجع الإعدادات المقترحة").waitFor({ timeout: 30000 });
+check(
+  await page.getByText("اقتراح الذكاء الاصطناعي").first().isVisible(),
+  "configuration review is fully Arabic",
+);
 await shot(page, "07-project-ar");
 await page.goto(`${BASE}/settings`);
 await page.getByRole("button", { name: "أنشئ رمز الربط" }).click();

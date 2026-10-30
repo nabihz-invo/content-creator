@@ -5,13 +5,17 @@ media content — scripts, HTML/CSS creatives, PNG / carousel / MP4 renders —
 and publishes them to connected platforms, with an explicit approval gate and
 a full audit trail at every stage.
 
-**Status:** Phase 0 and Phase 1 done (database, auth, brands, dashboard,
-intake from dashboard / CSV / Telegram / links). Next: Phase 2
-(questionnaire, brief, scripts, approvals). See [`PLAN.md`](./PLAN.md).
+**Status:** Phases 0–2 done — intake (dashboard / CSV / Telegram / links),
+**AI-proposed configuration reviewed and approved by the user**, brief with
+clarification rounds, script versions and approvals, and the deterministic
+3D motion-graphics prompt for Claude Code. Next: Phase 3 (creative
+generation). See [`PLAN.md`](./PLAN.md).
 
-| Overview | Project | Arabic (RTL) | Mobile |
+| AI configuration review | Script review | Creative prompt | Arabic (RTL) |
 |---|---|---|---|
-| ![Overview](docs/screenshots/01-overview.png) | ![Project](docs/screenshots/04-project-detail.png) | ![Arabic](docs/screenshots/06-overview-ar.png) | ![Mobile](docs/screenshots/08-inbox-mobile.png) |
+| ![Config](docs/screenshots/10-config-review.png) | ![Script](docs/screenshots/11-script-review.png) | ![Prompt](docs/screenshots/13-creative-prompt.png) | ![Arabic](docs/screenshots/07-project-ar.png) |
+
+Example prompts: [`docs/examples/`](./docs/examples/).
 
 Quick start: [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md).
 
