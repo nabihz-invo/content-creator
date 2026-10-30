@@ -10,6 +10,7 @@ export default tseslint.config(
       "**/dist/**",
       "**/coverage/**",
       "**/generated/**",
+      "**/*.generated.ts",
       "supabase/functions/**",
       "apps/crm/src/components/ui/**",
     ],
