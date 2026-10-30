@@ -21,7 +21,8 @@
     "stack:up": "bash scripts/local-stack/stack.sh up",
     "stack:down": "bash scripts/local-stack/stack.sh down",
     "e2e": "node scripts/e2e/crm-smoke.mjs",
-    "dev:crm": "pnpm --filter @cc/crm dev"
+    "dev:crm": "pnpm --filter @cc/crm dev",
+    "verify": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",

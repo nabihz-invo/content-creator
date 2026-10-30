@@ -134,7 +134,7 @@ Phase 3 (3D motion graphics / HTML).
 | P2-T01 | Configuration catalog, JSON schemas, shared answer validator | done | P0-T02 | claude/sweet-rubin-5q9utc |
 | P2-T02 | Prompt templates v1 (analysis, brief, script) + renderer + `ai_settings` defaults | done | P2-T01 | claude/sweet-rubin-5q9utc |
 | P2-T03 | Creative prompt builder (motion graphics + HTML) from approved config/script | done | P2-T01 | claude/sweet-rubin-5q9utc |
-| P2-T04 | DB: stage RPCs, config approval, `record_approval`, outdated cascade + pgTAP | todo | P1-T05 | |
+| P2-T04 | DB: stage RPCs, config approval, `record_approval`, outdated cascade + pgTAP | done | P1-T05 | claude/sweet-rubin-5q9utc |
 | P2-T05 | LLM client (Anthropic SDK, structured outputs, fallbacks, validation retry) + fake provider | todo | P2-T01 | |
 | P2-T06 | Stage executors + `/internal/run-job` + `/internal/recover` | todo | P2-T02, P2-T04, P2-T05 | |
 | P2-T07 | API: analyze, questionnaire submit (draft/approve), scripts generate/edit, approvals | todo | P2-T04 | |
