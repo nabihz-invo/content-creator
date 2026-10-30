@@ -10,3 +10,4 @@ superseded), Context, Decision, Consequences. Never delete an ADR — supersede 
 | 0003 | Postgres-backed job queue | accepted |
 | 0004 | Preview isolation | accepted |
 | 0005 | Edge Functions: direct Postgres access, own auth, inline Telegram replies | accepted |
+| 0006 | AI-proposed production configuration, approved by the user | accepted |

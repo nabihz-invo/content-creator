@@ -14,7 +14,7 @@ starting the next one (blueprint §14).
 |-------|------|---------|--------|
 | P0 | Foundation: repo, tooling, shared package, decisions | initial | done |
 | P1 | Database, auth, brand settings, dashboard, intake | initial | done |
-| P2 | Questionnaire, brief, script generation, approvals | initial | todo |
+| P2 | AI configuration (approved by user), brief, script generation, approvals | initial | in-progress |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | todo |
 | P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
 | P5 | Video rendering, FFmpeg validation, resumable renders, voice notes | second | todo |
@@ -121,49 +121,52 @@ starting the next one (blueprint §14).
 
 ---
 
-## P2 — Questionnaire, brief, script, approvals
+## P2 — AI configuration, brief, script, approvals (ADR-0006)
+
+Flow: idea → **AI analysis proposes a filled configuration** → user reviews,
+edits and **approves the configuration** → AI brief (asks for clarification
+only if essential facts are missing) → AI script → script approval. The
+approved configuration also drives the deterministic creative prompt for
+Phase 3 (3D motion graphics / HTML).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P2-T01 | JSON schemas + validators + generated TS types | todo | P0-T02 | |
-| P2-T02 | Prompt templates v1 + `ai_settings` wiring | todo | P2-T01 | |
-| P2-T03 | n8n Workflow B (Analyze & question) | todo | P2-T02, P1-T12 | |
-| P2-T04 | `POST /api/content-projects/{id}/analyze` + inbox bulk "analyze" action | todo | P1-T08 | |
-| P2-T05 | Questionnaire submit endpoint (shared conditional-logic validator) | todo | P2-T01 | |
-| P2-T06 | n8n Workflow C (validation, clarification, brief) | todo | P2-T03, P2-T05 | |
-| P2-T07 | n8n Workflow D + script generate / manual edit endpoints | todo | P2-T06 | |
-| P2-T08 | `record_approval` RPC + `POST /api/approvals` + outdated cascade | todo | P1-T05 | |
-| P2-T09 | CRM Questionnaire editor | todo | P2-T05, P1-T17 | |
-| P2-T10 | CRM Script editor | todo | P2-T07, P2-T08 | |
-| P2-T11 | Telegram notifications for B–D | todo | P2-T03 | |
-| P2-T12 | n8n Workflow R (recovery cron) | todo | P1-T04 | |
-| P2-VERIFY | Phase 2 end-to-end verification | todo | P2-T01…T12 | |
+| P2-T01 | Configuration catalog, JSON schemas, shared answer validator | done | P0-T02 | claude/sweet-rubin-5q9utc |
+| P2-T02 | Prompt templates v1 (analysis, brief, script) + renderer + `ai_settings` defaults | done | P2-T01 | claude/sweet-rubin-5q9utc |
+| P2-T03 | Creative prompt builder (motion graphics + HTML) from approved config/script | done | P2-T01 | claude/sweet-rubin-5q9utc |
+| P2-T04 | DB: stage RPCs, config approval, `record_approval`, outdated cascade + pgTAP | todo | P1-T05 | |
+| P2-T05 | LLM client (Anthropic SDK, structured outputs, fallbacks, validation retry) + fake provider | todo | P2-T01 | |
+| P2-T06 | Stage executors + `/internal/run-job` + `/internal/recover` | todo | P2-T02, P2-T04, P2-T05 | |
+| P2-T07 | API: analyze, questionnaire submit (draft/approve), scripts generate/edit, approvals | todo | P2-T04 | |
+| P2-T08 | n8n workflow exports (stage runner, notify, recovery) + local n8n shim | todo | P2-T06 | |
+| P2-T09 | CRM: AI configuration review + analysis summary + brief view | todo | P2-T07 | |
+| P2-T10 | CRM: script review, versions, edit, regenerate, approvals, creative prompt preview | todo | P2-T07, P2-T03 | |
+| P2-T11 | Inbox bulk "analyze" + overview wording | todo | P2-T07 | |
+| P2-VERIFY | Phase 2 end-to-end verification | todo | P2-T01…T11 | |
 
-**P2-T01** — schemas: `analysis`, `questionnaire`, `answers`, `brief`, `script.video`, `script.carousel`, `script.static`; ajv validators; `json-schema-to-typescript` generation. Acceptance: valid/invalid fixtures per schema. Refs: `CONTRACTS.md §2–5`.
+**P2-T01** — `packages/shared/src/config-catalog.ts` (stable question IDs, bilingual labels, options, `show_if` per format, brand-default mapping); schemas `analysis-stage.output`, `questionnaire`, `answers`, `brief-stage.output`, `script.{video,carousel,static}`; `validateAnswers()` (visibility, required, options, validation) shared by API and CRM. Acceptance: unit tests for conditional visibility, required checks, option validation, AI-decide.
 
-**P2-T02** — `packages/shared/prompts/{analysis,questionnaire,brief,clarification,script}.v1.md` with: role, brand context block, `<untrusted_source>` wrapping, output schema, "do not ask what is already known" rule, Arabic support. `ai_settings` rows select model + prompt version per stage. Acceptance: prompts render with fixture data; reviewed for injection resistance.
+**P2-T02** — `packages/shared/prompts/*.v1.md` → generated `templates.generated.ts`; renderer with `<untrusted_source>` wrapping; analysis prompt selects/pre-fills the catalog; brief prompt detects contradictions and asks only essential clarifications; script prompt per format (video = scene plan with timestamps, camera, overlays). Acceptance: render tests; injection text stays inside the untrusted block.
 
-**P2-T04** — endpoint per `docs/API.md`; also add the inbox bulk-select "Analyze" action that was deferred from P1-T15.
+**P2-T03** — `buildCreativePrompt({config, brief, script, brand})`: motion-graphics architect instruction (deterministic `t`, resolution from aspect ratio, style/shader system, camera keyframes from scenes, 2D overlay with RTL Arabic support, post-processing, self-verification) and HTML/CSS instruction for static/carousel. Acceptance: snapshot-style tests for each format.
 
-**P2-T03** — Workflow B per `WORKFLOW.md §4`; schema-invalid output retried once with error feedback. Acceptance: fixture idea + brand produces a valid questionnaire that omits questions answered by brand settings; status `awaiting_answers` (blueprint §13).
+**P2-T04** — migration: `start_job`, `save_analysis`, `save_answers_draft`, `submit_answers` (config approval row), `save_brief` (clarification path), `save_script`, `record_approval`, `mark_downstream_outdated`; `approvals.stage` gains `config`. Acceptance (pgTAP): script job never exists while answers are unsubmitted; stale hash → error; resubmitting answers supersedes downstream scripts; approval of v2 leaves v1 untouched; reviewer can approve, cannot edit.
 
-**P2-T05** — server-side evaluation of `required`, `show_if`, `validation`; drafts; resubmit creates new answers row and marks downstream outdated. Shared validator used by CRM too. Acceptance: missing required answer → 422 and status unchanged (blueprint §13).
+**P2-T05** — `_shared/llm.ts`: SDK client, `output_config.format` with a strict-compatible schema, `effort` per stage, `fallbacks: "default"`, refusal/max_tokens handling, ajv validation + one retry with errors; `fake` provider. Acceptance: Deno tests with a mocked SDK response path and the fake provider.
 
-**P2-T06** — Workflow C: resolve brand defaults and "AI decide" (recorded in `brief.assumptions`), contradiction/missing-facts check → `needs_clarification` (new questionnaire version with only clarification questions) or brief → `generating_script`. Acceptance: script job is never created while required info is missing.
+**P2-T06** — executors for `analysis`, `brief`, `script` stages; background execution; complete/fail with retry classification; dispatch next job; `/internal/recover` re-dispatches lost jobs. Acceptance: Deno tests run the whole chain with the fake provider; replayed run-job is a no-op.
 
-**P2-T07** — Workflow D by content type; required-section check; `content_hash`; status `script_in_review`. Endpoints: generate (full or selected sections → new version) and manual edit (new version). Acceptance: each edit/regeneration creates a new immutable version.
+**P2-T07** — endpoints per `docs/API.md`. Acceptance: missing required answer → 422 and status unchanged; reviewer cannot submit config or edit scripts; approval with stale hash → 409.
 
-**P2-T08** — RPC verifies role, `artifact_hash`, project status; inserts approval; transitions; runs `mark_downstream_outdated`. Acceptance: approving a stale hash → 409; approval of v2 doesn't affect v1 rows; reviewer approval is the only way to reach `generating_creative`.
+**P2-T08** — `n8n/workflows/*.json` (thin: webhook → HMAC → run-job; notify; recovery cron) + `scripts/local-stack/n8n-shim.mjs` so the local stack runs the pipeline without n8n.
 
-**P2-T09** — grouped sections, all field types, conditional display, brand defaults prefilled, "Let AI decide", save draft, submit, edit & resubmit, missing-info highlights, RTL.
+**P2-T09** — questionnaire tab becomes "AI configuration": analysis summary (topic, proposed format and why, missing info, claims to verify), grouped form pre-filled with AI suggestions (badge + rationale + confidence), brand defaults, "Let AI decide", conditional fields, save draft, approve; clarification round; brief tab.
 
-**P2-T10** — structured editor per content type (hook, scenes with timing, VO, on-screen text, visual direction, transitions, sound, caption, CTA); version list + diff; inline comments; regenerate section; approve / request changes / reject bound to version + hash.
+**P2-T10** — script tab: version list, per-format view (scene timeline / slides / post), edit → new version, regenerate with instructions, approve / request changes / reject (bound to version + hash), approval history; creative prompt preview for the approved script.
 
-**P2-T11** — notifications per `WORKFLOW.md §6` with deep links.
+**P2-T11** — inbox bulk-select "Analyze" for `new`/`failed` projects; overview "Configurations awaiting review".
 
-**P2-T12** — Workflow R: requeue expired leases, run due retries, escalate to `needs_attention` → project `failed`, notify admin.
-
-**P2-VERIFY** — idea → questionnaire → answers (incl. one clarification round) → brief → script v1 → changes requested → v2 → approved; audit trail complete; killing n8n mid-job and restarting recovers via Workflow R without duplicates.
+**P2-VERIFY** — e2e: idea → AI configuration → edit + approve → brief → script v1 → changes requested → v2 → approved → creative prompt visible; audit trail complete; recovery re-dispatch works; all suites green.
 
 ---
 

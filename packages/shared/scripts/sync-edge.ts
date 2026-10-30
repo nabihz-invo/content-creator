@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 export const SHARED_ROOT = join(here, "..");
 export const VENDOR_ROOT = join(here, "../../../supabase/functions/_shared/vendor");
-export const VENDORED = ["src/status.ts", "src/hash.ts", "src/index.ts", "schemas"];
+export const VENDORED = ["src", "schemas"];
 
 export function syncEdge() {
   rmSync(VENDOR_ROOT, { recursive: true, force: true });
