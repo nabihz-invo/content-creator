@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node --experimental-strip-types src/main.ts",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test test/check.test.ts",
-    "test:render": "node --experimental-strip-types --test test/templates.test.ts"
+    "test": "node --experimental-strip-types --test test/check.test.ts test/generator.test.ts test/source-store.test.ts",
+    "test:render": "node --experimental-strip-types --test test/templates.test.ts",
+    "test:integration": "node --experimental-strip-types --test test/job.integration.test.ts"
   },
   "dependencies": {
     "@cc/shared": "workspace:*",
