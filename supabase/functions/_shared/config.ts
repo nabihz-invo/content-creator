@@ -9,6 +9,8 @@ export interface Config {
   telegramWebhookSecret: string | null;
   crmUrl: string;
   allowedOrigins: string[];
+  aiProvider: "anthropic" | "fake";
+  anthropicApiKey: string | null;
 }
 
 function required(name: string): string {
@@ -35,5 +37,7 @@ export function loadConfig(): Config {
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean),
+    aiProvider: Deno.env.get("AI_PROVIDER") === "fake" ? "fake" : "anthropic",
+    anthropicApiKey: Deno.env.get("ANTHROPIC_API_KEY") ?? null,
   };
 }

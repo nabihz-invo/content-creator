@@ -111,7 +111,11 @@ describe("questionnaire", () => {
     const byId = Object.fromEntries(q.questions.map((x) => [x.id, x]));
     expect(byId.q_format!.suggested).toMatchObject({ value: "video", source: "ai" });
     expect(byId.q_accent_color!.suggested).toMatchObject({ value: "#e8a33d", source: "brand" });
-    expect(byId.q_tone!.suggested?.source).toBe("ai");
+    expect(byId.q_tone!.suggested?.source).toBe("ai"); // AI tailors tone; brand accent stays locked
+    expect(
+      composeQuestionnaire(ai, null).questions.find((x) => x.id === "q_accent_color")!.suggested
+        ?.source,
+    ).toBe("ai");
     expect(byId.q_reference_notes).toBeUndefined(); // optional + skipped
     expect(byId.q_custom_offer_end_date?.required).toBe(true);
   });

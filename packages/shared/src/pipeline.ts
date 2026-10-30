@@ -40,6 +40,9 @@ export interface BrandContext {
 
 const FROM_BRAND = { en: "From the brand settings.", ar: "من إعدادات العلامة التجارية." };
 
+/** Brand identity fields: the saved brand value is proposed even if the AI suggests otherwise. */
+const BRAND_LOCKED = new Set(["q_accent_color"]);
+
 /** Catalog values that come straight from saved brand settings. */
 export function brandDefaults(brand: BrandContext | null): Record<string, string> {
   if (!brand) return {};
@@ -141,27 +144,27 @@ export function composeQuestionnaire(
     const s = byId.get(base.id);
     const aiValue = s ? toAnswer(s.value) : undefined;
     let suggestion: Suggestion | null = null;
-    if (
+    const aiOk =
       s &&
       aiValue !== undefined &&
       validateValue({ ...q, required: true }, aiValue) === null &&
-      !isAiDecide(aiValue)
-    ) {
+      !isAiDecide(aiValue);
+    const brandValue = defaults[base.id];
+    const brandOk =
+      brandValue !== undefined && validateValue({ ...q, required: true }, brandValue) === null;
+    if (brandOk && (BRAND_LOCKED.has(base.id) || !aiOk)) {
       suggestion = {
-        value: aiValue as string | string[],
-        rationale: s.rationale,
-        confidence: s.confidence,
-        source: "ai",
-      };
-    } else if (
-      defaults[base.id] !== undefined &&
-      validateValue({ ...q, required: true }, defaults[base.id]) === null
-    ) {
-      suggestion = {
-        value: defaults[base.id]!,
+        value: brandValue!,
         rationale: FROM_BRAND,
         confidence: "high",
         source: "brand",
+      };
+    } else if (aiOk) {
+      suggestion = {
+        value: aiValue as string | string[],
+        rationale: s!.rationale,
+        confidence: s!.confidence,
+        source: "ai",
       };
     }
     q.suggested = suggestion;

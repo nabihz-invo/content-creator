@@ -20,6 +20,7 @@ import { verifySignature } from "../_shared/n8n.ts";
 import { enforceRateLimit } from "../_shared/ratelimit.ts";
 import { defaultNet, fetchAndExtract } from "../_shared/url-extract.ts";
 import { validate } from "../_shared/validate.ts";
+import { registerPipelineRoutes } from "./pipeline-routes.ts";
 
 interface CreateProjectBody {
   workspace_id?: string;
@@ -235,5 +236,6 @@ export function createApp(deps: Deps) {
     }
   });
 
+  registerPipelineRoutes(app as unknown as Parameters<typeof registerPipelineRoutes>[0], deps);
   return app;
 }

@@ -8,6 +8,8 @@ export interface JobRef {
   job_id: string;
   project_id: string | null;
   stage: string;
+  /** For the notify workflow: configuration_ready, clarification_needed, script_ready, needs_attention. */
+  event?: string;
 }
 
 export interface Dispatcher {
@@ -86,4 +88,5 @@ export const STAGE_WORKFLOW: Record<string, string> = {
   creative: "creative",
   render: "render",
   publish: "publish",
+  notify: "notify",
 };

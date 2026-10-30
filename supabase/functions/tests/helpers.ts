@@ -2,6 +2,7 @@ import postgres from "postgres";
 import type { Deps } from "../_shared/deps.ts";
 import type { JobRef } from "../_shared/n8n.ts";
 import type { Net } from "../_shared/url-extract.ts";
+import { fakeStageAi } from "../_shared/stage-ai.ts";
 
 export const DB_URL =
   Deno.env.get("TEST_DB_URL") ?? "postgres://postgres:postgres@127.0.0.1:54322/postgres";
@@ -41,6 +42,7 @@ export function makeDeps(net?: Net): TestDeps {
       telegramWebhookSecret: TG_SECRET,
     },
     net,
+    ai: fakeStageAi(),
     dispatched,
     uploads,
   };

@@ -45,6 +45,18 @@ export function fakeAnalysis(input: {
       : "Attention-grabbing opening\nShow the problem\nIntroduce the solution\nCall to action";
   const suggestions: AnalysisStageOutput["suggestions"] = [
     {
+      question_id: "q_audience",
+      value: lang === "ar" ? "متابعو العلامة على وسائل التواصل" : "The brand's social followers",
+      rationale: both("The brand's existing audience.", "جمهور العلامة الحالي."),
+      confidence: "medium",
+    },
+    {
+      question_id: "q_accent_color",
+      value: "#4f46e5",
+      rationale: both("A strong accent for contrast.", "لون تمييز قوي للتباين."),
+      confidence: "low",
+    },
+    {
       question_id: "q_core_message",
       value: input.idea.slice(0, 300).padEnd(12, "."),
       rationale: both("Taken from your idea.", "مأخوذ من فكرتك."),

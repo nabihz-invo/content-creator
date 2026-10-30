@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/approval.request.schema.json",
+  "title": "POST /api/approvals",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifact_type", "artifact_id", "artifact_version", "artifact_hash", "decision"],
+  "properties": {
+    "artifact_type": { "enum": ["script", "creative_version", "media_manifest"] },
+    "artifact_id": { "type": "string", "format": "uuid" },
+    "artifact_version": { "type": "integer", "minimum": 1 },
+    "artifact_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "decision": { "enum": ["approved", "changes_requested", "rejected"] },
+    "comment": { "type": "string", "maxLength": 2000 }
+  }
+}

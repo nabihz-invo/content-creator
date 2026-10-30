@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/script-generate.request.schema.json",
+  "title": "POST /api/content-projects/{id}/scripts/generate (regenerate with instructions)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["instructions"],
+  "properties": {
+    "instructions": { "type": "string", "minLength": 3, "maxLength": 2000 }
+  }
+}

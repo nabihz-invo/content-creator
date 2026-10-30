@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/questionnaire-submit.request.schema.json",
+  "title": "POST /api/content-projects/{id}/questionnaire/submit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["questionnaire_id", "answers"],
+  "properties": {
+    "questionnaire_id": { "type": "string", "format": "uuid" },
+    "draft": { "type": "boolean", "default": false },
+    "answers": {
+      "type": "object",
+      "maxProperties": 60,
+      "additionalProperties": {
+        "anyOf": [
+          { "type": "string", "maxLength": 5000 },
+          { "type": "array", "maxItems": 20, "items": { "type": "string", "maxLength": 200 } },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ai_decide"],
+            "properties": { "ai_decide": { "const": true } }
+          }
+        ]
+      }
+    }
+  }
+}

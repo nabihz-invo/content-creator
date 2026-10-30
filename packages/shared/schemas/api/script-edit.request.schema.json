@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/script-edit.request.schema.json",
+  "title": "POST /api/content-projects/{id}/scripts (manual edit → new version)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["base_script_id", "content"],
+  "properties": {
+    "base_script_id": { "type": "string", "format": "uuid" },
+    "content": { "type": "object" }
+  }
+}
