@@ -20,6 +20,8 @@ pnpm lint && pnpm format:check && pnpm typecheck && pnpm test
 | Shared + CRM unit tests | `pnpm test` | status machine, hashing, TS↔SQL transition sync, edge vendor sync, i18n parity, CSV mapping, UI helpers |
 | Database (pgTAP) | `pnpm db:test` | migrations apply cleanly; RLS matrix; status machine; job queue; immutability; RPCs |
 | Edge Functions | `cd supabase/functions && deno task check && deno task test` | typecheck + lint; handlers against the real schema (needs a DB on :54322 — run `pnpm db:reset` or the stack first) |
+| Creative worker | `pnpm --filter @cc/creative-worker test` · `test:render` · `test:integration` | validator + generator contract + git store · every template × style × language in headless Chromium (offline) · full jobs (spec → git commit → preview upload → `save_creative_version`, revision from v1) against the DB on :54322 |
+| Preview server | `pnpm --filter @cc/preview-server test` | signed tokens (expired / forged / out-of-prefix refused), CSP, CORS, no cookies |
 | End-to-end | see below | the CRM in a real browser against the full local stack |
 
 After changing `packages/shared/src` or `packages/shared/schemas`, run
@@ -48,6 +50,14 @@ the deterministic fake provider by default; to use Claude:
 AI_PROVIDER=anthropic ANTHROPIC_API_KEY=sk-ant-... pnpm stack:up
 ```
 
+Phase 3 services also start: the **creative worker** (generator `template` by
+default; set `CREATIVE_GENERATOR=claude-code ANTHROPIC_API_KEY=...` with the
+`claude` CLI installed to let Claude Code write the creative) and the
+**preview origin** on `:54400`. Creative source is committed to a local bare
+repository at `tmp/creatives.git` (`git -C tmp/creatives.git log --stat`).
+Playwright for thumbnails is resolved from `NODE_PATH` (defaults to
+`npm root -g`). See `workers/creative-worker/README.md`.
+
 Notifications are written to `tmp/local-stack/notifications.log`.
 Regenerate prompt examples: `node --experimental-strip-types scripts/examples/render-prompts.ts`.
 
@@ -71,7 +81,12 @@ It creates a user, then through the UI: edits a brand (settings versioning,
 asset upload), adds ideas (dedupe, link-only), imports a CSV (auto-mapping,
 dry-run duplicates, formula stripping, report), searches, switches to Arabic
 (RTL, persisted preference), creates a Telegram link code, and checks the
-mobile layout. Screenshots land in `docs/screenshots/`. Any browser console
+mobile layout. Phase 2: AI configuration review → brief → script versions and
+approval. Phase 3: waits for the creative worker, checks the preview iframe is
+`sandbox="allow-scripts"` on the separate origin with a locked-down CSP, that a
+forged token is refused and the creative cannot reach the CRM document,
+requests changes (v2 built from v1's source), approves (→ `rendering`), and
+checks the Creative studio list. Screenshots land in `docs/screenshots/`. Any browser console
 error fails the run.
 
 ## Telegram (real bot)

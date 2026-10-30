@@ -123,3 +123,25 @@ All project endpoints check the caller's role in the project's workspace **befor
 - `POST /api/approvals` — `{ artifact_type: "script", artifact_id, artifact_version, artifact_hash, decision, comment? }`. Stale version/hash → `409 hash_mismatch`; `changes_requested` needs a comment and queues an AI revision; `approved` queues the creative job; `rejected` cancels the project. Reviewers may decide; only editors/admins edit.
 - `POST /api/internal/run-job` (HMAC) — `{ job_id }`; runs analysis / brief / script stages (background on Supabase, `202`). Other stages → `{ accepted: false }`. Replays are no-ops.
 - `POST /api/internal/recover` (HMAC) — Workflow R: `recover_jobs()` + re-dispatch queued jobs older than 2 minutes.
+
+## Phase 3 (implemented, ADR-0007)
+
+Creative generation is not an HTTP call: approving a script queues a
+`creative_worker` job that the creative worker claims from Postgres.
+
+- `POST /api/approvals` with `artifact_type: "creative_version"` — same body and
+  errors as for scripts. `approved` → queues a `render_worker` job, project
+  `rendering`; `changes_requested` (comment required) → revision job built on
+  that version's committed source; `rejected` → a fresh direction from the
+  approved script. Stale version / hash → `409 hash_mismatch`.
+- `GET /api/creative-versions/{id}/preview` (any project member) →
+  `200 { url, base, expires_at }`: a 30-minute HMAC-signed URL on the preview origin
+  (`PREVIEW_ORIGIN`, secret `PREVIEW_SIGNING_SECRET`) scoped to
+  `<project>/creative-v<n>/`. The CRM loads it in an iframe with
+  `sandbox="allow-scripts"` only.
+- Preview origin (`workers/preview-server`): `GET /p/{token}/{path}`. Expired,
+  forged or out-of-prefix tokens → `403`; unknown file types → `415`. Every
+  response carries `connect-src 'none'`, `frame-ancestors <CRM origins>`,
+  `nosniff`, `no-referrer`, and `Access-Control-Allow-Origin: *` (the sandbox
+  has an opaque origin and module scripts / fonts are CORS requests; access is
+  still gated by the token, never by cookies).

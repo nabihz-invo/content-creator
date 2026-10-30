@@ -35,6 +35,18 @@ jobs:
         run: deno task --cwd supabase/functions check
       - name: Edge Functions tests (against the same database)
         run: deno task --cwd supabase/functions test
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: npm i -g playwright@1 && npx playwright install --with-deps chromium
+      - name: Creative worker — templates render offline, full jobs against the database
+        run: |
+          export NODE_PATH="$(npm root -g)"
+          pnpm --filter @cc/creative-worker test:render
+          pnpm --filter @cc/creative-worker test:integration
 
   e2e:
     runs-on: ubuntu-latest

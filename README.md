@@ -5,15 +5,18 @@ media content — scripts, HTML/CSS creatives, PNG / carousel / MP4 renders —
 and publishes them to connected platforms, with an explicit approval gate and
 a full audit trail at every stage.
 
-**Status:** Phases 0–2 done — intake (dashboard / CSV / Telegram / links),
+**Status:** Phases 0–3 done — intake (dashboard / CSV / Telegram / links),
 **AI-proposed configuration reviewed and approved by the user**, brief with
-clarification rounds, script versions and approvals, and the deterministic
-3D motion-graphics prompt for Claude Code. Next: Phase 3 (creative
-generation). See [`PLAN.md`](./PLAN.md).
+clarification rounds, script versions and approvals, and **creative
+generation**: a worker builds each creative (starter template or Claude Code)
+from the approved script, validates it, renders stills, commits every version
+to Git, and the CRM previews it in an isolated sandbox for approval or
+revision. Next: Phase 4 (rendering to PNG / carousel / MP4). See
+[`PLAN.md`](./PLAN.md).
 
-| AI configuration review | Script review | Creative prompt | Arabic (RTL) |
+| AI configuration review | Script review | Creative review | Arabic (RTL) |
 |---|---|---|---|
-| ![Config](docs/screenshots/10-config-review.png) | ![Script](docs/screenshots/11-script-review.png) | ![Prompt](docs/screenshots/13-creative-prompt.png) | ![Arabic](docs/screenshots/07-project-ar.png) |
+| ![Config](docs/screenshots/10-config-review.png) | ![Script](docs/screenshots/11-script-review.png) | ![Creative](docs/screenshots/14-creative-review.png) | ![Arabic](docs/screenshots/07-project-ar.png) |
 
 Example prompts: [`docs/examples/`](./docs/examples/).
 
