@@ -200,32 +200,33 @@ Deno.test(
       assertEquals((await res.json()).version, 3);
     });
 
-    await t.step(
-      "approving v3 unlocks creative generation; creative jobs are not run here",
-      async () => {
-        const [v3] =
-          (await sql`select id, version, content_hash from public.scripts where project_id = ${pid} and status = 'in_review'`) as unknown as [
-            typeof v1,
-          ];
-        const res = await s.post(s.reviewer.id, "/approvals", {
-          artifact_type: "script",
-          artifact_id: v3.id,
-          artifact_version: v3.version,
-          artifact_hash: v3.content_hash,
-          decision: "approved",
-        });
-        assertEquals(res.status, 201);
-        assertEquals(await s.status(), "generating_creative");
-        const creative = s.lastDispatch("creative");
-        const r = await s.runJob(creative.job_id);
-        assertEquals(r.body.accepted, false);
-        const [{ n }] =
-          (await sql`select count(*)::int as n from public.workflow_events where project_id = ${pid} and event_type = 'status.changed'`) as unknown as [
-            { n: number },
-          ];
-        assert(n >= 9, `full audit trail (${n} status changes)`);
-      },
-    );
+    await t.step("approving v3 queues the creative worker, not n8n", async () => {
+      const [v3] =
+        (await sql`select id, version, content_hash from public.scripts where project_id = ${pid} and status = 'in_review'`) as unknown as [
+          typeof v1,
+        ];
+      const before = s.deps.dispatched.length;
+      const res = await s.post(s.reviewer.id, "/approvals", {
+        artifact_type: "script",
+        artifact_id: v3.id,
+        artifact_version: v3.version,
+        artifact_hash: v3.content_hash,
+        decision: "approved",
+      });
+      assertEquals(res.status, 201);
+      assertEquals(await s.status(), "generating_creative");
+      const [job] =
+        await sql`select id, kind::text from public.workflow_jobs where project_id = ${pid} and stage = 'creative' and status = 'queued'`;
+      assertEquals(job!.kind, "creative_worker");
+      assertEquals(s.deps.dispatched.length, before, "nothing is sent to n8n for worker jobs");
+      const r = await s.runJob(job!.id);
+      assertEquals(r.body.accepted, false, "run-job never executes worker jobs");
+      const [{ n }] =
+        (await sql`select count(*)::int as n from public.workflow_events where project_id = ${pid} and event_type = 'status.changed'`) as unknown as [
+          { n: number },
+        ];
+      assert(n >= 9, `full audit trail (${n} status changes)`);
+    });
   },
 );
 

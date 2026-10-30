@@ -180,7 +180,7 @@ Phase 3 (3D motion graphics / HTML).
 | P3-T01 | Content spec builder (shared) | done | P2-VERIFY | claude/sweet-rubin-5q9utc |
 | P3-T02 | Starter templates: static post, carousel, 3D motion (Three.js) + workspace rules | done | P3-T01 | claude/sweet-rubin-5q9utc |
 | P3-T03 | Generated-code validator | done | P3-T02 | claude/sweet-rubin-5q9utc |
-| P3-T04 | DB: creative RPCs, creative approvals, worker job kind + pgTAP | todo | P2-T04 | |
+| P3-T04 | DB: creative RPCs, creative approvals, worker job kind + pgTAP | done | P2-T04 | claude/sweet-rubin-5q9utc |
 | P3-T05 | `workers/creative-worker`: job loop, workspace, generators (template / Claude Code), git source store, preview bundle, thumbnails, upload | todo | P3-T01…T04 | |
 | P3-T06 | `workers/preview-server` (separate origin, signed URLs, CSP) + API preview-url and creative approvals | todo | P3-T04 | |
 | P3-T07 | CRM creative studio (sandboxed preview, versions, slides, thumbnails, approve / request changes / regenerate) | todo | P3-T05, P3-T06 | |

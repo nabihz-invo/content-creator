@@ -59,12 +59,13 @@ async function signedBody(c: Context, secret: string | null): Promise<Record<str
 export function registerPipelineRoutes(app: Hono, deps: Deps) {
   const { sql } = deps;
 
+  /** Hands n8n-run jobs to n8n; worker jobs (creative, render) are claimed from the queue by their workers. */
   async function dispatchJob(jobId: string | null | undefined, projectId: string) {
     if (!jobId) return;
     const [j] = await sql<
-      { stage: string }[]
-    >`select stage::text from public.workflow_jobs where id = ${jobId}`;
-    if (j)
+      { stage: string; kind: string }[]
+    >`select stage::text, kind::text from public.workflow_jobs where id = ${jobId}`;
+    if (j?.kind === "n8n")
       await deps.dispatcher.dispatch(STAGE_WORKFLOW[j.stage] ?? j.stage, {
         job_id: jobId,
         project_id: projectId,
