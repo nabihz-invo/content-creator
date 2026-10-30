@@ -13,8 +13,15 @@ declare module "playwright" {
   interface Page {
     on(event: "pageerror", fn: (e: Error) => void): void;
     on(event: "console", fn: (m: ConsoleMessage) => void): void;
-    goto(url: string, opts?: { waitUntil?: "load" | "networkidle"; timeout?: number }): Promise<unknown>;
-    waitForFunction(fn: () => boolean, arg?: unknown, opts?: { timeout?: number }): Promise<unknown>;
+    goto(
+      url: string,
+      opts?: { waitUntil?: "load" | "networkidle"; timeout?: number },
+    ): Promise<unknown>;
+    waitForFunction(
+      fn: () => boolean,
+      arg?: unknown,
+      opts?: { timeout?: number },
+    ): Promise<unknown>;
     evaluate<T>(fn: () => T): Promise<T>;
     screenshot(opts?: { type?: "png" | "jpeg"; fullPage?: boolean }): Promise<Buffer>;
     close(): Promise<void>;

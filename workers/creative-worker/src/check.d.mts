@@ -11,4 +11,7 @@ export interface CheckResult {
   totalBytes: number;
 }
 export declare const LIMITS: { maxFiles: number; maxFileBytes: number; maxTotalBytes: number };
-export declare function validateWorkspace(dir: string, opts: { format: "static" | "carousel" | "video" }): CheckResult;
+export declare function validateWorkspace(
+  dir: string,
+  opts: { format: "static" | "carousel" | "video" },
+): CheckResult;
