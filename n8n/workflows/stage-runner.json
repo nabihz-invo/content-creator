@@ -1,0 +1,220 @@
+{
+  "name": "CC — Stage runner + notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cc/:workflow",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "Job webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "6f0a3c9e-cc00-4c6b-9a51-1c2d3e4f5a6b"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Verify the Edge Function's HMAC (n8n/README.md), then sign the call to run-job.\nconst crypto = require('crypto');\nconst secret = $env.N8N_WEBHOOK_SECRET;\nif (!secret) throw new Error('N8N_WEBHOOK_SECRET is not set');\nconst item = $input.first().json;\nconst raw = JSON.stringify(item.body); // sender uses compact JSON.stringify; key order is preserved\nconst ts = Number(item.headers['x-cc-timestamp']);\nconst given = String(item.headers['x-cc-signature'] || '').replace(/^sha256=/, '');\nconst expected = crypto.createHmac('sha256', secret).update(ts + '.' + raw).digest('hex');\nconst fresh = Math.abs(Date.now() / 1000 - ts) <= 300;\nif (!fresh || given.length !== expected.length || !crypto.timingSafeEqual(Buffer.from(given), Buffer.from(expected))) {\n  throw new Error('invalid or expired signature');\n}\nconst body = JSON.stringify({ job_id: item.body.job_id });\nconst now = Math.floor(Date.now() / 1000);\nreturn [{ json: {\n  workflow: item.params.workflow,\n  job: item.body,\n  body,\n  timestamp: String(now),\n  signature: 'sha256=' + crypto.createHmac('sha256', secret).update(now + '.' + body).digest('hex'),\n} }];"
+      },
+      "name": "Verify signature",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.workflow }}",
+              "operation": "equal",
+              "value2": "notify"
+            }
+          ]
+        }
+      },
+      "name": "Is notification?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.CC_SUPABASE_URL }}/functions/v1/api/internal/run-job",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "x-cc-timestamp",
+              "value": "={{ $json.timestamp }}"
+            },
+            {
+              "name": "x-cc-signature",
+              "value": "={{ $json.signature }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ $json.body }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "name": "Run job (Edge Function)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        400
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.CC_SUPABASE_URL }}/rest/v1/rpc/notification_target",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ p_project_id: $json.job.project_id }) }}",
+        "options": {}
+      },
+      "name": "Who to notify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "cc-supabase-service",
+          "name": "cc-supabase-service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Builds the Telegram message for a pipeline event in the owner's language.\nconst t = $input.first().json;\nconst event = $('Verify signature').first().json.job.event;\nif (!t.telegram_user_id) return []; // owner hasn't linked Telegram\nconst link = ($env.CC_CRM_URL || '').replace(/\\/$/, '') + '/projects/' + t.project_id;\nconst M = {\n  configuration_ready: { en: '✨ AI configuration ready for review', ar: '✨ الإعدادات المقترحة جاهزة للمراجعة' },\n  clarification_needed: { en: '❓ A few details are needed', ar: '❓ نحتاج بعض التفاصيل' },\n  script_ready: { en: '📝 Script ready for review', ar: '📝 النص جاهز للمراجعة' },\n  needs_attention: { en: '⚠️ A step needs your attention', ar: '⚠️ خطوة تحتاج انتباهك' },\n};\nconst m = M[event];\nif (!m) return [];\nconst lang = t.locale === 'ar' ? 'ar' : 'en';\nreturn [{ json: { chat_id: String(t.telegram_user_id), text: m[lang] + '\\n«' + t.title + '»\\n' + link } }];"
+      },
+      "name": "Compose message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "disable_web_page_preview": true
+        }
+      },
+      "name": "Send Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        200
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "cc-telegram-bot",
+          "name": "cc-telegram-bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Job webhook": {
+      "main": [
+        [
+          {
+            "node": "Verify signature",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify signature": {
+      "main": [
+        [
+          {
+            "node": "Is notification?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is notification?": {
+      "main": [
+        [
+          {
+            "node": "Who to notify",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Run job (Edge Function)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Who to notify": {
+      "main": [
+        [
+          {
+            "node": "Compose message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compose message": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}

@@ -1,8 +1,34 @@
 # n8n Workflows
 
-Workflows A–G and R (see `docs/WORKFLOW.md §4`) run on the existing
-self-hosted n8n. Each one is exported to `n8n/workflows/<letter>-<name>.json`
-and committed; the JSON in Git is the source of truth.
+n8n orchestrates; the stage logic (prompts, schemas, validation, saving) lives
+in the `api` Edge Function (ADR-0006). The workflows are therefore thin and
+generated from `n8n/scripts/build-workflows.mjs`:
+
+| File | What it does |
+|------|--------------|
+| `workflows/stage-runner.json` | Webhook `POST /webhook/cc/:workflow` → verify HMAC → `notify`: look up the owner (`notification_target` RPC) and send a Telegram message in their language; anything else: signed `POST /functions/v1/api/internal/run-job` (with retries). Covers Workflows B, C, D (and later E–G). |
+| `workflows/recovery.json` | Every 5 minutes: signed `POST /functions/v1/api/internal/recover` (Workflow R: expired leases, lost dispatches, escalation). |
+
+Regenerate after editing the script: `node n8n/scripts/build-workflows.mjs`
+(a test fails if the committed JSON is stale; `node --test "n8n/scripts/*.test.mjs"`
+also checks the HMAC handshake against the Edge Function's signer).
+
+### Setup on the existing n8n
+1. Import both files (`n8n import:workflow --input=...` or the UI).
+2. Create credentials **`cc-supabase-service`** (type *Supabase API*: host +
+   service role key) and **`cc-telegram-bot`** (type *Telegram API*).
+3. Environment: `N8N_WEBHOOK_SECRET`, `CC_SUPABASE_URL`, `CC_CRM_URL`; allow
+   `$env` in nodes (`N8N_BLOCK_ENV_ACCESS_IN_NODE=false`) and the `crypto`
+   builtin in Code nodes (`NODE_FUNCTION_ALLOW_BUILTIN=crypto`).
+4. Activate both workflows. Set the Edge Function secret `N8N_BASE_URL` to the
+   n8n base URL so jobs are dispatched.
+
+Locally, `scripts/local-stack/n8n-shim.mjs` stands in for n8n with the same
+behavior (notifications go to `tmp/local-stack/notifications.log`).
+
+---
+
+The sections below describe the conventions both sides implement.
 
 ## Import / export
 

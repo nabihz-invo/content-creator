@@ -6,3 +6,4 @@ pnpm-lock.yaml
 supabase/migrations
 *.md
 *.generated.ts
+n8n/workflows/*.json

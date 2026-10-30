@@ -2,6 +2,9 @@
 # Local Supabase-compatible stack for development and end-to-end tests:
 #   Postgres (supabase/postgres) + GoTrue + PostgREST + Storage API (Docker)
 #   + Node gateway on :54321 + Edge Functions under Deno (:8000 api, :8001 telegram).
+#   + a local n8n stand-in (:5678) that runs pipeline jobs and logs notifications.
+# AI: AI_PROVIDER=fake by default (no tokens). Use real Claude with
+#     AI_PROVIDER=anthropic ANTHROPIC_API_KEY=... scripts/local-stack/stack.sh up
 # Usage: scripts/local-stack/stack.sh up | down | status | env
 # After `up`: CRM env is printed; run `pnpm --filter @cc/crm dev`.
 set -euo pipefail
@@ -66,10 +69,13 @@ up() {
   pkill -f "local-stack/gateway.mjs" 2>/dev/null || true
   pkill -f "deno run -A (api|telegram-webhook)/index.ts" 2>/dev/null || true
   setsid node "$HERE/gateway.mjs" </dev/null >"$RUN/gateway.log" 2>&1 &
+  pkill -f "local-stack/n8n-shim.mjs" 2>/dev/null || true
+  N8N_WEBHOOK_SECRET=local-n8n-secret setsid node "$HERE/n8n-shim.mjs" </dev/null >"$RUN/n8n-shim.log" 2>&1 &
   local fenv=(SUPABASE_DB_URL=postgres://postgres:postgres@127.0.0.1:54322/postgres SUPABASE_URL=http://127.0.0.1:54321
               SUPABASE_ANON_KEY="$ANON_KEY" SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" CRM_URL=http://127.0.0.1:5173
               CRM_ALLOWED_ORIGINS=http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:4173
-              TELEGRAM_WEBHOOK_SECRET=local-telegram-secret N8N_WEBHOOK_SECRET=local-n8n-secret)
+              TELEGRAM_WEBHOOK_SECRET=local-telegram-secret N8N_WEBHOOK_SECRET=local-n8n-secret
+              N8N_BASE_URL=http://127.0.0.1:5678 AI_PROVIDER="${AI_PROVIDER:-fake}" ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-}")
   (cd "$ROOT/supabase/functions" && env "${fenv[@]}" PORT=8000 setsid deno run -A api/index.ts </dev/null >"$RUN/api.log" 2>&1 &)
   (cd "$ROOT/supabase/functions" && env "${fenv[@]}" PORT=8001 setsid deno run -A telegram-webhook/index.ts </dev/null >"$RUN/telegram.log" 2>&1 &)
   wait_http http://127.0.0.1:54321/functions/v1/api/health
@@ -85,6 +91,7 @@ env_out() {
 
 down() {
   pkill -f "local-stack/gateway.mjs" 2>/dev/null || true
+  pkill -f "local-stack/n8n-shim.mjs" 2>/dev/null || true
   pkill -f "deno run -A (api|telegram-webhook)/index.ts" 2>/dev/null || true
   docker rm -f cc-db cc-auth cc-rest cc-storage >/dev/null 2>&1 || true
 }

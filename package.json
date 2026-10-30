@@ -11,7 +11,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "pnpm -r --if-present typecheck",
-    "test": "pnpm -r --if-present test",
+    "test": "pnpm -r --if-present test && node --test \"n8n/scripts/*.test.mjs\"",
     "build": "pnpm -r --if-present build",
     "db:start": "bash scripts/db.sh start",
     "db:stop": "bash scripts/db.sh stop",
