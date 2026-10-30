@@ -15,6 +15,8 @@ export interface Deps {
     allowedOrigins: string[];
     n8nWebhookSecret: string | null;
     telegramWebhookSecret: string | null;
+    previewOrigin?: string | null;
+    previewSigningSecret?: string | null;
   };
   /** AI stages (Claude, or the fake provider in dev/CI). */
   ai?: StageAi;

@@ -154,6 +154,12 @@ importers:
         specifier: 0.187.0
         version: 0.187.0
 
+  workers/preview-server:
+    dependencies:
+      '@cc/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+
 packages:
 
   '@adobe/css-tools@4.5.0':

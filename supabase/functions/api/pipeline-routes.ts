@@ -13,6 +13,7 @@ import { enforceRateLimit } from "../_shared/ratelimit.ts";
 import { schemaErrors, validate } from "../_shared/validate.ts";
 import { type Brief, SCRIPT_SCHEMAS, type Script } from "../_shared/vendor/src/ai-schemas.ts";
 import { contentHash } from "../_shared/vendor/src/hash.ts";
+import { signPreviewToken } from "../_shared/vendor/src/preview-token.ts";
 import { checkScript } from "../_shared/vendor/src/pipeline.ts";
 import {
   type Answers,
@@ -200,6 +201,28 @@ export function registerPipelineRoutes(app: Hono, deps: Deps) {
     >`select project_id from public.approvals where id = ${r.approval_id}`;
     await dispatchJob(r.next_job_id, p!.project_id);
     return c.json(r, 201);
+  });
+
+  // GET /api/creative-versions/:id/preview — short-lived link on the isolated preview origin
+  app.get("/creative-versions/:id/preview", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = c.req.param("id") ?? "";
+    if (!UUID.test(id)) throw new ApiError("not_found", "creative version not found");
+    const [cv] = await sql<{ project_id: string; preview_path: string | null }[]>`
+      select project_id, preview_path from public.creative_versions where id = ${id}`;
+    if (!cv?.preview_path) throw new ApiError("not_found", "creative version not found");
+    await requireProjectRole(sql, userId, cv.project_id, ["admin", "editor", "reviewer"]);
+    const origin = deps.config.previewOrigin;
+    const secret = deps.config.previewSigningSecret;
+    if (!origin || !secret) throw new ApiError("internal", "preview origin is not configured");
+    const expires = Math.floor(Date.now() / 1000) + 30 * 60;
+    const token = await signPreviewToken(secret, { p: cv.preview_path, e: expires });
+    const base = `${origin.replace(/\/$/, "")}/p/${token}/`;
+    return c.json({
+      url: `${base}index.html`,
+      base,
+      expires_at: new Date(expires * 1000).toISOString(),
+    });
   });
 
   // POST /api/internal/run-job — n8n delivers a job id (HMAC-signed)

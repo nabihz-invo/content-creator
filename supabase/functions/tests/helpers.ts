@@ -10,6 +10,7 @@ export const sql = postgres(DB_URL, { max: 4, onnotice: () => {}, transform: { u
 
 export const TG_SECRET = "tg-secret-123";
 export const N8N_SECRET = "n8n-secret-456";
+export const PREVIEW_SECRET = "preview-secret-789";
 
 export interface TestDeps extends Deps {
   dispatched: { workflow: string; job: JobRef }[];
@@ -40,6 +41,8 @@ export function makeDeps(net?: Net): TestDeps {
       allowedOrigins: ["https://crm.test"],
       n8nWebhookSecret: N8N_SECRET,
       telegramWebhookSecret: TG_SECRET,
+      previewOrigin: "https://preview.test",
+      previewSigningSecret: PREVIEW_SECRET,
     },
     net,
     ai: fakeStageAi(),

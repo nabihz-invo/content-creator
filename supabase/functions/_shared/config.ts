@@ -11,6 +11,8 @@ export interface Config {
   allowedOrigins: string[];
   aiProvider: "anthropic" | "fake";
   anthropicApiKey: string | null;
+  previewOrigin: string | null;
+  previewSigningSecret: string | null;
 }
 
 function required(name: string): string {
@@ -39,5 +41,7 @@ export function loadConfig(): Config {
       .filter(Boolean),
     aiProvider: Deno.env.get("AI_PROVIDER") === "fake" ? "fake" : "anthropic",
     anthropicApiKey: Deno.env.get("ANTHROPIC_API_KEY") ?? null,
+    previewOrigin: Deno.env.get("PREVIEW_ORIGIN") ?? null,
+    previewSigningSecret: Deno.env.get("PREVIEW_SIGNING_SECRET") ?? null,
   };
 }

@@ -1,0 +1,14 @@
+{
+  "name": "@cc/preview-server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test \"test/*.test.ts\""
+  },
+  "dependencies": {
+    "@cc/shared": "workspace:*"
+  }
+}
