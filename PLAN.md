@@ -244,7 +244,7 @@ Phase 3 (3D motion graphics / HTML).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | todo | P4-VERIFY | |
+| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | in-progress | P4-VERIFY | local Claude Code |
 | P5-T02 | Three.js / animated video template | todo | P5-T01 | |
 | P5-T03 | Frame capture + FFmpeg MP4 encode (+ audio track) | todo | P5-T01 | |
 | P5-T04 | ffprobe validation, thumbnail, contact sheet | todo | P5-T03 | |
