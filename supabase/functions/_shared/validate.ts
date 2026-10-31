@@ -10,6 +10,9 @@ import questionnaireSubmit from "./vendor/schemas/api/questionnaire-submit.reque
 import scriptEdit from "./vendor/schemas/api/script-edit.request.schema.json" with { type: "json" };
 import scriptGenerate from "./vendor/schemas/api/script-generate.request.schema.json" with { type: "json" };
 import approval from "./vendor/schemas/api/approval.request.schema.json" with { type: "json" };
+import renderJob from "./vendor/schemas/api/render-job.request.schema.json" with { type: "json" };
+import publishingJob from "./vendor/schemas/api/publishing-job.request.schema.json" with { type: "json" };
+import markPublished from "./vendor/schemas/api/mark-published.request.schema.json" with { type: "json" };
 
 // deno-lint-ignore no-explicit-any
 // anyOf-with-required ("idea or url") references properties declared at the top level.
@@ -30,6 +33,9 @@ const schemas = {
   scriptEdit,
   scriptGenerate,
   approval,
+  renderJob,
+  publishingJob,
+  markPublished,
 } as const;
 export type SchemaName = keyof typeof schemas;
 

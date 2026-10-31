@@ -15,11 +15,14 @@ export const PREVIEW_SECRET = "preview-secret-789";
 export interface TestDeps extends Deps {
   dispatched: { workflow: string; job: JobRef }[];
   uploads: { bucket: string; path: string; size: number }[];
+  /** Files the fake storage serves for downloads, keyed "bucket/path". */
+  files: Map<string, Uint8Array>;
 }
 
 export function makeDeps(net?: Net): TestDeps {
   const dispatched: TestDeps["dispatched"] = [];
   const uploads: TestDeps["uploads"] = [];
+  const files: TestDeps["files"] = new Map();
   return {
     sql,
     // Tokens look like "test:<user uuid>".
@@ -33,7 +36,12 @@ export function makeDeps(net?: Net): TestDeps {
     storage: {
       upload: (bucket, path, data) => {
         uploads.push({ bucket, path, size: data.byteLength });
+        files.set(`${bucket}/${path}`, data);
         return Promise.resolve();
+      },
+      download: (bucket, path) => {
+        const f = files.get(`${bucket}/${path}`);
+        return f ? Promise.resolve(f) : Promise.reject(new Error(`missing ${bucket}/${path}`));
       },
     },
     config: {
@@ -48,6 +56,7 @@ export function makeDeps(net?: Net): TestDeps {
     ai: fakeStageAi(),
     dispatched,
     uploads,
+    files,
   };
 }
 

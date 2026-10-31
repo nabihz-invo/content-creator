@@ -190,10 +190,12 @@ export function registerPipelineRoutes(app: Hono, deps: Deps) {
       artifact_hash: string;
       decision: "approved" | "changes_requested" | "rejected";
       comment?: string;
+      return_to?: "render" | "creative";
     }>("approval", await body(c));
     const [{ r }] = (await sql`
       select public.record_approval(${userId}, ${input.artifact_type}, ${input.artifact_id}, ${input.artifact_version},
-                                    ${input.artifact_hash}, ${input.decision}::public.approval_decision, ${input.comment ?? null}) as r`) as unknown as [
+                                    ${input.artifact_hash}, ${input.decision}::public.approval_decision, ${input.comment ?? null},
+                                    ${input.return_to ?? null}) as r`) as unknown as [
       { r: { approval_id: string; status: string; next_job_id: string | null } },
     ];
     const [p] = await sql<

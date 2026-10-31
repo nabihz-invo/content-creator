@@ -6,11 +6,31 @@
   "additionalProperties": false,
   "required": ["artifact_type", "artifact_id", "artifact_version", "artifact_hash", "decision"],
   "properties": {
-    "artifact_type": { "enum": ["script", "creative_version", "media_manifest"] },
-    "artifact_id": { "type": "string", "format": "uuid" },
-    "artifact_version": { "type": "integer", "minimum": 1 },
-    "artifact_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "decision": { "enum": ["approved", "changes_requested", "rejected"] },
-    "comment": { "type": "string", "maxLength": 2000 }
+    "artifact_type": {
+      "enum": ["script", "creative_version", "media_manifest"]
+    },
+    "artifact_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "artifact_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "decision": {
+      "enum": ["approved", "changes_requested", "rejected"]
+    },
+    "comment": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "return_to": {
+      "enum": ["render", "creative"],
+      "description": "media_manifest + changes_requested only: rerender the same creative (default) or return to creative editing"
+    }
   }
 }

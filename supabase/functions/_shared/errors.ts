@@ -54,6 +54,9 @@ export class ApiError extends Error {
 export function fromDbError(err: unknown): ApiError {
   if (err instanceof ApiError) return err;
   const e = err as { code?: string; hint?: string; message?: string };
+  if (e?.code === "P0001" && (e.hint === "invalid_job_state" || e.hint === "lease_lost")) {
+    return new ApiError("invalid_transition", e.message ?? e.hint);
+  }
   if (e?.code === "P0001" && e.hint && e.hint in STATUS) {
     return new ApiError(e.hint as ErrorCode, e.message ?? e.hint);
   }

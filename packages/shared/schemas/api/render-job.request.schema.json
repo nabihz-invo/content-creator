@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/render-job.request.schema.json",
+  "title": "POST /api/render-jobs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["creative_version_id"],
+  "properties": {
+    "creative_version_id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

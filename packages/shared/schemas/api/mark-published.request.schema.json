@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/mark-published.request.schema.json",
+  "title": "POST /api/publishing-jobs/{id}/mark-published",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["published_url"],
+  "properties": {
+    "published_url": {
+      "type": "string",
+      "pattern": "^https://\\S+$",
+      "maxLength": 2000
+    }
+  }
+}

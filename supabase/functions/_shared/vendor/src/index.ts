@@ -10,3 +10,5 @@ export * from "./prompts/render.ts";
 export * from "./prompts/stages.ts";
 export * from "./content-spec.ts";
 export * from "./preview-token.ts";
+export * from "./platform-rules.ts";
+export * from "./zip.ts";
