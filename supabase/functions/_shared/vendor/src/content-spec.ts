@@ -68,6 +68,50 @@ export interface ContentSpec {
   post: { headline: string; body: string; composition: string } | null;
   source: { script_id: string; script_version: number; script_hash: string };
   revision_notes: string | null;
+  /** Set when the brand renders with the studio engine (ADR-0009); null = classic templates. */
+  studio?: SpecStudio | null;
+}
+
+export interface SpecStudio {
+  engine: "studio-1";
+  brand_id: string;
+  /** One page, one rendered output per language version (never both in one frame). */
+  languages: ("en" | "ar")[];
+  /** UI sounds the mixer keeps; every other cue (whoosh, swoosh, riser …) is dropped. */
+  sfx_allow: string[];
+}
+
+export const STUDIO_ENGINES = ["studio-1"] as const;
+export const DEFAULT_STUDIO_SFX = [
+  "pop",
+  "typing",
+  "ding",
+  "check",
+  "tick",
+  "click",
+  "notification",
+  "send",
+  "scan",
+  "marker",
+  "paper",
+  "shutter",
+];
+
+export function studioFor(
+  brand: BrandContext | null,
+  language: ContentSpec["language"],
+): SpecStudio | null {
+  const s = brand?.settings.studio;
+  if (!brand?.id || !s?.engine || !(STUDIO_ENGINES as readonly string[]).includes(s.engine))
+    return null;
+  const languages: ("en" | "ar")[] =
+    language === "en" ? ["en"] : language === "ar" ? ["ar"] : ["en", "ar"];
+  return {
+    engine: s.engine as SpecStudio["engine"],
+    brand_id: brand.id,
+    languages: s.languages?.length ? s.languages.filter((l) => languages.includes(l)) : languages,
+    sfx_allow: s.sfx_allow ?? DEFAULT_STUDIO_SFX,
+  };
 }
 
 const HEX = /^#[0-9a-f]{6}$/i;
@@ -170,6 +214,7 @@ export function buildContentSpec(input: {
       script_hash: input.scriptMeta.content_hash,
     },
     revision_notes: input.revisionNotes ?? null,
+    studio: studioFor(brand, brief.language),
   };
   if (brief.content_type === "video") {
     const v = script as VideoScript;

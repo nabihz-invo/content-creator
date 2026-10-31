@@ -3,7 +3,7 @@
  * → generator → validation → thumbnails → Git commit → preview upload →
  * save_creative_version (completes the job).
  */
-import { cpSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import type postgres from "postgres";
 import {
@@ -19,7 +19,7 @@ import { type Generator, GeneratorError } from "./generators.ts";
 import type { SourceStore } from "./source-store.ts";
 import { type Storage, uploadDir } from "./storage.ts";
 import { isCommitted, treeHash } from "./tree.ts";
-import { assembleWorkspace } from "./workspace.ts";
+import { assembleWorkspace, refreshTrusted } from "./workspace.ts";
 
 export { isCommitted, treeHash };
 
@@ -62,6 +62,7 @@ async function loadInputs(sql: postgres.Sql, job: CreativeJob) {
       script_hash: string;
       script: Script;
       brief: Brief;
+      brand_id: string | null;
       brand_name: string | null;
       brand_language: string | null;
       brand_settings: Record<string, unknown> | null;
@@ -70,7 +71,7 @@ async function loadInputs(sql: postgres.Sql, job: CreativeJob) {
     }[]
   >`
     select s.id as script_id, s.version as script_version, s.content_hash as script_hash, s.content as script,
-           b.brief, br.name as brand_name, br.default_language as brand_language, br.brand_settings, br.settings_version,
+           b.brief, br.id as brand_id, br.name as brand_name, br.default_language as brand_language, br.brand_settings, br.settings_version,
            (select coalesce(max(version), 0) + 1 from public.creative_versions where project_id = s.project_id) as next_version
     from public.scripts s
     join public.content_briefs b on b.id = s.brief_id
@@ -95,6 +96,7 @@ async function loadInputs(sql: postgres.Sql, job: CreativeJob) {
   }
   const brand = row.brand_name
     ? {
+        id: row.brand_id ?? undefined,
         name: row.brand_name,
         default_language: row.brand_language ?? "en",
         settings: (row.brand_settings ?? {}) as never,
@@ -246,13 +248,7 @@ export async function processCreativeJob(deps: JobDeps, job: CreativeJob, signal
   }
 }
 
-/** Re-copies the trusted runtime pieces (lib/, fonts/, vendor/) over whatever the generator left. */
+/** Re-copies the trusted runtime pieces over whatever the generator left. */
 function assembleWorkspaceRuntime(dir: string, spec: ContentSpec) {
-  const tmp = mkdtempSync(join(dir, "..", "rt-"));
-  assembleWorkspace(tmp, spec);
-  for (const sub of ["lib", "fonts", ...(spec.format === "video" ? ["vendor"] : [])]) {
-    rmSync(join(dir, sub), { recursive: true, force: true });
-    cpSync(join(tmp, sub), join(dir, sub), { recursive: true });
-  }
-  rmSync(tmp, { recursive: true, force: true });
+  refreshTrusted(dir, spec);
 }

@@ -9,6 +9,8 @@ export const isCommitted = (path: string) =>
   !NOT_SOURCE(path) &&
   !path.startsWith("fonts/") &&
   !path.startsWith("vendor/") &&
+  !path.startsWith("studio/") &&
+  !path.startsWith("assets/") &&
   !path.startsWith(".home/");
 
 /** Order-independent hash of a file tree: sha256 over sorted "path\0sha256(content)" lines. */

@@ -36,6 +36,43 @@ export function shotList(spec: ContentSpec): { name: string; query: string }[] {
   return [{ name: "post", query: "" }];
 }
 
+/** window.__render of a studio page (docs/CONTRACTS.md §10). */
+export interface StudioTimeline {
+  duration: number;
+  fps: number;
+  width: number;
+  height: number;
+  scenes: { start: number; end: number; name: string }[];
+  stills: { name: string; t: number }[];
+  cover: number | null;
+  audio: Record<string, unknown> | null;
+  sfx: { name: string; t: number; vol?: number }[];
+  seek: (t: number) => Promise<void>;
+}
+
+/** Carousel/static: the page's named stills (one per slide); video: the middle of every scene. */
+export function studioFrames(
+  spec: Pick<ContentSpec, "format">,
+  tl: Pick<StudioTimeline, "duration" | "scenes" | "stills">,
+): { name: string; t: number }[] {
+  if (spec.format === "video")
+    return tl.scenes.map((s, i) => ({
+      name: `scene-${String(i + 1).padStart(2, "0")}`,
+      t: (s.start + s.end) / 2,
+    }));
+  const stills = tl.stills.length
+    ? tl.stills
+    : [
+        {
+          name: spec.format === "static" ? "post" : "slide-01",
+          t: Math.max(0, tl.duration - 0.05),
+        },
+      ];
+  return spec.format === "static"
+    ? stills.slice(0, 1).map((s) => ({ ...s, name: "post" }))
+    : stills;
+}
+
 export async function captureWorkspace(
   dir: string,
   spec: ContentSpec,
@@ -64,6 +101,41 @@ export async function captureWorkspace(
       return route.abort();
     });
     const shots: Shot[] = [];
+    if (spec.studio) {
+      // Studio pages (ADR-0009): one load per language version, frames chosen from the page's own timeline.
+      for (const lang of spec.studio.languages) {
+        const page = await context.newPage();
+        const tag = lang.toUpperCase();
+        page.on("pageerror", (e) => errors.push(`${tag}: ${e.message}`));
+        page.on("console", (m) => m.type() === "error" && errors.push(`${tag}: ${m.text()}`));
+        await page.goto(`${server.url}/index.html?render=1&lang=${lang}`, {
+          waitUntil: "load",
+          timeout: opts.timeoutMs ?? 60_000,
+        });
+        await page.waitForFunction(
+          () => (window as unknown as { __ready?: boolean }).__ready === true,
+          null,
+          { timeout: opts.timeoutMs ?? 60_000 },
+        );
+        const tl = (await page.evaluate(() => {
+          const r = (window as unknown as { __render: StudioTimeline }).__render;
+          return { duration: r.duration, scenes: r.scenes, stills: r.stills };
+        })) as Pick<StudioTimeline, "duration" | "scenes" | "stills">;
+        for (const f of studioFrames(spec, tl)) {
+          await page.evaluate(
+            (t) => (window as unknown as { __render: StudioTimeline }).__render.seek(t),
+            f.t,
+          );
+          shots.push({
+            name: `${f.name}_${tag}`,
+            query: `?render=1&lang=${lang}&t=${f.t.toFixed(3)}`,
+            png: await page.screenshot({ type: "png" }),
+          });
+        }
+        await page.close();
+      }
+      return { shots, errors, blockedRequests: blocked };
+    }
     for (const s of shotList(spec)) {
       const page = await context.newPage();
       page.on("pageerror", (e) => errors.push(`${s.name}: ${e.message}`));

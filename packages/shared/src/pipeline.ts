@@ -25,9 +25,15 @@ import {
 } from "./questionnaire.ts";
 
 export interface BrandContext {
+  id?: string;
   name: string;
   default_language: string;
   settings: {
+    studio?: {
+      engine?: string;
+      languages?: ("en" | "ar")[];
+      sfx_allow?: string[];
+    };
     voice?: { tone?: string; personality?: string; do?: string[]; dont?: string[] };
     palette?: { name: string; hex: string; role?: string }[];
     typography?: { heading_font?: string; body_font?: string; rules?: string };

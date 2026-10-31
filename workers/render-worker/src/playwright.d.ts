@@ -24,9 +24,12 @@ declare module "playwright" {
       opts?: { timeout?: number },
     ): Promise<unknown>;
     evaluate<T>(fn: () => T): Promise<T>;
+    evaluate<T, A>(fn: (arg: A) => T, arg: A): Promise<T>;
     screenshot(opts?: {
       type?: "png" | "jpeg";
       fullPage?: boolean;
+      quality?: number;
+      clip?: { x: number; y: number; width: number; height: number };
       animations?: "disabled" | "allow";
       caret?: "hide" | "initial";
     }): Promise<Buffer>;

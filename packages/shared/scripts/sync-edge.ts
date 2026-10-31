@@ -5,7 +5,7 @@
  */
 import { cpSync, mkdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const SHARED_ROOT = join(here, "..");
@@ -21,7 +21,7 @@ export function syncEdge() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]!).href) {
   syncEdge();
   console.log(`synced ${VENDORED.join(", ")} → ${VENDOR_ROOT}`);
 }
