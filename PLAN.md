@@ -254,9 +254,32 @@ Phase 3 (3D motion graphics / HTML).
 | P5-T05 | Resumable render jobs (frame-chunk checkpoints) | todo | P5-T03 | |
 | P5-T06 | CRM video preview / playback | todo | P5-T04 | |
 | P5-T07 | Telegram voice-note transcription | todo | P4-VERIFY | |
-| P5-VERIFY | Phase 5 verification | todo | P5-T01…T07 | |
+| P5-T08 | Stacko organization: workspace, admin (nabihzanaty@gmail.com), Stacko brand settings | done | P4-VERIFY | local Claude Code |
+| P5-T09 | Brand asset library: new asset types, catalog codes, kit → `brand-assets` sync | todo | P5-T08 | |
+| P5-T10 | Studio engine as a brand template pack (`templates/studio/`), `__render` adapter, worker workspace | todo | P5-T01 | |
+| P5-T11 | Creative catalog (RC/HK/OP/TX/TR/CM/AN/CP/EC/LG/MU/CL), variety rules, approval checks in prompts | todo | P5-T10 | |
+| P5-T12 | Two language versions per project (EN + AR outputs from one page) | todo | P5-T10 | |
+| P5-T13 | Audio: ElevenLabs voice with timestamps, real UI SFX, music by MU code, beat-synced silent cuts | todo | P5-T03 | |
+| P5-T14 | Import the Stacko content plan (workbook → projects) | done | P5-T08 | owner + local Claude Code |
+| P5-VERIFY | Phase 5 verification | todo | P5-T01…T14 | |
 
 Key acceptance: same creative + commit renders byte-identical frames; MP4 duration/fps/dimensions/audio validated; a killed render resumes from last checkpoint; voice note creates a project from its transcript.
+
+**Stacko studio migration (P5-T08…T14).** Source: `../content/Stacko_Studio_Kit/Stacko-Studio` (kit of 27 Oct 2026; `_archive/` is never used). The kit's HTML motion engine (`sm-core`, `sm-components`, `sm-app`, map elements) already renders every frame from `seek(t)`, so it becomes the video and carousel template system for P5-T01…T03. Rules carried over from the kit (enforced in prompts, validators and checks): every video is an HTML page before it is rendered; one page renders an English and an Arabic version, never both languages in one frame or caption file; product moments show the recreated, animated app, never a screenshot alone; at least three visual sources per post; a dot moment in every reel; one theme per carousel; stage label on screen whenever a feature is shown; no invented numbers, customers or quotes; Instagram safe zone. Sound decision (owner, 2026-10-31): transitions are **music-driven** — cuts land on the music beat, no transition sound effects; only small UI sounds come from components. The old synthesized SFX set and placeholder music are replaced (P5-T13).
+
+**P5-T08** — idempotent SQL `supabase/seed/stacko-organization.sql`: profile for the owner, workspace "Stacko", the owner as `admin`, brand "Stacko" with `brand_settings` from the Stacko brand guide (palette, typography, voice, taglines, logo rules, claims, CTA, stage labels, demo data, languages en + ar). Acceptance: rerunning changes nothing; the owner sees the Stacko workspace and brand in the CRM.
+
+**P5-T09** — migration adds asset types (`background`, `post_image`, `screen`, `graphic`, `map_elements`, `presenter`, `music`, `sfx`, `voice`, `engine`); `metadata` holds the catalog code (BG-01, PI-14, SCR-01, LG-05, MU-01, …), aspect, usage notes and, for music, BPM; `scripts/brand/sync-kit.mjs` uploads the kit's `assets/` with checksums (re-runs upload only changed files). Acceptance: every kit asset is in `brand-assets/<brand_id>/…` with a `brand_assets` row; nothing from `_archive/`.
+
+**P5-T10** — `templates/studio/` vendors the engine; an adapter maps `SM_SEEK`/`SM_META`/`SM_READY` to `window.__render`/`window.__ready`; the creative worker builds the workspace with the engine and the brand's assets (local files, no network), and the validator treats vendored engine files as trusted. Acceptance: the kit's three demo reels and the demo carousel render through the pipeline unchanged.
+
+**P5-T11** — the workbook's Options sheet becomes a versioned catalog in `packages/shared` (code, meaning, engine call); the AI configuration proposes codes from it and respects the variety rules (recipe ≠ last 4, hook ≠ last 3, opener ≠ last 4, end card ≠ last 2); the creative prompt and workspace `CLAUDE.md` carry the kit's rules, recipes and the 14 approval checks; the checker reports each check.
+
+**P5-T12** — one creative renders `en` and `ar` (`?lang=`); media manifests list both versions; captions per language; approval covers both.
+
+**P5-T13** — audio provider in the render worker: ElevenLabs voice-over with timestamps per language (captions from the alignment), UI SFX library generated once with ElevenLabs Sound Effects into the brand library, music from the owner's ElevenLabs tracks by MU code; transitions muted in the engine, `R.beats(bpm)` cuts use the track's BPM; mix with ducking and −16 LUFS. `ELEVENLABS_API_KEY` is a worker secret.
+
+**P5-T14** — run `scripts/import/content-plan-to-sql.py` on the workbook (owner email, brand Stacko) and apply it. Acceptance: one project per Content and Backlog row, rerun creates nothing new.
 
 ---
 

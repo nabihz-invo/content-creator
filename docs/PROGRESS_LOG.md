@@ -14,6 +14,12 @@ Template:
 
 ---
 
+## 2026-10-31 — P5-T08 Stacko brand · P5-T14 content plan import — done
+- Agent/branch: local Claude Code (main)
+- Changes: `supabase/seed/stacko-organization.sql` (Stacko brand with full brand_settings from the Stacko brand guide: palette, Night gradient, typography incl. Arabic, logo versions LG-xx, voice, audiences, platform rules incl. safe zones / one theme per carousel / two language versions / music-driven transitions, CTA + contact, claims, stage labels EN/AR, demo warehouses). The script never creates workspaces or memberships: the owner created workspace "Stacko" with nabihzanaty@gmail.com as admin. PLAN.md gained P5-T08…T14 (Stacko studio migration from `../content/Stacko_Studio_Kit`).
+- Verification (hosted project tkyvfgdefhvxjwvmxzoe): one workspace "Stacko", owner `admin`, brand "Stacko" settings v1 (14 top-level keys, Arabic stored as valid UTF-8). The owner had already imported the workbook (batch 17fae091…: 127 projects, status `new`) before the brand existed; the batch and its 127 projects were linked to the Stacko brand.
+- Notes / follow-ups: the first run of the seed also inserted the owner's `profiles` row (display name "Nabih"), which was missing because the account predates the migrations. Next: P5-T10 (studio engine template pack), P5-T09 (asset library).
+
 ## 2026-10-31 — P4-T10 Import the existing content plan; close imported content with its link — done
 - Agent/branch: claude/sweet-rubin-5q9utc
 - Why: the owner's existing plan (Stacko_Content_Studio.xlsx — 47 planned posts NOV-01…D30-30, 80 backlog ideas EDU-01…) must live in the CRM so later analysis can check what already exists and avoid duplicates; posts made outside the pipeline are closed with their live link.
