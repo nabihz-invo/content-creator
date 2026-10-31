@@ -80,6 +80,8 @@ const t = (from: ProjectStatus, to: ProjectStatus, trigger: string): Transition 
 /** Explicit (non-generic) transitions. */
 const EXPLICIT: Transition[] = [
   t("new", "analyzing", "analysis job created"),
+  // Only via mark_imported_published(): content-plan imports already posted elsewhere.
+  t("new", "published", "imported content already published outside the pipeline (link recorded)"),
   t("analyzing", "awaiting_answers", "questionnaire saved"),
   t("awaiting_answers", "analyzing", "analysis re-run requested"),
   t("awaiting_answers", "validating_answers", "answers submitted"),

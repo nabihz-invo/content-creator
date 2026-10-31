@@ -236,6 +236,23 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
     return c.json(r);
   });
 
+  // POST /api/content-projects/:id/mark-published — content-plan import already posted elsewhere
+  app.post("/content-projects/:id/mark-published", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ published_url: string; published_at?: string }>(
+      "markImportedPublished",
+      await body(c),
+    );
+    const [{ r }] = (await sql`
+      select public.mark_imported_published(${userId}, ${id}, ${input.published_url},
+        ${input.published_at ? `${input.published_at}T12:00:00Z` : null}::timestamptz) as r`) as unknown as [
+      { r: { project_id: string; status: string; published_url: string; replayed: boolean } },
+    ];
+    return c.json(r);
+  });
+
   // POST /api/jobs/:id/retry and /cancel — workflow monitor (workspace admins)
   for (const action of ["retry", "cancel"] as const) {
     app.post(`/jobs/:id/${action}`, async (c) => {

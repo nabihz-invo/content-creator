@@ -216,6 +216,7 @@ Phase 3 (3D motion graphics / HTML).
 | P4-T07 | CRM final media review | done | P4-T05 | claude/sweet-rubin-5q9utc |
 | P4-T08 | Manual publishing preparation (`publishing-jobs`, download bundle) | done | P4-T05 | claude/sweet-rubin-5q9utc |
 | P4-T09 | CRM Workflow monitor (retry / cancel) | done | P2-VERIFY | claude/sweet-rubin-5q9utc |
+| P4-T10 | Import an existing content plan (spreadsheet → projects) + close imported content with its published link | done | P4-T08 | claude/sweet-rubin-5q9utc |
 | P4-VERIFY | Initial release acceptance (blueprint §13) | done | P4-T01…T09 | claude/sweet-rubin-5q9utc |
 
 **P4-T01** — `workers/render-worker/Dockerfile` (Node 20, Playwright Chromium, FFmpeg, non-root), network disabled for the browser (local static server only), per-job temp dir cleanup, concurrency + timeout config.
@@ -235,6 +236,8 @@ Phase 3 (3D motion graphics / HTML).
 **P4-T08** — `POST /api/publishing-jobs` validates approval + manifest hash + platform constraints; creates job `ready`; generates zip (media in order + `caption.txt` + hashtags) for manual posting; "mark as posted manually" records URL. Acceptance: no package possible without approved media (blueprint §13).
 
 **P4-T09** — list of `workflow_jobs` / `render_jobs` with stage, times, attempts, last error, related versions; retry/cancel for admin. *(Dependency corrected from P2-T12 — scene comments — to P2-VERIFY; the monitor needs only the job queue.)*
+
+**P4-T10** (added 2026-10-31) — `scripts/import/content-plan-to-sql.py` turns the content-plan workbook (sheets Content + Backlog) into one idempotent SQL file that calls `create_project()` per row (status `new`, tags, full row in `source_metadata.content_plan`, source key per plan ID). Migration `20261031110000` adds `mark_imported_published()` (imported rows only, https link, `new → published`, audited); API `POST /api/content-projects/{id}/mark-published`; CRM card on the Idea/Publishing tab. Acceptance: re-running the import creates nothing; normal ideas cannot skip the pipeline (pgTAP 12, Deno, e2e).
 
 **P4-VERIFY** — run the full blueprint §13 checklist; record results in `docs/PROGRESS_LOG.md`. Initial release ready for production testing.
 

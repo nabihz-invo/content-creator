@@ -103,7 +103,19 @@ npx supabase functions deploy api
 npx supabase functions deploy telegram-webhook
 ```
 
-## 7. Order of operations
+## 7. Importing an existing content plan
+
+```bash
+pip install openpyxl
+python3 -I scripts/import/content-plan-to-sql.py plan.xlsx plan.sql --email you@example.com --brand Stacko
+```
+
+Run `plan.sql` in the Supabase SQL editor. Each planned post and backlog idea
+becomes a project (status `new`, tag `content-plan`, full row kept); running
+it again creates nothing new. Posts already live: open the project → Idea tab
+→ "Mark as published" with the link.
+
+## 8. Order of operations
 
 1. Supabase: link, `db push`, secrets, deploy functions.
 2. Preview server on its domain; set `PREVIEW_ORIGIN` / `PREVIEW_SIGNING_SECRET`.

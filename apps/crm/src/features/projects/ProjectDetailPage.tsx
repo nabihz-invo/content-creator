@@ -23,6 +23,7 @@ import { BriefPanel } from "./BriefPanel";
 import { ConfigPanel } from "./config/ConfigPanel";
 import { CreativePanel } from "./creative/CreativePanel";
 import { eventLabel } from "./event-label";
+import { ImportedContentCard } from "./ImportedContentCard";
 import { MediaPanel } from "./media/MediaPanel";
 import { PublishingPanel } from "./publishing/PublishingPanel";
 import { ScriptPanel } from "./script/ScriptPanel";
@@ -191,6 +192,7 @@ export function ProjectDetailPage() {
           </TabsList>
 
           <TabsContent value="idea" className="flex flex-col gap-4">
+            <ImportedContentCard project={p} />
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">{t("project.originalIdea")}</CardTitle>
@@ -268,7 +270,11 @@ export function ProjectDetailPage() {
             <MediaPanel project={p} />
           </TabsContent>
           <TabsContent value="publishing">
-            <PublishingPanel project={p} />
+            {p.source_metadata.published ? (
+              <ImportedContentCard project={p} />
+            ) : (
+              <PublishingPanel project={p} />
+            )}
           </TabsContent>
 
           <TabsContent value="history">
