@@ -475,13 +475,13 @@ export function useCreativeVersions(projectId: string | undefined, poll = false)
 }
 
 /** Signed URLs for thumbnails in the private previews bucket (RLS: project members). */
-export function useSignedUrls(paths: string[]) {
+export function useSignedUrls(paths: string[], bucket: "previews" | "media" = "previews") {
   return useQuery({
-    queryKey: ["signed", paths],
+    queryKey: ["signed", bucket, paths],
     enabled: paths.length > 0,
     staleTime: 50 * 60_000,
     queryFn: async () => {
-      const { data, error } = await supabase.storage.from("previews").createSignedUrls(paths, 3600);
+      const { data, error } = await supabase.storage.from(bucket).createSignedUrls(paths, 3600);
       if (error) throw error;
       return Object.fromEntries(
         (data ?? []).flatMap((d) =>
@@ -522,6 +522,177 @@ export function useStudioProjects(workspaceId: string | null) {
         .order("updated_at", { ascending: false });
       if (error) throw error;
       return (data ?? []) as unknown as StudioRow[];
+    },
+  });
+}
+
+// ── Phase 4: renders, media, publishing, monitor ──────────────────────────
+export interface MediaAssetRow {
+  id: string;
+  project_id: string;
+  render_job_id: string;
+  creative_version_id: string;
+  asset_type: "png" | "carousel_slide" | "mp4" | "thumbnail" | "contact_sheet" | "manifest";
+  slide_index: number | null;
+  storage_path: string;
+  mime_type: string;
+  file_size: number;
+  width: number | null;
+  height: number | null;
+  checksum: string;
+  status: "pending_review" | "approved" | "rejected" | "outdated";
+  created_at: string;
+}
+
+export interface RenderJobRow {
+  id: string;
+  project_id: string;
+  creative_version_id: string;
+  workflow_job_id: string | null;
+  version: number;
+  output_type: "png" | "carousel" | "mp4";
+  configuration: {
+    width: number;
+    height: number;
+    slides?: number;
+    creative_version?: number;
+    commit_sha?: string;
+  };
+  status: "queued" | "running" | "succeeded" | "failed" | "cancelled" | "outdated";
+  progress: number;
+  attempts: number;
+  error_details: { code?: string; message?: string } | null;
+  manifest: {
+    items: {
+      media_asset_id: string;
+      order: number;
+      storage_path: string;
+      width: number;
+      height: number;
+      checksum: string;
+    }[];
+  } | null;
+  manifest_hash: string | null;
+  started_at: string | null;
+  completed_at: string | null;
+  created_at: string;
+  media_assets: MediaAssetRow[];
+}
+
+export function useRenderJobs(projectId: string | undefined, poll = false) {
+  return useQuery({
+    queryKey: ["renders", projectId],
+    enabled: !!projectId,
+    refetchInterval: poll ? 2500 : false,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("render_jobs")
+        .select(
+          "id, project_id, creative_version_id, workflow_job_id, version, output_type, configuration, status, progress, attempts, error_details, manifest, manifest_hash, started_at, completed_at, created_at, media_assets(*)",
+        )
+        .eq("project_id", projectId!)
+        .order("version", { ascending: false });
+      if (error) throw error;
+      for (const r of (data ?? []) as RenderJobRow[])
+        r.media_assets.sort((a, b) => (a.slide_index ?? 0) - (b.slide_index ?? 0));
+      return (data ?? []) as RenderJobRow[];
+    },
+  });
+}
+
+export interface PublishingJobRow {
+  id: string;
+  approval_id: string;
+  platform: string;
+  caption: string | null;
+  hashtags: string[];
+  link: string | null;
+  status: "draft" | "ready" | "scheduled" | "publishing" | "published" | "failed" | "cancelled";
+  manifest_hash: string;
+  published_url: string | null;
+  published_at: string | null;
+  created_at: string;
+}
+
+export function usePublishingJobs(projectId: string | undefined) {
+  return useQuery({
+    queryKey: ["publishing", projectId],
+    enabled: !!projectId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("publishing_jobs")
+        .select(
+          "id, approval_id, platform, caption, hashtags, link, status, manifest_hash, published_url, published_at, created_at",
+        )
+        .eq("project_id", projectId!)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as PublishingJobRow[];
+    },
+  });
+}
+
+export interface MediaFilters {
+  type: "all" | "png" | "carousel_slide";
+  status: "all" | MediaAssetRow["status"];
+  search: string;
+}
+
+export type LibraryRow = MediaAssetRow & {
+  content_projects: { title: string; workspace_id: string };
+  render_jobs: { version: number; output_type: string };
+  creative_versions: { version: number };
+};
+
+export function useMediaLibrary(workspaceId: string | null, f: MediaFilters) {
+  return useQuery({
+    queryKey: ["media-library", workspaceId, f],
+    enabled: !!workspaceId,
+    queryFn: async () => {
+      let q = supabase
+        .from("media_assets")
+        .select(
+          "*, content_projects!inner(title, workspace_id), render_jobs!inner(version, output_type), creative_versions!inner(version)",
+        )
+        .eq("content_projects.workspace_id", workspaceId!)
+        .in("asset_type", f.type === "all" ? ["png", "carousel_slide", "mp4"] : [f.type])
+        .order("created_at", { ascending: false })
+        .limit(120);
+      if (f.status !== "all") q = q.eq("status", f.status);
+      if (f.search.trim()) q = q.ilike("content_projects.title", `%${f.search.trim()}%`);
+      const { data, error } = await q;
+      if (error) throw error;
+      return (data ?? []) as unknown as LibraryRow[];
+    },
+  });
+}
+
+export type MonitorJob = WorkflowJob & {
+  output_reference: Record<string, unknown> | null;
+  input_reference: Record<string, unknown> | null;
+  locked_by: string | null;
+  content_projects: { title: string; status: ContentProject["status"] };
+};
+
+export function useMonitorJobs(workspaceId: string | null, status: string, stage: string) {
+  return useQuery({
+    queryKey: ["monitor", workspaceId, status, stage],
+    enabled: !!workspaceId,
+    refetchInterval: 5000,
+    queryFn: async () => {
+      let q = supabase
+        .from("workflow_jobs")
+        .select(
+          "id, project_id, stage, kind, status, attempts, max_attempts, error_details, next_run_at, started_at, completed_at, created_at, output_reference, input_reference, locked_by, content_projects!inner(title, status, workspace_id)",
+        )
+        .eq("content_projects.workspace_id", workspaceId!)
+        .order("created_at", { ascending: false })
+        .limit(100);
+      if (status !== "all") q = q.eq("status", status);
+      if (stage !== "all") q = q.eq("stage", stage);
+      const { data, error } = await q;
+      if (error) throw error;
+      return (data ?? []) as unknown as MonitorJob[];
     },
   });
 }

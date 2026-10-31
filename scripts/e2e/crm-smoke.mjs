@@ -1,6 +1,7 @@
 // End-to-end smoke test of the CRM against the local stack (scripts/local-stack).
 // Usage: node scripts/e2e/crm-smoke.mjs [baseUrl]   (default http://127.0.0.1:4173)
 // Writes screenshots to docs/screenshots/. Exits non-zero on any failed check.
+import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
@@ -413,15 +414,13 @@ check(
   "revision notes are recorded on the new version",
 );
 await page.getByRole("button", { name: "Approve creative" }).click();
-await page
-  .getByText("Approved. Final rendering")
-  .waitFor({ timeout: 30000 })
-  .catch(async (e) => {
-    await shot(page, "debug-creative");
-    throw e;
-  });
 await page.locator('[data-status="rendering"]').first().waitFor();
 check(true, "approving the creative queues the render and moves the project to rendering");
+await page.getByText("Video rendering (MP4) arrives in Phase 5").waitFor();
+check(
+  (await page.getByRole("tab", { name: "Media" }).getAttribute("aria-selected")) === "true",
+  "the media tab opens; the video render waits for the Phase 5 renderer",
+);
 await shot(page, "15-creative-approved");
 
 await nav(page, "Creative studio");
@@ -442,6 +441,127 @@ await shot(page, "12-brief");
 await page.getByRole("tab", { name: "History" }).click();
 await page.getByText("Status: Script in review → Building creative").waitFor();
 check(true, "every step is in the audit trail");
+
+console.log("phase 4: render → final media approval → publishing package");
+await nav(page, "Idea inbox");
+await page.getByRole("button", { name: "New idea" }).click();
+dlg = page.getByRole("dialog");
+await dlg
+  .getByLabel("Idea", { exact: true })
+  .fill("A carousel walking through our three new winter drinks, one per slide");
+await dlg.getByLabel("Brand").selectOption({ label: "Noor Café" });
+await dlg.getByLabel("Format").selectOption("carousel");
+await dlg.getByRole("button", { name: "Add idea" }).click();
+await page.waitForURL(/\/projects\/[0-9a-f-]{36}$/);
+
+await page.getByText("Review the proposed configuration").waitFor({ timeout: 30000 });
+const essentials = page.locator('[data-question^="q_custom_"] input');
+for (let i = 0; i < (await essentials.count()); i++) await essentials.nth(i).fill("All winter");
+await page.getByRole("button", { name: "Approve & write the script" }).click();
+await page.getByRole("button", { name: "Approve script" }).waitFor({ timeout: 30000 });
+await page.getByRole("button", { name: "Approve script" }).click();
+await page.getByRole("button", { name: "Approve creative" }).waitFor({ timeout: 120000 });
+await page.getByRole("button", { name: "Approve creative" }).click();
+await page.getByTestId("media-image").waitFor({ timeout: 120000 });
+check(
+  (await page.getByRole("tab", { name: "Media" }).getAttribute("aria-selected")) === "true",
+  "the render worker renders the approved carousel; the media tab opens for review",
+);
+const natural = await page
+  .getByTestId("media-image")
+  .evaluate(async (img) => (await img.decode(), [img.naturalWidth, img.naturalHeight]));
+check(
+  natural[0] === 1080 && natural[1] === 1350,
+  `the reviewer sees the actual PNG at the configured size (${natural.join("×")})`,
+);
+check(
+  (await page.getByTestId("media-dimensions").textContent()) === "1080×1350",
+  "file details show dimensions, weight and checksum",
+);
+const slideButtons = await page.getByRole("button", { name: /^Slide \d+$/ }).count();
+check(slideButtons >= 2, `every carousel slide is reviewable (${slideButtons / 2} slides)`);
+await shot(page, "17-media-review");
+
+await page.getByRole("button", { name: "Rerender" }).click();
+await page.locator("#media-comment").fill("Slide 2 looks soft, render again.");
+await page.getByRole("dialog").getByRole("button", { name: "Rerender" }).click();
+await page.getByRole("button", { name: /Render 2/ }).waitFor({ timeout: 60000 });
+await page.getByRole("button", { name: "Approve media" }).waitFor({ timeout: 120000 });
+check(
+  await page.getByRole("button", { name: /Render 1\s*Outdated/ }).isVisible(),
+  "a rerender produces render 2 and marks render 1 outdated",
+);
+await page.getByRole("button", { name: "Approve media" }).click();
+await page.getByTestId("publishing-panel").waitFor({ timeout: 30000 });
+await page.locator('[data-status="ready_to_publish"]').first().waitFor();
+check(true, "approving the exact files makes the project ready to publish");
+check(
+  (await page.locator("#pub-caption").inputValue()).length > 0,
+  "the caption and hashtags are prefilled from the approved script",
+);
+await page.locator("#pub-platform").selectOption("x");
+const caption = await page.locator("#pub-caption").inputValue();
+await page.locator("#pub-caption").fill("x".repeat(300));
+await page.getByTestId("publish-issues").waitFor();
+check(
+  await page.getByRole("button", { name: "Create package" }).isDisabled(),
+  "platform rules block a package that X would refuse",
+);
+await page.locator("#pub-caption").fill(caption);
+await page.locator("#pub-platform").selectOption("instagram");
+await page.getByTestId("publish-checks-ok").waitFor();
+await page.getByRole("button", { name: "Create package" }).click();
+await page.getByTestId("publishing-job").first().waitFor();
+const [download] = await Promise.all([
+  page.waitForEvent("download"),
+  page.getByRole("button", { name: "Download .zip" }).click(),
+]);
+const zipPath = join(TMP, `bundle-${run}.zip`);
+await download.saveAs(zipPath);
+const listing = execFileSync("unzip", ["-l", zipPath]).toString();
+check(
+  execFileSync("unzip", ["-t", zipPath]).toString().includes("No errors detected") &&
+    /01-slide-01\.png/.test(listing) &&
+    /caption\.txt/.test(listing) &&
+    /manifest\.json/.test(listing),
+  "the download bundle holds the approved slides in order, the caption and the manifest",
+);
+await shot(page, "18-publishing");
+await page.getByRole("button", { name: "Mark as posted" }).click();
+await page.locator("#post-url").fill("https://www.instagram.com/p/noor-winter");
+await page.getByRole("dialog").getByRole("button", { name: "Mark as posted" }).click();
+await page.locator('[data-status="published"]').first().waitFor();
+check(true, "confirming the manual post marks the project published");
+
+await nav(page, "Media library");
+await page.getByTestId("media-card").first().waitFor();
+await page.getByLabel("Status").selectOption("approved");
+await page.waitForTimeout(500);
+const approvedCards = page.getByTestId("media-card");
+check(
+  (await approvedCards.count()) >= 2 &&
+    (await approvedCards.filter({ hasNotText: "Approved" }).count()) === 0,
+  "the media library filters rendered files by approval state",
+);
+await page.waitForFunction(() => [...document.images].every((i) => i.complete));
+await shot(page, "19-media-library");
+
+await nav(page, "Workflow monitor");
+await page.getByTestId("monitor-table").waitFor();
+await page.getByLabel("Stage").selectOption("render");
+const videoRender = page.getByTestId("monitor-row").filter({ hasText: "Queued" }).first();
+await videoRender.waitFor();
+await shot(page, "20-monitor");
+await videoRender.getByRole("button", { name: "Cancel" }).click();
+await page.getByText("Job cancelled").waitFor();
+await page.locator('[data-testid="monitor-row"][data-status="cancelled"]').first().waitFor();
+await page
+  .locator('[data-testid="monitor-row"][data-status="cancelled"]')
+  .first()
+  .getByRole("button", { name: "Retry" })
+  .click();
+await page.getByText("Job queued again").waitFor();
+check(true, "admins cancel and retry jobs from the workflow monitor");
 
 console.log("bulk analyze");
 const parked = await (

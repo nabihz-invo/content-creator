@@ -7,6 +7,8 @@ import { LoginPage } from "@/features/auth/LoginPage";
 import { BrandDetailPage } from "@/features/brands/BrandDetailPage";
 import { BrandsPage } from "@/features/brands/BrandsPage";
 import { InboxPage } from "@/features/inbox/InboxPage";
+import { MediaLibraryPage } from "@/features/media/MediaLibraryPage";
+import { MonitorPage } from "@/features/monitor/MonitorPage";
 import { OverviewPage } from "@/features/overview/OverviewPage";
 import { PlaceholderPage } from "@/features/placeholders/PlaceholderPage";
 import { ProjectDetailPage } from "@/features/projects/ProjectDetailPage";
@@ -40,9 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "media",
-        element: (
-          <PlaceholderPage title="nav.media" description="placeholder.media" phase="Phase 4" />
-        ),
+        element: <MediaLibraryPage />,
       },
       {
         path: "calendar",
@@ -56,9 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "monitor",
-        element: (
-          <PlaceholderPage title="nav.monitor" description="placeholder.monitor" phase="Phase 4" />
-        ),
+        element: <MonitorPage />,
       },
       { path: "*", element: <Navigate to="/" replace /> },
     ],

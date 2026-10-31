@@ -210,12 +210,12 @@ Phase 3 (3D motion graphics / HTML).
 | P4-T01 | render-worker container + sandbox | done | P3-T02 | claude/sweet-rubin-5q9utc |
 | P4-T02 | PNG renderer + validation | done | P4-T01 | claude/sweet-rubin-5q9utc |
 | P4-T03 | Carousel renderer + manifest | done | P4-T02 | claude/sweet-rubin-5q9utc |
-| P4-T04 | `render-jobs` endpoints + n8n Workflow F | todo | P4-T03, P3-VERIFY | |
-| P4-T05 | Media manifest approval + outdated marking | todo | P4-T04, P2-T08 | |
-| P4-T06 | CRM Media library | todo | P4-T04 | |
-| P4-T07 | CRM final media review | todo | P4-T05 | |
-| P4-T08 | Manual publishing preparation (`publishing-jobs`, download bundle) | todo | P4-T05 | |
-| P4-T09 | CRM Workflow monitor (retry / cancel) | todo | P2-VERIFY | |
+| P4-T04 | `render-jobs` endpoints + n8n Workflow F | done | P4-T03, P3-VERIFY | claude/sweet-rubin-5q9utc |
+| P4-T05 | Media manifest approval + outdated marking | done | P4-T04, P2-T08 | claude/sweet-rubin-5q9utc |
+| P4-T06 | CRM Media library | done | P4-T04 | claude/sweet-rubin-5q9utc |
+| P4-T07 | CRM final media review | done | P4-T05 | claude/sweet-rubin-5q9utc |
+| P4-T08 | Manual publishing preparation (`publishing-jobs`, download bundle) | done | P4-T05 | claude/sweet-rubin-5q9utc |
+| P4-T09 | CRM Workflow monitor (retry / cancel) | done | P2-VERIFY | claude/sweet-rubin-5q9utc |
 | P4-VERIFY | Initial release acceptance (blueprint §13) | todo | P4-T01…T09 | |
 
 **P4-T01** — `workers/render-worker/Dockerfile` (Node 20, Playwright Chromium, FFmpeg, non-root), network disabled for the browser (local static server only), per-job temp dir cleanup, concurrency + timeout config.

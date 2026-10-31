@@ -23,6 +23,8 @@ import { BriefPanel } from "./BriefPanel";
 import { ConfigPanel } from "./config/ConfigPanel";
 import { CreativePanel } from "./creative/CreativePanel";
 import { eventLabel } from "./event-label";
+import { MediaPanel } from "./media/MediaPanel";
+import { PublishingPanel } from "./publishing/PublishingPanel";
 import { ScriptPanel } from "./script/ScriptPanel";
 
 /** Pipeline steps shown in the stepper (review stages are folded into their producer). */
@@ -44,20 +46,16 @@ const stepIndex = (stage: Stage) => {
   return idx;
 };
 
-const LATER_TABS: { value: string; label: MessageKey; phase: string }[] = [
-  { value: "media", label: "project.tab.media", phase: "Phase 4" },
-  { value: "publishing", label: "project.tab.publishing", phase: "Phase 4" },
-];
-
 /** The tab that needs the user's attention for a status. */
 function tabFor(status: string): string {
   if (["analyzing", "awaiting_answers", "needs_clarification"].includes(status))
     return "configuration";
   if (status === "validating_answers") return "brief";
   if (["generating_script", "script_in_review"].includes(status)) return "script";
-  // Until Phase 4 adds the media tab, a rendering project shows the approved creative.
-  if (["generating_creative", "creative_in_review", "rendering"].includes(status))
-    return "creative";
+  if (["generating_creative", "creative_in_review"].includes(status)) return "creative";
+  if (["rendering", "media_in_review"].includes(status)) return "media";
+  if (["ready_to_publish", "scheduled", "publishing", "published"].includes(status))
+    return "publishing";
   return "idea";
 }
 
@@ -81,6 +79,8 @@ export function ProjectDetailPage() {
       "scripts",
       "approvals",
       "creatives",
+      "renders",
+      "publishing",
     ]) {
       void qc.invalidateQueries({ queryKey: [key] });
     }
@@ -185,11 +185,8 @@ export function ProjectDetailPage() {
             <TabsTrigger value="brief">{t("project.tab.brief")}</TabsTrigger>
             <TabsTrigger value="script">{t("project.tab.scripts")}</TabsTrigger>
             <TabsTrigger value="creative">{t("project.tab.creative")}</TabsTrigger>
-            {LATER_TABS.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {t(tab.label)}
-              </TabsTrigger>
-            ))}
+            <TabsTrigger value="media">{t("project.tab.media")}</TabsTrigger>
+            <TabsTrigger value="publishing">{t("project.tab.publishing")}</TabsTrigger>
             <TabsTrigger value="history">{t("project.tab.history")}</TabsTrigger>
           </TabsList>
 
@@ -267,11 +264,12 @@ export function ProjectDetailPage() {
             <CreativePanel project={p} />
           </TabsContent>
 
-          {LATER_TABS.map((tab) => (
-            <TabsContent key={tab.value} value={tab.value}>
-              <EmptyState message={t("placeholder.tab", { phase: tab.phase })} />
-            </TabsContent>
-          ))}
+          <TabsContent value="media">
+            <MediaPanel project={p} />
+          </TabsContent>
+          <TabsContent value="publishing">
+            <PublishingPanel project={p} />
+          </TabsContent>
 
           <TabsContent value="history">
             <Card>

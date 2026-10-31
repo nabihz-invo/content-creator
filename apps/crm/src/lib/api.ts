@@ -157,13 +157,64 @@ export const api = {
     ),
 
   decide: (input: {
-    artifact_type: "script" | "creative_version";
+    artifact_type: "script" | "creative_version" | "media_manifest";
     artifact_id: string;
     artifact_version: number;
     artifact_hash: string;
     decision: "approved" | "changes_requested" | "rejected";
     comment?: string;
+    return_to?: "render" | "creative";
   }) => apiRequest<{ approval_id: string; status: string }>("/approvals", { json: input }),
+
+  requestRender: (creativeVersionId: string, idempotencyKey: string) =>
+    apiRequest<{ render_job_id: string; version: number; status: string }>("/render-jobs", {
+      json: { creative_version_id: creativeVersionId },
+      idempotencyKey,
+    }),
+
+  createPublishingJob: (
+    input: {
+      project_id: string;
+      approval_id: string;
+      platform: string;
+      caption: string;
+      hashtags: string[];
+      link: string | null;
+    },
+    idempotencyKey: string,
+  ) =>
+    apiRequest<{ publishing_job_id: string; status: string; replayed: boolean }>(
+      "/publishing-jobs",
+      { json: input, idempotencyKey },
+    ),
+
+  markPublished: (publishingJobId: string, publishedUrl: string) =>
+    apiRequest<{ status: string; project_status: string }>(
+      `/publishing-jobs/${publishingJobId}/mark-published`,
+      { json: { published_url: publishedUrl } },
+    ),
+
+  /** Downloads the zip for manual posting (authenticated, so fetched as a blob). */
+  async downloadBundle(publishingJobId: string): Promise<{ blob: Blob; filename: string }> {
+    const jwt = await token();
+    const res = await fetch(`${API_URL}/publishing-jobs/${publishingJobId}/bundle`, {
+      headers: jwt ? { authorization: `Bearer ${jwt}` } : {},
+    });
+    if (!res.ok) {
+      const body = (await res.json().catch(() => null)) as { error?: ApiErrorBody } | null;
+      throw new ApiError(
+        res.status,
+        body?.error ?? { code: "internal", message: `Download failed (${res.status})` },
+      );
+    }
+    const cd = res.headers.get("content-disposition") ?? "";
+    return { blob: await res.blob(), filename: cd.match(/filename="([^"]+)"/)?.[1] ?? "post.zip" };
+  },
+
+  retryJob: (jobId: string) =>
+    apiRequest<{ job_id: string; status: string }>(`/jobs/${jobId}/retry`, { json: {} }),
+  cancelJob: (jobId: string) =>
+    apiRequest<{ job_id: string; status: string }>(`/jobs/${jobId}/cancel`, { json: {} }),
 
   telegramLinkCode: () =>
     apiRequest<{ code: string; expires_in_seconds: number; instructions: string }>(
