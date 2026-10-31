@@ -14,6 +14,16 @@ Template:
 
 ---
 
+## 2026-10-31 — Handoff: deployment guide, work continues locally in Claude Code
+- Agent/branch: claude/sweet-rubin-5q9utc → merged into `main`
+- Changes: `docs/DEPLOYMENT.md` (what runs where; creatives repository token — fine-grained, that repository only, Contents read/write, set only as `CREATIVES_REPO_URL` in the workers' environment; how to run the creative worker, render worker and preview origin; Supabase secrets; order of operations); `workers/.env.example`; `supabase/functions/.env.example` gained `AI_PROVIDER`, `ANTHROPIC_API_KEY`, `PREVIEW_ORIGIN`, `PREVIEW_SIGNING_SECRET`; CLAUDE.md doc map links the guide.
+- State: Phases 0–4 done (initial release). P3-T08 in progress — the owner created the creatives repository; token and deployment pending (follow `docs/DEPLOYMENT.md`).
+- For the next agent (local Claude Code):
+  1. Read `CLAUDE.md`, then `PLAN.md`. The current phase is **P5 (video rendering)**; start with `P5-T01`.
+  2. Run everything locally with `docs/DEVELOPMENT.md` (`pnpm stack:up`, `pnpm verify`, `scripts/db.sh test`, Deno tests, worker tests, `pnpm e2e`). The Docker daemon must be running.
+  3. Real Claude in the local stack: `AI_PROVIDER=anthropic ANTHROPIC_API_KEY=… CREATIVE_GENERATOR=claude-code pnpm stack:up` (needs the `claude` CLI on PATH). Never commit keys or tokens; `.env` files are git-ignored.
+  4. Open items: P5 tasks; P2-T12 (scene-level comments, optional); verify the render-worker Dockerfile build, real n8n notifications, and real Claude Code generation once keys are available.
+
 ## 2026-10-31 — Phase 4 (P4-T01…T09, P4-VERIFY) rendering, final media approval, publishing preparation — done
 - Agent/branch: claude/sweet-rubin-5q9utc
 - Design: ADR-0008 — `workers/render-worker` renders the approved creative from its exact Git commit (tree hash must equal the approved `content_hash`), in Chromium with every non-local request aborted, at the exact configured size; PNGs are decoded and validated (dimensions, not blank, ≤ 8 MB, carousel slides 1…n, none identical) before upload. Postgres builds the media manifest and its sha256 hash in `save_render()`; final approval names render version + manifest hash. Publishing packages (manual posting) are checked against platform rules and downloaded as a zip whose files are re-verified against the manifest checksums. Video (mp4) renders queue for the Phase 5 worker.

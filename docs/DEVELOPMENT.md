@@ -105,6 +105,8 @@ TELEGRAM_BOT_TOKEN=... TELEGRAM_WEBHOOK_SECRET=... SUPABASE_URL=https://<ref>.su
 
 ## Deploying (hosted Supabase)
 
+Full guide (workers, preview origin, creatives repository token): `DEPLOYMENT.md`.
+
 ```bash
 npx supabase link --project-ref <ref>
 npx supabase db push

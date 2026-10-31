@@ -38,6 +38,7 @@ idea intake → analysis → questionnaire → answers + brief → script
 | `docs/SECURITY.md` | Secrets, RLS, sandboxing, idempotency, retries. |
 | `docs/CONVENTIONS.md` | Code style, naming, commits, testing. |
 | `docs/DEVELOPMENT.md` | **How to run and test everything** (local stack, pgTAP, Deno, e2e). |
+| `docs/DEPLOYMENT.md` | Production: Supabase, workers, preview origin, creatives repo token. |
 | `docs/adr/` | Architecture decisions. Add one when you make a non-obvious choice. |
 
 ## 3. How to work on a task

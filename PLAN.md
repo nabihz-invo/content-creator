@@ -184,7 +184,7 @@ Phase 3 (3D motion graphics / HTML).
 | P3-T05 | `workers/creative-worker`: job loop, workspace, generators (template / Claude Code), git source store, preview bundle, thumbnails, upload | done | P3-T01…T04 | claude/sweet-rubin-5q9utc |
 | P3-T06 | `workers/preview-server` (separate origin, signed URLs, CSP) + API preview-url and creative approvals | done | P3-T04 | claude/sweet-rubin-5q9utc |
 | P3-T07 | CRM creative studio (sandboxed preview, versions, slides, thumbnails, approve / request changes / regenerate) | done | P3-T05, P3-T06 | claude/sweet-rubin-5q9utc |
-| P3-T08 | Creatives GitHub repository + production deployment notes (needs the owner: create repo, token) | todo | P3-T05 | |
+| P3-T08 | Creatives GitHub repository + production deployment notes (needs the owner: create repo, token) | in-progress | P3-T05 | owner (repo created; token + deploy pending) |
 | P3-VERIFY | Phase 3 verification | done | P3-T01…T07 | claude/sweet-rubin-5q9utc |
 
 **P3-T01** — `buildContentSpec({ project, brief, script, brand, version, revisionNotes })`: dimensions, fps/duration, direction, palette roles, fonts, copy, units (scenes/slides/post). Acceptance: unit tests per format.
@@ -201,7 +201,7 @@ Phase 3 (3D motion graphics / HTML).
 
 **P3-T07** — creative tab: sandboxed live preview scaled to fit, slide picker, version list, thumbnails, files and commit, validation report, approve / request changes / regenerate; global "Creative studio" list of creatives awaiting review. e2e.
 
-**P3-T08** — owner action: create the `content-creatives` repository, a fine-grained token (contents:write on that repo only), set `CREATIVES_REPO_URL`; deploy worker and preview server.
+**P3-T08** — owner action (step-by-step: `docs/DEPLOYMENT.md` §2–7; the owner created the repository on 2026-10-31): create the `content-creatives` repository, a fine-grained token (contents:write on that repo only), set `CREATIVES_REPO_URL`; deploy worker and preview server.
 
 ## P4 — PNG & carousel rendering, media library, final approval
 
