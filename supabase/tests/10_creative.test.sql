@@ -54,14 +54,14 @@ select is((select (input_reference ->> 'fresh')::boolean from workflow_jobs wher
 -- v3 approved → render job
 select (:'rj'::jsonb ->> 'next_job_id') as job3 \gset
 select claim_job('creative_worker', 'cw1');
-select save_creative_version(:'job3', :'p', :'s1', 3, 1, 'r', repeat('c', 40), 'projects/x/v3', 'previews/x/creative-v3/', '{}', repeat('f', 64), null, 'claude-code') as r3 \gset
+select save_creative_version(:'job3', :'p', :'s1', 3, 1, 'r', repeat('c', 40), 'projects/x/v3', 'previews/x/creative-v3/', '{"format":"static","width":1080,"height":1080}', repeat('f', 64), null, 'claude-code') as r3 \gset
 select (:'r3'::jsonb ->> 'creative_version_id') as c3 \gset
 select throws_ok(format($$select record_approval(%L, 'creative_version', %L, 3, %L, 'approved')$$, gen_random_uuid(), :'c3', repeat('f', 64)), 'P0001', null,
   'outsiders cannot approve');
 select record_approval(:'reviewer', 'creative_version', :'c3', 3, repeat('f', 64), 'approved', 'Ship it') as ok \gset
 select is((select status from creative_versions where id = :'c3'), 'approved', 'v3 approved');
 select is((select status from content_projects where id = :'p'), 'rendering'::project_status, 'creative approval moves to rendering');
-select is((select kind::text || ':' || stage::text from workflow_jobs where id = (:'ok'::jsonb ->> 'next_job_id')::uuid), 'render_worker:render', 'a render job is queued for Phase 4');
+select is((select kind::text || ':' || stage::text from workflow_jobs where id = (:'ok'::jsonb ->> 'next_job_id')::uuid), 'render_worker:render', 'a render job is queued for the render worker');
 select is((select status || ':' || commit_sha from creative_versions where id = :'c1'), 'superseded:' || repeat('a', 40), 'v1 keeps its own commit');
 select is((select count(*)::int from approvals where project_id = :'p' and stage = 'creative'), 3, 'every creative decision is recorded');
 

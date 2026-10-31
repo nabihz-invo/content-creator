@@ -29,7 +29,7 @@ async function creativeInReview() {
   await sql`select public.start_job(${a.next_job_id}, 'w', 300)`;
   const [{ cv }] =
     (await sql`select public.save_creative_version(${a.next_job_id}, ${pid}, ${s!.id}, 1, null, 'https://github.com/o/r', ${"a".repeat(40)},
-      ${`projects/${pid}/v1`}, ${`${pid}/creative-v1/`}, '{}', ${"c".repeat(64)}, null, 'template') as cv`) as unknown as [
+      ${`projects/${pid}/v1`}, ${`${pid}/creative-v1/`}, '{"format":"static","width":1080,"height":1080}', ${"c".repeat(64)}, null, 'template') as cv`) as unknown as [
       { cv: { creative_version_id: string } },
     ];
   return { owner, pid, cvId: cv.creative_version_id };

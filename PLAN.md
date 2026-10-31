@@ -16,7 +16,7 @@ starting the next one (blueprint §14).
 | P1 | Database, auth, brand settings, dashboard, intake | initial | done |
 | P2 | AI configuration (approved by user), brief, script generation, approvals | initial | done |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | done (P3-T08 is an owner action) |
-| P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | todo |
+| P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | in-progress |
 | P5 | Video rendering, FFmpeg validation, resumable renders, voice notes | second | todo |
 | P6 | Buffer publishing, scheduling, calendar, retries, monitoring | second | todo |
 | P7 | Later enhancements (teams, analytics, repurposing, …) | later | deferred |
@@ -215,7 +215,7 @@ Phase 3 (3D motion graphics / HTML).
 | P4-T06 | CRM Media library | todo | P4-T04 | |
 | P4-T07 | CRM final media review | todo | P4-T05 | |
 | P4-T08 | Manual publishing preparation (`publishing-jobs`, download bundle) | todo | P4-T05 | |
-| P4-T09 | CRM Workflow monitor (retry / cancel) | todo | P2-T12 | |
+| P4-T09 | CRM Workflow monitor (retry / cancel) | todo | P2-VERIFY | |
 | P4-VERIFY | Initial release acceptance (blueprint §13) | todo | P4-T01…T09 | |
 
 **P4-T01** — `workers/render-worker/Dockerfile` (Node 20, Playwright Chromium, FFmpeg, non-root), network disabled for the browser (local static server only), per-job temp dir cleanup, concurrency + timeout config.
