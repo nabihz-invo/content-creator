@@ -155,3 +155,5 @@ Creative generation is not an HTTP call: approving a script queues a
 - `GET /api/publishing-jobs/{id}/bundle` — members; `application/zip`: `01-slide-01.png …` in manifest order (each file's sha256 is checked against the manifest first; a mismatch → `500`, nothing is sent), `caption.txt`, `hashtags.txt`, `link.txt`, `manifest.json`.
 - `POST /api/publishing-jobs/{id}/mark-published` — `{ published_url }` (https); editors; job `ready → published`, project `ready_to_publish → published`.
 - `POST /api/jobs/{id}/retry` · `POST /api/jobs/{id}/cancel` — workspace admins (workflow monitor). Retrying an n8n job re-dispatches it immediately.
+- `POST /api/content-projects/{id}/mark-published` — `{ published_url, published_at? (YYYY-MM-DD) }`; editors; **only** for projects imported from a content plan (`source_metadata.origin = "content_plan_import"`) that are still `new`: records the link in `source_metadata.published` and moves `new → published` (audited as `publishing.published_externally`). Anything else → `409`. (P4-T10)
+

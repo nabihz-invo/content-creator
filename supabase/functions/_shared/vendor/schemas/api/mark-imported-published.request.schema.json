@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/mark-imported-published.request.schema.json",
+  "title": "POST /api/content-projects/{id}/mark-published",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["published_url"],
+  "properties": {
+    "published_url": { "type": "string", "pattern": "^https://\\S+$", "maxLength": 2000 },
+    "published_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Day it went live (defaults to today)"
+    }
+  }
+}

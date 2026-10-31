@@ -14,6 +14,13 @@ Template:
 
 ---
 
+## 2026-10-31 — P4-T10 Import the existing content plan; close imported content with its link — done
+- Agent/branch: claude/sweet-rubin-5q9utc
+- Why: the owner's existing plan (Stacko_Content_Studio.xlsx — 47 planned posts NOV-01…D30-30, 80 backlog ideas EDU-01…) must live in the CRM so later analysis can check what already exists and avoid duplicates; posts made outside the pipeline are closed with their live link.
+- Changes: `scripts/import/content-plan-to-sql.py` (workbook → one idempotent SQL file via `create_project()`, tags `content-plan` / `plan-YYYY-MM` / format / pillar / `backlog`, full row in `source_metadata.content_plan`, dedupe hash identical to the app's); migration `20261031110000` (`new → published` transition + `mark_imported_published()`, imports only); status machine mirror + sync test reads "ADDED TRANSITIONS" blocks; API `POST /api/content-projects/{id}/mark-published`; CRM `ImportedContentCard` (Idea tab; Publishing tab once published); history labels for Phase 4 events.
+- Verification: generated SQL run twice on the local DB → 127 created, then 0 created / 127 already imported; pgTAP 12 files (238 assertions); Deno media suite 3 tests; `pnpm verify` clean; browser e2e 65/65 (imported card, mark published with link), screenshot 21.
+- Notes: the generated SQL is not committed (it is the owner's content and regenerable); 26 backlog ideas have formats that are not reel/carousel/static, so `content_type` is left for the AI analysis to propose.
+
 ## 2026-10-31 — Handoff: deployment guide, work continues locally in Claude Code
 - Agent/branch: claude/sweet-rubin-5q9utc → merged into `main`
 - Changes: `docs/DEPLOYMENT.md` (what runs where; creatives repository token — fine-grained, that repository only, Contents read/write, set only as `CREATIVES_REPO_URL` in the workers' environment; how to run the creative worker, render worker and preview origin; Supabase secrets; order of operations); `workers/.env.example`; `supabase/functions/.env.example` gained `AI_PROVIDER`, `ANTHROPIC_API_KEY`, `PREVIEW_ORIGIN`, `PREVIEW_SIGNING_SECRET`; CLAUDE.md doc map links the guide.

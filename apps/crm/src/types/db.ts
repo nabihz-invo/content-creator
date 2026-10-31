@@ -78,6 +78,15 @@ export interface ContentProject {
       final_url: string;
       fetched_at: string;
     };
+    /** Rows imported from an existing content plan (P4-T10). */
+    origin?: string;
+    plan_id?: string;
+    plan_status?: string | null;
+    publish_date?: string | null;
+    format?: string | null;
+    sheet?: string;
+    source_file?: string;
+    published?: { url: string; at: string; confirmed_by: string };
   };
   content_type: ContentType | null;
   objective: string | null;

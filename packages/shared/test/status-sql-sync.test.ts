@@ -28,7 +28,13 @@ describe("status machine ↔ SQL", () => {
       /-- BEGIN GENERATED TRANSITIONS[\s\S]*?\n([\s\S]*?)-- END GENERATED TRANSITIONS/,
     );
     expect(block).not.toBeNull();
-    const rows = [...block![1]!.matchAll(/\('([a-z_]+)', '([a-z_]+)', '/g)].map(
+    // Later migrations add rows in "-- BEGIN ADDED TRANSITIONS" blocks.
+    const added = [
+      ...sql.matchAll(/-- BEGIN ADDED TRANSITIONS[\s\S]*?\n([\s\S]*?)-- END ADDED TRANSITIONS/g),
+    ]
+      .map((m) => m[1])
+      .join("\n");
+    const rows = [...`${block![1]!}\n${added}`.matchAll(/\('([a-z_]+)', '([a-z_]+)', '/g)].map(
       (x) => `${x[1]}>${x[2]}`,
     );
     const expected = TRANSITIONS.map((t) => `${t.from}>${t.to}`);

@@ -558,4 +558,18 @@ export const ar: Record<MessageKey, string> = {
   "stage.creative": "التصميم",
   "stage.render": "التصيير",
   "stage.publish": "النشر",
+  "imported.title": "مستورد من خطة المحتوى",
+  "imported.subtitle": "محفوظ لتُقارن الأفكار الجديدة بما هو موجود. المصدر: {file}",
+  "imported.planned": "مخطط ليوم {date}",
+  "imported.url": "رابط المنشور",
+  "imported.date": "تاريخ النشر",
+  "imported.markPublished": "تعليم كمنشور",
+  "imported.hint":
+    "أُنتج ونُشر خارج خط الإنتاج؟ الصق رابط المنشور لإغلاقه. ولإنتاجه هنا، شغّل تحليل الذكاء الاصطناعي.",
+  "imported.done": "تم التعليم كمنشور",
+  "imported.publishedOn": "نُشر {date}",
+  "event.publishing.published_externally": "عُلّم كمنشور مع رابط المنشور (محتوى مستورد)",
+  "event.publishing.published_manually": "نُشر يدويًا؛ سُجّل الرابط",
+  "event.publishing.prepared": "جُهّزت حزمة النشر",
+  "event.render.queued": "أُضيف التصيير إلى الانتظار",
 };

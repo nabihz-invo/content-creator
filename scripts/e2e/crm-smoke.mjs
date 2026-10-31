@@ -2,6 +2,7 @@
 // Usage: node scripts/e2e/crm-smoke.mjs [baseUrl]   (default http://127.0.0.1:4173)
 // Writes screenshots to docs/screenshots/. Exits non-zero on any failed check.
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
@@ -562,6 +563,61 @@ await page
   .click();
 await page.getByText("Job queued again").waitFor();
 check(true, "admins cancel and retry jobs from the workflow monitor");
+
+console.log("content plan import");
+const [{ workspace_id: workspaceId }] = await json(
+  await fetch(
+    `${SUPA}/rest/v1/workspace_members?select=workspace_id&user_id=eq.${session.user.id}`,
+    {
+      headers: { apikey: ANON_KEY, authorization: `Bearer ${session.access_token}` },
+    },
+  ),
+);
+const imported = await json(
+  await fetch(`${SUPA}/rest/v1/rpc/create_project`, {
+    method: "POST",
+    headers: {
+      apikey: SERVICE_ROLE_KEY,
+      authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      p_workspace_id: workspaceId,
+      p_actor_id: session.user.id,
+      p_record: {
+        title: "NOV-02 · 5 signs your stock process needs better visibility",
+        original_idea: `[NOV-02] 5 signs your stock process needs better visibility ${run}`,
+        input_source: "csv",
+        content_type: "carousel",
+        source_metadata: {
+          origin: "content_plan_import",
+          source_file: "Stacko_Content_Studio.xlsx",
+          plan_id: "NOV-02",
+          plan_status: "Rendered — review",
+          publish_date: "2026-11-04",
+          format: "Carousel 4:5",
+        },
+      },
+      p_dedupe_hash: createHash("sha256").update(`import-${run}`).digest("hex"),
+      p_source_key: `content-plan:e2e:${run}`,
+      p_auto_analyze: false,
+    }),
+  }),
+);
+await page.goto(`${BASE}/projects/${imported.project_id}`);
+await page.getByTestId("imported-card").waitFor();
+check(
+  await page.getByTestId("imported-card").getByText("Planned for 2026-11-04").isVisible(),
+  "imported content shows its plan details",
+);
+await page.locator("#imported-url").fill("https://www.instagram.com/p/nov-02");
+await page.getByRole("button", { name: "Mark as published" }).click();
+await page.locator('[data-status="published"]').first().waitFor();
+check(
+  await page.getByRole("link", { name: /instagram\.com\/p\/nov-02/ }).isVisible(),
+  "content posted outside the pipeline is closed with its link",
+);
+await shot(page, "21-imported-content");
 
 console.log("bulk analyze");
 const parked = await (

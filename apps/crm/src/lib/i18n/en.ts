@@ -562,6 +562,21 @@ export const en = {
   "stage.creative": "Creative",
   "stage.render": "Render",
   "stage.publish": "Publish",
+  "imported.title": "Imported from your content plan",
+  "imported.subtitle": "Kept so new ideas are checked against what already exists. Source: {file}",
+  "imported.planned": "Planned for {date}",
+  "imported.url": "Link to the live post",
+  "imported.date": "Published on",
+  "imported.markPublished": "Mark as published",
+  "imported.hint":
+    "Already produced and posted outside the pipeline? Paste the post's link to close it. To produce it here instead, run the AI analysis.",
+  "imported.done": "Marked as published",
+  "imported.publishedOn": "Published {date}",
+  "event.publishing.published_externally":
+    "Marked published with the live post's link (imported content)",
+  "event.publishing.published_manually": "Posted by hand; link recorded",
+  "event.publishing.prepared": "Publishing package prepared",
+  "event.render.queued": "Render queued",
 } as const;
 
 export type MessageKey = keyof typeof en;

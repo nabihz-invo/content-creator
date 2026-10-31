@@ -315,3 +315,45 @@ Deno.test("workflow monitor: admins retry and cancel jobs", async () => {
   assertEquals((await cancelled.json()).status, "cancelled");
   assertEquals((await call(owner.id, "cancel")).status, 200, "cancelling twice is harmless");
 });
+
+Deno.test("content-plan imports can be closed with their published link", async () => {
+  const app = createApp(makeDeps());
+  const owner = await createUser("imp-owner");
+  const reviewer = await createUser("imp-rev");
+  await addMember(owner.workspaceId, reviewer.id, "reviewer");
+  const create = async (metadata: Record<string, string>) => {
+    const [{ r }] = (await sql`select public.create_project(${owner.workspaceId}, ${owner.id},
+        ${sql.json({ title: "Plan item", original_idea: `plan ${crypto.randomUUID()}`, input_source: "csv", source_metadata: metadata })},
+        ${"7".repeat(56) + crypto.randomUUID().slice(0, 8)}, false, null, false) as r`) as unknown as [
+      { r: { project_id: string } },
+    ];
+    return r.project_id;
+  };
+  const imported = await create({ origin: "content_plan_import", plan_id: "NOV-02" });
+  const normal = await create({});
+  const mark = (user: string, pid: string, json: unknown) =>
+    app.request(
+      `${BASE}/content-projects/${pid}/mark-published`,
+      authed(user, { method: "POST", json }),
+    );
+
+  assertEquals(
+    (await mark(owner.id, normal, { published_url: "https://instagram.com/p/n" })).status,
+    409,
+  );
+  assertEquals(
+    (await mark(reviewer.id, imported, { published_url: "https://instagram.com/p/x" })).status,
+    403,
+  );
+  assertEquals((await mark(owner.id, imported, { published_url: "ftp://x" })).status, 422);
+  const res = await mark(owner.id, imported, {
+    published_url: "https://instagram.com/p/x",
+    published_at: "2026-11-04",
+  });
+  assertEquals(res.status, 200);
+  assertEquals((await res.json()).status, "published");
+  const [p] = await sql<{ status: string; at: string }[]>`
+    select status::text, source_metadata -> 'published' ->> 'at' as at from public.content_projects where id = ${imported}`;
+  assertEquals(p!.status, "published");
+  assert(p!.at.startsWith("2026-11-04"));
+});

@@ -149,6 +149,9 @@ RPCs (e.g. `record_approval`) derive the actor from `auth.uid()`.
 - `create_publishing_job(actor, project, approval, platform, caption, hashtags, link, key)` — editors; needs the approved, still-current manifest; status `ready`; idempotent.
 - `mark_published_manually(actor, publishing_job, url)` — https URL; `ready → published`; `ready_to_publish → published`.
 
+### Content-plan imports (P4-T10)
+Rows from an existing content plan are created with `create_project()` (status `new`, `input_source = csv`, `source_idempotency_key = content-plan:<workbook>:<ID>`), with `source_metadata = { origin: "content_plan_import", source_file, sheet, plan_id, plan_status, publish_date, format, content_plan: { every non-empty column } }`. `mark_imported_published(actor, project, url, at)` is the only caller of the `new → published` transition and refuses anything that is not such an import.
+
 ### Implemented details (P1)
 - `content_projects.failed_from_status` — admin retry may only return there.
 - `content_projects.source_idempotency_key` (unique) — `telegram:<update_id>`,

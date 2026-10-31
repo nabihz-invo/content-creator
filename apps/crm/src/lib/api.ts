@@ -188,6 +188,17 @@ export const api = {
       { json: input, idempotencyKey },
     ),
 
+  markImportedPublished: (projectId: string, publishedUrl: string, publishedAt?: string) =>
+    apiRequest<{ status: string; published_url: string }>(
+      `/content-projects/${projectId}/mark-published`,
+      {
+        json: {
+          published_url: publishedUrl,
+          ...(publishedAt ? { published_at: publishedAt } : {}),
+        },
+      },
+    ),
+
   markPublished: (publishingJobId: string, publishedUrl: string) =>
     apiRequest<{ status: string; project_status: string }>(
       `/publishing-jobs/${publishingJobId}/mark-published`,
