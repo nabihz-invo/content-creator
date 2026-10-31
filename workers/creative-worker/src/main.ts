@@ -6,6 +6,7 @@ import postgres from "postgres";
 import { loadConfig } from "./config.ts";
 import { claudeCodeGenerator, type Generator, templateGenerator } from "./generators.ts";
 import { type CreativeJob, JobError, processCreativeJob } from "./job.ts";
+import { n8nNotifier } from "./notify.ts";
 import { ensureLocalRepo, gitSourceStore } from "./source-store.ts";
 import { supabaseStorage } from "./storage.ts";
 
@@ -29,6 +30,7 @@ if (cfg.generator === "claude-code") {
   });
 }
 
+const notify = n8nNotifier(cfg.n8nBaseUrl, cfg.n8nWebhookSecret);
 const sql = postgres(cfg.databaseUrl, { max: 3, prepare: false, onnotice: () => {} });
 await ensureLocalRepo(cfg.repoUrl, cfg.workDir);
 const deps = {
@@ -71,6 +73,11 @@ async function runOne(): Promise<boolean> {
   try {
     const r = await processCreativeJob(deps, job, abort.signal);
     log("done", { job: job.id, ...r });
+    await notify("creative_ready", {
+      job_id: job.id,
+      project_id: job.project_id,
+      stage: "creative",
+    });
   } catch (err) {
     if (abort.signal.aborted) {
       log("job no longer ours (cancelled or reclaimed)", { job: job.id });
@@ -82,8 +89,18 @@ async function runOne(): Promise<boolean> {
         : new JobError(err instanceof Error ? err.message : String(err), true, "internal");
     log("failed", { job: job.id, code: e.code, retryable: e.retryable, error: e.message });
     if (e.code === "obsolete") await sql`select public.cancel_job(${job.id})`;
-    else
-      await sql`select public.fail_job(${job.id}, ${sql.json({ code: e.code, message: e.message.slice(0, 2000) })}, ${e.retryable}, ${cfg.workerId})`;
+    else {
+      const [{ status }] = (await sql`
+        select status::text from public.fail_job(${job.id}, ${sql.json({ code: e.code, message: e.message.slice(0, 2000) })}, ${e.retryable}, ${cfg.workerId})`) as unknown as [
+        { status: string },
+      ];
+      if (status === "needs_attention")
+        await notify("needs_attention", {
+          job_id: job.id,
+          project_id: job.project_id,
+          stage: "creative",
+        });
+    }
   } finally {
     clearInterval(beat);
   }

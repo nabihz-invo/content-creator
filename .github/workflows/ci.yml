@@ -42,11 +42,12 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: npm i -g playwright@1 && npx playwright install --with-deps chromium
-      - name: Creative worker — templates render offline, full jobs against the database
+      - name: Workers — templates render offline; creative and render jobs against the database
         run: |
           export NODE_PATH="$(npm root -g)"
           pnpm --filter @cc/creative-worker test:render
           pnpm --filter @cc/creative-worker test:integration
+          pnpm --filter @cc/render-worker test:integration
 
   e2e:
     runs-on: ubuntu-latest

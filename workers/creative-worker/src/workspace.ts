@@ -69,6 +69,20 @@ export function assembleWorkspace(
   mkdirSync(join(dir, "lib"), { recursive: true });
   for (const f of ["runtime.js", "base.css", "styles.css"])
     cpSync(join(TEMPLATES_DIR, "_common", f), join(dir, "lib", f));
+  addVendoredFiles(dir, spec);
+  writeFileSync(join(dir, "spec.js"), specScript(spec));
+  writeFileSync(
+    join(dir, "CLAUDE.md"),
+    readFileSync(join(TEMPLATES_DIR, "WORKSPACE_CLAUDE.md"), "utf8"),
+  );
+  cpSync(join(here, "check.mjs"), join(dir, "check.mjs"));
+}
+
+/**
+ * Fonts and vendored libraries come from pinned packages and are not committed;
+ * a checkout of a committed version gets them back from here (render worker).
+ */
+export function addVendoredFiles(dir: string, spec: Pick<ContentSpec, "format">) {
   mkdirSync(join(dir, "fonts"), { recursive: true });
   for (const [from, to] of FONTS) cpSync(require.resolve(from), join(dir, "fonts", to));
   if (spec.format === "video") {
@@ -81,10 +95,4 @@ export function assembleWorkspace(
       cpSync(join(threeDir, "examples/jsm", a), join(dir, "vendor/addons", a));
     }
   }
-  writeFileSync(join(dir, "spec.js"), specScript(spec));
-  writeFileSync(
-    join(dir, "CLAUDE.md"),
-    readFileSync(join(TEMPLATES_DIR, "WORKSPACE_CLAUDE.md"), "utf8"),
-  );
-  cpSync(join(here, "check.mjs"), join(dir, "check.mjs"));
 }

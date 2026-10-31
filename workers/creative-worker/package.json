@@ -18,5 +18,15 @@
     "@supabase/supabase-js": "2.118.0",
     "postgres": "3.4.9",
     "three": "0.187.0"
+  },
+  "exports": {
+    "./check": "./src/check.mjs",
+    "./exec": "./src/exec.ts",
+    "./notify": "./src/notify.ts",
+    "./source-store": "./src/source-store.ts",
+    "./static-server": "./src/static-server.ts",
+    "./storage": "./src/storage.ts",
+    "./tree": "./src/tree.ts",
+    "./workspace": "./src/workspace.ts"
   }
 }

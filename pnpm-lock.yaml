@@ -160,6 +160,18 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared
 
+  workers/render-worker:
+    dependencies:
+      '@cc/creative-worker':
+        specifier: workspace:*
+        version: link:../creative-worker
+      '@cc/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      postgres:
+        specifier: 3.4.9
+        version: 3.4.9
+
 packages:
 
   '@adobe/css-tools@4.5.0':

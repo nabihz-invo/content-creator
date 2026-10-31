@@ -21,6 +21,8 @@ export interface WorkerConfig {
   pollMs: number;
   workerId: string;
   workDir: string;
+  n8nBaseUrl: string | null;
+  n8nWebhookSecret: string | null;
 }
 
 const env = (k: string, d?: string) => process.env[k] ?? d;
@@ -47,5 +49,7 @@ export function loadConfig(): WorkerConfig {
     pollMs: Number(env("POLL_MS", "3000")),
     workerId: env("WORKER_ID", `creative-${process.pid}`)!,
     workDir: env("WORK_DIR", join(tmpdir(), "cc-creative"))!,
+    n8nBaseUrl: env("N8N_BASE_URL") ?? null,
+    n8nWebhookSecret: env("N8N_WEBHOOK_SECRET") ?? null,
   };
 }

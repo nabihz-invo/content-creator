@@ -207,9 +207,9 @@ Phase 3 (3D motion graphics / HTML).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P4-T01 | render-worker container + sandbox | todo | P3-T02 | |
-| P4-T02 | PNG renderer + validation | todo | P4-T01 | |
-| P4-T03 | Carousel renderer + manifest | todo | P4-T02 | |
+| P4-T01 | render-worker container + sandbox | done | P3-T02 | claude/sweet-rubin-5q9utc |
+| P4-T02 | PNG renderer + validation | done | P4-T01 | claude/sweet-rubin-5q9utc |
+| P4-T03 | Carousel renderer + manifest | done | P4-T02 | claude/sweet-rubin-5q9utc |
 | P4-T04 | `render-jobs` endpoints + n8n Workflow F | todo | P4-T03, P3-VERIFY | |
 | P4-T05 | Media manifest approval + outdated marking | todo | P4-T04, P2-T08 | |
 | P4-T06 | CRM Media library | todo | P4-T04 | |

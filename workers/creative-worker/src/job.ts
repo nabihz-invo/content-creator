@@ -3,8 +3,7 @@
  * → generator → validation → thumbnails → Git commit → preview upload →
  * save_creative_version (completes the job).
  */
-import { createHash } from "node:crypto";
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import type postgres from "postgres";
 import {
@@ -19,7 +18,10 @@ import { validateWorkspace } from "./check.mjs";
 import { type Generator, GeneratorError } from "./generators.ts";
 import type { SourceStore } from "./source-store.ts";
 import { type Storage, uploadDir } from "./storage.ts";
-import { assembleWorkspace, NOT_SOURCE } from "./workspace.ts";
+import { isCommitted, treeHash } from "./tree.ts";
+import { assembleWorkspace } from "./workspace.ts";
+
+export { isCommitted, treeHash };
 
 export interface JobDeps {
   sql: postgres.Sql;
@@ -50,24 +52,6 @@ export class JobError extends Error {
     this.retryable = retryable;
     this.code = code;
   }
-}
-
-/** Files that belong to the creative's own source (vendored fonts/libraries are reproducible and not committed). */
-export const isCommitted = (path: string) =>
-  !NOT_SOURCE(path) &&
-  !path.startsWith("fonts/") &&
-  !path.startsWith("vendor/") &&
-  !path.startsWith(".home/");
-
-/** Order-independent hash of a file tree: sha256 over sorted "path\0sha256(content)" lines. */
-export function treeHash(dir: string, files: string[]): string {
-  const lines = [...files].sort().map(
-    (f) =>
-      `${f}\0${createHash("sha256")
-        .update(readFileSync(join(dir, f)))
-        .digest("hex")}`,
-  );
-  return createHash("sha256").update(lines.join("\n")).digest("hex");
 }
 
 async function loadInputs(sql: postgres.Sql, job: CreativeJob) {

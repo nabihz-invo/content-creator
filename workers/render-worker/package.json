@@ -1,0 +1,17 @@
+{
+  "name": "@cc/render-worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/png.test.ts test/validate.test.ts",
+    "test:integration": "node --experimental-strip-types --test test/job.integration.test.ts"
+  },
+  "dependencies": {
+    "@cc/creative-worker": "workspace:*",
+    "@cc/shared": "workspace:*",
+    "postgres": "3.4.9"
+  }
+}

@@ -38,6 +38,8 @@ const M = {
   configuration_ready: { en: '✨ AI configuration ready for review', ar: '✨ الإعدادات المقترحة جاهزة للمراجعة' },
   clarification_needed: { en: '❓ A few details are needed', ar: '❓ نحتاج بعض التفاصيل' },
   script_ready: { en: '📝 Script ready for review', ar: '📝 النص جاهز للمراجعة' },
+  creative_ready: { en: '🎨 Creative ready for review', ar: '🎨 التصميم جاهز للمراجعة' },
+  media_ready: { en: '🖼️ Final media ready for approval', ar: '🖼️ الملفات النهائية جاهزة للاعتماد' },
   needs_attention: { en: '⚠️ A step needs your attention', ar: '⚠️ خطوة تحتاج انتباهك' },
 };
 const m = M[event];

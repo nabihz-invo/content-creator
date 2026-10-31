@@ -3,7 +3,7 @@
 #   Postgres (supabase/postgres) + GoTrue + PostgREST + Storage API (Docker)
 #   + Node gateway on :54321 + Edge Functions under Deno (:8000 api, :8001 telegram).
 #   + a local n8n stand-in (:5678) that runs pipeline jobs and logs notifications
-#   + the creative worker and the preview origin (:54400).
+#   + the creative worker, the render worker, and the preview origin (:54400).
 # Creatives: CREATIVE_GENERATOR=template by default; claude-code needs ANTHROPIC_API_KEY.
 # AI: AI_PROVIDER=fake by default (no tokens). Use real Claude with
 #     AI_PROVIDER=anthropic ANTHROPIC_API_KEY=... scripts/local-stack/stack.sh up
@@ -86,12 +86,18 @@ up() {
   # Preview origin (separate port = separate origin) and the creative worker (ADR-0007).
   pkill -f "preview-server/src/main.ts" 2>/dev/null || true
   pkill -f "creative-worker/src/main.ts" 2>/dev/null || true
+  pkill -f "render-worker/src/main.ts" 2>/dev/null || true
   (cd "$ROOT/workers/preview-server" && PORT=54400 PREVIEW_SIGNING_SECRET=local-preview-secret SUPABASE_URL=http://127.0.0.1:54321 \
      SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" CRM_ALLOWED_ORIGINS=http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:4173 \
      setsid node --experimental-strip-types "$ROOT/workers/preview-server/src/main.ts" </dev/null >"$RUN/preview.log" 2>&1 &)
   (cd "$ROOT/workers/creative-worker" && DATABASE_URL=postgres://postgres:postgres@127.0.0.1:54322/postgres SUPABASE_URL=http://127.0.0.1:54321 \
      SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" CREATIVE_GENERATOR="${CREATIVE_GENERATOR:-template}" ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-}" \
+     N8N_BASE_URL=http://127.0.0.1:5678 N8N_WEBHOOK_SECRET=local-n8n-secret \
      POLL_MS=1500 NODE_PATH="${NODE_PATH:-$(npm root -g)}" setsid node --experimental-strip-types "$ROOT/workers/creative-worker/src/main.ts" </dev/null >"$RUN/creative-worker.log" 2>&1 &)
+  # Render worker (ADR-0008): PNG + carousel; mp4 jobs wait for Phase 5.
+  (cd "$ROOT/workers/render-worker" && DATABASE_URL=postgres://postgres:postgres@127.0.0.1:54322/postgres SUPABASE_URL=http://127.0.0.1:54321 \
+     SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY" N8N_BASE_URL=http://127.0.0.1:5678 N8N_WEBHOOK_SECRET=local-n8n-secret \
+     POLL_MS=1500 NODE_PATH="${NODE_PATH:-$(npm root -g)}" setsid node --experimental-strip-types "$ROOT/workers/render-worker/src/main.ts" </dev/null >"$RUN/render-worker.log" 2>&1 &)
   wait_http http://127.0.0.1:54400/health
   echo "stack is up"
   env_out
@@ -106,6 +112,7 @@ env_out() {
 down() {
   pkill -f "preview-server/src/main.ts" 2>/dev/null || true
   pkill -f "creative-worker/src/main.ts" 2>/dev/null || true
+  pkill -f "render-worker/src/main.ts" 2>/dev/null || true
   pkill -f "local-stack/gateway.mjs" 2>/dev/null || true
   pkill -f "local-stack/n8n-shim.mjs" 2>/dev/null || true
   pkill -f "deno run -A (api|telegram-webhook)/index.ts" 2>/dev/null || true

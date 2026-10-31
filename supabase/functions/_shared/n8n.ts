@@ -8,7 +8,7 @@ export interface JobRef {
   job_id: string;
   project_id: string | null;
   stage: string;
-  /** For the notify workflow: configuration_ready, clarification_needed, script_ready, needs_attention. */
+  /** For the notify workflow: configuration_ready, clarification_needed, script_ready, creative_ready, media_ready, needs_attention. */
   event?: string;
 }
 

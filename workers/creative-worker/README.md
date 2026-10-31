@@ -24,6 +24,7 @@ pnpm --filter @cc/creative-worker test:integration  # full jobs against the loca
 | `ANTHROPIC_API_KEY` | — | Only passed to the Claude Code process |
 | `CLAUDE_MODEL` / `CLAUDE_EFFORT` / `CLAUDE_BUDGET_USD` | `claude-opus-5-5` / `high` / `5` | Per-job model, effort, spending cap |
 | `JOB_TIMEOUT_S`, `LEASE_S`, `POLL_MS` | 1200 / 120 / 3000 | Limits and queue timing |
+| `N8N_BASE_URL`, `N8N_WEBHOOK_SECRET` | — | Signed `notify` webhook (`creative_ready`, `needs_attention`); skipped when unset |
 
 ## Isolation
 
