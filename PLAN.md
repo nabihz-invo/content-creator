@@ -247,19 +247,19 @@ Phase 3 (3D motion graphics / HTML).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | in-progress | P4-VERIFY | local Claude Code |
+| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | done | P4-VERIFY | local Claude Code |
 | P5-T02 | Three.js / animated video template | todo | P5-T01 | |
-| P5-T03 | Frame capture + FFmpeg MP4 encode (+ audio track) | todo | P5-T01 | |
+| P5-T03 | Frame capture + FFmpeg MP4 encode (+ audio track) | in-progress | P5-T01 | local Claude Code |
 | P5-T04 | ffprobe validation, thumbnail, contact sheet | todo | P5-T03 | |
 | P5-T05 | Resumable render jobs (frame-chunk checkpoints) | todo | P5-T03 | |
 | P5-T06 | CRM video preview / playback | todo | P5-T04 | |
 | P5-T07 | Telegram voice-note transcription | todo | P4-VERIFY | |
 | P5-T08 | Stacko organization: workspace, admin (nabihzanaty@gmail.com), Stacko brand settings | done | P4-VERIFY | local Claude Code |
-| P5-T09 | Brand asset library: new asset types, catalog codes, kit → `brand-assets` sync | todo | P5-T08 | |
-| P5-T10 | Studio engine as a brand template pack (`templates/studio/`), `__render` adapter, worker workspace | todo | P5-T01 | |
+| P5-T09 | Brand asset library: new asset types, catalog codes, kit → `brand-assets` sync | in-progress | P5-T08 | local Claude Code |
+| P5-T10 | Studio engine as a brand template pack (`templates/studio/`), `__render` adapter, worker workspace | done | P5-T01 | local Claude Code |
 | P5-T11 | Creative catalog (RC/HK/OP/TX/TR/CM/AN/CP/EC/LG/MU/CL), variety rules, approval checks in prompts | todo | P5-T10 | |
-| P5-T12 | Two language versions per project (EN + AR outputs from one page) | todo | P5-T10 | |
-| P5-T13 | Audio: ElevenLabs voice with timestamps, real UI SFX, music by MU code, beat-synced silent cuts | todo | P5-T03 | |
+| P5-T12 | Two language versions per project (EN + AR outputs from one page) | in-progress | P5-T10 | local Claude Code |
+| P5-T13 | Audio: ElevenLabs voice with timestamps, real UI SFX, music by MU code, beat-synced silent cuts | in-progress | P5-T03 | local Claude Code |
 | P5-T14 | Import the Stacko content plan (workbook → projects) | done | P5-T08 | owner + local Claude Code |
 | P5-VERIFY | Phase 5 verification | todo | P5-T01…T14 | |
 

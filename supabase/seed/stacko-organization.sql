@@ -12,6 +12,22 @@ declare
   v_settings jsonb := $json$
 {
   "languages": ["en", "ar"],
+  "studio": {
+    "engine": "studio-1",
+    "languages": ["en", "ar"],
+    "sfx_allow": ["pop", "typing", "ding", "check", "tick", "click", "notification", "send", "scan", "marker", "paper", "shutter"],
+    "transitions": "music-driven: cuts on the beat, no transition sounds",
+    "music_default": "MU-01",
+    "music": {
+      "MU-01": { "mood": "Calm pulse", "file": "audio/music/Paperback_Pages.mp3", "bpm": 82 },
+      "MU-02": { "mood": "Upbeat tech", "file": "audio/music/Second_Cup_of_Coffee.mp3", "bpm": 82 },
+      "MU-03": { "mood": "Tension → release", "file": "audio/music/Second_Cup_of_Coffee.mp3", "bpm": 82 },
+      "MU-04": { "mood": "Light Levantine percussion", "file": "audio/music/Paperback_Pages.mp3", "bpm": 82, "note": "stand-in until a Levantine track is added" },
+      "MU-05": { "mood": "Minimal piano", "file": "audio/music/The_Slowest_Hour.mp3", "bpm": 74 },
+      "MU-06": { "mood": "Ambient loop", "file": "audio/music/No_More_Place_To_Be.mp3", "bpm": 82 },
+      "MU-07": { "mood": "Comedic pizzicato", "file": "audio/music/Second_Cup_of_Coffee.mp3", "bpm": 82, "note": "stand-in until a comedic track is added" }
+    }
+  },
   "taglines": { "en": "Your stock, always in sight", "ar": "مخزونك دايماً قدّام عينك" },
   "endorsement": "A product by AIPHIN",
   "voice": {

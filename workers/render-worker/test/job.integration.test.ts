@@ -44,6 +44,7 @@ const renderDeps = (src: SourceStore = source) => ({
   workDir: root,
   workerId: "test-render",
   pageTimeoutMs: 60_000,
+  ffmpeg: process.env.FFMPEG_PATH ?? "ffmpeg",
   maxPngBytes: 8 * 1024 * 1024,
   minLumaStddev: 2,
   log: () => {},

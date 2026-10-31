@@ -65,6 +65,7 @@ async function runOne(slot: number): Promise<boolean> {
         workDir: cfg.workDir,
         workerId,
         pageTimeoutMs: cfg.pageTimeoutS * 1000,
+        ffmpeg: cfg.ffmpeg,
         maxPngBytes: cfg.maxPngBytes,
         minLumaStddev: cfg.minLumaStddev,
         log: (m, e) => log(m, { job: job.id, ...e }),

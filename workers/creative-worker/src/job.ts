@@ -219,6 +219,7 @@ export async function processCreativeJob(deps: JobDeps, job: CreativeJob, signal
       duration_s: spec.duration_s,
       style: spec.style,
       language: spec.language,
+      studio: spec.studio ?? null,
       prompt_version: creative.version,
       entry: "index.html",
       files: allFiles.map((p) => ({ path: p, committed: committed.includes(p) })),

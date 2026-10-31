@@ -3,7 +3,8 @@
  * → vendored files → validator → isolated render → PNG validation → upload →
  * save_render (manifest built and hashed by Postgres; completes the job).
  */
-import { mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type postgres from "postgres";
 import type { ContentSpec } from "@cc/shared";
@@ -12,7 +13,9 @@ import type { SourceStore } from "@cc/creative-worker/source-store";
 import type { Storage } from "@cc/creative-worker/storage";
 import { listFiles, treeHash } from "@cc/creative-worker/tree";
 import { addVendoredFiles } from "@cc/creative-worker/workspace";
+import { checkMp4, probeMp4 } from "./mp4.ts";
 import { renderWorkspace } from "./render.ts";
+import { renderStudio } from "./studio-render.ts";
 import { validateRender } from "./validate.ts";
 
 export interface RenderDeps {
@@ -22,6 +25,8 @@ export interface RenderDeps {
   workDir: string;
   workerId: string;
   pageTimeoutMs: number;
+  /** FFmpeg binary for video encoding and probing. */
+  ffmpeg: string;
   maxPngBytes: number;
   minLumaStddev: number;
   log: (msg: string, extra?: Record<string, unknown>) => void;
@@ -77,9 +82,120 @@ async function loadInputs(sql: postgres.Sql, job: RenderJobRow) {
       false,
       "obsolete",
     );
-  if (row.output_type === "mp4")
-    throw new RenderError("video rendering arrives in Phase 5", false, "unsupported_output");
-  return { ...row, output_type: row.output_type as "png" | "carousel" };
+  return row;
+}
+
+/** Studio creatives (ADR-0009): per-language outputs, videos encoded here with their audio mix. */
+async function renderStudioAssets(
+  deps: RenderDeps,
+  ws: string,
+  spec: ContentSpec,
+  input: Awaited<ReturnType<typeof loadInputs>>,
+  prefix: string,
+) {
+  const out = await renderStudio(ws, spec, {
+    timeoutMs: deps.pageTimeoutMs,
+    ffmpeg: deps.ffmpeg,
+    onProgress: (done, total) => deps.progress?.(Math.round((done / total) * 80)),
+  });
+  if (out.errors.length)
+    throw new RenderError(
+      `the creative throws while rendering: ${out.errors.slice(0, 3).join("; ")}`,
+      false,
+      "runtime_error",
+    );
+  if (out.blockedRequests.length)
+    throw new RenderError(
+      `the creative tried to reach the network: ${out.blockedRequests.slice(0, 3).join(", ")}`,
+      false,
+      "network_attempt",
+    );
+  for (const n of out.notes) deps.log("render note", { note: n });
+
+  const assets: Record<string, unknown>[] = [];
+  const uploads: { path: string; data: Buffer; mime: string }[] = [];
+  const langs = spec.studio!.languages;
+  if (input.output_type === "mp4") {
+    const tmp = mkdtempSync(join(deps.workDir, "mp4-"));
+    try {
+      for (const f of out.files) {
+        const file = join(tmp, `${f.name}.mp4`);
+        writeFileSync(file, f.data);
+        const info = probeMp4(deps.ffmpeg, file);
+        const errs = checkMp4(info, {
+          width: input.configuration.width,
+          height: input.configuration.height,
+          fps: info.fps && spec.fps ? spec.fps : info.fps,
+          durationS: f.durationS ?? info.durationS,
+        });
+        if (errs.length)
+          throw new RenderError(`${f.name}: ${errs.join("; ")}`, false, "validation_failed");
+        const path = `${prefix}${f.name}.mp4`;
+        uploads.push({ path, data: f.data, mime: "video/mp4" });
+        assets.push({
+          asset_type: "mp4",
+          slide_index: null,
+          language: f.language,
+          storage_path: path,
+          mime_type: "video/mp4",
+          file_size: f.data.length,
+          width: info.width,
+          height: info.height,
+          duration: Number(info.durationS.toFixed(3)),
+          checksum: createHash("sha256").update(f.data).digest("hex"),
+          metadata: { fps: info.fps, video_codec: info.videoCodec, audio_codec: info.audioCodec },
+        });
+      }
+    } finally {
+      rmSync(tmp, { recursive: true, force: true });
+    }
+  } else {
+    for (const lang of langs) {
+      const v = validateRender(
+        out.files
+          .filter((f) => f.language === lang)
+          .map((f) => ({ name: f.name, slideIndex: f.slideIndex, png: f.data })),
+        {
+          outputType: input.output_type,
+          width: input.configuration.width,
+          height: input.configuration.height,
+          slides:
+            input.output_type === "carousel" && input.configuration.slides
+              ? input.configuration.slides
+              : undefined,
+          maxBytes: deps.maxPngBytes,
+          minStddev: deps.minLumaStddev,
+        },
+      );
+      if (!v.ok)
+        throw new RenderError(
+          `rendered files failed validation (${lang}): ${v.errors.join("; ")}`,
+          false,
+          "validation_failed",
+        );
+      for (const f of v.files) {
+        const path = `${prefix}${f.name}.png`;
+        uploads.push({ path, data: f.png, mime: "image/png" });
+        assets.push({
+          asset_type: input.output_type === "carousel" ? "carousel_slide" : "png",
+          slide_index: f.slideIndex,
+          language: lang,
+          storage_path: path,
+          mime_type: "image/png",
+          file_size: f.png.length,
+          width: f.width,
+          height: f.height,
+          checksum: f.checksum,
+          metadata: {
+            luma_mean: Math.round(f.luma.mean),
+            luma_stddev: Number(f.luma.stddev.toFixed(2)),
+          },
+        });
+      }
+    }
+  }
+  for (const u of uploads) await deps.storage.upload("media", u.path, u.data, u.mime);
+  return assets;
 }
 
 export async function processRenderJob(deps: RenderDeps, job: RenderJobRow) {
@@ -127,7 +243,25 @@ export async function processRenderJob(deps: RenderDeps, job: RenderJobRow) {
       sha: input.commit_sha,
       files: check.files.length,
       format: spec.format,
+      studio: spec.studio?.engine ?? null,
     });
+
+    if (spec.studio) {
+      const prefix = `${job.project_id}/render-${input.render_id}/`;
+      const assets = await renderStudioAssets(deps, ws, spec, input, prefix);
+      deps.progress?.(95);
+      const [{ r }] = (await sql`
+        select public.save_render(${job.id}, ${deps.workerId}, ${input.render_id}, ${sql.json(assets as never)}) as r`) as unknown as [
+        { r: { render_job_id: string; version: number; manifest_hash: string; files: number } },
+      ];
+      return r;
+    }
+    if (input.output_type === "mp4")
+      throw new RenderError(
+        "classic (non-studio) video rendering is not available yet (P5-T02)",
+        false,
+        "unsupported_output",
+      );
 
     // 3. Render with the network off.
     const out = await renderWorkspace(ws, spec, {
