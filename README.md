@@ -5,18 +5,21 @@ media content — scripts, HTML/CSS creatives, PNG / carousel / MP4 renders —
 and publishes them to connected platforms, with an explicit approval gate and
 a full audit trail at every stage.
 
-**Status:** Phases 0–3 done — intake (dashboard / CSV / Telegram / links),
-**AI-proposed configuration reviewed and approved by the user**, brief with
-clarification rounds, script versions and approvals, and **creative
-generation**: a worker builds each creative (starter template or Claude Code)
-from the approved script, validates it, renders stills, commits every version
-to Git, and the CRM previews it in an isolated sandbox for approval or
-revision. Next: Phase 4 (rendering to PNG / carousel / MP4). See
-[`PLAN.md`](./PLAN.md).
+**Status:** Phases 0–4 done — the **initial release** (blueprint §12):
+intake (dashboard / CSV / Telegram / links), **AI-proposed configuration
+reviewed and approved by the user**, brief with clarification rounds, script
+versions and approvals, creative generation (starter template or Claude Code)
+committed to Git and previewed in an isolated sandbox, **PNG and carousel
+rendering** from the exact approved commit with validated output, final
+approval of the exact files, a media library, a workflow monitor, and
+**publishing packages for manual posting** (zip + "mark as posted"). Next:
+Phase 5 (video rendering). See [`PLAN.md`](./PLAN.md).
 
 | AI configuration review | Script review | Creative review | Arabic (RTL) |
 |---|---|---|---|
 | ![Config](docs/screenshots/10-config-review.png) | ![Script](docs/screenshots/11-script-review.png) | ![Creative](docs/screenshots/14-creative-review.png) | ![Arabic](docs/screenshots/07-project-ar.png) |
+| **Final media review** | **Publishing package** | **Media library** | **Workflow monitor** |
+| ![Media](docs/screenshots/17-media-review.png) | ![Publishing](docs/screenshots/18-publishing.png) | ![Library](docs/screenshots/19-media-library.png) | ![Monitor](docs/screenshots/20-monitor.png) |
 
 Example prompts: [`docs/examples/`](./docs/examples/).
 

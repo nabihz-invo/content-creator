@@ -16,7 +16,7 @@ starting the next one (blueprint §14).
 | P1 | Database, auth, brand settings, dashboard, intake | initial | done |
 | P2 | AI configuration (approved by user), brief, script generation, approvals | initial | done |
 | P3 | GitHub + Claude Code creative worker, isolated preview, creative versioning | initial | done (P3-T08 is an owner action) |
-| P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | in-progress |
+| P4 | PNG + carousel rendering, media library, final approval, manual publishing prep | initial | done |
 | P5 | Video rendering, FFmpeg validation, resumable renders, voice notes | second | todo |
 | P6 | Buffer publishing, scheduling, calendar, retries, monitoring | second | todo |
 | P7 | Later enhancements (teams, analytics, repurposing, …) | later | deferred |
@@ -216,7 +216,7 @@ Phase 3 (3D motion graphics / HTML).
 | P4-T07 | CRM final media review | done | P4-T05 | claude/sweet-rubin-5q9utc |
 | P4-T08 | Manual publishing preparation (`publishing-jobs`, download bundle) | done | P4-T05 | claude/sweet-rubin-5q9utc |
 | P4-T09 | CRM Workflow monitor (retry / cancel) | done | P2-VERIFY | claude/sweet-rubin-5q9utc |
-| P4-VERIFY | Initial release acceptance (blueprint §13) | todo | P4-T01…T09 | |
+| P4-VERIFY | Initial release acceptance (blueprint §13) | done | P4-T01…T09 | claude/sweet-rubin-5q9utc |
 
 **P4-T01** — `workers/render-worker/Dockerfile` (Node 20, Playwright Chromium, FFmpeg, non-root), network disabled for the browser (local static server only), per-job temp dir cleanup, concurrency + timeout config.
 
@@ -224,7 +224,7 @@ Phase 3 (3D motion graphics / HTML).
 
 **P4-T03** — render each slide independently, consistent dimensions, order check, `manifest` asset per `CONTRACTS.md §8`.
 
-**P4-T04** — `POST /api/render-jobs` (requires approved creative, idempotency key), `GET /api/render-jobs/{id}`; Workflow F. Acceptance: retrying same key creates no second job.
+**P4-T04** — `POST /api/render-jobs` (requires approved creative, idempotency key), `GET /api/render-jobs/{id}`; Workflow F. Acceptance: retrying same key creates no second job. *(Done per ADR-0008: Workflow F is folded into the render worker + RPCs, like E.)*
 
 **P4-T05** — approval of `media_manifest` by `manifest_hash`; rerender / return to creative / reject paths; new creative version marks old renders `outdated`.
 
@@ -234,7 +234,7 @@ Phase 3 (3D motion graphics / HTML).
 
 **P4-T08** — `POST /api/publishing-jobs` validates approval + manifest hash + platform constraints; creates job `ready`; generates zip (media in order + `caption.txt` + hashtags) for manual posting; "mark as posted manually" records URL. Acceptance: no package possible without approved media (blueprint §13).
 
-**P4-T09** — list of `workflow_jobs` / `render_jobs` with stage, times, attempts, last error, related versions; retry/cancel for admin.
+**P4-T09** — list of `workflow_jobs` / `render_jobs` with stage, times, attempts, last error, related versions; retry/cancel for admin. *(Dependency corrected from P2-T12 — scene comments — to P2-VERIFY; the monitor needs only the job queue.)*
 
 **P4-VERIFY** — run the full blueprint §13 checklist; record results in `docs/PROGRESS_LOG.md`. Initial release ready for production testing.
 

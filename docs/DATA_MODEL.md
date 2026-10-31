@@ -136,6 +136,19 @@ RPCs (e.g. `record_approval`) derive the actor from `auth.uid()`.
 ### Phase 2 RPCs (P2-T04, all service-role only; the API passes the verified user)
 `start_job` (claim a specific delivered job) · `request_analysis` · `save_analysis` · `save_answers_draft` · `submit_answers` (inserts the `config` approval) · `save_brief` (valid → script job; needs_clarification → clarification questionnaire) · `save_script` (`ai` / `manual_edit`) · `request_script_regeneration` · `record_approval` (scripts) · `mark_downstream_outdated` · `notification_target`. Each `save_*` completes its job in the same transaction. `approval_stage` gained `config`; `questionnaire_answers.content_hash`; briefs/scripts record `model` and `prompt_version`.
 
+### Phase 3 RPCs (P3-T04, ADR-0007)
+`save_creative_version` (worker; supersedes earlier creatives, outdates their renders/media, completes the job) · `record_approval` for `creative_version` (approve → `queue_render`; changes → revision job from that version; reject → fresh direction). `creative_versions` gained `workflow_job_id`, `generator`.
+
+### Phase 4 RPCs (P4, ADR-0008)
+- `render_jobs` gained `version` (per project, unique), `manifest`, `manifest_hash`. Open renders (`queued/running/failed/cancelled`) may change; a `succeeded` render is frozen except `status → outdated`. A trigger on `workflow_jobs` mirrors claim / progress / retry / failure / cancel onto the render job.
+- `queue_render(project, creative_version, actor, key)` — approved creative only; output type from the creative's format; expected width/height/slide count in `configuration`; creates the `render_worker` job. Idempotent by key.
+- `claim_render_job(worker, lease, output_types[])` — like `claim_job`, filtered by output type (Phase 4 workers: `png`, `carousel`).
+- `save_render(job, worker, render_job, assets[])` — checks paths, sizes, slide numbering/count; inserts `media_assets`; builds the manifest (`CONTRACTS.md §8`) and `manifest_hash = sha256(manifest::text)`; outdates older renders; `rendering → media_in_review`; completes the job.
+- `request_render(actor, creative_version, key)` — editors; from `rendering` (after a failed/cancelled render) or `media_in_review` (manual rerender).
+- `record_approval(..., p_return_to)` — `media_manifest` decisions: approve → assets `approved`, `ready_to_publish`; changes + `render` → `queue_render`; changes + `creative` → creative revision job; reject → fresh creative direction.
+- `create_publishing_job(actor, project, approval, platform, caption, hashtags, link, key)` — editors; needs the approved, still-current manifest; status `ready`; idempotent.
+- `mark_published_manually(actor, publishing_job, url)` — https URL; `ready → published`; `ready_to_publish → published`.
+
 ### Implemented details (P1)
 - `content_projects.failed_from_status` — admin retry may only return there.
 - `content_projects.source_idempotency_key` (unique) — `telegram:<update_id>`,

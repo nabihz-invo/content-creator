@@ -96,8 +96,8 @@ exits quietly — idempotent), writes outputs via RPC, calls `complete_job` or
 | B | Analyze & question | job `analysis` | load brand settings → fetch/extract URL (untrusted) → AI analysis → validate `analysis.schema` → AI questionnaire → validate `questionnaire.schema` → save → status `awaiting_answers` → notify |
 | C | Answer submission | job `brief` | validate answers → required check → contradiction / missing-facts AI check → either `needs_clarification` (append clarification questions as new questionnaire version) or generate brief → validate → save → create script job |
 | D | Script generation | job `script` | load brief + brand → AI script (by content_type) → validate schema + required sections → hash → save version → `script_in_review` → notify reviewer |
-| E | Creative generation | job `creative` | build `content-spec` → insert `creative_worker` job → (worker runs) → on completion: record creative version → `creative_in_review` → notify |
-| F | Rendering | job `render` | insert `render_worker` job → (worker runs) → on completion: save media rows → `media_in_review` → notify |
+| E | Creative generation (folded into the creative worker, ADR-0007) | job `creative` | build `content-spec` → insert `creative_worker` job → (worker runs) → on completion: record creative version → `creative_in_review` → notify |
+| F | Rendering | job `render` | **Folded into the render worker + RPCs (ADR-0008):** creative approval → `queue_render()` → worker claims by output type → checkout at commit + hash check → render → validate → `save_render()` (media rows, manifest, `media_in_review`) → `media_ready` notification |
 | G | Publishing | job `publish` | validate package vs approval manifest → verify account → Buffer submit/schedule → store external IDs → status by provider response → notify |
 | R | Recovery cron | every 5 min | `recover_jobs()`; re-dispatch `n8n` jobs still `queued` > 2 min after `next_run_at` (lost dispatch); notify admin of `needs_attention` |
 

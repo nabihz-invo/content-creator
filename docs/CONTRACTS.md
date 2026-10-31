@@ -146,12 +146,17 @@ Creative worker result (`worker-result.schema.json`):
 ## 8. Media manifest (`media-manifest.schema.json`)
 
 ```json
-{ "project_id": "uuid", "creative_version_id": "uuid", "render_job_id": "uuid",
-  "output_type": "carousel",
-  "items": [{ "media_asset_id": "uuid", "order": 1, "storage_path": "media/…/slide-01.png",
-              "mime_type": "image/png", "width": 1080, "height": 1350, "checksum": "sha256" }],
+{ "project_id": "uuid", "creative_version_id": "uuid", "creative_version": 2, "commit_sha": "40-hex",
+  "render_job_id": "uuid", "render_version": 1, "output_type": "carousel",
+  "items": [{ "media_asset_id": "uuid", "order": 1, "storage_path": "<project>/render-<id>/slide-01.png",
+              "mime_type": "image/png", "width": 1080, "height": 1350, "file_size": 40960, "checksum": "sha256" }],
   "manifest_hash": "sha256" }
 ```
+
+Built by `save_render()` from the `media_assets` rows (ADR-0008);
+`manifest_hash` is the sha256 of the manifest without that field
+(`manifest::text`, jsonb's canonical form). Approvals and publishing jobs
+reference this hash.
 
 ## 9. Publishing package (`publish-package.schema.json`)
 

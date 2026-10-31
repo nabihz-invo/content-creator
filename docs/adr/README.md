@@ -12,3 +12,4 @@ superseded), Context, Decision, Consequences. Never delete an ADR — supersede 
 | 0005 | Edge Functions: direct Postgres access, own auth, inline Telegram replies | accepted |
 | 0006 | AI-proposed production configuration, approved by the user | accepted |
 | 0007 | Creative worker, git-traced source, isolated preview origin | accepted |
+| 0008 | Render worker, database-built media manifests, manual publishing package | accepted |

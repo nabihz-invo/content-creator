@@ -145,3 +145,13 @@ Creative generation is not an HTTP call: approving a script queues a
   `nosniff`, `no-referrer`, and `Access-Control-Allow-Origin: *` (the sandbox
   has an opaque origin and module scripts / fonts are CORS requests; access is
   still gated by the token, never by cookies).
+
+## Phase 4 (implemented, ADR-0008)
+
+- `POST /api/approvals` with `artifact_type: "media_manifest"`, `artifact_id` = render job id, `artifact_version` = render version, `artifact_hash` = `manifest_hash`. `changes_requested` takes `return_to: "render"` (default; rerender the same creative) or `"creative"` (revise the creative with the comment as notes); `rejected` starts a fresh creative direction; `approved` → `ready_to_publish`.
+- `POST /api/render-jobs` — `{ creative_version_id }` + **required** `Idempotency-Key`; editors; the creative must be approved and the project `rendering` (after a failed/cancelled render) or `media_in_review` (manual rerender, outdates the pending files). `202 { render_job_id, job_id, version, output_type, status: "queued", replayed }`.
+- `GET /api/render-jobs/{id}` — members; `{ status, progress, attempts, error_details, manifest, manifest_hash, outputs: [media_asset] }`.
+- `POST /api/publishing-jobs` — `{ project_id, approval_id, platform, caption, hashtags?, link? }` + **required** `Idempotency-Key`; editors. The approval must be an approved media manifest whose render is still current (`409 approval_required` otherwise). Platform rules (`packages/shared/src/platform-rules.ts`: output types, aspect ratios, item counts, caption length, hashtag count/shape, https link) → `422 { details.fields, details.issues }`. `201 { publishing_job_id, status: "ready" }`; a retry with the same key → `200` with the same id.
+- `GET /api/publishing-jobs/{id}/bundle` — members; `application/zip`: `01-slide-01.png …` in manifest order (each file's sha256 is checked against the manifest first; a mismatch → `500`, nothing is sent), `caption.txt`, `hashtags.txt`, `link.txt`, `manifest.json`.
+- `POST /api/publishing-jobs/{id}/mark-published` — `{ published_url }` (https); editors; job `ready → published`, project `ready_to_publish → published`.
+- `POST /api/jobs/{id}/retry` · `POST /api/jobs/{id}/cancel` — workspace admins (workflow monitor). Retrying an n8n job re-dispatches it immediately.

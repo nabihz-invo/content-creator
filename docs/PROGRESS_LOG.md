@@ -14,6 +14,31 @@ Template:
 
 ---
 
+## 2026-10-31 — Phase 4 (P4-T01…T09, P4-VERIFY) rendering, final media approval, publishing preparation — done
+- Agent/branch: claude/sweet-rubin-5q9utc
+- Design: ADR-0008 — `workers/render-worker` renders the approved creative from its exact Git commit (tree hash must equal the approved `content_hash`), in Chromium with every non-local request aborted, at the exact configured size; PNGs are decoded and validated (dimensions, not blank, ≤ 8 MB, carousel slides 1…n, none identical) before upload. Postgres builds the media manifest and its sha256 hash in `save_render()`; final approval names render version + manifest hash. Publishing packages (manual posting) are checked against platform rules and downloaded as a zip whose files are re-verified against the manifest checksums. Video (mp4) renders queue for the Phase 5 worker.
+- Changes: migration `20261031100000` (render versions/manifests, frozen renders, workflow→render status sync, `queue_render`, `claim_render_job`, `save_render`, `request_render`, media decisions in `record_approval` with `return_to`, outdated cascade on new creatives/renders, `create_publishing_job`, `mark_published_manually`) + pgTAP `11_render_media`; `workers/render-worker` (renderer, PNG decoder, validator, loop with progress, Dockerfile, README); creative-worker package exports + signed `notify` webhook (creative_ready, media_ready, needs_attention) and n8n messages; shared `platform-rules.ts`, `zip.ts`; API `render-jobs`, `publishing-jobs` (+ bundle, mark-published), `jobs/:id/retry|cancel`, approvals `return_to`; CRM Media tab, Publishing tab, Media library, Workflow monitor (en/ar); local stack + CI run the render worker.
+- Verification: `pnpm verify` clean (shared 60 tests, CRM 12, render worker 5, creative worker 8, preview server 2, n8n 5); pgTAP 11 files / 230 assertions; Deno 24 tests / 55 steps; creative worker render 10 + integration 2; render worker integration 2 (real Chromium carousel + static renders against the DB, tampered source refused); browser e2e 63/63 checks, zero console errors; screenshots 17–20.
+- Blueprint §13 acceptance (initial system):
+  - Every intake channel creates a project — dashboard/CSV/Telegram/URL (P1 Deno tests + e2e). ✅
+  - CSV imports report created / failed / duplicate rows (Deno + e2e). ✅
+  - The AI produces a valid questionnaire with the brand's settings (P2 tests, brand accent locked). ✅
+  - The project waits for submitted answers; missing required answers block progression (pgTAP 08, e2e "approval is blocked…"). ✅
+  - Script versions are edited and approved independently (pgTAP, e2e v1→v3). ✅
+  - Creative source is traceable to its Git revision (commit per version; render manifest carries `commit_sha`; render refuses a source whose hash differs). ✅
+  - The CRM shows the preview and the media assets (sandboxed preview; Media tab shows the actual PNGs). ✅
+  - PNGs and carousel slides render at the configured dimensions (decoded PNG checks in the worker, `save_render` re-checks, e2e reads 1080×1350 from the image). ✅
+  - Rendered files are validated before final approval (worker validator + DB checks; failures are permanent and visible). ✅
+  - Approved artifacts cannot change silently (immutability triggers on scripts/creatives/renders/media; pgTAP 42501 checks). ✅
+  - Publishing cannot proceed without the required approval (`create_publishing_job` + publishing guard trigger; pgTAP, Deno 409, e2e). ✅
+  - A failed job can be retried without duplicate projects or posts (idempotency keys on projects, renders, publishing packages; retry_job; Deno + e2e monitor). ✅
+  - Critical transitions and approval decisions are auditable (`workflow_events`, insert-only `approvals`; History tab). ✅
+  - Credentials and generated code are isolated (service role server-side only; preview origin + sandbox; render network off; Claude Code tool allow-list). ✅
+- Bugs found while testing: none in the new code paths beyond fixture gaps (creative fixtures without format/dimensions are now refused by `queue_render`, which is the intended behaviour).
+- Not verified here: building/running `workers/render-worker/Dockerfile` (Docker Hub is rate-limited in this sandbox), real n8n delivery of the new notifications (the local shim logs them), and real Claude Code generation (no API key).
+- Owner actions still open: P3-T08 (creatives repository + token, deploy the creative worker, preview origin and render worker).
+- Next: Phase 5 (video rendering: `mp4` output type in the render worker, FFmpeg validation, resumable renders).
+
 ## 2026-10-30 — Phase 3 (P3-T01…T07, P3-VERIFY) creative worker, Git-traced source, isolated preview — done
 - Agent/branch: claude/sweet-rubin-5q9utc
 - Design: ADR-0007 — a Node worker claims `creative_worker` jobs from Postgres, assembles a workspace (starter template + trusted runtime + fonts + vendored Three.js + `spec.js` + workspace `CLAUDE.md` + `check.mjs`), runs a generator (`template`, or **Claude Code** headless with a whitelisted tool set, no web tools, private HOME and a budget cap), validates the output (one Claude fix-up round), restores the trusted runtime, renders stills offline in Playwright with the network blocked, commits each version to Git at `projects/<id>/v<n>`, uploads the preview bundle, and records it with `save_creative_version`.

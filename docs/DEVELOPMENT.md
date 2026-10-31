@@ -21,6 +21,7 @@ pnpm lint && pnpm format:check && pnpm typecheck && pnpm test
 | Database (pgTAP) | `pnpm db:test` | migrations apply cleanly; RLS matrix; status machine; job queue; immutability; RPCs |
 | Edge Functions | `cd supabase/functions && deno task check && deno task test` | typecheck + lint; handlers against the real schema (needs a DB on :54322 — run `pnpm db:reset` or the stack first) |
 | Creative worker | `pnpm --filter @cc/creative-worker test` · `test:render` · `test:integration` | validator + generator contract + git store · every template × style × language in headless Chromium (offline) · full jobs (spec → git commit → preview upload → `save_creative_version`, revision from v1) against the DB on :54322 |
+| Render worker | `pnpm --filter @cc/render-worker test` · `test:integration` | PNG decoder + render validation · real jobs: creative → approval → render (Chromium, network off) → manifest; tampered source refused |
 | Preview server | `pnpm --filter @cc/preview-server test` | signed tokens (expired / forged / out-of-prefix refused), CSP, CORS, no cookies |
 | End-to-end | see below | the CRM in a real browser against the full local stack |
 
@@ -50,7 +51,8 @@ the deterministic fake provider by default; to use Claude:
 AI_PROVIDER=anthropic ANTHROPIC_API_KEY=sk-ant-... pnpm stack:up
 ```
 
-Phase 3 services also start: the **creative worker** (generator `template` by
+Phase 3–4 services also start: the **render worker** (PNG + carousel; see
+`workers/render-worker/README.md`), the **creative worker** (generator `template` by
 default; set `CREATIVE_GENERATOR=claude-code ANTHROPIC_API_KEY=...` with the
 `claude` CLI installed to let Claude Code write the creative) and the
 **preview origin** on `:54400`. Creative source is committed to a local bare
@@ -85,8 +87,13 @@ mobile layout. Phase 2: AI configuration review → brief → script versions an
 approval. Phase 3: waits for the creative worker, checks the preview iframe is
 `sandbox="allow-scripts"` on the separate origin with a locked-down CSP, that a
 forged token is refused and the creative cannot reach the CRM document,
-requests changes (v2 built from v1's source), approves (→ `rendering`), and
-checks the Creative studio list. Screenshots land in `docs/screenshots/`. Any browser console
+requests changes (v2 built from v1's source), approves (→ `rendering`; the
+video waits for the Phase 5 renderer), and checks the Creative studio list.
+Phase 4: a carousel goes through the render worker; the reviewer sees the real
+1080×1350 PNGs, rerenders (render 2, render 1 outdated), approves; the
+publishing package is checked against platform rules, the zip is downloaded
+and verified with `unzip -t`, the post is marked published; then the media
+library filters and the workflow monitor's cancel/retry. Screenshots land in `docs/screenshots/`. Any browser console
 error fails the run.
 
 ## Telegram (real bot)
