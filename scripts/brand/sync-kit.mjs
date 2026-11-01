@@ -12,7 +12,8 @@
  *
  * Only changed files are uploaded (sha256). A changed file becomes a new version
  * at <brand_id>/<asset_type>/v<version>/<library path>; older versions stay.
- * Raw images (green placeholders) and README files are never synced.
+ * Raw files (green-placeholder images, superseded sounds), placeholder tracks and README
+ * files are never synced.
  */
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
@@ -83,6 +84,7 @@ export function skipped(p) {
   return (
     /(^|\/)raw\//.test(p) ||
     /^readme(\.txt|\.md)?$/i.test(base) ||
+    /^placeholder/i.test(base) ||
     base.startsWith(".") ||
     !MIME[extname(p).toLowerCase()] ||
     /[^A-Za-z0-9_./-]/.test(p)
