@@ -53,8 +53,25 @@ if (!URL_ || !KEY) {
 }
 
 const H = { apikey: KEY, Authorization: `Bearer ${KEY}` };
+// Retries network errors and 429/5xx with backoff; uploads use x-upsert, so a retry is safe.
+async function send(url, init, tries = 8) {
+  for (let n = 1; ; n++) {
+    try {
+      const r = await fetch(url, init);
+      if ((r.status === 429 || r.status >= 500) && n < tries) {
+        await r.text();
+        throw new Error(`HTTP ${r.status}`);
+      }
+      return r;
+    } catch (e) {
+      if (n >= tries) throw e;
+      console.error(`    retry ${n}/${tries - 1} (${e.cause?.code ?? e.message})`);
+      await new Promise((ok) => setTimeout(ok, Math.min(30000, 2000 * 2 ** (n - 1))));
+    }
+  }
+}
 async function api(path, init = {}) {
-  const r = await fetch(`${URL_}${path}`, { ...init, headers: { ...H, ...(init.headers ?? {}) } });
+  const r = await send(`${URL_}${path}`, { ...init, headers: { ...H, ...(init.headers ?? {}) } });
   const text = await r.text();
   if (!r.ok) throw new Error(`${init.method ?? "GET"} ${path}: ${r.status} ${text.slice(0, 400)}`);
   return text ? JSON.parse(text) : null;
@@ -345,7 +362,7 @@ for (const id of [...ids].sort()) {
   try {
     for (const i of up) {
       i.storage_path = `${project.id}/imported/${i.language ?? "x"}/${i.checksum.slice(0, 8)}-${i.file_name}`;
-      const r = await fetch(`${URL_}/storage/v1/object/media/${i.storage_path}`, {
+      const r = await send(`${URL_}/storage/v1/object/media/${i.storage_path}`, {
         method: "POST",
         headers: { ...H, "content-type": i.mime_type, "x-upsert": "true" },
         body: readFileSync(i.path),
