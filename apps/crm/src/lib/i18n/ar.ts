@@ -188,6 +188,8 @@ export const ar: Record<MessageKey, string> = {
   "project.notFound": "المشروع غير موجود أو لا تملك صلاحية الوصول.",
   "project.jobs": "المهام",
   "project.pipeline": "مسار العمل",
+  "project.start": "ابدأ مسار العمل",
+  "project.started": "بدأ العمل: الذكاء الاصطناعي يحلّل الفكرة. ستظهر أسئلته في الإعدادات.",
   "project.editTitle": "تعديل العنوان",
 
   "history.empty": "لا يوجد نشاط بعد.",

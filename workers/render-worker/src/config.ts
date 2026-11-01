@@ -37,7 +37,9 @@ export function loadConfig(): RenderConfig {
     outputTypes: env("RENDER_OUTPUT_TYPES", "png,carousel,mp4")!
       .split(",")
       .map((s) => s.trim())
-      .filter((s): s is "png" | "carousel" => s === "png" || s === "carousel"),
+      .filter(
+        (s): s is "png" | "carousel" | "mp4" => s === "png" || s === "carousel" || s === "mp4",
+      ),
     pageTimeoutS: Number(env("RENDER_PAGE_TIMEOUT_S", "60")),
     ffmpeg: env("FFMPEG_PATH", "ffmpeg")!,
     maxPngBytes: Number(env("RENDER_MAX_PNG_BYTES", String(8 * 1024 * 1024))),

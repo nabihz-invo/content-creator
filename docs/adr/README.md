@@ -14,3 +14,4 @@ superseded), Context, Decision, Consequences. Never delete an ADR — supersede 
 | 0007 | Creative worker, git-traced source, isolated preview origin | accepted |
 | 0008 | Render worker, database-built media manifests, manual publishing package | accepted |
 | 0009 | Studio engine as a brand template pack, brand asset library mounted read-only | accepted |
+| 0010 | Pipeline on the owner's PC, job runner in place of n8n | accepted |

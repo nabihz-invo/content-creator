@@ -1,6 +1,6 @@
 import { STAGES, type Stage } from "@cc/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, Check, Copy, ExternalLink, Pencil, X } from "lucide-react";
+import { ArrowLeft, Check, Copy, ExternalLink, Pencil, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { toast } from "sonner";
@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatDateTime, formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import type { MessageKey } from "@/lib/i18n/en";
+import { api } from "@/lib/api";
 import { useProject, useProjectEvents, useProjectJobs } from "@/lib/queries";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
@@ -140,6 +141,10 @@ export function ProjectDetailPage() {
             ))}
           </div>
         </div>
+        {/* Imported posts with finished files are reviewed as they are (FinishedMedia), not regenerated. */}
+        {p.status === "new" && can("edit") && !p.source_metadata.finished && (
+          <StartPipelineButton projectId={p.id} />
+        )}
       </div>
 
       {/* Pipeline stepper */}
@@ -373,6 +378,27 @@ export function ProjectDetailPage() {
         </aside>
       </div>
     </>
+  );
+}
+
+/** Starts the AI pipeline for a new idea: analysis first, then each stage waits for its approval. */
+function StartPipelineButton({ projectId }: { projectId: string }) {
+  const { t } = useI18n();
+  const qc = useQueryClient();
+  const start = useMutation({
+    mutationFn: () => api.analyze(projectId),
+    onSuccess: () => {
+      toast.success(t("project.started"));
+      for (const key of ["project", "project-jobs", "project-events", "projects", "status-counts"])
+        void qc.invalidateQueries({ queryKey: [key] });
+    },
+    onError: (e) => toast.error(e.message),
+  });
+  return (
+    <Button onClick={() => start.mutate()} disabled={start.isPending} className="shrink-0">
+      <Sparkles />
+      {t("project.start")}
+    </Button>
   );
 }
 

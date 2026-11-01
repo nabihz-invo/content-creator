@@ -188,6 +188,9 @@ export const en = {
   "project.notFound": "Project not found or you don't have access.",
   "project.jobs": "Jobs",
   "project.pipeline": "Pipeline",
+  "project.start": "Start pipeline",
+  "project.started":
+    "Started: the AI is analysing the idea. Its questions appear under Configuration.",
   "project.editTitle": "Edit title",
 
   "history.empty": "No activity yet.",

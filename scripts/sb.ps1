@@ -16,7 +16,7 @@ if ($env:SUPABASE_PROJECT_REF -ne $expectedRef) { throw "SUPABASE_PROJECT_REF is
 if ($Action -eq "secrets-set") {
   $tmp = Join-Path ([IO.Path]::GetTempPath()) "cc-fn-secrets.env"
   Get-Content "supabase\functions\.env" |
-    Where-Object { $_ -match '^[A-Z_]+=.+$' -and $_ -notmatch '^SUPABASE_' } |
+    Where-Object { $_ -match '^[A-Z][A-Z0-9_]*=.+$' -and $_ -notmatch '^SUPABASE_' } |
     Set-Content $tmp -Encoding ascii
   Write-Output ("Setting: " + ((Get-Content $tmp | ForEach-Object { $_.Split('=')[0] }) -join ", "))
   try { npx --yes supabase@latest secrets set --env-file $tmp --project-ref $expectedRef }

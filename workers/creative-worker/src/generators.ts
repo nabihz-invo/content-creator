@@ -122,6 +122,29 @@ export function claudeCodeArgs(
  * environment except PATH, a private HOME, and its own API key — never
  * database, storage, or Git credentials.
  */
+/**
+ * What Windows programs need beyond PATH/HOME: the system folder, a profile and temp dir inside the
+ * workspace home (so nothing of the worker's own profile is visible), and Git Bash for Claude Code's
+ * Bash tool (CLAUDE_CODE_GIT_BASH_PATH; the first `bash` on PATH is often WSL's).
+ */
+function windowsEnv(home: string): Record<string, string> {
+  const tmp = join(home, "tmp");
+  mkdirSync(tmp, { recursive: true });
+  const pass = (k: string) => (process.env[k] ? { [k]: process.env[k]! } : {});
+  return {
+    ...pass("SystemRoot"),
+    ...pass("SystemDrive"),
+    ...pass("ComSpec"),
+    ...pass("PATHEXT"),
+    ...pass("CLAUDE_CODE_GIT_BASH_PATH"),
+    USERPROFILE: home,
+    APPDATA: join(home, "AppData", "Roaming"),
+    LOCALAPPDATA: join(home, "AppData", "Local"),
+    TEMP: tmp,
+    TMP: tmp,
+  };
+}
+
 export function claudeCodeGenerator(cfg: {
   bin: string;
   apiKey: string;
@@ -142,6 +165,7 @@ export function claudeCodeGenerator(cfg: {
           HOME: home,
           ANTHROPIC_API_KEY: cfg.apiKey,
           CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1",
+          ...(process.platform === "win32" ? windowsEnv(home) : {}),
         },
         timeoutMs: cfg.timeoutMs,
         signal: input.signal,

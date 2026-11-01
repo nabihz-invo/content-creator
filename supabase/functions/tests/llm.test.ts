@@ -96,6 +96,39 @@ Deno.test("gives up after two invalid answers with a permanent error", async () 
   assertEquals(err.retryable, false);
 });
 
+Deno.test("a schema too large for structured output is asked for in the prompt", async () => {
+  const tooLarge = new Anthropic.BadRequestError(
+    400,
+    {
+      type: "error",
+      error: {
+        type: "invalid_request_error",
+        message: "The compiled grammar is too large, which would cause performance issues.",
+      },
+    },
+    undefined,
+    new Headers(),
+  );
+  const big = { ...req, stage: "big" };
+  const { transport, calls } = scripted([
+    tooLarge,
+    message('Here it is:\n```json\n{"title":"ok"}\n```'),
+    message('{"title":"again"}'),
+  ]);
+  const r = await generateJson<{ title: string }>(transport, big);
+  assertEquals(r.data, { title: "ok" });
+  const retry = calls[1]! as unknown as { output_config: Record<string, unknown> };
+  assert(!("format" in retry.output_config), "the retry has no output format");
+  assert(
+    String(calls[1]!.messages[0]!.content).includes('"maxLength":10'),
+    "full schema in prompt",
+  );
+  // The stage is remembered: the next call goes straight to the prompt.
+  const again = await generateJson<{ title: string }>(transport, big);
+  assertEquals(again.data.title, "again");
+  assertEquals(calls.length, 3);
+});
+
 Deno.test("refusals and max_tokens are permanent; rate limits are retryable", async () => {
   let t = scripted([
     message("", {

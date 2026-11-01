@@ -22,3 +22,5 @@ tmp/
 
 # Local mirror of the brand asset library (BRAND_ASSETS_DIR; scripts/brand/sync-kit.mjs pull)
 .brand-assets/
+# Local creatives repository (CREATIVES_REPO_URL, ADR-0002) until it moves to GitHub
+.creatives.git/
