@@ -25,7 +25,29 @@ const TYPES: Record<string, string> = {
   ".woff": "font/woff",
   ".ttf": "font/ttf",
   ".otf": "font/otf",
+  ".jfif": "image/jpeg",
+  ".gif": "image/gif",
+  ".mp3": "audio/mpeg",
+  ".wav": "audio/wav",
+  ".m4a": "audio/mp4",
+  ".ogg": "audio/ogg",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
 };
+
+/** Text files whose root paths are rewritten (studio pages load "/studio/…", "/assets/…", "/spec.js"). */
+const REWRITE = new Set([".html", ".js", ".mjs", ".css", ".json"]);
+/** A quoted (or url(…)) path from the site root: not "//host", not already inside /p/<token>/. */
+const ROOT_PATHS = /(["'`(])\/(?!\/)(?!p\/[\w-]+\.[\w-]+\/)([\w-][^"'`)\s]*)/g;
+
+/**
+ * Studio pages (ADR-0009) address their engine and brand assets from the site root, but a preview
+ * lives under /p/<token>/. Root paths are pointed into the token's folder, so the same files the
+ * renderer uses load here, and nothing outside the version's prefix can be reached.
+ */
+export function rewriteRootPaths(text: string, token: string): string {
+  return text.replace(ROOT_PATHS, (_m, before: string, rest: string) => `${before}/p/${token}/${rest}`);
+}
 
 export interface ObjectSource {
   get(path: string): Promise<Uint8Array | null>;
@@ -85,8 +107,10 @@ export function createPreviewServer(opts: {
       if (!rel || rel.startsWith("..") || rel.includes("\0")) return deny(res, 400, "bad path");
       const type = TYPES[extname(rel).toLowerCase()];
       if (!type) return deny(res, 415, "unsupported file type");
-      const body = await opts.source.get(`${claims.p}${rel}`);
+      let body = await opts.source.get(`${claims.p}${rel}`);
       if (!body) return deny(res, 404, "not found");
+      if (REWRITE.has(extname(rel).toLowerCase()))
+        body = new TextEncoder().encode(rewriteRootPaths(new TextDecoder().decode(body), m[1]!));
       res.writeHead(200, {
         ...security,
         "content-type": type,

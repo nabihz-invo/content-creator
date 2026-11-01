@@ -36,6 +36,7 @@ import {
 } from "@/lib/queries";
 import { cn } from "@/lib/utils";
 import type { ContentProject } from "@/types/db";
+import { ImageLightbox } from "@/components/ImageLightbox";
 import { CreativePromptPanel } from "../CreativePromptPanel";
 import { SandboxedPreview } from "./SandboxedPreview";
 
@@ -65,7 +66,9 @@ export function CreativePanel({ project }: { project: ContentProject }) {
   const creatives = useCreativeVersions(project.id, WORKING_STATUSES.has(project.status));
   const approvals = useApprovals(project.id);
   const [selected, setSelected] = useState<string | null>(null);
-  const [frame, setFrame] = useState<string>(""); // "" | "?slide=N" | "?t=X"
+  // Language version shown in the live preview (studio pages: ?lang=en|ar); null = the first one.
+  const [lang, setLang] = useState<"en" | "ar" | null>(null);
+  const [open, setOpen] = useState<number | null>(null); // still shown full size
   const [reload, setReload] = useState(0);
   const [dialog, setDialog] = useState<null | "changes" | "fresh">(null);
   const [comment, setComment] = useState("");
@@ -80,6 +83,17 @@ export function CreativePanel({ project }: { project: ContentProject }) {
     queryFn: () => api.previewUrl(current!.id),
   });
   const thumbs = useSignedUrls((cfg.thumbnails ?? []).map((th) => th.path));
+  // Studio stills are named per language version (slide-01_EN, slide-01_AR).
+  const stills = cfg.thumbnails ?? [];
+  const langOf = (name: string) =>
+    /_(EN|AR)$/i.exec(name)?.[1]?.toLowerCase() as "en" | "ar" | undefined;
+  const langs = [...new Set(stills.map((th) => langOf(th.name)).filter((l) => !!l))] as (
+    "en" | "ar"
+  )[];
+  const stillGroups = [...new Set(stills.map((th) => langOf(th.name) ?? null))].map((l) => ({
+    lang: l,
+    items: stills.map((th, i) => ({ th, i })).filter(({ th }) => (langOf(th.name) ?? null) === l),
+  }));
   const actionable = current?.status === "in_review" && project.status === "creative_in_review";
 
   const decide = useMutation({
@@ -149,143 +163,143 @@ export function CreativePanel({ project }: { project: ContentProject }) {
 
       {current && (
         <>
-          <div className="flex flex-wrap items-center gap-2">
-            {list.map((c) => (
-              <button
-                key={c.id}
-                type="button"
-                onClick={() => {
-                  setSelected(c.id);
-                  setFrame("");
-                }}
-                className={cn(
-                  "flex items-center gap-2 rounded-full border px-3 py-1 text-sm transition hover:border-primary/40",
-                  c.id === current.id && "border-primary bg-primary/5",
-                )}
-              >
-                {t("creative.version", { n: c.version })}
-                <Badge variant={VARIANT[c.status]}>
-                  {t(`creative.status.${c.status}` as MessageKey)}
-                </Badge>
-              </button>
-            ))}
-          </div>
-
-          <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_18rem]">
-            <Card>
-              <CardHeader className="flex-row flex-wrap items-start justify-between gap-3">
-                <div>
+          <Card>
+            <CardHeader className="flex-row flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
                   <CardTitle className="text-base">{t("creative.preview")}</CardTitle>
-                  <CardDescription className="flex items-center gap-1.5">
-                    <ShieldCheck className="size-3.5" />
-                    {t("creative.previewNote")}
-                  </CardDescription>
-                </div>
-                {actionable && (
-                  <div className="flex flex-wrap gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setDialog("fresh")}>
-                      <Shuffle />
-                      {t("creative.newDirection")}
-                    </Button>
-                    <Button variant="outline" size="sm" onClick={() => setDialog("changes")}>
-                      <MessageSquareWarning />
-                      {t("creative.requestChanges")}
-                    </Button>
-                    <Button
-                      size="sm"
-                      onClick={() => decide.mutate({ decision: "approved" })}
-                      disabled={decide.isPending}
+                  {/* Versions sit with the title, so they don't push the page down. */}
+                  {list.map((c) => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      aria-pressed={c.id === current.id}
+                      onClick={() => {
+                        setSelected(c.id);
+                        setLang(null);
+                      }}
+                      className={cn(
+                        "flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs transition hover:border-primary/40",
+                        c.id === current.id && "border-primary bg-primary/5",
+                      )}
                     >
-                      {decide.isPending ? <Loader2 className="animate-spin" /> : <CheckCircle2 />}
-                      {t("creative.approve")}
-                    </Button>
-                  </div>
-                )}
-              </CardHeader>
-              <CardContent className="flex flex-col gap-3">
-                {cfg.format === "carousel" && (cfg.thumbnails?.length ?? 0) > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {cfg.thumbnails!.map((th, i) => (
-                      <Button
-                        key={th.name}
-                        size="sm"
-                        variant={frame === th.query || (!frame && i === 0) ? "default" : "outline"}
-                        onClick={() => setFrame(th.query)}
-                      >
-                        {t("creative.slide", { n: i + 1 })}
-                      </Button>
-                    ))}
-                  </div>
-                )}
-                {cfg.format === "video" && (
+                      {t("creative.version", { n: c.version })}
+                      <Badge variant={VARIANT[c.status]} className="px-1.5 py-0 text-[10px]">
+                        {t(`creative.status.${c.status}` as MessageKey)}
+                      </Badge>
+                    </button>
+                  ))}
+                </div>
+                <CardDescription className="mt-1 flex items-center gap-1.5">
+                  <ShieldCheck className="size-3.5" />
+                  {t("creative.previewNote")}
+                </CardDescription>
+              </div>
+              {actionable && (
+                <div className="flex flex-wrap gap-2">
+                  <Button variant="outline" size="sm" onClick={() => setDialog("fresh")}>
+                    <Shuffle />
+                    {t("creative.newDirection")}
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setDialog("changes")}>
+                    <MessageSquareWarning />
+                    {t("creative.requestChanges")}
+                  </Button>
                   <Button
                     size="sm"
-                    variant="outline"
-                    className="w-fit"
-                    onClick={() => setReload((r) => r + 1)}
+                    onClick={() => decide.mutate({ decision: "approved" })}
+                    disabled={decide.isPending}
                   >
-                    <RotateCcw />
-                    {t("creative.replay")}
+                    {decide.isPending ? <Loader2 className="animate-spin" /> : <CheckCircle2 />}
+                    {t("creative.approve")}
                   </Button>
-                )}
-                {preview.isError ? (
-                  <p className="text-sm text-destructive">{t("creative.previewError")}</p>
-                ) : preview.data && cfg.width && cfg.height ? (
-                  <SandboxedPreview
-                    key={`${current.id}-${reload}`}
-                    src={`${preview.data.url}${frame}`}
-                    width={cfg.width}
-                    height={cfg.height}
-                    title={t("creative.version", { n: current.version })}
-                  />
-                ) : (
-                  <div className="flex h-64 items-center justify-center">
-                    <Loader2 className="size-5 animate-spin text-muted-foreground" />
+                </div>
+              )}
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              {langs.length > 1 && (
+                <div className="flex gap-1" role="group" aria-label={t("project.language")}>
+                  {langs.map((l) => (
+                    <Button
+                      key={l}
+                      size="sm"
+                      variant={(lang ?? langs[0]) === l ? "secondary" : "ghost"}
+                      aria-pressed={(lang ?? langs[0]) === l}
+                      onClick={() => setLang(l)}
+                    >
+                      {t(`imported.lang.${l}`)}
+                    </Button>
+                  ))}
+                </div>
+              )}
+              {cfg.format === "video" && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-fit"
+                  onClick={() => setReload((r) => r + 1)}
+                >
+                  <RotateCcw />
+                  {t("creative.replay")}
+                </Button>
+              )}
+              {preview.isError ? (
+                <p className="text-sm text-destructive">{t("creative.previewError")}</p>
+              ) : preview.data && cfg.width && cfg.height ? (
+                <SandboxedPreview
+                  key={`${current.id}-${reload}-${lang ?? ""}`}
+                  src={`${preview.data.url}${langs.length ? `?lang=${lang ?? langs[0]}` : ""}`}
+                  width={cfg.width}
+                  height={cfg.height}
+                  title={t("creative.version", { n: current.version })}
+                />
+              ) : (
+                <div className="flex h-64 items-center justify-center">
+                  <Loader2 className="size-5 animate-spin text-muted-foreground" />
+                </div>
+              )}
+              {stills.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <div className="text-xs font-medium text-muted-foreground">
+                    {t("creative.stills")} · {t("creative.stillsHint")}
                   </div>
-                )}
-                {(cfg.thumbnails?.length ?? 0) > 0 && (
-                  <div>
-                    <div className="mb-2 text-xs font-medium text-muted-foreground">
-                      {t("creative.stills")}
+                  {stillGroups.map((g) => (
+                    <div key={g.lang ?? "all"} className="flex items-center gap-2">
+                      {g.lang && (
+                        <Badge variant="outline" className="w-8 shrink-0 justify-center">
+                          {g.lang.toUpperCase()}
+                        </Badge>
+                      )}
+                      <div className="flex gap-2 overflow-x-auto pb-1">
+                        {g.items.map(({ th, i }) => (
+                          <button
+                            key={th.name}
+                            type="button"
+                            onClick={() => setOpen(i)}
+                            className="shrink-0 cursor-zoom-in overflow-hidden rounded-md border-2 border-transparent transition hover:border-primary/40 focus-visible:border-primary focus-visible:outline-none"
+                            aria-label={t("finished.view", { file: th.name })}
+                          >
+                            {thumbs.data?.[th.path] ? (
+                              <img
+                                src={thumbs.data[th.path]}
+                                alt={th.name}
+                                className="h-28 w-auto"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="h-28 w-20 animate-pulse bg-muted" />
+                            )}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex gap-2 overflow-x-auto pb-1">
-                      {cfg.thumbnails!.map((th) => (
-                        <button
-                          key={th.name}
-                          type="button"
-                          onClick={() => setFrame(th.query)}
-                          className={cn(
-                            "shrink-0 overflow-hidden rounded-md border-2 transition",
-                            frame === th.query
-                              ? "border-primary"
-                              : "border-transparent hover:border-primary/40",
-                          )}
-                          aria-label={th.name}
-                        >
-                          {thumbs.data?.[th.path] ? (
-                            <img
-                              src={thumbs.data[th.path]}
-                              alt={th.name}
-                              className="h-28 w-auto"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="h-28 w-20 animate-pulse bg-muted" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                  ))}
+                </div>
+              )}
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">{t("creative.details")}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-3 text-sm">
-                <div className="flex flex-wrap gap-2">
+              {/* What this version is and how it was made (was a second "Details" card). */}
+              <div className="flex flex-col gap-2 border-t pt-3 text-sm">
+                <div className="flex flex-wrap items-center gap-2">
                   {cfg.format && (
                     <Badge variant="info">{t(`contentType.${cfg.format}` as MessageKey)}</Badge>
                   )}
@@ -296,22 +310,17 @@ export function CreativePanel({ project }: { project: ContentProject }) {
                   )}
                   {cfg.duration_s && <Badge variant="secondary">{cfg.duration_s}s</Badge>}
                   {cfg.style && <Badge variant="outline">{cfg.style}</Badge>}
-                </div>
-                <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2">
-                  <dt className="text-muted-foreground">{t("creative.generator")}</dt>
-                  <dd>
+                  <span className="text-xs text-muted-foreground">
                     {current.generator
                       ? t(`creative.generator.${current.generator}` as MessageKey)
                       : "—"}
-                    {cfg.generator?.cost_usd != null && (
-                      <span className="text-muted-foreground">
-                        {" "}
-                        · ${cfg.generator.cost_usd.toFixed(2)}
-                      </span>
-                    )}
-                  </dd>
-                  <dt className="text-muted-foreground">{t("creative.commit")}</dt>
-                  <dd className="flex items-center gap-1 font-mono text-xs" dir="ltr">
+                    {" · "}
+                    {formatRelative(current.created_at, locale)}
+                  </span>
+                  <span
+                    className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground"
+                    dir="ltr"
+                  >
                     <GitCommit className="size-3.5" />
                     {commitUrl(current.repository_url, current.commit_sha) ? (
                       <a
@@ -325,17 +334,15 @@ export function CreativePanel({ project }: { project: ContentProject }) {
                     ) : (
                       <span data-testid="commit-sha">{current.commit_sha?.slice(0, 10)}</span>
                     )}
-                  </dd>
-                  <dt className="text-muted-foreground">{t("project.submitted")}</dt>
-                  <dd>{formatRelative(current.created_at, locale)}</dd>
-                </dl>
-                {cfg.checks?.ok && (
-                  <div className="flex items-center gap-1.5 text-success">
-                    <ShieldCheck className="size-4" />
-                    {t("creative.checksPassed")} ·{" "}
-                    {t("creative.files", { n: cfg.files?.length ?? cfg.checks.files })}
-                  </div>
-                )}
+                  </span>
+                  {cfg.checks?.ok && (
+                    <span className="inline-flex items-center gap-1 text-xs text-success">
+                      <ShieldCheck className="size-3.5" />
+                      {t("creative.checksPassed")} ·{" "}
+                      {t("creative.files", { n: cfg.files?.length ?? cfg.checks.files })}
+                    </span>
+                  )}
+                </div>
                 {cfg.base_version && (
                   <div className="text-muted-foreground">
                     {t("creative.basedOn", { n: cfg.base_version })}
@@ -373,9 +380,15 @@ export function CreativePanel({ project }: { project: ContentProject }) {
                       )}
                     </div>
                   ))}
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
+          <ImageLightbox
+            items={stills.map((th) => ({ src: thumbs.data?.[th.path] ?? "", title: th.name }))}
+            index={open}
+            onIndex={setOpen}
+            onClose={() => setOpen(null)}
+          />
         </>
       )}
 

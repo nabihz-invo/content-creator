@@ -604,6 +604,7 @@ export const en = {
   "finished.next": "Next",
   "finished.openNew": "Open in new tab",
   "finished.caption": "Caption",
+  "creative.stillsHint": "click one to see it full size",
   "project.publishDate": "Publish on",
   "project.publishDateSaved": "Publish date saved",
   "project.status": "Status",

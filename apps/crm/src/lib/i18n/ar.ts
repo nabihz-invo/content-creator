@@ -598,6 +598,7 @@ export const ar: Record<MessageKey, string> = {
   "finished.next": "التالي",
   "finished.openNew": "افتح في تبويب جديد",
   "finished.caption": "النص المرافق",
+  "creative.stillsHint": "اضغط على واحدة لتراها بالحجم الكامل",
   "project.publishDate": "تاريخ النشر",
   "project.publishDateSaved": "تم حفظ تاريخ النشر",
   "project.status": "الحالة",
