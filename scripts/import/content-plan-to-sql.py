@@ -13,8 +13,11 @@ channel uses (P4-T10).
 - Content already posted is closed later from the CRM (Idea tab → "Mark as
   published" with the post's link).
 
-Usage (needs openpyxl):
-  python3 -I scripts/import/content-plan-to-sql.py <workbook.xlsx> <out.sql> [--email you@example.com] [--brand Stacko]
+A plan can also be given as JSON (same column names as the workbook sheets):
+  { "workbook_key": "stacko-december-2026", "source_file": "…", "content": [ {row}… ], "backlog": [ {row}… ] }
+
+Usage (needs openpyxl for .xlsx):
+  python3 -I scripts/import/content-plan-to-sql.py <workbook.xlsx|plan.json> <out.sql> [--email you@example.com] [--brand Stacko]
 """
 import argparse
 import datetime as dt
@@ -25,7 +28,6 @@ import sys
 import unicodedata
 from pathlib import Path
 
-import openpyxl
 
 WORKBOOK_KEY = "stacko-content-studio"
 MAX_IDEA = 19_000
@@ -93,7 +95,7 @@ def compose(parts: list[tuple[str, str | None]]) -> str:
     return text[:MAX_IDEA]
 
 
-def content_record(r: dict, source_file: str) -> dict:
+def content_record(r: dict, source_file: str, workbook_key: str = WORKBOOK_KEY) -> dict:
     pid = r["ID"]
     fmt = r.get("Format")
     head = f"[{pid}] {r.get('Title', '')}\n" + " · ".join(
@@ -115,7 +117,7 @@ def content_record(r: dict, source_file: str) -> dict:
     month = (r.get("Publish date") or "")[:7]
     tags = ["content-plan", f"plan-{month}" if month else None, format_tag(fmt), slug(r.get("Pillar") or "") or None]
     return {
-        "source_key": f"content-plan:{WORKBOOK_KEY}:{pid}",
+        "source_key": f"content-plan:{workbook_key}:{pid}",
         "dedupe_hash": dedupe_hash(idea),
         "tags": [t for t in dict.fromkeys(tags) if t],
         "record": {
@@ -140,7 +142,7 @@ def content_record(r: dict, source_file: str) -> dict:
     }
 
 
-def backlog_record(r: dict, source_file: str) -> dict:
+def backlog_record(r: dict, source_file: str, workbook_key: str = WORKBOOK_KEY) -> dict:
     pid = r["ID"]
     fmt = r.get("Content type")
     head = f"[{pid}] {r.get('Title', '')}\n" + " · ".join(
@@ -160,7 +162,7 @@ def backlog_record(r: dict, source_file: str) -> dict:
     batch = re.match(r"Batch (\d+)", r.get("Batch") or "")
     tags = ["content-plan", "backlog", f"backlog-batch-{batch.group(1)}" if batch else None, format_tag(fmt), slug(r.get("Pillar") or "") or None]
     return {
-        "source_key": f"content-plan:{WORKBOOK_KEY}:{pid}",
+        "source_key": f"content-plan:{workbook_key}:{pid}",
         "dedupe_hash": dedupe_hash(idea),
         "tags": [t for t in dict.fromkeys(tags) if t],
         "record": {
@@ -179,6 +181,7 @@ def backlog_record(r: dict, source_file: str) -> dict:
                 "publish_date": None,
                 "format": fmt,
                 "overlaps_with": r.get("Overlaps with"),
+                "target_month": r.get("Target month"),
                 "content_plan": r,
             },
         },
@@ -280,11 +283,20 @@ def main() -> int:
     ap.add_argument("--brand", default="Stacko")
     args = ap.parse_args()
 
-    wb = openpyxl.load_workbook(args.workbook, data_only=True, read_only=True)
-    source_file = Path(args.workbook).name
-    source_file = re.sub(r"^[0-9a-f]{8}-", "", source_file)  # drop upload prefixes
-    content = [content_record(r, source_file) for r in sheet_rows(wb["Content"], 2)]
-    backlog = [backlog_record(r, source_file) for r in sheet_rows(wb["Backlog"], 1)] if "Backlog" in wb.sheetnames else []
+    if args.workbook.endswith(".json"):
+        plan = json.loads(Path(args.workbook).read_text(encoding="utf-8"))
+        source_file, key = plan["source_file"], plan["workbook_key"]
+        rows_of = lambda name: [{k: clean(v) for k, v in r.items() if clean(v) is not None} for r in plan.get(name, [])]
+        content = [content_record(r, source_file, key) for r in rows_of("content")]
+        backlog = [backlog_record(r, source_file, key) for r in rows_of("backlog")]
+    else:
+        import openpyxl
+
+        wb = openpyxl.load_workbook(args.workbook, data_only=True, read_only=True)
+        source_file = Path(args.workbook).name
+        source_file = re.sub(r"^[0-9a-f]{8}-", "", source_file)  # drop upload prefixes
+        content = [content_record(r, source_file) for r in sheet_rows(wb["Content"], 2)]
+        backlog = [backlog_record(r, source_file) for r in sheet_rows(wb["Backlog"], 1)] if "Backlog" in wb.sheetnames else []
     rows = content + backlog
     ids = [r["record"]["source_metadata"]["plan_id"] for r in rows]
     if len(ids) != len(set(ids)):

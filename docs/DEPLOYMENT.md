@@ -110,6 +110,8 @@ pip install openpyxl
 python3 -I scripts/import/content-plan-to-sql.py plan.xlsx plan.sql --email you@example.com --brand Stacko
 ```
 
+A plan written outside the workbook can be given as JSON instead (`{ "workbook_key", "source_file", "content": [rows], "backlog": [rows] }`, same column names as the sheets); use a new `workbook_key` per plan so IDs never collide.
+
 Run `plan.sql` in the Supabase SQL editor. Each planned post and backlog idea
 becomes a project (status `new`, tag `content-plan`, full row kept); running
 it again creates nothing new. Posts already live: open the project → Idea tab
