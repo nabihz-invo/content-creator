@@ -15,7 +15,6 @@ import { useI18n } from "@/lib/i18n";
 import { useImportedMedia } from "@/lib/queries";
 import { useWorkspace } from "@/lib/workspace";
 import type { ContentProject } from "@/types/db";
-import { FinishedMedia } from "./FinishedMedia";
 
 type LinkLanguage = "en" | "ar" | "both";
 
@@ -86,7 +85,9 @@ export function ImportedContentCard({ project }: { project: ContentProject }) {
   });
   if (meta.origin !== "content_plan_import") return null;
   const canLink =
-    can("edit") && (project.status === "new" || project.status === "published") && open.length > 0;
+    can("edit") &&
+    ["new", "ready_to_publish", "published"].includes(project.status) &&
+    open.length > 0;
 
   return (
     <Card data-testid="imported-card">
@@ -134,7 +135,7 @@ export function ImportedContentCard({ project }: { project: ContentProject }) {
         ))}
 
         {canLink && (
-          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_10rem_auto] sm:items-end">
+          <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-1.5">
               <Label htmlFor="imported-url">{t("imported.url")}</Label>
               <Input
@@ -155,13 +156,6 @@ export function ImportedContentCard({ project }: { project: ContentProject }) {
                 onChange={(e) => setDate(e.target.value)}
               />
             </div>
-            <Button
-              onClick={() => mark.mutate()}
-              disabled={!/^https:\/\/\S+$/.test(url.trim()) || mark.isPending}
-            >
-              <Send />
-              {t("imported.markPublished")}
-            </Button>
             {versions.length > 1 && (
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="imported-lang">{t("imported.linkFor")}</Label>
@@ -179,16 +173,21 @@ export function ImportedContentCard({ project }: { project: ContentProject }) {
               </div>
             )}
             {hasStored && (
-              <label className="flex items-center gap-2 text-xs sm:col-span-2 sm:self-end">
+              <label className="flex items-center gap-2 text-xs">
                 <Checkbox checked={release} onCheckedChange={(v) => setRelease(v === true)} />
                 {t("imported.releaseOnLink")}
               </label>
             )}
-            <p className="text-xs text-muted-foreground sm:col-span-3">{t("imported.hint")}</p>
+            <Button
+              onClick={() => mark.mutate()}
+              disabled={!/^https:\/\/\S+$/.test(url.trim()) || mark.isPending}
+            >
+              <Send />
+              {t("imported.markPublished")}
+            </Button>
+            <p className="text-xs text-muted-foreground">{t("imported.hint")}</p>
           </div>
         )}
-
-        <FinishedMedia project={project} media={media.data ?? []} links={links} />
       </CardContent>
     </Card>
   );

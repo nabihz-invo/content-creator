@@ -595,6 +595,13 @@ export const ar: Record<MessageKey, string> = {
   "finished.prev": "السابق",
   "finished.next": "التالي",
   "finished.openNew": "افتح في تبويب جديد",
+  "finished.caption": "النص المرافق",
+  "project.publishDate": "تاريخ النشر",
+  "project.publishDateSaved": "تم حفظ تاريخ النشر",
+  "project.status": "الحالة",
+  "project.tags": "الوسوم",
+  "project.importedSideHint":
+    "هذا المنشور مستورد من خطة المحتوى: ملفاته النهائية ومراجعته ورابطه المباشر في البطاقات على اليمين.",
   "review.waiting": "بانتظار المراجعة",
   "review.approved": "معتمد",
   "review.changesRequested": "مطلوب تعديلات",

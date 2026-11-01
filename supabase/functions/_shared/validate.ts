@@ -17,6 +17,7 @@ import markImportedPublished from "./vendor/schemas/api/mark-imported-published.
 import releaseImportedMedia from "./vendor/schemas/api/release-imported-media.request.schema.json" with { type: "json" };
 import importedReview from "./vendor/schemas/api/imported-review.request.schema.json" with { type: "json" };
 import discardImported from "./vendor/schemas/api/discard-imported.request.schema.json" with { type: "json" };
+import publishDate from "./vendor/schemas/api/publish-date.request.schema.json" with { type: "json" };
 
 // deno-lint-ignore no-explicit-any
 // anyOf-with-required ("idea or url") references properties declared at the top level.
@@ -44,6 +45,7 @@ const schemas = {
   releaseImportedMedia,
   importedReview,
   discardImported,
+  publishDate,
 } as const;
 export type SchemaName = keyof typeof schemas;
 

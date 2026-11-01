@@ -601,6 +601,13 @@ export const en = {
   "finished.prev": "Previous",
   "finished.next": "Next",
   "finished.openNew": "Open in new tab",
+  "finished.caption": "Caption",
+  "project.publishDate": "Publish on",
+  "project.publishDateSaved": "Publish date saved",
+  "project.status": "Status",
+  "project.tags": "Tags",
+  "project.importedSideHint":
+    "This post was imported from your content plan: its finished files, review and live link are in the cards on the right.",
   "review.waiting": "Waiting for review",
   "review.approved": "Approved",
   "review.changesRequested": "Changes requested",

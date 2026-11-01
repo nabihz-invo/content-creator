@@ -54,6 +54,8 @@ export function createApp(deps: Deps) {
       origin: (origin) => (deps.config.allowedOrigins.includes(origin) ? origin : null),
       allowHeaders: ["authorization", "content-type", "idempotency-key", "x-client-info", "apikey"],
       allowMethods: ["GET", "POST", "DELETE", "OPTIONS"],
+      // Lets the CRM name downloads after the server's file name instead of "post.zip".
+      exposeHeaders: ["content-disposition"],
       maxAge: 600,
     }),
   );

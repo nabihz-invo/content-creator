@@ -1,6 +1,6 @@
 import { STAGES, type Stage } from "@cc/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, Check, Copy, ExternalLink, Pencil, Sparkles, X } from "lucide-react";
+import { ArrowLeft, Check, Copy, ExternalLink, History, Pencil, Sparkles, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { toast } from "sonner";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { formatDateTime, formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import type { MessageKey } from "@/lib/i18n/en";
@@ -24,20 +24,21 @@ import { BriefPanel } from "./BriefPanel";
 import { ConfigPanel } from "./config/ConfigPanel";
 import { CreativePanel } from "./creative/CreativePanel";
 import { eventLabel } from "./event-label";
+import { FinishedMedia } from "./FinishedMedia";
 import { ImportedContentCard } from "./ImportedContentCard";
 import { MediaPanel } from "./media/MediaPanel";
 import { PublishingPanel } from "./publishing/PublishingPanel";
 import { ScriptPanel } from "./script/ScriptPanel";
 
 /** Pipeline steps shown in the stepper (review stages are folded into their producer). */
-const STEPS: { stage: Stage; label: MessageKey }[] = [
-  { stage: "intake", label: "project.tab.idea" },
-  { stage: "questionnaire", label: "project.tab.configuration" },
-  { stage: "brief", label: "project.tab.brief" },
-  { stage: "script", label: "project.tab.scripts" },
-  { stage: "creative", label: "project.tab.creative" },
-  { stage: "render", label: "project.tab.media" },
-  { stage: "publish", label: "project.tab.publishing" },
+const STEPS: { stage: Stage; label: MessageKey; tab: string }[] = [
+  { stage: "intake", label: "project.tab.idea", tab: "idea" },
+  { stage: "questionnaire", label: "project.tab.configuration", tab: "configuration" },
+  { stage: "brief", label: "project.tab.brief", tab: "brief" },
+  { stage: "script", label: "project.tab.scripts", tab: "script" },
+  { stage: "creative", label: "project.tab.creative", tab: "creative" },
+  { stage: "render", label: "project.tab.media", tab: "media" },
+  { stage: "publish", label: "project.tab.publishing", tab: "publishing" },
 ];
 const stepIndex = (stage: Stage) => {
   const order = STAGES.indexOf(stage);
@@ -106,6 +107,8 @@ export function ProjectDetailPage() {
 
   const current = stepIndex(p.current_stage);
   const extracted = p.source_metadata?.extracted;
+  const imported = p.source_metadata.origin === "content_plan_import";
+  const shown = tab ?? tabFor(p.status);
 
   return (
     <>
@@ -119,27 +122,6 @@ export function ProjectDetailPage() {
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 flex-1">
           <EditableTitle projectId={p.id} title={p.title} editable={can("edit")} />
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <StatusBadge status={p.status} />
-            <span>{t(`source.${p.input_source}`)}</span>
-            <span>·</span>
-            <span title={formatDateTime(p.submitted_at, locale)}>
-              {formatRelative(p.submitted_at, locale)}
-            </span>
-            {p.brands && (
-              <>
-                <span>·</span>
-                <Link to={`/brands/${p.brands.id}`} className="hover:underline">
-                  {p.brands.name}
-                </Link>
-              </>
-            )}
-            {p.project_tags.map(({ tags: tag }) => (
-              <Badge key={tag.id} variant="secondary">
-                #{tag.name}
-              </Badge>
-            ))}
-          </div>
         </div>
         {/* Imported posts with finished files are reviewed as they are (FinishedMedia), not regenerated. */}
         {p.status === "new" && can("edit") && !p.source_metadata.finished && (
@@ -147,25 +129,31 @@ export function ProjectDetailPage() {
         )}
       </div>
 
-      {/* Pipeline stepper */}
+      {/* The pipeline steps are the page's tabs: progress and navigation in one place. */}
       <nav aria-label={t("project.pipeline")} className="mb-6 overflow-x-auto">
-        <ol className="flex min-w-max items-center gap-1">
+        <ol className="flex min-w-max items-center gap-1" role="tablist">
           {STEPS.map((s, i) => {
             const done = i < current || p.status === "published";
             const active = i === current && p.status !== "published";
+            const selected = shown === s.tab;
             return (
               <li key={s.stage} className="flex items-center gap-1">
-                <span
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  aria-current={active ? "step" : undefined}
+                  onClick={() => setTab(s.tab)}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium",
+                    "flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
                     done && "border-success/40 bg-success/10 text-success",
                     active &&
                       (p.status === "failed"
                         ? "border-destructive/50 bg-destructive/10 text-destructive"
                         : "border-primary/50 bg-primary/10 text-primary"),
                     !done && !active && "text-muted-foreground",
+                    selected && "ring-2 ring-ring ring-offset-1 ring-offset-background",
                   )}
-                  aria-current={active ? "step" : undefined}
                 >
                   {done ? (
                     <Check className="size-3" />
@@ -173,31 +161,32 @@ export function ProjectDetailPage() {
                     <span className="tabular-nums">{i + 1}</span>
                   )}
                   {t(s.label)}
-                </span>
-                {i < STEPS.length - 1 && (
-                  <span className={cn("h-px w-4", done ? "bg-success/50" : "bg-border")} />
-                )}
+                </button>
+                <span className={cn("h-px w-4", done ? "bg-success/50" : "bg-border")} />
               </li>
             );
           })}
+          <li>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={shown === "history"}
+              onClick={() => setTab("history")}
+              className={cn(
+                "flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+                shown === "history" && "ring-2 ring-ring ring-offset-1 ring-offset-background",
+              )}
+            >
+              <History className="size-3" />
+              {t("project.tab.history")}
+            </button>
+          </li>
         </ol>
       </nav>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
-        <Tabs value={tab ?? tabFor(p.status)} onValueChange={setTab} dir={dir}>
-          <TabsList>
-            <TabsTrigger value="idea">{t("project.tab.idea")}</TabsTrigger>
-            <TabsTrigger value="configuration">{t("project.tab.configuration")}</TabsTrigger>
-            <TabsTrigger value="brief">{t("project.tab.brief")}</TabsTrigger>
-            <TabsTrigger value="script">{t("project.tab.scripts")}</TabsTrigger>
-            <TabsTrigger value="creative">{t("project.tab.creative")}</TabsTrigger>
-            <TabsTrigger value="media">{t("project.tab.media")}</TabsTrigger>
-            <TabsTrigger value="publishing">{t("project.tab.publishing")}</TabsTrigger>
-            <TabsTrigger value="history">{t("project.tab.history")}</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="idea" className="flex flex-col gap-4">
-            <ImportedContentCard project={p} />
+      <div className="grid gap-6 lg:grid-cols-[1fr_24rem]">
+        <Tabs value={shown} onValueChange={setTab} dir={dir}>
+          <TabsContent value="idea" className="mt-0 flex flex-col gap-4">
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">{t("project.originalIdea")}</CardTitle>
@@ -272,15 +261,16 @@ export function ProjectDetailPage() {
           </TabsContent>
 
           <TabsContent value="media">
-            {p.source_metadata.origin === "content_plan_import" ? (
-              <ImportedContentCard project={p} />
+            {/* Finished files of an imported post are in the card on the right. */}
+            {imported && p.source_metadata.finished ? (
+              <p className="text-sm text-muted-foreground">{t("project.importedSideHint")}</p>
             ) : (
               <MediaPanel project={p} />
             )}
           </TabsContent>
           <TabsContent value="publishing">
-            {p.source_metadata.published ? (
-              <ImportedContentCard project={p} />
+            {imported && p.status !== "ready_to_publish" ? (
+              <p className="text-sm text-muted-foreground">{t("project.importedSideHint")}</p>
             ) : (
               <PublishingPanel project={p} />
             )}
@@ -324,26 +314,61 @@ export function ProjectDetailPage() {
           </TabsContent>
         </Tabs>
 
-        <aside className="flex flex-col gap-4">
+        <aside className="flex min-w-0 flex-col gap-4">
           <Card>
             <CardHeader>
               <CardTitle className="text-base">{t("project.details")}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
+            <CardContent className="flex flex-col gap-3">
+              <dl className="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-2 text-sm">
+                <dt className="text-muted-foreground">{t("project.status")}</dt>
+                <dd>
+                  <StatusBadge status={p.status} />
+                </dd>
                 <dt className="text-muted-foreground">{t("project.stage")}</dt>
                 <dd>{t(STEPS[current]!.label)}</dd>
+                <dt className="text-muted-foreground">{t("project.publishDate")}</dt>
+                <dd>
+                  <PublishDateField
+                    projectId={p.id}
+                    value={p.source_metadata.publish_date?.slice(0, 10) ?? ""}
+                    editable={can("edit")}
+                  />
+                </dd>
                 <dt className="text-muted-foreground">{t("project.brand")}</dt>
-                <dd>{p.brands?.name ?? t("project.noBrand")}</dd>
+                <dd>
+                  {p.brands ? (
+                    <Link to={`/brands/${p.brands.id}`} className="hover:underline">
+                      {p.brands.name}
+                    </Link>
+                  ) : (
+                    t("project.noBrand")
+                  )}
+                </dd>
                 <dt className="text-muted-foreground">{t("project.format")}</dt>
                 <dd>{p.content_type ? t(`contentType.${p.content_type}`) : "—"}</dd>
                 <dt className="text-muted-foreground">{t("project.language")}</dt>
                 <dd>{p.language ?? "—"}</dd>
+                <dt className="text-muted-foreground">{t("project.source")}</dt>
+                <dd>{t(`source.${p.input_source}`)}</dd>
                 <dt className="text-muted-foreground">{t("project.submitted")}</dt>
-                <dd>{formatDateTime(p.submitted_at, locale)}</dd>
+                <dd title={formatDateTime(p.submitted_at, locale)}>
+                  {formatRelative(p.submitted_at, locale)}
+                </dd>
               </dl>
+              {p.project_tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5" aria-label={t("project.tags")}>
+                  {p.project_tags.map(({ tags: tag }) => (
+                    <Badge key={tag.id} variant="secondary">
+                      #{tag.name}
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
+          {imported && <FinishedMedia project={p} />}
+          <ImportedContentCard project={p} />
           <Card>
             <CardHeader>
               <CardTitle className="text-base">{t("project.jobs")}</CardTitle>
@@ -378,6 +403,44 @@ export function ProjectDetailPage() {
         </aside>
       </div>
     </>
+  );
+}
+
+/** The planned publish day; saved when it changes. Downloads are named with it. */
+function PublishDateField({
+  projectId,
+  value,
+  editable,
+}: {
+  projectId: string;
+  value: string;
+  editable: boolean;
+}) {
+  const { t } = useI18n();
+  const qc = useQueryClient();
+  const save = useMutation({
+    mutationFn: (date: string) => api.setPublishDate(projectId, date || null),
+    onSuccess: () => {
+      toast.success(t("project.publishDateSaved"));
+      for (const key of ["project", "project-events", "projects"])
+        void qc.invalidateQueries({ queryKey: [key] });
+    },
+    onError: (e) => toast.error(e.message),
+  });
+  if (!editable) return <span dir="ltr">{value || "—"}</span>;
+  return (
+    <Input
+      type="date"
+      dir="ltr"
+      aria-label={t("project.publishDate")}
+      className="h-8 w-auto"
+      defaultValue={value}
+      key={value}
+      disabled={save.isPending}
+      onChange={(e) => {
+        if (e.target.value !== value) save.mutate(e.target.value);
+      }}
+    />
   );
 }
 

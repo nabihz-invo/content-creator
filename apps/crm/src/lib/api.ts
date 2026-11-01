@@ -244,6 +244,12 @@ export const api = {
       json: { reason },
     }),
 
+  /** Planned publish day (YYYY-MM-DD, or null to clear); downloads are named with it. */
+  setPublishDate: (projectId: string, date: string | null) =>
+    apiRequest<{ publish_date: string | null }>(`/content-projects/${projectId}/publish-date`, {
+      json: { date },
+    }),
+
   retryJob: (jobId: string) =>
     apiRequest<{ job_id: string; status: string }>(`/jobs/${jobId}/retry`, { json: {} }),
   cancelJob: (jobId: string) =>

@@ -17,6 +17,7 @@ import { type KeyboardEvent, useState } from "react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -28,29 +29,29 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { api, saveBlob } from "@/lib/api";
 import { useI18n } from "@/lib/i18n";
-import { useSignedUrls } from "@/lib/queries";
+import { useImportedMedia, useSignedUrls } from "@/lib/queries";
+import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 import type { ContentProject, ImportedMediaRow } from "@/types/db";
+import { liveLinks } from "./ImportedContentCard";
 
 const mb = (bytes: number) => (bytes / 1e6).toFixed(1);
 
 /**
- * The finished files of imported content, one group per language version (P5-T15). Stored files
- * show a thumbnail; released ones point at the live post instead. Editors can free the storage of
- * a live version and delete single files (the stored copy goes with the row).
+ * The finished files of imported content as a card (P5-T15/T17/T18): the review, then one language
+ * version at a time as a slider (click to open full size). Released files point at the live post.
+ * Editors free a version's storage once it is live (or approved and downloaded) and delete files.
  */
-export function FinishedMedia({
-  project,
-  media,
-  links,
-}: {
-  project: ContentProject;
-  media: ImportedMediaRow[];
-  links: [string, { url: string }][];
-}) {
+export function FinishedMedia({ project }: { project: ContentProject }) {
   const { t, dir } = useI18n();
   const { can } = useWorkspace();
   const qc = useQueryClient();
+  const imported = project.source_metadata.origin === "content_plan_import";
+  const media = useImportedMedia(imported ? project.id : undefined).data ?? [];
+  const links = liveLinks(project);
+  // undefined = the first language version
+  const [pick, setPick] = useState<string | null | undefined>(undefined);
+  const [index, setIndex] = useState(0);
   const [toDelete, setToDelete] = useState<ImportedMediaRow | null>(null);
   // The files open in the viewer: the stored files of one language version.
   const [viewing, setViewing] = useState<{ files: ImportedMediaRow[]; index: number } | null>(null);
@@ -103,155 +104,199 @@ export function FinishedMedia({
   const downloaded = (lang: "en" | "ar" | null) =>
     !!review?.downloaded?.all || (lang ? !!review?.downloaded?.[lang] : !!review?.downloaded?.en);
 
+  const group = groups.find((g) => g.lang === pick) ?? groups[0]!;
+  const lang = group.lang;
+  const files = group.files;
+  const i = Math.min(index, files.length - 1);
+  const f = files[i]!;
+  const stored = files.filter((x) => x.storage_path);
+  const src = f.storage_path ? urls.data?.[f.storage_path] : undefined;
+  const url = live(lang);
+  const canFree = stored.length > 0 && (!!url || (approved && downloaded(lang)));
+  const caption = lang ? captions?.[lang] : captions?.default;
+  const step = (by: number) => setIndex((i + by + files.length) % files.length);
+  const Prev = dir === "rtl" ? ChevronRight : ChevronLeft;
+  const Next = dir === "rtl" ? ChevronLeft : ChevronRight;
+
   return (
-    <div className="flex flex-col gap-4 border-t pt-4" data-testid="finished-media">
-      <h3 className="font-medium">{t("finished.title")}</h3>
-      <ImportedReview project={project} />
-      {groups.map(({ lang, files }) => {
-        const stored = files.filter((f) => f.storage_path);
-        const url = live(lang);
-        const canFree = stored.length > 0 && (!!url || (approved && downloaded(lang)));
-        const caption = lang ? captions?.[lang] : captions?.default;
-        return (
-          <section
-            key={lang ?? "all"}
-            className="flex flex-col gap-2"
-            data-testid={`finished-${lang ?? "all"}`}
-          >
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="outline">
-                {lang ? t(`imported.lang.${lang}`) : t("finished.allLanguages")}
-              </Badge>
-              <span className="text-xs text-muted-foreground">
-                {stored.length
-                  ? t("finished.stored", {
-                      n: stored.length,
-                      mb: mb(stored.reduce((s, f) => s + f.file_size, 0)),
-                    })
-                  : t("finished.allReleased")}
-              </span>
-              <div className="ms-auto flex flex-wrap gap-2">
-                {approved && stored.length > 0 && (
-                  <Button
-                    size="sm"
-                    variant={downloaded(lang) ? "outline" : "default"}
-                    disabled={download.isPending}
-                    onClick={() => download.mutate(lang ?? undefined)}
-                  >
-                    <Download />
-                    {t("finished.download")}
-                  </Button>
-                )}
-                {canFree && can("edit") && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    disabled={release.isPending}
-                    onClick={() => release.mutate(lang ?? undefined)}
-                  >
-                    <CloudOff />
-                    {t("finished.release")}
-                  </Button>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-              {files.map((f) => {
-                const src = f.storage_path ? urls.data?.[f.storage_path] : undefined;
-                return (
-                  <figure key={f.id} className="group relative flex flex-col gap-1">
-                    <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-md border bg-muted">
-                      {src ? (
-                        <button
-                          type="button"
-                          aria-label={t("finished.view", { file: f.file_name })}
-                          className="absolute inset-0 cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                          onClick={() => setViewing({ files: stored, index: stored.indexOf(f) })}
-                        >
-                          {f.mime_type.startsWith("image/") ? (
-                            <img
-                              src={src}
-                              alt={f.file_name}
-                              loading="lazy"
-                              className="size-full object-cover"
-                            />
-                          ) : f.mime_type.startsWith("video/") ? (
-                            <>
-                              <video
-                                src={`${src}#t=0.5`}
-                                muted
-                                playsInline
-                                preload="metadata"
-                                className="size-full object-cover"
-                              />
-                              <span className="absolute inset-0 flex items-center justify-center">
-                                <span className="rounded-full bg-black/55 p-2 text-white">
-                                  <Play className="size-4 fill-current" />
-                                </span>
-                              </span>
-                            </>
-                          ) : (
-                            <FileText className="mx-auto size-6 text-muted-foreground" />
-                          )}
-                        </button>
-                      ) : !f.storage_path && f.live_url ? (
-                        <a
-                          href={f.live_url}
-                          target="_blank"
-                          rel="noopener noreferrer nofollow"
-                          className="flex flex-col items-center gap-1 p-2 text-center text-xs text-primary hover:underline"
-                        >
-                          <ExternalLink className="size-4" />
-                          {t("finished.onSocial")}
-                        </a>
-                      ) : f.metadata.kept_locally ? (
-                        <span className="flex flex-col items-center gap-1 p-2 text-center text-xs text-muted-foreground">
-                          <HardDriveDownload className="size-4" />
-                          {t("finished.keptLocally")}
-                        </span>
-                      ) : f.kind === "video" ? (
-                        <Film className="size-6 text-muted-foreground" />
-                      ) : (
-                        <FileText className="size-6 text-muted-foreground" />
-                      )}
-                      {f.metadata.needs_native_review && (
-                        <Badge variant="warning" className="absolute start-1 top-1 text-[10px]">
-                          {t("finished.review")}
-                        </Badge>
-                      )}
-                      {can("edit") && (
-                        <Button
-                          size="icon"
-                          variant="secondary"
-                          aria-label={t("finished.delete")}
-                          className="absolute end-1 top-1 size-7 opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
-                          onClick={() => setToDelete(f)}
-                        >
-                          <Trash2 className="size-3.5" />
-                        </Button>
-                      )}
-                    </div>
-                    <figcaption className="truncate text-[11px] text-muted-foreground" dir="ltr">
-                      {f.kind === "carousel_slide"
-                        ? `#${f.slide_index}`
-                        : t(`finished.kind.${f.kind}`)}
-                      {f.duration ? ` · ${Math.round(f.duration)}s` : ""} · {mb(f.file_size)} MB
-                    </figcaption>
-                  </figure>
-                );
-              })}
-            </div>
-            {caption && (
-              <p
-                className="whitespace-pre-line rounded-md bg-muted/50 p-3 text-xs"
-                dir={lang === "ar" ? "rtl" : "auto"}
+    <Card data-testid="finished-media">
+      <CardHeader>
+        <CardTitle className="text-base">{t("finished.title")}</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3">
+        <ImportedReview project={project} />
+        {groups.length > 1 && (
+          <div className="flex gap-1" role="tablist">
+            {groups.map((g) => (
+              <Button
+                key={g.lang ?? "all"}
+                size="sm"
+                role="tab"
+                aria-selected={g.lang === lang}
+                variant={g.lang === lang ? "secondary" : "ghost"}
+                onClick={() => {
+                  setPick(g.lang);
+                  setIndex(0);
+                }}
               >
+                {g.lang ? t(`imported.lang.${g.lang}`) : t("finished.allLanguages")}
+              </Button>
+            ))}
+          </div>
+        )}
+        <section className="flex flex-col gap-2" data-testid={`finished-${lang ?? "all"}`}>
+          <div
+            className={cn(
+              "group relative mx-auto flex max-h-[28rem] w-full items-center justify-center overflow-hidden rounded-lg border bg-muted",
+              f.kind === "video" ? "aspect-[9/16] max-w-[15.75rem]" : "aspect-[4/5]",
+            )}
+          >
+            {src ? (
+              <button
+                type="button"
+                aria-label={t("finished.view", { file: f.file_name })}
+                className="absolute inset-0 cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                onClick={() => setViewing({ files: stored, index: Math.max(0, stored.indexOf(f)) })}
+              >
+                {f.mime_type.startsWith("image/") ? (
+                  <img src={src} alt={f.file_name} className="size-full object-cover" />
+                ) : f.mime_type.startsWith("video/") ? (
+                  <>
+                    <video
+                      key={src}
+                      src={`${src}#t=0.5`}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="size-full object-cover"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="rounded-full bg-black/55 p-3 text-white">
+                        <Play className="size-5 fill-current" />
+                      </span>
+                    </span>
+                  </>
+                ) : (
+                  <FileText className="mx-auto size-8 text-muted-foreground" />
+                )}
+              </button>
+            ) : !f.storage_path && f.live_url ? (
+              <a
+                href={f.live_url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="flex flex-col items-center gap-1 p-2 text-center text-sm text-primary hover:underline"
+              >
+                <ExternalLink className="size-5" />
+                {t("finished.onSocial")}
+              </a>
+            ) : f.metadata.kept_locally ? (
+              <span className="flex flex-col items-center gap-1 p-2 text-center text-sm text-muted-foreground">
+                <HardDriveDownload className="size-5" />
+                {t("finished.keptLocally")}
+              </span>
+            ) : f.kind === "video" ? (
+              <Film className="size-8 text-muted-foreground" />
+            ) : (
+              <FileText className="size-8 text-muted-foreground" />
+            )}
+            {f.metadata.needs_native_review && (
+              <Badge variant="warning" className="absolute start-2 top-2 text-[10px]">
+                {t("finished.review")}
+              </Badge>
+            )}
+            {can("edit") && (
+              <Button
+                size="icon"
+                variant="secondary"
+                aria-label={t("finished.delete")}
+                className="absolute end-2 top-2 size-8 opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
+                onClick={() => setToDelete(f)}
+              >
+                <Trash2 className="size-4" />
+              </Button>
+            )}
+            {files.length > 1 && (
+              <>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  aria-label={t("finished.prev")}
+                  className="absolute start-2 top-1/2 size-8 -translate-y-1/2 rounded-full opacity-90"
+                  onClick={() => step(-1)}
+                >
+                  <Prev className="size-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  aria-label={t("finished.next")}
+                  className="absolute end-2 top-1/2 size-8 -translate-y-1/2 rounded-full opacity-90"
+                  onClick={() => step(1)}
+                >
+                  <Next className="size-4" />
+                </Button>
+              </>
+            )}
+          </div>
+          <div
+            className="flex items-center justify-between gap-2 text-xs text-muted-foreground"
+            dir="ltr"
+          >
+            <span className="truncate">
+              {f.kind === "carousel_slide" ? `#${f.slide_index}` : t(`finished.kind.${f.kind}`)}
+              {f.duration ? ` · ${Math.round(f.duration)}s` : ""} · {mb(f.file_size)} MB
+            </span>
+            {files.length > 1 && (
+              <span className="tabular-nums">
+                {t("finished.counter", { i: i + 1, n: files.length })}
+              </span>
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            {stored.length
+              ? t("finished.stored", {
+                  n: stored.length,
+                  mb: mb(stored.reduce((s, x) => s + x.file_size, 0)),
+                })
+              : t("finished.allReleased")}
+          </p>
+          {(approved && stored.length > 0) || (canFree && can("edit")) ? (
+            <div className="flex flex-wrap gap-2">
+              {approved && stored.length > 0 && (
+                <Button
+                  size="sm"
+                  variant={downloaded(lang) ? "outline" : "default"}
+                  disabled={download.isPending}
+                  onClick={() => download.mutate(lang ?? undefined)}
+                >
+                  <Download />
+                  {t("finished.download")}
+                </Button>
+              )}
+              {canFree && can("edit") && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  disabled={release.isPending}
+                  onClick={() => release.mutate(lang ?? undefined)}
+                >
+                  <CloudOff />
+                  {t("finished.release")}
+                </Button>
+              )}
+            </div>
+          ) : null}
+          {caption && (
+            <details className="rounded-md bg-muted/50 p-3 text-xs">
+              <summary className="cursor-pointer font-medium">{t("finished.caption")}</summary>
+              <p className="mt-2 whitespace-pre-line" dir={lang === "ar" ? "rtl" : "auto"}>
                 {caption}
               </p>
-            )}
-          </section>
-        );
-      })}
+            </details>
+          )}
+        </section>
+      </CardContent>
 
       <MediaViewer
         viewing={viewing}
@@ -283,7 +328,7 @@ export function FinishedMedia({
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </Card>
   );
 }
 
@@ -416,7 +461,7 @@ function ImportedReview({ project }: { project: ContentProject }) {
     },
     onError: (e) => toast.error(e.message),
   });
-  if (project.status === "cancelled") return null;
+  if (project.status !== "new" && project.status !== "ready_to_publish") return null;
   const canReview = role === "admin" || role === "editor" || role === "reviewer";
 
   return (
@@ -451,7 +496,7 @@ function ImportedReview({ project }: { project: ContentProject }) {
               {t("review.requestChanges")}
             </Button>
           )}
-          {can("edit") && project.status === "new" && (
+          {can("edit") && (
             <Button
               size="sm"
               variant="ghost"

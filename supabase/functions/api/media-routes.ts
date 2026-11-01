@@ -343,10 +343,11 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
         plan_id: string | null;
         review: { status?: string } | null;
         finished: { captions?: Record<string, string>; hashtags?: string } | null;
+        publish_date: string | null;
       }[]
     >`
       select title, source_metadata ->> 'plan_id' as plan_id, source_metadata -> 'review' as review,
-        source_metadata -> 'finished' as finished
+        source_metadata -> 'finished' as finished, source_metadata ->> 'publish_date' as publish_date
       from public.content_projects where id = ${id}`;
     if (pj?.review?.status !== "approved")
       throw new ApiError("approval_required", "approve the post before downloading it");
@@ -365,37 +366,56 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
         and (${language}::text is null or language = ${language} or language is null)
       order by language nulls first, kind, slide_index nulls first`;
     if (!files.length) throw new ApiError("not_found", "no stored files to download");
+    // Files are named for the day they go out: 2026-11-05_EDU-26_EN_reel.mp4 (P5-T18).
+    const date = /^\d{4}-\d{2}-\d{2}/.exec(pj.publish_date ?? "")?.[0];
+    const slug = (pj.plan_id ?? pj.title).replace(/[^\w-]+/g, "-").slice(0, 40) || "post";
+    const prefix = date ? `${date}_${slug}` : slug;
+    const PART: Record<string, string> = { video: "reel", cover: "cover", image: "image", document: "document" };
     const enc = new TextEncoder();
     const entries = [];
     for (const f of files) {
       const data = await deps.storage.download("media", f.storage_path);
       if ((await sha256Hex(data)) !== f.checksum)
         throw new ApiError("internal", `stored file ${f.file_name} does not match its checksum`);
-      const name =
+      const ext = /\.[a-z0-9]+$/i.exec(f.file_name)?.[0].toLowerCase() ?? "";
+      const part =
         f.kind === "carousel_slide"
-          ? `slide-${String(f.slide_index).padStart(2, "0")}.png`
-          : f.file_name;
+          ? `slide-${String(f.slide_index).padStart(2, "0")}`
+          : (PART[f.kind] ?? f.kind);
+      const name = `${prefix}_${(f.language ?? "all").toUpperCase()}_${part}${ext}`;
       entries.push({ name: language ? name : `${f.language ?? "all"}/${name}`, data });
     }
     for (const [lang, text] of Object.entries(pj.finished?.captions ?? {}))
       if (!language || lang === language || lang === "default")
         entries.push({
-          name: lang === "default" ? "caption.txt" : `caption_${lang}.txt`,
+          name: `${prefix}_${lang === "default" ? "" : `${lang.toUpperCase()}_`}caption.txt`,
           data: enc.encode(text + "\n"),
         });
     if (pj.finished?.hashtags)
-      entries.push({ name: "hashtags.txt", data: enc.encode(pj.finished.hashtags + "\n") });
+      entries.push({ name: `${prefix}_hashtags.txt`, data: enc.encode(pj.finished.hashtags + "\n") });
     const zip = createZip(entries);
     await sql`select public.record_imported_download(${userId}, ${id}, ${language})`;
-    const slug = (pj.plan_id ?? pj.title).replace(/[^\w-]+/g, "-").slice(0, 40) || "post";
     return new Response(zip as Uint8Array<ArrayBuffer>, {
       status: 200,
       headers: {
         "content-type": "application/zip",
-        "content-disposition": `attachment; filename="${slug}${language ? `-${language}` : ""}.zip"`,
+        "content-disposition": `attachment; filename="${prefix}${language ? `_${language.toUpperCase()}` : ""}.zip"`,
         "cache-control": "no-store",
       },
     });
+  });
+
+  // POST /api/content-projects/:id/publish-date — planned publish day (also names the downloads)
+  app.post("/content-projects/:id/publish-date", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ date: string | null }>("publishDate", await body(c));
+    const [{ r }] = (await sql`
+      select public.set_publish_date(${userId}, ${id}, ${input.date}::date) as r`) as unknown as [
+      { r: Record<string, unknown> },
+    ];
+    return c.json(r);
   });
 
   // POST /api/content-projects/:id/discard — remove every finished file (and its storage), cancel the post
