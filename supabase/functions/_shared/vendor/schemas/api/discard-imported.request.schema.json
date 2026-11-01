@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/discard-imported.request.schema.json",
+  "title": "POST /api/content-projects/{id}/discard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reason"],
+  "properties": {
+    "reason": { "type": "string", "minLength": 3, "maxLength": 2000 }
+  }
+}

@@ -74,7 +74,7 @@ export interface ImportedMediaRow {
   width: number | null;
   height: number | null;
   duration: number | null;
-  metadata: { needs_native_review?: boolean };
+  metadata: { needs_native_review?: boolean; kept_locally?: boolean };
   live_url: string | null;
   released_at: string | null;
 }
@@ -114,6 +114,15 @@ export interface ContentProject {
       hashtags?: string;
       source?: string;
     };
+    /** Review of the finished files (P5-T17); cleared when a file changes. */
+    review?: {
+      status: "approved" | "changes_requested";
+      note: string | null;
+      by: string;
+      at: string;
+      downloaded?: Partial<Record<"en" | "ar" | "all", string>>;
+    };
+    discarded?: { reason: string; by: string; at: string };
   };
   content_type: ContentType | null;
   objective: string | null;

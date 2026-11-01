@@ -1,5 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CloudOff, ExternalLink, FileText, Film, Trash2 } from "lucide-react";
+import {
+  Check,
+  CloudOff,
+  Download,
+  ExternalLink,
+  FileText,
+  Film,
+  HardDriveDownload,
+  MessageSquareWarning,
+  Trash2,
+} from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +22,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { api } from "@/lib/api";
+import { Textarea } from "@/components/ui/textarea";
+import { api, saveBlob } from "@/lib/api";
 import { useI18n } from "@/lib/i18n";
 import { useSignedUrls } from "@/lib/queries";
 import { useWorkspace } from "@/lib/workspace";
@@ -57,6 +68,15 @@ export function FinishedMedia({
     },
     onError: (e) => toast.error(e.message),
   });
+  const download = useMutation({
+    mutationFn: async (language: "en" | "ar" | undefined) =>
+      saveBlob(await api.downloadImported(project.id, language)),
+    onSuccess: () => {
+      for (const key of ["project", "project-events"])
+        void qc.invalidateQueries({ queryKey: [key] });
+    },
+    onError: (e) => toast.error(e.message),
+  });
   const remove = useMutation({
     mutationFn: (id: string) => api.deleteImportedMedia(id),
     onSuccess: () => {
@@ -75,13 +95,19 @@ export function FinishedMedia({
     files: media.filter((m) => m.language === lang),
   }));
   const captions = project.source_metadata.finished?.captions;
+  const review = project.source_metadata.review;
+  const approved = review?.status === "approved";
+  const downloaded = (lang: "en" | "ar" | null) =>
+    !!review?.downloaded?.all || (lang ? !!review?.downloaded?.[lang] : !!review?.downloaded?.en);
 
   return (
     <div className="flex flex-col gap-4 border-t pt-4" data-testid="finished-media">
       <h3 className="font-medium">{t("finished.title")}</h3>
+      <ImportedReview project={project} />
       {groups.map(({ lang, files }) => {
         const stored = files.filter((f) => f.storage_path);
         const url = live(lang);
+        const canFree = stored.length > 0 && (!!url || (approved && downloaded(lang)));
         const caption = lang ? captions?.[lang] : captions?.default;
         return (
           <section
@@ -101,18 +127,30 @@ export function FinishedMedia({
                     })
                   : t("finished.allReleased")}
               </span>
-              {url && stored.length > 0 && can("edit") && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="ms-auto"
-                  disabled={release.isPending}
-                  onClick={() => release.mutate(lang ?? undefined)}
-                >
-                  <CloudOff />
-                  {t("finished.release")}
-                </Button>
-              )}
+              <div className="ms-auto flex flex-wrap gap-2">
+                {approved && stored.length > 0 && (
+                  <Button
+                    size="sm"
+                    variant={downloaded(lang) ? "outline" : "default"}
+                    disabled={download.isPending}
+                    onClick={() => download.mutate(lang ?? undefined)}
+                  >
+                    <Download />
+                    {t("finished.download")}
+                  </Button>
+                )}
+                {canFree && can("edit") && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    disabled={release.isPending}
+                    onClick={() => release.mutate(lang ?? undefined)}
+                  >
+                    <CloudOff />
+                    {t("finished.release")}
+                  </Button>
+                )}
+              </div>
             </div>
             <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
               {files.map((f) => {
@@ -136,6 +174,11 @@ export function FinishedMedia({
                           <ExternalLink className="size-4" />
                           {t("finished.onSocial")}
                         </a>
+                      ) : f.metadata.kept_locally ? (
+                        <span className="flex flex-col items-center gap-1 p-2 text-center text-xs text-muted-foreground">
+                          <HardDriveDownload className="size-4" />
+                          {t("finished.keptLocally")}
+                        </span>
                       ) : f.kind === "video" ? (
                         <Film className="size-6 text-muted-foreground" />
                       ) : (
@@ -200,6 +243,148 @@ export function FinishedMedia({
               <Trash2 />
               {t("finished.delete")}
             </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+/**
+ * Review of an imported post (P5-T17): approve (then download and free storage), request changes
+ * with a note (fixed files are re-uploaded and the post comes back for review), or discard it with
+ * every file and its storage.
+ */
+function ImportedReview({ project }: { project: ContentProject }) {
+  const { t, dir, locale } = useI18n();
+  const { can, role } = useWorkspace();
+  const qc = useQueryClient();
+  const [dialog, setDialog] = useState<"changes" | "discard" | null>(null);
+  const [text, setText] = useState("");
+  const review = project.source_metadata.review;
+  const done = () => {
+    setDialog(null);
+    setText("");
+    for (const key of ["project", "project-events", "imported-media", "projects", "status-counts"])
+      void qc.invalidateQueries({ queryKey: [key] });
+  };
+  const decide = useMutation({
+    mutationFn: (input: { decision: "approved" | "changes_requested"; note?: string }) =>
+      api.reviewImported(project.id, input.decision, input.note),
+    onSuccess: (_r, input) => {
+      toast.success(
+        t(input.decision === "approved" ? "review.approvedToast" : "review.changesToast"),
+      );
+      done();
+    },
+    onError: (e) => toast.error(e.message),
+  });
+  const discard = useMutation({
+    mutationFn: () => api.discardImported(project.id, text.trim()),
+    onSuccess: (r) => {
+      toast.success(t("review.discardedToast", { n: r.files, mb: mb(r.bytes) }));
+      done();
+    },
+    onError: (e) => toast.error(e.message),
+  });
+  if (project.status === "cancelled") return null;
+  const canReview = role === "admin" || role === "editor" || role === "reviewer";
+
+  return (
+    <div className="flex flex-col gap-2 rounded-md border p-3" data-testid="imported-review">
+      <div className="flex flex-wrap items-center gap-2">
+        {review?.status === "approved" ? (
+          <Badge variant="success">{t("review.approved")}</Badge>
+        ) : review?.status === "changes_requested" ? (
+          <Badge variant="warning">{t("review.changesRequested")}</Badge>
+        ) : (
+          <Badge variant="outline">{t("review.waiting")}</Badge>
+        )}
+        {review && (
+          <span className="text-xs text-muted-foreground">
+            {new Date(review.at).toLocaleDateString(locale)}
+          </span>
+        )}
+        <div className="ms-auto flex flex-wrap gap-2">
+          {canReview && review?.status !== "approved" && (
+            <Button
+              size="sm"
+              onClick={() => decide.mutate({ decision: "approved" })}
+              disabled={decide.isPending}
+            >
+              <Check />
+              {t("review.approve")}
+            </Button>
+          )}
+          {canReview && (
+            <Button size="sm" variant="outline" onClick={() => setDialog("changes")}>
+              <MessageSquareWarning />
+              {t("review.requestChanges")}
+            </Button>
+          )}
+          {can("edit") && project.status === "new" && (
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-destructive"
+              onClick={() => setDialog("discard")}
+            >
+              <Trash2 />
+              {t("review.discard")}
+            </Button>
+          )}
+        </div>
+      </div>
+      {review?.status === "changes_requested" && review.note && (
+        <p className="whitespace-pre-line text-xs" dir="auto">
+          {review.note}
+        </p>
+      )}
+      {review?.status === "approved" && (
+        <p className="text-xs text-muted-foreground">{t("review.approvedHint")}</p>
+      )}
+
+      <Dialog open={!!dialog} onOpenChange={(o) => !o && setDialog(null)}>
+        <DialogContent dir={dir} closeLabel={t("common.close")}>
+          <DialogHeader>
+            <DialogTitle>
+              {t(dialog === "discard" ? "review.discardTitle" : "review.changesTitle")}
+            </DialogTitle>
+            <DialogDescription>
+              {t(dialog === "discard" ? "review.discardBody" : "review.changesBody")}
+            </DialogDescription>
+          </DialogHeader>
+          <Textarea
+            dir="auto"
+            rows={4}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder={t(
+              dialog === "discard" ? "review.reasonPlaceholder" : "review.notePlaceholder",
+            )}
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDialog(null)}>
+              {t("common.cancel")}
+            </Button>
+            {dialog === "discard" ? (
+              <Button
+                variant="destructive"
+                disabled={text.trim().length < 3 || discard.isPending}
+                onClick={() => discard.mutate()}
+              >
+                <Trash2 />
+                {t("review.discard")}
+              </Button>
+            ) : (
+              <Button
+                disabled={text.trim().length < 3 || decide.isPending}
+                onClick={() => decide.mutate({ decision: "changes_requested", note: text.trim() })}
+              >
+                <MessageSquareWarning />
+                {t("review.requestChanges")}
+              </Button>
+            )}
           </DialogFooter>
         </DialogContent>
       </Dialog>

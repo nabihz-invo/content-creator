@@ -14,6 +14,12 @@ Template:
 
 ---
 
+## 2026-11-01 — P5-T17 review of imported posts — in progress
+- Agent/branch: local Claude Code (main)
+- Changes: migration `20261101120000` (review, download record, release after approval + download, discard, link back-fill, review reset on file change); P5-T15 migration (not yet applied anywhere) no longer requires a live link on released rows; API review / bundle / discard; CRM review bar (approve, request changes with a note, delete post with a reason), per-language Download and Free storage, "downloaded; link to add" tiles; EN/AR strings.
+- Verification: all 15 pgTAP files on the hosted schema with both migrations, rolled back: 296/296 (new `15_imported_review`: 20). `deno check`, CRM typecheck, ESLint, Prettier clean.
+- Next: owner pushes both migrations → deploy `api` → run `finished-posts.mjs` on the archive (all files, 534 MB) → review in the CRM.
+
 ## 2026-11-01 — P5-T09 asset library synced — done; P5-T15 finished posts + storage rules — in progress
 - Agent/branch: local Claude Code (main)
 - Changes: P5-T09: library synced to the hosted `brand-assets` bucket (139 files, rows with catalog metadata); brand seed re-applied (settings v2 with `studio`). P5-T15: migration `20261101110000` (`imported_media`, storage cleanup queue + triggers, `save/release/delete_imported_media`, per-language `mark_imported_published`); API (`mark-published` language + `release_storage`, release endpoint, `DELETE /imported-media/:id`, `purgeStorage()` also run by `/internal/recover`, `StoragePort.remove`, CORS allows DELETE); CRM imported card (links per language, finished files per language with thumbnails, free storage, delete with confirmation, EN/AR strings); `scripts/import/finished-posts.mjs`; `sync-kit.mjs` deletes the superseded version and empties the queue. Storage rules recorded in PLAN.

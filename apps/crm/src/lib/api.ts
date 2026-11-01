@@ -224,21 +224,25 @@ export const api = {
     ),
 
   /** Downloads the zip for manual posting (authenticated, so fetched as a blob). */
-  async downloadBundle(publishingJobId: string): Promise<{ blob: Blob; filename: string }> {
-    const jwt = await token();
-    const res = await fetch(`${API_URL}/publishing-jobs/${publishingJobId}/bundle`, {
-      headers: jwt ? { authorization: `Bearer ${jwt}` } : {},
-    });
-    if (!res.ok) {
-      const body = (await res.json().catch(() => null)) as { error?: ApiErrorBody } | null;
-      throw new ApiError(
-        res.status,
-        body?.error ?? { code: "internal", message: `Download failed (${res.status})` },
-      );
-    }
-    const cd = res.headers.get("content-disposition") ?? "";
-    return { blob: await res.blob(), filename: cd.match(/filename="([^"]+)"/)?.[1] ?? "post.zip" };
-  },
+  downloadBundle: (publishingJobId: string) =>
+    downloadZip(`/publishing-jobs/${publishingJobId}/bundle`),
+
+  /** Zip of an approved imported post (one language or all); unlocks freeing its storage (P5-T17). */
+  downloadImported: (projectId: string, language?: "en" | "ar") =>
+    downloadZip(
+      `/content-projects/${projectId}/imported-media/bundle${language ? `?language=${language}` : ""}`,
+    ),
+
+  reviewImported: (projectId: string, decision: "approved" | "changes_requested", note?: string) =>
+    apiRequest<{ review: { status: string } }>(`/content-projects/${projectId}/imported-review`, {
+      json: { decision, ...(note ? { note } : {}) },
+    }),
+
+  /** Removes every finished file (and its storage) and cancels the imported post. */
+  discardImported: (projectId: string, reason: string) =>
+    apiRequest<{ files: number; bytes: number }>(`/content-projects/${projectId}/discard`, {
+      json: { reason },
+    }),
 
   retryJob: (jobId: string) =>
     apiRequest<{ job_id: string; status: string }>(`/jobs/${jobId}/retry`, { json: {} }),
@@ -250,3 +254,30 @@ export const api = {
       "/telegram/link-code",
     ),
 };
+
+/** Fetches an authenticated zip as a blob. */
+async function downloadZip(path: string): Promise<{ blob: Blob; filename: string }> {
+  const jwt = await token();
+  const res = await fetch(`${API_URL}${path}`, {
+    headers: jwt ? { authorization: `Bearer ${jwt}` } : {},
+  });
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { error?: ApiErrorBody } | null;
+    throw new ApiError(
+      res.status,
+      body?.error ?? { code: "internal", message: `Download failed (${res.status})` },
+    );
+  }
+  const cd = res.headers.get("content-disposition") ?? "";
+  return { blob: await res.blob(), filename: cd.match(/filename="([^"]+)"/)?.[1] ?? "post.zip" };
+}
+
+/** Saves a downloaded blob through a temporary link. */
+export function saveBlob({ blob, filename }: { blob: Blob; filename: string }) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+}

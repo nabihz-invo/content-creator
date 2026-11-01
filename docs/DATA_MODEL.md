@@ -158,6 +158,7 @@ Rows from an existing content plan are created with `create_project()` (status `
 - `release_imported_media(actor, project, language?)` — editors; files of live versions are released (row keeps `live_url`). `delete_imported_media(actor, id)` — editors.
 - `private.storage_deletions` — the cleanup queue. Trigger `private.queue_row_storage_delete(bucket)` on `imported_media` (delete, path change) and `brand_assets` (delete) queues the old path. `claim_storage_deletions(limit)` / `finish_storage_deletions(done, failed)` (service role) are used by the API's `purgeStorage()` and `scripts/brand/sync-kit.mjs`; Supabase forbids deleting storage objects from SQL.
 - Brand assets: a changed file becomes a new version and the previous version's row (and file) is deleted.
+- Review (P5-T17): `source_metadata.review = { status: approved | changes_requested, note, by, at, downloaded: { en|ar|all: at } }`, written by `review_imported_post()` and `record_imported_download()`; trigger `private.reset_imported_review()` clears it when a file is added or its checksum changes. `release_imported_media()` frees a version that is live, or approved and downloaded (rows get `metadata.kept_locally`, and trigger `private.fill_released_links()` copies the live link onto them when it is added). `discard_imported_post(actor, project, reason)` deletes every file (storage queued) and cancels the project (`source_metadata.discarded`).
 
 ### Implemented details (P1)
 - `content_projects.failed_from_status` — admin retry may only return there.

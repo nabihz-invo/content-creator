@@ -128,9 +128,9 @@ create table public.imported_media (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   check ((kind = 'carousel_slide') = (slide_index is not null)),
-  -- Either the file is stored, or it was released and the live link replaces it.
-  check ((storage_path is null) = (released_at is not null)),
-  check (released_at is null or live_url is not null)
+  -- Either the file is stored, or it was released: the live link replaces it, or (P5-T17) the
+  -- approved post was downloaded and the link is added once it is posted.
+  check ((storage_path is null) = (released_at is not null))
 );
 create unique index imported_media_slot on public.imported_media
   (project_id, coalesce(language, ''), kind, coalesce(slide_index, 0));
