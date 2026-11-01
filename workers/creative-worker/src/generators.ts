@@ -1,7 +1,8 @@
 /**
  * Generators turn an assembled workspace into the finished creative (ADR-0007 §3).
  */
-import { mkdirSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { run } from "./exec.ts";
 
@@ -157,8 +158,9 @@ export function claudeCodeGenerator(cfg: {
   return {
     name: "claude-code",
     async generate(input) {
-      const home = join(input.dir, ".home");
-      mkdirSync(home, { recursive: true });
+      // Claude Code's own home (settings, backups, caches) lives outside the workspace, so none of
+      // it can end up in the creative or trip the checker; it is removed after the run.
+      const home = mkdtempSync(join(tmpdir(), "cc-home-"));
       const r = await run(cfg.bin, claudeCodeArgs(input, cfg), {
         cwd: input.dir,
         env: {
@@ -170,7 +172,7 @@ export function claudeCodeGenerator(cfg: {
         },
         timeoutMs: cfg.timeoutMs,
         signal: input.signal,
-      });
+      }).finally(() => rmSync(home, { recursive: true, force: true }));
       if (r.aborted) throw new GeneratorError("generation cancelled", false);
       if (r.timedOut)
         throw new GeneratorError(`Claude Code timed out after ${cfg.timeoutMs / 1000}s`, true);

@@ -67,7 +67,7 @@ test("Claude Code runs headless, locked down, with only its own credentials", as
 
   assert.equal(inv.env.CLAUDE_CODE_OAUTH_TOKEN, "oauth-test");
   assert.equal(inv.env.ANTHROPIC_API_KEY, undefined, "the subscription is used, not an API key");
-  assert.equal(inv.env.HOME, join(dir, ".home"));
+  assert.ok(!inv.env.HOME.startsWith(dir), "Claude Code's home is outside the workspace");
   for (const leaked of ["DATABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "CREATIVES_REPO_URL"])
     assert.equal(inv.env[leaked], undefined, `${leaked} must not reach Claude Code`);
 });
