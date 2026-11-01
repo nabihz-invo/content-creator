@@ -19,3 +19,6 @@ supabase/.temp
 renders/
 tmp/
 tmp/
+
+# Local mirror of the brand asset library (BRAND_ASSETS_DIR; scripts/brand/sync-kit.mjs pull)
+.brand-assets/

@@ -49,7 +49,24 @@ const THREE_ADDONS = [
   "shaders/LuminosityHighPassShader.js",
   "shaders/OutputShader.js",
   "geometries/RoundedBoxGeometry.js",
+  "loaders/GLTFLoader.js",
+  "loaders/SVGLoader.js",
+  "utils/BufferGeometryUtils.js",
+  "utils/SkeletonUtils.js",
+  "environments/RoomEnvironment.js",
 ];
+
+/** Copies Three.js and its addons into `<dir>/three.module.js`, `<dir>/addons/…`. */
+function copyThree(dir: string) {
+  const threeDir = join(dirname(require.resolve("three")), ".."); // three/build/three.cjs → package root
+  mkdirSync(join(dir, "addons"), { recursive: true });
+  cpSync(join(threeDir, "build/three.module.js"), join(dir, "three.module.js"));
+  cpSync(join(threeDir, "build/three.core.js"), join(dir, "three.core.js"));
+  for (const a of THREE_ADDONS) {
+    mkdirSync(dirname(join(dir, "addons", a)), { recursive: true });
+    cpSync(join(threeDir, "examples/jsm", a), join(dir, "addons", a));
+  }
+}
 
 /** Files that are tooling or vendored; they are not committed as the creative's own source. */
 export const NOT_SOURCE = (path: string) => path === "CLAUDE.md" || path === "check.mjs";
@@ -131,10 +148,13 @@ function addStudioFiles(dir: string, spec: SpecLike, mode: "all" | "referenced")
   cpSync(join(STUDIO_DIR, "docs"), join(dir, "studio", "docs"), { recursive: true });
   const lib = brandAssetsDir(studio.brand_id);
   const all = listTree(lib);
+  const own = mode === "all" ? [] : listTree(dir).filter((p) => isCommitted(p));
+  // 3D (engine/sm-three.js) for every format, but a preview or render only carries the ~1.5 MB
+  // of Three.js when the page uses it (previews are uploaded whole).
+  if (mode === "all" || usesThree(dir, own)) copyThree(join(dir, "studio", "vendor"));
   let pick: string[];
   if (mode === "all") pick = all;
   else {
-    const own = listTree(dir).filter((p) => isCommitted(p));
     const refs = referencedAssets(dir, own);
     const missing = [...refs].filter((p) => !all.includes(p));
     if (missing.length)
@@ -149,6 +169,11 @@ function addStudioFiles(dir: string, spec: SpecLike, mode: "all" | "referenced")
   }
 }
 
+const usesThree = (dir: string, own: string[]) =>
+  own
+    .filter((p) => /\.(html|js|mjs)$/.test(p))
+    .some((p) => /sm-three\.js|studio\/vendor\//.test(readFileSync(join(dir, p), "utf8")));
+
 /**
  * Fonts and vendored libraries come from pinned packages and are not committed;
  * a checkout of a committed version gets them back from here (render worker).
@@ -161,14 +186,5 @@ export function addVendoredFiles(
   if (spec.studio) return addStudioFiles(dir, spec, opts.assets);
   mkdirSync(join(dir, "fonts"), { recursive: true });
   for (const [from, to] of FONTS) cpSync(require.resolve(from), join(dir, "fonts", to));
-  if (spec.format === "video") {
-    const threeDir = join(dirname(require.resolve("three")), ".."); // three/build/three.cjs → package root
-    mkdirSync(join(dir, "vendor/addons"), { recursive: true });
-    cpSync(join(threeDir, "build/three.module.js"), join(dir, "vendor/three.module.js"));
-    cpSync(join(threeDir, "build/three.core.js"), join(dir, "vendor/three.core.js"));
-    for (const a of THREE_ADDONS) {
-      mkdirSync(dirname(join(dir, "vendor/addons", a)), { recursive: true });
-      cpSync(join(threeDir, "examples/jsm", a), join(dir, "vendor/addons", a));
-    }
-  }
+  if (spec.format === "video") copyThree(join(dir, "vendor"));
 }

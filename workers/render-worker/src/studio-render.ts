@@ -138,6 +138,10 @@ export async function renderStudio(
       "--autoplay-policy=no-user-gesture-required",
       "--font-render-hinting=none",
       "--disable-background-networking",
+      // WebGL for 3D scenes (sm-three.js) on machines without a GPU.
+      "--use-gl=angle",
+      "--use-angle=swiftshader",
+      "--enable-unsafe-swiftshader",
     ],
   });
   const errors: string[] = [];

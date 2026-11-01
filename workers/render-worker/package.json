@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node --experimental-strip-types src/main.ts",
+    "render:local": "node --experimental-strip-types src/local.ts",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test test/png.test.ts test/validate.test.ts",
     "test:integration": "node --experimental-strip-types --test test/job.integration.test.ts"

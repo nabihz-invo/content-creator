@@ -186,3 +186,37 @@ The page reports errors in the terminal ("Page errors:"). A missing SFX file is 
 * `python3 studio/tools/place_screens.py BG.png --list` then `--fill 1=SCR-01.png 2=SCR-04.png -o final.png` — real screens onto green placeholders (perspective, focus, grain, glare, despill).
 * `python3 studio/tools/make_sfx.py [--music]` — regenerates the starter SFX (and a placeholder music bed).
 * `node studio/tools/export_logos.mjs` — writes the LG logo files.
+
+## 10. 3D scenes (Three.js 0.187, `sm-three.js`)
+
+Real 3D inside any scene: the Dot core as a cube of dots, warehouses as iso blocks, a parcel opening, a
+camera fly-through. It is drawn by an engine driver, so frames stay exact; text and components of the
+scene sit **on top** of it.
+
+```html
+<script type="importmap">
+  { "imports": { "three": "/studio/vendor/three.module.js", "three/addons/": "/studio/vendor/addons/" } }
+</script>
+<!-- …engine scripts as usual; build R and the scenes in the normal <script>, e.g. const c = R.scene(6, {…}) -->
+<script type="module">
+  import { three, BRAND } from "/studio/engine/sm-three.js";
+  three(c, ({ THREE, scene, camera }) => {
+    const box = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), new THREE.MeshStandardMaterial({ color: BRAND.ocean }));
+    scene.add(box, new THREE.AmbientLight(0xffffff, .6));
+    return (p, lt) => { box.rotation.y = lt * .8; };        // p 0..1 over at→until · lt seconds since at
+  }, { bg: 'night', bloom: true, at: 0, until: 6 });
+</script>
+```
+
+* Options: `x y w h` (stage px; default full frame) · `at until` (scene-local) · `fov` (35) · `camera [x,y,z]` ·
+  `bg: 'night'` (brand gradient) or a colour (default transparent over the scene `bg`) · `bloom: true | { strength, radius, threshold }`
+  (needs an opaque `bg`; keep strength ≤ .7 so the brand colours stay readable) · `env: true` (soft reflections) · `exposure` · `front: true`.
+* `setup` may be `async` (build geometry from SVG with `SVGLoader`, load a `.glb` from `/assets/` with `GLTFLoader`); the page waits for it.
+* Addons available: `GLTFLoader`, `SVGLoader`, `RoundedBoxGeometry`, `RoomEnvironment`, `BufferGeometryUtils`, `SkeletonUtils`,
+  `EffectComposer` / `RenderPass` / `UnrealBloomPass` / `OutputPass` / `ShaderPass`.
+* Same rules as the rest of the page: everything is a function of `lt` — no `clock`, no `requestAnimationFrame`, no `Math.random()`
+  (use a hash of the index, e.g. `x => { const s = Math.sin(x * 127.1) * 43758.5; return s - Math.floor(s); }`).
+* Use `THREE.InstancedMesh` for many dots (hundreds are fine). Renders run on the CPU: a full-frame 3D scene with bloom takes about
+  0.5 s per frame, so keep 3D to the beats that need it and use `w`/`h` for a smaller 3D area when it fits.
+* Brand colours: `BRAND.abyss night signal glow ocean dolphin deep visor foam` (THREE.Color). Glow only on dark; never invent a
+  product interface in 3D — real screens go on planes as textures from `/assets/screens/`.

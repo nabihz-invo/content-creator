@@ -14,6 +14,13 @@ Template:
 
 ---
 
+## 2026-11-01 — P5-T02 3D in the studio engine — done; worker machine setup
+- Agent/branch: local Claude Code (main)
+- Changes: `templates/studio/engine/sm-three.js` (`three(scene, setup, o)`: a Three.js layer drawn by an engine driver, so frames stay exact; above the scene background and under its text; `bg:'night'` brand gradient, bloom, env reflections, async setup holds `__ready`; `BRAND` colours); studio workspaces get Three.js 0.187 + addons under `studio/vendor/` (always while writing, in previews/renders only when the page uses it, to keep preview storage small); addons + GLTFLoader, SVGLoader, RoomEnvironment, BufferGeometryUtils, SkeletonUtils; studio renderer launches Chromium with SwiftShader WebGL; ENGINE.md §10 + workspace rule; `workers/render-worker/src/local.ts` (`pnpm render:local <page> --out DIR`: same workspace, checker and renderer, no DB or storage). Finished-posts import retries network errors. CRM: finished files open in a viewer (image, video player, prev/next) and show on the Media tab.
+- Machine: Playwright 1.64.1 installed globally (Chromium 1248 already present), `NODE_PATH` set in `workers/.env`; brand library pulled to `.brand-assets/` (139 files, git-ignored) and `BRAND_ASSETS_DIR` set; `.env.example` documents both and `ELEVENLABS_API_KEY`.
+- Verification: a 3D test reel (Dot core as an instanced cube of dots assembling into the iso view, bloom, engine text, end card) rendered in EN and AR through `local.ts`: no page errors, contact sheets checked (3D under the text, Night background, Arabic RTL). Render speed on this CPU ≈ 2 frames/s for full-frame 3D with bloom. Typecheck both workers; render-worker tests 5/5; creative-worker `test:render` 10/10. Archive import: 92 posts, 758 files, 534 MB; rows and storage objects match (0 orphans, 0 missing).
+- Open: 4 creative-worker unit tests fail on Windows only, before and after this change (symlink needs admin; a shell-script stub for `claude` can't be spawned). The `claude` CLI is not installed here and `CREATIVE_GENERATOR=template`, so the automated pipeline writes template pages, not Claude-written ones. ElevenLabs key still lacks user_read / voices_read / models_read.
+
 ## 2026-11-01 — P5-T17 review of imported posts — in progress
 - Agent/branch: local Claude Code (main)
 - Changes: migration `20261101120000` (review, download record, release after approval + download, discard, link back-fill, review reset on file change); P5-T15 migration (not yet applied anywhere) no longer requires a live link on released rows; API review / bundle / discard; CRM review bar (approve, request changes with a note, delete post with a reason), per-language Download and Free storage, "downloaded; link to add" tiles; EN/AR strings.

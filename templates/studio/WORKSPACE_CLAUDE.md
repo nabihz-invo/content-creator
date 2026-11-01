@@ -75,6 +75,8 @@ in your final summary. `spec.js` (`window.__SPEC`) holds the same data.
   brief names; a voice-over (if any) per language with `SM.t('…_EN.mp3', '…_AR.mp3')` and captions
   from its alignment JSON. Without a voice file, write the lines in your summary instead.
 - Reuse nothing from another post: different first frame, first word, opener and layout.
+- 3D (Three.js) is available for any beat that gains from depth: `studio/docs/ENGINE.md` §10. Use it
+  for one or two beats, not the whole piece (CPU renders are slow), and keep text in the engine.
 
 ## Hard rules (the checker rejects violations)
 - No network, remote URLs, `eval`, string timers, storage, cookies, iframes, `window.parent/top`.
