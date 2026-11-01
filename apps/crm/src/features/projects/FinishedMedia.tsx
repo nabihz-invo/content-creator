@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Check,
+  ChevronLeft,
+  ChevronRight,
   CloudOff,
   Download,
   ExternalLink,
@@ -8,9 +10,10 @@ import {
   Film,
   HardDriveDownload,
   MessageSquareWarning,
+  Play,
   Trash2,
 } from "lucide-react";
-import { useState } from "react";
+import { type KeyboardEvent, useState } from "react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -49,10 +52,10 @@ export function FinishedMedia({
   const { can } = useWorkspace();
   const qc = useQueryClient();
   const [toDelete, setToDelete] = useState<ImportedMediaRow | null>(null);
-  const thumbs = useSignedUrls(
-    media
-      .filter((m) => m.storage_path && m.mime_type.startsWith("image/"))
-      .map((m) => m.storage_path!),
+  // The files open in the viewer: the stored files of one language version.
+  const [viewing, setViewing] = useState<{ files: ImportedMediaRow[]; index: number } | null>(null);
+  const urls = useSignedUrls(
+    media.filter((m) => m.storage_path).map((m) => m.storage_path!),
     "media",
   );
   const refresh = () => {
@@ -154,16 +157,43 @@ export function FinishedMedia({
             </div>
             <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
               {files.map((f) => {
-                const src = f.storage_path ? thumbs.data?.[f.storage_path] : undefined;
+                const src = f.storage_path ? urls.data?.[f.storage_path] : undefined;
                 return (
                   <figure key={f.id} className="group relative flex flex-col gap-1">
                     <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-md border bg-muted">
                       {src ? (
-                        <img
-                          src={src}
-                          alt={f.file_name}
-                          className="absolute inset-0 size-full object-cover"
-                        />
+                        <button
+                          type="button"
+                          aria-label={t("finished.view", { file: f.file_name })}
+                          className="absolute inset-0 cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                          onClick={() => setViewing({ files: stored, index: stored.indexOf(f) })}
+                        >
+                          {f.mime_type.startsWith("image/") ? (
+                            <img
+                              src={src}
+                              alt={f.file_name}
+                              loading="lazy"
+                              className="size-full object-cover"
+                            />
+                          ) : f.mime_type.startsWith("video/") ? (
+                            <>
+                              <video
+                                src={`${src}#t=0.5`}
+                                muted
+                                playsInline
+                                preload="metadata"
+                                className="size-full object-cover"
+                              />
+                              <span className="absolute inset-0 flex items-center justify-center">
+                                <span className="rounded-full bg-black/55 p-2 text-white">
+                                  <Play className="size-4 fill-current" />
+                                </span>
+                              </span>
+                            </>
+                          ) : (
+                            <FileText className="mx-auto size-6 text-muted-foreground" />
+                          )}
+                        </button>
                       ) : !f.storage_path && f.live_url ? (
                         <a
                           href={f.live_url}
@@ -223,6 +253,13 @@ export function FinishedMedia({
         );
       })}
 
+      <MediaViewer
+        viewing={viewing}
+        urls={urls.data ?? {}}
+        onIndex={(index) => setViewing((v) => v && { ...v, index })}
+        onClose={() => setViewing(null)}
+      />
+
       <Dialog open={!!toDelete} onOpenChange={(o) => !o && setToDelete(null)}>
         <DialogContent dir={dir} closeLabel={t("common.close")}>
           <DialogHeader>
@@ -247,6 +284,98 @@ export function FinishedMedia({
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+/** A stored file at full size (image, playable video or document), with previous/next in its version. */
+function MediaViewer({
+  viewing,
+  urls,
+  onIndex,
+  onClose,
+}: {
+  viewing: { files: ImportedMediaRow[]; index: number } | null;
+  urls: Record<string, string>;
+  onIndex: (index: number) => void;
+  onClose: () => void;
+}) {
+  const { t, dir } = useI18n();
+  const file = viewing?.files[viewing.index];
+  const src = file?.storage_path ? urls[file.storage_path] : undefined;
+  const count = viewing?.files.length ?? 0;
+  const step = (by: number) => viewing && onIndex((viewing.index + by + count) % count);
+  // Arrow keys follow the reading direction: in Arabic, left is "next".
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    step((e.key === "ArrowRight") === (dir === "ltr") ? 1 : -1);
+  };
+  const Prev = dir === "rtl" ? ChevronRight : ChevronLeft;
+  const Next = dir === "rtl" ? ChevronLeft : ChevronRight;
+
+  return (
+    <Dialog open={!!file} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent
+        dir={dir}
+        closeLabel={t("common.close")}
+        className="max-w-4xl gap-3 p-4"
+        onKeyDown={onKeyDown}
+        data-testid="media-viewer"
+      >
+        <DialogHeader className="pe-8">
+          <DialogTitle className="truncate text-sm" dir="ltr">
+            {file?.file_name}
+          </DialogTitle>
+          <DialogDescription className="text-xs">
+            {file &&
+              (file.kind === "carousel_slide"
+                ? `${t("finished.kind.carousel_slide")} #${file.slide_index}`
+                : t(`finished.kind.${file.kind}`))}
+            {count > 1 && ` · ${t("finished.counter", { i: (viewing?.index ?? 0) + 1, n: count })}`}
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex max-h-[70dvh] min-h-48 items-center justify-center overflow-hidden rounded-md bg-black/90">
+          {!file || !src ? null : file.mime_type.startsWith("image/") ? (
+            <img src={src} alt={file.file_name} className="max-h-[70dvh] w-auto object-contain" />
+          ) : file.mime_type.startsWith("video/") ? (
+            <video
+              key={src}
+              src={src}
+              controls
+              autoPlay
+              playsInline
+              className="max-h-[70dvh] w-auto"
+            />
+          ) : (
+            <iframe src={src} title={file.file_name} className="h-[70dvh] w-full bg-white" />
+          )}
+        </div>
+        <DialogFooter className="items-center sm:justify-between">
+          <div className="flex gap-2">
+            {count > 1 && (
+              <>
+                <Button size="sm" variant="outline" onClick={() => step(-1)}>
+                  <Prev />
+                  {t("finished.prev")}
+                </Button>
+                <Button size="sm" variant="outline" onClick={() => step(1)}>
+                  {t("finished.next")}
+                  <Next />
+                </Button>
+              </>
+            )}
+          </div>
+          {src && (
+            <Button size="sm" variant="ghost" asChild>
+              <a href={src} target="_blank" rel="noopener noreferrer">
+                <ExternalLink />
+                {t("finished.openNew")}
+              </a>
+            </Button>
+          )}
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 

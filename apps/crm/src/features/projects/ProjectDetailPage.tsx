@@ -267,7 +267,11 @@ export function ProjectDetailPage() {
           </TabsContent>
 
           <TabsContent value="media">
-            <MediaPanel project={p} />
+            {p.source_metadata.origin === "content_plan_import" ? (
+              <ImportedContentCard project={p} />
+            ) : (
+              <MediaPanel project={p} />
+            )}
           </TabsContent>
           <TabsContent value="publishing">
             {p.source_metadata.published ? (
