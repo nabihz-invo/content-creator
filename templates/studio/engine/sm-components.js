@@ -530,8 +530,10 @@
       if (tagL === 'en') mkT('Your stock, always in sight', false, ta);
       if (tagL === 'ar') mkT('مخزونك دايماً قدّام عينك', true, ta);
       yy += (o.tagSize || 46) * 1.9; }
-    if (o.cta) { const [cw, c] = wrapAt(L, 0, yy, '', esc(o.cta)); c.style.cssText = `position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font-size:${o.ctaSize || 40}px;font-weight:600;padding:18px 36px;border-radius:999px;background:${theme === 'light' ? C.ocean : C.glow};color:${theme === 'light' ? '#fff' : C.abyss}`; s.anim(cw, { o: [0, 1], s: [.7, 1] }, at + d + .8, .45, 'outBack'); out.cta = cw; }
-    if (o.endorse !== false) { const e = mk('div', '', s.el, SM.endorse(theme)); e.style.cssText = `position:absolute;left:50%;bottom:${o.endorseY ?? 470}px;transform:translateX(-50%);font-size:28px`; s.anim(e, { o: [0, 1] }, at + d + .6, .5); out.endorse = e; }
+    if (o.cta) { const [cw, c] = wrapAt(L, 0, yy, '', esc(o.cta)); c.style.cssText = `position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font-size:${o.ctaSize || 40}px;font-weight:600;padding:18px 36px;border-radius:999px;background:${theme === 'light' ? C.ocean : C.glow};color:${theme === 'light' ? '#fff' : C.abyss}`; s.anim(cw, { o: [0, 1], s: [.7, 1] }, at + d + .8, .45, 'outBack'); out.cta = cw; yy += (o.ctaSize || 40) * 1.25 + 36 + 56; }
+    // With a CTA the endorsement goes under it (its fixed bottom position would sit on the button).
+    if (o.endorse !== false && o.cta && o.endorseY == null) { const [ew, e] = wrapAt(L, 0, yy, '', SM.endorse(theme)); e.style.cssText = 'position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font-size:28px'; s.anim(ew, { o: [0, 1] }, at + d + .6, .5); out.endorse = ew; }
+    else if (o.endorse !== false) { const e = mk('div', '', s.el, SM.endorse(theme)); e.style.cssText = `position:absolute;left:50%;bottom:${o.endorseY ?? 470}px;transform:translateX(-50%);font-size:28px`; s.anim(e, { o: [0, 1] }, at + d + .6, .5); out.endorse = e; }
     return out;
   };
   /** Static logo lockup (horizontal) */
