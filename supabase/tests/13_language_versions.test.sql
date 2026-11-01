@@ -86,7 +86,7 @@ select throws_ok(format($$select save_render(%L, 'w2', %L, %L)$$, :'job2', :'r2'
   'two videos for one version are refused');
 select save_render(:'job2', 'w2', :'r2', jsonb_build_array(pg_temp.video(:'vp', :'r2', 'en'), pg_temp.video(:'vp', :'r2', 'ar'))) as s2 \gset
 select is((:'s2'::jsonb ->> 'files')::int, 2, 'one MP4 per language version');
-select is((select string_agg((i ->> 'language') || ':' || (i ->> 'duration'), ',') from render_jobs, jsonb_array_elements(manifest -> 'items') i where id = :'r2'),
+select is((select string_agg((i ->> 'language') || ':' || (i ->> 'duration')::numeric::float8, ',') from render_jobs, jsonb_array_elements(manifest -> 'items') i where id = :'r2'),
   'ar:12.4,en:12.4', 'the video manifest carries language and duration');
 
 select * from finish();
