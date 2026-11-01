@@ -115,7 +115,8 @@ async function rest(path, init = {}) {
     headers: { ...H, ...(init.headers ?? {}) },
   });
   if (!r.ok) throw new Error(`${init.method ?? "GET"} ${path}: ${r.status} ${await r.text()}`);
-  return r.status === 204 ? null : r.json();
+  const body = await r.text();
+  return body ? JSON.parse(body) : null;
 }
 
 async function currentRows() {
