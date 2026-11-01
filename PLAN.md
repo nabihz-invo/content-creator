@@ -263,6 +263,8 @@ Phase 3 (3D motion graphics / HTML).
 | P5-T14 | Import the Stacko content plan (workbook → projects) | done | P5-T08 | owner + local Claude Code |
 | P5-T15 | Finished posts for imported content (files per language, live links per language) + storage rules (deletes remove files, release after publishing) | in-progress | P4-T10, P5-T12 | local Claude Code |
 | P5-T17 | Review imported posts: approve → download → free storage; request changes → re-upload; delete with all files | in-progress | P5-T15 | local Claude Code |
+| P5-T18 | Imported posts: approved → ready to publish, publish date, dated download names, project page layout | in-progress | P5-T17 | local Claude Code |
+| P5-T19 | AI stages by Claude Code on the owner's subscription (relay, ADR-0011) | in-progress | P5-T13 | local Claude Code |
 | P5-T16 | Storage rules for pipeline renders: release `media_assets` files once the post is live (keep the manifest and the live link) | todo | P5-T15 | |
 | P5-VERIFY | Phase 5 verification | todo | P5-T01…T17 | |
 

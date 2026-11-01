@@ -9,7 +9,8 @@ export interface Config {
   telegramWebhookSecret: string | null;
   crmUrl: string;
   allowedOrigins: string[];
-  aiProvider: "anthropic" | "fake";
+  /** claude-code: answered by Claude Code on the owner's PC (relay.ts); anthropic: the API key. */
+  aiProvider: "anthropic" | "claude-code" | "fake";
   anthropicApiKey: string | null;
   previewOrigin: string | null;
   previewSigningSecret: string | null;
@@ -39,7 +40,9 @@ export function loadConfig(): Config {
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean),
-    aiProvider: Deno.env.get("AI_PROVIDER") === "fake" ? "fake" : "anthropic",
+    aiProvider:
+      (["fake", "claude-code"] as const).find((p) => p === Deno.env.get("AI_PROVIDER")) ??
+      "anthropic",
     anthropicApiKey: Deno.env.get("ANTHROPIC_API_KEY") ?? null,
     previewOrigin: Deno.env.get("PREVIEW_ORIGIN") ?? null,
     previewSigningSecret: Deno.env.get("PREVIEW_SIGNING_SECRET") ?? null,

@@ -3,9 +3,11 @@
  * so instead of waiting for webhooks it picks up queued AI jobs (analysis, brief, script) and
  * hands each to `POST /internal/run-job`, signed like n8n (n8n/README.md "Calling convention").
  * Every minute it calls `/internal/recover` (expired leases, escalation, storage cleanup).
- * Creative and render jobs are claimed by their own workers.
+ * With the Claude Code relay (ADR-0011) it also answers the stages' model requests with Claude Code
+ * on this PC. Creative and render jobs are claimed by their own workers.
  */
 import { createHmac } from "node:crypto";
+import { type AiRequest, answer } from "./claude-code.ts";
 
 const required = (k: string) => {
   const v = process.env[k];
@@ -83,6 +85,44 @@ async function recover() {
   }
 }
 
+async function rpc<T>(fn: string, args: Record<string, unknown>): Promise<T> {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
+    method: "POST",
+    headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, "content-type": "application/json" },
+    body: JSON.stringify(args),
+  });
+  const body = await res.text();
+  if (!res.ok) throw new Error(`${fn}: ${res.status} ${body.slice(0, 200)}`);
+  return (body ? JSON.parse(body) : null) as T;
+}
+
+const CLAUDE = process.env.CLAUDE_CODE_OAUTH_TOKEN
+  ? {
+      bin: required("CLAUDE_BIN"),
+      oauthToken: process.env.CLAUDE_CODE_OAUTH_TOKEN,
+      timeoutMs: Number(process.env.CLAUDE_TIMEOUT_S ?? 900) * 1000,
+    }
+  : null;
+const WORKER = `runner-${process.pid}`;
+
+/** One model request at a time: Claude Code answers, the job wakes and replays its stage. */
+async function answerRequests() {
+  const [req] = await rpc<AiRequest[]>("claim_ai_request", { p_worker_id: WORKER });
+  if (!req) return;
+  const t0 = Date.now();
+  try {
+    const response = await answer(req, CLAUDE!);
+    await rpc("finish_ai_request", { p_id: req.id, p_response: response, p_error: null });
+    log(
+      `claude-code ${req.stage} ${req.id.slice(0, 8)} answered in ${Math.round((Date.now() - t0) / 1000)} s`,
+    );
+  } catch (e) {
+    const msg = (e as Error).message;
+    await rpc("finish_ai_request", { p_id: req.id, p_response: null, p_error: msg });
+    log(`claude-code ${req.stage} ${req.id.slice(0, 8)} failed: ${msg.slice(0, 300)}`);
+  }
+}
+
 function every(ms: number, fn: () => Promise<void>, name: string) {
   let busy = false;
   const tick = () => {
@@ -103,3 +143,10 @@ log(
 );
 every(POLL_MS, poll, "poll");
 every(RECOVER_MS, recover, "recover");
+if (CLAUDE) {
+  log("answering AI requests with Claude Code (subscription)");
+  every(POLL_MS, answerRequests, "claude-code");
+} else
+  log(
+    "CLAUDE_CODE_OAUTH_TOKEN is not set: AI requests wait until it is (run `claude setup-token`)",
+  );

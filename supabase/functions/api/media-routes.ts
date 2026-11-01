@@ -370,7 +370,12 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
     const date = /^\d{4}-\d{2}-\d{2}/.exec(pj.publish_date ?? "")?.[0];
     const slug = (pj.plan_id ?? pj.title).replace(/[^\w-]+/g, "-").slice(0, 40) || "post";
     const prefix = date ? `${date}_${slug}` : slug;
-    const PART: Record<string, string> = { video: "reel", cover: "cover", image: "image", document: "document" };
+    const PART: Record<string, string> = {
+      video: "reel",
+      cover: "cover",
+      image: "image",
+      document: "document",
+    };
     const enc = new TextEncoder();
     const entries = [];
     for (const f of files) {
@@ -392,7 +397,10 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
           data: enc.encode(text + "\n"),
         });
     if (pj.finished?.hashtags)
-      entries.push({ name: `${prefix}_hashtags.txt`, data: enc.encode(pj.finished.hashtags + "\n") });
+      entries.push({
+        name: `${prefix}_hashtags.txt`,
+        data: enc.encode(pj.finished.hashtags + "\n"),
+      });
     const zip = createZip(entries);
     await sql`select public.record_imported_download(${userId}, ${id}, ${language})`;
     return new Response(zip as Uint8Array<ArrayBuffer>, {

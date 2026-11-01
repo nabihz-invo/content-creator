@@ -165,6 +165,8 @@ export async function generateJson<T>(
         res = await call();
       }
     } catch (err) {
+      // The Claude Code relay parks the job until its reply exists (relay.ts).
+      if ((err as { deferred?: boolean })?.deferred) throw err;
       throw classify(err);
     }
 

@@ -14,6 +14,13 @@ Template:
 
 ---
 
+## 2026-11-01 — P5-T18 imported posts ready to publish + page layout · P5-T19 Claude Code relay — in progress
+- Agent/branch: local Claude Code (main)
+- Why: the API credit ran out on the first creative; the owner wants the CRM as the workspace and every AI step done by Claude Code on their subscription. EDU-26 stayed "new" after approval; downloads were all named `post.zip` (CORS hid the file name).
+- Changes: migration `20261101130000` (new ⇄ ready_to_publish for imported posts, back-fill of approved posts, discard/mark-published from ready_to_publish, `set_publish_date`); API `POST /content-projects/:id/publish-date`, downloads named `<date>_<ID>_<LANG>_<part>`, CORS exposes content-disposition; CRM: the pipeline steps are the tabs (+ History), details/tags/editable publish date in the right card, finished files as a slider card and the content plan card on the right. Migration `20261101140000` (`ai_requests`, `defer_job`, `claim_ai_request`, `finish_ai_request`); `_shared/relay.ts` + `AI_PROVIDER=claude-code`; executor parks jobs waiting for Claude Code; job runner answers requests with Claude Code (`claude-code.ts`, `CLAUDE_CODE_OAUTH_TOKEN`); creative worker uses the token instead of the API key. EDU-22 remade (3D hook, animated roles/ledger/chat) and re-imported; end-card endorsement no longer covers the CTA.
+- Verification: all 17 pgTAP files on hosted with both migrations, rolled back: 317/317 (new `16_imported_ready` 11, `17_claude_code_relay` 10); nothing persisted. `deno check` API, `llm.test.ts` 6/6, job-runner tests 3/3, worker + CRM typecheck, ESLint, Prettier.
+- Next: owner pushes the two migrations and runs `claude setup-token` → deploy `api`, set `AI_PROVIDER=claude-code`, add the token to workers/.env, restart the pipeline, retry DEC-02's creative and verify one stage end to end.
+
 ## 2026-11-01 — Pipeline running on the owner's PC (ADR-0010)
 - Agent/branch: local Claude Code (main)
 - Found: 132 projects all `new`, no job had ever run — no n8n, workers never configured or started, start only via the Inbox bulk action.

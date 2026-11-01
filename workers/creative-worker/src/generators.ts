@@ -147,7 +147,8 @@ function windowsEnv(home: string): Record<string, string> {
 
 export function claudeCodeGenerator(cfg: {
   bin: string;
-  apiKey: string;
+  /** CLAUDE_CODE_OAUTH_TOKEN (subscription) or ANTHROPIC_API_KEY. */
+  auth: Record<string, string>;
   model: string;
   effort: string;
   budgetUsd: number;
@@ -163,7 +164,7 @@ export function claudeCodeGenerator(cfg: {
         env: {
           PATH: process.env.PATH ?? "/usr/bin:/bin",
           HOME: home,
-          ANTHROPIC_API_KEY: cfg.apiKey,
+          ...cfg.auth,
           CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1",
           ...(process.platform === "win32" ? windowsEnv(home) : {}),
         },
