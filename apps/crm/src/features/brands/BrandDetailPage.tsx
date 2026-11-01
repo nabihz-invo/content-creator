@@ -269,7 +269,7 @@ function BrandEditor({ brand }: { brand: Brand }) {
                 size="sm"
                 className="w-fit"
                 onClick={() =>
-                  update("palette", [...(s.palette ?? []), { name: "", hex: "#4f46e5", role: "" }])
+                  update("palette", [...(s.palette ?? []), { name: "", hex: "#0895a6", role: "" }])
                 }
               >
                 <Plus />

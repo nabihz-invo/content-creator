@@ -1,4 +1,4 @@
-import { FolderKanban, Languages, MailCheck } from "lucide-react";
+import { Languages, MailCheck } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,9 +33,7 @@ export function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="grid size-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-              <FolderKanban className="size-4" />
-            </div>
+            <img src="/favicon.svg" alt="" className="size-9 rounded-lg" />
             <div className="font-semibold">{t("app.name")}</div>
           </div>
           <Button

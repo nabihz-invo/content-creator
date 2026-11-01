@@ -2,58 +2,67 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Design tokens (shadcn-compatible names). Light and dark themes. */
+/* Stacko palette, copied from the Stacko app (app/src/app/globals.css).
+   The shadcn token names stay so the ui/ components keep working; their values are Stacko's. */
 :root {
+  --abyss: #0e2440;
+  --night: #1b416b;
+  --signal: #0895a6;
+  --glow: #2ef2ee;
+  --ocean: #2f86b8;
+  --dolphin: #79c0de;
+  --coral: #f06b5d;
+  --ok: #1f9d8a;
+  --low: #d9822b;
+  --alert: #c2334a;
+
+  --bg: #f4f8fa;
+  --surface: #ffffff;
+  --surface-2: #eef6f9;
+  --ink: #0e2440;
+  --ink-2: #4f6e86;
+  --line: #d7e4ec;
+
   --radius: 0.625rem;
-  --background: oklch(0.985 0.002 260);
-  --foreground: oklch(0.2 0.02 265);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.02 265);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.02 265);
-  --primary: oklch(0.51 0.23 277);
-  --primary-foreground: oklch(0.98 0.01 277);
-  --secondary: oklch(0.96 0.006 265);
-  --secondary-foreground: oklch(0.25 0.02 265);
-  --muted: oklch(0.96 0.006 265);
-  --muted-foreground: oklch(0.52 0.02 265);
-  --accent: oklch(0.95 0.02 277);
-  --accent-foreground: oklch(0.3 0.12 277);
-  --destructive: oklch(0.58 0.22 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --success: oklch(0.6 0.15 155);
-  --warning: oklch(0.75 0.15 75);
-  --border: oklch(0.91 0.008 265);
-  --input: oklch(0.91 0.008 265);
-  --ring: oklch(0.51 0.23 277);
-  --sidebar: oklch(0.2 0.03 270);
-  --sidebar-foreground: oklch(0.85 0.02 270);
-  --sidebar-accent: oklch(0.28 0.05 275);
-  --sidebar-active: oklch(0.98 0 0);
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: #0895a6;
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-2);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--ink);
+  --destructive: var(--alert);
+  --destructive-foreground: #ffffff;
+  --success: var(--ok);
+  --warning: var(--low);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: #0895a6;
+  --sidebar: var(--abyss);
+  --sidebar-foreground: rgba(255, 255, 255, 0.7);
+  --sidebar-accent: rgba(255, 255, 255, 0.12);
+  --sidebar-active: #ffffff;
 }
 
 .dark {
-  --background: oklch(0.16 0.015 265);
-  --foreground: oklch(0.95 0.005 265);
-  --card: oklch(0.2 0.018 265);
-  --card-foreground: oklch(0.95 0.005 265);
-  --popover: oklch(0.2 0.018 265);
-  --popover-foreground: oklch(0.95 0.005 265);
-  --primary: oklch(0.65 0.2 277);
-  --primary-foreground: oklch(0.15 0.02 277);
-  --secondary: oklch(0.26 0.02 265);
-  --secondary-foreground: oklch(0.92 0.005 265);
-  --muted: oklch(0.26 0.02 265);
-  --muted-foreground: oklch(0.7 0.02 265);
-  --accent: oklch(0.3 0.06 277);
-  --accent-foreground: oklch(0.92 0.02 277);
-  --destructive: oklch(0.65 0.2 25);
-  --border: oklch(0.3 0.02 265);
-  --input: oklch(0.32 0.02 265);
-  --ring: oklch(0.65 0.2 277);
-  --sidebar: oklch(0.13 0.015 265);
-  --sidebar-foreground: oklch(0.8 0.02 265);
-  --sidebar-accent: oklch(0.22 0.03 270);
+  --bg: #0a1b31;
+  --surface: #0e2440;
+  --surface-2: #132e50;
+  --ink: #eef6f9;
+  --ink-2: #9db7ca;
+  --line: #1f3d61;
+
+  --primary: #2ef2ee;
+  --primary-foreground: #0a1b31;
+  --ring: #2ef2ee;
+  --sidebar: #071426;
 }
 
 @theme inline {
@@ -82,12 +91,31 @@
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-active: var(--sidebar-active);
+
+  /* The Stacko app's own names, for new screens written in its style. */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-abyss: var(--abyss);
+  --color-night: var(--night);
+  --color-signal: var(--signal);
+  --color-glow: var(--glow);
+  --color-ocean: var(--ocean);
+  --color-dolphin: var(--dolphin);
+  --color-coral: var(--coral);
+  --color-ok: var(--ok);
+  --color-low: var(--low);
+  --color-alert: var(--alert);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans:
-    "Inter", "IBM Plex Sans Arabic", "Noto Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Readex Pro", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+  --font-ar: "Noto Kufi Arabic", "Readex Pro", Tahoma, sans-serif;
 }
 
 @layer base {
@@ -96,6 +124,8 @@
   }
   html {
     -webkit-text-size-adjust: 100%;
+    background: var(--bg);
+    color: var(--ink);
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -103,6 +133,24 @@
   }
   :lang(ar) body,
   [dir="rtl"] body {
+    font-family: var(--font-ar);
     letter-spacing: 0;
   }
 }
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sidebar: a slim signal-teal thumb on the abyss panel, no track or arrows; brighter on hover. */
+.nav-scroll { scrollbar-width: thin; scrollbar-color: rgba(46, 242, 238, 0.22) transparent; }
+.nav-scroll:hover { scrollbar-color: rgba(46, 242, 238, 0.45) transparent; }
+.nav-scroll::-webkit-scrollbar { width: 6px; }
+.nav-scroll::-webkit-scrollbar-track { background: transparent; }
+.nav-scroll::-webkit-scrollbar-button { display: none; }
+.nav-scroll::-webkit-scrollbar-thumb { background: rgba(46, 242, 238, 0.22); border-radius: 999px; }
+.nav-scroll:hover::-webkit-scrollbar-thumb { background: rgba(46, 242, 238, 0.45); }
+
+/* Tab strips scroll sideways on narrow screens without showing a scrollbar. */
+.tabs-scroll { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.tabs-scroll::-webkit-scrollbar { display: none; }
