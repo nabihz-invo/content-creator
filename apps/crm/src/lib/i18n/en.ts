@@ -394,6 +394,8 @@ export const en = {
   "creative.none": "Approve a script to generate the creative prompt.",
   "creative.meta": "{format} · {w}×{h} · {version}",
   "inbox.analyzeSelected": "Analyze {n} selected",
+  "inbox.filter.type": "Format",
+  "inbox.type.none": "Idea",
   "inbox.analyzed": "Analysis started for {n} ideas",
   "inbox.selectRow": "Select",
   "common.confirm": "Confirm",

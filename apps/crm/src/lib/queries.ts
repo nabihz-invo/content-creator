@@ -21,12 +21,13 @@ import type {
 } from "@/types/db";
 import { supabase } from "./supabase";
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = 24;
 
 export interface ProjectFilters {
   search?: string;
   statusGroup?: keyof typeof OVERVIEW_GROUPS | "";
   source?: InputSource | "";
+  contentType?: NonNullable<ContentProject["content_type"]> | "";
   brandId?: string;
   tagId?: string;
   page?: number;
@@ -44,7 +45,13 @@ export type ProjectListRow = Pick<
   | "duplicate_of"
   | "submitted_at"
   | "content_type"
-> & { brands: { name: string } | null; project_tags: { tags: Tag }[] };
+> & {
+  brands: { name: string } | null;
+  project_tags: { tags: Tag }[];
+  /** From source_metadata: the content plan's format label (e.g. "FAQ Reel") and planned day. */
+  format: string | null;
+  publish_date: string | null;
+};
 
 export function useProjects(workspaceId: string | null, filters: ProjectFilters) {
   return useQuery({
@@ -59,7 +66,7 @@ export function useProjects(workspaceId: string | null, filters: ProjectFilters)
       let q = supabase
         .from("content_projects")
         .select(
-          `id, title, original_idea, input_source, source_url, status, brand_id, duplicate_of, submitted_at, content_type, brands(name), ${tagJoin}`,
+          `id, title, original_idea, input_source, source_url, status, brand_id, duplicate_of, submitted_at, content_type, format:source_metadata->>format, publish_date:source_metadata->>publish_date, brands(name), ${tagJoin}`,
           { count: "exact" },
         )
         .eq("workspace_id", workspaceId!)
@@ -69,6 +76,7 @@ export function useProjects(workspaceId: string | null, filters: ProjectFilters)
         q = q.textSearch("search", filters.search.trim(), { type: "websearch", config: "simple" });
       if (filters.statusGroup) q = q.in("status", [...OVERVIEW_GROUPS[filters.statusGroup]!]);
       if (filters.source) q = q.eq("input_source", filters.source);
+      if (filters.contentType) q = q.eq("content_type", filters.contentType);
       if (filters.brandId) q = q.eq("brand_id", filters.brandId);
       if (filters.tagId) q = q.eq("project_tags.tag_id", filters.tagId);
       const { data, error, count } = await q;
@@ -476,6 +484,57 @@ export function useCreativeVersions(projectId: string | undefined, poll = false)
 }
 
 /** Finished files of imported content, by language and slide order (P5-T15). */
+/**
+ * The picture for each project card (storage path in the media bucket): an imported post's cover,
+ * image or first slide, else the latest render's thumbnail, image or first slide. Projects without
+ * one are left out.
+ */
+export function useCardImages(projectIds: string[]) {
+  return useQuery({
+    queryKey: ["card-images", projectIds],
+    enabled: projectIds.length > 0,
+    staleTime: 60_000,
+    queryFn: async () => {
+      const [imported, rendered] = await Promise.all([
+        supabase
+          .from("imported_media")
+          .select("project_id, kind, slide_index, storage_path")
+          .in("project_id", projectIds)
+          .in("kind", ["cover", "image", "carousel_slide"])
+          .not("storage_path", "is", null),
+        supabase
+          .from("media_assets")
+          .select("project_id, asset_type, slide_index, storage_path, created_at")
+          .in("project_id", projectIds)
+          .in("asset_type", ["thumbnail", "png", "carousel_slide"])
+          .not("status", "in", "(rejected,outdated)")
+          .order("created_at", { ascending: false }),
+      ]);
+      if (imported.error) throw imported.error;
+      if (rendered.error) throw rendered.error;
+      const rank = (kind: string, slide: number | null) =>
+        kind === "cover" || kind === "thumbnail"
+          ? 0
+          : kind === "image" || kind === "png"
+            ? 1
+            : 1 + (slide ?? 1);
+      const best = new Map<string, { path: string; r: number }>();
+      const offer = (project: string, path: string, r: number) => {
+        const cur = best.get(project);
+        if (!cur || r < cur.r) best.set(project, { path, r });
+      };
+      for (const m of imported.data ?? [])
+        offer(m.project_id, m.storage_path!, rank(m.kind, m.slide_index));
+      // Renders only where nothing was imported; newest first, so the first of each rank wins.
+      const hasImported = new Set((imported.data ?? []).map((m) => m.project_id));
+      for (const a of rendered.data ?? [])
+        if (!hasImported.has(a.project_id))
+          offer(a.project_id, a.storage_path, rank(a.asset_type, a.slide_index));
+      return Object.fromEntries([...best].map(([id, b]) => [id, b.path])) as Record<string, string>;
+    },
+  });
+}
+
 export function useImportedMedia(projectId: string | undefined) {
   return useQuery({
     queryKey: ["imported-media", projectId],

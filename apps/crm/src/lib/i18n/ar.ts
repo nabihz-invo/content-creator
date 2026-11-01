@@ -394,6 +394,8 @@ export const ar: Record<MessageKey, string> = {
   "creative.none": "اعتمد نصًا لتوليد أمر التصميم.",
   "creative.meta": "{format} · {w}×{h} · {version}",
   "inbox.analyzeSelected": "حلّل {n} محددة",
+  "inbox.filter.type": "الصيغة",
+  "inbox.type.none": "فكرة",
   "inbox.analyzed": "بدأ التحليل لـ {n} أفكار",
   "inbox.selectRow": "تحديد",
   "common.confirm": "تأكيد",
