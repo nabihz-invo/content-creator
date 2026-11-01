@@ -13,6 +13,7 @@ import type {
   Brand,
   BrandAsset,
   ContentProject,
+  ImportedMediaRow,
   InputSource,
   Tag,
   WorkflowEvent,
@@ -470,6 +471,27 @@ export function useCreativeVersions(projectId: string | undefined, poll = false)
         .order("version", { ascending: false });
       if (error) throw error;
       return (data ?? []) as CreativeVersionRow[];
+    },
+  });
+}
+
+/** Finished files of imported content, by language and slide order (P5-T15). */
+export function useImportedMedia(projectId: string | undefined) {
+  return useQuery({
+    queryKey: ["imported-media", projectId],
+    enabled: !!projectId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("imported_media")
+        .select(
+          "id, project_id, language, kind, slide_index, file_name, storage_path, mime_type, file_size, width, height, duration, metadata, live_url, released_at",
+        )
+        .eq("project_id", projectId!)
+        .order("language", { ascending: true, nullsFirst: true })
+        .order("kind")
+        .order("slide_index", { ascending: true, nullsFirst: true });
+      if (error) throw error;
+      return (data ?? []) as ImportedMediaRow[];
     },
   });
 }

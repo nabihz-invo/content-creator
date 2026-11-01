@@ -11,7 +11,8 @@
  * Env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY; BRAND_ASSETS_DIR is the default mirror root.
  *
  * Only changed files are uploaded (sha256). A changed file becomes a new version
- * at <brand_id>/<asset_type>/v<version>/<library path>; older versions stay.
+ * at <brand_id>/<asset_type>/v<version>/<library path>; the previous version's row is deleted,
+ * which queues its file, and the queue is emptied at the end (storage is kept to the minimum).
  * Raw files (green-placeholder images, superseded sounds), placeholder tracks and README
  * files are never synced.
  */
@@ -128,6 +129,32 @@ async function currentRows() {
   return cur;
 }
 
+/** Removes the files queued by deleted/replaced rows (same job as the API's purgeStorage). */
+async function purgeQueue() {
+  const rpc = (fn, args) =>
+    rest(`rpc/${fn}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(args),
+    });
+  const rows = await rpc("claim_storage_deletions", { p_limit: 1000 });
+  if (!rows?.length) return;
+  const done = [];
+  const failed = {};
+  for (const bucket of new Set(rows.map((r) => r.bucket))) {
+    const items = rows.filter((r) => r.bucket === bucket);
+    const r = await fetch(`${URL_}/storage/v1/object/${bucket}`, {
+      method: "DELETE",
+      headers: { ...H, "content-type": "application/json" },
+      body: JSON.stringify({ prefixes: items.map((i) => i.path) }),
+    });
+    if (r.ok) done.push(...items.map((i) => i.id));
+    else for (const i of items) failed[i.id] = `${r.status} ${await r.text()}`;
+  }
+  const res = await rpc("finish_storage_deletions", { p_done: done, p_failed: failed });
+  console.log(`storage: ${done.length} old files removed, ${res.pending} still queued`);
+}
+
 function mirrorWrite(p, buf) {
   if (!mirrorRoot) return;
   const f = join(mirrorRoot, brand, p);
@@ -202,9 +229,12 @@ async function push() {
         }),
       });
       mirrorWrite(p, buf);
+      // The old version goes, with its file (queued by the delete trigger, removed below).
+      if (prev) await rest(`brand_assets?id=eq.${prev.id}`, { method: "DELETE" });
     }
     uploaded++;
   }
+  if (!dry) await purgeQueue();
   console.log(
     `${dry ? "[dry run] " : ""}${uploaded} uploaded, ${same} unchanged, ${files.length} in the library`,
   );

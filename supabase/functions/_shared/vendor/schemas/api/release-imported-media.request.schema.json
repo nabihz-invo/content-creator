@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/release-imported-media.request.schema.json",
+  "title": "POST /api/content-projects/{id}/imported-media/release",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "language": {
+      "enum": ["en", "ar"],
+      "description": "Release one language version; omitted = every version that has a live link"
+    }
+  }
+}

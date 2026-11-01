@@ -255,13 +255,15 @@ Phase 3 (3D motion graphics / HTML).
 | P5-T06 | CRM video preview / playback | todo | P5-T04 | |
 | P5-T07 | Telegram voice-note transcription | todo | P4-VERIFY | |
 | P5-T08 | Stacko organization: workspace, admin (nabihzanaty@gmail.com), Stacko brand settings | done | P4-VERIFY | local Claude Code |
-| P5-T09 | Brand asset library: new asset types, catalog codes, kit → `brand-assets` sync | in-progress | P5-T08 | local Claude Code |
+| P5-T09 | Brand asset library: new asset types, catalog codes, kit → `brand-assets` sync | done | P5-T08 | local Claude Code |
 | P5-T10 | Studio engine as a brand template pack (`templates/studio/`), `__render` adapter, worker workspace | done | P5-T01 | local Claude Code |
 | P5-T11 | Creative catalog (RC/HK/OP/TX/TR/CM/AN/CP/EC/LG/MU/CL), variety rules, approval checks in prompts | todo | P5-T10 | |
 | P5-T12 | Two language versions per project (EN + AR outputs from one page) | in-progress | P5-T10 | local Claude Code |
 | P5-T13 | Audio: ElevenLabs voice with timestamps, real UI SFX, music by MU code, beat-synced silent cuts | in-progress | P5-T03 | local Claude Code |
 | P5-T14 | Import the Stacko content plan (workbook → projects) | done | P5-T08 | owner + local Claude Code |
-| P5-VERIFY | Phase 5 verification | todo | P5-T01…T14 | |
+| P5-T15 | Finished posts for imported content (files per language, live links per language) + storage rules (deletes remove files, release after publishing) | in-progress | P4-T10, P5-T12 | local Claude Code |
+| P5-T16 | Storage rules for pipeline renders: release `media_assets` files once the post is live (keep the manifest and the live link) | todo | P5-T15 | |
+| P5-VERIFY | Phase 5 verification | todo | P5-T01…T16 | |
 
 Key acceptance: same creative + commit renders byte-identical frames; MP4 duration/fps/dimensions/audio validated; a killed render resumes from last checkpoint; voice note creates a project from its transcript.
 
@@ -280,6 +282,12 @@ Key acceptance: same creative + commit renders byte-identical frames; MP4 durati
 **P5-T13** — audio provider in the render worker: ElevenLabs voice-over with timestamps per language (captions from the alignment), UI SFX library generated once with ElevenLabs Sound Effects into the brand library, music from the owner's ElevenLabs tracks by MU code; transitions muted in the engine, `R.beats(bpm)` cuts use the track's BPM; mix with ducking and −16 LUFS. `ELEVENLABS_API_KEY` is a worker secret.
 
 **P5-T14** — run `scripts/import/content-plan-to-sql.py` on the workbook (owner email, brand Stacko) and apply it. Acceptance: one project per Content and Backlog row, rerun creates nothing new.
+
+**Storage rules (owner, 2026-11-01).** (1) Upload as little as possible: only files the pipeline or the CRM needs; sources (HTML, JSON, logs, voice takes) stay local. (2) Deleting a row deletes its stored file. (3) Once a post is live, its files can be released: removed from storage, the row keeps the live post's link. Supabase does not allow deleting storage objects from SQL, so rows queue their paths in `private.storage_deletions` (trigger on delete / path change) and the API removes them with the Storage API right away; the recovery cron retries failures.
+
+**P5-T15** — table `imported_media` (project, language, kind image/carousel_slide/video/cover/document, slide index, size, checksum, `storage_path` or `live_url` + `released_at`); `save_imported_media()` (service role; a version that is already live is recorded with its link only, an unchanged file is a no-op, a changed one replaces the slot), `release_imported_media()`, `delete_imported_media()`; `mark_imported_published()` takes a language (`en`/`ar`/`both`) and can add the second language's link to a published project; API: `mark-published` gets `language` + `release_storage`, `POST …/imported-media/release`, `DELETE /api/imported-media/:id`; CRM: the imported card lists the finished files per language, links per language, "Free storage", delete with confirmation; `scripts/import/finished-posts.mjs` reads post folders (`en/`, `ar/`, `png-en/`, `ar-needs-native-review/`, `video.mp4`, `cover*.png`, captions, `links.txt`). Acceptance: pgTAP `14_imported_media`; the archive's finished posts imported with no duplicate uploads; releasing a version removes its files from the bucket.
+
+**P5-T16** — the same release for pipeline renders: after `mark_published_manually` (or the publishing integration) confirms the live URL, `media_assets` files can be released; the immutable manifest, checksums and approvals stay, and the CRM shows the live post instead of the file.
 
 ---
 

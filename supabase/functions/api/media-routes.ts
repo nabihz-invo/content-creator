@@ -8,6 +8,7 @@ import { requireProjectRole, requireUser } from "../_shared/auth.ts";
 import type { Deps } from "../_shared/deps.ts";
 import { ApiError } from "../_shared/errors.ts";
 import { STAGE_WORKFLOW } from "../_shared/n8n.ts";
+import { purgeStorage } from "../_shared/storage-cleanup.ts";
 import { validate } from "../_shared/validate.ts";
 import { checkPublishPackage } from "../_shared/vendor/src/platform-rules.ts";
 import { createZip } from "../_shared/vendor/src/zip.ts";
@@ -23,6 +24,17 @@ function idParam(c: Context, what: string): string {
 async function body(c: Context): Promise<unknown> {
   try {
     return await c.req.json();
+  } catch {
+    throw new ApiError("validation_failed", "body must be valid JSON");
+  }
+}
+
+/** A JSON body that may be left out entirely (treated as {}). */
+async function optionalBody(c: Context): Promise<unknown> {
+  const raw = (await c.req.text()).trim();
+  if (!raw) return {};
+  try {
+    return JSON.parse(raw);
   } catch {
     throw new ApiError("validation_failed", "body must be valid JSON");
   }
@@ -241,16 +253,66 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
     const userId = await requireUser(c.req.raw, deps.auth);
     const id = idParam(c, "project");
     await requireProjectRole(sql, userId, id, ["admin", "editor"]);
-    const input = validate<{ published_url: string; published_at?: string }>(
-      "markImportedPublished",
-      await body(c),
-    );
+    const input = validate<{
+      published_url: string;
+      published_at?: string;
+      language?: "en" | "ar" | "both";
+      release_storage?: boolean;
+    }>("markImportedPublished", await body(c));
     const [{ r }] = (await sql`
       select public.mark_imported_published(${userId}, ${id}, ${input.published_url},
-        ${input.published_at ? `${input.published_at}T12:00:00Z` : null}::timestamptz) as r`) as unknown as [
-      { r: { project_id: string; status: string; published_url: string; replayed: boolean } },
+        ${input.published_at ? `${input.published_at}T12:00:00Z` : null}::timestamptz,
+        ${input.language ?? null}) as r`) as unknown as [
+      {
+        r: {
+          project_id: string;
+          status: string;
+          language: string;
+          published_url: string;
+          replayed: boolean;
+        };
+      },
     ];
-    return c.json(r);
+    if (!input.release_storage) return c.json(r);
+    const lang = input.language === "en" || input.language === "ar" ? input.language : null;
+    const released = await releaseImported(userId, id, lang);
+    return c.json({ ...r, released });
+  });
+
+  // Frees the storage of live versions (P5-T15): files are removed, rows keep the live link.
+  async function releaseImported(userId: string, projectId: string, language: string | null) {
+    const [{ r }] = (await sql`
+      select public.release_imported_media(${userId}, ${projectId}, ${language}) as r`) as unknown as [
+      { r: { released: number; bytes: number } },
+    ];
+    return { ...r, storage: await purgeStorage(sql, deps.storage) };
+  }
+
+  // POST /api/content-projects/:id/imported-media/release
+  app.post("/content-projects/:id/imported-media/release", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ language?: "en" | "ar" }>(
+      "releaseImportedMedia",
+      await optionalBody(c),
+    );
+    return c.json(await releaseImported(userId, id, input.language ?? null));
+  });
+
+  // DELETE /api/imported-media/:id — the row and its stored file
+  app.delete("/imported-media/:id", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "file");
+    const [m] = await sql<{ project_id: string }[]>`
+      select project_id from public.imported_media where id = ${id}`;
+    if (!m) throw new ApiError("not_found", "file not found");
+    await requireProjectRole(sql, userId, m.project_id, ["admin", "editor"]);
+    const [{ r }] = (await sql`
+      select public.delete_imported_media(${userId}, ${id}) as r`) as unknown as [
+      { r: { id: string; project_id: string; deleted: boolean } },
+    ];
+    return c.json({ ...r, storage: await purgeStorage(sql, deps.storage) });
   });
 
   // POST /api/jobs/:id/retry and /cancel — workflow monitor (workspace admins)

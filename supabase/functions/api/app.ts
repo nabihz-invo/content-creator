@@ -53,7 +53,7 @@ export function createApp(deps: Deps) {
     cors({
       origin: (origin) => (deps.config.allowedOrigins.includes(origin) ? origin : null),
       allowHeaders: ["authorization", "content-type", "idempotency-key", "x-client-info", "apikey"],
-      allowMethods: ["GET", "POST", "OPTIONS"],
+      allowMethods: ["GET", "POST", "DELETE", "OPTIONS"],
       maxAge: 600,
     }),
   );

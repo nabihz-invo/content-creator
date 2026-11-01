@@ -14,6 +14,7 @@ import renderJob from "./vendor/schemas/api/render-job.request.schema.json" with
 import publishingJob from "./vendor/schemas/api/publishing-job.request.schema.json" with { type: "json" };
 import markPublished from "./vendor/schemas/api/mark-published.request.schema.json" with { type: "json" };
 import markImportedPublished from "./vendor/schemas/api/mark-imported-published.request.schema.json" with { type: "json" };
+import releaseImportedMedia from "./vendor/schemas/api/release-imported-media.request.schema.json" with { type: "json" };
 
 // deno-lint-ignore no-explicit-any
 // anyOf-with-required ("idea or url") references properties declared at the top level.
@@ -38,6 +39,7 @@ const schemas = {
   publishingJob,
   markPublished,
   markImportedPublished,
+  releaseImportedMedia,
 } as const;
 export type SchemaName = keyof typeof schemas;
 

@@ -188,16 +188,34 @@ export const api = {
       { json: input, idempotencyKey },
     ),
 
-  markImportedPublished: (projectId: string, publishedUrl: string, publishedAt?: string) =>
-    apiRequest<{ status: string; published_url: string }>(
-      `/content-projects/${projectId}/mark-published`,
-      {
-        json: {
-          published_url: publishedUrl,
-          ...(publishedAt ? { published_at: publishedAt } : {}),
-        },
+  markImportedPublished: (
+    projectId: string,
+    publishedUrl: string,
+    opts: { publishedAt?: string; language?: "en" | "ar" | "both"; releaseStorage?: boolean } = {},
+  ) =>
+    apiRequest<{
+      status: string;
+      published_url: string;
+      released?: { released: number; bytes: number };
+    }>(`/content-projects/${projectId}/mark-published`, {
+      json: {
+        published_url: publishedUrl,
+        ...(opts.publishedAt ? { published_at: opts.publishedAt } : {}),
+        ...(opts.language ? { language: opts.language } : {}),
+        ...(opts.releaseStorage ? { release_storage: true } : {}),
       },
+    }),
+
+  /** Frees the storage of live versions; the rows keep the live link (P5-T15). */
+  releaseImportedMedia: (projectId: string, language?: "en" | "ar") =>
+    apiRequest<{ released: number; bytes: number }>(
+      `/content-projects/${projectId}/imported-media/release`,
+      { json: language ? { language } : {} },
     ),
+
+  /** Deletes a finished file and its stored copy. */
+  deleteImportedMedia: (id: string) =>
+    apiRequest<{ deleted: boolean }>(`/imported-media/${id}`, { method: "DELETE" }),
 
   markPublished: (publishingJobId: string, publishedUrl: string) =>
     apiRequest<{ status: string; project_status: string }>(

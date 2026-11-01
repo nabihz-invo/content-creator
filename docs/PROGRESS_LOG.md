@@ -14,6 +14,12 @@ Template:
 
 ---
 
+## 2026-11-01 — P5-T09 asset library synced — done; P5-T15 finished posts + storage rules — in progress
+- Agent/branch: local Claude Code (main)
+- Changes: P5-T09: library synced to the hosted `brand-assets` bucket (139 files, rows with catalog metadata); brand seed re-applied (settings v2 with `studio`). P5-T15: migration `20261101110000` (`imported_media`, storage cleanup queue + triggers, `save/release/delete_imported_media`, per-language `mark_imported_published`); API (`mark-published` language + `release_storage`, release endpoint, `DELETE /imported-media/:id`, `purgeStorage()` also run by `/internal/recover`, `StoragePort.remove`, CORS allows DELETE); CRM imported card (links per language, finished files per language with thumbnails, free storage, delete with confirmation, EN/AR strings); `scripts/import/finished-posts.mjs`; `sync-kit.mjs` deletes the superseded version and empties the queue. Storage rules recorded in PLAN.
+- Verification: all 14 pgTAP files against the hosted schema with the new migration, rolled back: 276/276 (new `14_imported_media`: 24); checked nothing persisted. `deno check` on the API and test helpers; workspace typecheck; ESLint/Prettier clean. `finished-posts.mjs --dry-run` on the archive: 92 posts, 758 files, 534 MB (videos 291 MB, slides 210 MB, covers 22 MB, images 11 MB); 11 folders skipped (no project for PLB-*; empty stories).
+- Not done: migration push (owner); the real import (waits for the owner's choice on what to upload, given the size); Deno API tests and the e2e smoke need the local stack (Docker not available here).
+
 ## 2026-11-01 — P5-T12 verified on hosted · P5-T13 UI sound pack — in progress
 - Agent/branch: local Claude Code (main)
 - Changes: `scripts/brand/make-sfx.mjs` (the 12 allowlisted UI sounds generated with ElevenLabs Sound Effects, trimmed at 40 dB under each clip's peak, 10 ms fade-out, peak −6 dBFS; the synthesized originals kept in `audio/sfx/raw/synth/`, ElevenLabs originals in `audio/sfx/raw/`); kit `assets/audio/sfx/` now holds the new pack; `sync-kit.mjs` skips `placeholder*` tracks; test 13 compares the manifest duration numerically (`numeric(…,3)` stores 12.400).
