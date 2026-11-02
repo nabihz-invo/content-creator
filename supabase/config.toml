@@ -418,7 +418,9 @@ enabled = true
 # Both functions authenticate requests themselves (user JWT via Supabase Auth,
 # Telegram secret header, or n8n HMAC), so the gateway check is disabled.
 [functions.api]
+import_map = "./functions/deno.json"
 verify_jwt = false
 
 [functions.telegram-webhook]
+import_map = "./functions/deno.json"
 verify_jwt = false

@@ -20,6 +20,7 @@
     "three": "0.187.0"
   },
   "exports": {
+    "./capture": "./src/capture.ts",
     "./check": "./src/check.mjs",
     "./exec": "./src/exec.ts",
     "./notify": "./src/notify.ts",

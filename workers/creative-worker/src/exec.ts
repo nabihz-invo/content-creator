@@ -58,6 +58,8 @@ export async function git(args: string[], cwd: string) {
       HOME: cwd,
       GIT_TERMINAL_PROMPT: "0",
       GIT_CONFIG_NOSYSTEM: "1",
+      // Windows: TLS and process start-up need the system folder.
+      ...(process.env.SystemRoot ? { SystemRoot: process.env.SystemRoot } : {}),
     },
     timeoutMs: 120_000,
   });

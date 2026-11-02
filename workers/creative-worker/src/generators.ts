@@ -1,7 +1,8 @@
 /**
  * Generators turn an assembled workspace into the finished creative (ADR-0007 §3).
  */
-import { mkdirSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { run } from "./exec.ts";
 
@@ -122,9 +123,33 @@ export function claudeCodeArgs(
  * environment except PATH, a private HOME, and its own API key — never
  * database, storage, or Git credentials.
  */
+/**
+ * What Windows programs need beyond PATH/HOME: the system folder, a profile and temp dir inside the
+ * workspace home (so nothing of the worker's own profile is visible), and Git Bash for Claude Code's
+ * Bash tool (CLAUDE_CODE_GIT_BASH_PATH; the first `bash` on PATH is often WSL's).
+ */
+function windowsEnv(home: string): Record<string, string> {
+  const tmp = join(home, "tmp");
+  mkdirSync(tmp, { recursive: true });
+  const pass = (k: string) => (process.env[k] ? { [k]: process.env[k]! } : {});
+  return {
+    ...pass("SystemRoot"),
+    ...pass("SystemDrive"),
+    ...pass("ComSpec"),
+    ...pass("PATHEXT"),
+    ...pass("CLAUDE_CODE_GIT_BASH_PATH"),
+    USERPROFILE: home,
+    APPDATA: join(home, "AppData", "Roaming"),
+    LOCALAPPDATA: join(home, "AppData", "Local"),
+    TEMP: tmp,
+    TMP: tmp,
+  };
+}
+
 export function claudeCodeGenerator(cfg: {
   bin: string;
-  apiKey: string;
+  /** CLAUDE_CODE_OAUTH_TOKEN (subscription) or ANTHROPIC_API_KEY. */
+  auth: Record<string, string>;
   model: string;
   effort: string;
   budgetUsd: number;
@@ -133,19 +158,21 @@ export function claudeCodeGenerator(cfg: {
   return {
     name: "claude-code",
     async generate(input) {
-      const home = join(input.dir, ".home");
-      mkdirSync(home, { recursive: true });
+      // Claude Code's own home (settings, backups, caches) lives outside the workspace, so none of
+      // it can end up in the creative or trip the checker; it is removed after the run.
+      const home = mkdtempSync(join(tmpdir(), "cc-home-"));
       const r = await run(cfg.bin, claudeCodeArgs(input, cfg), {
         cwd: input.dir,
         env: {
           PATH: process.env.PATH ?? "/usr/bin:/bin",
           HOME: home,
-          ANTHROPIC_API_KEY: cfg.apiKey,
+          ...cfg.auth,
           CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1",
+          ...(process.platform === "win32" ? windowsEnv(home) : {}),
         },
         timeoutMs: cfg.timeoutMs,
         signal: input.signal,
-      });
+      }).finally(() => rmSync(home, { recursive: true, force: true }));
       if (r.aborted) throw new GeneratorError("generation cancelled", false);
       if (r.timedOut)
         throw new GeneratorError(`Claude Code timed out after ${cfg.timeoutMs / 1000}s`, true);

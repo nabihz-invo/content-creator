@@ -8,6 +8,7 @@ import type { Sql } from "./db.ts";
 import { LlmError } from "./llm.ts";
 import type { Dispatcher } from "./n8n.ts";
 import { STAGE_WORKFLOW } from "./n8n.ts";
+import { AiDeferred, jobContext } from "./relay.ts";
 import type { StageAi, StageOverrides } from "./stage-ai.ts";
 import { defaultNet, fetchAndExtract, type Net } from "./url-extract.ts";
 import type { Analysis, Brief, Script } from "./vendor/src/ai-schemas.ts";
@@ -297,7 +298,10 @@ export async function runJob(deps: ExecutorDeps, jobId: string): Promise<RunOutc
     };
 
   try {
-    const { result, notify } = await RUNNERS[job.stage]!(deps, job);
+    const { result, notify } = await jobContext.run(
+      { jobId: job.id, attempts: job.attempts, stage: job.stage },
+      () => RUNNERS[job.stage]!(deps, job),
+    );
     const next = result.next_job_id as string | undefined;
     if (next) {
       const [nj] = await sql<
@@ -319,6 +323,11 @@ export async function runJob(deps: ExecutorDeps, jobId: string): Promise<RunOutc
       });
     return { outcome: "succeeded", result };
   } catch (err) {
+    if (err instanceof AiDeferred) {
+      // Claude Code answers on the owner's PC; the job sleeps until the reply wakes it (relay.ts).
+      await sql`select public.defer_job(${job.id}, ${deps.workerId})`;
+      return { outcome: "skipped", reason: "waiting for Claude Code" };
+    }
     const info = errorInfo(err);
     console.error(`job ${job.id} (${job.stage}) failed: ${info.code}: ${info.message}`);
     if (info.code === "obsolete") {

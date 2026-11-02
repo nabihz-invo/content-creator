@@ -247,16 +247,52 @@ Phase 3 (3D motion graphics / HTML).
 
 | ID | Task | Status | Depends on | Owner |
 |----|------|--------|-----------|-------|
-| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | todo | P4-VERIFY | |
-| P5-T02 | Three.js / animated video template | todo | P5-T01 | |
-| P5-T03 | Frame capture + FFmpeg MP4 encode (+ audio track) | todo | P5-T01 | |
+| P5-T01 | Deterministic timeline contract (`window.__render.seek(t)`) | done | P4-VERIFY | local Claude Code |
+| P5-T02 | Three.js / animated video template (studio: `engine/sm-three.js`, ENGINE.md §10) | done | P5-T01 | local Claude Code |
+| P5-T03 | Frame capture + FFmpeg MP4 encode (+ audio track) | in-progress | P5-T01 | local Claude Code |
 | P5-T04 | ffprobe validation, thumbnail, contact sheet | todo | P5-T03 | |
 | P5-T05 | Resumable render jobs (frame-chunk checkpoints) | todo | P5-T03 | |
 | P5-T06 | CRM video preview / playback | todo | P5-T04 | |
 | P5-T07 | Telegram voice-note transcription | todo | P4-VERIFY | |
-| P5-VERIFY | Phase 5 verification | todo | P5-T01…T07 | |
+| P5-T08 | Stacko organization: workspace, admin (nabihzanaty@gmail.com), Stacko brand settings | done | P4-VERIFY | local Claude Code |
+| P5-T09 | Brand asset library: new asset types, catalog codes, kit → `brand-assets` sync | done | P5-T08 | local Claude Code |
+| P5-T10 | Studio engine as a brand template pack (`templates/studio/`), `__render` adapter, worker workspace | done | P5-T01 | local Claude Code |
+| P5-T11 | Creative catalog (RC/HK/OP/TX/TR/CM/AN/CP/EC/LG/MU/CL), variety rules, approval checks in prompts | todo | P5-T10 | |
+| P5-T12 | Two language versions per project (EN + AR outputs from one page) | in-progress | P5-T10 | local Claude Code |
+| P5-T13 | Audio: ElevenLabs voice with timestamps, real UI SFX, music by MU code, beat-synced silent cuts | in-progress | P5-T03 | local Claude Code |
+| P5-T14 | Import the Stacko content plan (workbook → projects) | done | P5-T08 | owner + local Claude Code |
+| P5-T15 | Finished posts for imported content (files per language, live links per language) + storage rules (deletes remove files, release after publishing) | in-progress | P4-T10, P5-T12 | local Claude Code |
+| P5-T17 | Review imported posts: approve → download → free storage; request changes → re-upload; delete with all files | in-progress | P5-T15 | local Claude Code |
+| P5-T18 | Imported posts: approved → ready to publish, publish date, dated download names, project page layout | in-progress | P5-T17 | local Claude Code |
+| P5-T19 | AI stages by Claude Code on the owner's subscription (relay, ADR-0011) | in-progress | P5-T13 | local Claude Code |
+| P5-T16 | Storage rules for pipeline renders: release `media_assets` files once the post is live (keep the manifest and the live link) | todo | P5-T15 | |
+| P5-VERIFY | Phase 5 verification | todo | P5-T01…T17 | |
 
 Key acceptance: same creative + commit renders byte-identical frames; MP4 duration/fps/dimensions/audio validated; a killed render resumes from last checkpoint; voice note creates a project from its transcript.
+
+**Stacko studio migration (P5-T08…T14).** Source: `../content/Stacko_Studio_Kit/Stacko-Studio` (kit of 27 Oct 2026; `_archive/` is never used). The kit's HTML motion engine (`sm-core`, `sm-components`, `sm-app`, map elements) already renders every frame from `seek(t)`, so it becomes the video and carousel template system for P5-T01…T03. Rules carried over from the kit (enforced in prompts, validators and checks): every video is an HTML page before it is rendered; one page renders an English and an Arabic version, never both languages in one frame or caption file; product moments show the recreated, animated app, never a screenshot alone; at least three visual sources per post; a dot moment in every reel; one theme per carousel; stage label on screen whenever a feature is shown; no invented numbers, customers or quotes; Instagram safe zone. Sound decision (owner, 2026-10-31): transitions are **music-driven** — cuts land on the music beat, no transition sound effects; only small UI sounds come from components. The old synthesized SFX set and placeholder music are replaced (P5-T13).
+
+**P5-T08** — idempotent SQL `supabase/seed/stacko-organization.sql`: profile for the owner, workspace "Stacko", the owner as `admin`, brand "Stacko" with `brand_settings` from the Stacko brand guide (palette, typography, voice, taglines, logo rules, claims, CTA, stage labels, demo data, languages en + ar). Acceptance: rerunning changes nothing; the owner sees the Stacko workspace and brand in the CRM.
+
+**P5-T09** — migration adds asset types (`background`, `post_image`, `screen`, `graphic`, `map_elements`, `presenter`, `music`, `sfx`, `voice`, `engine`); `metadata` holds the catalog code (BG-01, PI-14, SCR-01, LG-05, MU-01, …), aspect, usage notes and, for music, BPM; `scripts/brand/sync-kit.mjs` uploads the kit's `assets/` with checksums (re-runs upload only changed files). Acceptance: every kit asset is in `brand-assets/<brand_id>/…` with a `brand_assets` row; nothing from `_archive/`.
+
+**P5-T10** — `templates/studio/` vendors the engine; an adapter maps `SM_SEEK`/`SM_META`/`SM_READY` to `window.__render`/`window.__ready`; the creative worker builds the workspace with the engine and the brand's assets (local files, no network), and the validator treats vendored engine files as trusted. Acceptance: the kit's three demo reels and the demo carousel render through the pipeline unchanged.
+
+**P5-T11** — the workbook's Options sheet becomes a versioned catalog in `packages/shared` (code, meaning, engine call); the AI configuration proposes codes from it and respects the variety rules (recipe ≠ last 4, hook ≠ last 3, opener ≠ last 4, end card ≠ last 2); the creative prompt and workspace `CLAUDE.md` carry the kit's rules, recipes and the 14 approval checks; the checker reports each check.
+
+**P5-T12** — one creative renders `en` and `ar` (`?lang=`); media manifests list both versions; captions per language; approval covers both.
+
+**P5-T13** — audio provider in the render worker: ElevenLabs voice-over with timestamps per language (captions from the alignment), UI SFX library generated once with ElevenLabs Sound Effects into the brand library, music from the owner's ElevenLabs tracks by MU code; transitions muted in the engine, `R.beats(bpm)` cuts use the track's BPM; mix with ducking and −16 LUFS. `ELEVENLABS_API_KEY` is a worker secret.
+
+**P5-T14** — run `scripts/import/content-plan-to-sql.py` on the workbook (owner email, brand Stacko) and apply it. Acceptance: one project per Content and Backlog row, rerun creates nothing new.
+
+**Storage rules (owner, 2026-11-01).** (1) Upload as little as possible: only files the pipeline or the CRM needs; sources (HTML, JSON, logs, voice takes) stay local. (2) Deleting a row deletes its stored file. (3) Once a post is live, its files can be released: removed from storage, the row keeps the live post's link. Supabase does not allow deleting storage objects from SQL, so rows queue their paths in `private.storage_deletions` (trigger on delete / path change) and the API removes them with the Storage API right away; the recovery cron retries failures.
+
+**P5-T15** — table `imported_media` (project, language, kind image/carousel_slide/video/cover/document, slide index, size, checksum, `storage_path` or `live_url` + `released_at`); `save_imported_media()` (service role; a version that is already live is recorded with its link only, an unchanged file is a no-op, a changed one replaces the slot), `release_imported_media()`, `delete_imported_media()`; `mark_imported_published()` takes a language (`en`/`ar`/`both`) and can add the second language's link to a published project; API: `mark-published` gets `language` + `release_storage`, `POST …/imported-media/release`, `DELETE /api/imported-media/:id`; CRM: the imported card lists the finished files per language, links per language, "Free storage", delete with confirmation; `scripts/import/finished-posts.mjs` reads post folders (`en/`, `ar/`, `png-en/`, `ar-needs-native-review/`, `video.mp4`, `cover*.png`, captions, `links.txt`). Acceptance: pgTAP `14_imported_media`; the archive's finished posts imported with no duplicate uploads; releasing a version removes its files from the bucket.
+
+**P5-T17** — owner's flow for cleaning the imported archive (2026-11-01): import everything, then review each post in the CRM. Approve → download a zip per language (files + captions) → free that version's storage (rows are marked kept locally; the live link fills them in later). Request changes → a note says what to fix; re-uploading changed files clears the review. Delete → every file and its storage are removed and the project is cancelled with the reason (history kept). `review_imported_post()`, `record_imported_download()`, `discard_imported_post()`; `release_imported_media()` also accepts an approved + downloaded version; API `POST …/imported-review`, `GET …/imported-media/bundle?language=`, `POST …/discard`. Acceptance: pgTAP `15_imported_review`; the three paths work in the CRM.
+
+**P5-T16** — the same release for pipeline renders: after `mark_published_manually` (or the publishing integration) confirms the live URL, `media_assets` files can be released; the immutable manifest, checksums and approvals stay, and the CRM shows the live post instead of the file.
 
 ---
 

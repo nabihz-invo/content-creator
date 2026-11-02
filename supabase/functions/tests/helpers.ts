@@ -43,6 +43,10 @@ export function makeDeps(net?: Net): TestDeps {
         const f = files.get(`${bucket}/${path}`);
         return f ? Promise.resolve(f) : Promise.reject(new Error(`missing ${bucket}/${path}`));
       },
+      remove: (bucket, paths) => {
+        for (const p of paths) files.delete(`${bucket}/${p}`);
+        return Promise.resolve();
+      },
     },
     config: {
       crmUrl: "https://crm.test",

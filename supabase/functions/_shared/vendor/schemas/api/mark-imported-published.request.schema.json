@@ -11,6 +11,14 @@
       "type": "string",
       "format": "date",
       "description": "Day it went live (defaults to today)"
+    },
+    "language": {
+      "enum": ["en", "ar", "both"],
+      "description": "Which language version this link is for (defaults to both)"
+    },
+    "release_storage": {
+      "type": "boolean",
+      "description": "Also remove the stored files of the versions that are now live; the rows keep the link"
     }
   }
 }

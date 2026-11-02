@@ -35,6 +35,29 @@ test("serves files of the signed creative with a strict CSP and no cookies", asy
   assert.equal(js.headers.get("content-type"), "text/javascript; charset=utf-8");
 });
 
+test("studio pages' root paths are served from the creative's own folder", async () => {
+  files[`${P}studio/engine/sm-core.js`] = "fetchLater('/assets/audio/sfx/' + name)";
+  files[`${P}studio/page.html`] =
+    `<script type="importmap">{"imports":{"three":"/studio/vendor/three.module.js"}}</script>` +
+    `<script src="/studio/engine/sm-core.js"></script><script src="/spec.js"></script>` +
+    `<img src="/assets/screens/SCR-01.png"><a href="https://example.com/assets/x">x</a>` +
+    `<link href="/styles.css"><script src="//cdn.example/x.js"></script><p>a / b</p>`;
+  const t = await token();
+  const html = await (await fetch(`${base}/p/${t}/studio/page.html`)).text();
+  assert.match(html, new RegExp(`"three":"/p/${t}/studio/vendor/three\\.module\\.js"`));
+  assert.match(html, new RegExp(`src="/p/${t}/studio/engine/sm-core\\.js"`));
+  assert.match(html, new RegExp(`src="/p/${t}/spec\\.js"`));
+  assert.match(html, new RegExp(`src="/p/${t}/assets/screens/SCR-01\\.png"`));
+  assert.match(html, /https:\/\/example\.com\/assets\/x/, "full URLs are left alone");
+  assert.match(html, new RegExp(`href="/p/${t}/styles\\.css"`), "the page's own root files too");
+  assert.match(html, /src="\/\/cdn\.example\/x\.js"/, "protocol-relative URLs are left alone");
+  assert.match(html, /<p>a \/ b<\/p>/, "plain text is left alone");
+  const twice = await (await fetch(`${base}/p/${t}/studio/page.html`)).text();
+  assert.equal(twice, html, "rewriting is stable");
+  const js = await (await fetch(`${base}/p/${t}/studio/engine/sm-core.js`)).text();
+  assert.equal(js, `fetchLater('/p/${t}/assets/audio/sfx/' + name)`);
+});
+
 test("refuses expired, forged, and out-of-prefix requests", async () => {
   assert.equal((await fetch(`${base}/p/${await token(1)}/index.html`)).status, 403);
   const forged = (

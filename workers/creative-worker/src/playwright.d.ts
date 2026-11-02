@@ -23,7 +23,13 @@ declare module "playwright" {
       opts?: { timeout?: number },
     ): Promise<unknown>;
     evaluate<T>(fn: () => T): Promise<T>;
-    screenshot(opts?: { type?: "png" | "jpeg"; fullPage?: boolean }): Promise<Buffer>;
+    evaluate<T, A>(fn: (arg: A) => T, arg: A): Promise<T>;
+    screenshot(opts?: {
+      type?: "png" | "jpeg";
+      fullPage?: boolean;
+      quality?: number;
+      clip?: { x: number; y: number; width: number; height: number };
+    }): Promise<Buffer>;
     close(): Promise<void>;
   }
   interface BrowserContext {

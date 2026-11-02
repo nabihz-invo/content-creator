@@ -10,6 +10,7 @@ import { EXECUTABLE_STAGES, recover, runJob } from "../_shared/executor.ts";
 import { withIdempotency } from "../_shared/idempotency.ts";
 import { STAGE_WORKFLOW, verifySignature } from "../_shared/n8n.ts";
 import { enforceRateLimit } from "../_shared/ratelimit.ts";
+import { purgeStorage } from "../_shared/storage-cleanup.ts";
 import { schemaErrors, validate } from "../_shared/validate.ts";
 import { type Brief, SCRIPT_SCHEMAS, type Script } from "../_shared/vendor/src/ai-schemas.ts";
 import { contentHash } from "../_shared/vendor/src/hash.ts";
@@ -259,6 +260,10 @@ export function registerPipelineRoutes(app: Hono, deps: Deps) {
   // POST /api/internal/recover — Workflow R cron (HMAC-signed)
   app.post("/internal/recover", async (c) => {
     await signedBody(c, deps.config.n8nWebhookSecret);
-    return c.json(await recover(sql, deps.dispatcher));
+    // Also retries storage files whose removal failed earlier (P5-T15).
+    return c.json({
+      ...(await recover(sql, deps.dispatcher)),
+      storage: await purgeStorage(sql, deps.storage),
+    });
   });
 }

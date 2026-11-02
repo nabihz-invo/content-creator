@@ -188,16 +188,34 @@ export const api = {
       { json: input, idempotencyKey },
     ),
 
-  markImportedPublished: (projectId: string, publishedUrl: string, publishedAt?: string) =>
-    apiRequest<{ status: string; published_url: string }>(
-      `/content-projects/${projectId}/mark-published`,
-      {
-        json: {
-          published_url: publishedUrl,
-          ...(publishedAt ? { published_at: publishedAt } : {}),
-        },
+  markImportedPublished: (
+    projectId: string,
+    publishedUrl: string,
+    opts: { publishedAt?: string; language?: "en" | "ar" | "both"; releaseStorage?: boolean } = {},
+  ) =>
+    apiRequest<{
+      status: string;
+      published_url: string;
+      released?: { released: number; bytes: number };
+    }>(`/content-projects/${projectId}/mark-published`, {
+      json: {
+        published_url: publishedUrl,
+        ...(opts.publishedAt ? { published_at: opts.publishedAt } : {}),
+        ...(opts.language ? { language: opts.language } : {}),
+        ...(opts.releaseStorage ? { release_storage: true } : {}),
       },
+    }),
+
+  /** Frees the storage of live versions; the rows keep the live link (P5-T15). */
+  releaseImportedMedia: (projectId: string, language?: "en" | "ar") =>
+    apiRequest<{ released: number; bytes: number }>(
+      `/content-projects/${projectId}/imported-media/release`,
+      { json: language ? { language } : {} },
     ),
+
+  /** Deletes a finished file and its stored copy. */
+  deleteImportedMedia: (id: string) =>
+    apiRequest<{ deleted: boolean }>(`/imported-media/${id}`, { method: "DELETE" }),
 
   markPublished: (publishingJobId: string, publishedUrl: string) =>
     apiRequest<{ status: string; project_status: string }>(
@@ -206,21 +224,31 @@ export const api = {
     ),
 
   /** Downloads the zip for manual posting (authenticated, so fetched as a blob). */
-  async downloadBundle(publishingJobId: string): Promise<{ blob: Blob; filename: string }> {
-    const jwt = await token();
-    const res = await fetch(`${API_URL}/publishing-jobs/${publishingJobId}/bundle`, {
-      headers: jwt ? { authorization: `Bearer ${jwt}` } : {},
-    });
-    if (!res.ok) {
-      const body = (await res.json().catch(() => null)) as { error?: ApiErrorBody } | null;
-      throw new ApiError(
-        res.status,
-        body?.error ?? { code: "internal", message: `Download failed (${res.status})` },
-      );
-    }
-    const cd = res.headers.get("content-disposition") ?? "";
-    return { blob: await res.blob(), filename: cd.match(/filename="([^"]+)"/)?.[1] ?? "post.zip" };
-  },
+  downloadBundle: (publishingJobId: string) =>
+    downloadZip(`/publishing-jobs/${publishingJobId}/bundle`),
+
+  /** Zip of an approved imported post (one language or all); unlocks freeing its storage (P5-T17). */
+  downloadImported: (projectId: string, language?: "en" | "ar") =>
+    downloadZip(
+      `/content-projects/${projectId}/imported-media/bundle${language ? `?language=${language}` : ""}`,
+    ),
+
+  reviewImported: (projectId: string, decision: "approved" | "changes_requested", note?: string) =>
+    apiRequest<{ review: { status: string } }>(`/content-projects/${projectId}/imported-review`, {
+      json: { decision, ...(note ? { note } : {}) },
+    }),
+
+  /** Removes every finished file (and its storage) and cancels the imported post. */
+  discardImported: (projectId: string, reason: string) =>
+    apiRequest<{ files: number; bytes: number }>(`/content-projects/${projectId}/discard`, {
+      json: { reason },
+    }),
+
+  /** Planned publish day (YYYY-MM-DD, or null to clear); downloads are named with it. */
+  setPublishDate: (projectId: string, date: string | null) =>
+    apiRequest<{ publish_date: string | null }>(`/content-projects/${projectId}/publish-date`, {
+      json: { date },
+    }),
 
   retryJob: (jobId: string) =>
     apiRequest<{ job_id: string; status: string }>(`/jobs/${jobId}/retry`, { json: {} }),
@@ -232,3 +260,30 @@ export const api = {
       "/telegram/link-code",
     ),
 };
+
+/** Fetches an authenticated zip as a blob. */
+async function downloadZip(path: string): Promise<{ blob: Blob; filename: string }> {
+  const jwt = await token();
+  const res = await fetch(`${API_URL}${path}`, {
+    headers: jwt ? { authorization: `Bearer ${jwt}` } : {},
+  });
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { error?: ApiErrorBody } | null;
+    throw new ApiError(
+      res.status,
+      body?.error ?? { code: "internal", message: `Download failed (${res.status})` },
+    );
+  }
+  const cd = res.headers.get("content-disposition") ?? "";
+  return { blob: await res.blob(), filename: cd.match(/filename="([^"]+)"/)?.[1] ?? "post.zip" };
+}
+
+/** Saves a downloaded blob through a temporary link. */
+export function saveBlob({ blob, filename }: { blob: Blob; filename: string }) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+}

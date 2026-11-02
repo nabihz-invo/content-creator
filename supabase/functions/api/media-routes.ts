@@ -8,6 +8,7 @@ import { requireProjectRole, requireUser } from "../_shared/auth.ts";
 import type { Deps } from "../_shared/deps.ts";
 import { ApiError } from "../_shared/errors.ts";
 import { STAGE_WORKFLOW } from "../_shared/n8n.ts";
+import { purgeStorage } from "../_shared/storage-cleanup.ts";
 import { validate } from "../_shared/validate.ts";
 import { checkPublishPackage } from "../_shared/vendor/src/platform-rules.ts";
 import { createZip } from "../_shared/vendor/src/zip.ts";
@@ -23,6 +24,17 @@ function idParam(c: Context, what: string): string {
 async function body(c: Context): Promise<unknown> {
   try {
     return await c.req.json();
+  } catch {
+    throw new ApiError("validation_failed", "body must be valid JSON");
+  }
+}
+
+/** A JSON body that may be left out entirely (treated as {}). */
+async function optionalBody(c: Context): Promise<unknown> {
+  const raw = (await c.req.text()).trim();
+  if (!raw) return {};
+  try {
+    return JSON.parse(raw);
   } catch {
     throw new ApiError("validation_failed", "body must be valid JSON");
   }
@@ -241,16 +253,190 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
     const userId = await requireUser(c.req.raw, deps.auth);
     const id = idParam(c, "project");
     await requireProjectRole(sql, userId, id, ["admin", "editor"]);
-    const input = validate<{ published_url: string; published_at?: string }>(
-      "markImportedPublished",
-      await body(c),
-    );
+    const input = validate<{
+      published_url: string;
+      published_at?: string;
+      language?: "en" | "ar" | "both";
+      release_storage?: boolean;
+    }>("markImportedPublished", await body(c));
     const [{ r }] = (await sql`
       select public.mark_imported_published(${userId}, ${id}, ${input.published_url},
-        ${input.published_at ? `${input.published_at}T12:00:00Z` : null}::timestamptz) as r`) as unknown as [
-      { r: { project_id: string; status: string; published_url: string; replayed: boolean } },
+        ${input.published_at ? `${input.published_at}T12:00:00Z` : null}::timestamptz,
+        ${input.language ?? null}) as r`) as unknown as [
+      {
+        r: {
+          project_id: string;
+          status: string;
+          language: string;
+          published_url: string;
+          replayed: boolean;
+        };
+      },
+    ];
+    if (!input.release_storage) return c.json(r);
+    const lang = input.language === "en" || input.language === "ar" ? input.language : null;
+    const released = await releaseImported(userId, id, lang);
+    return c.json({ ...r, released });
+  });
+
+  // Frees the storage of live versions (P5-T15): files are removed, rows keep the live link.
+  async function releaseImported(userId: string, projectId: string, language: string | null) {
+    const [{ r }] = (await sql`
+      select public.release_imported_media(${userId}, ${projectId}, ${language}) as r`) as unknown as [
+      { r: { released: number; bytes: number } },
+    ];
+    return { ...r, storage: await purgeStorage(sql, deps.storage) };
+  }
+
+  // POST /api/content-projects/:id/imported-media/release
+  app.post("/content-projects/:id/imported-media/release", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ language?: "en" | "ar" }>(
+      "releaseImportedMedia",
+      await optionalBody(c),
+    );
+    return c.json(await releaseImported(userId, id, input.language ?? null));
+  });
+
+  // DELETE /api/imported-media/:id — the row and its stored file
+  app.delete("/imported-media/:id", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "file");
+    const [m] = await sql<{ project_id: string }[]>`
+      select project_id from public.imported_media where id = ${id}`;
+    if (!m) throw new ApiError("not_found", "file not found");
+    await requireProjectRole(sql, userId, m.project_id, ["admin", "editor"]);
+    const [{ r }] = (await sql`
+      select public.delete_imported_media(${userId}, ${id}) as r`) as unknown as [
+      { r: { id: string; project_id: string; deleted: boolean } },
+    ];
+    return c.json({ ...r, storage: await purgeStorage(sql, deps.storage) });
+  });
+
+  // POST /api/content-projects/:id/imported-review — approve, or request changes with a note (P5-T17)
+  app.post("/content-projects/:id/imported-review", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor", "reviewer"]);
+    const input = validate<{ decision: string; note?: string }>("importedReview", await body(c));
+    const [{ r }] = (await sql`
+      select public.review_imported_post(${userId}, ${id}, ${input.decision}, ${input.note ?? null}) as r`) as unknown as [
+      { r: { project_id: string; review: Record<string, unknown> } },
     ];
     return c.json(r);
+  });
+
+  // GET /api/content-projects/:id/imported-media/bundle?language=en|ar — zip of an approved post's
+  // stored files (+ captions); recorded so the version's storage can then be freed.
+  app.get("/content-projects/:id/imported-media/bundle", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor", "reviewer"]);
+    const language = c.req.query("language") ?? null;
+    if (language !== null && language !== "en" && language !== "ar")
+      throw new ApiError("validation_failed", "language must be en or ar");
+    const [pj] = await sql<
+      {
+        title: string;
+        plan_id: string | null;
+        review: { status?: string } | null;
+        finished: { captions?: Record<string, string>; hashtags?: string } | null;
+        publish_date: string | null;
+      }[]
+    >`
+      select title, source_metadata ->> 'plan_id' as plan_id, source_metadata -> 'review' as review,
+        source_metadata -> 'finished' as finished, source_metadata ->> 'publish_date' as publish_date
+      from public.content_projects where id = ${id}`;
+    if (pj?.review?.status !== "approved")
+      throw new ApiError("approval_required", "approve the post before downloading it");
+    const files = await sql<
+      {
+        language: string | null;
+        kind: string;
+        slide_index: number | null;
+        file_name: string;
+        storage_path: string;
+        checksum: string;
+      }[]
+    >`
+      select language, kind, slide_index, file_name, storage_path, checksum from public.imported_media
+      where project_id = ${id} and storage_path is not null
+        and (${language}::text is null or language = ${language} or language is null)
+      order by language nulls first, kind, slide_index nulls first`;
+    if (!files.length) throw new ApiError("not_found", "no stored files to download");
+    // Files are named for the day they go out: 2026-11-05_EDU-26_EN_reel.mp4 (P5-T18).
+    const date = /^\d{4}-\d{2}-\d{2}/.exec(pj.publish_date ?? "")?.[0];
+    const slug = (pj.plan_id ?? pj.title).replace(/[^\w-]+/g, "-").slice(0, 40) || "post";
+    const prefix = date ? `${date}_${slug}` : slug;
+    const PART: Record<string, string> = {
+      video: "reel",
+      cover: "cover",
+      image: "image",
+      document: "document",
+    };
+    const enc = new TextEncoder();
+    const entries = [];
+    for (const f of files) {
+      const data = await deps.storage.download("media", f.storage_path);
+      if ((await sha256Hex(data)) !== f.checksum)
+        throw new ApiError("internal", `stored file ${f.file_name} does not match its checksum`);
+      const ext = /\.[a-z0-9]+$/i.exec(f.file_name)?.[0].toLowerCase() ?? "";
+      const part =
+        f.kind === "carousel_slide"
+          ? `slide-${String(f.slide_index).padStart(2, "0")}`
+          : (PART[f.kind] ?? f.kind);
+      const name = `${prefix}_${(f.language ?? "all").toUpperCase()}_${part}${ext}`;
+      entries.push({ name: language ? name : `${f.language ?? "all"}/${name}`, data });
+    }
+    for (const [lang, text] of Object.entries(pj.finished?.captions ?? {}))
+      if (!language || lang === language || lang === "default")
+        entries.push({
+          name: `${prefix}_${lang === "default" ? "" : `${lang.toUpperCase()}_`}caption.txt`,
+          data: enc.encode(text + "\n"),
+        });
+    if (pj.finished?.hashtags)
+      entries.push({
+        name: `${prefix}_hashtags.txt`,
+        data: enc.encode(pj.finished.hashtags + "\n"),
+      });
+    const zip = createZip(entries);
+    await sql`select public.record_imported_download(${userId}, ${id}, ${language})`;
+    return new Response(zip as Uint8Array<ArrayBuffer>, {
+      status: 200,
+      headers: {
+        "content-type": "application/zip",
+        "content-disposition": `attachment; filename="${prefix}${language ? `_${language.toUpperCase()}` : ""}.zip"`,
+        "cache-control": "no-store",
+      },
+    });
+  });
+
+  // POST /api/content-projects/:id/publish-date — planned publish day (also names the downloads)
+  app.post("/content-projects/:id/publish-date", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ date: string | null }>("publishDate", await body(c));
+    const [{ r }] = (await sql`
+      select public.set_publish_date(${userId}, ${id}, ${input.date}::date) as r`) as unknown as [
+      { r: Record<string, unknown> },
+    ];
+    return c.json(r);
+  });
+
+  // POST /api/content-projects/:id/discard — remove every finished file (and its storage), cancel the post
+  app.post("/content-projects/:id/discard", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ reason: string }>("discardImported", await body(c));
+    const [{ r }] = (await sql`
+      select public.discard_imported_post(${userId}, ${id}, ${input.reason}) as r`) as unknown as [
+      { r: { project_id: string; files: number; bytes: number; status: string } },
+    ];
+    return c.json({ ...r, storage: await purgeStorage(sql, deps.storage) });
   });
 
   // POST /api/jobs/:id/retry and /cancel — workflow monitor (workspace admins)

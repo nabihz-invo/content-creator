@@ -60,6 +60,25 @@ export interface BrandAsset {
   created_at: string;
 }
 
+/** A finished file of imported content (P5-T15): stored, or released with the live post's link. */
+export interface ImportedMediaRow {
+  id: string;
+  project_id: string;
+  language: "en" | "ar" | null;
+  kind: "image" | "carousel_slide" | "video" | "cover" | "document";
+  slide_index: number | null;
+  file_name: string;
+  storage_path: string | null;
+  mime_type: string;
+  file_size: number;
+  width: number | null;
+  height: number | null;
+  duration: number | null;
+  metadata: { needs_native_review?: boolean; kept_locally?: boolean };
+  live_url: string | null;
+  released_at: string | null;
+}
+
 export interface ContentProject {
   id: string;
   workspace_id: string;
@@ -87,6 +106,23 @@ export interface ContentProject {
     sheet?: string;
     source_file?: string;
     published?: { url: string; at: string; confirmed_by: string };
+    /** Live links per language version (P5-T15); "both" = one post for both languages. */
+    published_links?: Partial<Record<"en" | "ar" | "both", { url: string; at: string }>>;
+    /** Text from the finished post's folder (P5-T15). */
+    finished?: {
+      captions?: { en?: string; ar?: string; default?: string };
+      hashtags?: string;
+      source?: string;
+    };
+    /** Review of the finished files (P5-T17); cleared when a file changes. */
+    review?: {
+      status: "approved" | "changes_requested";
+      note: string | null;
+      by: string;
+      at: string;
+      downloaded?: Partial<Record<"en" | "ar" | "all", string>>;
+    };
+    discarded?: { reason: string; by: string; at: string };
   };
   content_type: ContentType | null;
   objective: string | null;

@@ -1,7 +1,6 @@
 import {
   CalendarDays,
   Clapperboard,
-  FolderKanban,
   Gauge,
   Images,
   Inbox,
@@ -107,9 +106,7 @@ function Brand() {
   const { t } = useI18n();
   return (
     <div className="flex items-center gap-2.5 px-6 py-5">
-      <div className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
-        <FolderKanban className="size-4" />
-      </div>
+      <img src="/favicon.svg" alt="" className="size-8 rounded-lg" />
       <div className="leading-tight">
         <div className="text-sm font-semibold text-sidebar-active">{t("app.name")}</div>
         <div className="text-[11px] text-sidebar-foreground/60">{t("app.tagline")}</div>
@@ -139,17 +136,17 @@ export function AppShell() {
 
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[16rem_1fr]">
-      <aside className="sticky top-0 hidden h-dvh flex-col overflow-y-auto bg-sidebar lg:flex">
+      <aside className="nav-scroll sticky top-0 hidden h-dvh flex-col overflow-y-auto bg-sidebar shadow-[0_0_40px_rgba(14,36,64,.35)] lg:flex">
         <Brand />
         <Nav />
       </aside>
 
       <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Overlay className="fixed inset-0 z-40 bg-black/50 lg:hidden" />
+          <DialogPrimitive.Overlay className="fixed inset-0 z-40 bg-abyss/40 lg:hidden" />
           <DialogPrimitive.Content
             className={cn(
-              "fixed inset-y-0 z-50 flex w-72 max-w-[85vw] flex-col overflow-y-auto bg-sidebar pb-6 shadow-xl lg:hidden",
+              "nav-scroll fixed inset-y-0 z-50 flex w-72 max-w-[85vw] flex-col overflow-y-auto bg-sidebar pb-6 shadow-xl lg:hidden",
               dir === "rtl" ? "right-0" : "left-0",
             )}
             aria-describedby={undefined}
@@ -162,7 +159,7 @@ export function AppShell() {
       </DialogPrimitive.Root>
 
       <div className="flex min-w-0 flex-col">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b bg-background/85 px-4 backdrop-blur sm:px-6">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b bg-card/95 px-4 backdrop-blur sm:px-6">
           <Button
             variant="ghost"
             size="icon"

@@ -104,16 +104,36 @@ function classify(err: unknown): LlmError {
 
 const MAX_ATTEMPTS = 2;
 
+/** The API compiles a strict schema into a grammar and rejects ones that are too large. */
+const GRAMMAR_TOO_LARGE = /grammar is too large|schema is too (large|complex)/i;
+/** Stages whose schema was rejected that way: they ask for JSON in the prompt instead (same checks). */
+const promptOnly = new Set<string>();
+
+/** The JSON object in a reply, without Markdown fences or text around it. */
+export function extractJson(text: string): string {
+  const t = text
+    .trim()
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/, "");
+  const a = t.indexOf("{");
+  const b = t.lastIndexOf("}");
+  return a >= 0 && b > a ? t.slice(a, b + 1) : t;
+}
+
 export async function generateJson<T>(
   transport: Transport,
   req: JsonRequest,
 ): Promise<JsonResult<T>> {
-  const messages: Anthropic.Beta.BetaMessageParam[] = [{ role: "user", content: req.user }];
+  const viaPrompt = () =>
+    `${req.user}\n\nReturn only one JSON object (no Markdown, no text around it) that is valid against this JSON Schema:\n${JSON.stringify(req.schema)}`;
+  const messages: Anthropic.Beta.BetaMessageParam[] = [
+    { role: "user", content: promptOnly.has(req.stage) ? viaPrompt() : req.user },
+  ];
   let lastProblems: string[] = [];
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     let res: Anthropic.Beta.BetaMessage;
-    try {
-      res = await transport({
+    const call = () =>
+      transport({
         model: req.settings.model,
         max_tokens: req.settings.maxTokens,
         betas: ["server-side-fallback-2026-07-01"],
@@ -122,14 +142,31 @@ export async function generateJson<T>(
         system: [{ type: "text", text: req.system, cache_control: { type: "ephemeral" } }],
         output_config: {
           effort: req.settings.effort,
-          format: {
-            type: "json_schema",
-            schema: toApiSchema(req.schema) as Record<string, unknown>,
-          },
+          ...(promptOnly.has(req.stage)
+            ? {}
+            : {
+                format: {
+                  type: "json_schema" as const,
+                  schema: toApiSchema(req.schema) as Record<string, unknown>,
+                },
+              }),
         },
         messages,
       });
+    try {
+      try {
+        res = await call();
+      } catch (err) {
+        if (promptOnly.has(req.stage) || !GRAMMAR_TOO_LARGE.test(String((err as Error)?.message)))
+          throw err;
+        console.warn(`${req.stage}: schema too large for structured output; asking in the prompt`);
+        promptOnly.add(req.stage);
+        messages[0] = { role: "user", content: viaPrompt() };
+        res = await call();
+      }
     } catch (err) {
+      // The Claude Code relay parks the job until its reply exists (relay.ts).
+      if ((err as { deferred?: boolean })?.deferred) throw err;
       throw classify(err);
     }
 
@@ -152,7 +189,7 @@ export async function generateJson<T>(
       .join("");
     let data: unknown;
     try {
-      data = JSON.parse(text);
+      data = JSON.parse(promptOnly.has(req.stage) ? extractJson(text) : text);
       lastProblems = schemaErrors(req.schema, data);
       if (!lastProblems.length && req.check) lastProblems = req.check(data);
     } catch {

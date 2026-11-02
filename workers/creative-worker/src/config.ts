@@ -12,6 +12,8 @@ export interface WorkerConfig {
   repoDisplayUrl: string;
   generator: "template" | "claude-code";
   anthropicApiKey: string | null;
+  /** The owner's Claude subscription (`claude setup-token`); used instead of the API key when set. */
+  claudeOauthToken: string | null;
   claudeBin: string;
   claudeModel: string;
   claudeEffort: string;
@@ -40,6 +42,7 @@ export function loadConfig(): WorkerConfig {
     repoDisplayUrl: env("CREATIVES_REPO_DISPLAY_URL", repoUrl.replace(/\/\/[^@/]+@/, "//"))!,
     generator: env("CREATIVE_GENERATOR", "template") === "claude-code" ? "claude-code" : "template",
     anthropicApiKey: env("ANTHROPIC_API_KEY") ?? null,
+    claudeOauthToken: env("CLAUDE_CODE_OAUTH_TOKEN") ?? null,
     claudeBin: env("CLAUDE_BIN", "claude")!,
     claudeModel: env("CLAUDE_MODEL", "claude-opus-5-5")!,
     claudeEffort: env("CLAUDE_EFFORT", "high")!,

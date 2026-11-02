@@ -1,9 +1,14 @@
 import { OVERVIEW_GROUPS } from "@cc/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
+  CalendarDays,
   ChevronLeft,
   ChevronRight,
   Copy,
+  Film,
+  GalleryHorizontalEnd,
+  Image as ImageIcon,
+  Lightbulb,
   Link2,
   Plus,
   Search,
@@ -20,14 +25,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { api } from "@/lib/api";
 import { formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
@@ -37,9 +34,12 @@ import {
   type ProjectFilters,
   type ProjectListRow,
   useBrands,
+  useCardImages,
   useProjects,
+  useSignedUrls,
   useTags,
 } from "@/lib/queries";
+import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 import type { InputSource } from "@/types/db";
 import { CsvImportDialog } from "./CsvImportDialog";
@@ -58,7 +58,7 @@ function useDebounced<T>(value: T, ms = 300) {
 }
 
 export function InboxPage() {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const { workspaceId, can } = useWorkspace();
   const [params, setParams] = useSearchParams();
   const [search, setSearch] = useState(params.get("q") ?? "");
@@ -68,11 +68,14 @@ export function InboxPage() {
     search: debounced,
     statusGroup: (params.get("group") as Group | null) ?? "",
     source: (params.get("source") as InputSource | null) ?? "",
+    contentType: (params.get("type") as ContentType | null) ?? "",
     brandId: params.get("brand") ?? undefined,
     tagId: params.get("tag") ?? undefined,
     page: Number(params.get("page") ?? 0),
   };
   const projects = useProjects(workspaceId, filters);
+  const images = useCardImages((projects.data?.rows ?? []).map((p) => p.id));
+  const urls = useSignedUrls(Object.values(images.data ?? {}), "media");
   const brands = useBrands(workspaceId);
   const tags = useTags(workspaceId);
 
@@ -119,7 +122,12 @@ export function InboxPage() {
   const page = filters.page ?? 0;
   const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const hasFilters = Boolean(
-    debounced || filters.statusGroup || filters.source || filters.brandId || filters.tagId,
+    debounced ||
+    filters.statusGroup ||
+    filters.source ||
+    filters.contentType ||
+    filters.brandId ||
+    filters.tagId,
   );
 
   return (
@@ -217,6 +225,8 @@ export function InboxPage() {
         </NativeSelect>
       </div>
 
+      <TypeChips value={filters.contentType ?? ""} onChange={(v) => setParam("type", v)} />
+
       {projects.isError ? (
         <ErrorState error={projects.error} onRetry={() => void projects.refetch()} />
       ) : projects.isLoading ? (
@@ -240,69 +250,23 @@ export function InboxPage() {
               </Button>
             </div>
           )}
-          {/* Desktop table */}
-          <div className="hidden overflow-hidden rounded-xl border bg-card md:block">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  {can("edit") && <TableHead className="w-10" />}
-                  <TableHead className="w-[50%]">{t("inbox.col.idea")}</TableHead>
-                  <TableHead>{t("inbox.col.source")}</TableHead>
-                  <TableHead>{t("inbox.col.brand")}</TableHead>
-                  <TableHead>{t("inbox.col.status")}</TableHead>
-                  <TableHead>{t("inbox.col.submitted")}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {projects.data.rows.map((p) => (
-                  <TableRow
-                    key={p.id}
-                    className="cursor-pointer"
-                    data-state={selected.has(p.id) ? "selected" : undefined}
-                  >
-                    {can("edit") && (
-                      <TableCell className="w-10">
-                        {analyzable(p.status) && (
-                          <Checkbox
-                            aria-label={`${t("inbox.selectRow")}: ${p.title}`}
-                            checked={selected.has(p.id)}
-                            onCheckedChange={() => toggle(p.id)}
-                          />
-                        )}
-                      </TableCell>
-                    )}
-                    <TableCell className="max-w-0">
-                      <IdeaCell project={p} />
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {t(`source.${p.input_source}`)}
-                    </TableCell>
-                    <TableCell className="text-sm">
-                      {p.brands?.name ?? <span className="text-muted-foreground">—</span>}
-                    </TableCell>
-                    <TableCell>
-                      <StatusBadge status={p.status} />
-                    </TableCell>
-                    <TableCell className="text-sm whitespace-nowrap text-muted-foreground">
-                      {formatRelative(p.submitted_at, locale)}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-
-          {/* Mobile cards */}
-          <ul className="flex flex-col gap-2 md:hidden">
+          <ul className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {projects.data.rows.map((p) => (
-              <li key={p.id} className="rounded-xl border bg-card p-4">
-                <IdeaCell project={p} />
-                <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                  <StatusBadge status={p.status} />
-                  <span>{t(`source.${p.input_source}`)}</span>
-                  {p.brands?.name && <span>· {p.brands.name}</span>}
-                  <span>· {formatRelative(p.submitted_at, locale)}</span>
-                </div>
+              <li key={p.id} className="relative">
+                <ProjectCard
+                  project={p}
+                  image={images.data?.[p.id] ? urls.data?.[images.data[p.id]!] : undefined}
+                  selected={selected.has(p.id)}
+                />
+                {can("edit") && analyzable(p.status) && (
+                  <div className="absolute end-2 top-2 z-10 rounded-md bg-background/90 p-1 shadow-sm">
+                    <Checkbox
+                      aria-label={`${t("inbox.selectRow")}: ${p.title}`}
+                      checked={selected.has(p.id)}
+                      onCheckedChange={() => toggle(p.id)}
+                    />
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -339,42 +303,148 @@ export function InboxPage() {
   );
 }
 
-function IdeaCell({ project: p }: { project: ProjectListRow }) {
-  const { t } = useI18n();
+type ContentType = NonNullable<ProjectListRow["content_type"]>;
+
+/** One colour and icon per format (brand blues: Ocean, Signal, Deep sea; grey when unknown). */
+const TYPE_STYLE: Record<ContentType | "none", { color: string; Icon: typeof Film }> = {
+  video: { color: "#2F86B8", Icon: Film },
+  carousel: { color: "#0895A6", Icon: GalleryHorizontalEnd },
+  static: { color: "#2C5974", Icon: ImageIcon },
+  none: { color: "#8A9AAB", Icon: Lightbulb },
+};
+const TYPES: ContentType[] = ["video", "carousel", "static"];
+
+/** A project as a card: format colour on top, the post's picture when it exists, else the format icon. */
+function ProjectCard({
+  project: p,
+  image,
+  selected,
+}: {
+  project: ProjectListRow;
+  image: string | undefined;
+  selected: boolean;
+}) {
+  const { t, locale } = useI18n();
+  const style = TYPE_STYLE[p.content_type ?? "none"];
+  const typeLabel = p.content_type ? t(`contentType.${p.content_type}`) : t("inbox.type.none");
   return (
     <Link
       to={`/projects/${p.id}`}
-      className="block min-w-0 after:absolute after:inset-0 md:relative md:after:hidden"
-    >
-      <div className="flex items-center gap-2">
-        <span className="truncate font-medium" dir={textDir(p.title)}>
-          {p.title}
-        </span>
-        {p.duplicate_of && (
-          <Badge variant="warning" className="shrink-0">
-            <Copy />
-            {t("inbox.duplicate")}
-          </Badge>
-        )}
-      </div>
-      <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
-        {p.source_url && <Link2 className="size-3 shrink-0" />}
-        <span className="truncate" dir={textDir(p.original_idea)}>
-          {p.original_idea !== p.title ? p.original_idea : (p.source_url ?? "")}
-        </span>
-      </div>
-      {p.project_tags.length > 0 && (
-        <div className="mt-1.5 flex flex-wrap gap-1">
-          {p.project_tags.map(({ tags: tag }) => (
-            <span
-              key={tag.id}
-              className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground"
-            >
-              #{tag.name}
-            </span>
-          ))}
-        </div>
+      className={cn(
+        "group flex h-full flex-col overflow-hidden rounded-xl border border-t-4 bg-card shadow-sm transition-shadow hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+        selected && "ring-2 ring-primary",
       )}
+      style={{ borderTopColor: style.color }}
+    >
+      <div
+        className="relative flex aspect-[4/3] items-center justify-center overflow-hidden"
+        style={{ backgroundColor: `${style.color}1f` }}
+      >
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            loading="lazy"
+            className="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <style.Icon className="size-12 opacity-70" style={{ color: style.color }} aria-hidden />
+        )}
+        <span
+          className="absolute start-2 top-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold text-white shadow-sm"
+          style={{ backgroundColor: style.color }}
+        >
+          <style.Icon className="size-3" aria-hidden />
+          {typeLabel}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col gap-1.5 p-3">
+        <div className="flex items-start gap-2">
+          <span className="line-clamp-2 font-medium leading-snug" dir={textDir(p.title)}>
+            {p.title}
+          </span>
+          {p.duplicate_of && (
+            <Badge variant="warning" className="shrink-0">
+              <Copy />
+              {t("inbox.duplicate")}
+            </Badge>
+          )}
+        </div>
+        {(p.original_idea !== p.title || p.source_url) && (
+          <p className="line-clamp-2 text-xs text-muted-foreground" dir={textDir(p.original_idea)}>
+            {p.source_url && <Link2 className="me-1 inline size-3" />}
+            {p.original_idea !== p.title ? p.original_idea : p.source_url}
+          </p>
+        )}
+        {p.project_tags.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {p.project_tags.slice(0, 4).map(({ tags: tag }) => (
+              <span
+                key={tag.id}
+                className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground"
+              >
+                #{tag.name}
+              </span>
+            ))}
+            {p.project_tags.length > 4 && (
+              <span className="text-[11px] text-muted-foreground">
+                +{p.project_tags.length - 4}
+              </span>
+            )}
+          </div>
+        )}
+        <div className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 pt-2 text-xs text-muted-foreground">
+          <StatusBadge status={p.status} />
+          {p.publish_date ? (
+            <span className="inline-flex items-center gap-1" dir="ltr">
+              <CalendarDays className="size-3" />
+              {p.publish_date.slice(0, 10)}
+            </span>
+          ) : (
+            <span>{formatRelative(p.submitted_at, locale)}</span>
+          )}
+          {p.format && <span className="truncate">· {p.format}</span>}
+        </div>
+      </div>
     </Link>
+  );
+}
+
+/** Format filter as coloured chips. */
+function TypeChips({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const { t } = useI18n();
+  const chip = (v: string, label: string, color?: string, Icon?: typeof Film) => {
+    const active = value === v;
+    return (
+      <button
+        key={v || "all"}
+        type="button"
+        aria-pressed={active}
+        onClick={() => onChange(v)}
+        className={cn(
+          "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+          !active && "hover:bg-accent",
+          active && !color && "border-foreground bg-foreground text-background",
+        )}
+        style={
+          color
+            ? active
+              ? { backgroundColor: color, borderColor: color, color: "#fff" }
+              : { borderColor: `${color}66`, color }
+            : undefined
+        }
+      >
+        {Icon && <Icon className="size-3.5" aria-hidden />}
+        {label}
+      </button>
+    );
+  };
+  return (
+    <div className="mb-4 flex flex-wrap gap-2" role="group" aria-label={t("inbox.filter.type")}>
+      {chip("", t("common.all"))}
+      {TYPES.map((ct) =>
+        chip(ct, t(`contentType.${ct}`), TYPE_STYLE[ct].color, TYPE_STYLE[ct].Icon),
+      )}
+    </div>
   );
 }

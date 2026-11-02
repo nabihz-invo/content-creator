@@ -7,10 +7,11 @@ export interface RenderConfig {
   supabaseUrl: string;
   serviceRoleKey: string;
   repoUrl: string;
-  /** Output types this worker renders (Phase 4: png, carousel; Phase 5 adds mp4). */
+  /** Output types this worker renders (png, carousel, mp4 — mp4 for studio creatives). */
   outputTypes: ("png" | "carousel" | "mp4")[];
   /** Per page (one PNG or one slide); bounds a job together with the slide count. */
   pageTimeoutS: number;
+  ffmpeg: string;
   maxPngBytes: number;
   minLumaStddev: number;
   leaseS: number;
@@ -33,11 +34,14 @@ export function loadConfig(): RenderConfig {
       "CREATIVES_REPO_URL",
       `file://${fileURLToPath(new URL("../../../tmp/creatives.git", import.meta.url))}`,
     )!,
-    outputTypes: env("RENDER_OUTPUT_TYPES", "png,carousel")!
+    outputTypes: env("RENDER_OUTPUT_TYPES", "png,carousel,mp4")!
       .split(",")
       .map((s) => s.trim())
-      .filter((s): s is "png" | "carousel" => s === "png" || s === "carousel"),
+      .filter(
+        (s): s is "png" | "carousel" | "mp4" => s === "png" || s === "carousel" || s === "mp4",
+      ),
     pageTimeoutS: Number(env("RENDER_PAGE_TIMEOUT_S", "60")),
+    ffmpeg: env("FFMPEG_PATH", "ffmpeg")!,
     maxPngBytes: Number(env("RENDER_MAX_PNG_BYTES", String(8 * 1024 * 1024))),
     minLumaStddev: Number(env("RENDER_MIN_LUMA_STDDEV", "2")),
     leaseS: Number(env("LEASE_S", "120")),

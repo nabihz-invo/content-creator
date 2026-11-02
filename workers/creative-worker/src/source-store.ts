@@ -5,6 +5,7 @@
  */
 import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { git } from "./exec.ts";
 
 export interface CommitResult {
@@ -44,7 +45,7 @@ async function clone(repoUrl: string, workDir: string): Promise<string> {
 /** Initializes a local bare repository with a main branch (dev only). */
 export async function ensureLocalRepo(repoUrl: string, workDir: string) {
   if (!repoUrl.startsWith("file://")) return;
-  const path = repoUrl.slice("file://".length);
+  const path = fileURLToPath(repoUrl); // file:///C:/… on Windows
   if (existsSync(join(path, "HEAD"))) return;
   mkdirSync(path, { recursive: true });
   mkdirSync(workDir, { recursive: true });

@@ -18,6 +18,13 @@ const TYPES: Record<string, string> = {
   ".woff": "font/woff",
   ".ttf": "font/ttf",
   ".otf": "font/otf",
+  ".jfif": "image/jpeg",
+  ".mp3": "audio/mpeg",
+  ".wav": "audio/wav",
+  ".m4a": "audio/mp4",
+  ".ogg": "audio/ogg",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
 };
 
 export function contentType(path: string) {
@@ -32,7 +39,29 @@ export async function serveDir(root: string): Promise<{ url: string; close: () =
       return res.writeHead(403).end();
     const st = statSync(file, { throwIfNoEntry: false });
     if (!st?.isFile()) return res.writeHead(404).end();
-    res.writeHead(200, { "content-type": contentType(file), "cache-control": "no-store" });
+    const type = contentType(file);
+    // Range requests let <video> backgrounds seek frame-exactly (studio engine).
+    const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range ?? "");
+    if (m && (m[1] || m[2])) {
+      const start = m[1] ? Number(m[1]) : Math.max(0, st.size - Number(m[2]));
+      const end = m[1] && m[2] ? Math.min(Number(m[2]), st.size - 1) : st.size - 1;
+      if (start > end || start >= st.size)
+        return res.writeHead(416, { "content-range": `bytes */${st.size}` }).end();
+      res.writeHead(206, {
+        "content-type": type,
+        "content-range": `bytes ${start}-${end}/${st.size}`,
+        "content-length": end - start + 1,
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+      });
+      return createReadStream(file, { start, end }).pipe(res);
+    }
+    res.writeHead(200, {
+      "content-type": type,
+      "content-length": st.size,
+      "accept-ranges": "bytes",
+      "cache-control": "no-store",
+    });
     createReadStream(file).pipe(res);
   });
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));

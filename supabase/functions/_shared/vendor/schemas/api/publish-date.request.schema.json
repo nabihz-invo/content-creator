@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/publish-date.request.schema.json",
+  "title": "POST /api/content-projects/{id}/publish-date",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["date"],
+  "properties": {
+    "date": {
+      "description": "Planned publish day (YYYY-MM-DD); null clears it.",
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+  }
+}

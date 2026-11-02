@@ -13,6 +13,8 @@ export default tseslint.config(
       "**/*.generated.ts",
       "supabase/functions/**",
       "apps/crm/src/components/ui/**",
+      // Vendored studio engine, kept byte-identical with the Stacko Studio kit (ADR-0009).
+      "templates/studio/engine/sm-*.js",
     ],
   },
   js.configs.recommended,

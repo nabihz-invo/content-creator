@@ -28,10 +28,13 @@ const ALLOWED_EXT = new Set([
   ".txt",
 ]);
 const CODE_EXT = new Set([".html", ".css", ".js", ".mjs", ".svg"]);
+/** Media allowed only inside the mounted brand asset library (ADR-0009). */
+const ASSET_ONLY_EXT = new Set([".mp3", ".wav", ".m4a", ".ogg", ".mp4", ".webm", ".jfif"]);
 /** Workspace files that are tooling, not part of the creative. */
 const IGNORED = new Set(["CLAUDE.md", "check.mjs"]);
 /** Vendored, reviewed libraries are exempt from code rules (sizes still apply). */
-const TRUSTED_PREFIXES = ["vendor/", "fonts/"];
+const TRUSTED_PREFIXES = ["vendor/", "fonts/", "studio/", "assets/"];
+const trusted = (path) => TRUSTED_PREFIXES.some((p) => path.startsWith(p));
 
 const RULES = [
   {
@@ -105,7 +108,7 @@ export function validateWorkspace(dir, opts) {
 
   if (files.length > LIMITS.maxFiles)
     add(".", "too-many-files", `more than ${LIMITS.maxFiles} files`);
-  const total = files.reduce((n, f) => n + f.size, 0);
+  const total = files.filter((f) => !trusted(f.path)).reduce((n, f) => n + f.size, 0);
   if (total > LIMITS.maxTotalBytes)
     add(".", "too-large", `workspace exceeds ${LIMITS.maxTotalBytes} bytes`);
 
@@ -115,11 +118,11 @@ export function validateWorkspace(dir, opts) {
       continue;
     }
     const ext = extname(f.path).toLowerCase();
-    if (!ALLOWED_EXT.has(ext))
+    if (!ALLOWED_EXT.has(ext) && !(ASSET_ONLY_EXT.has(ext) && f.path.startsWith("assets/")))
       add(f.path, "file-type", `file type ${ext || "(none)"} is not allowed`);
-    if (f.size > LIMITS.maxFileBytes)
+    if (f.size > LIMITS.maxFileBytes && !trusted(f.path))
       add(f.path, "file-size", `file exceeds ${LIMITS.maxFileBytes} bytes`);
-    if (!CODE_EXT.has(ext) || TRUSTED_PREFIXES.some((p) => f.path.startsWith(p))) continue;
+    if (!CODE_EXT.has(ext) || trusted(f.path)) continue;
     const text = readFileSync(join(dir, f.path), "utf8");
     const lines = text.split("\n");
     lines.forEach((line, i) => {
@@ -147,13 +150,19 @@ export function validateWorkspace(dir, opts) {
       !f.path.startsWith("lib/"),
   );
   const allJs = js.map((f) => readFileSync(join(dir, f.path), "utf8")).join("\n");
-  if (!/__ready\s*=\s*true/.test(allJs) && !/\bmarkReady\s*\(\s*\)/.test(allJs))
+  // Studio pages (ADR-0009): the engine bridge sets __ready / __render once the page builds a reel or carousel.
+  const indexHtml = index ? readFileSync(join(dir, "index.html"), "utf8") : "";
+  const usesBridge = /<script[^>]+src=["']\/studio\/engine\/bridge\.js["']/.test(indexHtml);
+  const studio = usesBridge && /\bSM\.(reel|carousel)\s*\(/.test(indexHtml + allJs);
+  if (usesBridge && !studio)
+    add("index.html", "studio-page", "a studio page must create SM.reel() or SM.carousel()");
+  if (!studio && !/__ready\s*=\s*true/.test(allJs) && !/\bmarkReady\s*\(\s*\)/.test(allJs))
     add(
       ".",
       "ready-hook",
       "set window.__ready = true when the creative is fully rendered (or call markReady())",
     );
-  if (opts.format === "video" && !/__render\s*=/.test(allJs))
+  if (opts.format === "video" && !studio && !/__render\s*=/.test(allJs))
     add(
       ".",
       "render-hook",

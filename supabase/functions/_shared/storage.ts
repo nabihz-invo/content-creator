@@ -5,6 +5,8 @@ export interface StoragePort {
   upload(bucket: string, path: string, data: Uint8Array, contentType: string): Promise<void>;
   /** Reads a stored file (publishing bundles). */
   download(bucket: string, path: string): Promise<Uint8Array>;
+  /** Deletes files; a path that is already gone is not an error. */
+  remove(bucket: string, paths: string[]): Promise<void>;
 }
 
 export function supabaseStorage(url: string, serviceRoleKey: string): StoragePort {
@@ -21,6 +23,11 @@ export function supabaseStorage(url: string, serviceRoleKey: string): StoragePor
       const { data, error } = await client.storage.from(bucket).download(path);
       if (error || !data) throw error ?? new Error(`download ${bucket}/${path} failed`);
       return new Uint8Array(await data.arrayBuffer());
+    },
+    async remove(bucket, paths) {
+      if (!paths.length) return;
+      const { error } = await client.storage.from(bucket).remove(paths);
+      if (error) throw error;
     },
   };
 }

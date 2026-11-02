@@ -18,11 +18,16 @@ const log = (msg: string, extra: Record<string, unknown> = {}) =>
 
 let generator: Generator = templateGenerator;
 if (cfg.generator === "claude-code") {
-  if (!cfg.anthropicApiKey)
-    throw new Error("CREATIVE_GENERATOR=claude-code needs ANTHROPIC_API_KEY");
+  if (!cfg.claudeOauthToken && !cfg.anthropicApiKey)
+    throw new Error(
+      "CREATIVE_GENERATOR=claude-code needs CLAUDE_CODE_OAUTH_TOKEN or ANTHROPIC_API_KEY",
+    );
   generator = claudeCodeGenerator({
     bin: cfg.claudeBin,
-    apiKey: cfg.anthropicApiKey,
+    // The subscription wins: with a token, the API key is never passed to Claude Code.
+    auth: cfg.claudeOauthToken
+      ? { CLAUDE_CODE_OAUTH_TOKEN: cfg.claudeOauthToken }
+      : { ANTHROPIC_API_KEY: cfg.anthropicApiKey! },
     model: cfg.claudeModel,
     effort: cfg.claudeEffort,
     budgetUsd: cfg.claudeBudgetUsd,

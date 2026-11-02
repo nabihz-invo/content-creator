@@ -165,3 +165,34 @@ reference this hash.
   "manifest_hash": "sha256", "caption": "string", "hashtags": ["string"], "link": "string | null",
   "scheduled_at": "ISO-8601 | null", "idempotency_key": "string" }
 ```
+
+## 10. Timeline contract for video and studio creatives (P5-T01)
+
+Every video creative (and every studio page, whatever its format) is an HTML
+page whose frames are a pure function of time. Once it is ready it sets
+`window.__ready = true` and exposes:
+
+```ts
+window.__render = {
+  engine?: "studio-1",            // studio pages (ADR-0009); absent for classic templates
+  kind?: "reel" | "carousel",
+  lang?: "en" | "ar",             // the language version this load renders (?lang=)
+  duration: number,               // seconds
+  fps: number,
+  width: number, height: number,  // px, device scale 1
+  scenes: { start: number; end: number; name: string }[],
+  stills?: { name: string; t: number }[],   // carousel slides / named stills, exported at t
+  cover?: number | null,          // the cover frame time
+  audio?: { music?: string; voice?: string; voiceAt?: number; musicVolume?: number;
+            musicStart?: number; duck?: boolean; lufs?: number; sfxVolume?: number } | null,
+  sfx?: { name: string; t: number; vol?: number }[],        // UI sound cues
+  seek(t: number): void | Promise<void>,  // draw exactly the frame at t (await it)
+};
+```
+
+Rules: `seek(t)` is idempotent and order-independent — seeking 3.2 → 1.0 → 3.2
+yields identical pixels for both 3.2 frames; no wall clock, `Math.random`,
+CSS animations, timers or `requestAnimationFrame` drive visuals. Studio pages
+load with `?render=1&lang=<en|ar>` for capture (the interactive player is
+hidden). Audio paths are workspace-absolute (`/assets/…`); the renderer mixes
+them itself and keeps only cues named in `spec.studio.sfx_allow`.
