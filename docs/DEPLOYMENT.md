@@ -112,6 +112,8 @@ python3 -I scripts/import/content-plan-to-sql.py plan.xlsx plan.sql --email you@
 
 A plan written outside the workbook can be given as JSON instead (`{ "workbook_key", "source_file", "content": [rows], "backlog": [rows] }`, same column names as the sheets); use a new `workbook_key` per plan so IDs never collide.
 
+Before writing a new plan, export what already exists (`supabase/queries/export-existing-content.sql`, one JSON cell) and pass it with `--existing existing.json`: the generator refuses plan IDs that are already used and warns about repeated titles. A plan's `evidence` list adds research notes to existing posts instead of creating new ones. The full research workflow is the prompt in `docs/prompts/research-to-content-sql.md`.
+
 Run `plan.sql` in the Supabase SQL editor. Each planned post and backlog idea
 becomes a project (status `new`, tag `content-plan`, full row kept); running
 it again creates nothing new. Posts already live: open the project → Idea tab
