@@ -1,0 +1,582 @@
+ID: F-001
+Category: A
+Summary: A Shopify seller with stock in their own warehouse, a 3PL and Amazon FBA keeps overselling or running out unexpectedly.
+Quote: “constantly overselling things or running out of stock when I thought we had plenty.”
+Who: Shopify store owner, own warehouse + 3PL + Amazon FBA, grew from ~50 to 300+ orders/day
+Region: unknown
+Product mentioned: Shopify
+Signal: Low (one commenter agreed: “The overselling thing is such a nightmare”)
+Engagement: 2 points / 1 comment
+Date: ≈ Feb 2025 (snapshot Dec 18, 2025)
+Link: https://reddit.sentinel-team.org/posts/1pq2xns/snapshots/2025-12-18T21%3A41%3A25.356861Z
+ID: F-002
+Category: A
+Summary: Keeping a spreadsheet in line with what the shop system thinks is in stock has become a full-time job.
+Quote: “it’s like a full time job just keeping track of what we actually have versus what Shopify thinks we have”
+Who: same Shopify owner as F-001
+Region: unknown
+Product mentioned: Shopify, spreadsheets
+Signal: Low
+Engagement: 2 points / 1 comment
+Date: ≈ Feb 2025
+Link: https://reddit.sentinel-team.org/posts/1pq2xns/snapshots/2025-12-18T21%3A41%3A25.356861Z
+ID: F-003
+Category: D
+Summary: Cheaper warehouse systems cope with basic inventory but fail at multi-location work.
+Quote: “they handle basic inventory but fall apart when you need real multi location orchestration or complex channel management”
+Who: operations director, ~$35M revenue, 2 warehouses, 6 sales channels
+Region: unknown
+Product mentioned: none
+Signal: Medium (4 commenters described the same gap between cheap and enterprise tools)
+Engagement: 69 points / 30 comments
+Date: ≈ Feb 2025 (snapshot Dec 22, 2025)
+Link: https://reddit.sentinel-team.org/posts/1prsuy2/snapshots/2025-12-22T21%3A00%3A32.988055Z
+ID: F-004
+Category: C
+Summary: Enterprise warehouse systems are priced out of reach for mid-size operators.
+Quote: “pricing is insane, like we’re talking hundreds of thousands for implementation plus massive monthly fees”
+Who: operations director, ~$35M revenue, 2 warehouses
+Region: unknown
+Product mentioned: none
+Signal: Medium
+Engagement: 69 points / 30 comments
+Date: ≈ Feb 2025
+Link: https://reddit.sentinel-team.org/posts/1prsuy2/snapshots/2025-12-22T21%3A00%3A32.988055Z
+ID: F-005
+Category: E
+Summary: The poster wants reporting that non-analysts can read.
+Quote: “reporting that doesn’t require a data analyst to interpret”
+Who: operations director, ~$35M revenue
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 69 points / 30 comments
+Date: ≈ Feb 2025
+Link: https://reddit.sentinel-team.org/posts/1prsuy2/snapshots/2025-12-22T21%3A00%3A32.988055Z
+ID: F-006
+Category: G
+Summary: A commenter advises checking for built-in integrations before buying, because custom API work costs ongoing maintenance.
+Quote: “make sure whatever you pick has native integrations and not just API connections you have to build yourself”
+Who: commenter, role unknown
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 1 point
+Date: ≈ Feb 2025
+Link: https://reddit.sentinel-team.org/posts/1prsuy2/snapshots/2025-12-22T21%3A00%3A32.988055Z
+ID: F-007
+Category: H
+Summary: An Extensiv user says it was a big improvement over spreadsheets and avoided a large upfront cost.
+Quote: “it’s leagues better than the spreadsheet hell we had before and we’re not spending 200k upfront.”
+Who: operator, ~$30M revenue
+Region: unknown
+Product mentioned: Extensiv
+Signal: Low
+Engagement: 3 points
+Date: ≈ Feb 2025
+Link: https://reddit.sentinel-team.org/posts/1prsuy2/snapshots/2025-12-22T21%3A00%3A32.988055Z
+ID: F-008
+Category: A
+Summary: A small craft-supply seller finds manual Excel stock tracking harder as orders grow.
+Quote: “My current system of manually updating Excel sheets is becoming a nightmare as orders increase.”
+Who: owner, online craft-supply shop, ~2 years in business, hundreds of SKUs
+Region: unknown
+Product mentioned: Excel
+Signal: Low
+Engagement: 7 points / 1 non-vendor comment (one vendor reply skipped)
+Date: ≈ Jul 2025 (snapshot Mar 13, 2026)
+Link: https://reddit.sentinel-team.org/posts/1rs3yob/snapshots/2026-03-13T03%3A45%3A27.522854Z
+ID: F-009
+Category: G
+Summary: The seller asks whether an affordable tool exists that handles product variations.
+Quote: “Has anyone found a good solution that doesn’t break the bank but can handle complex product variations?”
+Who: owner, online craft-supply shop
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 7 points / 1 comment
+Date: ≈ Jul 2025
+Link: https://reddit.sentinel-team.org/posts/1rs3yob/snapshots/2026-03-13T03%3A45%3A27.522854Z
+ID: F-010
+Category: A
+Summary: A shop with a Shopify site and a Clover till with manually entered quantities gets inaccurate stock and cancelled orders.
+Quote: “we still struggle with inventory not being accurately tracked, therefore resulting in an order cancellation.”
+Who: owner, brick-and-mortar store with Shopify site
+Region: unknown
+Product mentioned: Clover, Shopify
+Signal: Low
+Engagement: 3 points / 11 comments (4 captured)
+Date: ≈ Jun 2025 (snapshot Feb 20, 2026)
+Link: https://reddit.sentinel-team.org/posts/1r94rr4/snapshots/2026-02-20T04%3A12%3A47.739067Z
+ID: F-011
+Category: J
+Summary: The poster does not trust online recommendations because they read as ads.
+Quote: “We’ve read extensively online but everything tends to be an ad for someone’s product.”
+Who: owner, brick-and-mortar store
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 3 points
+Date: ≈ Jun 2025
+Link: https://reddit.sentinel-team.org/posts/1r94rr4/snapshots/2026-02-20T04%3A12%3A47.739067Z
+ID: F-012
+Category: I
+Summary: Staff type product names by hand with no scanner, so the same item is entered many different ways.
+Quote: “Same product gets typed 5+ different ways depending on who’s working that day”
+Who: relative of the owner of 5 paint stores, ~2,450 products
+Region: Argentina
+Product mentioned: none
+Signal: Low
+Engagement: 2 points / 3 comments
+Date: ≈ Oct 2025 (snapshot Apr 28, 2026)
+Link: https://reddit.sentinel-team.org/posts/1sx7kys/snapshots/2026-04-28T00%3A34%3A41.342427Z
+ID: F-013
+Category: A
+Summary: A product code was assigned to two different products years ago and went unnoticed.
+Quote: “Same product code accidentally got assigned to two different products by whoever set up the catalog years ago.”
+Who: same paint-store family business
+Region: Argentina
+Product mentioned: none
+Signal: Low
+Engagement: 2 points / 3 comments
+Date: ≈ Oct 2025
+Link: https://reddit.sentinel-team.org/posts/1sx7kys/snapshots/2026-04-28T00%3A34%3A41.342427Z
+ID: F-014
+Category: I
+Summary: The poster asks how others got staff onto scanners or fixed menus.
+Quote: “Did you eventually force employees onto barcode scanners or dropdown menus?”
+Who: same paint-store family business
+Region: Argentina
+Product mentioned: none
+Signal: Low
+Engagement: 2 points / 3 comments
+Date: ≈ Oct 2025
+Link: https://reddit.sentinel-team.org/posts/1sx7kys/snapshots/2026-04-28T00%3A34%3A41.342427Z
+ID: F-015
+Category: I
+Summary: A commenter says staff buy-in comes only when the new way is easier than the old way.
+Quote: “The key to getting buy-in is to make doing the new thing easier and more convenient than the old thing.”
+Who: commenter, role unknown
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 1 point
+Date: ≈ Oct 2025
+Link: https://reddit.sentinel-team.org/posts/1sx7kys/snapshots/2026-04-28T00%3A34%3A41.342427Z
+ID: F-016
+Category: I
+Summary: Tracking across several sites only works if people actually scan (this thread is about IT assets, so it is indirect evidence for stock).
+Quote: “Barcode scanning only works when people actually scan.”
+Who: IT staff, several manufacturing sites
+Region: unknown
+Product mentioned: none
+Signal: Medium (repeated by ~3 posters; commenters also said processes matter more than software)
+Engagement: 1 point / 20 comments
+Date: ≈ Dec 2025 (snapshot Mar 13, 2026)
+Link: https://reddit.sentinel-team.org/posts/1rq93e5/snapshots/2026-03-13T20%3A20%3A01.342967Z
+ID: F-017
+Category: I
+Summary: Commenters say scan-at-pick and scan-at-pack cut warehouse errors, and the right action must be the easiest one for the worker.
+Quote: “make the correct action the easiest action for the worker.”
+Who: commenter, role unknown
+Region: unknown
+Product mentioned: none
+Signal: Medium (scan-at-pick/pack raised by ~4 commenters)
+Engagement: 2 points
+Date: ≈ Jul 2025 (snapshot Mar 13, 2026)
+Link: https://reddit.sentinel-team.org/posts/1rrl0fu/snapshots/2026-03-13T02%3A32%3A27.486812Z
+ID: F-018
+Category: D
+Summary: A developer who regrets using Odoo calls its usability dated.
+Quote: “usability is like 1980 SAP software.”
+Who: developer, Odoo user
+Region: unknown
+Product mentioned: Odoo
+Signal: Medium (complexity/learning curve raised by ~3 commenters; one commenter disagreed)
+Engagement: 7 points; thread 6 points / 23 comments
+Date: ≈ Jan 2026 (snapshot Jun 18, 2026)
+Link: https://reddit.sentinel-team.org/posts/1u7fg5q/snapshots/2026-06-18T05%3A31%3A33.222086Z
+ID: F-019
+Category: J
+Summary: Leaving Odoo is described as close to impossible.
+Quote: “It is virtually impossible to migrate away.”
+Who: developer, Odoo user
+Region: unknown
+Product mentioned: Odoo
+Signal: Medium (lock-in or migration pain raised by 2 commenters plus the poster)
+Engagement: 7 points
+Date: ≈ Jan 2026
+Link: https://reddit.sentinel-team.org/posts/1u7fg5q/snapshots/2026-06-18T05%3A31%3A33.222086Z
+ID: F-020
+Category: H
+Summary: A user cancelled Odoo after two years because it was slow and hard to learn.
+Quote: “I find them quite slow, and all the apps they provide have a steep learning curve.”
+Who: former Odoo subscriber (2 years)
+Region: unknown
+Product mentioned: Odoo
+Signal: Low
+Engagement: 1 point
+Date: ≈ Jan 2026
+Link: https://reddit.sentinel-team.org/posts/1u7fg5q/snapshots/2026-06-18T05%3A31%3A33.222086Z
+ID: F-021
+Category: A
+Summary: Running Shopify and Amazon without a connecting system means manual import/export and reconciling books against stock.
+Quote: “This causes a lot of manual work to import/export everything, reconcile books and inventory and to manage inventory levels and POs.”
+Who: solo seller, Shopify + Amazon, ~1,000 SKUs planned
+Region: unknown
+Product mentioned: Shopify, Amazon
+Signal: Low
+Engagement: 6 points / 23 comments
+Date: ≈ Jan 2026
+Link: https://reddit.sentinel-team.org/posts/1u7fg5q/snapshots/2026-06-18T05%3A31%3A33.222086Z
+ID: F-022
+Category: F
+Summary: A small business asks for the most basic stock tool it can host itself.
+Quote: “Looking for the most basic self hosted inventory / stock management tool for a small business.”
+Who: small business, role unknown
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 26 upvotes / 6 comments
+Date: Feb 3, 2025
+Link: https://axebps-redlib.hf.space/r/selfhosted/comments/1igc3ee/self_hosted_stock_management
+ID: F-023
+Category: C
+Summary: The poster rejected Odoo as too complex for a basic stock list.
+Quote: “Odoo also looks way, way too complex.”
+Who: small business, role unknown
+Region: unknown
+Product mentioned: Odoo
+Signal: Low (a commenter also advised reconsidering Odoo)
+Engagement: 26 upvotes / 6 comments
+Date: Feb 3, 2025
+Link: https://axebps-redlib.hf.space/r/selfhosted/comments/1igc3ee/self_hosted_stock_management
+ID: F-024
+Category: D
+Summary: A new Cin7 user couldn’t load opening stock without a CSV import.
+Quote: “I cannot seem to easily add the amount of stock we have in our warehouse”
+Who: small business moving stock in-house, ships to Amazon FBA
+Region: unknown
+Product mentioned: Cin7
+Signal: Low
+Engagement: 1 upvote / 7 comments
+Date: Feb 17, 2025
+Link: https://axebps-redlib.hf.space/r/InventoryManagement/comments/1irnm0x/cin7_question/mrg8xvl/?context=3
+ID: F-025
+Category: H
+Summary: A long-time Cin7 user is replacing it over bugs, price hikes and support, and is considering Odoo.
+Quote: “I am in the middle of rushing to replace it because of their shady practices.”
+Who: eCommerce operator (18 years in eCommerce)
+Region: unknown
+Product mentioned: Cin7 (Odoo being considered)
+Signal: Low
+Engagement: 1 follow-up question asking for alternatives
+Date: May 9, 2025
+Link: https://axebps-redlib.hf.space/r/InventoryManagement/comments/1irnm0x/cin7_question/mrg8xvl/?context=3
+ID: F-026
+Category: A
+Summary: A multichannel client compiles stock reports by hand from several dashboards each weekend.
+Quote: “Each weekend, they manually compile inventory reports from several dashboards”
+Who: contractor building a system for an Amazon/Walmart/Shopify/Etsy/TikTok seller
+Region: unknown
+Product mentioned: Amazon, ShipStation
+Signal: Low
+Engagement: 1 upvote / 3 comments
+Date: not shown (“2d ago” on mirror)
+Link: https://reddit.birdcat.cafe/r/ecommerce/comments/1jxkbvz/how_do_you_manage_data_across_multiple_channels
+ID: F-027
+Category: F
+Summary: The same poster asks for off-the-shelf software to gather multichannel data.
+Quote: “Are there any existing off-the-shelf solutions you would recommend that perform similar multichannel data gathering functions?”
+Who: contractor
+Region: unknown
+Product mentioned: none
+Signal: Low
+Engagement: 1 upvote / 3 comments
+Date: not shown
+Link: https://reddit.birdcat.cafe/r/ecommerce/comments/1jxkbvz/how_do_you_manage_data_across_multiple_channels
+ID: F-028
+Category: D
+Summary: A Cin7 customer complains of a fee increase with no added benefit.
+Quote: “They’ve increased fees by $72 per month ($864 a year) while offering no tangible benefits for my business in return.”
+Who: managing director, used 3–5 years
+Region: unknown
+Product mentioned: Cin7 Core
+Signal: Medium (price increases mentioned in ≥3 Cin7 reviews, plus F-025)
+Engagement: 1 star
+Date: Oct 9, 2024
+Link: https://www.capterra.com/p/133038/Cin7-Core/reviews/?rating=1
+ID: F-029
+Category: D
+Summary: After moving to Cin7 a company could no longer run separate wholesale and retail stores.
+Quote: “now we are not able to have 2 different stores like we had for our wholesale business and retail”
+Who: supply chain manager, migrated from OrderHive
+Region: unknown
+Product mentioned: Cin7 Core
+Signal: Low
+Engagement: 2 stars
+Date: Apr 23, 2024
+Link: https://www.capterra.com/p/133038/Cin7-Core/reviews/?rating=1
+ID: F-030
+Category: D
+Summary: A buyer calls the vendor’s 30-day implementation unrealistic and botched.
+Quote: “completely unrealistic and botched 30-day implementation”
+Who: general counsel, medical devices
+Region: unknown
+Product mentioned: Cin7 Core
+Signal: Medium (setup or implementation pain in ~4 Cin7 reviews)
+Engagement: 1 star
+Date: Mar 2025
+Link: https://www.capterra.com/p/133038/Cin7-Core/reviews/?rating=1
+ID: F-031
+Category: D
+Summary: Cin7 support is ticket-only and slow.
+Quote: “Support is slow and ticketed and often tickets go unresolved.”
+Who: retail business, 11–50 employees, used 2+ years
+Region: unknown
+Product mentioned: Cin7 Omni
+Signal: High (slow or ticket-only support appears ~7 times on Capterra, ~8 on Software Advice, ~6 on the Shopify app page)
+Engagement: 3 stars
+Date: Dec 2025
+Link: https://www.softwareadvice.com/inventory-management/cin7-profile/reviews/
+ID: F-032
+Category: D
+Summary: Preparing data for Cin7 took far longer than planned and go-live dates slipped.
+Quote: “the amount of time and man hours requited to get the data ready on our side has been enormous.”
+Who: automotive business, 2–10 employees
+Region: unknown
+Product mentioned: Cin7 Omni
+Signal: Low
+Engagement: 4 stars
+Date: Jun 2021
+Link: https://www.softwareadvice.com/inventory-management/cin7-profile/reviews/
+ID: F-033
+Category: D
+Summary: A Shopify merchant spent months and thousands on Cin7 without getting basic tasks working.
+Quote: “Spent around 4k and almost eight months for the product to fail to deliver on the simplest tasks”
+Who: merchant, size unknown
+Region: unknown
+Product mentioned: Cin7 Omni (Shopify app)
+Signal: Medium (sync and setup failures in ~5 of 16 one-star reviews)
+Engagement: 1 star
+Date: Feb 8, 2023
+Link: https://apps.shopify.com/cin7-connected-inventory-v2/reviews?ratings%5B%5D=1
+ID: F-034
+Category: D
+Summary: A buyer purchased scanners on Cin7 support’s advice and later learned they were incompatible.
+Quote: “spent 2K on scanners RECCOMMENDED by the CIN7 tech support, only to have them tell us later they’re incompatible with the program.”
+Who: merchant, size unknown
+Region: unknown
+Product mentioned: Cin7 Omni
+Signal: Low
+Engagement: 1 star
+Date: Feb 8, 2023
+Link: https://apps.shopify.com/cin7-connected-inventory-v2/reviews?ratings%5B%5D=1
+ID: F-035
+Category: J
+Summary: A South African reviewer says dollar pricing is hard for non-dollar countries.
+Quote: “It is very expensive particularly for users in countries that do not use the dollar like us in South Africa .”
+Who: admin manager, used 3–5 years
+Region: South Africa
+Product mentioned: Cin7 Core
+Signal: Low
+Engagement: 5 stars (the cons section carries the complaint)
+Date: Aug 22, 2025
+Link: https://www.capterra.com/p/133038/Cin7-Core/reviews/?rating=1
+ID: F-036
+Category: E
+Summary: A user wants purchases in transit to count toward stock levels.
+Quote: “purchases that are in transit with an ETA (Estimated Time of Arrival) could be included in stock levels”
+Who: building-materials business, 2–10 employees
+Region: unknown
+Product mentioned: inFlow
+Signal: Low
+Engagement: 5 stars
+Date: Sep 2022 (older than 3 years)
+Link: https://www.softwareadvice.com/inventory-management/inflow-inventory-profile/reviews/
+ID: F-037
+Category: D
+Summary: A long-time inFlow customer says it has become too expensive and unsupported for a small firm.
+Quote: “now it is too expensive and only for big guys.”
+Who: wholesale business, 2–10 employees, used 2+ years
+Region: unknown
+Product mentioned: inFlow
+Signal: Low
+Engagement: 1 star
+Date: Dec 2025
+Link: https://www.softwareadvice.com/inventory-management/inflow-inventory-profile/reviews/
+ID: F-038
+Category: D
+Summary: inFlow’s mobile app has barcode scanning and sign-in problems.
+Quote: “difficulties with barcode scanning and instances where the application crashes or fails to allow user sign-in.”
+Who: sports-goods business, 51–200 employees
+Region: unknown
+Product mentioned: inFlow
+Signal: Low
+Engagement: 4 stars
+Date: Jul 2024
+Link: https://www.softwareadvice.com/inventory-management/inflow-inventory-profile/reviews/
+ID: F-039
+Category: D
+Summary: Built-in reports fall short, so users merge them in Excel.
+Quote: “Some reports lack the complete information I need, requiring me to compile multiple reports into a single Excel file”
+Who: renewables business, 11–50 employees
+Region: unknown
+Product mentioned: inFlow
+Signal: Medium (reporting limits in ~4 inFlow reviews)
+Engagement: 5 stars
+Date: Sep 2024
+Link: https://www.softwareadvice.com/inventory-management/inflow-inventory-profile/reviews/
+ID: F-040
+Category: D
+Summary: A Zoho Inventory to Shopify link syncs one way only, with no stock sync back.
+Quote: “Shopify connection ONLY GOES ONE WAY (shopify to zoho, NO INVENTORY SYNCING!!)”
+Who: owner, retail, used 6–12 months
+Region: unknown
+Product mentioned: Zoho Inventory
+Signal: Medium (integration or sync failures in ~4 of 5 low-star Zoho reviews on the two pages read)
+Engagement: 3 stars
+Date: Nov 10, 2022
+Link: https://www.capterra.com/p/146241/Zoho-Inventory/reviews/?page=3
+ID: F-041
+Category: A
+Summary: With several warehouses holding different stock, items were lost or misplaced for weeks.
+Quote: “Lots of items were either lost or misplaced for sometimes weeks at a time”
+Who: user of a multi-warehouse business, role unknown
+Region: unknown
+Product mentioned: Zoho Inventory
+Signal: Low
+Engagement: 6/10 on a 0–10 scale
+Date: Apr 21, 2022
+Link: https://trustradius.com/reviews/zoho-inventory-2022-04-20-09-40-48
+ID: F-042
+Category: H
+Summary: The same reviewer stopped using Zoho Inventory because setup was difficult.
+Quote: “We stopped using it as it was difficult to set up.”
+Who: multi-warehouse user, role unknown
+Region: unknown
+Product mentioned: Zoho Inventory
+Signal: Low
+Engagement: 6/10 on a 0–10 scale
+Date: Apr 21, 2022
+Link: https://trustradius.com/reviews/zoho-inventory-2022-04-20-09-40-48
+ID: F-043
+Category: D
+Summary: Zoho Inventory takes too many clicks and has too many settings.
+Quote: “The interface feels a bit slow or clunky, like I need 3 clicks to do 1 thing.”
+Who: owner, used under 1 year
+Region: unknown
+Product mentioned: Zoho Inventory
+Signal: Low
+Engagement: 3 stars
+Date: May 14, 2025
+Link: https://www.capterra.com/p/146241/Zoho-Inventory/reviews/?page=2
+ID: F-044
+Category: A
+Summary: Merchants say quantity changes take too long to show on the shop, or never do.
+Quote: “When I add or reduce quantity in the inventory and save, the quantity doesnt change on the website or takes too long to update.”
+Who: merchant (role not stated)
+Region: unknown
+Product mentioned: Shopify
+Signal: Medium (~5 posters in the thread say they have the same problem)
+Engagement: 11 posts in the thread
+Date: Jul 22, 2024
+Link: https://community.shopify.com/t/inventory-is-not-updating-immediately/341445
+ID: F-045
+Category: E
+Summary: A multi-branch business wants counts from a showroom and a branch warehouse added together.
+Quote: “if one user finds 10 pcs of an item in the warehouse and another finds 4 pcs in the showroom, both counts should be summed.”
+Who: multi-branch business, showroom plus warehouse per branch
+Region: unknown
+Product mentioned: Odoo
+Signal: Low
+Engagement: 1954 views / 1 reply
+Date: not shown
+Link: https://www.odoo.com/forum/help-1/how-to-properly-sum-stock-adjustments-across-multiple-locations-in-odoo-272211
+ID: F-046
+Category: E
+Summary: Users ask for tracking of stock transferred between their own warehouse and other warehouses (Amazon, for example).
+Quote: “Need to be able to track the transfer of inventory from my warehouse to the Amazon warehouse or other warehouse location”
+Who: seller using ShippingEasy
+Region: unknown
+Product mentioned: ShippingEasy
+Signal: Medium (≥5 separate users ask for multi-warehouse tracking or transfers; the vendor says it retired its inventory feature in June 2020, so the thread is old)
+Engagement: thread closed for comments
+Date: not shown (thread predates mid-2020)
+Link: https://support.shippingeasy.com/hc/en-us/community/posts/4407618712987/comments/4407620465051
+1. SOURCES READ
+https://reddit.birdcat.cafe/r/ecommerce/comments/1jxkbvz/how_do_you_manage_data_across_multiple_channels — r/ecommerce mirror (F-026, F-027).
+https://reddit.sentinel-team.org/posts/1prsuy2/snapshots/2025-12-22T21%3A00%3A32.988055Z — r/ecommerce, affordable WMS (F-003 to F-007).
+https://reddit.sentinel-team.org/posts/1pq2xns/snapshots/2025-12-18T21%3A41%3A25.356861Z — r/ecommerce, best WMS when scaling (F-001, F-002).
+https://reddit.sentinel-team.org/posts/1rs3yob/snapshots/2026-03-13T03%3A45%3A27.522854Z — craft-supply inventory (F-008, F-009; one vendor reply skipped).
+https://reddit.sentinel-team.org/posts/1qyjtp0/snapshots/2026-02-20T03%3A45%3A11.427321Z — consulting firm resourcing in Excel. Not stock-related, so no findings.
+https://reddit.sentinel-team.org/posts/1r94rr4/snapshots/2026-02-20T04%3A12%3A47.739067Z — r/shopify, Clover and Shopify (F-010, F-011; one vendor comment skipped).
+https://reddit.sentinel-team.org/posts/1sx7kys/snapshots/2026-04-28T00%3A34%3A41.342427Z — paint stores’ free-text stock entry (F-012 to F-015).
+https://reddit.sentinel-team.org/posts/1rq93e5/snapshots/2026-03-13T20%3A20%3A01.342967Z — IT assets across factories (F-016; two vendor comments skipped).
+https://reddit.sentinel-team.org/posts/1rrl0fu/snapshots/2026-03-13T02%3A32%3A27.486812Z — warehouse picking errors (F-017).
+https://reddit.sentinel-team.org/posts/1tedb11/snapshots/2026-05-16T00%3A16%3A00.834787Z — vendor listicle on overseas sourcing. Nothing usable.
+https://reddit.sentinel-team.org/posts/1u7fg5q/snapshots/2026-06-18T05%3A31%3A33.222086Z — “Should I go all-in on Odoo?” (F-018 to F-021).
+https://reddit.fsky.io/r/sysadmin/comments/1jdn83c/im_sick_of_barcode_scanners/mid4pte/?context=3 — not read; the mirror redirected to another host.
+https://axebps-redlib.hf.space/r/InventoryManagement/comments/1irnm0x/cin7_question/mrg8xvl/?context=3 — Cin7 question (F-024, F-025).
+https://axebps-redlib.hf.space/r/selfhosted/comments/1igc3ee/self_hosted_stock_management — self-hosted stock tool (F-022, F-023).
+https://www.capterra.com/p/146241/Zoho-Inventory/reviews/?page=2 — Zoho reviews (F-043).
+https://www.capterra.com/p/146241/Zoho-Inventory/reviews/?page=3 — Zoho reviews (F-040).
+https://www.g2.com/products/zoho-inventory/reviews?page=2 — loaded but no review text. Nothing usable.
+https://www.getapp.com/operations-management-software/a/zoho-inventory/reviews/ — overview page only, no individual reviews.
+https://trustradius.com/reviews/zoho-inventory-2022-04-20-09-40-48 — one Zoho review (F-041, F-042).
+https://www.odoo.com/forum/help-1/how-to-properly-sum-stock-adjustments-across-multiple-locations-in-odoo-272211 — Odoo forum (F-045).
+https://community.shopify.com/t/inventory-is-not-updating-immediately/341445 — Shopify Community (F-044).
+https://community.squareup.com/t5/Archived-Discussions-Read-Only/Inventory-Handling-Online-Store/m-p/161716 — returned empty.
+https://community.microcenter.com/discussion/comment/22625/ — consumer complaints about a retailer’s website stock status. Not B2B, so not used.
+https://dev.to/truegoodcraft/when-spreadsheets-stop-working-the-awkward-middle-between-sheets-and-erp-5gpg — article by a vendor promoting its own product. Skipped.
+https://khamsat.com/programming/desktop-app/2416468-… (Arabic inventory-program listing) — not read; the fetch tool rejected the URL as too long.
+https://www.capterra.com/p/133038/Cin7-Core/reviews/?rating=1 — Cin7 Core reviews (F-028 to F-030, F-035). The 1-star filter was not applied; the page mixed ratings.
+https://www.softwareadvice.com/inventory-management/inflow-inventory-profile/reviews/ — inFlow reviews (F-036 to F-039).
+https://www.softwareadvice.com/inventory-management/cin7-profile/reviews/ — Cin7 reviews (F-031, F-032).
+https://apps.shopify.com/reviews/1378854 and https://apps.shopify.com/cin7-connected-inventory-v2/reviews?ratings%5B%5D=1 — Cin7 Shopify app reviews (F-033, F-034).
+https://support.shippingeasy.com/hc/en-us/community/posts/4407618712987/comments/4407620465051 — ShippingEasy requests (F-046).
+https://www.accountingweb.co.uk/any-answers/online-inventory-system — failed to load.
+https://rozan.ahlamontada.com/t443-topic — 2012 Arabic “accounts on Excel” thread on a beauty-salon forum. It was ads and copied link lists, with no usable user text.
+2. TOP 10 PATTERNS
+Spreadsheets and manual counts break as channels and locations grow: F-001, F-002, F-008, F-021, F-026, F-041.
+Stock shown in the shop or till doesn’t match reality or other systems (overselling, sync lag): F-001, F-002, F-010, F-040, F-044.
+Gap between cheap tools and enterprise systems on price and fit: F-003, F-004, F-007, F-037.
+Complexity, steep learning curve and long setup put people off or make them quit: F-018, F-020, F-023, F-030, F-033, F-042, F-043.
+Slow or ticket-only vendor support: F-031, F-033 (the Shopify one-star page and Capterra also repeat it).
+Price increases and cost worries: F-004, F-028, F-035, F-037.
+Getting staff to scan or enter data correctly: F-012, F-014, F-015, F-016, F-017, F-034, F-038.
+Multi-location and multi-warehouse limits in existing tools: F-003, F-029, F-041, F-045, F-046.
+Lock-in and painful migration or data preparation: F-019, F-025, F-032.
+Visibility of transfers and in-transit stock: F-036, F-046 (F-041 is a related loss case).
+3. EXACT PHRASES
+
+All are from the pages read; none are in Arabic because none were found.
+
+“spreadsheet hell”
+“constantly overselling”
+“what we actually have versus what Shopify thinks we have”
+“a full time job just keeping track”
+“fall apart when you need real multi location orchestration”
+“Same product gets typed 5+ different ways depending on who’s working that day”
+“Barcode scanning only works when people actually scan.”
+“make the correct action the easiest action for the worker”
+“Odoo also looks way, way too complex.”
+“usability is like 1980 SAP software”
+“It is virtually impossible to migrate away.”
+“Lots of items were either lost or misplaced for sometimes weeks at a time”
+“the inventory is constantly out of sync” (ShippingEasy thread)
+“Need to be able to track the transfer of inventory from my warehouse to the Amazon warehouse”
+“in transit with an ETA ... included in stock levels”
+“now it is too expensive and only for big guys”
+“Support is slow and ticketed”
+“everything tends to be an ad for someone’s product”
+“The most basic ... inventory / stock management tool for a small business” (shortened from “Looking for the most basic self hosted inventory / stock management tool for a small business.”)
+4. GAPS
+Region: I found no first-person evidence from Lebanon, the Gulf or similar markets. Several searches returned only vendor blogs. r/lebanon, r/dubai and r/saudiarabia were not read.
+Arabic: I found no usable Arabic user discussion. Arabic wording for stock problems, such as "جرد المستودع", is still unknown. Facebook groups, Hsoub and Khamsat comments need a different access route.
+WhatsApp and Telegram: nothing on logging stock by chat message, whether people want it, or how much they would trust an AI draft that needs approval.
+Imports from China: nothing on customs, landed cost, container tracking or stock in transit from China. F-036 and F-046 are the only in-transit evidence.
+Other needs: nothing on VAT, accountant needs, internet outages or offline use, Arabic or right-to-left support, or theft and shrinkage.
+Sources not read: G2 gave no review text, and Quora, Stack Exchange, Hacker News and Indie Hackers were not read. Trustpilot, Sortly, Fishbowl, Katana, Unleashed, SAP Business One, Lightspeed and QuickBooks Commerce were not read. I read only partial pages for inFlow and Cin7, and none of the 3-star inFlow reviews.
+Pre-purchase questions: only a few examples (F-006, F-009, F-024). Trial, price transparency, Excel import and migration questions are thinly covered.
+Staff adoption: the evidence is mostly from IT-asset and warehouse-picking threads, not trading SMEs.

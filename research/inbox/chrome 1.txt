@@ -1,0 +1,303 @@
+ID: F-047
+Category: I
+Summary: The hardest part of using an inventory system was getting staff to give correct daily counts.
+Quote: “Honestly the hardest part of Katana for us was getting correct daily counts from employees.”
+Who: owner, used 1–3 years
+Region: unknown
+Product mentioned: Katana
+Signal: Low
+Engagement: 5 stars (comment is in the Cons box)
+Date: Dec 27, 2024
+Link: https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=2
+ID: F-048
+Category: D
+Summary: Importing from Excel was clunky enough that the user typed the data in directly.
+Quote: “The upload from Excel was clunky and not helpful. It was faster to just enter in the data directly.”
+Who: owner, used 1–3 years
+Region: unknown
+Product mentioned: Katana
+Signal: Low
+Engagement: 4 stars
+Date: Sep 10, 2019 (older than 3 years)
+Link: https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=2
+ID: F-049
+Category: D
+Summary: A customer reports large price rises and features moved behind a paywall.
+Quote: “They have increased prices by 523% since we started using this service.”
+Who: CEO, used 3–5 years
+Region: unknown
+Product mentioned: Katana
+Signal: High (price rises or billing changes are repeated for Katana (~5 reviews), Sortly (~12 of 75 read), Unleashed (~6), plus F-028 and F-037)
+Engagement: 3 stars
+Date: Apr 15, 2024
+Link: https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=2
+ID: F-050
+Category: D
+Summary: Only one person can be logged in per account at a time.
+Quote: “Only one user per acount at any time is annoying.”
+Who: complaints specialist, furniture business, used 6–12 months
+Region: unknown
+Product mentioned: Katana
+Signal: Medium (one-user or extra-user limits come up in ~5 Sortly reviews, plus 1 more Katana review)
+Engagement: 5 stars
+Date: Feb 14, 2023
+Link: https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=3
+ID: F-051
+Category: D
+Summary: A food producer found the scanning too weak, among other gaps.
+Quote: “Very low scanning functionality.”
+Who: productivity advisor, food production, used 6–12 months
+Region: unknown
+Product mentioned: Katana
+Signal: Low
+Engagement: 1 star
+Date: Feb 11, 2023
+Link: https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=3
+ID: F-052
+Category: D
+Summary: Freight cost is hard to include in the cost of bought-in materials.
+Quote: “It’s not easy to account for freight costs in the costs of buying raw materials.”
+Who: director, used under 1 year
+Region: unknown
+Product mentioned: Katana
+Signal: Low
+Engagement: 5 stars
+Date: Dec 27, 2020 (older than 3 years)
+Link: https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=2
+ID: F-053
+Category: D
+Summary: A production manager found the app hard to navigate and lacking locations for materials.
+Quote: “it can be difficult to navigate and the lack of locations for materials”
+Who: production manager, used under 1 year
+Region: unknown
+Product mentioned: Sortly
+Signal: Low
+Engagement: 5 stars
+Date: Feb 5, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=7
+ID: F-054
+Category: D
+Summary: When several people updated the same item at once, the stock numbers went wrong.
+Quote: “the system was not live - if several users tried to update the same thing at once, the numbers would almost always be wrong.”
+Who: computer repair technician, education sector, used 6–12 months
+Region: unknown
+Product mentioned: Sortly
+Signal: Medium (sync, real-time or multi-user problems in ~6 of the 75 Sortly reviews read)
+Engagement: 2 stars (vendor replied)
+Date: Feb 10, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=3
+ID: F-055
+Category: D
+Summary: A wholesaler reports a price rise with short notice.
+Quote: “300% price increase with only 30 days supposed notice.”
+Who: owner, wholesale, used 2+ years
+Region: unknown
+Product mentioned: Sortly
+Signal: High (see F-049)
+Engagement: 2 stars (vendor replied)
+Date: May 7, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=3
+ID: F-056
+Category: G
+Summary: A non-profit director marked down the product because it is English only.
+Quote: “It is just in English language.”
+Who: business director, non-profit, used under 6 months
+Region: unknown
+Product mentioned: Sortly
+Signal: Low (1 reviewer; no Arabic mention in the 75 reviews read)
+Engagement: 4 stars (vendor replied that Spanish is a priority)
+Date: Jul 7, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=3
+ID: F-057
+Category: E
+Summary: A user wants to sign items out into an in-between state.
+Quote: “That there isn’t the possibility to temporarily sign out items in a limbo situation.”
+Who: community awareness and special events staff, used 1–3 years
+Region: unknown
+Product mentioned: Sortly
+Signal: Low
+Engagement: 5 stars
+Date: Feb 4, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=7
+ID: F-058
+Category: E
+Summary: A user wants to move items between folders more quickly.
+Quote: “it would be helpful to make it easier to move those items quickly from one folder to another”
+Who: owner, home staging, used under 1 year
+Region: unknown
+Product mentioned: Sortly
+Signal: Low (~4 Sortly reviews mention moves or transfers)
+Engagement: 5 stars
+Date: Feb 13, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=7
+ID: F-059
+Category: D
+Summary: Stock is not shown as available until items are picked, so tracking is not real time.
+Quote: “Sortly does not have real time inventory tracking. When you place pick lists it does not show available inventory until it is actually “Picked””
+Who: project manager, warehousing, used 1–2 years (Capterra “Verified Reviewer”)
+Region: unknown
+Product mentioned: Sortly
+Signal: Low
+Engagement: 4 stars
+Date: Dec 5, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=2
+ID: F-060
+Category: I
+Summary: Less technical staff find the product hard to learn.
+Quote: “the learning curve for the product is difficult for those who are less tech savvy”
+Who: maintenance staff member, used 1–3 years
+Region: unknown
+Product mentioned: Sortly
+Signal: Medium (setup time or learning curve in ~8 Sortly reviews, staff usability in ~5)
+Engagement: 4 stars
+Date: Jan 29, 2025
+Link: https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=7
+ID: F-061
+Category: D
+Summary: A poor initial setup is hard to fix later.
+Quote: “If you do not have it set up properly in the beginning, it is a nightmare to figure out.”
+Who: logistics administrator, used 3–5 years
+Region: unknown
+Product mentioned: Fishbowl
+Signal: Medium (usability or learning curve in ~7 Capterra Fishbowl reviews)
+Engagement: 3 stars
+Date: Sep 4, 2025
+Link: https://www.capterra.com/p/123794/Fishbowl/reviews/?page=2
+ID: F-062
+Category: D
+Summary: A user has trouble keeping stock counts accurate.
+Quote: “Recently FB has been little troublesome in maintaining stock count, we face errors of pick stuck, unable to close short order etc.”
+Who: VP operations / CSR manager, used 3–5 years
+Region: unknown
+Product mentioned: Fishbowl
+Signal: Low
+Engagement: 4 stars
+Date: Apr 17, 2026
+Link: https://www.capterra.com/p/123794/Fishbowl/reviews/?page=2
+ID: F-063
+Category: D
+Summary: Adding a new location needed everyone logged out and the server restarted.
+Quote: “It requires all of our team to log out and restart the server in order for fishbowl to update and process the new location.”
+Who: mechanical/industrial engineering business, 11–50 employees (vendor-invited, with an incentive)
+Region: unknown
+Product mentioned: Fishbowl
+Signal: Low
+Engagement: 4 stars
+Date: Jul 2026
+Link: https://www.softwareadvice.com/inventory-management/fishbowl-inventory-profile/reviews/
+ID: F-064
+Category: E
+Summary: A user wants to split one sales order across facilities.
+Quote: “I wish Fishbowl was able to split a sales order when parts of the order will be fulfilled at facility A.”
+Who: senior production and logistics manager, used 1–3 years
+Region: unknown
+Product mentioned: Fishbowl
+Signal: Low
+Engagement: 4 stars
+Date: Apr 16, 2026
+Link: https://www.capterra.com/p/123794/Fishbowl/reviews/?page=2
+ID: F-065
+Category: D
+Summary: Data migration is described as complex.
+Quote: “the software itself can a smidge complex with data migrations.”
+Who: internal process and operations manager, chemicals, used 1–3 years
+Region: unknown
+Product mentioned: Fishbowl
+Signal: Low
+Engagement: 5 stars
+Date: Jun 4, 2026
+Link: https://www.capterra.com/p/123794/Fishbowl/reviews/?page=2
+ID: F-066
+Category: G
+Summary: A buyer found no transparent pricing online.
+Quote: “the lack of transparent pricing information online.”
+Who: accountant, used under 1 year
+Region: unknown
+Product mentioned: Fishbowl
+Signal: Low
+Engagement: 5 stars
+Date: Nov 24, 2025
+Link: https://www.capterra.com/p/123794/Fishbowl/reviews/?page=2
+ID: F-067
+Category: D
+Summary: The subscription rose by $100 a month with no notice.
+Quote: “our monthly subscription was increased by $100 without any prior notification or authorisation.”
+Who: CEO, mining and metals, used 2+ years
+Region: unknown
+Product mentioned: Unleashed
+Signal: High (see F-049)
+Engagement: 1 star
+Date: Jul 9, 2026
+Link: https://www.capterra.com/p/126644/Unleashed/reviews/?page=2
+ID: F-068
+Category: D
+Summary: Support replies took one to two weeks.
+Quote: “Response times regularly stretched to one to two weeks, which is simply unacceptable for business-critical software.”
+Who: CEO, mining and metals, used 2+ years
+Region: unknown
+Product mentioned: Unleashed
+Signal: High (slow or ticket-only support: Unleashed ~6 of 12 low-star reviews, Cin7 across three sites (F-031), Sortly ~3)
+Engagement: 1 star
+Date: Jul 9, 2026
+Link: https://www.capterra.com/p/126644/Unleashed/reviews/?page=2
+ID: F-069
+Category: H
+Summary: A customer left over subscription add-ons they did not ask for.
+Quote: “They add on unwanted subscriotions and then wont remove them $69 on top each month for something not requested I ‘m out”
+Who: unknown
+Region: United Kingdom (reviewer’s profile country)
+Product mentioned: Unleashed
+Signal: Low
+Engagement: 2 stars
+Date: Jul 21, 2026
+Link: https://uk.trustpilot.com/review/www.unleashedsoftware.com?page=4
+ID: F-070
+Category: A
+Summary: After a shipment reaches Amazon, variants show as out of stock until Amazon checks them into its warehouses.
+Quote: “After Amazon receives a shipment IP says they variants are out of stock until Amazon checks them into their next warehouses”
+Who: Amazon seller (inferred from the review body)
+Region: United States (reviewer’s profile country)
+Product mentioned: Inventory Planner
+Signal: Low (the vendor said an Amazon change caused it and a fix was scheduled)
+Engagement: 1 star
+Date: Jun 29, 2026
+Link: https://www.trustpilot.com/review/inventory-planner.com?page=2
+1. SOURCES READ (added this round, all vendor-authored pages from before excluded)
+https://www.capterra.com/p/169199/Sortly-Pro/reviews/?page=2, ?page=3, ?page=7: Sortly reviews (F-053 to F-060). Only 4 of the 75 reviews were 1–2 stars, so most items come from Cons boxes of 4–5 star reviews.
+https://www.trustpilot.com/review/boxhero-app.com: BoxHero has zero reviews. Nothing usable.
+https://www.capterra.com/p/123794/Fishbowl/reviews/?page=2: Fishbowl (F-061, F-062, F-064 to F-066).
+https://www.softwareadvice.com/inventory-management/fishbowl-inventory-profile/reviews/: Fishbowl page 1. 24 of 25 reviews were invited by the vendor with an incentive, and some duplicate the Capterra reviews (F-063).
+https://www.capterra.com/p/172888/Katana-MRP/reviews/?page=2 and ?page=3: Katana (F-047 to F-052).
+https://www.capterra.com/p/126644/Unleashed/reviews/?page=2 and ?page=3: Unleashed (F-067, F-068). Many low-star reviews there are from 2014–2019, so I did not use them.
+https://uk.trustpilot.com/review/www.unleashedsoftware.com?page=2: no 1–3 star reviews. Nothing usable.
+https://uk.trustpilot.com/review/www.unleashedsoftware.com?page=4: Unleashed (F-069).
+https://www.trustpilot.com/review/inventory-planner.com?page=2: Inventory Planner (F-070).
+2. TOP 10 PATTERNS (updated with this round)
+Spreadsheets and manual counts break as channels and locations grow: F-001, F-002, F-008, F-021, F-026, F-041.
+Stock shown in the shop or till doesn’t match reality or other systems: F-001, F-002, F-010, F-040, F-044, F-070.
+Price rises, billing changes and unwanted add-ons: F-028, F-035, F-037, F-049, F-055, F-067, F-069. This is the most-repeated complaint across products.
+Complexity, steep learning curve and long setup: F-018, F-020, F-023, F-030, F-033, F-042, F-043, F-060, F-061.
+Slow or ticket-only vendor support: F-031, F-033, F-068.
+Cheap tools versus enterprise systems on price and fit: F-003, F-004, F-007, F-037.
+Staff counting, scanning and data-entry adoption: F-012, F-014, F-015, F-016, F-017, F-034, F-038, F-047, F-051, F-060.
+Multi-location and warehouse limits, and moving stock: F-003, F-029, F-041, F-045, F-046, F-053, F-058, F-063, F-064.
+Real-time and concurrent use, and one-user limits: F-050, F-054, F-059.
+Lock-in, data migration and visibility of stock in an in-between state: F-019, F-025, F-032, F-036, F-046, F-057, F-065, F-070.
+3. EXACT PHRASES (added)
+“getting correct daily counts from employees”
+“the system was not live”
+“300% price increase with only 30 days supposed notice”
+“increased by $100 without any prior notification”
+“temporarily sign out items in a limbo situation”
+“it is a nightmare to figure out” (when setup is wrong at the start)
+“the lack of transparent pricing information online”
+“the learning curve ... is difficult for those who are less tech savvy”
+“Only one user per acount at any time”
+“variants are out of stock until Amazon checks them into their next warehouses”
+4. GAPS (updated)
+Region: reviewer countries are mostly missing on Capterra and Software Advice. The only visible countries are the United Kingdom, the United States and South Africa. I have still found no evidence from Lebanon, the Gulf or any Arabic-speaking business.
+Arabic: the one language mention (F-056) is a request for Spanish, not Arabic. Searching Arabic forums and Facebook groups needs another way in. If you have specific public Arabic threads or groups to read, send the links.
+Chat-based stock logging and AI drafts: still nothing about WhatsApp or Telegram, or about trusting an AI draft that needs approval.
+Imports from China: landed cost and freight appear only as F-052 and a mention of landed costs and multi-currency in one 2020 Katana review. I found no China-import, customs or container tracking discussion.
+Other needs: still nothing on VAT, accountant needs, internet outages or theft and shrinkage. The only offline mention was one poor-wifi remark in a Sortly review, which I did not use.
+Reviews not read: Trustpilot Unleashed page 2 had no low-star reviews. I have read only a few pages of each product’s reviews, and nothing on Lightspeed, SAP Business One or QuickBooks Commerce.
