@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-01 · Stop typing invoices line by line</title>
+    <!-- Recipe RC-11 · viral-motion-editor: motion-graphics M5 dark SaaS promo + M1 type-on, cut-driven with a morph payoff.
+         The hook types painfully slowly, then gets struck through · shutter + flash · invoice → AI draft · a person approves →
+         the draft becomes a check mark of brand dots. Phone camera only (no Telegram claim, plan's verify note).
+         Music: Second Cup of Coffee (even, light). -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-01 · Stop typing invoices line by line" });
+
+      // ── 1 · Hook (0–2.2 s): the evening of typing, struck through ───────────────────────────────────
+      const a = R.scene(2.2, { bg: "/assets/post-images/final/PI-05.png", move: "rack", dim: 0.4, gradient: true, name: "typing" });
+      a.text(SM.t("Stop typing invoices line by line.", "بطّل تكتب الفاتورة سطر سطر."), {
+        y: 420, size: 96, fx: "type", cps: 22, at: 0.05, w: 940, out: "fade", outAt: 1.55,
+      });
+      a.text(SM.t("Stop typing invoices *~line by line.~*", "بطّل تكتب الفاتورة *~سطر سطر.~*"), {
+        y: 420, size: 96, fx: "strike", markAt: 0.15, at: 1.55, w: 940,
+      });
+      a.sfx("typing", 0.05, 0.5);
+
+      // ── 2 · Snap (2.2–3.2 s): the phone camera takes the invoice ─────────────────────────────────────
+      const b = R.scene(1.0, { in: "shutter", bg: "night", name: "snap" });
+      const ph = b.phone({ x: 540, y: 960, w: 560, in: "rise", at: 0, status: false });
+      ph.screen.innerHTML =
+        '<img src="/assets/post-images/final/PI-05.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' +
+        '<div style="position:absolute;inset:14% 8% 26%;border:3px solid rgba(255,255,255,.85);border-radius:18px"></div>' +
+        '<div style="position:absolute;left:50%;bottom:6%;width:74px;height:74px;margin-left:-37px;border-radius:50%;border:6px solid #fff;background:rgba(255,255,255,.35)"></div>';
+      b.flash(0.55, 0.3, "#ffffff");
+      b.sfx("shutter", 0.55, 0.8);
+
+      // ── 3 · Photo in, draft out (3.2–8.6 s): AI reads it, flags the new items, you approve ─────────────
+      const c = R.scene(5.4, { in: "flash", bg: "night", name: "draft" });
+      c.text(SM.t("Photo in. *Draft out.*", "صورة بتفوت. *مسودّة بتطلع.*"), { y: 280, size: 78, fx: "blur", at: 0.9, w: 920, out: "fade", outAt: 3.9 });
+      const inv = c.invoice({ y: 820, w: 880, in: "drop", at: 0.05, dist: 1400, rot: -2 });
+      c.sfx("thud", 0.35, 0.6);
+      inv.scan(0.9, 1.3);
+      c.anim(inv.layer, { y: -230, s: 0.66, r: 0 }, 2.2, 0.6, "inOutCubic");
+      const dr = inv.draft(2.45, { y: 900, w: 900, stagger: 0.28 });
+      // The callout grows right from the "New item" tag (not mirrored in Arabic); the Approve button
+      // sits on the far right, clear of its label, in both versions.
+      const bx = 830;
+      c.callout({ x: 270, y: 1300, dx: 40, dy: 220, label: SM.t("New item · confirm", "صنف جديد · أكّد"), at: 3.7 });
+      c.text(SM.t("AI drafts. *You approve.*", "الـAI بيحضّر. *إنت بتوافق.*"), { y: 280, size: 78, fx: "highlight", hl: "marker", at: 4.0, w: 940 });
+      c.html(
+        `<div style="padding:22px 64px;border-radius:999px;background:${SM.C.ocean};color:#fff;font:600 44px 'Readex Pro','Noto Kufi Arabic',sans-serif;box-shadow:0 18px 40px rgba(3,9,18,.4)">${SM.t("Approve", "وافِق")}</div>`,
+        { x: bx, y: 1480, in: "pop", at: 4.1 },
+      );
+      c.cursor({ points: [{ x: bx + 260, y: 1700, at: 4.2 }, { x: bx + 20, y: 1490, at: 4.75, click: true }, { x: bx + 40, y: 1520, at: 5.2 }] });
+
+      // ── 4 · Morph payoff (8.6–10.4 s): the approved draft becomes a check mark of brand dots ──────────
+      const d = R.scene(1.8, { in: "dots", bg: "night", name: "check" });
+      d.dotMorph({ count: 420, y: 900, steps: [
+        { at: 0, shape: "explode" },
+        { at: 0.1, shape: { icon: "check", size: 560 }, dur: 0.8 },
+      ] });
+      d.text(SM.t("Nothing is recorded *until you approve.*", "ما في شي بيتسجّل *قبل ما توافق.*"), { y: 1400, size: 66, fx: "blur", at: 0.5, w: 920 });
+      d.sfx("check", 0.85, 0.7);
+
+      // ── End card (10.4–13.0 s) ───────────────────────────────────────────────────────────────────────
+      R.endcard("wordmark", { cta: SM.t("Send this to whoever types your invoices.", "ابعتها للي بيكتب فواتيركن.") });
+
+      R.badge(SM.t("Invoice reading: in development · example data", "قراءة الفواتير: قيد التطوير · بيانات تجريبية"), { at: c.start + 0.2, until: d.end });
+      R.grain(0.02).vignette(0.45).safe();
+      R.audio({ music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(1.3);
+    </script>
+  </body>
+</html>
