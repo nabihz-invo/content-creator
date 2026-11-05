@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-27 · Invoice says 600. The container had 580.</title>
+    <!-- viral-motion-editor: kinetic-typography T4 editorial + M2 explainer, cut-driven. The invoice drops with its
+         number · the receiving count rolls and stops short · snap: −20 stamps in (product-alert red) · the flag card ·
+         dot rain end card. Received-vs-invoiced is phase 1 (owner confirmed). Music: The Slowest Hour. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-27 · Invoice says 600. The container had 580." });
+      const ITEMS = [["LED strip light 5m, 12V", 600, "1,260.00", "LED Strip 5m", "SKU-10240"], ["TWS wireless earbuds", 300, "2,040.00", "Wireless Earbuds", "SKU-10925"]];
+
+      // ── 1 · Hook (0–2.2 s): the invoice says 600 ─────────────────────────────────────────────────────
+      const a = R.scene(2.2, { bg: "night", name: "invoice" });
+      a.text(SM.t("Invoice says 600. *The container had 580.*", "الفاتورة ٦٠٠. *الكونتينر فيه ٥٨٠.*"), { y: 300, size: 80, fx: "none", at: 0, w: 940 });
+      const inv = a.invoice({ y: 960, w: 860, items: ITEMS, in: "drop", at: 0.05, dist: 1300, rot: -2 });
+      a.sfx("paper", 0.3, 0.5);
+      inv.scan(0.9, 1.0);
+
+      // ── 2 · The count (2.2–5.2 s): received, rolling, stopping short ─────────────────────────────────
+      const b = R.scene(3.0, { in: "push-up", bg: "/assets/post-images/final/PI-04.png", move: "push", dim: 0.55, gradient: true, name: "count" });
+      b.text(SM.t("Invoiced", "بالفاتورة"), { y: 330, size: 50, fx: "fade", at: 0.05, color: SM.C.visor });
+      b.text("600", { y: 470, size: 150, fx: "pop", at: 0.1 });
+      b.text(SM.t("Counted on arrival", "انعدّ عند الاستلام"), { y: 900, size: 50, fx: "fade", at: 0.4, color: SM.C.visor });
+      b.counter({ from: 0, to: 580, at: 0.5, dur: 2.0, y: 1080, size: 230, color: SM.C.glow, fx: "none" });
+      b.sfx("tick", 2.4, 0.5);
+
+      // ── 3 · Pattern interrupt (5.2–6.2 s): −20 ───────────────────────────────────────────────────────
+      const c = R.scene(1.0, { in: "zoom-through", bg: "abyss", name: "minus" });
+      c.text(SM.t("−20", "−٢٠"), { y: 900, size: 360, fx: "stamp", at: 0, color: SM.C.red });
+      c.shake(0.1, 0.35, 10);
+
+      // ── 4 · The flag (6.2–9.2 s) ─────────────────────────────────────────────────────────────────────
+      const d = R.scene(3.0, { in: "push-left", bg: "night", name: "flag" });
+      d.card({
+        x: 540, y: 860, w: 880, icon: "alert", in: "pop", at: 0.1,
+        kicker: SM.t("Received ≠ invoiced", "المستلَم ≠ الفاتورة"),
+        title: SM.t("LED Strip 5m · −20", "شريط LED ‏5م · −٢٠"),
+        body: SM.t("600 invoiced · 580 received. Flagged before it's booked.", "٦٠٠ بالفاتورة · ٥٨٠ مستلَم. انعلّم قبل ما يتسجّل."),
+      });
+      d.text(SM.t("Caught *before* it hits your stock.", "انمسك *قبل* ما يدخل عالمخزون."), { y: 1300, size: 70, fx: "blur", at: 0.9, w: 920 });
+
+      // ── End card (9.2–12.2 s) ────────────────────────────────────────────────────────────────────────
+      R.endcard("rain", { cta: SM.t("Has a shipment ever come in short? Tell us.", "صرلك شحنة وصلت ناقصة؟ خبّرنا.") });
+
+      R.badge(SM.t("Planned · phase 1, in build", "مخطّط · المرحلة الأولى، قيد البناء"), { at: b.start + 0.2, until: d.end });
+      R.grain(0.02).vignette(0.45).safe();
+      R.audio({ music: "/assets/audio/music/The_Slowest_Hour.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(1.4);
+    </script>
+  </body>
+</html>

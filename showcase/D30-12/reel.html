@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-12 · A container from Shenzhen, on its way</title>
+    <!-- viral-motion-editor: motion-graphics M6, morph-driven seamless loop (no cuts, no end card).
+         Already moving at frame 0 · the ship reaches the Port of Beirut · truck to Sidon, "+600 arriving" ·
+         the camera returns to the first framing and a second ship sits exactly where the first one was, so the
+         loop is invisible. Mandatory ETA note on screen the whole time. Music: Second Cup of Coffee. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-12 · A container from Shenzhen, on its way" });
+
+      const a = R.scene(9.0, { name: "loop" });
+      // toastY: the "+600 arriving" toast sits above the ETA note.
+      const m = a.map({ view: "all", fitH: 0.5, textSpace: -0.02, fadeH: 760, toastY: 640 });
+      // The first frame looks at the sea where the ship is at that moment.
+      const START = { focus: [33.985, 34.62], zoom: 1.6, dur: 0 };
+      // Set just before the scene starts so it already applies on frame 0.
+      m.camera(-0.05, START);
+      // Ship 1 left 1.4 s before the loop; ship 2 leaves 1.4 s before the loop ends, so at 9.0 s it is exactly
+      // where ship 1 was at 0.0 s and the loop is invisible.
+      m.ship({ at: -1.4, dur: 4.6, eta: 2880, glow: true });
+      m.ship({ at: 7.6, dur: 4.6, eta: 2880, glow: true });
+      m.camera(2.6, { focus: "PORT", zoom: 2.2, dur: 1.2 });
+      m.truck({ from: "PORT", to: "W2", at: 3.9, dur: 3.0, eta: 75, qty: 600, item: "LED Strip 5m", follow: true, followZoom: 1.9, followOffset: [0, 220], toastText: SM.t("+600 arriving · WH-02 Sidon", "+٦٠٠ واصلين · مستودع صيدا"), toastDur: 1.0 });
+      m.camera(7.5, Object.assign({}, START, { dur: 1.5 }));
+
+      // Text fades out before the loop point, so the last frame equals the first. A soft plate keeps it off the chips.
+      a.html('<div style="width:1000px;height:260px;border-radius:36px;background:rgba(244,248,250,.94);box-shadow:0 14px 40px rgba(14,36,64,.12)"></div>', { x: 540, y: 390, in: "fade", at: 0.9, out: "fade", outAt: 6.8 });
+      a.text(SM.t("Your container, *on the map.*", "الكونتينر تبعك، *عالخريطة.*"), { y: 330, size: 92, fx: "blur", at: 1.0, out: "fade", outAt: 6.8, color: SM.C.abyss, hlColor: SM.C.signal, w: 940 });
+      a.text(SM.t("Shenzhen → Port of Beirut → Sidon", "شنجن ← مرفأ بيروت ← صيدا"), { y: 470, size: 46, fx: "fade", at: 1.4, out: "fade", outAt: 6.8, color: SM.C.deep });
+      a.text(SM.t("Phase 1 positions are estimated from the ETA. GPS comes later.", "مواقع المرحلة الأولى محسوبة من وقت الوصول المتوقّع. الـGPS لاحقاً."), {
+        y: 1480, size: 30, fx: "none", at: 0, color: SM.C.deep, w: 900,
+      });
+
+      R.badge(SM.t("Prototype · demo data", "نموذج أوّلي · بيانات تجريبية"), { at: -1, theme: "light" }); // already on screen at frame 0 (seamless loop)
+      R.watermark({ variant: "light", size: 64, pos: "br", op: 0.8 });
+      R.grain(0.015).safe();
+      R.audio({ music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.5 });
+      R.cover(4.0);
+    </script>
+  </body>
+</html>
