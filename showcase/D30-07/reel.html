@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-07 · 38 on the shelf, 41 in the system</title>
+    <!-- Recipe RC-06 · viral-motion-editor: motion-graphics M2 clean explainer + kinetic T4 editorial, morph-driven with one snap.
+         Number hook in the first frame · balanced split (two objects, opposite halves) · flash interrupt at 4.6 s ·
+         the cause found in the ledger · no savings claims (plan's verify note). Music: The Slowest Hour (tension → release). -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-07 · 38 on the shelf, 41 in the system" });
+
+      // ── 1 · Hook (0–2.4 s): two numbers that should match ───────────────────────────────────────────
+      const a = R.scene(2.4, { bg: "night", name: "split" });
+      a.image("/assets/post-images/final/PI-04.png", { x: 540, y: 1440, w: 1080, h: 960, radius: 0, shadow: false, move: "push", focus: "45% 50%" });
+      a.html('<div style="width:1080px;height:960px;background:linear-gradient(180deg,rgba(14,36,64,.85),rgba(14,36,64,.35) 45%,rgba(14,36,64,.8))"></div>', { x: 540, y: 1440 });
+      // Numbers on screen from the first frame (they roll up from 30).
+      a.counter({ from: 30, to: 41, at: 0, dur: 0.9, y: 470, size: 230, color: "#ffffff", fx: "none" });
+      a.text(SM.t("in the system", "عالسيستم"), { y: 640, size: 54, fx: "none", at: 0, color: SM.C.visor });
+      a.counter({ from: 30, to: 38, at: 0, dur: 0.9, y: 1250, size: 230, color: SM.C.glow, fx: "none" });
+      a.text(SM.t("on the shelf", "عالرفّ"), { y: 1420, size: 54, fx: "none", at: 0, color: "#ffffff" });
+      a.text(SM.t("Who finds out *first?*", "مين بيعرف *أوّل؟*"), { y: 950, size: 72, fx: "pop", at: 1.0 });
+
+      // ── 2 · The gap (2.4–4.6 s): snap into the shelf, three units missing ─────────────────────────────
+      const b = R.scene(2.2, { in: "zoom-through", bg: "/assets/post-images/final/PI-03.png", move: "snap", dim: 0.3, gradient: true, name: "gap" });
+      b.text(SM.t("3 units.", "٣ قطع."), { y: 380, size: 120, fx: "stamp", at: 0.25 });
+      b.text(SM.t("Sold? Moved? *Never arrived?*", "انباعوا؟ انتقلوا؟ *ما وصلوا؟*"), { y: 1350, size: 64, fx: "blur", at: 0.8, w: 920 });
+      b.shake(0.3, 0.3, 8);
+
+      // ── 3 · Pattern interrupt (4.6–5.2 s): the gap as one number ──────────────────────────────────────
+      const f = R.scene(0.6, { in: "flash", bg: "abyss", name: "minus3" });
+      f.text("−3", { y: 900, size: 360, fx: "pop", at: 0, color: SM.C.glow });
+      f.punch(0.05, 0.08, 0.3);
+
+      // ── 4 · You hear first (5.2–8.4 s): the alert lands on your phone ─────────────────────────────────
+      const c = R.scene(3.2, { in: "push-up", bg: "night", name: "alert" });
+      c.text(SM.t("Your phone knows *first.*", "تلفونك بيعرف *أوّل.*"), { y: 270, size: 80, fx: "rise", at: 0.1, w: 920 });
+      const p = c.lock({ x: 540, y: 1000, w: 480, clock: "10:42", in: "rise", at: 0.05 });
+      p.notify(0.7, {
+        title: SM.t("Count mismatch · LED Strip 5m", "فرق بالجرد · شريط LED ‏5م"),
+        text: SM.t("WH-02 Sidon: counted 38, system 41 (−3). Check the last moves.", "مستودع صيدا: الجرد ٣٨، السيستم ٤١ (−٣). شوف آخر الحركات."),
+      });
+
+      // ── 5 · The cause (8.4–12.0 s): the ledger points at the move behind it ───────────────────────────
+      const d = R.scene(3.6, { in: "push-left", bg: "night", name: "ledger" });
+      d.ledger({
+        x: 540, y: 760, w: 980, at: 0.15, stagger: 0.3, in: "rise", highlight: 1, hlAt: 1.4,
+        kicker: SM.t("Audit trail · example entries", "سجلّ الحركات · أمثلة"),
+        title: SM.t("LED Strip 5m · WH-02 Sidon", "شريط LED ‏5م · صيدا"),
+        rows: [
+          ["10:12", SM.t("Rana", "رنا"), SM.t("count · app", "جرد · التطبيق"), "COUNT", SM.t("LED Strip 5m", "شريط LED ‏5م"), "WH-02", "41 → 38"],
+          ["09:30", SM.t("Hadi", "هادي"), SM.t("Telegram · not approved", "تيليغرام · مش موافَق عليها"), "TRANSFER", SM.t("3 × LED Strip 5m", "٣ × شريط LED"), "WH-02 → WH-01", SM.t("−3 pending", "−٣ معلّقة")],
+          ["08:55", SM.t("Omar", "عمر"), "App", "OUT", SM.t("12 × Desk Fan", "١٢ × مروحة"), "WH-03", "95 → 83"],
+        ],
+      });
+      d.text(SM.t("Find out *before* your customer does.", "اعرف *قبل* ما يعرف زبونك."), { y: 1300, size: 72, fx: "blur", at: 1.9, w: 940 });
+
+      // ── End card (12.0–15.0 s) ───────────────────────────────────────────────────────────────────────
+      R.endcard("rain", { cta: SM.t("Who finds the gap first? Comment below.", "مين بيلاقي الفرق أوّل؟ خبّرونا.") });
+
+      R.badge(SM.t("Planned · phase 1, in build", "مخطّط · المرحلة الأولى، قيد البناء"), { at: c.start + 0.2, until: d.end, theme: "dark" });
+      R.grain(0.02).vignette(0.45).safe();
+      R.audio({ music: "/assets/audio/music/The_Slowest_Hour.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(1.5);
+    </script>
+  </body>
+</html>

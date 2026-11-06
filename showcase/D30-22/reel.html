@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-22 · Better than column AZ</title>
+    <!-- viral-motion-editor: kinetic-typography T2 word-per-cut (accelerating) → morph. The sheet that never ends ·
+         four punch words, black/white · glitch · the cells' dots build the map of Lebanon · the live map draws
+         itself, calm. Music: No More Place To Be. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-22 · Better than column AZ" });
+      const AR = SM.ar();
+
+      // ── 1 · Hook (0–2.0 s): the sheet scrolls right forever ──────────────────────────────────────────
+      const a = R.scene(2.0, { bg: "paper", name: "sheet" });
+      const sh = a.sheet({ x: 540, y: 1120, w: 980, h: 1200, rot: -2, scroll: { at: 0, dur: 2.0, x: -900, y: -300 } });
+      a.marquee("A · B · C · … · Z · AA · AB · … · AY · AZ", { y: 600, rot: -4, bg: SM.C.abyss, size: 54, speed: 520 });
+      a.text(SM.t("Column AZ. Row 4,812. *Your team deserves better.*", "العمود AZ، السطر ٤٨١٢. *فريقك بيستاهل أحسن.*"), {
+        y: 300, size: 72, fx: "none", at: 0, w: 940, color: SM.C.abyss, hlColor: SM.C.signal,
+      });
+
+      // ── 2 · Word per cut (2.0–5.6 s), accelerating, black/white ──────────────────────────────────────
+      const words = AR
+        ? ["العمود AZ.", "السطر ٤٨١٢.", "خلايا مدموجة.", "*مين عدّل هون؟*"]
+        : ["Column AZ.", "Row 4,812.", "Merged cells.", "*Who edited this?*"];
+      const lens = [1.0, 0.85, 0.75, 1.0];
+      words.forEach((w, i) => {
+        const dark = i % 2 === 0;
+        const s = R.scene(lens[i], { in: i === 0 ? "punch" : "cut", bg: dark ? "abyss" : "paper", name: `beat-${i + 1}` });
+        s.text(w, { y: 900, size: 130, fx: "pop", at: 0, w: 960, color: dark ? "#ffffff" : SM.C.abyss, hlColor: dark ? SM.C.glow : SM.C.signal });
+        s.sfx("tick", 0, 0.4);
+        if (i === words.length - 1) s.shake(0.2, 0.4, 7);
+      });
+
+      // ── 3 · Morph (5.6–7.4 s): the cells become the map of Lebanon ────────────────────────────────────
+      const c = R.scene(1.8, { in: "glitch", bg: "night", name: "morph" });
+      c.dotMorph({ count: 560, y: 940, steps: [
+        { at: 0, shape: "grid" },
+        { at: 0.2, shape: "lebanon", size: 1000, dur: 1.1 },
+      ] });
+
+      // ── 4 · Calm (7.4–10.4 s): one live map ──────────────────────────────────────────────────────────
+      const d = R.scene(3.0, { in: "iris", inOpts: { cx: 50, cy: 50 }, name: "map" });
+      const m = d.map({ view: "all", intro: "draw", fitH: 0.5, textSpace: -0.02, fadeH: 800 });
+      m.header({ y: 250, at: 0.5 });
+      d.text(SM.t("Or… *one map.*", "أو… *خريطة وحدة.*"), { y: 560, size: 104, fx: "blur", at: 0.4, color: SM.C.abyss, hlColor: SM.C.signal });
+
+      // ── End card (10.4–13.0 s) ───────────────────────────────────────────────────────────────────────
+      R.endcard("wordmark", { cta: SM.t("Send this to whoever maintains the stock sheet.", "ابعتها للي بيهتمّ بشيت المخزون.") });
+
+      R.badge(SM.t("Prototype · demo data", "نموذج أوّلي · بيانات تجريبية"), { at: d.start + 0.2, until: d.end, theme: "light" });
+      R.grain(0.02).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/No_More_Place_To_Be.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(1.2);
+    </script>
+  </body>
+</html>

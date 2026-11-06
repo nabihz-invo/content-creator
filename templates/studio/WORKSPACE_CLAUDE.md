@@ -17,6 +17,8 @@ in your final summary. `spec.js` (`window.__SPEC`) holds the same data.
 1. `studio/docs/ENGINE.md` — the API (scenes, text, components, map, dots, end cards, transitions, camera, audio).
 2. `studio/docs/RECIPES.md` — RC-01…RC-26: the shape of a whole piece. Use the recipe the brief names.
 3. `studio/docs/ASSETS.md` and the folders under `assets/` — what exists. Use only files that are there.
+4. `studio/docs/MOTION.md` — motion craft (the viral-motion-editor playbook in `studio/docs/motion/`):
+   hooks, pacing mode, scene variety, captions. Read it before planning a reel or story.
 
 ## What is already here
 - `index.html` — a starter page for this format. Rewrite it freely, but keep the

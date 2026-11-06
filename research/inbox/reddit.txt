@@ -1,0 +1,114 @@
+1. The strongest insights from the Reddit material
+Insight 1: Businesses want to track an order from purchase to warehouse arrival
+One wholesale-company discussion describes the goal of an inbound “control tower”: tracking containers every day from purchase order placement until delivery at the warehouse.
+
+This is a particularly relevant problem for Stacko.
+
+Content idea: “Your order is not finished when the supplier ships it.”
+- Hook: “You placed the order. But where is your stock right now?”
+- Story: Purchase order placed → supplier prepares goods → shipment leaves → customs → warehouse arrival.
+- Educational point: A purchase order tells you what you expect. It does not mean the goods are already available in your warehouse.
+- Stacko connection: Show the import shipment, its location/status, expected arrival, and receiving step.
+- Format: Reel, 30–40 seconds.
+Source: Reddit – Is it still worth it?
+Insight 2: People are uncertain whether to build custom tools or wait for AI
+The same discussion asks whether it is worth investing in a custom inbound cargo tracking system when AI is making software development easier and faster.
+
+This is an opportunity for Stacko to communicate a practical message: businesses need visibility and reliable processes, not necessarily another custom-built project.
+
+Content idea: “Do you really need to build your own stock system?”
+- Hook: “Before investing months in a custom inventory tool, ask these 3 questions.”
+- Questions: Can I see stock across locations? Can I track incoming shipments? Can I understand what has arrived and what is still expected?
+- Takeaway: Start with the business problem, not the technology.
+- Format: Carousel or educational Reel.
+Source: Reddit – Is it still worth it?
+Insight 3: Supply chains become complicated when products have multiple forms
+A comment about food manufacturing explains how a single raw product can be transformed into several different products. The point relevant to Stacko is that businesses may manage many related items, purchasing needs, and stock movements.
+
+Content idea: “One supplier delivery. Multiple products. How do you keep stock organized?”
+- Hook: “Your warehouse may receive more than what appears on the supplier’s invoice.”
+- Educational point: Receiving goods and recording the correct products matters when the delivery contains multiple item types.
+- Stacko connection: Demonstrate document reading and product matching, but only with an actual supported workflow.
+- Format: Reel or carousel.
+Source: Reddit – Pakistan’s Auto Industry
+Insight 4: Warehouse work is heavily measured
+A warehouse worker’s comment describes a job where employees are tracked against many metrics. This is not directly an inventory software complaint, but it reveals a useful content angle: operational visibility should help people understand the work, not just add more tracking.
+
+Content idea: “Stock visibility should help your team, not create more confusion.”
+- Hook: “Your warehouse team doesn’t need more spreadsheets. They need clear stock information.”
+- Educational point: Clear movements and responsibilities make it easier to understand what happened and who needs to act.
+- Stacko connection: Show a movement record, status, and responsible person.
+- Format: Reel.
+Source: Reddit – Is a warehouse job that bad?
+
+2. Content concepts to add to Stacko’s content library
+These concepts are more useful than another generic feature showcase because they teach the audience how to think about stock management.
+Content concept	What the audience learns	Format
+A purchase order is not available stock	Expected goods and received goods are different	Reel
+Track an import from supplier to warehouse	What happens between ordering and receiving	Reel
+What does “in transit” actually mean?	Why stock may have left one place but not reached another	Carousel
+Your shipment is delayed. What should you know?	Why tracking the expected arrival date matters	Reel
+One delivery, several products	Why receiving and product identification matter	Carousel
+Do you need a custom inventory system?	How to identify the real business problem before building software	Carousel
+Warehouse visibility is not employee surveillance	Visibility can clarify movements, responsibilities, and stock status	Reel
+The difference between expected stock and available stock	A fundamental inventory concept	Carousel
+
+3. Ideas I would prioritize for Stacko
+Recommended order based on relevance to Stacko’s target audience and its documented operations.
+
+
+
+
+
+
+
+
+
+01. From Purchase Order to Warehouse Arrival
+
+Explain the full journey of imported goods. This is likely one of Stacko’s most relevant educational topics.
+
+
+
+
+
+
+
+
+
+
+
+
+02. Expected Stock vs. Available Stock
+
+Explain why goods that have been ordered or shipped should not be treated as goods already received.
+
+
+
+
+
+
+
+
+
+
+
+
+03. What Happens When a Shipment Arrives Short?
+
+Explain partial receiving, checking the quantity received, and closing a transfer with a shortage.
+
+
+
+
+
+
+
+
+
+
+
+
+04. Do You Need to Build Your Own Inventory System?
+
+Educate business owners about identifying the operational need before deciding on a software solution.

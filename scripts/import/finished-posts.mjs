@@ -265,7 +265,8 @@ for (const p of projects) {
 const ids = new Set(
   ["", "posts", "carousels", "videos", "stories"].flatMap((sub) =>
     existsSync(join(from, sub))
-      ? readdirSync(join(from, sub)).filter((n) => /^[A-Z]{2,5}-[A-Z]?\d+[a-z]?$/.test(n))
+      ? // EDU-22, NOV-S1, D30-16 (plan IDs may carry digits after the first letter)
+        readdirSync(join(from, sub)).filter((n) => /^[A-Z][A-Z0-9]{1,4}-[A-Z]?\d+[a-z]?$/.test(n))
       : [],
   ),
 );

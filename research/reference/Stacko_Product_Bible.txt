@@ -1,0 +1,177 @@
+# Stacko — Product Bible
+ 
+Oct 22, 2026 · @Nabih
+ 
+## Overview
+ 
+Stacko (ستاكو) is an AI-assisted stock system that shows every warehouse, item and shipment on one live map, so teams actually log their moves. Tagline: **Your stock, always in sight** / **مخزونك دايماً قدّام عينك**.
+ 
+- **Product of:** Aiphin, Nabih's MENA AI agency (aiphin.me), shown as "A product by AIPHIN"
+ 
+- **Who it****'****s for:** trading and distribution SMEs in Lebanon and the GCC with several warehouses and frequent imports
+ 
+- **The idea in one line:** logging a move makes a truck drive on the map, so the visual is the reward for keeping data clean
+ 
+- **First customer:** a client with 3 warehouses importing from China every month (below)
+ 
+## The problem and the first client
+ 
+The first client runs 3 warehouses, buys new and often unrelated products from China every month, and does not know his real stock. No one on the team logs transactions.
+ 
+- He asked for a simple, AI-assisted system so the team can manage products and movements without heavy manual work
+ 
+- He asked what it would cost, including AI credits
+ 
+- Root cause: logging feels like extra work with no visible payoff, so it never happens
+ 
+- Our answer: make logging take about 10 seconds (Telegram message, photo or quick form) and make every log visible on the live map
+ 
+## Users and scale
+ 
+Plan for about 10,000 SKUs and 20 staff across 3 warehouses, with new SKUs added every month.
+ 
+| Role | Who | What they do in Stacko |
+| --- | --- | --- |
+| Owner / admin | Business owner | Watches the live map, stock, alerts and reports; approves adjustments |
+| Warehouse manager | One per site | Receives shipments, approves transfers, runs counts |
+| Staff | Floor team (most of the 20) | Logs in, out and transfers by Telegram, scan or quick form |
+| Purchasing | Buyer for China orders | Uploads supplier invoices and packing lists, tracks sea and air shipments |
+ 
+Every action is stored with who, what, when and where, so any stock number can be traced back.
+ 
+## Features (phase 1)
+ 
+Phase 1 delivers the live map, inventory, transfers with ETA, China shipments, Telegram logging and AI invoice reading, in Arabic and English.
+ 
+| Feature | What it does |
+| --- | --- |
+| Live stock map | Real map with each warehouse drawn as an isometric building, showing units and low-stock count |
+| Warehouse panel | Items, quantities, capacity used, inbound and outbound, search across 10,000+ SKUs, low stock first |
+| Transfers with ETA | Logging a transfer deducts stock at the source; a truck moves on the map with a live countdown; stock lands on arrival |
+| China shipments | Sea (Shenzhen → Suez → Port of Beirut, about 30 days + 2 days customs) and air (Guangzhou → Beirut, about 14 h + customs), then a truck to the warehouse |
+| Telegram bot | Staff log moves in plain text, e.g. "sent 40 LED strips from Beirut to Sidon"; AI parses and records it |
+| AI invoice reading | Upload a supplier invoice or packing list (PDF, Excel or photo); AI creates the items and the incoming shipment |
+| Alerts and questions | Low-stock and mismatch alerts; ask "how much of X do we have, and where?" |
+| Roles and audit trail | Accounts for 20 staff; every move logged with user and time |
+| Arabic and English | Full RTL Arabic interface with a one-tap language switch |
+ 
+## Tech stack and data model
+ 
+Stacko runs on Supabase (Postgres, realtime, auth, storage) with a Next.js web app, so every screen updates the moment someone logs a move.
+ 
+- **Front end:** React / Next.js, Leaflet map with CARTO light tiles, SVG warehouse illustrations, Arabic RTL
+ 
+- **Back end:** Supabase Postgres + Realtime + Auth + Storage; edge functions for AI parsing
+ 
+- **Automation:** n8n for the Telegram bot and invoice pipeline
+ 
+- **AI:** Claude or OpenAI models for message parsing, invoice extraction and stock questions
+ 
+Core tables:
+ 
+| Table | Holds |
+| --- | --- |
+| warehouses | Name, code, location, capacity |
+| products | SKU, name (EN/AR), category, unit, supplier |
+| stock_levels | Quantity per product per warehouse |
+| transfers | From, to, mode (road, sea, air), legs, departure, ETA, status |
+| transactions | Immutable ledger of every in, out, transfer and adjustment, with user and time |
+| shipments | China orders with invoice files and line items |
+| users | Staff, role, warehouse, Telegram ID |
+ 
+Truck position needs no GPS in phase 1: progress = (now − departure) ÷ (ETA − departure), placed along the route's path. ETA is entered by hand or calculated per leg.
+ 
+## AI usage and running costs
+ 
+Expected running cost is about $80–150 a month, of which AI credits are about $20–50 for a team of 20.
+ 
+| Cost line | Estimate per month |
+| --- | --- |
+| Supabase Pro | about $25 |
+| Web hosting | about $20 |
+| Storage, backups, monitoring | about $15–55 |
+| AI credits (messages, invoices, questions) | about $20–50 |
+| Telegram bot | free |
+| **Total** | **about $80–150** |
+ 
+AI credit assumption: about 100 Telegram messages a day plus a few dozen invoices a month on a mid-tier model, under $1 a day. To be confirmed against the client's real volume.
+ 
+## Pricing and commercial terms
+ 
+The estimate sent to the first client is a one-time build of $4,500–$6,500, delivered in about 6–8 weeks.
+ 
+| Item | Amount |
+| --- | --- |
+| One-time build | $4,500–$6,500 |
+| Delivery | about 6–8 weeks |
+| Running costs (client pays) | about $80–150 / month |
+| Optional support and updates | $150 / month |
+| Payment schedule | 30% start · 40% at demo · 30% at launch |
+ 
+- Basis: Peaxcel's "Custom web app" Lebanon band ($3,000–$8,000), placed upper-middle for the animated map, Telegram AI bot and invoice reading
+ 
+- Negotiation lever: move AI invoice reading to a later phase to land near $4,000
+ 
+- GPS tracking and WhatsApp are not in this price; quoted later as phase 2
+ 
+## Roadmap
+ 
+Phase 1 ships the core system for the first client; phase 2 adds live tracking and more channels; phase 3 turns it into a product for other businesses.
+ 
+- **Phase 1 — First client (6–8 weeks):** live map, inventory, transfers with manual ETA, China sea and air shipments, Telegram bot, AI invoice reading, roles and audit trail, Arabic and English
+ 
+- **Phase 2 — Tracking and channels:** GPS on trucks for real positions, WhatsApp logging, barcode or QR scanning on mobile
+ 
+- **Phase 3 — Product:** multi-tenant Stacko for other distributors, self-serve onboarding, pricing plans, forecasting and reorder suggestions
+ 
+## Brand
+ 
+The brand is Stacko with the Round 4 "Dot core" mark: a cube built from stock-unit dots, split by three routes, with a glowing core. Full rules live in the stacko-brand skill.
+ 
+| Element | Decision |
+| --- | --- |
+| Name | Stacko · ستاكو (from stacking goods) |
+| Tagline | Your stock, always in sight · مخزونك دايماً قدّام عينك |
+| Logo mark | Dot core: ~150 dots forming an isometric cube, three faces in three tones, Y-shaped gaps, white glowing core |
+| Wordmark | Lowercase "stacko" in Readex Pro SemiBold, tight spacing; the final "o" in teal |
+| Endorsement | "A product by AIPHIN" |
+| Colours | Aiphin palette: Abyss #0E2440, Signal #0895A6, Glow #2EF2EE, Ocean #2F86B8, Dolphin #79C0DE, Visor #C9D8E4, Foam #EEF6F9 |
+| Type | Readex Pro (UI and wordmark), Noto Kufi Arabic (Arabic headlines) |
+ 
+Names checked and rejected because they were already in use: Sonar, Raseed, StockSight, StockMap, StockPilot, StockFlow, StockTrace, StockMate, Boxy, Racko, Aiventory.
+ 
+## Assets and links
+ 
+| Asset | Where |
+| --- | --- |
+| Logo exploration canvas (all rounds; final = Round 4, option A) | [Stacko Logo canvas](https://claude.ai/artifact/WFGWNn8DpZ7R76NfwcEFHD) |
+| Map prototype (real map, sea / air / road, EN/AR) | stock-map-prototype.html (sent in chat) |
+| First visual prototype (network view) | stock-visual-prototype.html (sent in chat) |
+| Brand rules and logo code | stacko-brand skill |
+| Client estimate message | WhatsApp draft (in chat) |
+ 
+## Open questions and decisions
+ 
+Open:
+ 
+- ☐ Client's real warehouse locations and capacities (prototype uses Beirut, Sidon, Tripoli as placeholders)
+ 
+- ☐ Trucks: own fleet or third-party? Who enters ETAs?
+ 
+- ☐ Real monthly volume of messages and invoices, to confirm AI credit costs
+ 
+- ☐ Domain: check stacko.com / stacko.app / getstacko.com at a registrar
+ 
+- ☐ Trademark search for "Stacko" in Lebanon and the GCC
+ 
+- ☐ Final logo files (SVG, PNG, app icon set)
+ 
+Decided:
+ 
+| Date | Decision |
+| --- | --- |
+| 2026-10-22 | Logo: Round 4 "Dot core"; brand captured as the stacko-brand skill |
+| 2026-10-21 | Name: Stacko · ستاكو, under the Aiphin brand |
+| 2026-10-21 | Estimate sent: $4,500–$6,500 build, 6–8 weeks, 30/40/30 |
+| 2026-10-21 | Channels: Telegram + in-app first, WhatsApp later; Arabic required |
+| 2026-10-21 | Scope: ~10,000 SKUs, ~20 staff, manual ETA, China shipments as transfers |

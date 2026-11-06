@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-24 · Approve. Reject. Blocked.</title>
+    <!-- viral-motion-editor: motion-graphics M5 UI demo, three beats with punch cuts. Stamp hook · approve → it moves ·
+         reject → nothing moves · blocked → the bot explains why · dots end card. Stock moves, not spending (plan's
+         verify note). Music: Second Cup of Coffee. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-24 · Approve. Reject. Blocked." });
+
+      // ── 1 · Hook (0–1.6 s) ───────────────────────────────────────────────────────────────────────────
+      const a = R.scene(1.6, { bg: "abyss", name: "hook" });
+      a.text(SM.t("Nothing moves *until you say so.*", "ما في شي بيتحرّك *قبل ما تقول.*"), { y: 330, size: 84, fx: "none", at: 0, w: 920 });
+      a.text(SM.t("Approve.", "موافقة."), { y: 960, size: 170, fx: "stamp", at: 0.25, color: SM.C.glow });
+      a.shake(0.3, 0.35, 9);
+
+      // One beat = a draft in the chat, a decision, and what happens because of it.
+      function beat(dur, inT, draft, decide, line, ask) {
+        const s = R.scene(dur, { in: inT, bg: "night", name: draft.code });
+        const chat = s.chat({ x: 540, y: 1010, w: 600, title: "Stacko bot", sub: "bot", in: "rise", at: 0 });
+        // The request that produced the draft, so the chat reads as a real conversation.
+        chat.msg(0.0, SM.t("Good morning! Send me any stock move.", "صباح الخير! بعتلي أيّ حركة مخزون."), { time: "09:30" });
+        chat.msg(0.05, ask, { from: "me", time: "09:40" });
+        chat.draft(0.2, draft);
+        decide(s, chat);
+        s.text(line, { y: 250, size: 80, fx: "rise", at: 1.3, w: 940 });
+        return s;
+      }
+
+      // ── 2 · Approve (1.6–4.8 s): it moves ────────────────────────────────────────────────────────────
+      beat(3.2, "push-left", {
+        code: "Draft TRF-24019", line: SM.t("40 × LED Strip 5m", "٤٠ × شريط LED ‏5م"), sub: SM.t("WH-01 Beirut → WH-02 Sidon", "بيروت ← صيدا"),
+      }, (s, chat) => {
+        chat.approve(1.1);
+        chat.bot(1.8, SM.t("Approved. The truck is on its way to Sidon.", "تمّت الموافقة. الشاحنة عطريق صيدا."));
+      }, SM.t("Approve → *it moves.*", "موافقة ← *بتتحرّك.*"), SM.t("Move 40 LED strips from Beirut to Sidon", "انقل ٤٠ شريط LED من بيروت لصيدا"));
+
+      // ── 3 · Reject (4.8–7.8 s): nothing moves ────────────────────────────────────────────────────────
+      beat(3.0, "punch", {
+        code: "Draft TRF-24020", line: SM.t("120 × Wireless Earbuds", "١٢٠ × سمّاعات لاسلكية"), sub: SM.t("WH-01 Beirut → WH-03 Tripoli", "بيروت ← طرابلس"),
+      }, (s, chat) => {
+        chat.reject(1.1);
+        chat.bot(1.8, SM.t("Rejected. Nothing moved.", "مرفوضة. ما تحرّك شي."));
+      }, SM.t("Reject → *nothing moves.*", "رفض ← *ما في شي بيتحرّك.*"), SM.t("Send 120 earbuds to Tripoli", "ابعت ١٢٠ سمّاعة لطرابلس"));
+
+      // ── 4 · Blocked (7.8–10.8 s): the bot says why ───────────────────────────────────────────────────
+      beat(3.0, "punch", {
+        code: "Draft TRF-24021", line: SM.t("40 × LED Strip 5m", "٤٠ × شريط LED ‏5م"), sub: SM.t("WH-02 Sidon → WH-03 Tripoli", "صيدا ← طرابلس"),
+        status: SM.t("Blocked", "موقوفة"),
+      }, (s, chat) => {
+        chat.bot(1.0, SM.t("Blocked: only 12 in WH-02 Sidon. You asked for 40.", "موقوفة: في بس ١٢ بمستودع صيدا. وإنت طالب ٤٠."));
+      }, SM.t("Blocked → *it tells you why.*", "موقوفة ← *بيقلّك ليش.*"), SM.t("Move 40 LED strips from Sidon to Tripoli", "انقل ٤٠ شريط LED من صيدا لطرابلس"));
+
+      // ── End card (10.8–13.8 s) ───────────────────────────────────────────────────────────────────────
+      R.endcard("dots", { cta: SM.t("Approvals on every move, or only big ones?", "موافقة على كل حركة، أو بس الكبيرة؟") });
+
+      R.badge(SM.t("Prototype · demo data", "نموذج أوّلي · بيانات تجريبية"), { at: 1.8, until: 10.8 });
+      R.grain(0.02).vignette(0.45).safe();
+      R.audio({ music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(0.9);
+    </script>
+  </body>
+</html>

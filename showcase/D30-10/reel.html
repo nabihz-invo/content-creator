@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-10 · Check the map before you walk the warehouse</title>
+    <!-- viral-motion-editor: motion-graphics M2 clean explainer, split then morph. Step counter climbs over the aisle ·
+         split: walking (top) vs the real live-map screen SCR-02 (bottom) — the bottom wins · interrupt: dots build "4" ·
+         calm payoff on BG-35 (the live map on the office screen). Warehouse + quantity only (no aisle location: plan's verify note). Music: Paperback Pages. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <script src="/studio/engine/bridge.js"></script>
+    <script src="/spec.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-10 · Check the map before you walk the warehouse" });
+      const steps = SM.t(" steps", " خطوة");
+
+      // ── 1 · Hook (0–2.6 s): the long walk ────────────────────────────────────────────────────────────
+      const a = R.scene(2.6, { bg: "/assets/post-images/final/PI-01.png", move: "handheld", dim: 0.3, gradient: true, name: "walk" });
+      a.text(SM.t("Walking the whole warehouse *to count 4 boxes?*", "بتمشي المستودع كلّو *كرمال ٤ كراتين؟*"), { y: 320, size: 80, fx: "none", at: 0, w: 940 });
+      a.counter({ from: 0, to: 1240, at: 0, dur: 2.5, suffix: steps, format: "comma", size: 96, y: 1400, fx: "none", color: SM.C.glow });
+      a.punch(0.3, 0.04, 0.3);
+
+      // ── 2 · Split (2.6–8.0 s): keep walking, or check the map ─────────────────────────────────────────
+      const b = R.scene(5.4, { in: "push-up", bg: "night", name: "split" });
+      const walkImg = b.image("/assets/post-images/final/PI-03.png", { x: 540, y: 470, w: 1080, h: 940, radius: 0, shadow: false, move: "handheld" });
+      b.counter({ from: 1240, to: 2860, at: 0, dur: 5.2, suffix: steps, format: "comma", size: 84, y: 760, fx: "none", color: "#ffffff" });
+      b.anim(walkImg.layer, { o: [1, 0.35], sat: [1, 0] }, 2.6, 0.6, "outCubic");
+      b.device({ type: "tablet", src: "/assets/screens/SCR-02_live-map-only.png", w: 820, x: 540, y: 1360, in: "rise", at: 0.3 });
+      b.cursor({ points: [{ x: 820, y: 1700, at: 0.9 }, { x: 470, y: 1320, at: 1.6, click: true }, { x: 500, y: 1360, at: 2.2 }] });
+      b.card({ x: 540, y: 1180, w: 640, kicker: SM.t("WH-01 Beirut", "مستودع بيروت"), title: SM.t("LED Strip 5m · 4", "شريط LED ‏5م · ٤"), icon: "pin", in: "pop", at: 1.75 });
+      b.text(SM.t("Or check *first.*", "أو شوف *أوّل.*"), { y: 960, size: 88, fx: "pop", at: 2.7 });
+
+      // ── 3 · Pattern interrupt (8.0–9.2 s): the steps you saved become the answer ───────────────────────
+      const c = R.scene(1.5, { in: "flash", bg: "abyss", name: "four" });
+      c.dotMorph({ count: 420, y: 900, steps: [
+        { at: 0, shape: "explode" },
+        { at: 0.08, shape: { text: SM.t("4", "٤"), size: 760 }, dur: 0.7 },
+      ] });
+
+      // ── 4 · Calm (9.2–11.8 s) ─────────────────────────────────────────────────────────────────────────
+      const d = R.scene(2.6, { in: "blur", bg: "/assets/backgrounds/final/BG-35.png", move: "push", dim: 0.3, gradient: true, name: "calm" });
+      d.text(SM.t("Check the map. *Then* walk.", "شوف الخريطة. *بعدين* إمشي."), { y: 340, size: 92, fx: "rise", at: 0.15, w: 920 });
+
+      // ── End card (11.8–14.4 s) ───────────────────────────────────────────────────────────────────────
+      R.endcard("wordmark", { cta: SM.t("How far is your furthest aisle?", "قدّيش بعيد آخر ممرّ عندك؟") });
+
+      R.badge(SM.t("Prototype · demo data", "نموذج أوّلي · بيانات تجريبية"), { at: b.start + 0.2, until: d.end });
+      R.grain(0.02).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Paperback_Pages.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(1.4);
+    </script>
+  </body>
+</html>

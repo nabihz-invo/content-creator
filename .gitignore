@@ -24,3 +24,6 @@ tmp/
 .brand-assets/
 # Local creatives repository (CREATIVES_REPO_URL, ADR-0002) until it moves to GitHub
 .creatives.git/
+
+# Skill packages as delivered (the unpacked copy lives in templates/studio/docs/motion/)
+skills/*.zip
