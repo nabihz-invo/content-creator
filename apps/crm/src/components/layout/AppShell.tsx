@@ -6,6 +6,7 @@ import {
   Inbox,
   Languages,
   LayoutDashboard,
+  Lightbulb,
   LogOut,
   Menu,
   Moon,
@@ -47,6 +48,7 @@ const SECTIONS: { label: MessageKey; items: NavItem[] }[] = [
     items: [
       { to: "/", label: "nav.overview", icon: LayoutDashboard, end: true },
       { to: "/inbox", label: "nav.inbox", icon: Inbox },
+      { to: "/ideas", label: "nav.ideas", icon: Lightbulb },
       { to: "/brands", label: "nav.brands", icon: Palette },
     ],
   },

@@ -14,6 +14,14 @@ Template:
 
 ---
 
+## 2026-11-06 — P5-T20 idea review slider — in progress
+- Agent/branch: local Claude Code (main)
+- Why: owner wants an easy way to go through pending ideas: one card at a time with approve / decline / details / comment, and comments the agent picks up next session.
+- Changes: migration `20261106100000` (`idea_comments` with RLS: members read and add notes as themselves, cannot close them; history event per note; `decline_idea()`; `address_idea_comment()` for the agent, optionally revising title/text with the old text kept in `workflow_events`); API `POST /content-projects/:id/decline` + schema; CRM page `/ideas` "Idea review" (nav item, swipe/arrow-key slider, progress bar, 4 round buttons per card, details / note / decline dialogs, EN + AR, history labels); `scripts/ideas/feedback.mjs` (list / answer); CLAUDE.md §3a tells every agent session to check open notes first.
+- Verification: pgTAP `18_idea_review` on hosted inside a rolled-back transaction: 16/16, nothing persisted; pending-ideas filter/sort checked read-only against hosted data (44 ideas); CRM `tsc` clean, ESLint clean, Prettier, vitest 12/12.
+- Not verified: `deno check` (Deno not installed here; the route mirrors `/discard`); the page in a browser against the live DB (needs the migration pushed and `api` deployed).
+- Next: owner runs `npx supabase db push --linked` and `powershell -File scripts/sb.ps1 deploy api`, then tries the page; mark P5-T20 done after a check in the browser.
+
 ## 2026-11-01 — P5-T18 imported posts ready to publish + page layout · P5-T19 Claude Code relay — in progress
 - Agent/branch: local Claude Code (main)
 - Why: the API credit ran out on the first creative; the owner wants the CRM as the workspace and every AI step done by Claude Code on their subscription. EDU-26 stayed "new" after approval; downloads were all named `post.zip` (CORS hid the file name).

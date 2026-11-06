@@ -439,6 +439,19 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
     return c.json({ ...r, storage: await purgeStorage(sql, deps.storage) });
   });
 
+  // POST /api/content-projects/:id/decline — idea review: a pending idea is declined (cancelled, reason kept)
+  app.post("/content-projects/:id/decline", async (c) => {
+    const userId = await requireUser(c.req.raw, deps.auth);
+    const id = idParam(c, "project");
+    await requireProjectRole(sql, userId, id, ["admin", "editor"]);
+    const input = validate<{ reason?: string }>("declineIdea", await body(c));
+    const [{ r }] = (await sql`
+      select public.decline_idea(${userId}, ${id}, ${input.reason ?? null}) as r`) as unknown as [
+      { r: { project_id: string; status: string } },
+    ];
+    return c.json(r);
+  });
+
   // POST /api/jobs/:id/retry and /cancel — workflow monitor (workspace admins)
   for (const action of ["retry", "cancel"] as const) {
     app.post(`/jobs/:id/${action}`, async (c) => {

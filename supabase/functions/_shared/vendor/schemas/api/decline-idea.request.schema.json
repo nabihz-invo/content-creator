@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cc.local/schemas/api/decline-idea.request.schema.json",
+  "title": "POST /api/content-projects/{id}/decline",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "reason": { "type": "string", "maxLength": 2000 }
+  }
+}

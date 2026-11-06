@@ -244,6 +244,12 @@ export const api = {
       json: { reason },
     }),
 
+  /** Idea review: declines a pending idea (cancelled, the reason is kept in its history). */
+  declineIdea: (projectId: string, reason?: string) =>
+    apiRequest<{ project_id: string; status: string }>(`/content-projects/${projectId}/decline`, {
+      json: reason?.trim() ? { reason: reason.trim() } : {},
+    }),
+
   /** Planned publish day (YYYY-MM-DD, or null to clear); downloads are named with it. */
   setPublishDate: (projectId: string, date: string | null) =>
     apiRequest<{ publish_date: string | null }>(`/content-projects/${projectId}/publish-date`, {

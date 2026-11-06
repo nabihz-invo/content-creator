@@ -1,7 +1,7 @@
 # Showcase reels (Nov 2026)
 
 Studio pages for D30-16, D30-07 and D30-01, built by hand with the viral-motion-editor playbook
-(`templates/studio/docs/MOTION.md`). Finished files: `content/2026-12/<ID>_…/` and the CRM.
+(`templates/studio/docs/MOTION.md`). Finished files: `content/posts/2026-12/<ID>_…/` and the CRM.
 
 Re-render one locally (EN + AR) after an edit:
 

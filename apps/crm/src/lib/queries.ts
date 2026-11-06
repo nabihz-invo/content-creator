@@ -777,3 +777,68 @@ export function useMonitorJobs(workspaceId: string | null, status: string, stage
     },
   });
 }
+
+/** A pending idea in the review slider (P5-T20): status `new`, not an imported post with finished files. */
+export type PendingIdea = Pick<
+  ContentProject,
+  "id" | "title" | "original_idea" | "content_type" | "submitted_at" | "input_source" | "source_url"
+> & {
+  plan_id: string | null;
+  format: string | null;
+  publish_date: string | null;
+  sheet: string | null;
+  pillar: string | null;
+  brands: { name: string } | null;
+  project_tags: { tags: Tag }[];
+  idea_comments: { status: "open" | "addressed" }[];
+};
+
+export function usePendingIdeas(workspaceId: string | null) {
+  return useQuery({
+    queryKey: ["pending-ideas", workspaceId],
+    enabled: !!workspaceId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("content_projects")
+        .select(
+          "id, title, original_idea, content_type, submitted_at, input_source, source_url, plan_id:source_metadata->>plan_id, format:source_metadata->>format, publish_date:source_metadata->>publish_date, sheet:source_metadata->>sheet, pillar:source_metadata->content_plan->>Pillar, brands(name), project_tags(tags(id, name, color)), idea_comments(status)",
+        )
+        .eq("workspace_id", workspaceId!)
+        .eq("status", "new")
+        .is("source_metadata->finished", null)
+        // Planned posts first, in publish order; then backlog and new ideas, oldest first.
+        .order("source_metadata->>publish_date", { ascending: true, nullsFirst: false })
+        .order("submitted_at", { ascending: true })
+        .limit(1000);
+      if (error) throw error;
+      return (data ?? []) as unknown as PendingIdea[];
+    },
+  });
+}
+
+export interface IdeaComment {
+  id: string;
+  project_id: string;
+  author_id: string | null;
+  body: string;
+  status: "open" | "addressed";
+  response: string | null;
+  addressed_at: string | null;
+  created_at: string;
+}
+
+export function useIdeaComments(projectId: string | undefined) {
+  return useQuery({
+    queryKey: ["idea-comments", projectId],
+    enabled: !!projectId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("idea_comments")
+        .select("id, project_id, author_id, body, status, response, addressed_at, created_at")
+        .eq("project_id", projectId!)
+        .order("created_at", { ascending: true });
+      if (error) throw error;
+      return (data ?? []) as IdeaComment[];
+    },
+  });
+}
