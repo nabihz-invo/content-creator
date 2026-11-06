@@ -333,7 +333,7 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
 }
 
 /** A stored file at full size (image, playable video or document), with previous/next in its version. */
-function MediaViewer({
+export function MediaViewer({
   viewing,
   urls,
   onIndex,

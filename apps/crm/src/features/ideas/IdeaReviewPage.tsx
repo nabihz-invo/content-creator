@@ -8,6 +8,7 @@ import {
   Info,
   Lightbulb,
   MessageSquarePlus,
+  Play,
   Send,
   X,
 } from "lucide-react";
@@ -37,10 +38,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/lib/api";
 import { formatDateTime, formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
-import { type PendingIdea, useIdeaComments, usePendingIdeas } from "@/lib/queries";
+import { type PendingIdea, useIdeaComments, usePendingIdeas, useSignedUrls } from "@/lib/queries";
+import { MediaViewer } from "@/features/projects/FinishedMedia";
+import type { ImportedMediaRow } from "@/types/db";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
+
+/** An imported post that is already made (files to look at) rather than an idea to produce. */
+const isPost = (i: PendingIdea) => i.imported_media.length > 0 || !!i.finished;
+const DEFAULT_REASON = "Declined in idea review";
 
 type Dialogs =
   | { kind: "details"; idea: PendingIdea }
@@ -49,9 +56,10 @@ type Dialogs =
   | null;
 
 /**
- * Idea review (P5-T20): every pending idea as a card in a slider. Approve starts the pipeline,
- * decline cancels the idea (with a reason), details shows everything, and comments are notes the
- * agent reads in its next session (it revises the idea and answers here).
+ * Idea review (P5-T20): every pending item as a card in a slider. For an idea, approve starts the
+ * pipeline and decline cancels it; for a finished imported post, approve marks it ready to publish
+ * and decline deletes it with its files. Details shows everything (and the files), and comments are
+ * notes the agent reads in its next session (it revises the idea or the post and answers here).
  */
 export function IdeaReviewPage() {
   const { t } = useI18n();
@@ -80,10 +88,13 @@ export function IdeaReviewPage() {
     });
 
   const approve = useMutation({
-    mutationFn: (idea: PendingIdea) => api.analyze(idea.id),
+    mutationFn: (idea: PendingIdea): Promise<unknown> =>
+      isPost(idea) ? api.reviewImported(idea.id, "approved") : api.analyze(idea.id),
     onMutate: (idea) => remove(idea.id),
     onSuccess: (_r, idea) => {
-      toast.success(t("ideas.approved", { title: idea.title }));
+      toast.success(
+        t(isPost(idea) ? "ideas.postApproved" : "ideas.approved", { title: idea.title }),
+      );
       refresh();
     },
     onError: (e, idea) => {
@@ -93,8 +104,10 @@ export function IdeaReviewPage() {
   });
 
   const decline = useMutation({
-    mutationFn: ({ idea, reason }: { idea: PendingIdea; reason: string }) =>
-      api.declineIdea(idea.id, reason),
+    mutationFn: ({ idea, reason }: { idea: PendingIdea; reason: string }): Promise<unknown> =>
+      isPost(idea)
+        ? api.discardImported(idea.id, reason.trim().length >= 3 ? reason.trim() : DEFAULT_REASON)
+        : api.declineIdea(idea.id, reason),
     onMutate: ({ idea }) => {
       remove(idea.id);
       setDialog(null);
@@ -197,6 +210,7 @@ export function IdeaReviewPage() {
                   key={idea.id}
                   idea={idea}
                   focused={i === active}
+                  near={Math.abs(i - active) <= 2}
                   editor={editor}
                   busy={approve.isPending && approve.variables?.id === idea.id}
                   onFocus={() => i !== active && goTo(i)}
@@ -280,6 +294,12 @@ function IdeaBadges({ idea }: { idea: PendingIdea }) {
           {t("imported.planned", { date: idea.publish_date.slice(0, 10) })}
         </Badge>
       )}
+      {isPost(idea) && <Badge variant="success">{t("ideas.post")}</Badge>}
+      {idea.review?.status === "changes_requested" && (
+        <Badge variant="warning" title={idea.review.note ?? undefined}>
+          {t("ideas.changesRequested")}
+        </Badge>
+      )}
       {idea.sheet === "Backlog" && <Badge variant="outline">{t("ideas.backlog")}</Badge>}
       {open > 0 && <Badge variant="warning">{t("ideas.openNotes", { n: open })}</Badge>}
       {answered > 0 && <Badge variant="success">{t("ideas.answeredNotes", { n: answered })}</Badge>}
@@ -290,6 +310,7 @@ function IdeaBadges({ idea }: { idea: PendingIdea }) {
 function IdeaCard({
   idea,
   focused,
+  near,
   editor,
   busy,
   onFocus,
@@ -300,6 +321,7 @@ function IdeaCard({
 }: {
   idea: PendingIdea;
   focused: boolean;
+  near: boolean;
   editor: boolean;
   busy: boolean;
   onFocus: () => void;
@@ -314,7 +336,7 @@ function IdeaCard({
       onClick={onFocus}
       data-testid="idea-card"
       className={cn(
-        "flex h-[30rem] w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-card p-5 shadow-sm transition-all duration-300 sm:w-[22rem]",
+        "flex h-[34rem] w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-card p-5 shadow-sm transition-all duration-300 sm:w-[22rem]",
         focused ? "scale-100 opacity-100 shadow-md" : "scale-[0.96] opacity-60",
       )}
     >
@@ -325,6 +347,7 @@ function IdeaCard({
       >
         {idea.title}
       </h2>
+      {isPost(idea) && <MediaPreview idea={idea} load={near} className="mt-3 h-48" />}
       <p
         className="mt-2 line-clamp-[11] min-h-0 flex-1 overflow-hidden text-sm leading-relaxed whitespace-pre-wrap text-muted-foreground"
         dir={textDir(idea.original_idea)}
@@ -339,7 +362,11 @@ function IdeaCard({
           tone="bg-success text-white hover:bg-success/90"
           onClick={onApprove}
           disabled={!editor || busy}
-          title={editor ? t("ideas.approveHint") : t("common.readOnly")}
+          title={
+            editor
+              ? t(isPost(idea) ? "ideas.postApproveHint" : "ideas.approveHint")
+              : t("common.readOnly")
+          }
         />
         <Action
           icon={X}
@@ -347,7 +374,11 @@ function IdeaCard({
           tone="bg-destructive text-white hover:bg-destructive/90"
           onClick={onDecline}
           disabled={!editor}
-          title={editor ? t("ideas.declineHint") : t("common.readOnly")}
+          title={
+            editor
+              ? t(isPost(idea) ? "ideas.postDeclineHint" : "ideas.declineHint")
+              : t("common.readOnly")
+          }
         />
         <Action
           icon={Info}
@@ -484,6 +515,12 @@ function DetailsDialog({
           </DialogDescription>
         </DialogHeader>
         <IdeaBadges idea={idea} />
+        {isPost(idea) && <MediaPreview idea={idea} load className="h-72" />}
+        {idea.review?.status === "changes_requested" && idea.review.note && (
+          <p className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm">
+            {idea.review.note}
+          </p>
+        )}
         {idea.project_tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {idea.project_tags.map(({ tags }) => (
@@ -653,7 +690,9 @@ function DeclineDialog({
             maxLength={2000}
             autoFocus
           />
-          <p className="text-xs text-muted-foreground">{t("ideas.declineHelp")}</p>
+          <p className="text-xs text-muted-foreground">
+            {t(isPost(idea) ? "ideas.postDeclineHelp" : "ideas.declineHelp")}
+          </p>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
@@ -666,5 +705,123 @@ function DeclineDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  );
+}
+
+/**
+ * The finished files of an imported post on its card: the cover or first file of one language
+ * version, a summary, and a click opens every stored file full size (images, slides, videos).
+ * Signed URLs are only requested for cards near the one in view.
+ */
+function MediaPreview({
+  idea,
+  load,
+  className,
+}: {
+  idea: PendingIdea;
+  load: boolean;
+  className?: string;
+}) {
+  const { t } = useI18n();
+  const languages = [...new Set(idea.imported_media.map((m) => m.language))];
+  const [lang, setLang] = useState(languages.includes("en") ? "en" : (languages[0] ?? null));
+  const [viewing, setViewing] = useState<{ files: ImportedMediaRow[]; index: number } | null>(null);
+  const files = idea.imported_media.filter((m) => m.language === lang);
+  const stored = files.filter((m) => m.storage_path);
+  const urls = useSignedUrls(load ? stored.map((m) => m.storage_path!) : [], "media");
+  const first = stored[0];
+  const src = first?.storage_path ? urls.data?.[first.storage_path] : undefined;
+  const slides = files.filter((m) => m.kind === "carousel_slide").length;
+  const video = files.find((m) => m.kind === "video");
+  const summary = slides
+    ? t("ideas.files.slides", { n: slides })
+    : video
+      ? t("ideas.files.video", { s: Math.round(video.duration ?? 0) })
+      : t("ideas.files.images", { n: files.length });
+  const live = files.find((m) => m.live_url)?.live_url;
+
+  return (
+    <div className={cn("flex shrink-0 flex-col gap-1.5", className)}>
+      <div className="relative min-h-0 flex-1 overflow-hidden rounded-lg border bg-muted">
+        {first ? (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setViewing({ files: stored, index: 0 });
+            }}
+            aria-label={t("ideas.viewFiles")}
+            className="group absolute inset-0 cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          >
+            {src && first.mime_type.startsWith("image/") && (
+              <img src={src} alt={first.file_name} className="size-full object-contain" />
+            )}
+            {src && first.mime_type.startsWith("video/") && (
+              <video
+                key={src}
+                src={`${src}#t=0.5`}
+                muted
+                playsInline
+                preload="metadata"
+                className="size-full object-contain"
+              />
+            )}
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white opacity-90 transition-opacity group-hover:opacity-100">
+                {first.mime_type.startsWith("video/") && <Play className="size-3.5 fill-current" />}
+                {t("ideas.viewFiles")}
+              </span>
+            </span>
+          </button>
+        ) : (
+          <div className="flex size-full items-center justify-center p-3 text-center text-xs text-muted-foreground">
+            {live ? (
+              <a
+                href={live}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1 text-primary hover:underline"
+              >
+                <ExternalLink className="size-3.5" />
+                {t("finished.onSocial")}
+              </a>
+            ) : (
+              t("ideas.noStoredFiles")
+            )}
+          </div>
+        )}
+      </div>
+      <div className="flex items-center justify-between gap-2 text-xs text-muted-foreground">
+        <span className="truncate">{summary}</span>
+        {languages.length > 1 && (
+          <div className="flex gap-1">
+            {languages.map((l) => (
+              <button
+                key={l ?? "all"}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLang(l);
+                }}
+                aria-pressed={l === lang}
+                className={cn(
+                  "rounded-full border px-2 py-0.5 font-medium",
+                  l === lang ? "border-primary bg-primary/10 text-primary" : "hover:bg-accent",
+                )}
+              >
+                {l ? t(`imported.lang.${l}`) : t("finished.allLanguages")}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <MediaViewer
+        viewing={viewing}
+        urls={urls.data ?? {}}
+        onIndex={(index) => setViewing((v) => v && { ...v, index })}
+        onClose={() => setViewing(null)}
+      />
+    </div>
   );
 }

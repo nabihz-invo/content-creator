@@ -695,6 +695,18 @@ export const en = {
   "event.idea.comment_addressed": "The agent answered a note",
   "event.idea.revised": "The agent updated the idea",
   "event.idea.declined": "Idea declined in idea review",
+  "ideas.post": "Finished post",
+  "ideas.changesRequested": "Changes requested",
+  "ideas.postApproved": "Approved: {title}. It is ready to publish.",
+  "ideas.postApproveHint": "Approve the finished post (moves it to ready to publish)",
+  "ideas.postDeclineHint": "Decline and delete this post with all its files",
+  "ideas.postDeclineHelp":
+    "The post and all its files (and their storage) are deleted. Its history is kept.",
+  "ideas.viewFiles": "View",
+  "ideas.files.slides": "Carousel · {n} slides",
+  "ideas.files.video": "Video · {s}s",
+  "ideas.files.images": "{n} file(s)",
+  "ideas.noStoredFiles": "The files are not in storage (kept locally).",
 } as const;
 
 export type MessageKey = keyof typeof en;

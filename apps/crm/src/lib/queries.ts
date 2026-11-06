@@ -778,7 +778,7 @@ export function useMonitorJobs(workspaceId: string | null, status: string, stage
   });
 }
 
-/** A pending idea in the review slider (P5-T20): status `new`, not an imported post with finished files. */
+/** A pending item in the review slider (P5-T20): every project still `new`, ideas and finished imported posts alike. */
 export type PendingIdea = Pick<
   ContentProject,
   "id" | "title" | "original_idea" | "content_type" | "submitted_at" | "input_source" | "source_url"
@@ -791,6 +791,10 @@ export type PendingIdea = Pick<
   brands: { name: string } | null;
   project_tags: { tags: Tag }[];
   idea_comments: { status: "open" | "addressed" }[];
+  /** Imported posts that are already made: their files (P5-T15) and review state (P5-T17). */
+  finished: unknown;
+  review: { status: "approved" | "changes_requested"; note: string | null } | null;
+  imported_media: ImportedMediaRow[];
 };
 
 export function usePendingIdeas(workspaceId: string | null) {
@@ -801,17 +805,21 @@ export function usePendingIdeas(workspaceId: string | null) {
       const { data, error } = await supabase
         .from("content_projects")
         .select(
-          "id, title, original_idea, content_type, submitted_at, input_source, source_url, plan_id:source_metadata->>plan_id, format:source_metadata->>format, publish_date:source_metadata->>publish_date, sheet:source_metadata->>sheet, pillar:source_metadata->content_plan->>Pillar, brands(name), project_tags(tags(id, name, color)), idea_comments(status)",
+          "id, title, original_idea, content_type, submitted_at, input_source, source_url, plan_id:source_metadata->>plan_id, format:source_metadata->>format, publish_date:source_metadata->>publish_date, sheet:source_metadata->>sheet, pillar:source_metadata->content_plan->>Pillar, finished:source_metadata->finished, review:source_metadata->review, brands(name), project_tags(tags(id, name, color)), idea_comments(status), imported_media(id, project_id, language, kind, slide_index, file_name, storage_path, mime_type, file_size, width, height, duration, metadata, live_url, released_at)",
         )
         .eq("workspace_id", workspaceId!)
         .eq("status", "new")
-        .is("source_metadata->finished", null)
         // Planned posts first, in publish order; then backlog and new ideas, oldest first.
         .order("source_metadata->>publish_date", { ascending: true, nullsFirst: false })
         .order("submitted_at", { ascending: true })
         .limit(1000);
       if (error) throw error;
-      return (data ?? []) as unknown as PendingIdea[];
+      const order = (m: ImportedMediaRow) =>
+        `${m.language ?? ""}|${m.kind === "cover" ? 0 : 1}|${String(m.slide_index ?? 0).padStart(3, "0")}`;
+      return ((data ?? []) as unknown as PendingIdea[]).map((p) => ({
+        ...p,
+        imported_media: [...p.imported_media].sort((a, b) => order(a).localeCompare(order(b))),
+      }));
     },
   });
 }
