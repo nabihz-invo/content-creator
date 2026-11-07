@@ -556,7 +556,10 @@ export function useImportedMedia(projectId: string | undefined) {
 }
 
 /** Signed URLs for thumbnails in the private previews bucket (RLS: project members). */
-export function useSignedUrls(paths: string[], bucket: "previews" | "media" = "previews") {
+export function useSignedUrls(
+  paths: string[],
+  bucket: "previews" | "media" | "brand-assets" = "previews",
+) {
   return useQuery({
     queryKey: ["signed", bucket, paths],
     enabled: paths.length > 0,
@@ -847,6 +850,80 @@ export function useIdeaComments(projectId: string | undefined) {
         .order("created_at", { ascending: true });
       if (error) throw error;
       return (data ?? []) as IdeaComment[];
+    },
+  });
+}
+
+/** Visual library (P5-T21): catalog entries (BG / GFX / PI) with prompts, usage and status. */
+export type LibraryKind = "background" | "graphic" | "post_image";
+export type LibraryStatus = "to_generate" | "generated" | "approved" | "ready" | "retired";
+export interface LibraryItem {
+  id: string;
+  brand_id: string;
+  code: string;
+  kind: LibraryKind;
+  status: LibraryStatus;
+  title: string;
+  collection: string | null;
+  pillar: string | null;
+  aspect: string | null;
+  reference: string | null;
+  prompt: string | null;
+  negative_prompt: string | null;
+  placeholders: string | null;
+  use_for: string | null;
+  when_to_use: string | null;
+  fits_posts: string | null;
+  story: string | null;
+  text_space: string | null;
+  on_image_text: string | null;
+  notes: string | null;
+  updated_at: string;
+}
+export interface LibraryFile {
+  id: string;
+  name: string;
+  storage_path: string;
+  mime_type: string | null;
+  file_size: number | null;
+  version: number;
+  created_at: string;
+  metadata: { code?: string; variant?: "final" | "raw"; library_path?: string };
+}
+
+const codeOrder = (c: string) => c.replace(/\d+/, (n) => n.padStart(4, "0"));
+
+export function useLibrary(brandId: string | undefined) {
+  return useQuery({
+    queryKey: ["library", brandId],
+    enabled: !!brandId,
+    queryFn: async () => {
+      const [items, files] = await Promise.all([
+        supabase.from("library_items").select("*").eq("brand_id", brandId!),
+        supabase
+          .from("brand_assets")
+          .select("id, name, storage_path, mime_type, file_size, version, created_at, metadata")
+          .eq("brand_id", brandId!)
+          .in("asset_type", ["background", "graphic", "post_image"]),
+      ]);
+      if (items.error) throw items.error;
+      if (files.error) throw files.error;
+      const byCode = new Map<string, LibraryFile[]>();
+      for (const f of (files.data ?? []) as LibraryFile[]) {
+        const c = f.metadata.code;
+        if (!c) continue;
+        byCode.set(c, [...(byCode.get(c) ?? []), f]);
+      }
+      // Finals first, then raw files.
+      for (const list of byCode.values())
+        list.sort(
+          (a, b) =>
+            Number(a.metadata.variant === "raw") - Number(b.metadata.variant === "raw") ||
+            a.name.localeCompare(b.name),
+        );
+      return ((items.data ?? []) as LibraryItem[])
+        .sort((a, b) => codeOrder(a.code).localeCompare(codeOrder(b.code)))
+        .map((i) => ({ ...i, files: byCode.get(i.code) ?? [] }));
     },
   });
 }

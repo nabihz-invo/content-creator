@@ -8,6 +8,7 @@ import { BrandDetailPage } from "@/features/brands/BrandDetailPage";
 import { BrandsPage } from "@/features/brands/BrandsPage";
 import { IdeaReviewPage } from "@/features/ideas/IdeaReviewPage";
 import { InboxPage } from "@/features/inbox/InboxPage";
+import { VisualLibraryPage } from "@/features/library/VisualLibraryPage";
 import { MediaLibraryPage } from "@/features/media/MediaLibraryPage";
 import { MonitorPage } from "@/features/monitor/MonitorPage";
 import { OverviewPage } from "@/features/overview/OverviewPage";
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
         path: "creative",
         element: <StudioPage />,
       },
+      { path: "visuals", element: <VisualLibraryPage /> },
       {
         path: "media",
         element: <MediaLibraryPage />,

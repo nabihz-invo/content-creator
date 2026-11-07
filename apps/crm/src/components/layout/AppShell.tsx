@@ -3,6 +3,7 @@ import {
   Clapperboard,
   Gauge,
   Images,
+  ImagePlus,
   Inbox,
   Languages,
   LayoutDashboard,
@@ -56,6 +57,7 @@ const SECTIONS: { label: MessageKey; items: NavItem[] }[] = [
     label: "nav.section.production",
     items: [
       { to: "/creative", label: "nav.creative", icon: Clapperboard },
+      { to: "/visuals", label: "nav.visuals", icon: ImagePlus },
       { to: "/media", label: "nav.media", icon: Images },
       { to: "/calendar", label: "nav.calendar", icon: CalendarDays },
     ],

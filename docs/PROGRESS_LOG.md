@@ -14,6 +14,21 @@ Template:
 
 ---
 
+## 2026-11-08 — P5-T22 image batch (content bank) — in progress
+- Agent/branch: local Claude Code (main)
+- Changes: migration `20261108100000` (SC/OB/SE codes for post images); pgTAP `20_library_scene_codes`; CRM form accepts the new prefixes (EN + AR help text); `library-to-sql.py` regex; new `scripts/import/image-batch.py`.
+- Data (hosted): BG-56…61 added as approved with their files (renamed from the batch's BG-01…06); 88 content-bank ideas imported as `new` (IDEA-001…088, batch `content-bank-2026-11`); first posts built and attached as finished: IDEA-002, IDEA-025, IDEA-001 (EN + AR).
+- Verification: pgTAP 20 on hosted in a rolled-back transaction: 4/4, nothing persisted; image copies checked by sha256 before removing the originals from `assets/IMG/`.
+- Owner pushed the migration (2026-11-08); SC-01…08, OB-01…06, SE-01…04 added as approved and uploaded: all 24 batch entries have their file (`library.mjs list --usable`).
+- Next: owner reviews IDEA-002/025/001; then IDEA-046, IDEA-026, IDEA-038.
+
+## 2026-11-07 — P5-T21 visual library in the CRM — in progress
+- Agent/branch: local Claude Code (main)
+- Changes: migration `20261107100000` (`library_items` + RLS/column grants, `attach_library_file`, `delete_library_file`, `delete_library_item`, code index on `brand_assets`); pgTAP `19_visual_library`; `scripts/import/library-to-sql.py` + `supabase/seed/library-items.sql`; CRM `/visuals` page (grid with type tabs, status filter, search; entry dialog with files, viewer, upload final/raw, status, prompt copy, edit, delete; new-entry form with the next free code; EN + AR); `useSignedUrls` accepts the `brand-assets` bucket; `scripts/library/library.mjs` (list/show/get/upload/status); CLAUDE.md §3b.
+- Verification: pgTAP 19 on hosted in a rolled-back transaction: 15/15, nothing persisted. Import trial in a rolled-back transaction (applied twice, idempotent): backgrounds 38 generated (34 with prompts, all with files), graphics 11 ready, post images 6 generated with files + 38 to generate. CRM `tsc`, ESLint, Prettier clean.
+- Not verified: the page in a browser (needs the migration + import applied).
+- Next: owner runs `npx supabase db push --linked`, then the import (`psql … -f supabase/seed/library-items.sql`), then checks the page.
+
 ## 2026-11-06 — P5-T20 idea review slider — in progress
 - Agent/branch: local Claude Code (main)
 - Why: owner wants an easy way to go through pending ideas: one card at a time with approve / decline / details / comment, and comments the agent picks up next session.
