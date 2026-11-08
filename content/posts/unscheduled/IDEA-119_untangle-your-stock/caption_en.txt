@@ -1,0 +1,1 @@
+Most stock systems are a ball of calls, files and memory. Pull one thread and everything follows.
