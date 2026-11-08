@@ -744,7 +744,7 @@ export const en = {
   "visuals.field.notes": "Notes",
   "visuals.code": "Code",
   "visuals.codeInvalid":
-    "Use the type's prefix (post images: PI, SC, OB or SE) and a free number, e.g. BG-62.",
+    "Use the type's prefix (post images: PI, SC, OB, SE, UI or PR) and a free number, e.g. BG-62.",
   "visuals.formHelp":
     "Write the prompt now; generate the image with it outside, then upload it on the entry (it becomes Generated). Approve it once checked.",
   "visuals.editTitle": "Edit {code}",

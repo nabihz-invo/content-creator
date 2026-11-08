@@ -40,11 +40,11 @@ type Entry = LibraryItem & { files: LibraryFile[] };
 const KINDS: LibraryKind[] = ["background", "graphic", "post_image"];
 const STATUSES: LibraryStatus[] = ["to_generate", "generated", "approved", "ready", "retired"];
 const PREFIX: Record<LibraryKind, string> = { background: "BG", graphic: "GFX", post_image: "PI" };
-// Post images also take scene (SC), concept (OB) and seasonal (SE) codes (P5-T22).
+// Post images also take scene (SC), concept (OB), seasonal (SE), device frame (UI) and presenter (PR) codes (P5-T22).
 const PREFIXES: Record<LibraryKind, string[]> = {
   background: ["BG"],
   graphic: ["GFX"],
-  post_image: ["PI", "SC", "OB", "SE"],
+  post_image: ["PI", "SC", "OB", "SE", "UI", "PR"],
 };
 const STATUS_VARIANT = {
   to_generate: "warning",

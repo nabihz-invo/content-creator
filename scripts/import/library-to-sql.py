@@ -1,8 +1,8 @@
 """Visual library workbooks → library_items (P5-T21).
 
     python -I -X utf8 scripts/import/library-to-sql.py \
-        --backgrounds ../content/plans/Stacko_Background_Library.xlsx \
-        --studio ../content/plans/Stacko_Content_Studio.xlsx \
+        --backgrounds content/plans/Stacko_Background_Library.xlsx \
+        --studio content/plans/Stacko_Content_Studio.xlsx \
         --out supabase/seed/library-items.sql
 
 BG-xx / GFX-xx come from the Background Library sheet (newer statuses), PI-xx from the Content

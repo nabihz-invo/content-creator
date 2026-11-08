@@ -732,7 +732,7 @@ export const ar: Record<MessageKey, string> = {
   "visuals.field.notes": "ملاحظات",
   "visuals.code": "الرمز",
   "visuals.codeInvalid":
-    "استخدم بادئة النوع (صور المنشورات: PI أو SC أو OB أو SE) ورقماً غير مستخدم، مثلاً BG-62.",
+    "استخدم بادئة النوع (صور المنشورات: PI أو SC أو OB أو SE أو UI أو PR) ورقماً غير مستخدم، مثلاً BG-62.",
   "visuals.formHelp":
     "اكتب البرومبت الآن، ثم ولّد الصورة به خارج المنصة وارفعها على العنصر (تصبح مولّدة). اعتمدها بعد المراجعة.",
   "visuals.editTitle": "تعديل {code}",

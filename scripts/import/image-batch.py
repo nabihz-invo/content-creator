@@ -1,6 +1,6 @@
 """A folder of new images + its two workbooks → visual library, asset folders and post ideas (P5-T22).
 
-    python -I -X utf8 scripts/import/image-batch.py ../content/assets/IMG \
+    python -I -X utf8 scripts/import/image-batch.py content/assets/IMG \
         --remap BG-01=BG-56,BG-02=BG-57 [--status approved] [--apply]
 
 The folder holds the images (<CODE>.jpg / .jfif / .png) and two workbooks:
@@ -11,8 +11,8 @@ The folder holds the images (<CODE>.jpg / .jfif / .png) and two workbooks:
 --remap renames codes that are already used in the library (everywhere: files, entries, ideas,
 both workbooks). Without --apply it only prints the plan. With --apply it:
   1. writes the library entries SQL and the ideas plan JSON to <folder>/_import/
-  2. copies each image to ../content/assets/backgrounds/final/<CODE>.jpg (BG) or
-     ../content/assets/post-images/final/<CODE>.jpg (SC, OB, SE, PI) — JPEG files keep their bytes
+  2. copies each image to content/assets/backgrounds/final/<CODE>.jpg (BG) or
+     content/assets/post-images/final/<CODE>.jpg (SC, OB, SE, PI) — JPEG files keep their bytes
   3. rewrites the codes in both workbooks and marks "Received?" = Yes
 Then run the SQL (psql), upload the files (library.mjs upload) and import the ideas
 (content-plan-to-sql.py <json>), as printed at the end.
@@ -28,9 +28,17 @@ from pathlib import Path
 import openpyxl
 
 GROUP_PREFIX = {"BG": "background", "GFX": "graphic", "PI": "post_image", "SC": "post_image",
-                "OB": "post_image", "SE": "post_image"}
-GROUP_NAME = {"SC": "Scenes", "OB": "Concepts", "SE": "Seasonal", "BG": "Backgrounds", "PI": "Post images"}
-CODE_RE = re.compile(r"\b(BG|GFX|PI|SC|OB|SE|LCH)-\d{2,3}\b")
+                "OB": "post_image", "SE": "post_image", "UI": "post_image", "PR": "post_image"}
+GROUP_NAME = {"UI": "Device frame", "PR": "Presenter", "SC": "Scene", "OB": "Concept", "SE": "Seasonal", "BG": "Background", "PI": "Post image"}
+# Sheet / column names differ between rounds; the first one found is used.
+IMAGE_SHEETS = ("New Images", "Image Prompts", "New Image Prompts")
+IDEA_SHEETS = ("Ideas", "Post Ideas", "New Ideas")
+ALIASES = {  # later rounds' column name -> round 1 name
+    "Family": "Group", "Used for": "Where to use", "Post ideas using it": "Post idea it supports",
+    "Ideas using it": "Post idea it supports", "Image": "Images", "Image(s) needed": "Images",
+    "Support line": "Support line (EN)", "Slides": "Slides (carousels)",
+}
+CODE_RE = re.compile(r"\b(BG|GFX|PI|SC|OB|SE|UI|PR|LCH)-\d{2,3}\b")
 # Screens in these images are blank white (prompt rule "Screens: … blank, evenly lit white").
 SCREEN_NOTE = "Blank white phone/tablet screen → place a real Stacko screen (assets/screens/)"
 
@@ -48,16 +56,23 @@ def sheet(wb, name):
     ws = wb[name]
     it = ws.iter_rows(values_only=True)
     head = [text(h) for h in next(it)]
+    head = [h if h is None or h in head[:i] or ALIASES.get(h) in head else ALIASES.get(h, h) for i, h in enumerate(head)]
     return [{h: text(v) for h, v in zip(head, r) if h} for r in it if r and text(r[0])]
 
 
-def find_workbook(folder, sheet_name):
+def find_workbook(folder, names):
     for p in sorted(folder.glob("*.xlsx")):
         if p.name.startswith("~$"):
             continue
-        if sheet_name in openpyxl.load_workbook(p, read_only=True).sheetnames:
-            return p
-    raise SystemExit(f"no workbook with a '{sheet_name}' sheet in {folder}")
+        sheets = openpyxl.load_workbook(p, read_only=True).sheetnames
+        for n in names:
+            if n in sheets:
+                return p, n
+    raise SystemExit(f"no workbook with a {' / '.join(names)} sheet in {folder}")
+
+
+def iso_date(v):
+    return v if isinstance(v, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", v) else None
 
 
 def main():
@@ -76,10 +91,10 @@ def main():
     remap = dict(p.split("=") for p in a.remap.split(",") if p)
     sub = lambda s: CODE_RE.sub(lambda m: remap.get(m.group(0), m.group(0)), s) if isinstance(s, str) else s
 
-    images_wb = find_workbook(folder, "New Images")
-    ideas_wb = find_workbook(folder, "Ideas")
-    images = sheet(openpyxl.load_workbook(images_wb, data_only=True), "New Images")
-    ideas = sheet(openpyxl.load_workbook(ideas_wb, data_only=True), "Ideas")
+    images_wb, images_sheet = find_workbook(folder, IMAGE_SHEETS)
+    ideas_wb, ideas_sheet = find_workbook(folder, IDEA_SHEETS)
+    images = sheet(openpyxl.load_workbook(images_wb, data_only=True), images_sheet)
+    ideas = sheet(openpyxl.load_workbook(ideas_wb, data_only=True), ideas_sheet)
 
     files = {}
     for f in folder.iterdir():
@@ -121,11 +136,13 @@ def main():
     for i in ideas:
         r = {k: sub(v) for k, v in i.items()}
         scene = "\n\n".join(f"{k}:\n{r[k]}" for k in ("Support line (EN)", "On-image elements (HTML layer)",
-                                                     "Slides (carousels)", "Images", "Notes") if r.get(k))
+                                                     "Slides (carousels)", "Images", "Conversion mechanic",
+                                                     "KPI to watch", "Notes") if r.get(k))
         plan_rows.append({**r,
-                          "Publish date": r.get("Suggested date"),
+                          "Publish date": iso_date(r.get("Suggested date")) or iso_date(r.get("When")),
                           "Objective": " · ".join(x for x in (r.get("Series"), r.get("Answers") and f"answers {r['Answers']}",
-                                                              r.get("Theme") and f"{r['Theme']} theme", r.get("Platform")) if x),
+                                                              r.get("Theme") and f"{r['Theme']} theme", r.get("Platform"),
+                                                              not iso_date(r.get("When")) and r.get("When") and f"when: {r['When']}") if x),
                           "Hook EN (on screen, first 1.5 s)": r.get("Headline (EN)"),
                           "Hook AR": r.get("Headline (AR)"),
                           "Scene plan (beat by beat)": scene,
@@ -184,7 +201,7 @@ end $$;
                         new = sub(c.value)
                         if new != c.value:
                             c.value = new
-                if recv and ws.title == "New Images" and row[0].row > 1 and row[0].value:
+                if recv and ws.title == images_sheet and row[0].row > 1 and row[0].value:
                     if row[0].value in got:
                         ws.cell(row=row[0].row, column=recv).value = "Yes"
         wb.save(p)
