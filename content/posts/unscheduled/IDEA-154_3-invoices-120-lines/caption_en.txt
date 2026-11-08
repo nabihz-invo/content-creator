@@ -1,0 +1,1 @@
+Typing supplier invoices line by line is how mistakes enter your stock. Upload the PDF, Excel or photo, and Stacko creates the items and the incoming shipment.
