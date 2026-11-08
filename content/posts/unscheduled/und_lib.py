@@ -2,6 +2,9 @@
 
 Cards (white, on dark or light slides), a dark carousel builder and the light carousel from build_idea_dec_a.
 Every builder writes into posts/unscheduled/<ID>_<slug>/source/.
+
+Careful: studio/post/templates/post.css already styles .chat, .u, .r, .chip, .scr, .panel, .bar for the phone chat and
+frames. Never reuse those class names for other elements (they break layouts silently).
 """
 import sys
 from pathlib import Path

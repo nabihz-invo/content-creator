@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>IDEA-133 · needle</title>
+<link rel="stylesheet" href="/assets/brand/brand.css">
+<link rel="stylesheet" href="/studio/post/templates/post.css">
+<style>
+html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
+[dir=rtl] .h1,[dir=rtl] .sub{left:auto;right:64px;text-align:right}
+.num{font-variant-numeric:tabular-nums}
+
+.wc{position:absolute;background:#fff;color:var(--abyss);border-radius:24px;padding:24px 30px;
+  box-shadow:0 22px 60px rgba(14,36,64,.30)}
+.wc .lab{font-size:20px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+[dir=rtl] .wc .lab{letter-spacing:0;text-transform:none;font-size:22px}
+.wc b.t{display:block;font-size:32px;letter-spacing:-.02em;margin-top:4px}
+.num{font-variant-numeric:tabular-nums}
+.zero{color:#B4233C;font-weight:600}
+.okc{color:#0B7A87;font-weight:600}
+.pill{display:inline-block;border-radius:999px;padding:4px 14px;font-size:20px;font-weight:700}
+.pill.low{background:#FBE3E7;color:#B4233C}
+.pill.ok{background:#BCE5E0;color:#0B7A87}
+
+.rws{margin-top:8px}
+.rw2{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #E1EAF0;font-size:28px}
+.rw2:last-child{border-bottom:0}
+.rw2 .sp{flex:1;color:var(--deep);font-size:25px}
+.rw2 b{font-weight:600}
+.pill.mis{background:#FFF1D6;color:#8A5A00}
+
+.pc{left:64px;right:64px;top:560px;padding:32px 38px;border-radius:30px}
+.pc b.t{font-size:40px}
+.pc .t2{font-size:30px;color:var(--deep);margin-top:6px}
+.pc.mapc{padding:14px}.pc.mapc img{display:block;width:100%;border-radius:18px}
+.bu{margin-inline-start:auto;width:fit-content;max-width:760px;background:#2F86B8;color:#fff;font-size:29px;padding:16px 24px;border-radius:24px 24px 8px 24px}
+[dir=rtl] .bu{border-radius:24px 24px 24px 8px}
+.ok2{margin-top:14px;font-size:27px;color:#0B7A87;font-weight:600}
+.sf{display:flex;align-items:center;gap:14px;border:2px solid #E1EAF0;border-radius:999px;padding:14px 22px;font-size:30px}
+.codes{display:flex;flex-wrap:wrap;gap:12px;direction:ltr}
+.codes span{background:#EEF4F7;border-radius:999px;padding:14px 26px;font-size:30px;font-weight:600}
+[dir=rtl] .codes{justify-content:flex-end}
+.legs{display:flex;gap:6px;margin-top:18px}
+.legs div{height:14px;border-radius:7px;background:var(--signal)}.legs div.c{background:#C9D8E4}.legs div.t{background:var(--abyss)}
+.ll{display:flex;justify-content:space-between;margin-top:10px;font-size:22px;color:var(--deep)}
+.pill.mis{background:#FFF1D6;color:#8A5A00}
+.tg2{display:flex;align-items:center;justify-content:space-around;direction:ltr;font-size:40px;font-weight:600}
+.tg2 .sw{display:flex;gap:8px;background:var(--abyss);border-radius:999px;padding:8px}
+.tg2 .sw i{font-style:normal;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:24px;color:#fff}
+.tg2 .sw i.on{background:var(--glow);color:var(--abyss)}
+
+.shade-t{height:600px;background:linear-gradient(180deg,rgba(8,20,36,.94),rgba(8,20,36,.62) 60%,rgba(8,20,36,0))}
+.chipx{position:absolute;display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--abyss);border-radius:999px;padding:14px 24px;
+  font-size:27px;font-weight:600;white-space:nowrap;box-shadow:0 0 0 3px rgba(46,242,238,.6),0 14px 40px rgba(0,0,0,.45)}
+.chipx i{width:12px;height:12px;border-radius:50%;background:var(--signal);flex:none}
+.chipd{position:absolute;display:inline-flex;align-items:center;gap:12px;background:rgba(14,36,64,.85);border:1px solid rgba(201,216,228,.4);
+  color:#fff;border-radius:999px;padding:12px 22px;font-size:26px;font-weight:600;white-space:nowrap;backdrop-filter:blur(6px)}
+.chipd i{width:10px;height:10px;border-radius:50%;background:var(--glow)}
+.mini{position:absolute;background:#fff;color:var(--abyss);border-radius:22px;padding:18px 22px;box-shadow:0 0 0 2px rgba(46,242,238,.6),0 18px 50px rgba(0,0,0,.5)}
+.mini .sf{font-size:25px;padding:10px 18px}
+.mini .rr2{display:flex;justify-content:space-between;gap:20px;margin-top:12px;font-size:25px}
+.mini .rr2 b{font-size:30px}
+.mini .lab2{font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#B4233C}
+[dir=rtl] .mini .lab2{letter-spacing:0;font-size:20px}
+.tag2{position:absolute;display:inline-flex;align-items:center;gap:10px;background:rgba(14,36,64,.85);border:1px solid rgba(46,242,238,.55);color:#fff;
+  border-radius:999px;padding:12px 24px;font-size:28px;font-weight:700;white-space:nowrap}
+.tag2 i{width:12px;height:12px;border-radius:50%;background:var(--glow)}
+.tag2.w{background:#fff;color:var(--abyss)}
+</style></head><body>
+<div class="post dark">
+<img class="bg" src="/assets/post-images/final/OB-29.jpg" alt="">
+<div class="shade-t"></div><div class="shade-b"></div>
+<h1 class="h1">Needle in a haystack?<br><em>Not anymore.</em></h1>
+<p class="sub" style="top:356px">Search across 10,000+ SKUs, low stock first.</p>
+<div class="mini" style="right:64px;top:500px;width:470px"><div class="sf"><svg viewBox="0 0 24 24" style="width:30px;height:30px;stroke:var(--deep);fill:none;stroke-width:2.5;flex:none"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><span class="ltr">USB-C Cable 1m</span></div><div class="rr2"><span>WH-01 · Beirut</span><b class="num">140</b></div></div>
+<div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
+<div class="foot"><div class="by">A product by <b><span>AI</span>PHIN</b></div><div>www.stacko-lb.com</div></div>
+</div></body></html>
