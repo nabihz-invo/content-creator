@@ -1,0 +1,2 @@
+People ask us if Stacko tracks trucks by GPS. Not yet, and it doesn't need to.
+Departure time + ETA = a truck that moves on the map and a countdown everyone trusts.
