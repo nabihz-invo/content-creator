@@ -19,6 +19,7 @@ import type {
   WorkflowEvent,
   WorkflowJob,
 } from "@/types/db";
+import { needsReview } from "@/features/ideas/needs-review";
 import { supabase } from "./supabase";
 
 export const PAGE_SIZE = 24;
@@ -819,7 +820,7 @@ export function usePendingIdeas(workspaceId: string | null) {
       if (error) throw error;
       const order = (m: ImportedMediaRow) =>
         `${m.language ?? ""}|${m.kind === "cover" ? 0 : 1}|${String(m.slide_index ?? 0).padStart(3, "0")}`;
-      return ((data ?? []) as unknown as PendingIdea[]).map((p) => ({
+      return ((data ?? []) as unknown as PendingIdea[]).filter(needsReview).map((p) => ({
         ...p,
         imported_media: [...p.imported_media].sort((a, b) => order(a).localeCompare(order(b))),
       }));

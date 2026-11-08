@@ -649,10 +649,10 @@ export const en = {
   "event.render.queued": "Render queued",
   "nav.ideas": "Idea review",
   "ideas.subtitle":
-    "Swipe through the pending ideas. Approve to start production, decline to drop it, or leave a note for the agent.",
+    "Only what is waiting for you. Approve to start production, decline to drop it, or leave a note for the agent.",
   "ideas.count": "{n} of {total}",
   "ideas.empty":
-    "No pending ideas. New ideas from the inbox, Telegram or research imports appear here.",
+    "Nothing is waiting for you. New ideas, and ideas the agent has updated after your note, appear here.",
   "ideas.hint": "Swipe or use the arrow keys to move between ideas.",
   "ideas.previous": "Previous idea",
   "ideas.next": "Next idea",
@@ -667,7 +667,6 @@ export const en = {
   "ideas.approved": "Approved: {title}. The analysis has started.",
   "ideas.declined": "Declined: {title}",
   "ideas.backlog": "Backlog",
-  "ideas.openNotes": "{n} note(s) waiting",
   "ideas.answeredNotes": "{n} answered",
   "ideas.submitted": "Added {when}",
   "ideas.notes": "Notes for the agent",
@@ -684,7 +683,7 @@ export const en = {
   "ideas.noteHelp":
     "The agent reads open notes at the start of its next session, updates the idea and answers here. Ctrl+Enter sends.",
   "ideas.send": "Send note",
-  "ideas.noteSent": "Note sent. The agent will pick it up in its next session.",
+  "ideas.noteSent": "Note sent. The idea comes back here once the agent has answered.",
   "ideas.declineTitle": "Decline this idea?",
   "ideas.reason": "Reason",
   "ideas.reasonPlaceholder": "e.g. Too close to a post we already have",
@@ -696,7 +695,6 @@ export const en = {
   "event.idea.revised": "The agent updated the idea",
   "event.idea.declined": "Idea declined in idea review",
   "ideas.post": "Finished post",
-  "ideas.changesRequested": "Changes requested",
   "ideas.postApproved": "Approved: {title}. It is ready to publish.",
   "ideas.postApproveHint": "Approve the finished post (moves it to ready to publish)",
   "ideas.postDeclineHint": "Decline and delete this post with all its files",

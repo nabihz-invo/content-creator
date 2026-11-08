@@ -56,8 +56,8 @@ type Dialogs =
   | null;
 
 /**
- * Idea review (P5-T20): every pending item as a card in a slider. For an idea, approve starts the
- * pipeline and decline cancels it; for a finished imported post, approve marks it ready to publish
+ * Idea review (P5-T20): every item waiting for the owner as a card in a slider (see needsReview).
+ * For an idea, approve starts the pipeline and decline cancels it; for a finished imported post, approve marks it ready to publish
  * and decline deletes it with its files. Details shows everything (and the files), and comments are
  * notes the agent reads in its next session (it revises the idea or the post and answers here).
  */
@@ -260,7 +260,18 @@ export function IdeaReviewPage() {
         />
       )}
       {dialog?.kind === "comment" && (
-        <CommentDialog idea={dialog.idea} onClose={() => setDialog(null)} onSent={refresh} />
+        <CommentDialog
+          idea={dialog.idea}
+          onClose={() => setDialog(null)}
+          onSent={() => {
+            // Out of the cached list, not `gone`: it has to come back once the agent has answered.
+            qc.setQueryData<PendingIdea[]>(["pending-ideas", workspaceId], (rows) =>
+              rows?.filter((i) => i.id !== dialog.idea.id),
+            );
+            setDialog(null);
+            refresh();
+          }}
+        />
       )}
       {dialog?.kind === "decline" && (
         <DeclineDialog
@@ -276,8 +287,7 @@ export function IdeaReviewPage() {
 
 function IdeaBadges({ idea }: { idea: PendingIdea }) {
   const { t } = useI18n();
-  const open = idea.idea_comments.filter((c) => c.status === "open").length;
-  const answered = idea.idea_comments.length - open;
+  const answered = idea.idea_comments.filter((c) => c.status === "addressed").length;
   return (
     <div className="flex flex-wrap gap-1.5">
       {idea.plan_id && (
@@ -295,13 +305,7 @@ function IdeaBadges({ idea }: { idea: PendingIdea }) {
         </Badge>
       )}
       {isPost(idea) && <Badge variant="success">{t("ideas.post")}</Badge>}
-      {idea.review?.status === "changes_requested" && (
-        <Badge variant="warning" title={idea.review.note ?? undefined}>
-          {t("ideas.changesRequested")}
-        </Badge>
-      )}
       {idea.sheet === "Backlog" && <Badge variant="outline">{t("ideas.backlog")}</Badge>}
-      {open > 0 && <Badge variant="warning">{t("ideas.openNotes", { n: open })}</Badge>}
       {answered > 0 && <Badge variant="success">{t("ideas.answeredNotes", { n: answered })}</Badge>}
     </div>
   );
@@ -516,11 +520,6 @@ function DetailsDialog({
         </DialogHeader>
         <IdeaBadges idea={idea} />
         {isPost(idea) && <MediaPreview idea={idea} load className="h-72" />}
-        {idea.review?.status === "changes_requested" && idea.review.note && (
-          <p className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm">
-            {idea.review.note}
-          </p>
-        )}
         {idea.project_tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {idea.project_tags.map(({ tags }) => (

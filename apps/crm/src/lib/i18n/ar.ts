@@ -639,11 +639,10 @@ export const ar: Record<MessageKey, string> = {
   "event.publishing.prepared": "جُهّزت حزمة النشر",
   "event.render.queued": "أُضيف التصيير إلى الانتظار",
   "nav.ideas": "مراجعة الأفكار",
-  "ideas.subtitle":
-    "تصفّح الأفكار المعلّقة. وافق لبدء الإنتاج، أو ارفض لحذفها، أو اترك ملاحظة للوكيل.",
+  "ideas.subtitle": "هنا فقط ما ينتظرك. وافق لبدء الإنتاج، أو ارفض لحذفها، أو اترك ملاحظة للوكيل.",
   "ideas.count": "{n} من {total}",
   "ideas.empty":
-    "لا توجد أفكار معلّقة. تظهر هنا الأفكار الجديدة من الصندوق أو تيليغرام أو الأبحاث المستوردة.",
+    "لا شيء ينتظرك الآن. تظهر هنا الأفكار الجديدة والأفكار التي حدّثها الوكيل بعد ملاحظتك.",
   "ideas.hint": "اسحب أو استخدم مفاتيح الأسهم للتنقل بين الأفكار.",
   "ideas.previous": "الفكرة السابقة",
   "ideas.next": "الفكرة التالية",
@@ -658,7 +657,6 @@ export const ar: Record<MessageKey, string> = {
   "ideas.approved": "تمت الموافقة: {title}. بدأ التحليل.",
   "ideas.declined": "تم الرفض: {title}",
   "ideas.backlog": "قائمة الانتظار",
-  "ideas.openNotes": "{n} ملاحظة بانتظار الرد",
   "ideas.answeredNotes": "{n} تمّ الرد عليها",
   "ideas.submitted": "أُضيفت {when}",
   "ideas.notes": "ملاحظات للوكيل",
@@ -674,7 +672,7 @@ export const ar: Record<MessageKey, string> = {
   "ideas.noteHelp":
     "يقرأ الوكيل الملاحظات المفتوحة في بداية جلسته التالية، فيحدّث الفكرة ويرد هنا. Ctrl+Enter للإرسال.",
   "ideas.send": "إرسال الملاحظة",
-  "ideas.noteSent": "أُرسلت الملاحظة. سيقرؤها الوكيل في جلسته التالية.",
+  "ideas.noteSent": "أُرسلت الملاحظة. ستعود الفكرة إلى هنا بعد أن يرد الوكيل.",
   "ideas.declineTitle": "رفض هذه الفكرة؟",
   "ideas.reason": "السبب",
   "ideas.reasonPlaceholder": "مثلاً: قريبة جداً من منشور لدينا",
@@ -686,7 +684,6 @@ export const ar: Record<MessageKey, string> = {
   "event.idea.revised": "حدّث الوكيل الفكرة",
   "event.idea.declined": "رُفضت الفكرة في مراجعة الأفكار",
   "ideas.post": "منشور جاهز",
-  "ideas.changesRequested": "مطلوب تعديلات",
   "ideas.postApproved": "تمت الموافقة: {title}. المنشور جاهز للنشر.",
   "ideas.postApproveHint": "الموافقة على المنشور الجاهز (ينتقل إلى جاهز للنشر)",
   "ideas.postDeclineHint": "رفض هذا المنشور وحذفه مع كل ملفاته",

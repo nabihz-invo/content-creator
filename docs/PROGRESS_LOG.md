@@ -14,6 +14,12 @@ Template:
 
 ---
 
+## 2026-11-08 — P5-T20 Idea review shows only what waits for the owner — in progress
+- Agent/branch: local Claude Code (main)
+- Why: owner wants approved or commented ideas off the page. A note and a post's review both leave the status `new`, so those cards came back on reload.
+- Changes: `needsReview()` filters `usePendingIdeas` (no open note, no post review); sending a note closes the dialog and removes the card from the cached list, so it returns once the agent answers; badges for the excluded states removed; EN/AR texts.
+- Not verified: the page in a browser.
+
 ## 2026-11-08 — Content kit moved into the repo — done
 - Why: owner works from several PCs and wants posts and reels made from one repo.
 - Changes: `content/` moved in (tools, assets, plans, post sources; rendered PNG/MP4 ignored, about 398 MB tracked); skills to `.claude/skills/` (with `viral-motion-editor`); older tools to `content/tools/legacy/`; agent notes to `content/docs/agent-memory/`; `docs/HANDOFF_CONTENT.md`; `scripts/sql.sh`; lint and format skip `content/`.
