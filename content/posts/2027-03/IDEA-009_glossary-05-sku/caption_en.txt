@@ -1,0 +1,3 @@
+Glossary #05. If two products need different counts, they need different SKUs.
+
+How many SKUs does your business carry?

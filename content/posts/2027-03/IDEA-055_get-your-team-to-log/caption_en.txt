@@ -1,0 +1,3 @@
+Five lessons from building Stacko for a team that didn't log anything.
+
+What would you add?
