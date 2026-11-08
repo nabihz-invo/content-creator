@@ -1,0 +1,2 @@
+The full Stacko interface works right to left, and switches language with one tap.
+Share it with your Arabic-speaking team.

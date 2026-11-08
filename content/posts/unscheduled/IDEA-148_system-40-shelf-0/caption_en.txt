@@ -1,0 +1,3 @@
+In one large study of 370,000 inventory records across 37 stores, 65% of the records didn't match what was on the shelf (DeHoratius & Raman, Management Science, 2008).
+
+How sure are you about yours?

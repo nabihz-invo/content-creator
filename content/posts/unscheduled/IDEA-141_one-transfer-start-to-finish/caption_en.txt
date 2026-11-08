@@ -1,0 +1,2 @@
+This is the whole loop. One message in, a clean record out.
+Save it for the next time someone asks "but how does it work?"
