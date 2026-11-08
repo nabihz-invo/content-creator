@@ -1,0 +1,19 @@
+D30-02 · 5 steps to find where your stock numbers go wrong · Carousel (7 slides)
+
+RESOLVED WITH THE REVIEWER (26 Oct 2026)
+1. Status: approved for production by the reviewer. The sheet still says "Pending"; update it there.
+2. Images: continue with them as they are. IMG-01 and IMG-03 are still "Generated" in the Image Library, not "Approved".
+3. "Pick 20 fast-moving items. Not all 10,000." is fine as method guidance.
+4. Cropping the landscape images to 4:5 is accepted.
+5. The dimmed IMG-24 cube behind the closing slide is accepted.
+
+STILL OPEN
+- Arabic version: skipped until the English version is approved.
+- IMG-01 has a handwritten paper sign with Arabic-looking scribbles. It looks unreadable, but check it before posting.
+- Overlaps With: EDU-14, EDU-38, EDU-40, EDU-69. Check the schedule so similar posts don't run close together.
+
+CHECKS PASSED
+- Review flag "eliminate → find out why": the slides say "find out why"; nothing promises to eliminate gaps.
+- Stage / Claim Label is "No product claim". No feature is shown, so no stage label is on screen.
+- Claim checklist: no AI content, no ERP claim, no real customer, supplier or price, and the website isn't shown.
+- Brand: colours, fonts and type styles come from the Stacko brand kit (content/_brand/stacko.css), and logos from the logo pack (horizontal-dark, horizontal-tagline-dark).

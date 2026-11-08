@@ -1,0 +1,11 @@
+Guess the stock problem.
+
+A manager calls three warehouses to confirm stock. Then calls a customer back with: I think we have thirty-eight.
+
+What's the real problem? A: bad staff. B: too many warehouses. C: no visibility. D: slow phone.
+
+C: no visibility. The stock was there. The movement was recorded. The data was real. It just wasn't visible in one place.
+
+One map. Every warehouse. Answer in seconds.
+
+Comment your guess, and book a meeting with our team.

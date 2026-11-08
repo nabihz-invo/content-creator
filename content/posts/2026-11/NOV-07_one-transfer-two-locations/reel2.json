@@ -1,0 +1,104 @@
+{
+ "id": "NOV-07",
+ "lines": [
+  {
+   "vo": {
+    "en": "A stock transfer involves two locations. Can your team follow the full picture?",
+    "ar": "النقلة الوحدة فيها مستودعين. فريقك شايف الصورة كاملة؟"
+   },
+   "scene": {
+    "type": "shot",
+    "img": "scr/SCR-02_live-map-only.png",
+    "h": 680,
+    "top": 600,
+    "zoom": [
+     1.0,
+     1.18
+    ],
+    "origin": "40% 68%",
+    "tag": "demo",
+    "en": {
+     "head": "One transfer. *Two locations.*"
+    },
+    "ar": {
+     "head": "نقلة وحدة. *مستودعين.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "When stock moves between locations, teams need clear information about where it came from and where it's going.",
+    "ar": "لمّا البضاعة تتحرّك بين المواقع، الفريق بدّو يعرف بوضوح من وين جايي ولوين رايحة."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-trf.png",
+    "h": 1150,
+    "top": 480,
+    "zoom": [
+     1.0,
+     1.1
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "From where, *to where.*"
+    },
+    "ar": {
+     "head": "من وين، *لوين.*"
+    },
+    "w": 760,
+    "focus": "center top"
+   }
+  },
+  {
+   "vo": {
+    "en": "A map-based view can make those locations easier to understand.",
+    "ar": "الخريطة بتخلّي هالمواقع أسهل للفهم."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "Both ends, *on one map.*"
+    },
+    "ar": {
+     "head": "الطرفين *على خريطة وحدة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "What information matters most during a transfer? Book a meeting with our team.",
+    "ar": "شو أهم معلومة بالنسبة إلك وقت النقلة؟ احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "What matters most during a transfer?"
+    },
+    "ar": {
+     "ask": "شو أهم شي وقت النقلة؟"
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "Moving stock between branches involves more than moving boxes. Teams may need to know the source, destination, and current status. What do you need to track during a transfer?\n\nBook a meeting with our team.",
+  "ar": "نقل البضاعة بين الفروع أكتر من نقل كراتين. الفريق بدّو يعرف من وين، لوين، ووين صارت. شو بدّك تتابع وقت النقلة؟\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#Stacko #StockTransfer #WarehouseOperations #MultiWarehouse",
+ "changes": [
+  "VO \"We're exploring how a map-based view could make…\" → \"A map-based view can make…\"; caption dropped \"Stacko is still in development, and we're exploring…\"; added Book a meeting.",
+  "Transfers are built in the app: scene 2 is a real transfer screen (Demo data); the route animation is tagged Concept.",
+  "Line 1: drawn \"route\" scene replaced with the real screen SCR-02_live-map-only.png (Background Library), tagged Demo data."
+ ]
+}

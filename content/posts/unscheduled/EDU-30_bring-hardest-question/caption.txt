@@ -1,0 +1,26 @@
+EDU-30 · Reel ·  · 22s · 1080x1920
+Title: Bring your hardest question
+Files: EDU-30_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+If you book a meeting with Stacko, bring your hardest question.
+
+Not "can you show me the map?" (we'll show you that anyway). The hard ones: "Will this work with my ERP?" "What happens when the AI is wrong?" "Who owns my data?"
+
+We'll answer straight, and if we're not the right fit, we'll tell you.
+
+Drop your hardest question below, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  If you book a meeting with Stacko, bring your hardest question.
+  4.2s  Not, can you show me the map? We'll show you that anyway.
+  7.8s  The hard ones. Will this work with my ERP? What happens when the AI is wrong? Who owns my data?
+ 13.5s  We'll answer straight. And if we're not the right fit, we'll tell you.
+ 18.7s  Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

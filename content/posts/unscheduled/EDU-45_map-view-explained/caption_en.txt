@@ -1,0 +1,13 @@
+The map view, explained.
+
+Every warehouse. Every branch. One screen.
+
+01 Locations, not spreadsheets — each warehouse and branch is a pin, not a row
+02 Click a pin, see the stock — quantities, status, availability
+03 See movement, not just quantities — what moved between locations
+04 Spot what needs attention — low stock and pending items are visually distinct (Concept)
+05 Scoped to permissions — warehouse users, managers, and viewers each see what they should
+
+What the map is *not*: a replacement for your ERP ledger. It's the visual layer that answers "where is it?" — fast.
+
+👉 Book a meeting — link in bio.

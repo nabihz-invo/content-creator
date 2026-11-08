@@ -1,0 +1,65 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><title>NOV-09-EN-1 · Five warehouses</title>
+<link rel="stylesheet" href="/assets/brand/brand.css"><style>
+.bg{position:absolute;inset:0;width:1080px;height:1350px;object-fit:cover}
+.topshade{position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(180deg,rgba(14,36,64,.9),rgba(14,36,64,.55) 55%,rgba(14,36,64,0))}
+.botshade{position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(180deg,rgba(10,20,36,0),rgba(10,20,36,.88))}
+.h1{position:absolute;left:64px;top:170px;width:952px;font-size:84px}
+.h1 em,.sub em{font-style:normal;color:var(--dolphin)}
+.sub{position:absolute;left:64px;width:952px;font-size:36px;color:#fff!important}
+.net{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.pin{position:absolute;display:flex;align-items:center;gap:8px;background:#fff;color:var(--abyss);border-radius:999px;padding:7px 8px 7px 16px;font-size:21px;font-weight:600;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.35);transform:translate(-50%,-100%);direction:ltr}
+.pin span{background:var(--foam);border-radius:999px;padding:2px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+.pin:after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-8px;border:8px solid transparent;border-top-color:#fff;border-bottom:0}
+.pin.q{padding:7px 18px;background:rgba(255,255,255,.85);font-size:26px}
+.truck{position:absolute;transform:translate(-50%,-50%)}
+.truck .tag{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);background:var(--signal);color:#fff;font-size:19px;font-weight:600;padding:5px 14px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.truck .tag.dim{background:var(--abyss);border:1px solid var(--visor)}
+.bar{position:absolute;left:64px;right:64px;bottom:52px;display:flex;align-items:center;justify-content:space-between;font-size:24px;color:var(--visor)}
+.dots{display:flex;gap:10px}.dots i{width:12px;height:12px;border-radius:50%;background:rgba(201,216,228,.35)}.dots i.on{width:36px;border-radius:6px;background:#fff}
+.bar b{color:#fff;font-weight:600}
+.card{position:absolute;background:#fff;color:var(--abyss);border-radius:24px;box-shadow:0 18px 44px rgba(0,0,0,.4);padding:24px 28px}
+.card .k{font-size:18px;font-weight:700;letter-spacing:.08em;color:var(--signal)}
+.card h4{font-size:32px;font-weight:600;letter-spacing:-.02em;margin:4px 0 14px}
+.stat{display:flex;gap:10px}
+.stat div{flex:1;background:var(--foam);border-radius:14px;padding:10px 12px}
+.stat b{display:block;font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat small{font-size:18px;color:var(--deep)}
+.pill{display:inline-block;font-size:18px;font-weight:600;padding:4px 12px;border-radius:999px;margin-top:12px}
+.pill.ok{background:#BCE5E0}.pill.lo{background:#F0AAAA}
+.bub{position:absolute;max-width:560px;font-size:28px;line-height:1.3;padding:16px 24px;border-radius:26px;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.bub.in{background:#1F4A75;color:#fff;border-top-left-radius:8px}
+.bub.out{background:var(--signal);color:#fff;border-top-right-radius:8px}
+.bub small{display:block;font-size:17px;font-weight:600;color:var(--dolphin);margin-bottom:2px}
+.bub.out small{color:#D9F3F5}
+.role{display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--foam)}
+.role i{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:20px;color:#fff}
+.role b{flex:1;font-size:25px;font-weight:600}
+.role span{font-size:17px;font-weight:600;background:#BCE5E0;border-radius:999px;padding:3px 10px}
+.shot{position:absolute;left:64px;top:470px;width:952px;height:712px;border-radius:28px;overflow:hidden;border:6px solid #fff;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.opts{position:absolute;left:64px;top:500px;width:952px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.opt{height:290px;border-radius:26px;background:rgba(255,255,255,.07);border:1px solid rgba(201,216,228,.25);padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.opt .l{width:64px;height:64px;border-radius:18px;background:#fff;color:var(--abyss);display:grid;place-items:center;font-size:30px;font-weight:700}
+.opt p{font-size:32px;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.halo{position:absolute;left:50%;top:860px;width:900px;height:500px;margin-left:-450px;background:radial-gradient(closest-side,rgba(46,242,238,.16),rgba(46,242,238,0));pointer-events:none}
+/* Arabic */
+[dir=rtl] .h1{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;letter-spacing:0;line-height:1.35}
+[dir=rtl] .sub,[dir=rtl] .card,[dir=rtl] .bub,[dir=rtl] .opt,[dir=rtl] .bar{font-family:'Readex Pro',sans-serif}
+[dir=rtl] .bub.in{border-top-left-radius:26px;border-top-right-radius:8px}
+[dir=rtl] .bub.out{border-top-right-radius:26px;border-top-left-radius:8px}
+[dir=rtl] .card .k{letter-spacing:0}
+.top .lockup{direction:ltr}
+.aword{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;font-size:38px;color:#fff;line-height:1}
+.aword i{font-style:normal;color:var(--glow)}
+[dir=rtl] .foot .by b{direction:ltr;display:inline-block}
+</style></head><body>
+<div class="post dark">
+<img class="bg" src="/assets/post-images/final/NOV09-A.jpg" alt=""><div class="topshade"></div><div class="botshade"></div>
+<h1 class="h1" style="font-size:104px">Five warehouses.</h1><p class="sub" style="top:300px;font-size:40px">How do you keep the <em>full picture</em> in view?</p>
+<svg class="net" viewBox="0 0 1080 1350"><g fill="none" stroke="#79C0DE" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round" opacity=".9">
+<path d="M300 1140 C 330 980, 420 860, 505 820"/><path d="M505 820 C 640 700, 780 640, 905 596"/><path d="M905 596 C 950 560, 975 530, 995 500"/><path d="M505 820 C 650 900, 780 960, 890 1030"/>
+</g></svg><div class="pin" style="left:932px;top:470px">WH-01 <span>2,140</span></div><div class="pin" style="left:850px;top:568px">WH-02 <span>1,380</span></div><div class="pin" style="left:508px;top:790px">WH-03 <span>3,905</span></div><div class="pin" style="left:893px;top:1000px">WH-04 <span>860</span></div><div class="pin" style="left:305px;top:1112px">WH-05 <span>1,720</span></div>
+<div class="truck" style="left:706px;top:712px"><div class="tag">ETA 1h 20m</div><svg width="100" height="46" viewBox="0 0 48 22"><rect x="1" y="2" width="31" height="15" rx="2.5" fill="#fff" stroke="#0E2440" stroke-width="1.4"/><rect x="4" y="12" width="25" height="2.2" rx="1" fill="#0895A6"/><path d="M33 5 H40 L46 11 V17 H33 Z" fill="#0E2440"/><path d="M36 7 H39.5 L43.5 11 H36 Z" fill="#BCE5E0"/><circle cx="9" cy="18.5" r="2.6" fill="#0E2440"/><circle cx="24" cy="18.5" r="2.6" fill="#0E2440"/><circle cx="40" cy="18.5" r="2.6" fill="#0E2440"/></svg></div>
+<div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
+<div class="bar"><div class="dots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div><b>Swipe</b> to see it come together →</div></div>
+</div></body></html>

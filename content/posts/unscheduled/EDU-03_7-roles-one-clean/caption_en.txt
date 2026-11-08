@@ -1,0 +1,17 @@
+"Who changed this stock quantity?"
+
+If that question makes you nervous, you don't have a permissions problem. You have a *trust* problem.
+
+Stacko's role model separates responsibilities on purpose:
+
+1️⃣ Invoice/document user — uploads, drafts
+2️⃣ Purchase user — purchase drafts & receipts
+3️⃣ Warehouse/stock user — receipts, issues, transfers, adjustments (assigned locations only)
+4️⃣ Manager/admin reviewer — approves, resolves, manages permissions
+5️⃣ Administrator — configures
+6️⃣ Billing — subscription only
+7️⃣ Read-only viewer — sees permitted data, edits nothing
+
+The person who creates a transaction shouldn't be the only person who approves it. That's not bureaucracy — that's how you keep records reliable.
+
+👉 Which role are you? Comment below. Book a meeting in bio.

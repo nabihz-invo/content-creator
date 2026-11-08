@@ -1,0 +1,52 @@
+{
+ "id": "EDU-65",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "cta",
+   "bg": "story-map",
+   "en": {
+    "eyebrow": "Live · [DATE · TIME]",
+    "title": "Live demo *+ Q&A.*",
+    "lead": "15 minutes of walkthrough. 15 minutes of open Q&A. No pitch deck. Bring your hardest question."
+   },
+   "ar": {
+    "eyebrow": "مباشر · [التاريخ · الوقت]",
+    "title": "ديمو مباشر *+ أسئلة وأجوبة.*",
+    "lead": "١٥ دقيقة جولة. ١٥ دقيقة أسئلة مفتوحة. بلا عرض تقديمي. جيب أصعب سؤال عندك."
+   }
+  },
+  {
+   "type": "big",
+   "en": {
+    "eyebrow": "Recap · [date]",
+    "title": "The 3 questions *we got most.*",
+    "body": [
+     "1. [Question] → [Answer]",
+     "2. [Question] → [Answer]",
+     "3. [Question] → [Answer]",
+     "Missed it? The next one is [date]."
+    ]
+   },
+   "ar": {
+    "eyebrow": "ملخّص · [التاريخ]",
+    "title": "أكتر ٣ أسئلة *إجونا.*",
+    "body": [
+     "١. [السؤال] ← [الجواب]",
+     "٢. [السؤال] ← [الجواب]",
+     "٣. [السؤال] ← [الجواب]",
+     "فاتك؟ الجاي بـ[التاريخ]."
+    ]
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route L): promo post (slide 1) + recap card (slide 2) with [date/time] placeholders. Walkthrough slides and replay cut-downs need the live session to happen first (founder hosts).",
+  "\"prototype walkthrough\" → \"walkthrough\"; dropped \"🟢 Prototype demo · 🟡 planned features labelled on screen\" (kept as \"Every feature is labelled on screen\"); pilot comment CTA → \"Book a meeting\"."
+ ],
+ "caption": {
+  "en": "Monthly Stacko demo + Q&A, live.\n\n15 minutes walking through Stacko. 15 minutes of open questions — including the ones we can't answer yet. Every feature is labelled on screen.\n\n[DATE · TIME] — tap to set a reminder.\n\nBook a meeting with our team.\n\nSESSION STRUCTURE (30 min)\n0:00–0:05 Welcome · 0:05–0:20 Demo (map → pin → stock → transactions → AI draft → roles → audit trail; tag anything not built as Concept) · 0:20–0:28 Q&A · 0:28–0:30 CTA: book a meeting.\n\nRECAP POST (day after): slide 2 of this folder, filled with the real top 3 questions.",
+  "ar": "ديمو ستاكو الشهري + أسئلة وأجوبة، مباشر.\n\n١٥ دقيقة جولة بستاكو. ١٥ دقيقة أسئلة مفتوحة — حتى اللي ما عنّا جواب إلها بعد. كل ميزة معلّمة عالشاشة.\n\n[التاريخ · الوقت] — كبوس لتحطّ تذكير.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#LiveDemo #InventoryManagement #SMB #Stacko #SupplyChain #QandA #ProductDemo #BusinessOperations #DistributorLife #WarehouseManagement"
+}

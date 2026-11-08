@@ -1,0 +1,13 @@
+Before you buy *any* inventory system — including ours — ask these 5 questions:
+
+01 Who can create a transaction, and who can approve it?
+02 Are permissions scoped by action *and* location?
+03 Is there an audit trail with before/after values?
+04 What happens when the AI gets something wrong?
+05 What is the source of truth for each data type?
+
+If a vendor can't answer all five clearly, that's your answer.
+
+We built Stacko around these principles — but don't take our word for it. Ask us in a meeting. We'll show you exactly how each one works.
+
+👉 Save this checklist. Book a meeting in bio.

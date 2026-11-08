@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EDU-15 · We're not asking you to rip out your ERP</title>
+<link rel="stylesheet" href="../../_brand/stacko.css">
+<style>
+  /* 1080x1920 reel generated from reel.json. seek(t) sets every layer for time t, so the render is frame-exact.
+     Text stays inside the Reels safe zone (clear of the top 190px and bottom 420px). */
+  body{display:flex;justify-content:center;padding:20px 0}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--deepest);color:#fff}
+  .layer{position:absolute;inset:0;opacity:0;overflow:hidden}
+  .bgdark{background:radial-gradient(120% 80% at 50% 40%,#1B416B 0%,#0E2440 60%)}
+  video,.layer img.full{position:absolute;display:block}
+  .shade{position:absolute;inset:0;pointer-events:none}
+  .head{position:absolute;z-index:3;left:84px;right:84px;top:250px;font-size:84px;font-weight:600;line-height:1.05;letter-spacing:-.045em;text-shadow:0 6px 30px rgba(4,12,24,.55)}
+  .head em{font-style:normal;color:var(--glow)}
+  .tag{position:absolute;z-index:3;right:84px;top:190px;font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--visor);padding:9px 16px;border-radius:999px;background:rgba(10,27,49,.6);border:1px solid rgba(121,192,222,.25)}
+  .cap{position:absolute;z-index:5;left:70px;right:70px;top:1330px;display:flex;justify-content:center;opacity:0}
+  .cap span{background:rgba(10,27,49,.82);border:1px solid rgba(121,192,222,.22);padding:18px 30px;border-radius:22px;font-size:46px;font-weight:600;line-height:1.25;text-align:center;letter-spacing:-.01em}
+  .card{position:absolute;left:120px;right:120px;border-radius:28px;background:rgba(244,248,250,.97);color:var(--abyss);box-shadow:0 40px 90px rgba(4,12,24,.55);padding:30px 34px;opacity:0}
+  .card .lbl{font-size:24px;font-weight:600;color:var(--ink2)}
+  .card .big{font-size:40px;font-weight:600;letter-spacing:-.02em;margin-top:6px}
+  .rows{display:grid;gap:12px;margin-top:18px}
+  .rows i{display:block;height:24px;border-radius:7px;background:#E3ECF2}
+  .rows i:nth-child(2n){width:72%}
+  .bub{display:inline-block;margin-top:12px;padding:14px 22px;border-radius:20px;background:#E3ECF2;font-size:32px;font-weight:500}
+  .device{position:absolute;left:40px;top:560px;width:1000px;border-radius:26px;overflow:hidden;box-shadow:0 50px 120px rgba(0,0,0,.55);border:1px solid rgba(201,216,228,.35);transform-origin:0 0;background:#fff}
+  .device video{position:static;width:100%}
+  .tap{position:absolute;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;border:5px solid var(--glow);opacity:0}
+  .phone{position:absolute;width:330px;right:60px;top:960px;border-radius:44px;box-shadow:0 40px 90px rgba(0,0,0,.6);opacity:0}
+  .shotbox{position:absolute;left:70px;right:70px;top:560px;height:720px;display:flex;align-items:center;justify-content:center}
+  .shotbox img{max-width:100%;max-height:100%;border-radius:26px;box-shadow:0 50px 120px rgba(0,0,0,.5);border:1px solid rgba(201,216,228,.3)}
+  .big{position:absolute;z-index:3;left:84px;right:84px;top:520px;font-size:104px;font-weight:600;line-height:1.04;letter-spacing:-.05em}
+  .big em{font-style:normal;color:var(--glow)}
+  .bigsub{position:absolute;z-index:3;left:84px;right:84px;top:1000px;font-size:40px;line-height:1.45;color:var(--visor)}
+  .end{position:absolute;left:0;right:0;top:500px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .end img{width:180px;height:180px}
+  .end .wm{font-size:120px;margin-top:18px}
+  .end h2{font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1.04;margin-top:64px}
+  .end h2 em{font-style:normal;color:var(--glow)}
+  .btn{margin-top:56px;padding:28px 52px;border-radius:24px;background:var(--ocean);font-size:44px;font-weight:600;box-shadow:0 20px 50px rgba(47,134,184,.45)}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+// Timeline written by build_reel.js: scenes [{type,a,b,...}] and caption chunks [{t,a,b}] in seconds
+const DATA = {"scenes": [{"type": "text", "big": "“We already have an ERP.” *Good. Keep it.*", "a": 0, "b": 4.26}, {"type": "shot", "img": "erp-card", "head": "Built for records, *not for sight.*", "tag": "Demo data", "a": 4.26, "b": 10.94}, {"type": "app", "zoom": "overview", "head": "Add *the map.*", "tag": "Demo data", "a": 10.94, "b": 17.22}, {"type": "shot", "img": "erp-sync", "head": "You choose *the limits.*", "tag": "Demo data", "a": 17.22, "b": 26.41}, {"type": "end", "big": "Keep your ERP.<br>*Add the view.*", "a": 26.41, "b": 32.62}], "caps": [{"t": "We already have Odoo.", "a": 0.44, "b": 1.87}, {"t": "We already have SAP.", "a": 1.87, "b": 3.23}, {"t": "Good.", "a": 3.23, "b": 3.57}, {"t": "Keep it.", "a": 3.57, "b": 4.39}, {"t": "ERPs are great at recording transactions.", "a": 4.39, "b": 6.95}, {"t": "Seeing where your stock is,", "a": 6.95, "b": 8.63}, {"t": "across every site,", "a": 8.63, "b": 9.75}, {"t": "is another story.", "a": 9.75, "b": 11.07}, {"t": "Stacko sits on top of your system", "a": 11.07, "b": 13.54}, {"t": "and adds the live map and AI document capture.", "a": 13.54, "b": 17.45}, {"t": "You choose the limits: read-only,", "a": 17.45, "b": 19.52}, {"t": "draft for approval,", "a": 19.52, "b": 20.72}, {"t": "or send after approval.", "a": 20.72, "b": 22.16}, {"t": "And every sync carries a reference,", "a": 22.16, "b": 24.36}, {"t": "so nothing is recorded twice.", "a": 24.36, "b": 26.64}, {"t": "Keep your ERP.", "a": 26.64, "b": 27.53}, {"t": "Add the view.", "a": 27.53, "b": 28.37}, {"t": "Book a meeting with our team.", "a": 28.37, "b": 30.72}]};
+const FOOT = { hero: { w: 3888, h: 1952, focusX: .66 }, app: { w: 2400, h: 1454 }, how: { w: 1920, h: 2400 }, inv: { w: 2400, h: 1224 } };
+const ZOOMS = { overview: [[0, .5, .5, 1], [1, .5, .5, 1.06]],
+  site: [[0, .5, .5, 1], [.35, .5, .5, 1.03], [.55, .2, .5, 1.75], [1, .2, .5, 1.85]],
+  panel: [[0, .5, .5, 1], [.35, .5, .5, 1.03], [.55, .83, .62, 1.75], [1, .83, .62, 1.85]],
+  'site-panel': [[0, .5, .5, 1], [.25, .5, .5, 1.03], [.4, .2, .5, 1.75], [.62, .2, .5, 1.8], [.72, .83, .62, 1.75], [1, .83, .62, 1.85]],
+  kpis: [[0, .5, .5, 1], [.35, .5, .5, 1.03], [.55, .78, .1, 1.9], [1, .78, .1, 2]] };
+const X = .45, stage = document.getElementById('stage');
+const clamp = v => Math.max(0, Math.min(1, v));
+const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const out3 = x => 1 - Math.pow(1 - clamp(x), 3);
+const ramp = (t, a, d = .45) => out3((t - a) / d);
+const win = (t, a, b, f = X) => Math.min(clamp((t - a) / f), 1 - clamp((t - b) / f));
+const rich = s => String(s || '').replace(/\*(.+?)\*/g, '<em>$1</em>');
+const el = (html) => { const d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; };
+function keys(k, u) {
+  if (u <= k[0][0]) return k[0].slice(1);
+  for (let i = 1; i < k.length; i++) if (u <= k[i][0]) { const [a0, ...a] = k[i - 1], [b0, ...b] = k[i], p = ease((u - a0) / (b0 - a0)); return a.map((v, j) => v + (b[j] - v) * p); }
+  return k[k.length - 1].slice(1);
+}
+function seekVideo(v, time) {
+  time = Math.max(0, Math.min(time, (v.duration || 1) - .05));
+  if (Math.abs(v.currentTime - time) < 1e-3) return Promise.resolve();
+  return new Promise(r => { v.addEventListener('seeked', r, { once: true }); v.currentTime = time; });
+}
+const coverVideo = (src, focusX) => { const f = FOOT[src], w = f.w * 1920 / f.h; return `<video src="../../_brand/footage/${src}.mp4" muted preload="auto" style="width:${w}px;height:1920px;top:0;left:${540 - focusX * w}px;transform-origin:${focusX * w}px 960px"></video>`; };
+const headHtml = s => (s.tag ? `<span class="tag">${s.tag}</span>` : '') + (s.head ? `<div class="head">${rich(s.head)}</div>` : '');
+
+// build one layer per scene
+DATA.scenes.forEach((s, i) => {
+  let h = '';
+  if (s.type === 'hero') h = coverVideo('hero', s.focusX || .66) + `<div class="shade" style="background:linear-gradient(rgba(10,27,49,.85) 0%,rgba(10,27,49,0) 32%,rgba(10,27,49,0) 62%,rgba(10,27,49,.8) 100%)"></div>`;
+  if (s.type === 'pain') h = coverVideo('hero', .66) + `<div class="shade" style="background:rgba(10,27,49,.55)"></div>` + (s.cards || []).map((c, k) => {
+    const top = 600 + k * 260;
+    if (c.kind === 'call') return `<div class="card" style="top:${top}px"><div class="lbl">${c.label || 'Calling…'}</div><div class="big">${c.text}</div></div>`;
+    if (c.kind === 'chat') return `<div class="card" style="top:${top}px"><div class="lbl">${c.label || 'Warehouse team'}</div><div class="bub">${c.text}</div></div>`;
+    return `<div class="card" style="top:${top}px"><div class="lbl">▦ ${c.text}</div><div class="rows"><i></i><i></i><i></i></div></div>`;
+  }).join('');
+  if (s.type === 'app') h = `<div class="dots"></div><div class="device"><video src="../../_brand/footage/app.mp4" muted preload="auto"></video><div class="tap"></div></div>` + (s.phone ? `<img class="phone" src="../../_brand/site/en-phone.png" alt="">` : '');
+  if (s.type === 'inv') h = `<div class="dots"></div><div class="device" style="height:${1000 * 1100 / 2400 + 0}px"><video src="../../_brand/footage/inv.mp4" muted preload="auto" style="margin-top:${-1000 * 124 / 2400}px"></video></div>`;
+  if (s.type === 'how') h = `<video src="../../_brand/footage/how.mp4" muted preload="auto" style="width:1080px;height:1350px;left:0;top:450px"></video><div class="shade" style="background:linear-gradient(#0E2440 0%,#0E2440 24%,rgba(14,36,64,0) 31%,rgba(14,36,64,0) 84%,#0E2440 93%,#0E2440 100%)"></div>`;
+  if (s.type === 'shot') h = `<div class="dots"></div><div class="shotbox"><img src="../../_brand/site/en-${s.img}.png" alt=""></div>`;
+  if (s.type === 'text') h = `<div class="dots"></div><div class="big">${rich(s.big)}</div>` + (s.sub ? `<div class="bigsub">${rich(s.sub)}</div>` : '');
+  if (s.type === 'end') h = `<div class="dots"></div><div class="end"><img src="../../_brand/mark-on-dark.svg" alt=""><span class="wm">stack<i>o</i></span><h2>${rich(s.big || 'Your stock,<br>*always in sight.*')}</h2><span class="btn">Book a meeting</span></div>`;
+  const bg = ['app', 'inv', 'shot', 'text', 'end', 'how'].includes(s.type) ? ' bgdark' : '';
+  const layer = el(`<div class="layer${bg}">${h}${s.type === 'end' ? '' : headHtml(s)}</div>`);
+  stage.appendChild(layer); s.el = layer;
+});
+DATA.caps.forEach(c => { c.el = el(`<div class="cap"><span>${c.t}</span></div>`); stage.appendChild(c.el); });
+
+window.seek = async t => {
+  const waits = [];
+  DATA.scenes.forEach((s, i) => {
+    const first = i === 0, o = first ? 1 - clamp((t - s.b) / X) : win(t, s.a, s.b);
+    s.el.style.opacity = o;
+    const u = clamp((t - s.a) / (s.b - s.a)), local = Math.max(0, t - s.a), on = o > 0 || Math.abs(t - s.a) < 1;
+    const v = s.el.querySelector('video');
+    if (s.type === 'hero' || s.type === 'pain') {
+      v.style.transform = `scale(${1 + .1 * ease(u)})`;
+      if (s.type === 'pain') v.style.filter = 'blur(16px) brightness(.6)';
+      if (on) waits.push(seekVideo(v, (s.clipFrom || 0) + local % 6.5));
+      s.el.querySelectorAll('.card').forEach((c, k, all) => { const at = s.a + (s.b - s.a) * (.15 + .6 * k / Math.max(1, all.length - 1 || 1)); const p = ramp(t, at, .5), d = k % 2 ? 1 : -1; c.style.opacity = p; c.style.transform = `translateX(${(1 - p) * d * 220}px) rotate(${(1 - p) * d * 3}deg)`; });
+    }
+    if (s.type === 'app' || s.type === 'inv') {
+      const dev = s.el.querySelector('.device'), dh = dev.offsetHeight, [fx, fy, sc] = keys(ZOOMS[s.zoom || 'overview'], u), ent = ramp(t, s.a, .7);
+      dev.style.transform = `translate(${500 - sc * fx * 1000}px, ${dh / 2 - sc * fy * dh + (1 - ent) * 120}px) scale(${sc})`;
+      if (on) waits.push(seekVideo(v, (s.clipFrom || 0) + local * (s.rate || 1)));
+      const tap = s.el.querySelector('.tap');
+      if (tap) { const at = s.a + (s.b - s.a) * .5, tp = clamp((t - at) / .6); const z = s.zoom === 'panel' ? [.83, .62] : [.2, .5]; tap.style.left = z[0] * 100 + '%'; tap.style.top = z[1] * 100 + '%'; tap.style.opacity = (s.zoom || '').match(/site|panel/) && tp > 0 && tp < 1 ? 1 - tp : 0; tap.style.transform = `scale(${.4 + tp * 1.4})`; }
+      const ph = s.el.querySelector('.phone');
+      if (ph) { const pa = s.a + (s.b - s.a) * .5, pb = s.a + (s.b - s.a) * .92; ph.style.opacity = win(t, pa, pb, .4); ph.style.transform = `translateY(${(1 - ramp(t, pa, .5)) * 300}px)`; }
+      const hd = s.el.querySelector('.head'); if (hd && s.zoom && s.zoom !== 'overview') hd.style.opacity = 1 - clamp((u - .3) / .1);
+    }
+    if (s.type === 'how') { v.style.transform = `scale(${1 + .05 * ease(u)})`; if (on) waits.push(seekVideo(v, (s.clipFrom ?? 3) + u * ((s.clipTo ?? 9.6) - (s.clipFrom ?? 3)))); }
+    if (s.type === 'shot') { const im = s.el.querySelector('img'); im.style.transform = `scale(${1 + .06 * ease(u)}) translateY(${(1 - ramp(t, s.a, .7)) * 80}px)`; }
+    if (s.type === 'text') { const b = s.el.querySelector('.big'); b.style.transform = `translateY(${(1 - ramp(t, s.a + .1, .7)) * 40}px)`; }
+    if (s.type === 'end') { s.el.querySelector('.end').style.transform = `translateY(${(1 - ramp(t, s.a + .1, .7)) * 50}px)`; const bt = s.el.querySelector('.btn'); const ba = s.a + Math.min(2.2, (s.b - s.a) * .4); bt.style.opacity = ramp(t, ba, .5); bt.style.transform = `scale(${.9 + .1 * ramp(t, ba, .5)})`; }
+    const hd = s.el.querySelector('.head');
+    if (hd && !(s.type === 'app' && s.zoom && s.zoom !== 'overview' && u > .3)) { const p = ramp(t, s.a + (first ? .2 : .25), .6); hd.style.opacity = p; hd.style.transform = `translateY(${(1 - p) * 30}px)`; }
+  });
+  DATA.caps.forEach(c => { c.el.style.opacity = t >= c.a && t < c.b ? clamp((t - c.a) / .12) : 0; c.el.style.transform = `translateY(${(1 - ramp(t, c.a, .25)) * 14}px)`; });
+  await Promise.all(waits);
+};
+</script>
+</body>
+</html>

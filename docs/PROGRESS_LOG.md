@@ -14,13 +14,19 @@ Template:
 
 ---
 
+## 2026-11-08 — Content kit moved into the repo — done
+- Why: owner works from several PCs and wants posts and reels made from one repo.
+- Changes: `content/` moved in (tools, assets, plans, post sources; rendered PNG/MP4 ignored, about 398 MB tracked); skills to `.claude/skills/` (with `viral-motion-editor`); older tools to `content/tools/legacy/`; agent notes to `content/docs/agent-memory/`; `docs/HANDOFF_CONTENT.md`; `scripts/sql.sh`; lint and format skip `content/`.
+- Verification: a post rendered from the new location; secret scan of the text files and workbooks found nothing.
+
 ## 2026-11-08 — P5-T22 image batch (content bank) — in progress
 - Agent/branch: local Claude Code (main)
 - Changes: migration `20261108100000` (SC/OB/SE codes for post images); pgTAP `20_library_scene_codes`; CRM form accepts the new prefixes (EN + AR help text); `library-to-sql.py` regex; new `scripts/import/image-batch.py`.
 - Data (hosted): BG-56…61 added as approved with their files (renamed from the batch's BG-01…06); 88 content-bank ideas imported as `new` (IDEA-001…088, batch `content-bank-2026-11`); first posts built and attached as finished: IDEA-002, IDEA-025, IDEA-001 (EN + AR).
 - Verification: pgTAP 20 on hosted in a rolled-back transaction: 4/4, nothing persisted; image copies checked by sha256 before removing the originals from `assets/IMG/`.
 - Owner pushed the migration (2026-11-08); SC-01…08, OB-01…06, SE-01…04 added as approved and uploaded: all 24 batch entries have their file (`library.mjs list --usable`).
-- Next: owner reviews IDEA-002/025/001; then IDEA-046, IDEA-026, IDEA-038.
+- Owner approved the first batch; UI-01…03 + PR-01 added after the second push (all 70 batch images in the library with files). Batch 2 built and attached as finished: IDEA-046, IDEA-026 (2-frame story), IDEA-038 (real phone map capture as a screen card). First week complete; next: the week of 15 Nov.
+- Rounds 2 and 3 (same day): importer reads the later workbook layouts (sheet and column aliases) and keeps undated ideas' "When" hint; migration `20261108120000` adds UI-xx / PR-xx codes (pgTAP 20 now 5 tests, 5/5 on hosted rolled back). Round 2: OB-07…32 (26) + IDEA-089…140 (52). Round 3 (prompts + new ideas only): OB-33…40, SC-09…16 uploaded; UI-01…03, PR-01 copied to assets, waiting for the push; IDEA-141…187 (47). BG-01…06 in both rounds' ideas rewritten to BG-56…61. Originals removed from the round folders after sha256 checks.
 
 ## 2026-11-07 — P5-T21 visual library in the CRM — in progress
 - Agent/branch: local Claude Code (main)

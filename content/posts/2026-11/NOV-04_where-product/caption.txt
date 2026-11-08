@@ -1,0 +1,23 @@
+NOV-04 · Reel · Mon 9 Nov 2026 · 24s · 1080x1920
+Title: Where is that product?
+Files: NOV-04_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Which location has this item?" A simple question that turns into calls, messages and spreadsheets when stock is spread across branches.
+
+With Stacko, tap a warehouse and see what it holds, or just ask and get the answer by site.
+
+How do you find stock across your branches today? Tell us below, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  A customer needs an item. Which warehouse has it?
+  3.7s  When stock is spread across sites, the answer means calls, messages, and guesswork.
+  9.2s  With Stacko, tap a warehouse on the map and see what it holds, right now.
+ 13.8s  Or just ask, and get the answer by site, from the same live stock.
+ 18.5s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.

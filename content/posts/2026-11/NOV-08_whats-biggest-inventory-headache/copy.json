@@ -1,0 +1,61 @@
+{
+ "id": "NOV-08",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "What is your biggest challenge when managing *multiple locations?*",
+    "lead": "Finding stock / Tracking transfers"
+   },
+   "ar": {
+    "title": "شو أكبر وجعة راس عندك *بإدارة كذا موقع؟*",
+    "lead": "إنك تلاقي البضاعة / إنك تلحق النقلات"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "What else causes *delays* for your team?"
+   },
+   "ar": {
+    "title": "شو كمان بيأخّر *فريقك؟*"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "We made Stacko for businesses that manage stock across locations — *and we're listening.*"
+   },
+   "ar": {
+    "title": "عملنا ستاكو للشركات اللي بتدير مخزون بكذا موقع — *وعم نسمع منكن.*"
+   },
+   "art": "network"
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "*What you told us.*",
+    "lead": "[Theme 1] · [Theme 2] · [Theme 3] — anonymized, with permission"
+   },
+   "ar": {
+    "title": "*شو قلتولنا.*",
+    "lead": "[الفكرة ١] · [الفكرة ٢] · [الفكرة ٣] — بلا أسماء، وبإذن"
+   }
+  }
+ ],
+ "changes": [
+  "Frame 3: \"We're building Stacko and listening…\" → \"We made Stacko for businesses that manage stock across locations — and we're listening.\" (no in-development wording).",
+  "Frame 4 is a template with placeholders (sheet: share anonymized responses only with permission)."
+ ],
+ "caption": {
+  "en": "Caption not required. Use poll responses to inform future content, not as proof of market-wide results.\n\nNOTES\n- Frame 1: Add the poll sticker in Instagram in the empty lower half of the frame. Options: \"Finding stock\" / \"Tracking transfers\".\n- Frame 2: Add the question sticker in Instagram in the empty lower half of the frame.\n- Frame 4: template — fill the themes from real answers only, anonymized, with permission.",
+  "ar": "ما في حاجة لكابشن. استعملوا أجوبة الاستفتاء لتوجيه المحتوى، مش كدليل على السوق كلّو."
+ },
+ "hashtags": "— (Stories: no hashtags)"
+}

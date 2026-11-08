@@ -1,0 +1,17 @@
+One missing transfer. One lost customer.
+
+Branch A had 20 units. Branch B needed 15. The transfer was agreed on WhatsApp. The stock moved. Nobody recorded it.
+
+A week later, a customer at Branch B ordered 15 units. The records showed 5. The physical stock was gone. The customer left.
+
+Then came the investigation. Stolen? Miscounted? Wrong branch? The WhatsApp thread was deleted. The spreadsheet was overwritten. The answer was gone.
+
+This is what happens when stock movements aren't recorded. Not because anyone was careless — because the system didn't make recording easy.
+
+Stacko records every transfer, receipt, issue, and adjustment — with the user, the timestamp, and the from/to locations. One transaction. One audit entry. One answer.
+
+Records are not bureaucracy. They're how you protect your team, your customers, and your business.
+
+👉 Book a meeting — link in bio.
+
+*Note: This story is illustrative — based on patterns we hear from stock managers. Details are fictionalized.*

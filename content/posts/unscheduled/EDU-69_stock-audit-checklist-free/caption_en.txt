@@ -1,0 +1,23 @@
+The stock audit checklist.
+
+25 questions to run on your inventory — before your next stocktake.
+
+Most stock problems are discovered too late. An audit finds them early.
+
+25 questions across 5 categories:
+• Visibility — can you answer "where is my stock?" in 10 seconds?
+• Movements — can you trace every transfer to a user and timestamp?
+• Permissions — is the creator different from the approver?
+• AI & documents — are uncertain fields flagged, never guessed?
+• Integration readiness — is the source of truth defined for each data type?
+
+Free download. No demo required.
+
+👉 Get the checklist — link in bio.
+
+Landing page copy (for link-in-bio):
+Headline: The Stock Audit Checklist
+Subhead: 25 questions to run on your inventory — free, no demo required.
+Form: First name + work email.
+Below form: "We'll email you the PDF within 2 minutes. No sales call unless you ask for one."
+Micro-text: Unsubscribe anytime. We don't share your email.

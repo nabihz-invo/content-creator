@@ -1,0 +1,28 @@
+{
+ "id": "EDU-17",
+ "size": "portrait",
+ "extra": {"linkedin_en.txt": "Every stock manager asks three questions. Every day.\n\n1. \"Where is it?\"\n2. \"What moved?\"\n3. \"Who changed it?\"\n\nThey sound simple. They're not.\n\n\"Where is it?\" means: I have stock across multiple locations and no single view. I need to answer a customer in seconds, not phone calls.\n\n\"What moved?\" means: something happened to my inventory and I need to trace it. Not guess. Trace.\n\n\"Who changed it?\" means: I need to trust my records. Which means I need to know who created, who approved, and when — without digging through chat history.\n\nMost inventory tools answer one of these well. The others are an afterthought.\n\nWe built Stacko around all three:\n\nVisibility — the map.\nMovement — the transaction history.\nControl — the roles and audit trail.\n\nIf you're a stock manager, I'd love to know: which of the three questions do you ask most often?\n\n👇\n\n#InventoryManagement #SupplyChain #SMB #StockControl #Stacko #WarehouseManagement\n"},
+ "changes": ["\"We're building Stacko around all three\" → \"We built Stacko around all three\" (no in-development wording).", "Slide 5: Book a meeting button added under the sheet's question.", "LinkedIn text saved as linkedin_en.txt for Nabih to approve."],
+ "slides": [
+  {"type": "cover", "art": "network",
+   "en": {"title": "Every stock manager asks *3 questions.* Every day."},
+   "ar": {"title": "كل مسؤول مخزون بيسأل *٣ أسئلة.* كل يوم."}},
+  {"type": "big", "num": "1", "icon": "map",
+   "en": {"title": "\"Where is it?\"", "lead": "The visibility question."},
+   "ar": {"title": "«وينو؟»", "lead": "سؤال الرؤية."}},
+  {"type": "big", "num": "2", "icon": "arrows",
+   "en": {"title": "\"What moved?\"", "lead": "The movement question."},
+   "ar": {"title": "«شو تحرّك؟»", "lead": "سؤال الحركة."}},
+  {"type": "big", "num": "3", "icon": "shield",
+   "en": {"title": "\"Who changed it?\"", "lead": "The control question."},
+   "ar": {"title": "«مين غيّرو؟»", "lead": "سؤال الضبط."}},
+  {"type": "cta",
+   "en": {"title": "Which one do you *ask most?*", "lead": "Comment below."},
+   "ar": {"title": "أيّا واحد *بتسأل أكتر؟*", "lead": "علّق تحت."}}
+ ],
+ "caption": {
+  "en": "Every stock manager asks three questions. Every day.\n\n1. \"Where is it?\"\n2. \"What moved?\"\n3. \"Who changed it?\"\n\nThey sound simple. They're not.\n\n\"Where is it?\" means: I have stock across multiple locations and no single view. I need to answer a customer in seconds, not phone calls.\n\n\"What moved?\" means: something happened to my inventory and I need to trace it. Not guess. Trace.\n\n\"Who changed it?\" means: I need to trust my records. Which means I need to know who created, who approved, and when — without digging through chat history.\n\nMost inventory tools answer one of these well. The others are an afterthought.\n\nWe built Stacko around all three:\n\nVisibility — the map.\nMovement — the transaction history.\nControl — the roles and audit trail.\n\nIf you're a stock manager, I'd love to know: which of the three questions do you ask most often?\n\n👇",
+  "ar": "كل مسؤول مخزون بيسأل ٣ أسئلة. كل يوم.\n\n١. «وينو؟»\n٢. «شو تحرّك؟»\n٣. «مين غيّرو؟»\n\nبيبيّنوا بسيطين. مش بسيطين.\n\n«وينو؟» يعني: عندي مخزون بكذا موقع وما عندي شاشة وحدة. بدّي جاوب الزبون بثواني، مش بتلفونات.\n\n«شو تحرّك؟» يعني: صار شي بمخزوني ولازم إعرف شو. مش خمّن. إعرف.\n\n«مين غيّرو؟» يعني: بدّي إتّكل على سجلاتي. يعني لازم إعرف مين عمل، مين وافق، وإيمتى — بلا ما فتّش بالشات.\n\nأغلب برامج المخزون بتجاوب على واحد منهن منيح. والباقي على الهامش.\n\nبنينا ستاكو حول التلاتة:\n\nالرؤية — الخريطة.\nالحركة — سجل المعاملات.\nالضبط — الأدوار وسجل التدقيق.\n\nإذا إنت مسؤول مخزون، حابّين نعرف: أيّا سؤال من التلاتة بتسألو أكتر؟\n\n👇"
+ },
+ "hashtags": "#InventoryManagement #SupplyChain #SMB #StockControl #Stacko #WarehouseManagement"
+}

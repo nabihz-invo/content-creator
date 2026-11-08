@@ -1,0 +1,123 @@
+{
+ "id": "NOV-12",
+ "lines": [
+  {
+   "vo": {
+    "en": "What if you could start with the location, not another list?",
+    "ar": "شو لو بلّشت من المكان، مش من لايحة تانية؟"
+   },
+   "scene": {
+    "type": "list2map",
+    "img": "app/{lang}-map.png",
+    "tag": "demo",
+    "en": {
+     "rows": [
+      [
+       "WH-01 · Beirut warehouse",
+       "17,579"
+      ],
+      [
+       "WH-02 · Sidon warehouse",
+       "10,318"
+      ],
+      [
+       "WH-03 · Tripoli warehouse",
+       "7,442"
+      ],
+      [
+       "BR-01 · Jounieh showroom",
+       "1,368"
+      ]
+     ],
+     "head": "Start with *the location.*"
+    },
+    "ar": {
+     "rows": [
+      [
+       "WH-01 · مستودع بيروت",
+       "17,579"
+      ],
+      [
+       "WH-02 · مستودع صيدا",
+       "10,318"
+      ],
+      [
+       "WH-03 · مستودع طرابلس",
+       "7,442"
+      ],
+      [
+       "BR-01 · صالة جونية",
+       "1,368"
+      ]
+     ],
+     "head": "بلّش *من المكان.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "For multi-location businesses, knowing where to look is part of the challenge.",
+    "ar": "للشركات اللي عندها كذا موقع، إنك تعرف وين تتطلّع هوّي جزء من التحدّي."
+   },
+   "scene": {
+    "type": "warehouses",
+    "n": 5,
+    "q": true,
+    "en": {
+     "head": "Knowing *where to look.*"
+    },
+    "ar": {
+     "head": "تعرف *وين تتطلّع.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Stacko offers a map-based way to make stock locations easier to understand.",
+    "ar": "ستاكو بيقدّم طريقة عالخريطة لتصير مواقع المخزون أسهل للفهم."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "A map-based *view.*"
+    },
+    "ar": {
+     "head": "رؤية *عالخريطة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Would a map-based view be useful in your operation? Book a meeting with our team.",
+    "ar": "بتفيدك خريطة بشغلك؟ احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "Would a map view help your operation? Why or why not?"
+    },
+    "ar": {
+     "ask": "بتفيدك الخريطة بشغلك؟ ليش أو ليش لأ؟"
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "Lists and reports can be useful, but sometimes the first question is simply where a location sits in the bigger picture. Stacko offers a map-based view for stock locations, and we'd value your perspective.\n\nBook a meeting with our team.",
+  "ar": "اللوايح والتقارير مفيدة، بس أحياناً أوّل سؤال هوّي ببساطة وين الموقع بالصورة الكبيرة. ستاكو بيقدّم رؤية عالخريطة لمواقع المخزون، ويهمّنا رأيك.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#Stacko #StockVisibility #WarehouseManagement #BuildingInPublic",
+ "changes": [
+  "VO \"Stacko is exploring a map-based way\" → \"Stacko offers a map-based way\"; caption dropped \"This is an evolving product concept\"; added Book a meeting.",
+  "The list → map uses the real app map (Demo data); the demo company's own location names are used in the list."
+ ]
+}

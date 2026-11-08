@@ -1,0 +1,22 @@
+The 5-line email to send your boss.
+
+Subject: The stock visibility problem — 3 questions
+
+Hi [Name],
+
+I've been looking at how we track stock across [X] locations. I think we have a visibility gap — not a people problem.
+
+Three questions:
+1. Can we answer "where is my stock?" in under 10 seconds?
+2. Can we trace every transfer to a user and timestamp?
+3. Is the person who creates a transaction different from the approver?
+
+If the answer is "no" to any of these, we should look at this together.
+
+I found a tool called Stacko — worth 20 minutes.
+
+[Your name]
+
+Save this. Send it. Then book a meeting together.
+
+👉 Book a meeting — link in bio.

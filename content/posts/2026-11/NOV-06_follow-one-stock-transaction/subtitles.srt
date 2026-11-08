@@ -1,0 +1,36 @@
+1
+00:00:00,440 --> 00:00:02,300
+Can you follow this stock transaction
+
+2
+00:00:02,300 --> 00:00:03,850
+from start to finish?
+
+3
+00:00:04,010 --> 00:00:06,400
+Here's one stock transaction in Stacko,
+
+4
+00:00:06,400 --> 00:00:08,960
+and the information available at each step:
+
+5
+00:00:09,050 --> 00:00:10,400
+who created it, when,
+
+6
+00:00:10,400 --> 00:00:12,450
+and how it was approved.
+
+7
+00:00:12,600 --> 00:00:13,910
+What would you need to see
+
+8
+00:00:13,910 --> 00:00:15,680
+when reviewing a stock transaction?
+
+9
+00:00:15,680 --> 00:00:17,650
+Book a meeting with our team.
+

@@ -1,0 +1,30 @@
+{
+ "id": "EDU-31",
+ "size": "portrait",
+ "changes": ["Slide 2: \"Early access to the prototype\" → \"Early access to Stacko\" (no in-development wording).", "Slide 4: dropped \"A finished product. (It isn't one yet.)\" (in-development wording); caption line \"❌ A finished product (it isn't one yet)\" dropped too.", "Slide 6: button \"Apply for the pilot\" → \"Book a meeting\"; caption \"Apply for the pilot\" → \"Book a meeting\".", "REVIEW: pilot terms are not confirmed (sheet: \"Confirm pilot terms\"). Do not publish until the pilot offer is real."],
+ "slides": [
+  {"type": "cover", "bg": "story-map",
+   "en": {"title": "We're onboarding a *small* pilot group.", "lead": "Here's what you get — and what we ask in return."},
+   "ar": {"title": "عم ناخد مجموعة *صغيرة* للتجربة.", "lead": "هيدا شو بتاخد — وشو منطلب بالمقابل."}},
+  {"icon": "check",
+   "en": {"title": "What you get.", "items": ["Early access to Stacko.", "Hands-on onboarding with our team.", "Direct input on what gets built next.", "Honest conversations about what's live and what's planned."]},
+   "ar": {"title": "شو بتاخد.", "items": ["وصول مبكر لستاكو.", "تشغيل وتدريب مع فريقنا إيد بإيد.", "رأيك مباشرة بشو منبني بعدين.", "حكي صريح عن شو شغّال وشو مخطّط."]}},
+  {"icon": "team",
+   "en": {"title": "What we ask.", "items": ["30 minutes of feedback every two weeks.", "Permission to use anonymized insights in our content.", "A real workflow to test — not a sandbox."]},
+   "ar": {"title": "شو منطلب.", "items": ["٣٠ دقيقة ملاحظات كل أسبوعين.", "إذن نستعمل ملاحظات من دون أسماء بمحتوانا.", "شغل حقيقي نجرّبو — مش بيئة تجريب."]}},
+  {"icon": "flag", "mark": "✗",
+   "en": {"title": "What we don't ask.", "items": ["Long-term commitment.", "A big budget."]},
+   "ar": {"title": "شو ما منطلب.", "items": ["التزام طويل.", "ميزانية كبيرة."]}},
+  {"img": {"name": "map", "src": "app", "h": 520},
+   "en": {"title": "Who it's for.", "body": "Lebanese wholesalers, distributors, multi-branch retailers, importers, spare-parts businesses, and small manufacturers with 2+ locations and real stock complexity."},
+   "ar": {"title": "لمين.", "body": "تجّار الجملة والموزّعين والمحلات بكذا فرع والمستوردين وتجّار قطع الغيار والمصانع الصغيرة بلبنان، اللي عندهم موقعين أو أكتر ومخزون معقّد فعلاً."}},
+  {"type": "cta", "bg": "story-map",
+   "en": {"title": "Apply for *the pilot.*", "lead": "Small group. Real feedback. Honest product.", "micro": "Pilot availability limited; pilot terms confirmed during discovery."},
+   "ar": {"title": "قدّم *عالتجربة.*", "lead": "مجموعة صغيرة. ملاحظات حقيقية. منتج صريح.", "micro": "الأماكن محدودة؛ شروط التجربة منأكّدها بمرحلة التعارف."}}
+ ],
+ "caption": {
+  "en": "We're onboarding a small pilot group.\n\nHere's what you get:\n✅ Early access to Stacko\n✅ Hands-on onboarding with our team\n✅ Direct input on what gets built next\n✅ Honest conversations about what's live and what's planned\n\nHere's what we ask:\n🤝 30 minutes of feedback every two weeks\n🤝 Permission to use anonymized insights in our content\n🤝 A real workflow to test — not a sandbox\n\nHere's what we *don't* ask:\n❌ Long-term commitment\n❌ A big budget\n\nWho it's for: Lebanese wholesalers, distributors, multi-branch retailers, importers, spare-parts businesses, and small manufacturers with 2+ locations.\n\n🟢 Pilot program open — limited spots.\n\n👉 Book a meeting — link in bio.",
+  "ar": "عم ناخد مجموعة صغيرة للتجربة.\n\nشو بتاخد:\n✅ وصول مبكر لستاكو\n✅ تشغيل وتدريب مع فريقنا إيد بإيد\n✅ رأيك مباشرة بشو منبني بعدين\n✅ حكي صريح عن شو شغّال وشو مخطّط\n\nشو منطلب:\n🤝 ٣٠ دقيقة ملاحظات كل أسبوعين\n🤝 إذن نستعمل ملاحظات من دون أسماء بمحتوانا\n🤝 شغل حقيقي نجرّبو — مش بيئة تجريب\n\nشو *ما* منطلب:\n❌ التزام طويل\n❌ ميزانية كبيرة\n\nلمين: تجّار الجملة والموزّعين والمحلات بكذا فرع والمستوردين وتجّار قطع الغيار والمصانع الصغيرة بلبنان، اللي عندهم موقعين أو أكتر.\n\n🟢 التجربة مفتوحة — الأماكن محدودة.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#PilotProgram #Lebanon #Startup #InventoryManagement #Stacko #SMB #EarlyAdopters #BuildInPublic #SupplyChain #TechStartup"
+}

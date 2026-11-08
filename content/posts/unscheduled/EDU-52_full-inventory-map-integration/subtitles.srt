@@ -1,0 +1,40 @@
+1
+00:00:00,480 --> 00:00:02,480
+Two ways to use Stacko.
+
+2
+00:00:02,480 --> 00:00:05,600
+Mode A: full inventory management — products,
+
+3
+00:00:05,600 --> 00:00:08,370
+locations, movements, history, roles.
+
+4
+00:00:08,370 --> 00:00:08,900
+Mode B:
+
+5
+00:00:08,900 --> 00:00:12,800
+a map and integration layer — synchronized locations
+
+6
+00:00:12,800 --> 00:00:15,970
+and stock from your existing system.
+
+7
+00:00:15,970 --> 00:00:16,680
+Same map.
+
+8
+00:00:16,680 --> 00:00:17,310
+Same AI.
+
+9
+00:00:17,310 --> 00:00:19,800
+Your choice of foundation.
+
+10
+00:00:19,800 --> 00:00:21,430
+Book a meeting with our team.
+

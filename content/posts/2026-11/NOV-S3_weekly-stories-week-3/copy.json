@@ -1,0 +1,38 @@
+{
+ "id": "NOV-S3",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "What would you want to see first on a *warehouse map?*"
+   },
+   "ar": {
+    "title": "شو أوّل شي بدّك تشوفه على *خريطة المستودعات؟*"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Tip: one name per location, *everywhere.*",
+    "lead": "Use the same location name in every file, chat and system — so \"WH-2\" never becomes \"Sidon store\"."
+   },
+   "ar": {
+    "title": "نصيحة: اسم واحد لكل موقع، *بكل مكان.*",
+    "lead": "استعمل نفس اسم الموقع بكل ملف وشات ونظام — حتى «WH-2» ما يصير «محل صيدا»."
+   },
+   "art": "network"
+  }
+ ],
+ "changes": [
+  "Story frames only; stickers are added in Instagram. Share responses only anonymized and with permission."
+ ],
+ "caption": {
+  "en": "— (Stories: no caption needed)\n\nNOTES\n- Frame 1: Add the question sticker in Instagram in the empty lower half of the frame.",
+  "ar": "— (ستوري: ما في حاجة لكابشن)"
+ },
+ "hashtags": "— (Stories: no hashtags)"
+}

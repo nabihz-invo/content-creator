@@ -1,0 +1,48 @@
+1
+00:00:00,450 --> 00:00:01,300
+Same system.
+
+2
+00:00:01,300 --> 00:00:03,360
+Three different views.
+
+3
+00:00:03,380 --> 00:00:04,880
+The warehouse user records
+
+4
+00:00:04,880 --> 00:00:06,610
+moves for their own locations,
+
+5
+00:00:06,610 --> 00:00:08,180
+and sees only those.
+
+6
+00:00:08,180 --> 00:00:10,130
+The document clerk uploads invoices
+
+7
+00:00:10,130 --> 00:00:12,650
+and sees their submissions and status.
+
+8
+00:00:12,650 --> 00:00:14,450
+The manager approves, resolves,
+
+9
+00:00:14,450 --> 00:00:16,180
+and reviews the trail.
+
+10
+00:00:16,180 --> 00:00:16,900
+One system.
+
+11
+00:00:16,900 --> 00:00:19,330
+Everyone sees exactly what they need.
+
+12
+00:00:19,330 --> 00:00:21,740
+Book a meeting with our team.
+

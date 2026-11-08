@@ -1,0 +1,169 @@
+{
+ "id": "EDU-52",
+ "lines": [
+  {
+   "vo": {
+    "en": "Two ways to use Stacko.",
+    "ar": "طريقتين لتستعمل ستاكو."
+   },
+   "scene": {
+    "type": "split",
+    "en": {
+     "cols": [
+      {
+       "label": "Mode A",
+       "title": "Full inventory"
+      },
+      {
+       "label": "Mode B",
+       "title": "Map + integration",
+       "concept": true
+      }
+     ],
+     "head": "Two ways to use *Stacko.*"
+    },
+    "ar": {
+     "cols": [
+      {
+       "label": "الوضع أ",
+       "title": "مخزون كامل"
+      },
+      {
+       "label": "الوضع ب",
+       "title": "خريطة + ربط",
+       "concept": true
+      }
+     ],
+     "head": "طريقتين لتستعمل *ستاكو.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Mode A: full inventory management — products, locations, movements, history, roles.",
+    "ar": "الوضع أ: إدارة مخزون كاملة — أصناف، مواقع، حركات، سجل، وأدوار."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "Mode A: *full inventory.*"
+    },
+    "ar": {
+     "head": "الوضع أ: *مخزون كامل.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Mode B: a map and integration layer — synchronized locations and stock from your existing system.",
+    "ar": "الوضع ب: طبقة خريطة وربط — مواقع ومخزون متزامنين من نظامك الموجود."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "site/{lang}-erp-sync.png",
+    "h": 620,
+    "top": 640,
+    "zoom": [
+     1.0,
+     1.06
+    ],
+    "tag": "concept",
+    "en": {
+     "head": "Mode B: *map + integration.*"
+    },
+    "ar": {
+     "head": "الوضع ب: *خريطة + ربط.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Same map. Same AI. Your choice of foundation.",
+    "ar": "نفس الخريطة. نفس الذكاء الاصطناعي. وإنت بتختار الأساس."
+   },
+   "scene": {
+    "type": "split",
+    "en": {
+     "cols": [
+      {
+       "label": "Mode A",
+       "title": "Full inventory",
+       "items": [
+        "Products",
+        "Locations",
+        "Movements",
+        "Roles"
+       ]
+      },
+      {
+       "label": "Mode B",
+       "title": "Map + integration",
+       "items": [
+        "Your ERP stays",
+        "Synced stock",
+        "Same map + AI"
+       ],
+       "concept": true
+      }
+     ],
+     "head": "Your choice of *foundation.*"
+    },
+    "ar": {
+     "cols": [
+      {
+       "label": "الوضع أ",
+       "title": "مخزون كامل",
+       "items": [
+        "الأصناف",
+        "المواقع",
+        "الحركات",
+        "الأدوار"
+       ]
+      },
+      {
+       "label": "الوضع ب",
+       "title": "خريطة + ربط",
+       "items": [
+        "الـERP بيضل",
+        "مخزون متزامن",
+        "نفس الخريطة والذكاء"
+       ],
+       "concept": true
+      }
+     ],
+     "head": "إنت بتختار *الأساس.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Book a meeting with our team.",
+    "ar": "احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {},
+    "ar": {}
+   }
+  }
+ ],
+ "caption": {
+  "en": "Two ways to use Stacko.\n\n🅰️ Full inventory management — products, locations, movements, history, roles. For businesses without an ERP.\n\n🅱️ Map + integration layer — synchronized locations and stock from your existing system. Read-only, draft-for-approval, or approved write-back where supported. For businesses that already have an ERP.\n\nSame map. Same AI workflow. Your choice of foundation.\n\n👉 Book a meeting — link in bio.",
+  "ar": "طريقتين لتستعمل ستاكو.\n\n🅰️ إدارة مخزون كاملة — أصناف، مواقع، حركات، سجل، أدوار. للشركات اللي ما عندها ERP.\n\n🅱️ طبقة خريطة وربط — مواقع ومخزون متزامنين من نظامك الموجود. قراءة فقط، مسودّة للموافقة، أو كتابة بعد الموافقة وين مدعوم. للشركات اللي عندها ERP.\n\nنفس الخريطة. نفس شغل الذكاء الاصطناعي. وإنت بتختار الأساس.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#ERP #InventoryManagement #SMB #Stacko #SupplyChain #Integration #DigitalTransformation #Odoo #SAP #BusinessOperations",
+ "changes": [
+  "Mode B visuals tagged Concept (🟡); generic \"ERP\" only, no logos.",
+  "CTA \"Discuss your setup\" → \"Book a meeting\"; caption dropped the 🟢/🟡 line.",
+  "REVIEW: verify integration mode before publishing (sheet); hashtags still name #Odoo #SAP."
+ ]
+}

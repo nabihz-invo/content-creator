@@ -1,0 +1,78 @@
+{
+ "id": "EDU-36",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "cover",
+   "en": {
+    "title": "\"[Pilot customer] on *testing Stacko.*\"",
+    "lead": "[Segment] · [Number] locations · [Number] SKUs"
+   },
+   "ar": {
+    "title": "«[الزبون] عن *تجربة ستاكو.*»",
+    "lead": "[القطاع] · [عدد] مواقع · [عدد] صنف"
+   }
+  },
+  {
+   "type": "quote",
+   "en": {
+    "eyebrow": "Before.",
+    "quote": "[Customer's words — verbatim quote about their pain]",
+    "who": "— [Name], [Role] (with permission)"
+   },
+   "ar": {
+    "eyebrow": "قبل.",
+    "quote": "[كلام الزبون — حرفياً عن المشكلة]",
+    "who": "— [الاسم]، [الوظيفة] (بإذن)"
+   }
+  },
+  {
+   "img": {
+    "name": "map",
+    "src": "app",
+    "h": 520
+   },
+   "en": {
+    "title": "What they tested.",
+    "body": "[Specific workflow]"
+   },
+   "ar": {
+    "title": "شو جرّبوا.",
+    "body": "[الشغل المحدّد]"
+   }
+  },
+  {
+   "type": "big",
+   "en": {
+    "title": "What changed.",
+    "lead": "[Honest, specific outcome — only if measured and verified]"
+   },
+   "ar": {
+    "title": "شو تغيّر.",
+    "lead": "[نتيجة صريحة ومحدّدة — بس إذا انقاست وتأكّدت]"
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "Want to *be next?*",
+    "lead": "[Pilot invitation — once the pilot is real]",
+    "micro": "Pilot results are individual; outcomes vary."
+   },
+   "ar": {
+    "title": "بدّك *تكون الجاي؟*",
+    "lead": "[دعوة للتجربة — لمّا تكون التجربة حقيقية]",
+    "micro": "نتايج التجربة فردية؛ بتختلف من شركة لشركة."
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route F): placeholders stay until a real pilot quote, photo and written consent exist. Reel template not rendered (needs customer footage).",
+  "Button / CTA \"Apply for the pilot\" → \"Book a meeting\"; dropped \"🟢 Prototype results from pilot testing.\" (prototype wording)."
+ ],
+ "caption": {
+  "en": "\"[Customer quote — verbatim]\"\n\n— [Name], [Role], [Business] (with permission)\n\nWe tested [workflow] with [customer] across [number] locations. Here's what changed: [specific, verified result].\n\nThis is what the pilot program is for — real workflows, honest feedback, and a product shaped by the businesses using it.\n\nOutcomes vary by business.\n\n👉 Want to be next? Book a meeting — link in bio.\n\nCHECKLIST BEFORE PUBLISHING: written permission · numbers verified · customer reviewed the post · no identifying details without consent · \"results vary\" included.",
+  "ar": "«[كلام الزبون — حرفياً]»\n\n— [الاسم]، [الوظيفة]، [الشركة] (بإذن)\n\nجرّبنا [الشغل] مع [الزبون] بـ[عدد] مواقع. وهيدا اللي تغيّر: [نتيجة محدّدة ومؤكّدة].\n\nلهيك موجودة التجربة — شغل حقيقي، ملاحظات صريحة، ومنتج بيتشكّل من الشركات اللي بتستعملو.\n\nالنتايج بتختلف من شركة لشركة.\n\n👉 بدّك تكون الجاي؟ احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#CustomerStory #PilotProgram #InventoryManagement #SMB #Stacko #SupplyChain #Testimonial #EarlyAdopters #Lebanon #BusinessOperations"
+}

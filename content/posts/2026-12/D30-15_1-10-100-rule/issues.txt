@@ -1,0 +1,18 @@
+D30-15 · The 1-10-100 rule, in a warehouse · Carousel (5 slides)
+Stage / Claim Label: No product claim
+Review flag: Keep the footnote. Don't present the ratios as Stacko results. Check the rule's attribution before citing a source (commonly credited to Labovitz & Chang).
+
+NEEDS YOUR REVIEW
+- Review flag: attribution. The rule is commonly credited to Labovitz & Chang. No source is cited on the slides; check it before adding one.
+- Slide 5 has a CTA pill with the CTA text ("Where do you catch mistakes: $1, $10 or $100?"), which isn't in the slide script. Remove it if you prefer.
+- IMG-03 (hand counting) is used on slide 3 ($10, "fix it later at the count"). It's still "Generated", not "Approved", in the Image Library.
+
+CHECKS PASSED
+- Footnote is visible on the last slide.
+- The ratios are not presented as Stacko results.
+- Design notes: three big numbers are the visual.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

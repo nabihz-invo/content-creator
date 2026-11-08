@@ -1,0 +1,172 @@
+{
+ "id": "EDU-68",
+ "lines": [
+  {
+   "vo": {
+    "en": "Guess the stock problem.",
+    "ar": "حزّر شو مشكلة المخزون."
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "Guess the *stock problem.*"
+    },
+    "ar": {
+     "big": "حزّر *مشكلة المخزون.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "A manager calls three warehouses to confirm stock. Then calls a customer back with: I think we have thirty-eight.",
+    "ar": "مدير بيتّصل بـ٣ مستودعات ليتأكّد من المخزون. وبعدين بيرجع للزبون: بظنّ عنّا تمانية وتلاتين."
+   },
+   "scene": {
+    "type": "chaos",
+    "en": {
+     "items": [
+      {
+       "kind": "call",
+       "text": "Warehouse 1"
+      },
+      {
+       "kind": "call",
+       "text": "Warehouse 2"
+      },
+      {
+       "kind": "call",
+       "text": "Warehouse 3"
+      }
+     ],
+     "head": "\"I think we have *38.*\""
+    },
+    "ar": {
+     "items": [
+      {
+       "kind": "call",
+       "label": "عم نتّصل…",
+       "text": "المستودع ١"
+      },
+      {
+       "kind": "call",
+       "label": "عم نتّصل…",
+       "text": "المستودع ٢"
+      },
+      {
+       "kind": "call",
+       "label": "عم نتّصل…",
+       "text": "المستودع ٣"
+      }
+     ],
+     "head": "«بظنّ عنّا *٣٨.*»"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "What's the real problem? A: bad staff. B: too many warehouses. C: no visibility. D: slow phone.",
+    "ar": "شو المشكلة الحقيقية؟ أ: موظفين مش منيحين. ب: مستودعات كتير. ج: ما في رؤية. د: التلفون بطيء."
+   },
+   "scene": {
+    "type": "quiz",
+    "answer": 2,
+    "reveal": false,
+    "en": {
+     "options": [
+      "A) Bad staff",
+      "B) Too many warehouses",
+      "C) No visibility",
+      "D) Slow phone"
+     ],
+     "head": "What's the *real problem?*"
+    },
+    "ar": {
+     "options": [
+      "أ) موظفين مش منيحين",
+      "ب) مستودعات كتير",
+      "ج) ما في رؤية",
+      "د) التلفون بطيء"
+     ],
+     "head": "شو المشكلة *الحقيقية؟*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "C: no visibility. The stock was there. The movement was recorded. The data was real. It just wasn't visible in one place.",
+    "ar": "ج: ما في رؤية. البضاعة موجودة. الحركة متسجّلة. الداتا حقيقية. بس مش ظاهرة بمكان واحد."
+   },
+   "scene": {
+    "type": "quiz",
+    "answer": 2,
+    "at": 0.05,
+    "en": {
+     "options": [
+      "A) Bad staff",
+      "B) Too many warehouses",
+      "C) No visibility",
+      "D) Slow phone"
+     ],
+     "head": "C) *No visibility.*"
+    },
+    "ar": {
+     "options": [
+      "أ) موظفين مش منيحين",
+      "ب) مستودعات كتير",
+      "ج) ما في رؤية",
+      "د) التلفون بطيء"
+     ],
+     "head": "ج) *ما في رؤية.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "One map. Every warehouse. Answer in seconds.",
+    "ar": "خريطة وحدة. كل مستودع. جواب بثواني."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "Answer *in seconds.*"
+    },
+    "ar": {
+     "head": "جواب *بثواني.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Comment your guess, and book a meeting with our team.",
+    "ar": "اكتب جوابك بالتعليقات، واحجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "Comment your guess before you watch again."
+    },
+    "ar": {
+     "ask": "اكتب جوابك قبل ما ترجع تحضر."
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "Guess the stock problem.\n\nA manager calls three warehouses to confirm stock. Then calls a customer back with \"I think we have 38.\"\n\nWhat's the real problem?\nA) Bad staff\nB) Too many warehouses\nC) No visibility\nD) Slow phone\n\nComment your guess before you watch again. The answer is in the video.\n\n👉 Book a meeting — link in bio.",
+  "ar": "حزّر شو مشكلة المخزون.\n\nمدير بيتّصل بـ٣ مستودعات ليتأكّد من المخزون. وبعدين بيرجع للزبون: «بظنّ عنّا ٣٨».\n\nشو المشكلة الحقيقية؟\nأ) موظفين مش منيحين\nب) مستودعات كتير\nج) ما في رؤية\nد) التلفون بطيء\n\nاكتب جوابك قبل ما ترجع تحضر. الجواب بالفيديو.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#Quiz #InventoryManagement #StockControl #SMB #Stacko #SupplyChain #Engagement #InventoryVisibility #BusinessOperations #DistributorLife",
+ "changes": [
+  "CTA \"Book a demo\" → \"Book a meeting\"; caption dropped \"🟢 Prototype preview — features in development.\"",
+  "VO written from the scenario and on-screen texts."
+ ]
+}

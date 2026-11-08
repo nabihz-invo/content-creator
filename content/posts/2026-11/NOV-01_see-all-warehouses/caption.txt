@@ -1,0 +1,26 @@
+CAPTION (EN)
+Managing stock across multiple warehouses or branches can make it harder to see the full picture.
+
+Stacko is a stock-management concept we're developing to make location visibility more intuitive through a map-based experience.
+
+We're still building. We'd love to hear from businesses that manage stock across multiple locations.
+
+How many warehouses or branches do you manage?
+
+CAPTION (AR) — draft, needs native review
+إدارة المخزون بكذا مستودع أو فرع بتصعّب تشوف الصورة كاملة.
+
+ستاكو فكرة لإدارة المخزون عم نطوّرها لتصير رؤية المواقع أسهل، من خلال تجربة مبنية على الخريطة.
+
+بعدنا عم نبني. بيهمّنا نسمع من الشركات اللي عندها مخزون بكذا موقع.
+
+كم مستودع أو فرع عم تدير؟
+
+HASHTAGS
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+CTA
+How many warehouses or branches do you manage?
+
+PINNED COMMENT (suggested — the row has none)
+How many locations do you run: 1–2, 3–5 or 6+?

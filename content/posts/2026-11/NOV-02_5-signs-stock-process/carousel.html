@@ -1,0 +1,79 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>NOV-02 · 5 signs your stock process needs better visibility</title>
+<!-- Workbook row NOV-02 · Carousel 4:5 · Recipe RC-13 photo story · Hook HK-13 relatable scene · TX-12 marker (static)
+     Layouts: CL-02 number hero (cover) · CL-03 full-bleed photo + caption bar ×5 · CL-15 CTA closer · Logo LG-06 horizontal (light) on the CTA
+     Assets: GFX-10 carousel backgrounds · PI-01 (cover) · PI-06 · PI-05 on disk. PI-07, PI-10, PI-09 not on disk → iso / sheet fallbacks (notes.md).
+     Export both language versions: node studio/render.mjs <this file> --stills --lang all  → slide-01_EN.png … slide-07_AR.png
+     One language per image, one theme (dark) for the whole carousel. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.carousel({ title: 'NOV-02 · 5 signs' });
+const C = SM.C, N = 7, PI = id => `/assets/post-images/final/${id}.png`, GFX = '/assets/graphics/GFX-10_carousel-inner-dark_4x5.jpg';
+const dots = (s, i, theme) => { for (let k = 0; k < N; k++) { const d = SM.el('div', '', s.el); d.style.cssText = `position:absolute;bottom:56px;left:${540 - (N - 1) * 14 + k * 28}px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:${k === i ? (theme === 'light' ? C.signal : C.glow) : (theme === 'light' ? C.visor : 'rgba(201,216,228,.35)')}`; } };
+// CL-03 caption bar: sign number + one line in this version's language (AR drafted — needs native review)
+const AR = SM.ar();
+const bar = (s, n, en, ar) => s.html(`
+  <div style="width:940px;box-sizing:border-box;padding:34px 40px 30px;border-radius:30px;background:rgba(10,27,49,.86);backdrop-filter:blur(6px);box-shadow:0 20px 60px rgba(3,9,18,.45);display:flex;gap:30px;align-items:flex-start;flex-direction:${AR ? 'row-reverse' : 'row'}">
+    <div style="flex:none;font:700 92px/0.9 'Readex Pro';color:${C.glow};letter-spacing:-.04em">${n}</div>
+    <div style="flex:1">
+      ${AR ? `<div style="font:700 46px/1.55 'Noto Kufi Arabic','Readex Pro',sans-serif;color:#fff;direction:rtl;text-align:right">${ar}</div>` : `<div style="font:600 46px/1.22 'Readex Pro';color:#fff;letter-spacing:-.01em">${en}</div>`}
+    </div>
+  </div>`, { x: 540, y: 1100, ay: -50 });
+const kick = (s, t) => s.text(t, { x: 80, y: 120, align: 'left', size: 28, upper: true, color: C.dolphin, fx: 'none', weight: 600 });
+
+// 1 — cover (CL-02 number hero on PI-01, Night gradient from the bottom)
+const s1 = R.scene(2.5, { bg: PI('PI-01'), focus: '50% 40%', name: 'slide-01' });
+s1.fill(`background:linear-gradient(180deg, rgba(14,36,64,.05) 0%, rgba(14,36,64,.3) 30%, rgba(14,36,64,.82) 46%, rgba(14,36,64,.97) 56%, #0E2440 100%)`);
+s1.text('5', { x: 80, y: 830, align: 'left', size: 330, fx: 'none', color: C.glow, weight: 700, ls: '-.05em' });
+s1.text(SM.t('signs your stock process needs better visibility', 'علامات إنّو مخزونك بدّو رؤية أوضح'), { x: 300, y: 830, align: 'left', size: 40, fx: 'none', color: C.visor, weight: 500, w: 640, lh: 1.25 });
+s1.text(SM.t('Tick 3 of these and your stock is *hiding from you.*', 'إذا ٣ منن بيصيروا معك، *مخزونك مخبّى عنك.*'), { x: 80, y: 1080, align: 'left', size: 70, fx: 'highlight', hl: 'marker', at: 0, w: 920, lh: 1.15 });
+dots(s1, 0);
+
+// 2 — sign 1 (PI-07 missing → iso: three yards, one question mark over each)
+const s2 = R.scene(2.5, { bg: GFX, name: 'slide-02' });
+[[300, 470, 'warehouse', { size: 's', doors: 2 }], [700, 380, 'warehouse', { size: 'm' }], [560, 690, 'warehouse', { size: 'm', wall: '#8FA3B3', roof: '#C9D8E4' }]].forEach(([x, y, id, o], i) => {
+  s2.iso({ x, y, scale: 2.4, intro: 'none', items: [{ id: 'ground', o: { k: 'concrete' }, x: -6, y: -6, d: -99 }, { id, o, x: 0, y: -8 }] });
+  s2.text('?', { x, y: y - 190, size: 90, fx: 'none', color: C.glow, weight: 700 });
+});
+bar(s2, '1', 'You need to check several places to find one answer.', 'لازم تفتّش بكذا محل لتلاقي جواب واحد.');
+dots(s2, 1);
+
+// 3 — sign 2 on PI-06 (sticky notes)
+const s3 = R.scene(2.5, { bg: PI('PI-06'), focus: '62% 40%', name: 'slide-03' });
+s3.fill('background:linear-gradient(180deg, rgba(14,36,64,0) 45%, rgba(14,36,64,.7) 78%, rgba(14,36,64,.9) 100%)');
+bar(s3, '2', 'Your team regularly asks which branch has a particular item.', 'فريقك دايماً عم يسأل: أيّا فرع فيه هالغرض؟');
+dots(s3, 2);
+
+// 4 — sign 3 (PI-10 missing → iso: a truck between two yards, the move nobody can follow)
+const s4 = R.scene(2.5, { bg: GFX, name: 'slide-04' });
+s4.iso({ x: 560, y: 560, scale: 3.1, intro: 'none', items: [
+  { id: 'ground', o: { k: 'concrete' }, x: -50, y: -30, d: -99 }, { id: 'ground', o: { k: 'concrete' }, x: 90, y: 80, d: -98 },
+  { id: 'warehouse', o: { size: 's', doors: 2 }, x: -50, y: -40 }, { id: 'warehouse', o: { size: 's', doors: 2, wall: '#CBB894', roof: '#E3D7BD' }, x: 90, y: 70 },
+  { id: 'boxTruck', o: {}, x: 34, y: 22 }, { id: 'tree', o: { k: 'olive' }, x: -10, y: 60 } ] });
+s4.text('?', { x: 600, y: 330, size: 110, fx: 'none', color: C.glow, weight: 700 });
+bar(s4, '3', 'Transfers between locations are difficult to follow.', 'صعب تلحق النقلات بين المواقع.');
+dots(s4, 3);
+
+// 5 — sign 4 on PI-05 (paper ledger)
+const s5 = R.scene(2.5, { bg: PI('PI-05'), focus: '40% 55%', name: 'slide-05' });
+s5.fill('background:linear-gradient(180deg, rgba(14,36,64,0) 45%, rgba(14,36,64,.7) 78%, rgba(14,36,64,.9) 100%)');
+bar(s5, '4', 'Different teams rely on different stock records.', 'كل فريق عم يشتغل على سجلّات مخزون غير.');
+dots(s5, 4);
+
+// 6 — sign 5 (PI-09 missing → CP-12 fictional spreadsheet, many tabs, a red cell)
+const s6 = R.scene(2.5, { bg: GFX, name: 'slide-06' });
+s6.sheet({ x: 540, y: 560, w: 900, h: 640, file: 'stock_FINAL_v7_USE_THIS_ONE.xlsx', rot: -3 });
+bar(s6, '5', 'You struggle to get a clear overview of all locations.', 'صعب تشوف كل المواقع بنظرة وحدة.');
+dots(s6, 5);
+
+// 7 — CTA closer (CL-15), dark like the rest of the carousel (one theme per carousel)
+const s7 = R.scene(2.8, { bg: 'night', name: 'slide-07' });
+s7.text(SM.t('Which number is *yours?*', 'أيّا رقم *إلك؟*'), { y: 420, size: 104, fx: 'highlight', hl: 'marker', w: 900 });
+s7.text(SM.t('Comment it.', 'كتبو بالتعليقات.'), { y: 600, size: 64, fx: 'none', color: C.visor, weight: 500 });
+s7.text(SM.t('We’re developing Stacko to explore a clearer, map-based view of stock locations.', 'عم نطوّر ستاكو لنعطي رؤية أوضح لمواقع المخزون، على الخريطة.'), { y: 800, size: 40, fx: 'none', color: C.visor, weight: 400, w: 820, lh: 1.4 });
+s7.lockup({ variant: 'dark', size: 110, y: 1060, endorse: true });
+dots(s7, 6);
+</script></body></html>

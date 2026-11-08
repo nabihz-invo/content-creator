@@ -1,0 +1,7 @@
+What happens when the AI gets something wrong?
+
+Unclear items are flagged, and products, locations, quantities, and units are checked before anything counts.
+
+Nothing changes until a person approves. And if something slips through, the fix is a new entry, never an edit.
+
+AI drafts. People approve. Book a meeting with our team.

@@ -1,0 +1,49 @@
+{
+ "id": "EDU-16",
+ "title": "Will AI make mistakes? Yes. Here's why that's fine.",
+ "caption": "\"Will your AI make mistakes?\" Yes. Every AI does. Anyone who says otherwise is selling, not building.\n\nThe real question is what happens when it does. In Stacko, the AI only prepares drafts, anything new or unclear is flagged, and stock changes only after someone with approval rights confirms. Every entry keeps who, what and when.\n\nIf an AI tool can't tell you what happens when it's wrong, keep looking.\n\nQuestions? Ask below, or book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Will Stacko's AI make mistakes? Yes. Every AI does.",
+   "scene": {
+    "type": "text",
+    "big": "Will the AI make *mistakes?*"
+   }
+  },
+  {
+   "vo": "The real question is: what happens when it does?",
+   "scene": {
+    "type": "text",
+    "big": "What happens *when it does?*"
+   }
+  },
+  {
+   "vo": "Our answer: the AI only prepares drafts, and anything new or unclear is flagged.",
+   "scene": {
+    "type": "inv",
+    "head": "Drafts. *Flags.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Stock changes only after someone with approval rights confirms, and every entry keeps who, what, and when.",
+   "scene": {
+    "type": "shot",
+    "img": "ledger",
+    "head": "People *approve.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "If an AI tool can't tell you what happens when it's wrong, keep looking. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "Ask what happens<br>*when it's wrong.*"
+   }
+  }
+ ],
+ "notes": [
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

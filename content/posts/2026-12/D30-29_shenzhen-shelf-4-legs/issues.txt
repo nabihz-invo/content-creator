@@ -1,0 +1,18 @@
+D30-29 · Shenzhen to your shelf: the 4 legs of a China import · Carousel (8 slides)
+Stage / Claim Label: No product claim
+Review flag: Original: 'math behind route telemetry' (overlapped Day 14). Durations from the Product Bible are estimates — keep 'typical'.
+
+NEEDS YOUR REVIEW
+- Slide 8 says "In Stacko, each leg is on the map with its own ETA." That is a feature, so I added the 🟢 Prototype (demo data) label to that slide (the row says "No product claim").
+- IMG-19 (ship) has a readable name on its stern ("BEIRUT'S DAWN"). The slide crop hides it, but regenerate the image before using it full-frame.
+- IMG-20 (cargo plane) looks like a military transport (C-130 type). Consider regenerating it as a civil cargo plane.
+- Durations ("around a month", "a few days", "hours") are estimates from the Product Bible, and every one says "typically".
+
+CHECKS PASSED
+- "Typical durations. They vary by carrier and season." note on slides 3–5.
+- Design notes: route icons (factory, ship, customs, truck) on the Abyss background.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

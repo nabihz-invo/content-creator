@@ -1,0 +1,43 @@
+{
+ "id": "EDU-25",
+ "title": "FAQ: What happens when AI gets something wrong?",
+ "caption": "\"What happens when the AI gets something wrong?\"\n\nUnclear items are flagged, and products, locations, quantities and units are checked before anything counts. Nothing changes until a person approves, and if something slips through, the fix is a new entry, never an edit, so the history stays clean.\n\nAI drafts, people approve. Book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "What happens when the AI gets something wrong?",
+   "scene": {
+    "type": "text",
+    "big": "What if the AI *gets it wrong?*"
+   }
+  },
+  {
+   "vo": "Unclear items are flagged, and products, locations, quantities, and units are checked before anything counts.",
+   "scene": {
+    "type": "shot",
+    "img": "shipment",
+    "head": "Checked *before it counts.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Nothing changes until a person approves. And if something slips through, the fix is a new entry, never an edit.",
+   "scene": {
+    "type": "shot",
+    "img": "ledger",
+    "head": "Fixable. *Traceable.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "AI drafts. People approve. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "AI drafts.<br>*People approve.*"
+   }
+  }
+ ],
+ "notes": [
+  "Answers follow the FAQ and trust sections of the Stacko website."
+ ]
+}

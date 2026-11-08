@@ -1,0 +1,25 @@
+EDU-08 · Reel ·  · 31s · 1080x1920
+Title: The invoice pile
+Files: EDU-08_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+The invoice pile. Every stock manager's quiet enemy.
+
+Supplier, invoice number, date, items, quantities, totals, typed by hand, line after line. And one typo is all it takes to throw off your records.
+
+With Stacko, upload the invoice as a PDF, Excel file or photo. AI reads every line into a draft, flags anything new or unclear, and a person approves before anything is recorded.
+
+Be honest: how many invoices are on your desk right now? Tell us below, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  Every stock manager has this pile.
+  3.0s  Supplier, invoice number, date, items, quantities, totals. Typed by hand, line after line. And one typo is all it takes.
+ 13.6s  With Stacko, upload the invoice as a PDF, Excel file, or photo, and AI reads every line into a draft.
+ 20.9s  New or unclear items are flagged for a person to confirm.
+ 24.3s  AI proposes. You approve. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.

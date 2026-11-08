@@ -1,0 +1,11 @@
+Your ERP has the data. You just can't see it.
+
+ERPs are built for records, not for sight. Yours knows every transaction — but "where is my stock across three warehouses?" usually means opening a report, filtering, exporting, and squinting at a table.
+
+Stacko can sit on top of an existing system through an API or supported connector — displaying synchronized locations and stock on a visual map. Read-only visibility when you want it. Draft-for-approval when you need review. Approved write-back where supported.
+
+Before any sync: we define the source of truth per data type. No duplicate records. No conflicting values. Sync status, errors, conflicts, and timestamps visible.
+
+We're not asking you to abandon your ERP. We're adding the visual and AI layer it never had.
+
+👉 Book a meeting — link in bio.

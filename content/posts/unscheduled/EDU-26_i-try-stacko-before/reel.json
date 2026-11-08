@@ -1,0 +1,49 @@
+{
+ "id": "EDU-26",
+ "title": "FAQ: Can I see Stacko before committing?",
+ "caption": "\"Can I see Stacko before committing?\" Yes: start with a meeting.\n\nWe'll show you the live map, the invoice drafts and the approvals on examples like yours. Bring a real supplier invoice and watch the draft it becomes. Then we agree on a clear plan and a quote for your locations, users and setup.\n\nBook a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Can you see Stacko before committing? Yes.",
+   "scene": {
+    "type": "text",
+    "big": "Can I see it *before committing?*"
+   }
+  },
+  {
+   "vo": "Start with a meeting. We'll show you the live map, the invoice drafts, and the approvals, on examples like yours.",
+   "scene": {
+    "type": "app",
+    "zoom": "site",
+    "head": "See it *first.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Bring a real supplier invoice, and watch the draft it becomes.",
+   "scene": {
+    "type": "inv",
+    "head": "Bring *your invoice.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Then we agree on a clear plan, and a quote for your locations, users, and setup.",
+   "scene": {
+    "type": "text",
+    "big": "A clear plan.<br>*A clear quote.*"
+   }
+  },
+  {
+   "vo": "Your stock, always in sight. Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ],
+ "notes": [
+  "Answers follow the FAQ and trust sections of the Stacko website.",
+  "No free trial is promised (the website offers a demo and a quote)."
+ ]
+}

@@ -1,0 +1,138 @@
+# Content v2 production status
+
+Source: Stacko_Content_Plan_Review_v2.xlsx (111 rows). Build each row by its Production Route; outputs in content/<ID>/.
+Rules: exact sheet text, except no "in development" wording and every CTA = Book a meeting (each change logged in copy.json "changes" and the sheet). AR version in ar-needs-native-review/. Concept tag on any visual whose claim is not plain 🟢. No orange/yellow/red. Source line on stat slides. Fictional demo data only.
+Status: [x] built and checked · [ ] to do · [!] blocked (reason)
+
+- [x] NOV-01 · B · Auto motion · Can you see all your warehouses?
+- [x] NOV-02 · A · Auto design · 5 signs your stock process needs better visibility
+- [x] NOV-03 · B · Auto motion · Meet Stacko
+- [!] NOV-04 · E · Live shoot · Where is that product? — blocked: no footage in footage/<ID>/
+- [x] NOV-05 · A · Auto design · Why stock records can differ from physical stock
+- [x] NOV-06 · C · App capture · Follow one stock transaction
+- [x] NOV-07 · B · Auto motion · One transfer, two locations
+- [x] NOV-08 · G · Story frames · What's your biggest inventory headache? (template / frames)
+- [x] NOV-09 · A · Auto design · Imagine overseeing five warehouses
+- [x] NOV-10 · B · Auto motion · The cost of searching for stock information
+- [x] NOV-11 · A · Auto design · What Stacko is designed to help you see
+- [x] NOV-12 · B · Auto motion · From scattered information to a map-based view
+- [x] NOV-13 · B · Auto motion · November in 30 seconds
+- [x] NOV-S1 · G · Story frames · Weekly Stories — Week 1 (template / frames)
+- [x] NOV-S2 · G · Story frames · Weekly Stories — Week 2 (template / frames)
+- [x] NOV-S3 · G · Story frames · Weekly Stories — Week 3 (template / frames)
+- [x] NOV-S4 · G · Story frames · Weekly Stories — Week 4 (template / frames)
+- [x] EDU-01 · A · Auto design · Your Stock Data Is Everywhere. Here's What It's Costing You.
+- [x] EDU-02 · A · Auto design · From Paper Invoice to Approved Transaction — Step by Step
+- [x] EDU-03 · A · Auto design · 7 Roles. One Clean Workflow.
+- [!] EDU-04 · E · Live shoot · POV: A Customer Asks If You Have 40 Units in Stock — blocked: no footage in footage/<ID>/
+- [!] EDU-05 · D · Founder on camera · No, Our AI Does NOT Change Your Stock Automatically. — blocked: no footage in footage/<ID>/
+- [x] EDU-06 · A · Auto design · Myth vs. Reality: Inventory Software in 2026
+- [x] EDU-07 · A · Auto design · 5 Permission Questions to Ask Before Buying Any Inventory System
+- [!] EDU-08 · E · Live shoot · The Invoice Pile — blocked: no footage in footage/<ID>/
+- [x] EDU-09 · A · Auto design · 3 Warehouses, 1,200 SKUs, 1 Spreadsheet. Sound Familiar?
+- [x] EDU-10 · A · Auto design · Which Branch Has the Last 12 Units?
+- [x] EDU-11 · A · Auto design · 500 SKUs, 40 Invoices a Week — How Do You Keep Up?
+- [x] EDU-12 · A · Auto design · Materials In, Finished Goods Out — Can You See Both?
+- [x] EDU-13 · A · Auto design · Your ERP Has the Data. You Just Can't See It.
+- [x] EDU-14 · A · Auto design · Most Stock Problems Aren't Stock Problems
+- [!] EDU-15 · D · Founder on camera · We're Not Asking You to Rip Out Your ERP — blocked: no footage in footage/<ID>/
+- [!] EDU-16 · D · Founder on camera · Will AI Make Mistakes? Yes. Here's Why That's Fine. — blocked: no footage in footage/<ID>/
+- [x] EDU-17 · A · Auto design · The Three Questions Every Stock Manager Asks (And What They Really Mean)
+- [!] EDU-18 · C · App capture · We're Building in Public. Here's Week 1. — blocked: build-in-public post built on "still in development" wording + needs the founder's real week-1 notes (sheet)
+- [x] EDU-19 · A · Auto design · The Morning Stock Check, Reimagined
+- [x] EDU-20 · A · Auto design · The Discrepancy Story: How One Missing Transfer Cost a Branch a Customer
+- [!] EDU-21 · D · Founder on camera · Does Stacko Work With My ERP? — blocked: no footage in footage/<ID>/
+- [!] EDU-22 · D · Founder on camera · Is My Data Safe? — blocked: no footage in footage/<ID>/
+- [!] EDU-23 · D · Founder on camera · Who Owns My Data? — blocked: no footage in footage/<ID>/
+- [!] EDU-24 · D · Founder on camera · How Long Does Onboarding Take? — blocked: no footage in footage/<ID>/
+- [!] EDU-25 · D · Founder on camera · What Happens When AI Gets Something Wrong? — blocked: no footage in footage/<ID>/
+- [!] EDU-26 · D · Founder on camera · Can I Try Stacko Before Committing? — blocked: no footage in footage/<ID>/
+- [x] EDU-27 · G · Story frames · Where Does Your Stock Data Live? (template / frames)
+- [x] EDU-28 · G · Story frames · The Biggest Stock Headache (template / frames)
+- [x] EDU-29 · A · Auto design · Book a 20-Minute Demo. Here's Exactly What Happens.
+- [!] EDU-30 · D · Founder on camera · Bring Your Hardest Question — blocked: no footage in footage/<ID>/
+- [x] EDU-31 · A · Auto design · The Pilot Program: What You Get (And What You Give)
+- [x] EDU-32 · A · Auto design · Get a Clearer View of Your Stock
+- [!] EDU-33 · C · App capture · What We Shipped This Week — blocked: weekly build-in-public template needs real "what shipped" notes each week and conflicts with the no in-development wording rule
+- [!] EDU-34 · A · Auto design · The Feature We Killed This Week — blocked: script is placeholders and needs a real killed-feature story (sheet: "Needs a real killed-feature story")
+- [x] EDU-35 · F · Waits on real input · A Real Conversation With a Distributor (template / frames)
+- [x] EDU-36 · F · Waits on real input · The Pilot Story" (Pre-Launch Format) (template / frames)
+- [x] EDU-37 · F · Waits on real input · The One-Quote Card" (Lightweight Social Proof) (template / frames)
+- [x] EDU-38 · A · Auto design · The Inventory Health Check: 10 Questions to Ask Yourself
+- [x] EDU-39 · B · Auto motion · 3 Signs Your Inventory System Is Failing You
+- [x] EDU-40 · A · Auto design · End-of-Year Stocktake Survival Guide
+- [x] EDU-41 · A · Auto design · New Year, Same Stock Problems?
+- [x] EDU-42 · A · Auto design · The Stock Manager's Glossary
+- [x] EDU-43 · G · Story frames · Ask the Founder" — Weekly Q&A Story Series (template / frames)
+- [x] EDU-44 · F · Waits on real input · Comment → Carousel" (Turn Audience Questions Into Content) (template / frames)
+- [x] EDU-45 · C · App capture · The Map View, Explained
+- [x] EDU-46 · C · App capture · 60 Seconds Inside Stacko
+- [x] EDU-47 · C · App capture · Receipts, Issues, Transfers, Adjustments — in 4 Screens
+- [x] EDU-48 · C · App capture · Same System. Three Different Views.
+- [x] EDU-49 · B · Auto motion · Spreadsheet Chaos → Map Clarity
+- [x] EDU-50 · C · App capture · The Audit Trail, in 30 Seconds
+- [x] EDU-51 · C · App capture · The Transaction List, Explained
+- [x] EDU-52 · B · Auto motion · Full Inventory vs. Map + Integration
+- [x] EDU-53 · A · Auto design · AI Invoice Draft — The 3 Things It Won't Do
+- [x] EDU-54 · A · Auto design · A Day With Stacko — 4 Moments
+- [!] EDU-55 · A · Auto design · What's Live, What's Planned, What's a Concept — blocked: the whole post is about live / planned / concept status ("Live in the prototype"), which conflicts with the no in-development wording rule; needs your decision
+- [x] EDU-56 · C · App capture · See Your Own Locations on the Map
+- [x] EDU-57 · A · Auto design · The WhatsApp Warehouse Group
+- [x] EDU-58 · A · Auto design · The Excel File Named 'FINAL_v7_USE_THIS_ONE'
+- [!] EDU-59 · E · Live shoot · The Sticky Note Inventory — blocked: no footage in footage/<ID>/
+- [x] EDU-60 · C · App capture · Caption This Screenshot
+- [x] EDU-61 · A · Auto design · Rate Your Stock Chaos (1–10)
+- [x] EDU-62 · G · Story frames · Stock Manager Confession Booth (template / frames)
+- [x] EDU-63 · F · Waits on real input · Spotlight on a Stock Manager (template / frames)
+- [x] EDU-64 · A · Auto design · Show Us Your Stock Setup
+- [x] EDU-65 · L · Live session · Monthly Demo + Q&A (template / frames)
+- [x] EDU-66 · F · Waits on real input · You Asked About [Real Comment] — Here's the Answer (template / frames)
+- [x] EDU-67 · A · Auto design · The 5-Day Stock Visibility Challenge
+- [x] EDU-68 · B · Auto motion · Guess the Stock Problem
+- [x] EDU-69 · A · Auto design · The Stock Audit Checklist (Free Download)
+- [x] EDU-70 · A · Auto design · Stacko vs. Spreadsheets (Honest Comparison)
+- [x] EDU-71 · A · Auto design · What Is Manual Invoice Entry Actually Costing You?
+- [x] EDU-72 · A · Auto design · Everything About Stacko in One Image
+- [x] EDU-73 · A · Auto design · The 6 Objections We Hear Most (And Our Honest Answers)
+- [x] EDU-74 · A · Auto design · The 5-Line Email to Send Your Boss
+- [!] EDU-75 · A · Auto design · Know a Stock Manager Who Needs This? — blocked: referral reward is a placeholder; sheet says do not publish until the founder confirms it
+- [x] EDU-76 · A · Auto design · What Happens After You Book a Demo
+- [x] EDU-77 · A · Auto design · What a Pilot Looks Like — Week by Week
+- [!] EDU-78 · D · Founder on camera · The One Question That Stops Most Demos — blocked: no footage in footage/<ID>/
+- [x] EDU-79 · A · Auto design · The 48-Hour Summary (What You Get)
+- [x] EDU-80 · A · Auto design · How to Evaluate Inventory Software in 30 Minutes
+- [x] PLB-01 · B · Auto motion · 3 warehouses — do you know what's inside? (Arabic)
+- [x] PLB-02 · A · Auto design · Your Excel says 200. Your shelf says 40.
+- [!] PLB-03 · D · Founder on camera · Your staff aren't lazy. Your system is. — blocked: no footage in footage/<ID>/
+- [x] PLB-04 · A · Auto design · Why your staff don't log stock moves (and what fixes it)
+- [x] PLB-05 · B · Auto motion · Where is your China shipment right now?
+- [x] PLB-06 · A · Auto design · From container to shelf: a receiving checklist
+- [x] PLB-07 · A · Auto design · Dead stock calculator
+- [!] PLB-08 · E · Live shoot · It's already in the other warehouse — blocked: no footage in footage/<ID>/
+- [x] PLB-09 · A · Auto design · مجموعة الواتساب مش نظام مخزون (Arabic meme)
+- [x] PLB-10 · A · Auto design · The stock problem in numbers
+- [!] PLB-11 · E · Live shoot · "I'll write it down later" — blocked: no footage in footage/<ID>/
+- [x] PLB-12 · A · Auto design · Stock terms in plain Arabic
+- [x] PLB-13 · A · Auto design · Ramadan is coming: is your stock ready?
+- [x] PLB-14 · F · Waits on real input · Rollout diary #1 (first client) (template / frames)
+
+## Voice-over jobs (ElevenLabs flow · first session = take 1)
+- NOV-01 en q5wEDRYSf488GUTLb5kG gOl2VE6crW1WUD4lequd · ar PahQ4TzMlfgfBpxWavH5 VwbgVnldcCpvsUnZJ38Q
+- NOV-03 en 79IizPlLXBjU400ZJ19E bWI59cOLFysLuBfdto3t · ar b0wbqMDDw5H1P7pJkUuv s1ZlPPTmq3XGxklq9ryG
+- NOV-07 en vUMliKf2IWdCh46KrCTV FkOnLjRzjJyrUMiijrBw · ar C9DDdfpLtKhLIvT3lNzZ 6neHblUNsvlmi6whQQlN
+- NOV-10 en hcaM4Yuj9a2PZLnevXZK zbzvtsNnOhz7bYIrmrc3 · ar doO9XJCjnoGDCTMRTWpZ iTKMOl4zgHGAByYKNgJ4
+- NOV-12 en 57D3XC5k5zEPvuUmJP6O nnCoqM3hi4YpGW5eOSMK · ar npOCtYxtDbUqHqftSnRV 8mJlRbdQLOoKAgG9k61u
+- NOV-13 en sYMufE8kyZm9qJBEfXU6 Kgpa5eGJjhE0uss9w2cw · ar QvTsVoM4AsdVExfetTrt 8gK7OjydY7raMIqFDvDH
+- EDU-39 en FHABpF3V4UJKgHBEelZ7 pDfCFobuLFGkhPsqyuwO · ar bK8oTvckOCLBjz03gnev bTxJdb3rgCJi3UZj8GYl
+- EDU-49 en AylfrAPolJHHO8uklB6x 4pKu50n4M4kPTvi4P4w1 · ar sOFQOrHfV8rfy7eAFqPG kfzuwgY4M9O6bBRgoVPo
+- EDU-52 en 6MEpiwr7ac63ur08edS2 94PZYyhxwEG53FPHL0GY · ar fm6HXSehiSRzSYaxALbw fGf89NSDY1Vg9jwRZuia
+- EDU-68 en DsW5gzDFKL6M3R7hSCOv LVrPUIbUXBSwU6P7Ae6a · ar 4dqkn9pPKZD50TlRGB90 uTlPcpyr1fa8MWT2uPBo
+- PLB-01 en qhOU4LtvsirDeMK21CdC s6RZae2WPAeR0yrT4WKg · ar bhuvYVBUMjJH5UVdmDnJ g6cDMLbCNSlG1K4DvZhk
+- PLB-05 en kXyfObnhrtyYFqoxTXA0 V0zAw2OdJbceSk6NJan5 · ar ObDawYy66yfUkcWt3TDV EAZPdtfygQmESasPM4R6
+- EDU-32 en vUA3MEh3KnQXVdlbwTk7 kaEQ5FIYV5OCSXR5Hy2n · ar SfrpqtKpFwSmoqg4U952 XreKGh0KR7c1eC3zpM4w
+- EDU-41 en S3KkUd3DQfigFf4KCwmf sFa45vm0UtY3YJeEAvuI · ar ug6P9QEQNOlbmsuX2kM6 mtQeTwVwWe612R17bl9W
+- NOV-06 en aP5dWD8mvIr6IBsLxUeM k6l9RN7xk1E4rAcflWn4 · ar V6Izkl2Ol2qwNFnsUqJS ORx9thBvHUGxcQHROPvw
+- EDU-46 en T0FZyhLUQxePwJHOE3KB 5NAiPqAv0cJsplyxHWTw · ar tSEnBMxPlROLdKRdbXay xAPF2DHGV0X5w4lrtbXg
+- EDU-48 en 3WdBwV27GBnjapREqWIV PEGo42p4s5bAGjpH4wHI · ar 98wex6B619A81X4tR5wA 68GSXPVh3p7AL3aqHcju
+- EDU-50 en RK4GLLuFWX7vvq0f5oCD yYGK1WrO0W7BsAJcg2lO · ar LtUOQS5fx3iCqGWYUHsa 8wdUR0idi36lAmrGnZaI
+- EDU-56 en 8JXgrPfyrU7TJOjQPHHh qQ4usOOpkDgZfwVjINd3 · ar 6b0O7XVI4mmuKXA3tBM2 v3d8fZnrfU7E9dXGmuB1

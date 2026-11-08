@@ -1,0 +1,9 @@
+The AI invoice draft — 3 things it *won't* do.
+
+01 It won't guess — uncertain fields are flagged, never silently filled
+02 It won't change confirmed stock — drafts wait for human approval
+03 It won't approve itself — review and approval are human steps, with an audit entry
+
+Knowing the limits is as important as knowing the features.
+
+👉 Ask us anything, or book a meeting — link in bio.

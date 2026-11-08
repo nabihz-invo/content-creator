@@ -1,0 +1,20 @@
+D30-20 · One screen, explained · Carousel (6 slides)
+Stage / Claim Label: 🟢 Prototype (demo data)
+Review flag: Close to EDU-45 — approve one of the two. Removed '500 deliveries'.
+
+NEEDS YOUR REVIEW
+- Review flag: close to EDU-45. Approve only one of the two.
+- SCR-02 is 1229 px wide, so the zooms are moderate (wider crops with callouts) to keep the screens sharp.
+- The map's own red "Low" badges and low-stock counts are left as they are; the app interface wasn't changed.
+- Cover: IMG-13 (tablet) with SCR-02 on its screen. BG-03 (a Library feed cover) wasn't used because its laptop shows an Apple logo. IMG-14 and IMG-26 aren't used.
+
+CHECKS PASSED
+- 🟢 Prototype (demo data) label on every slide.
+- All product visuals are real screens from the Background Library: SCR-02 (map: warehouses, trucks, ship, plane) and SCR-04 (warehouse panel).
+- "500 deliveries" isn't used.
+- Design notes: annotated screenshots with teal callouts, one element per slide.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

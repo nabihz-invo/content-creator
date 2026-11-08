@@ -1,0 +1,16 @@
+D30-06 · Why your system has the numbers but not the truth · Carousel (6 slides)
+Stage / Claim Label: No product claim
+Review flag: Original contrasted 'ERP latency with webhooks' for CTOs. Rewritten for owners. Do not claim ERP integration: it is not in phase 1.
+
+NEEDS YOUR REVIEW
+- Slide 6 describes the product ("one message, a manager's approval, and the stock moves on the map"), but the row's label is "No product claim". No feature is shown, so no label is on screen. If you want one, it would be 🟢 Prototype (demo data).
+- Slide 6 has a CTA pill with the CTA text ("Agree or disagree? Tell us in the comments."). It isn't in the slide script, so remove it if you prefer.
+
+CHECKS PASSED
+- Review flag: no ERP integration claim and no ERP brand named. The pinned comment asks which ERP people use, which is fine.
+- Design notes: simple line illustrations (office vs floor) drawn as icons, no stock photos.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

@@ -1,0 +1,108 @@
+{
+ "id": "EDU-56",
+ "lines": [
+  {
+   "vo": {
+    "en": "Here's the map — but this is our demo data.",
+    "ar": "هيدي الخريطة — بس هيدي داتا تجريبية."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-map.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 18%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "Here's the map — *demo data.*"
+    },
+    "ar": {
+     "head": "هيدي الخريطة — *داتا تجريبية.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "In a meeting, we load your warehouse and branch names, and show you your own locations on the map.",
+    "ar": "بالاجتماع، منحطّ أسماء مستودعاتك وفروعك، ومنفرجيك مواقعك إنت على الخريطة."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-map-wh2.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 30%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "Your locations, *on the map.*"
+    },
+    "ar": {
+     "head": "مواقعك *على الخريطة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Click a pin. See the stock. Answer the question you get every morning.",
+    "ar": "كبوس عالموقع. شوف المخزون. وجاوب السؤال اللي بيجيك كل صبح."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-map-wh2.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 70%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 70%",
+    "tag": "demo",
+    "en": {
+     "head": "Click. See the stock. *Answer.*"
+    },
+    "ar": {
+     "head": "كبسة. شوف المخزون. *جاوب.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Twenty minutes. Your locations. Bring your hardest question. Book a meeting with our team.",
+    "ar": "٢٠ دقيقة. مواقعك. وجيب أصعب سؤال عندك. احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "20 minutes. Your locations. Bring your hardest question."
+    },
+    "ar": {
+     "ask": "٢٠ دقيقة. مواقعك. جيب أصعب سؤال."
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "Here's the map — but this is our demo data.\n\nIn a meeting, we load your warehouse and branch names, and show you your own locations on the map. Click a pin. See the stock. Answer the question you get every morning.\n\n20 minutes. Your locations. Bring your hardest question.\n\n👉 Book a meeting — link in bio.",
+  "ar": "هيدي الخريطة — بس هيدي داتا تجريبية.\n\nبالاجتماع، منحطّ أسماء مستودعاتك وفروعك ومنفرجيك مواقعك إنت على الخريطة. كبوس عالموقع. شوف المخزون. وجاوب السؤال اللي بيجيك كل صبح.\n\n٢٠ دقيقة. مواقعك. جيب أصعب سؤال عندك.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#ProductDemo #InventoryManagement #SMB #Stacko #SupplyChain #StockVisibility #MapView #WarehouseManagement #InventoryTech #BusinessOperations",
+ "changes": [
+  "Founder VO replaced by ElevenLabs voices (sheet allows it); founder-on-camera shot replaced by the end card.",
+  "\"On a demo call\" → \"In a meeting\"; \"Book a demo\" → \"Book a meeting\"; caption dropped \"🟢 Prototype view — features in development.\"",
+  "REVIEW: \"20 minutes\" kept from the sheet."
+ ]
+}

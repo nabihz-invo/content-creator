@@ -1,0 +1,33 @@
+{
+ "id": "EDU-19",
+ "size": "portrait",
+ "changes": ["Slide 7: \"Book a demo\" → \"Book a meeting\" (body and button).", "Slide 4 (🟡 alerts) carries the Concept tag; slides 3, 5, 6 use real app screenshots.", "Caption: dropped \"🟢 Prototype view — alerts planned.\"; \"Book a demo\" → \"Book a meeting\"."],
+ "slides": [
+  {"type": "cover", "art": "clock",
+   "en": {"title": "The morning *stock check.*", "lead": "8:00 AM. Before the first customer. Before the first call."},
+   "ar": {"title": "جولة المخزون *الصبح.*", "lead": "٨ الصبح. قبل أوّل زبون. قبل أوّل تلفون."}},
+  {"num": "40′", "icon": "clock",
+   "en": {"title": "Old way: the 40-minute ritual.", "body": "Open Excel. Check the branch WhatsApp group. Call warehouse 1. Wait. Call warehouse 2. Update the sticky note. Realize the file wasn't saved since Tuesday."},
+   "ar": {"title": "الطريقة القديمة: طقس الـ٤٠ دقيقة.", "body": "بتفتح الإكسل. بتشيّك مجموعة واتساب الفرع. بتتّصل بالمستودع ١. بتستنّى. بتتّصل بالمستودع ٢. بتحدّث الورقة الصغيرة. وبتكتشف إنو الملف ما انحفظ من التلاتا."}},
+  {"img": {"name": "approvals", "src": "app", "h": 520},
+   "en": {"title": "New way: *the 4-minute check.*", "body": "Open the map. See every warehouse and branch. Click the pins that need attention. Review pending transactions. Approve or flag. Done."},
+   "ar": {"title": "الطريقة الجديدة: *جولة الـ٤ دقايق.*", "body": "بتفتح الخريطة. بتشوف كل مستودع وفرع. بتكبس عالنقاط اللي بدها انتباه. بتراجع المعاملات المعلّقة. بتوافق أو بتعلّم. خلصت."}},
+  {"img": {"name": "map", "src": "app", "h": 520}, "concept": true,
+   "en": {"title": "What you see at a glance.", "body": "Location-level stock summaries. Pending transactions awaiting review. Recent movements. Anything flagged — so nothing slips."},
+   "ar": {"title": "شو بتشوف من أوّل نظرة.", "body": "ملخّص المخزون بكل موقع. معاملات ناطرة مراجعة. آخر الحركات. وأي شي متعلّم — حتى ما يفلت شي."}},
+  {"img": {"name": "rolepick", "h": 470},
+   "en": {"title": "What your team sees.", "body": "Warehouse staff see their assigned locations. Invoice users see their submissions. Managers see approvals. Everyone sees only what they need — and nothing they don't."},
+   "ar": {"title": "شو بيشوف فريقك.", "body": "موظفين المستودع بيشوفوا المواقع المعطاة إلهن. مسؤولين الفواتير بيشوفوا اللي رفعوه. والمدراء بيشوفوا الموافقات. كل واحد بيشوف اللي بيلزمو بس."}},
+  {"img": {"name": "move-trf", "src": "app", "h": 500},
+   "en": {"title": "What gets recorded.", "body": "Every review, every approval, every adjustment — with user, time, and before/after values where appropriate. The morning check becomes an audit trail, automatically."},
+   "ar": {"title": "شو بيتسجّل.", "body": "كل مراجعة، كل موافقة، كل تعديل — مع المستخدم والوقت والقيمة قبل وبعد وين لازم. جولة الصبح بتصير سجل تدقيق لحالها."}},
+  {"type": "cta",
+   "en": {"title": "Start your morning *differently.*", "lead": "Book a meeting and we'll walk through your morning routine — and where Stacko fits."},
+   "ar": {"title": "بلّش صبحيّتك *غير شكل.*", "lead": "احجز اجتماعاً ومنمرق معك على روتين الصبح عندك — ووين بيركب ستاكو."}}
+ ],
+ "caption": {
+  "en": "8:00 AM. Before the first customer. Before the first call.\n\nThe morning stock check.\n\nOld way: open Excel. Check the WhatsApp group. Call warehouse 1. Wait. Call warehouse 2. Update the sticky note. Realize the file wasn't saved since Tuesday. 40 minutes gone.\n\nNew way: open the map. See every warehouse and branch. Click the pins that need attention. Review pending transactions. Approve or flag. Done. 4 minutes.\n\nAnd while you do it, every review, approval, and adjustment is recorded — with user, time, and before/after values where appropriate. The morning check becomes an audit trail, automatically.\n\n👉 Book a meeting — link in bio.",
+  "ar": "٨ الصبح. قبل أوّل زبون. قبل أوّل تلفون.\n\nجولة المخزون الصبح.\n\nالطريقة القديمة: بتفتح الإكسل. بتشيّك مجموعة الواتساب. بتتّصل بالمستودع ١. بتستنّى. بتتّصل بالمستودع ٢. بتحدّث الورقة. وبتكتشف إنو الملف ما انحفظ من التلاتا. راحت ٤٠ دقيقة.\n\nالطريقة الجديدة: بتفتح الخريطة. بتشوف كل مستودع وفرع. بتكبس عالنقاط اللي بدها انتباه. بتراجع المعاملات المعلّقة. بتوافق أو بتعلّم. خلصت. ٤ دقايق.\n\nوإنت عم تعمل هيك، كل مراجعة وموافقة وتعديل بيتسجّل — مع المستخدم والوقت والقيمة قبل وبعد وين لازم. جولة الصبح بتصير سجل تدقيق لحالها.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#InventoryManagement #StockControl #SMB #WarehouseManagement #Stacko #MorningRoutine #SupplyChain #InventoryVisibility #AuditTrail #Operations"
+}

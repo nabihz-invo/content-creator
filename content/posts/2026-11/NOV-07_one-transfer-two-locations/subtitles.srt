@@ -1,0 +1,36 @@
+1
+00:00:00,480 --> 00:00:02,850
+A stock transfer involves two locations.
+
+2
+00:00:02,850 --> 00:00:05,600
+Can your team follow the full picture?
+
+3
+00:00:05,740 --> 00:00:07,630
+When stock moves between locations,
+
+4
+00:00:07,630 --> 00:00:09,460
+teams need clear information about
+
+5
+00:00:09,460 --> 00:00:12,120
+where it came from and where it's going.
+
+6
+00:00:12,200 --> 00:00:13,860
+A map-based view can make those
+
+7
+00:00:13,860 --> 00:00:16,010
+locations easier to understand.
+
+8
+00:00:16,130 --> 00:00:18,740
+What information matters most during a transfer?
+
+9
+00:00:18,740 --> 00:00:20,820
+Book a meeting with our team.
+

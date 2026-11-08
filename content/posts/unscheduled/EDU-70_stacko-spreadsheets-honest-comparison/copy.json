@@ -1,0 +1,33 @@
+{
+ "id": "EDU-70",
+ "size": "portrait",
+ "changes": ["Slide 5 title \"What Stacko doesn't do yet.\" → \"What Stacko doesn't do.\" and caption \"doesn't do yet\" → \"doesn't do\" (no in-development wording).", "Slide 3 marks use Deep blue, not red; slide 5 has no amber clocks.", "Slide 7: \"Book a demo\" → \"Book a meeting\" (body and button); dropped micro-text \"Prototype features shown; some capabilities planned.\"", "Caption: dropped \"🟢 Prototype; 🟡 some capabilities planned.\" and the 🟢/🟡 marks; \"Book a demo\" → \"Book a meeting\"."],
+ "slides": [
+  {"type": "cover", "art": "sheets",
+   "en": {"title": "Stacko vs. *spreadsheets.*", "lead": "An honest comparison. (Yes, we'll list what spreadsheets do better.)", "labels": ["Stock.xlsx", "Stock_v2.xlsx", "FINAL.xlsx"]},
+   "ar": {"title": "ستاكو ولّا *الإكسل؟*", "lead": "مقارنة صادقة. (إيه، رح نقول شو الإكسل بيعمل أحسن.)", "labels": ["Stock.xlsx", "Stock_v2.xlsx", "FINAL.xlsx"]}},
+  {"icon": "sheet",
+   "en": {"title": "What spreadsheets do well.", "items": ["Flexible.", "Free.", "Everyone knows how to use them.", "Great for one-time analysis, budgets, and small single-location operations."]},
+   "ar": {"title": "شو الإكسل بيعمل منيح.", "items": ["مرن.", "مجاني.", "الكل بيعرف يستعملو.", "ممتاز لتحليل لمرّة وحدة، للميزانيات، وللشغل الصغير بموقع واحد."]}},
+  {"icon": "sheet", "mark": "✗",
+   "en": {"title": "Where spreadsheets break.", "items": ["No location-level view.", "No audit trail.", "No role-based access.", "No duplicate protection.", "No document capture."], "body": "And every update is a manual entry waiting for a typo."},
+   "ar": {"title": "وين الإكسل بيوقع.", "items": ["ما في رؤية لكل موقع.", "ما في سجل تدقيق.", "ما في صلاحيات حسب الدور.", "ما في حماية من التكرار.", "ما في قراءة مستندات."], "body": "وكل تحديث هوّي إدخال باليد ناطر غلطة طباعة."}},
+  {"img": {"name": "map", "src": "app", "h": 470},
+   "en": {"title": "What Stacko does well.", "body": "Map view across locations. Transaction history with user and timestamp. Role-scoped access. AI document drafts with human approval."},
+   "ar": {"title": "شو ستاكو بيعمل منيح.", "body": "خريطة لكل المواقع. سجل معاملات مع المستخدم والوقت. صلاحيات حسب الدور. مسودّات مستندات بالذكاء الاصطناعي مع موافقة بشرية."}},
+  {"icon": "eye",
+   "en": {"title": "What Stacko doesn't do.", "body": "Advanced forecasting. Full accounting. Custom reports. Complex sales workflows. If you need those today, spreadsheets (or your ERP) may still be part of your answer."},
+   "ar": {"title": "شو ستاكو ما بيعمل.", "body": "توقّعات متقدّمة. محاسبة كاملة. تقارير على الطلب. شغل مبيعات معقّد. إذا بدّك هالشي اليوم، الإكسل (أو الـERP تبعك) ممكن يضل جزء من الحل."}},
+  {"type": "big",
+   "en": {"title": "The honest verdict.", "body": "Spreadsheets are a tool. Stacko is a system. If you're running one location and one person, a spreadsheet is fine. If you're running multiple locations and a team, you need a system."},
+   "ar": {"title": "الحكم الصادق.", "body": "الإكسل أداة. ستاكو نظام. إذا عندك موقع واحد وشخص واحد، الإكسل بيكفي. إذا عندك كذا موقع وفريق، بدّك نظام."}},
+  {"type": "cta",
+   "en": {"title": "Which side *are you on?*", "lead": "Book a meeting and we'll walk through your setup — spreadsheet or system, no judgment."},
+   "ar": {"title": "مع أيّا جهة *إنت؟*", "lead": "احجز اجتماعاً ومنمرق معك على وضعك — إكسل أو نظام، بلا أحكام."}}
+ ],
+ "caption": {
+  "en": "Stacko vs. spreadsheets. An honest comparison.\n\nWhat spreadsheets do well: flexible, free, everyone knows them. Great for one-time analysis and small single-location operations.\n\nWhere spreadsheets break: no location-level view, no audit trail, no role-based access, no duplicate protection, no document capture. Every update is a manual entry waiting for a typo.\n\nWhat Stacko does well: map view, transaction history, role-scoped access, AI document drafts with human approval.\n\nWhat Stacko doesn't do: forecasting, full accounting, custom reports.\n\nThe honest verdict: spreadsheets are a tool. Stacko is a system. If you're running one location and one person, a spreadsheet is fine. If you're running multiple locations and a team, you need a system.\n\n👉 Book a meeting — link in bio.",
+  "ar": "ستاكو ولّا الإكسل؟ مقارنة صادقة.\n\nشو الإكسل بيعمل منيح: مرن، مجاني، والكل بيعرفو. ممتاز لتحليل لمرّة وحدة وللشغل الصغير بموقع واحد.\n\nوين بيوقع: ما في رؤية لكل موقع، ما في سجل تدقيق، ما في صلاحيات حسب الدور، ما في حماية من التكرار، ما في قراءة مستندات. وكل تحديث إدخال باليد ناطر غلطة.\n\nشو ستاكو بيعمل منيح: خريطة، سجل معاملات، صلاحيات حسب الدور، مسودّات مستندات بالذكاء الاصطناعي مع موافقة بشرية.\n\nشو ستاكو ما بيعمل: توقّعات، محاسبة كاملة، تقارير على الطلب.\n\nالحكم الصادق: الإكسل أداة. ستاكو نظام. موقع واحد وشخص واحد؟ الإكسل بيكفي. كذا موقع وفريق؟ بدّك نظام.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#Spreadsheets #InventoryManagement #SMB #Stacko #SupplyChain #Comparison #InventoryTech #WarehouseManagement #BusinessOperations #DistributorLife"
+}

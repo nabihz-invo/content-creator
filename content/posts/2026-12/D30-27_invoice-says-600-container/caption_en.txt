@@ -1,0 +1,5 @@
+Short shipments happen. The question is whether you notice at the door or six months later.
+
+Stacko is being built to compare what was invoiced with what was received, and flag the difference.
+
+Has this happened to you?

@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>NOV-03 · Meet Stacko</title>
+<!-- Workbook row NOV-03 · Recipe RC-22 brand moment · Hook HK-12 reveal tease · Opener OP-14 dots rain/assemble · TX-04 blur · TX-09 scramble · TX-16 EN→AR
+     TR-18 dots · TR-07 iris · CM-08 snap zoom · CM-14 map camera · AN-01 map draws · AN-03 truck · AN-11 toast · End card EC-04 bilingual · Logo LG-07 + LG-08
+     Assets: BG-10 presenter corner (SCR-13 on the TV edge, placed) · Presenter PR-02 Maya (clip missing) · Music MU-02 (missing → placeholder-calm)
+     Not on disk: Maya's 6 s clip + alignment JSON, PI-43 (cover still) — see notes.md.
+     Two language versions, never mixed:  node studio/render.mjs <this file> --lang all  → NOV-03_EN.mp4 + NOV-03_AR.mp4 -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'NOV-03 · Meet Stacko' });
+const NS = 'http://www.w3.org/2000/svg';
+
+// ── 0.0–9.0 · one dot falls, hundreds rain into the Dot core, the Y routes light up, snap zoom into the core ──
+const a = R.scene(9, { bg: 'night', name: 'dots' });
+const first = a.html(`<div style="width:26px;height:26px;border-radius:50%;background:${SM.C.glow};box-shadow:0 0 30px 10px rgba(46,242,238,.55)"></div>`, { x: 540, y: 980 });
+a.anim(first.layer || first, { y: [-760, 0], o: [1, 1] }, 0, .55, 'inQuad');            // motion in the first frames
+a.anim(first.layer || first, { o: [1, 0], s: [1, .4] }, .7, .3);
+a.sfx('tick', .55, .5);
+const logo = a.logoDots({ from: 'rain', at: .75, dur: 2.6, size: 560, y: 980, wordmark: false, tagline: null, endorse: false });
+// the three empty lines of the mark are the routes between warehouses: light them up in Glow
+const routes = document.createElementNS(NS, 'g');
+routes.innerHTML = ['M60 60 L60 108', 'M60 60 L18.4 36', 'M60 60 L101.6 36'].map(d => `<path d="${d}" fill="none" stroke="${SM.C.glow}" stroke-width="1.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" style="filter:drop-shadow(0 0 2.5px ${SM.C.glow})"/>`).join('');
+logo.svg.appendChild(routes);
+const paths = [...routes.querySelectorAll('path')];
+a.on(4.2, 5.1, p => paths.forEach(pth => pth.setAttribute('stroke-dashoffset', String(1 - SM.easeFn('outCubic')(p)))));
+a.text(SM.t('Every dot is *a box* in your warehouse.', 'كل نقطة هي *كرتونة* بمستودعك.'), { y: 400, size: 86, fx: 'blur', at: .25, w: 900, out: 'blur', outAt: 3.7 });
+a.text(SM.t('Split by *the routes* between your warehouses.', 'مقسومة *بالطرقات* بين مستودعاتك.'), { y: 1420, size: 64, fx: 'blur', at: 4.4, w: 880, out: 'blur', outAt: 6.8 });
+a.anim(logo.layer, { s: [1, 9], o: [1, .2] }, 7.1, 1.6, 'inQuart');                        // CM-08 snap zoom into the core
+
+// ── 9.0–15.0 · presenter corner (BG-10, branded TV edge) — Maya's clip goes here when it exists ──
+const b = R.scene(6, { in: 'dots', bg: '/assets/backgrounds/final/BG-10.png', move: 'push', gradient: true, name: 'presenter' });
+b.text(SM.t('Meet *Stacko.*', 'تعرّف على *ستاكو.*'), { y: 1180, size: SM.ar() ? 92 : 110, fx: 'blur', at: .3, w: 960 });
+b.text(SM.t('Every warehouse, every item, every shipment, on *one live map.*', 'كل مستودع، كل صنف، كل شحنة، على *خريطة وحدة مباشرة.*'), { y: SM.ar() ? 1400 : 1370, size: SM.ar() ? 46 : 52, fx: 'blur', at: 1.2, w: 860, weight: 500 });
+
+// ── 15.0–21.0 · iris into the live map: map draws, truck W1 → W2 with ETA, toast "Logged" ──
+const c = R.scene(6, { in: 'iris', inOpts: { cx: 50, cy: 50 }, name: 'map' });
+const m = c.map({ intro: 'draw', at: 0, fitH: .54 });
+m.truck({ from: 'W1', to: 'W2', at: 1.6, dur: 3.4, eta: 73, qty: 40, item: 'LED Strip 5m', glow: true, follow: true, followZoom: 1.6, followOffset: [0, 160], toast: false });
+m.toast(4.9, SM.t('Logged: 40 × LED Strip 5m', 'تم التسجيل: ٤٠ × LED Strip 5m'));
+c.text(SM.t('Positions estimated from the ETA', 'المواقع تقديرية حسب وقت الوصول'), { y: 1460, size: 34, weight: 500, fx: 'fade', at: 2.0, color: SM.C.deep, theme: 'light', out: 'fade', outAt: 4.6 });
+R.badge(SM.t('Prototype · demo data', 'نموذج أوّلي · بيانات تجريبية'), { at: c.start + .3, until: c.start + c.dur, theme: 'light', my: 236 });
+
+// ── 21.0–26.0 · end card in this version's language: mark pops, the name resolves, tagline ──
+const e = R.scene(5, { in: 'blur', bg: 'night', name: 'endcard' });
+e.lockup({ layout: 'mark', variant: 'dark', size: 220, y: 640, in: 'pop', at: .1 });
+if (SM.ar()) {
+  e.html(`<div style="font-size:150px;line-height:1">${SM.wordmarkAr('dark')}</div>`, { y: 900, in: 'blur', at: .5 });
+} else {
+  e.text('stacko', { y: 900, size: 170, fx: 'scramble', at: .3, ls: '-.045em', weight: 600, out: 'fade', outAt: 1.25 });   // TX-09: resolves…
+  e.html(`<div style="font-size:170px;line-height:1">${SM.wordmark('dark')}</div>`, { y: 900, in: 'fade', at: 1.2 });          // …into the real wordmark with the teal o
+}
+e.text(SM.t('Your stock, *always in sight.*', 'مخزونك *دايماً* قدّام عينك'), { size: 64, y: 1120, at: 1.4, fx: 'blur', w: 900, weight: 500 });
+const endo = SM.el('div', '', e.el, SM.endorse('dark')); endo.style.cssText = 'position:absolute;left:50%;top:1330px;transform:translateX(-50%);font-size:30px';
+e.set(endo, { o: 0 }); e.anim(endo, { o: [0, 1] }, 1.9, .5);
+e.sfx('ding', .2, .4);
+
+// ── Finish ─────────────────────────────────────────────────────────────────────────
+R.grain(.04).vignette(.5).safe();
+// Maya's line goes in scene b when assets/presenters/maya/NOV-03_take1.mp4 (+ _alignment.json) exists:
+//   b.bg('/assets/presenters/maya/NOV-03_take1.mp4') · b.captions({ elevenlabs: … }) · b.lowerThird({ name: 'Maya', role: 'Stacko' })
+R.audio({ music: '/assets/audio/music/placeholder-calm.mp3', musicVolume: .22 });
+R.cover(5.6);
+</script></body></html>

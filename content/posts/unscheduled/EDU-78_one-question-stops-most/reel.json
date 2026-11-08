@@ -1,0 +1,49 @@
+{
+ "id": "EDU-78",
+ "title": "The one question that stops most decisions",
+ "tags": "#Stacko #InventoryManagement #ERP",
+ "caption": "The one question that stops most inventory decisions: \"Do we have to change everything?\"\n\nNo. Keep your ERP and add the map and AI on top, or start with one site and one workflow. Your team can log moves on Telegram from day one, and we import your current Excel files.\n\nYou don't have to change everything. Book a meeting with our team. Link in bio.",
+ "notes": [],
+ "lines": [
+  {
+   "vo": "There's one question that stops most inventory decisions.",
+   "scene": {
+    "type": "text",
+    "big": "The question that *stops most decisions.*"
+   }
+  },
+  {
+   "vo": "Do we have to change everything?",
+   "scene": {
+    "type": "text",
+    "big": "“Do we have to *change everything?*”"
+   }
+  },
+  {
+   "vo": "No. Keep your ERP and add the map and AI on top, or let Stacko run your inventory.",
+   "scene": {
+    "type": "shot",
+    "img": "erp-card",
+    "head": "Keep *your system.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "We import your current Excel files, and floor staff can log moves on Telegram from day one.",
+   "scene": {
+    "type": "how",
+    "clipFrom": 1.0,
+    "clipTo": 3.8,
+    "head": "Start with *what you have.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "You don't have to change everything. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "You don't have to<br>*change everything.*"
+   }
+  }
+ ]
+}

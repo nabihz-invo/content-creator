@@ -1,0 +1,11 @@
+500 SKUs. 40 invoices a week. 1 person typing.
+
+Spare parts don't forgive typos. "BR-2204" and "BR-220A" are different parts — and one typo means the wrong part in stock, the right part out of stock, and a customer waiting on a shipment.
+
+The bottleneck isn't the parts. It's the invoice pile. Every invoice: supplier, invoice number, date, line items, quantities, units, totals. Typed by hand. Forty times a week.
+
+Stacko's AI workflow: upload a supported document → fields extract → products and suppliers match where possible → uncertain fields are flagged, never guessed → a draft is created → an authorized person reviews and approves → stock updates with an audit entry.
+
+AI proposes. You approve. Nothing changes without you.
+
+👉 Importers & spare-parts businesses: book a meeting — link in bio.

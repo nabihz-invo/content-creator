@@ -1,0 +1,25 @@
+EDU-22 · Reel ·  · 29s · 1080x1920
+Title: FAQ: Is my data safe?
+Files: EDU-22_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Is my data safe?" It should be your first question.
+
+In Stacko, each company's data is kept separate from every other company's, and access follows the roles you set. Every change keeps who, what, when and where, with before and after values, and a correction is a new entry, never an edit.
+
+More security questions? Ask below, or book a meeting and a person from our team will answer. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.4s  Is my data safe with Stacko? It should be your first question.
+  4.7s  Each company's data is kept separate, and access follows the roles you set.
+  9.3s  Every change keeps who, what, when, and where, with before and after values. A correction is a new entry, never an edit.
+ 18.1s  Have more security questions? Ask us anything, and a person from our team will answer.
+ 22.9s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Answers follow the FAQ and trust sections of the Stacko website.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

@@ -1,0 +1,51 @@
+{
+ "id": "EDU-05",
+ "title": "No, our AI does not change your stock automatically",
+ "caption": "\"Will your AI change my stock automatically?\" No, and that's on purpose.\n\nStacko's AI reads the supplier invoice and prepares a draft. Drafts don't touch your stock. Anything new or unclear is flagged, never guessed. An authorised person approves, and only then is it recorded, with who, what and when.\n\nAI should speed up the boring part, not take responsibility away from your team.\n\nQuestions about how it works? Ask below, or book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Will AI change my stock automatically? Short answer: no. And that's on purpose.",
+   "scene": {
+    "type": "text",
+    "big": "Will AI change your stock *automatically?*"
+   }
+  },
+  {
+   "vo": "Stacko's AI reads the supplier invoice and prepares a draft. The draft doesn't touch your stock.",
+   "scene": {
+    "type": "inv",
+    "head": "AI prepares *a draft.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "If something is new or unclear, it's flagged, not guessed.",
+   "scene": {
+    "type": "shot",
+    "img": "shipment",
+    "head": "Unsure? *It's flagged.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "An authorised person reviews and approves, and only then is it recorded, with who, what, and when.",
+   "scene": {
+    "type": "shot",
+    "img": "ledger",
+    "head": "A person *approves.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "AI speeds up the boring part. Your team stays in control. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "AI drafts.<br>*You approve.*"
+   }
+  }
+ ],
+ "notes": [
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

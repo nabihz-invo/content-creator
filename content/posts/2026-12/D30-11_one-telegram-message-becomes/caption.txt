@@ -1,0 +1,15 @@
+CAPTION
+The whole idea of Stacko in 8 slides.
+
+Logging should take seconds, a manager should always approve, and the map should show what happened.
+
+Save it, or send it to your warehouse manager.
+
+HASHTAGS
+#Stacko #Telegram #InventoryManagement #HowItWorks
+
+CTA
+Save this / send it to your warehouse manager.
+
+PINNED COMMENT
+Prototype with demo data. Would your team log moves in Telegram?

@@ -1,0 +1,70 @@
+PART 1 · Glossary series, part 1: Source of truth.
+
+The one system that owns a specific type of data — the version everyone trusts.
+
+Why it matters: If two systems both claim to own stock quantities, you don't have a source of truth. You have a conflict.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 2 · Glossary series, part 2: Idempotency.
+
+A property where repeating the same operation doesn't create duplicates.
+
+Why it matters: It's how you stop the same invoice from being imported twice and paid twice.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 3 · Glossary series, part 3: Audit trail.
+
+A record of who did what, when, and (where possible) what changed.
+
+Why it matters: It's how you resolve disputes without relying on memory or chat history.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 4 · Glossary series, part 4: Segregation of duties.
+
+Separating the person who creates a transaction from the person who approves it.
+
+Why it matters: It catches honest mistakes and makes unauthorized changes much harder.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 5 · Glossary series, part 5: Draft-for-approval.
+
+A workflow where a system prepares a transaction but a human must approve it before it takes effect.
+
+Why it matters: It's how AI can speed up work without taking responsibility away from your team.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 6 · Glossary series, part 6: Write-back.
+
+Sending a confirmed record from one system to another.
+
+Why it matters: It's how an integration stays in sync — and why source-of-truth rules matter before enabling it.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 7 · Glossary series, part 7: Tenant isolation.
+
+Ensuring one company's data is completely separated from another's.
+
+Why it matters: It's a baseline security requirement for any multi-company platform.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.
+
+---
+PART 8 · Glossary series, part 8: Validation warning.
+
+A flag raised when data is missing, uncertain, or inconsistent — before it becomes a problem.
+
+Why it matters: It's how systems avoid silent errors.
+
+Save this for your next software evaluation. Follow for more plain-language inventory terms.

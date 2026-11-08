@@ -1,0 +1,12 @@
+FORMAT
+Story series (4 frames) (no feed caption)
+
+CTA
+Reply in DM / answer the sticker
+
+STORY STICKERS (add natively in Instagram, in the empty space under the headline)
+Frame 1: Poll sticker. Question: "When stock leaves a warehouse, when is it recorded?" Options: Right away / End of day / Whenever someone remembers
+Frame 2: Quiz sticker. Question: "Where do your stock moves get written first?" Options: Notebook / Excel / WhatsApp group / A system
+Frame 3: Prototype clip (6 sec), not built yet (clips come later). See issues.txt.
+Frame 4: Question sticker. Prompt: "What would make your team actually log every move?"
+Save the replies (anonymised) for a later 'You told us' post.

@@ -1,0 +1,27 @@
+EDU-21 · Reel ·  · 27s · 1080x1920
+Title: FAQ: Does Stacko work with my ERP?
+Files: EDU-21_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Does Stacko work with my ERP?" Yes.
+
+If you use Odoo, SAP or another system, Stacko can sit on top of it and add the map and AI document capture. If you don't have a system, Stacko can be your full inventory.
+
+Connections are set up for each customer: tell us what you run, and we'll confirm what's possible before any commitment.
+
+Book a meeting to discuss your setup. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.4s  Does Stacko work with your ERP? Yes.
+  2.7s  If you use Odoo, SAP, or another system, Stacko can sit on top of it and add the map and AI document capture.
+ 10.7s  If you don't have a system, Stacko can be your full inventory.
+ 14.2s  Connections are set up for each customer. Tell us what you run, and we'll confirm what's possible before any commitment.
+ 20.7s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Answers follow the FAQ and trust sections of the Stacko website.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

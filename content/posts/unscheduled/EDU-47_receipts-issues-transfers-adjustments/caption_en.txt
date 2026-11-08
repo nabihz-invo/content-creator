@@ -1,0 +1,10 @@
+4 operations. 4 screens.
+
+📥 Receipts — stock coming in
+📤 Issues — stock going out
+🔁 Transfers — stock moving between locations
+⚖️ Adjustments — correcting the record
+
+Every one of them is a recorded transaction — with the user, the location, and the timestamp. No WhatsApp transfers. No spreadsheet overwrites.
+
+👉 Book a meeting and walk through your own workflow — link in bio.

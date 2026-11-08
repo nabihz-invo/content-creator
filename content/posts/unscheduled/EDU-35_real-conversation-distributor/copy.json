@@ -1,0 +1,62 @@
+{
+ "id": "EDU-35",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "quote",
+   "theme": "dark",
+   "en": {
+    "quote": "A distributor told me something I haven't stopped thinking about."
+   },
+   "ar": {
+    "quote": "تاجر قلّي شي ما عم يطلع من راسي."
+   }
+  },
+  {
+   "type": "quote",
+   "en": {
+    "eyebrow": "\"What's the hardest part of managing stock across 3 warehouses?\"",
+    "quote": "Honestly? The phone calls. Every morning, three different versions of the truth."
+   },
+   "ar": {
+    "eyebrow": "«شو أصعب شي بإدارة مخزون ٣ مستودعات؟»",
+    "quote": "بصراحة؟ التلفونات. كل صبح، ٣ نسخ مختلفة من الحقيقة."
+   }
+  },
+  {
+   "type": "big",
+   "en": {
+    "title": "Three versions of the truth.",
+    "lead": "Not because anyone was lying — because nobody sees all three warehouses."
+   },
+   "ar": {
+    "title": "٣ نسخ من الحقيقة.",
+    "lead": "مش لأنو حدا عم يكذب — لأنو ما حدا شايف الـ٣ مستودعات."
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "What's the hardest part *for you?*",
+    "lead": "Comment below."
+   },
+   "ar": {
+    "title": "شو أصعب شي *عندك؟*",
+    "lead": "علّق تحت."
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route F): rendered for review; publish only if this conversation really happened and the person gave permission to share it anonymized.",
+  "LinkedIn: \"the reason we're building Stacko the way we are\" → \"the reason Stacko works the way it does\" (no in-development wording). Saved as linkedin_en.txt.",
+  "Caption: added \"Book a meeting with our team.\""
+ ],
+ "caption": {
+  "en": "A distributor told me something I haven't stopped thinking about.\n\nI asked: \"What's the hardest part of managing stock across your three warehouses?\"\n\nHe said: \"Honestly? The phone calls. Every morning, I call the three warehouse managers. Every morning, I hear three different versions of the truth.\"\n\nThree versions of the truth. Not because anyone was lying — because each manager sees their own warehouse, and nobody sees all three.\n\nThat's not a people problem. It's a visibility problem.\n\nWhat's the hardest part for you? 👇\n\nBook a meeting with our team.",
+  "ar": "تاجر قلّي شي ما عم يطلع من راسي.\n\nسألتو: «شو أصعب شي بإدارة المخزون بالـ٣ مستودعات تبعك؟»\n\nقلّي: «بصراحة؟ التلفونات. كل صبح بتّصل بمدراء الـ٣ مستودعات. وكل صبح بسمع ٣ نسخ مختلفة من الحقيقة.»\n\n٣ نسخ من الحقيقة. مش لأنو حدا عم يكذب — لأنو كل مدير شايف مستودعو، وما حدا شايف التلاتة.\n\nهيدي مش مشكلة ناس. هيدي مشكلة رؤية.\n\nشو أصعب شي عندك؟ 👇\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#CustomerDiscovery #InventoryManagement #SMB #Startup #Stacko #SupplyChain #BuildInPublic #Founders #DistributorLife #BusinessOperations",
+ "extra": {
+  "linkedin_en.txt": "A distributor told me something last week that I haven't stopped thinking about.\n\nI asked: \"What's the hardest part of managing stock across your three warehouses?\"\n\nI expected him to say \"the software\" or \"the reporting.\"\n\nHe said: \"Honestly? It's the phone calls. Every morning, I call the three warehouse managers. Every morning, I hear three different versions of the truth.\"\n\nThree different versions of the truth.\n\nNot because anyone was lying. Because each manager sees their own warehouse, and nobody sees all three.\n\nThat's not a people problem. It's a visibility problem.\n\nAnd it's the reason Stacko works the way it does — one map, all locations, one version of the truth.\n\nIf you manage stock across multiple locations, I'd love to hear: what's the hardest part for you?\n\n👇\n\n#CustomerDiscovery #InventoryManagement #SMB #Startup #Stacko #SupplyChain #BuildInPublic #Founders\n"
+ }
+}

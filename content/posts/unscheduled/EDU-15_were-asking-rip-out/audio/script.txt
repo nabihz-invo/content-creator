@@ -1,0 +1,9 @@
+We already have Odoo. We already have SAP. Good. Keep it.
+
+ERPs are great at recording transactions. Seeing where your stock is, across every site, is another story.
+
+Stacko sits on top of your system and adds the live map and AI document capture.
+
+You choose the limits: read-only, draft for approval, or send after approval. And every sync carries a reference, so nothing is recorded twice.
+
+Keep your ERP. Add the view. Book a meeting with our team.

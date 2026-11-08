@@ -1,0 +1,50 @@
+{
+ "id": "EDU-43",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Ask *the founder.*",
+    "lead": "Anything about Stacko — the product, the roadmap, the honest limits. Drop it below."
+   },
+   "ar": {
+    "title": "اسأل *المؤسس.*",
+    "lead": "أي شي عن ستاكو — المنتج، الخطّة، والحدود بصراحة. اكتبو تحت."
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Q: *[Question]*",
+    "lead": "A: [Honest answer]"
+   },
+   "ar": {
+    "title": "س: *[السؤال]*",
+    "lead": "ج: [الجواب الصريح]"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Ask us anything — *we answer publicly every week.*"
+   },
+   "ar": {
+    "title": "اسألنا أي شي — *منجاوب عالعلن كل جمعة.*"
+   }
+  }
+ ],
+ "changes": [
+  "Template frames; the founder fills Q&A. Stage label line replaced by the Concept-tag rule.",
+  "Caption: \"what's live\" → \"what works today\"; added \"or book a meeting\"."
+ ],
+ "caption": {
+  "en": "Q: [Question]\n\nA: [Honest answer — 2–4 sentences]\n\nWe answer one question publicly every week. If it's about what works today, what's planned, or what we got wrong — we'll tell you straight.\n\n👉 Ask us anything, or book a meeting — link in bio.\n\nNOTES\n- Template: the founder answers real questions. Tag product visuals \"Concept\" when the answer is not plain 🟢.\n- Story 1: question box sticker.",
+  "ar": "س: [السؤال]\n\nج: [الجواب الصريح — ٢–٤ جمل]\n\nمنجاوب سؤال واحد عالعلن كل جمعة. إذا عن شو شغّال اليوم، شو مخطّط، أو شو غلطنا فيه — منقلّك بصراحة.\n\n👉 اسألنا أي شي، أو احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#AskTheFounder #InventoryManagement #SMB #Stacko #BuildInPublic #SupplyChain #Transparency #TechStartup #BusinessOperations #InventoryTech"
+}

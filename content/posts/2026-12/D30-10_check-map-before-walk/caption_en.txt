@@ -1,0 +1,5 @@
+Counting will always need people. Searching shouldn't.
+
+Stacko's map shows every warehouse, its items and what's low, so you know before you walk.
+
+How far is the furthest aisle in your warehouse?

@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Dot map end card</title>
+<!-- EC-11 dotmap. Render: node studio/render.mjs studio/examples/dots-endcard.html --lang all -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script><script src="/studio/engine/sm-core.js"></script><script src="/studio/engine/sm-components.js"></script><script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'Dot map end card' });
+const a = R.scene(1.5, { bg: 'paper' }); a.text(SM.t('Before the end card', 'قبل النهاية'), { theme: 'light', y: 700 });
+R.endcard('dotmap', { in: 'fade' });
+</script></body></html>

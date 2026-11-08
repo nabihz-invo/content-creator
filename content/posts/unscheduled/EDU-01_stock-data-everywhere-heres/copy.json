@@ -1,0 +1,33 @@
+{
+ "id": "EDU-01",
+ "size": "portrait",
+ "changes": ["Slide 7: \"Book a 20-minute demo\" → \"Book a meeting\"; button \"Book a demo\" → \"Book a meeting\"; dropped \"stacko.com — link in bio\" and the micro-text \"Prototype preview — features in development\".", "Caption: dropped \"🟢 Prototype preview — features in development.\"; \"Book a demo\" → \"Book a meeting\".", "Slide 6 uses a real screenshot of the app (demo company), so no Concept tag. LinkedIn 1200×627 cover not produced (not in the output spec)."],
+ "slides": [
+  {"type": "cover", "art": "network",
+   "en": {"title": "Your stock data is *everywhere.*", "lead": "And it's quietly costing you money."},
+   "ar": {"title": "داتا مخزونك موزّعة *بكل مكان.*", "lead": "وهيدا عم يكلّفك مصاري بلا ما تحسّ."}},
+  {"art": "sheets",
+   "en": {"title": "It starts small.", "body": "One Excel file for the main warehouse. A WhatsApp group for the branch. Paper invoices in a drawer. A phone call when someone needs a number.", "labels": ["Main warehouse.xlsx", "Branch group", "Invoices drawer"]},
+   "ar": {"title": "بتبلّش صغيرة.", "body": "ملف إكسل للمستودع الرئيسي. مجموعة واتساب للفرع. فواتير ورق بالجارور. وتلفون كل ما حدا بدّو رقم.", "labels": ["المستودع.xlsx", "مجموعة الفرع", "جارور الفواتير"]}},
+  {"art": "fog",
+   "en": {"title": "Then it multiplies.", "body": "Three branches. Two warehouses. 1,200 SKUs. Forty invoices a week. Suddenly \"where is my stock?\" takes 20 minutes and three phone calls."},
+   "ar": {"title": "وبعدين بتكبر.", "body": "٣ فروع. مستودعين. ١٬٢٠٠ صنف. ٤٠ فاتورة بالجمعة. وفجأة سؤال «وين مخزوني؟» صار ياخد ٢٠ دقيقة و٣ تلفونات."}},
+  {"icon": "money",
+   "en": {"title": "The real cost isn't time.", "body": "It's the shortage you discover too late. The duplicate invoice you paid twice. The stock you bought again because nobody could see it. The customer who left because the answer was \"let me check.\""},
+   "ar": {"title": "الكلفة الحقيقية مش الوقت.", "body": "هيي النقص اللي بتكتشفو متأخّر. الفاتورة المكرّرة اللي دفعتها مرّتين. البضاعة اللي اشتريتها مرّة تانية لأنو ما حدا شافها. والزبون اللي راح لأنو الجواب كان «خلّيني شوف»."}},
+  {"icon": "team",
+   "en": {"title": "The problem was never your team.", "body": "It's that your data lives in six places that don't talk to each other. No spreadsheet fixes that. No phone call fixes that."},
+   "ar": {"title": "المشكلة عمرها ما كانت بفريقك.", "body": "المشكلة إنو داتا مخزونك عايشة بـ٦ أماكن ما بيحكوا مع بعض. ولا شيت بيحلّها. ولا تلفون بيحلّها."}},
+  {"img": {"name": "map", "src": "app", "h": 560},
+   "en": {"title": "Now imagine *one view.*", "body": "Every warehouse. Every branch. Every movement. On one map. With every transaction traceable — and AI turning invoices into reviewable drafts instead of manual typing."},
+   "ar": {"title": "هلّق تخيّل *شاشة وحدة.*", "body": "كل مستودع. كل فرع. كل حركة. على خريطة وحدة. وكل معاملة إلها أثر — والذكاء الاصطناعي بيحوّل الفواتير لمسودّات بتراجعها، بدل الطباعة باليد."}},
+  {"type": "cta", "faded": true,
+   "en": {"title": "See where your stock is. *Understand what moved.*"},
+   "ar": {"title": "شوف وين مخزونك. *افهم شو تحرّك.*"}}
+ ],
+ "caption": {
+  "en": "Your stock isn't hard to manage.\nIt's hard to *see*.\n\nExcel here. WhatsApp there. Paper invoices in a drawer. A phone call every time someone needs a number.\n\nThe problem was never your team — it's that your data lives in six places that don't talk to each other.\n\nStacko brings warehouses, branches, stock movements, and transactions into one clear map view — with AI turning supported invoices into reviewable drafts, and role-based approvals keeping every record controlled.\n\n👉 Book a meeting (link in bio)",
+  "ar": "مخزونك مش صعب تديرو.\nصعب *تشوفو*.\n\nإكسل هون. واتساب هونيك. فواتير ورق بالجارور. وتلفون كل ما حدا بدّو رقم.\n\nالمشكلة عمرها ما كانت بفريقك — المشكلة إنو الداتا عايشة بـ٦ أماكن ما بيحكوا مع بعض.\n\nستاكو بيجمع المستودعات والفروع وحركات المخزون والمعاملات على خريطة وحدة واضحة — والذكاء الاصطناعي بيحوّل الفواتير المدعومة لمسودّات بتراجعها، والموافقات حسب الدور بتضبط كل سجل.\n\n👉 احجز اجتماعاً (الرابط بالبايو)"
+ },
+ "hashtags": "#InventoryManagement #StockVisibility #WarehouseManagement #SupplyChain #SMB #Stacko #StockControl #InventoryTech #DigitalTransformation #LebanonBusiness"
+}

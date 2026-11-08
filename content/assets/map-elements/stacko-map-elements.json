@@ -1,0 +1,713 @@
+[
+  {
+    "id": "warehouse",
+    "name": "Warehouse",
+    "category": "Buildings",
+    "variants": [
+      "Medium · brand blue",
+      "Small · 2 doors",
+      "Large · 5 doors",
+      "White panels",
+      "Grey industrial",
+      "Sand / stone",
+      "Navy",
+      "Cold storage",
+      "Turned 90°"
+    ],
+    "notes": "Doors face the front-left. Use \"Turned 90°\" for doors facing front-right. Sign text uses the customer name."
+  },
+  {
+    "id": "office",
+    "name": "Office building",
+    "category": "Buildings",
+    "variants": [
+      "3 floors · white",
+      "2 floors",
+      "5 floors · glass",
+      "Sand stone (Beirut)",
+      "No rooftop items"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "canopy",
+    "name": "Open shed / canopy",
+    "category": "Buildings",
+    "variants": [
+      "With pallets",
+      "Empty",
+      "Navy roof"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "gatehouse",
+    "name": "Gatehouse + barrier",
+    "category": "Buildings",
+    "variants": [
+      "Barrier down",
+      "Barrier up"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "factory",
+    "name": "Small factory",
+    "category": "Buildings",
+    "variants": [
+      "Sawtooth roof + chimney",
+      "Sand walls"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "silo",
+    "name": "Silo / tank",
+    "category": "Buildings",
+    "variants": [
+      "Silo (cone top)",
+      "Pair of silos",
+      "Fuel tank (flat top)"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "shop",
+    "name": "Shop / showroom",
+    "category": "Buildings",
+    "variants": [
+      "Accent awning",
+      "Navy awning"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "gantryCrane",
+    "name": "Port gantry crane (STS)",
+    "category": "Port & cranes",
+    "variants": [
+      "Teal",
+      "Ocean blue",
+      "Navy",
+      "Classic (real-world)",
+      "With container"
+    ],
+    "notes": "Boom points front-left (over the water). Place it on the quay edge."
+  },
+  {
+    "id": "mobileCrane",
+    "name": "Mobile harbour crane",
+    "category": "Port & cranes",
+    "variants": [
+      "Teal",
+      "Classic (real-world)"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "towerCrane",
+    "name": "Tower crane",
+    "category": "Port & cranes",
+    "variants": [
+      "Teal",
+      "Classic (real-world)"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "container",
+    "name": "Shipping container",
+    "category": "Port & cranes",
+    "variants": [
+      "40 ft · ocean",
+      "20 ft · teal",
+      "40 ft · navy",
+      "40 ft · rust",
+      "40 ft · white (reefer)",
+      "20 ft · grey",
+      "40 ft · green",
+      "40 ft · customer colour"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "containerStack",
+    "name": "Container stack",
+    "category": "Port & cranes",
+    "variants": [
+      "3 × 2 × 3",
+      "Small 2 × 2 × 2",
+      "Long row 1 × 4 × 2",
+      "Tall 2 × 2 × 4"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "quay",
+    "name": "Quay / pier with bollards",
+    "category": "Port & cranes",
+    "variants": [
+      "Quay segment",
+      "Long quay"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "lighthouse",
+    "name": "Lighthouse",
+    "category": "Port & cranes",
+    "variants": [
+      "White + teal"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "ship",
+    "name": "Ships & boats",
+    "category": "Ships & planes",
+    "variants": [
+      "Container ship",
+      "Feeder ship",
+      "Tug boat",
+      "Coastal / fishing boat",
+      "Ship turned 90°"
+    ],
+    "notes": "Includes its own water patch. Turn 90° for routes running front-left."
+  },
+  {
+    "id": "airplane",
+    "name": "Aircraft",
+    "category": "Ships & planes",
+    "variants": [
+      "Cargo jet · white",
+      "Cargo jet · navy tail",
+      "Small prop plane",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "boxTruck",
+    "name": "Box truck",
+    "category": "Vehicles",
+    "variants": [
+      "White + accent stripe",
+      "Customer colour",
+      "Navy",
+      "Reefer (cold)",
+      "Turned 90°",
+      "With name on side"
+    ],
+    "notes": "Faces front-right by default (driving towards the bottom-right). \"Turned 90°\" drives towards the bottom-left."
+  },
+  {
+    "id": "semiTruck",
+    "name": "Truck with container",
+    "category": "Vehicles",
+    "variants": [
+      "Ocean container",
+      "Teal 20 ft",
+      "Rust container",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "van",
+    "name": "Delivery van",
+    "category": "Vehicles",
+    "variants": [
+      "White + accent",
+      "Customer colour",
+      "Grey",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "pickup",
+    "name": "Pickup with cargo",
+    "category": "Vehicles",
+    "variants": [
+      "White · cartons",
+      "Navy · empty",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "car",
+    "name": "Car",
+    "category": "Vehicles",
+    "variants": [
+      "White",
+      "Silver",
+      "Navy",
+      "Ocean",
+      "Sand",
+      "Teal",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "moto",
+    "name": "Delivery motorbike",
+    "category": "Vehicles",
+    "variants": [
+      "With box + rider",
+      "Parked (no rider)",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "forklift",
+    "name": "Forklift",
+    "category": "Equipment & tools",
+    "variants": [
+      "Teal · with pallet",
+      "Teal · empty forks",
+      "Classic (real-world)",
+      "Navy",
+      "Turned 90°"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "palletJack",
+    "name": "Pallet jack",
+    "category": "Equipment & tools",
+    "variants": [
+      "Empty",
+      "With load"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "handTruck",
+    "name": "Hand truck",
+    "category": "Equipment & tools",
+    "variants": [
+      "With cartons",
+      "Empty"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "racking",
+    "name": "Pallet racking",
+    "category": "Equipment & tools",
+    "variants": [
+      "3 levels · full",
+      "3 levels · half empty",
+      "4 levels · tall",
+      "Turned 90°"
+    ],
+    "notes": "Beams use the real-world orange-yellow; uprights in brand blue."
+  },
+  {
+    "id": "conveyor",
+    "name": "Conveyor belt",
+    "category": "Equipment & tools",
+    "variants": [
+      "With cartons",
+      "Empty"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "rollCage",
+    "name": "Roll cage trolley",
+    "category": "Equipment & tools",
+    "variants": [
+      "Loaded"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "stretchWrapper",
+    "name": "Pallet wrapping machine",
+    "category": "Equipment & tools",
+    "variants": [
+      "Wrapping a pallet"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "scale",
+    "name": "Platform scale",
+    "category": "Equipment & tools",
+    "variants": [
+      "With pallet",
+      "Empty"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "ladder",
+    "name": "Rolling warehouse ladder",
+    "category": "Equipment & tools",
+    "variants": [
+      "Ladder"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "workbench",
+    "name": "Workbench + tools",
+    "category": "Equipment & tools",
+    "variants": [
+      "Workbench"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "extinguisher",
+    "name": "Fire extinguisher",
+    "category": "Equipment & tools",
+    "variants": [
+      "On stand"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "cone",
+    "name": "Traffic cone / barrier",
+    "category": "Equipment & tools",
+    "variants": [
+      "Cone · brand",
+      "Cone · classic",
+      "Jersey barrier"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "carton",
+    "name": "Carton",
+    "category": "Goods & cargo",
+    "variants": [
+      "Medium · teal tape",
+      "Plain",
+      "Small",
+      "Long (flat pack)",
+      "Customer tape colour"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "cartonStack",
+    "name": "Carton pile",
+    "category": "Goods & cargo",
+    "variants": [
+      "Pile",
+      "Big pile"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "pallet",
+    "name": "Pallet",
+    "category": "Goods & cargo",
+    "variants": [
+      "Empty pallet",
+      "1 level of cartons",
+      "2 levels",
+      "3 levels",
+      "Shrink-wrapped",
+      "Stack of empty pallets"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "crate",
+    "name": "Wooden crate",
+    "category": "Goods & cargo",
+    "variants": [
+      "Crate",
+      "Large crate"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "barrel",
+    "name": "Drums / barrels",
+    "category": "Goods & cargo",
+    "variants": [
+      "Single · navy",
+      "Single · teal",
+      "4 on a pallet",
+      "Single · grey"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "sacks",
+    "name": "Sacks",
+    "category": "Goods & cargo",
+    "variants": [
+      "Pile of sacks",
+      "On a pallet"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "ibc",
+    "name": "IBC tank",
+    "category": "Goods & cargo",
+    "variants": [
+      "IBC tote"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "tires",
+    "name": "Tyres (spare parts)",
+    "category": "Goods & cargo",
+    "variants": [
+      "Stack of 4",
+      "Three stacks"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "rolls",
+    "name": "Rolls (fabric / carpet)",
+    "category": "Goods & cargo",
+    "variants": [
+      "Upright rolls"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "gasCylinders",
+    "name": "Gas cylinders",
+    "category": "Goods & cargo",
+    "variants": [
+      "Group of 6"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "cableDrum",
+    "name": "Cable drum",
+    "category": "Goods & cargo",
+    "variants": [
+      "Wooden drum"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "tree",
+    "name": "Trees & plants",
+    "category": "Nature",
+    "variants": [
+      "Round tree",
+      "Round · large",
+      "Cypress",
+      "Palm",
+      "Olive tree",
+      "Pine (Lebanese cedar style)",
+      "Bush",
+      "Planter box",
+      "Hedge row"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "ground",
+    "name": "Ground tiles & roads",
+    "category": "Ground & roads",
+    "variants": [
+      "Road · straight",
+      "Road · turned 90°",
+      "Crossroads",
+      "Parking bays",
+      "Loading zone (hatched)",
+      "Crosswalk",
+      "Concrete yard",
+      "Grass patch",
+      "Water",
+      "Sand / gravel"
+    ],
+    "notes": "Flat tiles to build yards and roads. 40 × 40 units each (roads 40 × 14)."
+  },
+  {
+    "id": "fence",
+    "name": "Fence & gate",
+    "category": "Ground & roads",
+    "variants": [
+      "Fence · along x",
+      "Fence · along y",
+      "Sliding gate",
+      "Wall with railing"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "lamp",
+    "name": "Lights & masts",
+    "category": "Ground & roads",
+    "variants": [
+      "Street lamp",
+      "Floodlight mast",
+      "Bollard light"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "rooftop",
+    "name": "Rooftop items (Lebanon)",
+    "category": "Rooftop & utilities",
+    "variants": [
+      "Water tank · black",
+      "Water tank · white",
+      "Solar panel array",
+      "Generator",
+      "AC outdoor unit",
+      "Satellite dish",
+      "Electric box"
+    ],
+    "notes": "Very Lebanese details: black water tanks, solar panels and generators make a rooftop or yard feel local."
+  },
+  {
+    "id": "people",
+    "name": "People",
+    "category": "People",
+    "variants": [
+      "Worker · teal shirt",
+      "Worker · hi-vis + helmet",
+      "Carrying a carton",
+      "Manager · navy",
+      "Driver",
+      "Small group"
+    ],
+    "notes": "Simple figures at map scale — enough to make the yard feel alive."
+  },
+  {
+    "id": "ui_truck",
+    "name": "Route icon · truck",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Side/top view icon that rotates along the route, like the prototype."
+  },
+  {
+    "id": "ui_containerTruck",
+    "name": "Route icon · container truck",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Side/top view icon that rotates along the route, like the prototype."
+  },
+  {
+    "id": "ui_van",
+    "name": "Route icon · van",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Side/top view icon that rotates along the route, like the prototype."
+  },
+  {
+    "id": "ui_moto",
+    "name": "Route icon · motorbike",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Side/top view icon that rotates along the route, like the prototype."
+  },
+  {
+    "id": "ui_ship",
+    "name": "Route icon · ship",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Side/top view icon that rotates along the route, like the prototype."
+  },
+  {
+    "id": "ui_plane",
+    "name": "Route icon · plane (top view)",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Side/top view icon that rotates along the route, like the prototype."
+  },
+  {
+    "id": "ui_pin",
+    "name": "Location pin",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_warehousePin",
+    "name": "Warehouse pin",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_portPin",
+    "name": "Port pin",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_airportPin",
+    "name": "Airport pin",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_alert",
+    "name": "Alert badge",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_cluster",
+    "name": "Cluster bubble",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_etaTag",
+    "name": "ETA tag",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  },
+  {
+    "id": "ui_stockChip",
+    "name": "Warehouse chip",
+    "category": "Map UI (flat)",
+    "variants": [
+      "Default"
+    ],
+    "notes": "Flat UI marker."
+  }
+]

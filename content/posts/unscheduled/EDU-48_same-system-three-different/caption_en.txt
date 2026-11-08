@@ -1,0 +1,11 @@
+Same system. Three different views.
+
+👷 Warehouse user — records moves for assigned locations only. Sees only their locations.
+
+📄 Document clerk — uploads documents and sees their submissions and statuses.
+
+✅ Manager/approver — reviews pending transactions, approves, resolves exceptions, and reads the audit trail.
+
+One system. Everyone sees exactly what they need — and nothing they don't. That's how you keep records reliable without slowing the team down.
+
+👉 Book a meeting — link in bio.

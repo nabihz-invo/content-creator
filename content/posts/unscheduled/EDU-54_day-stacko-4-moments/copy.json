@@ -1,0 +1,36 @@
+{
+ "id": "EDU-54",
+ "size": "portrait",
+ "changes": ["Slide 7: dropped \"This is the prototype's daily rhythm — not the finished product's.\" (in-development wording); kept \"Alerts and advanced analytics are planned, not live.\" and tagged the slide Concept.", "Slides 3 and 6 (🟢/🟡) carry the Concept tag.", "Slide 8: \"Book a demo\" → \"Book a meeting\" (body and button); micro-text \"Prototype view; alerts and analytics planned.\" → \"Alerts and analytics are a Concept.\"", "Caption: dropped \"🟢 Prototype daily rhythm; 🟡 alerts and analytics planned.\"; \"Book a demo\" → \"Book a meeting\"."],
+ "slides": [
+  {"type": "cover", "art": "clock",
+   "en": {"title": "A day with *Stacko.*", "lead": "4 moments. One clear view."},
+   "ar": {"title": "يوم مع *ستاكو.*", "lead": "٤ لحظات. صورة وحدة واضحة."}},
+  {"num": "8:00", "img": {"name": "approvals", "src": "app", "h": 470},
+   "en": {"title": "The morning check.", "body": "Open the map. See every location. Review pending transactions. Approve or flag. The day starts with a view, not a phone call."},
+   "ar": {"title": "جولة الصبح.", "body": "افتح الخريطة. شوف كل المواقع. راجع المعاملات المعلّقة. وافق أو علّم. النهار بيبلّش بشاشة، مش بتلفون."}},
+  {"num": "10:00", "img": {"name": "invoice", "h": 470}, "concept": true,
+   "en": {"title": "The invoice arrives.", "body": "The invoice user uploads a supported document. Fields extract. A draft is created. Flagged items are marked for review."},
+   "ar": {"title": "الفاتورة وصلت.", "body": "مسؤول الفواتير بيرفع مستند مدعوم. الحقول بتنقرا. بتنعمل مسودّة. والأشيا المتعلّمة بتنحطّ للمراجعة."}},
+  {"num": "14:00", "img": {"name": "newmove", "src": "app", "h": 470},
+   "en": {"title": "The transfer.", "body": "A branch needs stock. The warehouse user records a transfer — from location, to location, quantity, user, timestamp."},
+   "ar": {"title": "التحويل.", "body": "فرع بحاجة مخزون. مسؤول المستودع بيسجّل تحويل — من موقع، لموقع، الكمية، المستخدم، والوقت."}},
+  {"num": "17:00", "img": {"name": "moves", "src": "app", "h": 470},
+   "en": {"title": "The review.", "body": "The manager opens the transaction list, reviews what happened, approves what's pending, and reads the audit trail. Everything is recorded."},
+   "ar": {"title": "المراجعة.", "body": "المدير بيفتح لايحة المعاملات، بيراجع شو صار، بيوافق عالمعلّق، وبيقرا سجل التدقيق. كل شي متسجّل."}},
+  {"img": {"name": "map", "src": "app", "h": 520}, "concept": true,
+   "en": {"title": "Same four moments. *Every day.*", "body": "The rhythm doesn't change. The clarity does. Visibility, automation, and control — woven into a normal working day."},
+   "ar": {"title": "نفس الأربع لحظات. *كل يوم.*", "body": "الإيقاع ما بيتغيّر. الوضوح بيتغيّر. رؤية، أتمتة، وضبط — جوّا نهار شغل عادي."}},
+  {"icon": "eye", "concept": true,
+   "en": {"title": "What's not in this story.", "body": "Alerts and advanced analytics are planned, not live."},
+   "ar": {"title": "شو مش بهالقصّة.", "body": "التنبيهات والتحليلات المتقدّمة مخطّط إلها، مش شغّالة."}},
+  {"type": "cta", "concept": true,
+   "en": {"title": "What would *your day* look like?", "lead": "Book a meeting and we'll map your four moments.", "micro": "Alerts and analytics are a Concept."},
+   "ar": {"title": "كيف بيكون *نهارك؟*", "lead": "احجز اجتماعاً ومنرسم معك أربع لحظاتك.", "micro": "التنبيهات والتحليلات مفهوم."}}
+ ],
+ "caption": {
+  "en": "A day with Stacko — 4 moments.\n\n8:00 AM — the morning check: open the map, review pending transactions\n10:00 AM — the invoice arrives: upload, extract, draft, flag\n2:00 PM — the transfer: from location, to location, recorded\n5:00 PM — the review: transaction list, approvals, audit trail\n\nSame four moments every day. The rhythm doesn't change. The clarity does.\n\nWhat's not in this story: alerts and advanced analytics — planned, not live.\n\n👉 Book a meeting and we'll map your four moments — link in bio.",
+  "ar": "يوم مع ستاكو — ٤ لحظات.\n\n٨:٠٠ الصبح — جولة الصبح: افتح الخريطة وراجع المعاملات المعلّقة\n١٠:٠٠ — الفاتورة وصلت: رفع، قراءة، مسودّة، علامات\n٢:٠٠ الضهر — التحويل: من موقع لموقع، ومتسجّل\n٥:٠٠ العصر — المراجعة: لايحة المعاملات، الموافقات، وسجل التدقيق\n\nنفس الأربع لحظات كل يوم. الإيقاع ما بيتغيّر. الوضوح بيتغيّر.\n\nشو مش بهالقصّة: التنبيهات والتحليلات المتقدّمة — مخطّط إلها، مش شغّالة.\n\n👉 احجز اجتماعاً ومنرسم معك أربع لحظاتك — الرابط بالبايو."
+ },
+ "hashtags": "#DayInTheLife #InventoryManagement #SMB #Stacko #SupplyChain #StockVisibility #WarehouseManagement #InventoryTech #BusinessOperations #DistributorLife"
+}

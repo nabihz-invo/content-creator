@@ -1,0 +1,44 @@
+1
+00:00:00,490 --> 00:00:03,500
+Here's the map — but this is our demo data.
+
+2
+00:00:03,500 --> 00:00:04,310
+In a meeting,
+
+3
+00:00:04,310 --> 00:00:06,810
+we load your warehouse and branch names,
+
+4
+00:00:06,810 --> 00:00:09,940
+and show you your own locations on the map.
+
+5
+00:00:09,940 --> 00:00:10,520
+Click a pin.
+
+6
+00:00:10,520 --> 00:00:11,190
+See the stock.
+
+7
+00:00:11,190 --> 00:00:13,610
+Answer the question you get every morning.
+
+8
+00:00:13,610 --> 00:00:14,570
+Twenty minutes.
+
+9
+00:00:14,570 --> 00:00:15,520
+Your locations.
+
+10
+00:00:15,520 --> 00:00:17,300
+Bring your hardest question.
+
+11
+00:00:17,300 --> 00:00:19,650
+Book a meeting with our team.
+

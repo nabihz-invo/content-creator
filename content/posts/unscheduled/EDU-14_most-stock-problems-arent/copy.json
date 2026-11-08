@@ -1,0 +1,16 @@
+{
+ "id": "EDU-14",
+ "size": "portrait",
+ "extra": {"linkedin_en.txt": "Most stock problems aren't stock problems.\n\nThey're visibility problems.\n\nI've been talking to distributors and multi-branch retailers for months now. The pattern is always the same:\n\nThe stock exists. The movements happened. The data is real.\n\nIt's just scattered — across Excel files, WhatsApp groups, paper invoices, and people's heads.\n\nSo the manager does what any reasonable person does: calls three branches, checks two spreadsheets, and answers \"I think we have 38… maybe 41?\"\n\nThat \"I think\" is the most expensive phrase in inventory.\n\nIt becomes a declined order. A duplicate purchase. A customer who calls the competitor first next time.\n\nThe fix isn't a better spreadsheet. It's a different view.\n\nOne map. Every warehouse. Every branch. Every movement.\n\nThat's what Stacko is for.\n\nNot because inventory software is new — it isn't.\n\nBecause the *visibility* layer has been missing for the businesses that need it most.\n\nIf you run stock across multiple locations, I'd love to hear: how do you answer \"where is my stock?\" today?\n\n👇\n\n#InventoryManagement #SupplyChain #SMB #Founders #B2B #Stacko\n"},
+ "changes": ["\"That's what we're building with Stacko.\" → \"That's what Stacko is for.\" (LinkedIn) and \"That's what we're building.\" → \"That's what Stacko is for.\" (IG) — no in-development wording.", "IG card is a typographic quote card on the Night gradient (no founder photo available); Book a meeting button added.", "LinkedIn text saved as linkedin_en.txt for Nabih to approve and post."],
+ "slides": [
+  {"type": "cta",
+   "en": {"title": "Most stock problems aren't stock problems. *They're visibility problems.*"},
+   "ar": {"title": "أغلب مشاكل المخزون مش مشاكل مخزون. *هيّي مشاكل رؤية.*"}}
+ ],
+ "caption": {
+  "en": "Most stock problems aren't stock problems.\n\nThey're visibility problems.\n\nThe stock exists. The movements happened. The data is real. It's just scattered across Excel files, WhatsApp groups, paper invoices, and people's heads.\n\nSo the manager calls three branches, checks two spreadsheets, and answers \"I think we have 38… maybe 41?\"\n\nThat \"I think\" is the most expensive phrase in inventory.\n\nOne map. Every warehouse. Every branch. Every movement. That's what Stacko is for.\n\nHow do you answer \"where is my stock?\" today? 👇",
+  "ar": "أغلب مشاكل المخزون مش مشاكل مخزون.\n\nهيّي مشاكل رؤية.\n\nالمخزون موجود. الحركات صارت. الداتا حقيقية. بس مفرّقة بين ملفات إكسل، مجموعات واتساب، فواتير ورق، وراس الناس.\n\nفالمدير بيتّصل بـ٣ فروع، بيفتح شيتين، وبيجاوب «بظنّ عنّا ٣٨… يمكن ٤١؟»\n\nهالـ«بظنّ» هيي أغلى كلمة بالمخزون.\n\nخريطة وحدة. كل مستودع. كل فرع. كل حركة. لهيك ستاكو موجود.\n\nكيف بتجاوب اليوم عن سؤال «وين مخزوني؟» 👇"
+ },
+ "hashtags": "#InventoryManagement #SupplyChain #SMB #Founders #B2B #Stacko #StockVisibility"
+}

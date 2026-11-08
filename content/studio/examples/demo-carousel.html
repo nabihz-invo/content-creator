@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Demo carousel · Year-end count</title>
+<!-- Carousel 1080×1350 · each scene = one slide, exported at its last frame with: node studio/render.mjs <this file> --stills
+     Layouts: CL-05 isometric cover · CL-02 number hero · CL-07 checklist · CL-09 myth vs fact · CL-15 CTA closer -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.carousel({ title: 'Demo carousel · Year-end count' });
+const dots = (s, i, n, theme) => { for (let k = 0; k < n; k++) { const d = SM.el('div', '', s.el); d.style.cssText = `position:absolute;bottom:64px;left:${540 - (n - 1) * 14 + k * 28}px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:${k === i ? (theme === 'light' ? SM.C.signal : SM.C.glow) : (theme === 'light' ? SM.C.visor : 'rgba(201,216,228,.35)')}`; } };
+
+// 1 — cover: isometric yard + big statement
+const s1 = R.scene(2.5, { bg: 'night', name: 'slide-01' });
+s1.iso({ x: 600, y: 760, scale: 4.2, intro: 'none', items: [
+  { id: 'ground', o: { k: 'concrete' }, x: -20, y: -20, d: -99 }, { id: 'warehouse', o: { size: 'm', doors: 3, open: 1 }, x: 0, y: -10 },
+  { id: 'racking', o: { fill: .5 }, x: 70, y: 40 }, { id: 'pallet', o: { levels: 2, wrap: true }, x: 46, y: 46 }, { id: 'forklift', o: {}, x: 40, y: 62 },
+  { id: 'people', o: { vest: true, helmet: '#F4F8FA', shirt: '#2F86B8' }, x: 22, y: 70 }, { id: 'tree', o: { k: 'olive' }, x: -30, y: 50 } ] });
+s1.text('Year-end stocktake', { x: 80, y: 150, align: 'left', size: 'label', upper: true, color: SM.C.dolphin, fx: 'none' });
+s1.text('Your count won’t *match.*', { x: 80, y: 290, align: 'left', size: 104, fx: 'none', w: 900 });
+s1.text('5 steps to find out why  →', { x: 80, y: 1220, align: 'left', size: 40, weight: 500, color: SM.C.visor, fx: 'none' });
+dots(s1, 0, 5);
+
+// 2 — number hero
+const s2 = R.scene(2.5, { bg: 'paper', name: 'slide-02' });
+s2.text('01', { x: 80, y: 360, align: 'left', size: 300, fx: 'none', theme: 'light', color: SM.C.visor, weight: 700 });
+s2.text('Pick 20 fast movers.', { x: 80, y: 640, align: 'left', size: 86, fx: 'none', theme: 'light' });
+s2.text('Not all 10,000 SKUs. Count the items that move every week first — that’s where gaps start.', { x: 80, y: 820, align: 'left', size: 42, weight: 400, fx: 'none', theme: 'light', color: SM.C.deep, w: 900, lh: 1.4 });
+s2.iso({ x: 800, y: 1090, scale: 7, intro: 'none', items: [{ id: 'cartonStack', o: { big: true }, x: 0, y: 0 }] });
+dots(s2, 1, 5, 'light');
+
+// 3 — checklist
+const s3 = R.scene(3.2, { bg: 'night', name: 'slide-03' });
+s3.text('Before you trust the number', { x: 80, y: 220, align: 'left', size: 70, fx: 'none', w: 920 });
+s3.checklist({ y: 720, w: 920, items: ['Same-day count in every branch', 'Compare count vs records', 'Trace each gap to a move', 'Fix the cause, not the figure'], at: 0, stagger: .3 });
+dots(s3, 2, 5);
+
+// 4 — myth vs fact
+const s4 = R.scene(2.5, { bg: 'paper', name: 'slide-04' });
+s4.card({ y: 430, w: 920, kicker: 'Myth', title: '“The system is wrong.”', body: 'Usually it isn’t. It’s late — the move happened, nobody logged it.', in: 'none' });
+s4.card({ y: 900, w: 920, dark: true, kicker: 'Fact', title: 'Most gaps start at the door.', body: 'A transfer that left without a record shows up as a gap months later.', in: 'none' });
+dots(s4, 3, 5, 'light');
+
+// 5 — CTA closer
+const s5 = R.scene(2.8, { bg: 'night', name: 'slide-05' });
+s5.logoDots({ y: 470, size: 300, from: 'center', at: 0, dur: 1.2, tagline: 'en', endorse: false });
+s5.text('Save this for your next count.', { y: 1040, size: 58, fx: 'none' });
+dots(s5, 4, 5);
+</script></body></html>

@@ -9,3 +9,5 @@ supabase/migrations
 n8n/workflows/*.json
 # Vendored studio engine (ADR-0009)
 templates/studio/engine/sm-*.js
+# Content kit: motion engine and post pages, not part of the apps
+content

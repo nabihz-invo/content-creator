@@ -1,0 +1,39 @@
+{
+ "id": "EDU-62",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Stock Manager *Confession Booth.*",
+    "lead": "Anonymous. No names. No judgment. Submit your confession:"
+   },
+   "ar": {
+    "title": "اعترافات *مسؤولي المخزون.*",
+    "lead": "بلا أسماء. بلا أحكام. ابعت اعترافك:"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Confession of the week: *\"[quote]\"*",
+    "lead": "Anonymous, always."
+   },
+   "ar": {
+    "title": "اعتراف الجمعة: *«[الاقتباس]»*",
+    "lead": "دايماً بلا اسم."
+   }
+  }
+ ],
+ "changes": [
+  "Template frames. Caption: added \"Book a meeting with our team.\""
+ ],
+ "caption": {
+  "en": "Stock Manager Confession Booth — confession of the week:\n\n\"[Anonymized confession]\"\n\nAnonymous. No names. No judgment.\n\nSubmit yours in our stories every Wednesday.\n\nBook a meeting with our team.\n\nNOTES\n- Story 1: question box sticker.\n- Story 2 / feed repost: template — publish only real, anonymized submissions (seed examples in the sheet are for reference only).",
+  "ar": "اعترافات مسؤولي المخزون — اعتراف الجمعة:\n\n«[اعتراف بلا اسم]»\n\nبلا أسماء. بلا أحكام.\n\nابعت اعترافك بالستوري كل أربعا.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#InventoryManagement #StockControl #SMB #Stacko #SupplyChain #ConfessionBooth #WarehouseLife #DistributorLife #BusinessOperations #Community"
+}

@@ -1,0 +1,92 @@
+{
+ "id": "EDU-44",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "chatlog",
+   "theme": "dark",
+   "en": {
+    "group": "Comment",
+    "msgs": [
+     [
+      "",
+      "[Question from a real comment]"
+     ]
+    ],
+    "title": "You asked: *[question]*",
+    "lead": "Here's our honest answer."
+   },
+   "ar": {
+    "group": "تعليق",
+    "msgs": [
+     [
+      "",
+      "[السؤال من تعليق حقيقي]"
+     ]
+    ],
+    "title": "سألت: *[السؤال]*",
+    "lead": "وهيدا جوابنا الصريح."
+   }
+  },
+  {
+   "en": {
+    "title": "Why this question matters.",
+    "body": "[One sentence on why the question is important.]"
+   },
+   "ar": {
+    "title": "ليش هالسؤال مهم.",
+    "body": "[جملة وحدة عن ليش السؤال مهم.]"
+   }
+  },
+  {
+   "en": {
+    "title": "The short answer.",
+    "body": "[Direct answer in 1–2 sentences.]"
+   },
+   "ar": {
+    "title": "الجواب القصير.",
+    "body": "[جواب مباشر بجملة أو جملتين.]"
+   }
+  },
+  {
+   "en": {
+    "title": "The longer answer.",
+    "body": "[2–3 sentences of nuance, caveats, or context.]"
+   },
+   "ar": {
+    "title": "الجواب الأطول.",
+    "body": "[٢–٣ جمل تفاصيل أو تحفّظات.]"
+   }
+  },
+  {
+   "en": {
+    "title": "How Stacko handles it.",
+    "body": "[How Stacko addresses this. Tag any visual \"Concept\" if it is not built.]"
+   },
+   "ar": {
+    "title": "كيف ستاكو بيتعامل معو.",
+    "body": "[كيف ستاكو بيعالج هالشي. حطّ «مفهوم» على أي صورة لشي مش مبني.]"
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "Got a question *we haven't answered?*",
+    "lead": "Comment below. We turn the best ones into carousels."
+   },
+   "ar": {
+    "title": "عندك سؤال *ما جاوبنا عليه؟*",
+    "lead": "علّق تحت. منحوّل أحلى الأسئلة لكاروسيلات."
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route F): fill monthly from a real comment.",
+  "Slide 5 \"What we're doing about it … or that it's planned/not yet built\" → \"How Stacko handles it\" + Concept-tag rule; micro-text with 🟢/🟡/🔵 labels dropped; button → \"Book a meeting\"."
+ ],
+ "caption": {
+  "en": "\"You asked: [question]\"\n\nHere's our honest answer.\n\n[Short answer + nuance.]\n\nHow Stacko handles it: [how Stacko addresses it.]\n\nGot a question we haven't answered? Comment below. We turn the best ones into carousels.\n\nBook a meeting with our team.",
+  "ar": "«سألت: [السؤال]»\n\nهيدا جوابنا الصريح.\n\n[جواب قصير + تفاصيل.]\n\nكيف ستاكو بيتعامل معو: [الطريقة.]\n\nعندك سؤال ما جاوبنا عليه؟ علّق تحت. منحوّل أحلى الأسئلة لكاروسيلات.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#AskUsAnything #InventoryManagement #SMB #Stacko #SupplyChain #Community #BuildInPublic #BusinessOperations #InventoryTech #Transparency"
+}

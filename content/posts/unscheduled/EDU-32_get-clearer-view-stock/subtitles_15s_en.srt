@@ -1,0 +1,20 @@
+1
+00:00:00,480 --> 00:00:01,960
+Every warehouse.
+
+2
+00:00:04,050 --> 00:00:05,220
+Every movement.
+
+3
+00:00:07,650 --> 00:00:08,230
+One map.
+
+4
+00:00:08,230 --> 00:00:10,250
+Your stock, always in sight.
+
+5
+00:00:10,250 --> 00:00:12,850
+Book a meeting with our team.
+

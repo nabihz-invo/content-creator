@@ -1,0 +1,23 @@
+EDU-59 · Reel ·  · 21s · 1080x1920
+Title: The sticky-note inventory
+Files: EDU-59_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+POV: your inventory system is a wall of sticky notes.
+
+Note 12 says "38 units, maybe 41?" and the mug is warehouse 2.
+
+There's a better way, and it's not another sticky note. Tag a colleague with a sticky-note wall, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseLife #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  Point of view: your inventory system is a wall of sticky notes.
+  4.9s  Note twelve says: thirty-eight units, maybe forty-one. And the mug? The mug is warehouse two.
+ 11.6s  There's a better way. And it's not another sticky note.
+ 15.2s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Originally a filmed handheld reel; produced as an animated reel with sticky-note cards.

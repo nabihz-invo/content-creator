@@ -3,3 +3,14 @@
 *.jpg binary
 *.mp4 binary
 *.woff2 binary
+*.jpeg binary
+*.jfif binary
+*.webp binary
+*.gif binary
+*.mp3 binary
+*.wav binary
+*.woff binary
+*.ttf binary
+*.xlsx binary
+*.pdf binary
+*.rar binary

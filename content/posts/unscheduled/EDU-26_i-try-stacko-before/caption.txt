@@ -1,0 +1,25 @@
+EDU-26 · Reel ·  · 25s · 1080x1920
+Title: FAQ: Can I see Stacko before committing?
+Files: EDU-26_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Can I see Stacko before committing?" Yes: start with a meeting.
+
+We'll show you the live map, the invoice drafts and the approvals on examples like yours. Bring a real supplier invoice and watch the draft it becomes. Then we agree on a clear plan and a quote for your locations, users and setup.
+
+Book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  Can you see Stacko before committing? Yes.
+  3.5s  Start with a meeting. We'll show you the live map, the invoice drafts, and the approvals, on examples like yours.
+ 10.0s  Bring a real supplier invoice, and watch the draft it becomes.
+ 13.9s  Then we agree on a clear plan, and a quote for your locations, users, and setup.
+ 19.0s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Answers follow the FAQ and trust sections of the Stacko website.
+- No free trial is promised (the website offers a demo and a quote).

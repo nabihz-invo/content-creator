@@ -1,0 +1,29 @@
+{
+ "id": "EDU-37",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "quote",
+   "theme": "dark",
+   "en": {
+    "quote": "[Short, specific quote]",
+    "who": "— [Name], [Role], [Business] (with permission)",
+    "body": "Pilot feedback. Results vary."
+   },
+   "ar": {
+    "quote": "[اقتباس قصير ومحدّد]",
+    "who": "— [الاسم]، [الوظيفة]، [الشركة] (بإذن)",
+    "body": "ملاحظات من التجربة. النتايج بتختلف."
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route F): feed version only; story version = same card on a 1080×1920 frame once filled.",
+  "\"we're building in public and running a pilot group\" → \"we run a pilot group\"; \"Apply for the pilot\" → \"Book a meeting\"."
+ ],
+ "caption": {
+  "en": "\"[Quote]\"\n\n— [Name], [Role], [Business]\n\nThis is why we run a pilot group — so the product is shaped by the people using it, not by assumptions.\n\nPilot feedback. Results vary.\n\n👉 Want to be next? Book a meeting — link in bio.\n\nCHECKLIST: permission · quote accuracy · customer review · \"results vary\".",
+  "ar": "«[الاقتباس]»\n\n— [الاسم]، [الوظيفة]، [الشركة]\n\nلهيك عنّا مجموعة تجربة — حتى المنتج يتشكّل من الناس اللي بيستعملوه، مش من الافتراضات.\n\nملاحظات من التجربة. النتايج بتختلف.\n\n👉 بدّك تكون الجاي؟ احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#CustomerFeedback #PilotProgram #InventoryManagement #Stacko #SMB #SupplyChain #Testimonial #EarlyAdopters #Lebanon #BuildInPublic"
+}

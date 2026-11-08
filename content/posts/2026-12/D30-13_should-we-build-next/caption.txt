@@ -1,0 +1,11 @@
+FORMAT
+Story series (3 frames) (no feed caption)
+
+CTA
+Vote
+
+STORY STICKERS (add natively in Instagram, in the empty space under the headline)
+Frame 1: Founder video (8 sec), not built yet (clips come later). See issues.txt.
+Frame 2: Poll sticker (or a quiz sticker for 3 options). Options: Barcode / QR scanning · WhatsApp logging · GPS on trucks
+Frame 3: Question sticker. Prompt: "Why that one?"
+Share the results in a follow-up story.

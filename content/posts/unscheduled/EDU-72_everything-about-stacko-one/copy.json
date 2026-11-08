@@ -1,0 +1,15 @@
+{
+ "id": "EDU-72",
+ "size": "portrait",
+ "changes": ["\"Stacko — a visual inventory platform\" quadrant: dropped the 🟢 Prototype mark; ERP mode marked \"Concept\" instead of 🟡.", "Bottom banner \"Book a demo → link in bio\" → \"Book a meeting\" button.", "Caption: dropped \"🟢 Prototype; 🟡 integration planned.\"; \"Book a demo\" → \"Book a meeting\".", "Sales one-pager PDF export not produced (ask if needed)."],
+ "slides": [
+  {"type": "quad", "theme": "dark", "cta": true,
+   "en": {"title": "Everything about Stacko *in one image.*", "quads": [["What it is", "Stacko — a visual inventory platform.", "*Your stock, always in sight.*"], ["Three promises", "**Visibility** — know where your stock is", "**Automation** — turn documents into reviewable drafts", "**Control** — roles, approvals, audit trail"], ["Two modes", "Full inventory management", "Map + AI layer on top of an existing ERP (Concept)"], ["Who it's for", "Wholesalers · Distributors · Multi-branch retailers · Importers · Spare parts · Small manufacturers · ERP users"]]},
+   "ar": {"title": "كل شي عن ستاكو *بصورة وحدة.*", "quads": [["شو هوّي", "ستاكو — منصّة مخزون بصرية.", "*مخزونك دايماً قدّام عينك.*"], ["٣ وعود", "**الرؤية** — اعرف وين مخزونك", "**الأتمتة** — حوّل المستندات لمسودّات بتراجعها", "**الضبط** — أدوار، موافقات، سجل تدقيق"], ["وضعين", "إدارة مخزون كاملة", "خريطة وذكاء اصطناعي فوق ERP موجود (مفهوم)"], ["لمين", "تجّار جملة · موزّعين · محلات بكذا فرع · مستوردين · قطع غيار · مصانع صغيرة · مستخدمين ERP"]]}}
+ ],
+ "caption": {
+  "en": "Everything about Stacko in one image.\n\nSave this. Send it to your boss. Bring it to your next software conversation.\n\nVisibility — know where your stock is.\nAutomation — turn documents into reviewable drafts.\nControl — roles, approvals, audit trail.\n\nTwo modes: full inventory management, or a map + AI layer on top of your existing ERP (where supported).\n\nFor wholesalers, distributors, multi-branch retailers, importers, spare-parts businesses, and small manufacturers.\n\n👉 Book a meeting — link in bio.",
+  "ar": "كل شي عن ستاكو بصورة وحدة.\n\nاحفظها. ابعتها لمديرك. جيبها معك عالحديث الجاي عن البرامج.\n\nالرؤية — اعرف وين مخزونك.\nالأتمتة — حوّل المستندات لمسودّات بتراجعها.\nالضبط — أدوار، موافقات، سجل تدقيق.\n\nوضعين: إدارة مخزون كاملة، أو طبقة خريطة وذكاء اصطناعي فوق الـERP تبعك (وين مدعوم).\n\nلتجّار الجملة والموزّعين والمحلات بكذا فرع والمستوردين وتجّار قطع الغيار والمصانع الصغيرة.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#InventoryManagement #SMB #Stacko #SupplyChain #ERP #WarehouseManagement #DistributorLife #BusinessOperations #InventoryTech #DigitalTransformation"
+}

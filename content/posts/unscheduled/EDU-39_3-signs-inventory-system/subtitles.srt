@@ -1,0 +1,44 @@
+1
+00:00:00,510 --> 00:00:04,580
+Three signs your inventory system is failing you.
+
+2
+00:00:04,580 --> 00:00:04,810
+One:
+
+3
+00:00:04,810 --> 00:00:08,250
+you answer "where is my stock?" with "let me check."
+
+4
+00:00:08,400 --> 00:00:11,580
+Two: nobody knows who changed the quantity.
+
+5
+00:00:11,750 --> 00:00:13,940
+Three: you find out about shortages
+
+6
+00:00:13,940 --> 00:00:15,950
+after the customer does.
+
+7
+00:00:15,990 --> 00:00:16,960
+Or: one map.
+
+8
+00:00:16,960 --> 00:00:18,430
+Full traceability.
+
+9
+00:00:18,430 --> 00:00:20,380
+Role-based control.
+
+10
+00:00:20,380 --> 00:00:22,040
+Your stock, always in sight.
+
+11
+00:00:22,040 --> 00:00:24,250
+Book a meeting with our team.
+

@@ -96,12 +96,19 @@ one, the prompt, and the status. Read it with
 placeholders), place the screens with `place_screens.py` (see the workspace CLAUDE.md), upload the
 result with `library.mjs upload <CODE> <file>` and leave the status for the owner to approve.
 New prompts can be added as `to_generate` entries in the CRM.
-Post images also use SC-xx (scenes), OB-xx (concepts) and SE-xx (seasonal) codes. A new **image
+Post images also use SC-xx (scenes), OB-xx (concepts), SE-xx (seasonal), UI-xx (device frames for real
+screenshots) and PR-xx (presenters) codes. Batch workbooks differ by round (sheet names "New Images" /
+"Image Prompts" / "New Image Prompts" and "Ideas" / "Post Ideas" / "New Ideas"); the importer knows all of them. A new **image
 batch** from the owner (a folder of images + an images workbook with a "New Images" sheet and an
 ideas workbook with an "Ideas" sheet) goes in with `python -I -X utf8 scripts/import/image-batch.py
 <folder> --remap OLD=NEW,…` (dry run first; `--remap` any code already in the library, then
 `--apply`), then run the SQL it writes, `library.mjs upload` each file in `_import/uploads.txt`, and
 import `_import/ideas-plan.json` with `content-plan-to-sql.py`.
+
+## 3c. Making posts and reels
+
+The content kit is in `content/` (rules: `content/CLAUDE.md`, skills: `.claude/skills/`). Setup on a new PC,
+the two-PC workflow and the current state: `docs/HANDOFF_CONTENT.md`.
 
 ## 4. Non-negotiable rules
 

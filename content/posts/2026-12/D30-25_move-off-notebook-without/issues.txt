@@ -1,0 +1,17 @@
+D30-25 · How to move off the notebook without stopping work · Carousel (7 slides)
+Stage / Claim Label: No product claim
+Review flag: No onboarding-time promises. Date falls on 25 Dec.
+
+NEEDS YOUR REVIEW
+- SCHEDULE: this posts on Christmas Day (25 Dec). The sheet suggests moving it to 26 or 28 Dec, or swapping it with a lighter post.
+- Slides 2–6 are numbered 1–5 as steps. The script doesn't number them, so drop the numbers if you prefer.
+- IMG-01 (messy aisle) is used on step 1. It's still "Generated" and is also the D30-02 cover; consider IMG-02 or another image so the same photo doesn't repeat.
+
+CHECKS PASSED
+- Review flag: no onboarding-time promises.
+- No feature shown, so no stage label.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

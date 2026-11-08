@@ -1,0 +1,40 @@
+1
+00:00:00,450 --> 00:00:02,990
+Sixty seconds inside Stacko.
+
+2
+00:00:02,990 --> 00:00:04,760
+One: your locations,
+
+3
+00:00:04,760 --> 00:00:06,240
+on one map.
+
+4
+00:00:06,320 --> 00:00:08,940
+Two: click, and see the stock.
+
+5
+00:00:09,020 --> 00:00:12,130
+Three: every movement, every record.
+
+6
+00:00:12,240 --> 00:00:13,540
+Four: AI drafts,
+
+7
+00:00:13,540 --> 00:00:15,350
+and you approve.
+
+8
+00:00:15,450 --> 00:00:16,150
+Five: scoped to every role.
+
+9
+00:00:16,150 --> 00:00:18,780
+Your stock, always in sight.
+
+10
+00:00:18,780 --> 00:00:22,010
+Book a meeting with our team.
+

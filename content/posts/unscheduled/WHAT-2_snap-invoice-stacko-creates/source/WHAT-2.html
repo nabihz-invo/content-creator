@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>WHAT-2 · AI reads your supplier invoices</title>
+<link rel="stylesheet" href="/assets/brand/brand.css"><style>
+.h1{position:absolute;left:64px;top:170px;width:952px;font-size:72px}
+.dark .h1 em{font-style:normal;color:var(--glow)} .light .h1 em{font-style:normal;color:var(--signal)}
+.sub{position:absolute;left:64px;width:952px;font-size:32px}
+.kick{position:absolute;left:64px;top:156px;font-size:20px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.dark .kick{color:var(--dolphin)} .light .kick{color:var(--signal)}
+.bg{position:absolute;left:0;top:0;width:1080px;height:1350px;object-fit:cover}
+.shade-t{position:absolute;left:0;right:0;top:0;height:560px;background:linear-gradient(180deg,rgba(14,36,64,.92),rgba(14,36,64,.6) 55%,rgba(14,36,64,0))}
+.shade-b{position:absolute;left:0;right:0;bottom:0;height:260px;background:linear-gradient(180deg,rgba(10,22,38,0),rgba(10,22,38,.92) 60%)}
+.panel{position:absolute;left:64px;width:952px;border-radius:30px;overflow:hidden;box-shadow:0 24px 60px rgba(14,36,64,.22)}
+.panel>img.pi{position:absolute;max-width:none}
+.scr{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden}
+.scr img{width:100%;height:100%;object-fit:cover}
+.chip{position:absolute;display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--abyss);border-radius:999px;padding:10px 20px;font-size:23px;font-weight:600;white-space:nowrap;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.chip i{width:12px;height:12px;border-radius:50%;background:var(--signal);flex:none}
+.chip.d{background:rgba(14,36,64,.78);color:#fff;border:1px solid rgba(201,216,228,.35);backdrop-filter:blur(6px)}
+.chip.d i{background:var(--dolphin)}
+.bar{position:absolute;left:64px;right:64px;bottom:52px;display:flex;align-items:center;justify-content:space-between;font-size:24px;color:var(--visor)}
+.dots{display:flex;gap:10px}.dots i{width:12px;height:12px;border-radius:50%;background:rgba(201,216,228,.35)}.dots i.on{width:36px;border-radius:6px;background:#fff}
+.bar b{color:#fff;font-weight:600}
+/* chat UI (drawn at 300x600, mapped onto the device) */
+.chat{width:300px;height:600px;background:linear-gradient(180deg,#F4F8FA,#E6F2F6);padding:52px 16px 16px;display:flex;flex-direction:column;gap:14px;font-family:'Readex Pro'}
+.chat .hd{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid #C9D8E4}
+.chat .av{width:40px;height:40px;border-radius:50%;background:#0E2440;display:grid;place-items:center;flex:none}.chat .av img{width:30px;height:30px}
+.chat .hd b{display:block;font-size:19px;color:#0E2440;font-weight:600;line-height:1.1}.chat .hd small{font-size:13px;color:#2C5974}
+.u{align-self:flex-end;max-width:240px;background:#2F86B8;color:#fff;font-size:20px;line-height:1.3;padding:11px 14px;border-radius:18px 18px 6px 18px}
+.r{align-self:flex-start;width:256px;background:#fff;color:#0E2440;font-size:19px;line-height:1.35;padding:13px 15px;border-radius:18px 18px 18px 6px;box-shadow:0 4px 14px rgba(14,36,64,.1)}
+.r .ok{display:inline-block;background:#BCE5E0;border-radius:999px;padding:2px 10px;font-size:15px;font-weight:700;margin-bottom:6px}
+.r small{display:block;color:#2C5974;font-size:14px;margin-top:6px}
+.mini{margin-top:10px;height:150px;border-radius:12px;overflow:hidden}.mini img{width:100%;height:100%;object-fit:cover;object-position:35% 60%}
+.thumb{align-self:flex-end;width:170px;height:120px;border-radius:14px;background:#fff;border:6px solid #2F86B8;padding:10px;display:flex;flex-direction:column;gap:7px}
+.thumb i{display:block;height:7px;border-radius:3px;background:#C9D8E4}.thumb i:nth-child(1){width:60%;background:#2C5974}.thumb i:nth-child(3){width:80%}
+.ar{position:absolute;inset:0}
+.res{position:absolute;left:600px;right:64px;top:460px;background:#fff;color:var(--abyss);border-radius:24px;padding:24px 26px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.res .k{font-size:17px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.res>b{display:block;font-size:34px;font-weight:600;margin:2px 0 10px}
+.rw{display:flex;justify-content:space-between;font-size:23px;padding:10px 0;border-top:1px solid var(--foam)}.rw span{color:var(--deep)}</style></head><body>
+<div class="post dark">
+
+<div style="position:absolute;inset:0;background:#041b2f"></div>
+<img class="bg" src="/assets/post-images/final/LCH-03.jpg" alt="" style="width:1080px;height:1340.6976px;top:300px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 160px);mask-image:linear-gradient(180deg,transparent,#000 160px)">
+<div class="scr" style="width:300px;height:600px;border-radius:30px;transform:matrix3d(0.471244,0.127145,0.000000,0.000017,-0.142555,0.408581,0.000000,-0.000076,0.000000,0.000000,1.000000,0.000000,413.149000,807.416800,0.000000,1.000000)"><div class="chat"><div class="hd"><div class="av"><img src="/assets/brand/logo/mark-dark.svg" alt=""></div><div><b>Stacko</b><small>Purchasing</small></div></div><div class="thumb"><i></i><i></i><i></i><i></i></div><div class="r"><span class="ok">Invoice read ✓</span><br>12 items created<small>Shipment SHP-24021 · by sea</small></div></div></div>
+<div class="shade-b"></div>
+<h1 class="h1">Snap the invoice. <em>Stacko creates the items.</em></h1>
+<p class="sub" style="top:340px;color:var(--visor)">PDF, Excel or a photo. AI reads it for you.</p>
+<svg class="ar" viewBox="0 0 1080 1350"><path d="M600 700 C 660 700, 680 640, 640 590" fill="none" stroke="#2EF2EE" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/></svg>
+<div class="res">
+ <div class="k">Incoming shipment</div><b>SHP-24021</b>
+ <div class="rw"><span>Items created</span><b>12</b></div>
+ <div class="rw"><span>Mode</span><b>Sea</b></div>
+ <div class="rw"><span>ETA</span><b>~30 days</b></div>
+ <div class="rw"><span>Lands in</span><b>WH-01 Beirut</b></div>
+</div>
+<div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
+<div class="foot"><div class="by">A product by <b><span>AI</span>PHIN</b></div><div>www.stacko-lb.com</div></div>
+</div></body></html>

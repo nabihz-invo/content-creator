@@ -1,0 +1,104 @@
+# Stacko content production status
+
+Resume rule: start at the first unchecked item. Order: NOV items, then EDU-01 → EDU-80.
+Outputs: post = EN/AR × light/dark PNG + PPTX · carousel = EN + AR PNGs · reel = English MP4 · stories = EN + AR frames.
+Founder-on-camera reels are produced as voice-over reels with website footage; a filmed founder version needs recording.
+Status: [x] done and checked · [ ] to do · [-] skipped (reason noted).
+
+- [x] NOV-01 · reel · Can you see all your warehouses?
+- [x] NOV-02 · carousel · 5 signs your stock process needs better visibility
+- [x] NOV-03 · reel · Meet Stacko
+- [x] NOV-04 · reel · Where is that product?
+- [x] NOV-05 · carousel · Why stock records can differ from physical stock
+- [x] NOV-06 · reel · Follow one stock transaction
+- [x] NOV-07 · reel · One transfer, two locations
+- [x] NOV-08 · stories · What's your biggest inventory headache?
+- [x] NOV-09 · carousel · Imagine overseeing five warehouses
+- [x] NOV-10 · reel · The cost of searching for stock information
+- [x] NOV-11 · post · What Stacko is designed to help you see
+- [x] NOV-12 · reel · From scattered information to a map-based view
+- [x] NOV-13 · reel · November in 30 seconds
+- [x] NOV-S1 · stories · Weekly Stories — Week 1
+- [x] NOV-S2 · stories · Weekly Stories — Week 2
+- [x] NOV-S3 · stories · Weekly Stories — Week 3
+- [x] NOV-S4 · stories · Weekly Stories — Week 4
+- [x] EDU-01 · carousel · Your Stock Data Is Everywhere. Here's What It's Costing You.
+- [x] EDU-02 · carousel · From Paper Invoice to Approved Transaction — Step by Step
+- [x] EDU-03 · carousel · 7 Roles. One Clean Workflow.
+- [x] EDU-04 · reel · POV: A Customer Asks If You Have 40 Units in Stock
+- [x] EDU-05 · reel · No, Our AI Does NOT Change Your Stock Automatically.
+- [x] EDU-06 · carousel · Myth vs. Reality: Inventory Software in 2026
+- [x] EDU-07 · carousel · 5 Permission Questions to Ask Before Buying Any Inventory System
+- [x] EDU-08 · reel · The Invoice Pile
+- [x] EDU-09 · carousel · 3 Warehouses, 1,200 SKUs, 1 Spreadsheet. Sound Familiar?
+- [x] EDU-10 · carousel · Which Branch Has the Last 12 Units?
+- [x] EDU-11 · carousel · 500 SKUs, 40 Invoices a Week — How Do You Keep Up?
+- [x] EDU-12 · carousel · Materials In, Finished Goods Out — Can You See Both?
+- [x] EDU-13 · carousel · Your ERP Has the Data. You Just Can't See It.
+- [x] EDU-14 · post · Most Stock Problems Aren't Stock Problems
+- [x] EDU-15 · reel · We're Not Asking You to Rip Out Your ERP
+- [x] EDU-16 · reel · Will AI Make Mistakes? Yes. Here's Why That's Fine.
+- [x] EDU-17 · carousel · The Three Questions Every Stock Manager Asks (And What They Really Mean)
+- [-] EDU-18 · carousel · We're Building in Public. Here's Week 1. — skipped: build-in-public needs real weekly updates and conflicts with the no-'in development' rule
+- [x] EDU-19 · carousel · The Morning Stock Check, Reimagined
+- [x] EDU-20 · carousel · The Discrepancy Story: How One Missing Transfer Cost a Branch a Customer
+- [x] EDU-21 · reel · Does Stacko Work With My ERP?
+- [x] EDU-22 · reel · Is My Data Safe?
+- [x] EDU-23 · reel · Who Owns My Data?
+- [x] EDU-24 · reel · How Long Does Onboarding Take?
+- [x] EDU-25 · reel · What Happens When AI Gets Something Wrong?
+- [x] EDU-26 · reel · Can I Try Stacko Before Committing?
+- [x] EDU-27 · stories · Where Does Your Stock Data Live?
+- [x] EDU-28 · stories · The Biggest Stock Headache
+- [x] EDU-29 · carousel · Book a 20-Minute Demo. Here's Exactly What Happens.
+- [x] EDU-30 · reel · Bring Your Hardest Question
+- [-] EDU-31 · carousel · The Pilot Program: What You Get (And What You Give) — skipped: needs real customers/terms/numbers
+- [x] EDU-32 · reel · Get a Clearer View of Your Stock
+- [-] EDU-33 · carousel · What We Shipped This Week — skipped: build-in-public needs real weekly updates and conflicts with the no-'in development' rule
+- [-] EDU-34 · carousel · The Feature We Killed This Week — skipped: build-in-public needs real weekly updates and conflicts with the no-'in development' rule
+- [-] EDU-35 · carousel · A Real Conversation With a Distributor — skipped: needs real customers/terms/numbers
+- [-] EDU-36 · reel · The Pilot Story (Pre-Launch Format) — skipped: needs real customers/terms/numbers
+- [-] EDU-37 · stories · The One-Quote Card (Lightweight Social Proof) — skipped: needs real customers/terms/numbers
+- [x] EDU-38 · carousel · The Inventory Health Check: 10 Questions to Ask Yourself
+- [x] EDU-39 · reel · 3 Signs Your Inventory System Is Failing You
+- [x] EDU-40 · carousel · End-of-Year Stocktake Survival Guide
+- [x] EDU-41 · reel · New Year, Same Stock Problems?
+- [x] EDU-42 · post · The Stock Manager's Glossary
+- [x] EDU-43 · stories · Ask the Founder — Weekly Q&A Story Series
+- [x] EDU-44 · carousel · Comment → Carousel (Turn Audience Questions Into Content)
+- [x] EDU-45 · carousel · The Map View, Explained
+- [x] EDU-46 · reel · 60 Seconds Inside Stacko
+- [x] EDU-47 · carousel · Receipts, Issues, Transfers, Adjustments — in 4 Screens
+- [x] EDU-48 · reel · Same System. Three Different Views.
+- [x] EDU-49 · reel · Spreadsheet Chaos → Map Clarity
+- [x] EDU-50 · reel · The Audit Trail, in 30 Seconds
+- [x] EDU-51 · carousel · The Transaction List, Explained
+- [x] EDU-52 · reel · Full Inventory vs. Map + Integration
+- [x] EDU-53 · carousel · AI Invoice Draft — The 3 Things It Won't Do
+- [x] EDU-54 · carousel · A Day With Stacko — 4 Moments
+- [-] EDU-55 · carousel · What's Live, What's Planned, What's a Concept — skipped: entirely about development stage (live/planned/concept), conflicts with the no-'in development' rule
+- [x] EDU-56 · reel · See Your Own Locations on the Map
+- [x] EDU-57 · stories · The WhatsApp Warehouse Group
+- [x] EDU-58 · stories · The Excel File Named 'FINAL_v7_USE_THIS_ONE'
+- [x] EDU-59 · reel · The Sticky Note Inventory
+- [x] EDU-60 · post · Caption This Screenshot
+- [x] EDU-61 · carousel · Rate Your Stock Chaos (1–10)
+- [x] EDU-62 · stories · Stock Manager Confession Booth (prompt post only, no customer content)
+- [-] EDU-63 · reel · Spotlight on a Stock Manager — skipped: needs real customers/terms/numbers
+- [x] EDU-64 · carousel · Show Us Your Stock Setup (prompt post only, no customer content)
+- [-] EDU-65 · live · Monthly Demo + Q&A — skipped for now: needs a scheduled date and host; produce the announcement once the live session is booked
+- [x] EDU-66 · stories · You Asked About [Real Comment] — Here's the Answer
+- [x] EDU-67 · carousel · The 5-Day Stock Visibility Challenge
+- [x] EDU-68 · reel · Guess the Stock Problem
+- [x] EDU-69 · carousel · The Stock Audit Checklist (Free Download)
+- [x] EDU-70 · carousel · Stacko vs. Spreadsheets (Honest Comparison)
+- [-] EDU-71 · carousel · What Is Manual Invoice Entry Actually Costing You? — skipped: needs real customers/terms/numbers
+- [x] EDU-72 · post · Everything About Stacko in One Image
+- [x] EDU-73 · carousel · The 6 Objections We Hear Most (And Our Honest Answers)
+- [x] EDU-74 · post · The 5-Line Email to Send Your Boss
+- [-] EDU-75 · carousel · Know a Stock Manager Who Needs This? — skipped: needs real customers/terms/numbers
+- [x] EDU-76 · carousel · What Happens After You Book a Demo
+- [-] EDU-77 · carousel · What a Pilot Looks Like — Week by Week — skipped: needs real customers/terms/numbers
+- [x] EDU-78 · reel · The One Question That Stops Most Demos
+- [x] EDU-79 · carousel · The 48-Hour Summary (What You Get)
+- [x] EDU-80 · carousel · How to Evaluate Inventory Software in 30 Minutes

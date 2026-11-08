@@ -1,0 +1,60 @@
+{
+ "id": "EDU-63",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "cover",
+   "en": {
+    "title": "Spotlight: *[Name]*, stock manager at [Business].",
+    "lead": "[Number] locations. [Number] SKUs. [Number] years in the job."
+   },
+   "ar": {
+    "title": "سبوتلايت: *[الاسم]*، مسؤول مخزون بـ[الشركة].",
+    "lead": "[عدد] مواقع. [عدد] صنف. [عدد] سنين بالشغل."
+   }
+  },
+  {
+   "type": "quote",
+   "en": {
+    "eyebrow": "A day in their stock life.",
+    "quote": "[Quote describing their morning routine]"
+   },
+   "ar": {
+    "eyebrow": "يوم من حياتهم بالمخزون.",
+    "quote": "[اقتباس عن روتين الصبح]"
+   }
+  },
+  {
+   "type": "quote",
+   "en": {
+    "eyebrow": "The lesson they'd share.",
+    "quote": "[Quote]"
+   },
+   "ar": {
+    "eyebrow": "الدرس اللي بيشاركوه.",
+    "quote": "[اقتباس]"
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "Know a stock manager who *deserves a spotlight?*",
+    "lead": "Nominate them in the comments or DM us.",
+    "micro": "Featured with permission."
+   },
+   "ar": {
+    "title": "بتعرف مسؤول مخزون *بيستاهل سبوتلايت؟*",
+    "lead": "رشّحو بالتعليقات أو ابعتلنا رسالة.",
+    "micro": "منعرض بإذن."
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route F): needs a real person, photo and written consent. Button → \"Book a meeting\"."
+ ],
+ "caption": {
+  "en": "Spotlight: [Name], stock manager at [Business].\n\n[Number] locations. [Number] SKUs. [Number] years in the job.\n\nTheir day: \"[quote]\"\nTheir lesson: \"[quote]\"\n\nKnow a stock manager who deserves a spotlight? Nominate them in the comments or DM us.\n\nBook a meeting with our team.",
+  "ar": "سبوتلايت: [الاسم]، مسؤول مخزون بـ[الشركة].\n\n[عدد] مواقع. [عدد] صنف. [عدد] سنين بالشغل.\n\nنهارو: «[اقتباس]»\nدرسو: «[اقتباس]»\n\nبتعرف مسؤول مخزون بيستاهل سبوتلايت؟ رشّحو بالتعليقات أو ابعتلنا رسالة.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#StockManagerSpotlight #InventoryManagement #SMB #Stacko #SupplyChain #Community #WarehouseLife #DistributorLife #BusinessOperations #PeopleOfInventory"
+}

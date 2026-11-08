@@ -1,0 +1,16 @@
+D30-04 · Is your stock updated when it moves? · Story series (4 frames)
+Stage / Claim Label: 🟢 Prototype (demo data)
+Review flag: Original asked 'how many hours' — keep it to options, no stats claimed from replies unless real.
+
+NEEDS YOUR REVIEW
+- Frame 3 (6-sec prototype clip: a Telegram message turns into a truck on the Stacko map) is not built. It needs a screen recording, and clips come later. Its text, "We're building this so the record moves with the stock.", and the 🟢 Prototype (demo data) label go on that clip.
+- Poll, quiz and question stickers must be added in Instagram. Their exact text is in caption.txt.
+
+CHECKS PASSED
+- Review flag: no "how many hours" question and no stats from replies. Only the options from the script are used.
+- Frames 1, 2 and 4 show no feature, so they carry no stage label.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

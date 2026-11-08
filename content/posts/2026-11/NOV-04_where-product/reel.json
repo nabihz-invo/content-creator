@@ -1,0 +1,64 @@
+{
+ "id": "NOV-04",
+ "title": "Where is that product?",
+ "date": "Mon 9 Nov 2026",
+ "caption": "\"Which location has this item?\" A simple question that turns into calls, messages and spreadsheets when stock is spread across branches.\n\nWith Stacko, tap a warehouse and see what it holds, or just ask and get the answer by site.\n\nHow do you find stock across your branches today? Tell us below, or book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "A customer needs an item. Which warehouse has it?",
+   "scene": {
+    "type": "pain",
+    "head": "Where is *the stock?*",
+    "cards": [
+     {
+      "kind": "chat",
+      "label": "Sales",
+      "text": "Do we have 40 LED strips?"
+     },
+     {
+      "kind": "call",
+      "text": "Branch C · Tripoli"
+     },
+     {
+      "kind": "sheet",
+      "text": "stock_FINAL_v3.xlsx"
+     }
+    ]
+   }
+  },
+  {
+   "vo": "When stock is spread across sites, the answer means calls, messages, and guesswork.",
+   "scene": {
+    "type": "text",
+    "big": "Don't make your team *guess.*"
+   }
+  },
+  {
+   "vo": "With Stacko, tap a warehouse on the map and see what it holds, right now.",
+   "scene": {
+    "type": "app",
+    "zoom": "site",
+    "head": "Tap a site. *See the stock.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Or just ask, and get the answer by site, from the same live stock.",
+   "scene": {
+    "type": "app",
+    "zoom": "panel",
+    "phone": true,
+    "clipFrom": 4,
+    "head": "Or just *ask.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Your stock, always in sight. Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ]
+}

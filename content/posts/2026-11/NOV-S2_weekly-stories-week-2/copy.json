@@ -1,0 +1,42 @@
+{
+ "id": "NOV-S2",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "What takes *more effort?*",
+    "lead": "Finding stock / Following transfers"
+   },
+   "ar": {
+    "title": "شو بياخد *جهد أكتر؟*",
+    "lead": "تلاقي البضاعة / تلحق النقلات"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "img": {
+    "name": "map",
+    "src": "app",
+    "h": 760
+   },
+   "en": {
+    "title": "Behind the scenes: *what works today.*"
+   },
+   "ar": {
+    "title": "ورا الكواليس: *شو شغّال اليوم.*"
+   }
+  }
+ ],
+ "changes": [
+  "Story frames only; stickers are added in Instagram. Share responses only anonymized and with permission."
+ ],
+ "caption": {
+  "en": "— (Stories: no caption needed)\n\nNOTES\n- Frame 1: Add the poll sticker in Instagram in the empty lower half of the frame. Options: Finding stock / Following transfers.\n- Frame 2: real app screen (demo company). Say only what works today.",
+  "ar": "— (ستوري: ما في حاجة لكابشن)"
+ },
+ "hashtags": "— (Stories: no hashtags)"
+}

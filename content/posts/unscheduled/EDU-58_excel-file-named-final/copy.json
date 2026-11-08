@@ -1,0 +1,15 @@
+{
+ "id": "EDU-58",
+ "size": "square",
+ "changes": ["\"USE_THIS_ONE\" file highlighted in Signal teal, not coral. Story repost = same image.", "Caption: added \"Book a meeting with our team.\""],
+ "slides": [
+  {"type": "files", "theme": "dark", "hot": 4,
+   "en": {"folder": "📁 Stock", "files": ["Stock_2026.xlsx", "Stock_2026_v2.xlsx", "Stock_2026_v2_FINAL.xlsx", "Stock_2026_FINAL_v3.xlsx", "Stock_2026_FINAL_v3_USE_THIS_ONE.xlsx", "Stock_2026_FINAL_v3_USE_THIS_ONE_ACTUALLY.xlsx"], "title": "Every stock manager has *this folder.*"},
+   "ar": {"folder": "📁 المخزون", "files": ["Stock_2026.xlsx", "Stock_2026_v2.xlsx", "Stock_2026_v2_FINAL.xlsx", "Stock_2026_FINAL_v3.xlsx", "Stock_2026_FINAL_v3_USE_THIS_ONE.xlsx", "Stock_2026_FINAL_v3_USE_THIS_ONE_ACTUALLY.xlsx"], "title": "كل مسؤول مخزون *عندو هالملف.*"}}
+ ],
+ "caption": {
+  "en": "Every stock manager has this folder:\n\nStock_2026.xlsx\nStock_2026_v2.xlsx\nStock_2026_FINAL.xlsx\nStock_2026_FINAL_v3.xlsx\nStock_2026_FINAL_v3_USE_THIS_ONE.xlsx ←\nStock_2026_FINAL_v3_USE_THIS_ONE_ACTUALLY.xlsx\n\nIf you have this folder, you don't have an inventory system. You have a version-control problem.\n\nTag the colleague who made the last file. 😅\n\nBook a meeting with our team.",
+  "ar": "كل مسؤول مخزون عندو هالملف:\n\nStock_2026.xlsx\nStock_2026_v2.xlsx\nStock_2026_FINAL.xlsx\nStock_2026_FINAL_v3.xlsx\nStock_2026_FINAL_v3_USE_THIS_ONE.xlsx ←\nStock_2026_FINAL_v3_USE_THIS_ONE_ACTUALLY.xlsx\n\nإذا عندك هالملف، ما عندك نظام مخزون. عندك مشكلة نسخ.\n\nطلّع الزميل اللي عمل آخر ملف. 😅\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#Excel #InventoryManagement #StockControl #SMB #Stacko #SupplyChain #Spreadsheets #BusinessOperations #DistributorLife #InventoryHumor"
+}

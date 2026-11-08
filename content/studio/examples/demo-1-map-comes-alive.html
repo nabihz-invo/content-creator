@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Demo 1 · The map comes alive</title>
+<!-- Recipe RC-01 Map comes alive · Hook HK-12 reveal tease · Opener OP-02 map drop-in · TX rise + highlight · TR dots · End card EC-01 -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'Demo 1 · The map comes alive' });
+
+// ── Scene 1: the live map builds itself, a message becomes a truck ─────────────
+const s = R.scene(10.6, { name: 'map' });
+const m = s.map({ intro: 'draw', at: 0 });
+s.text('Three warehouses.', { y: 330, size: 92, fx: 'rise', at: .35, color: SM.C.abyss, out: 'rise', outAt: 2.5 });
+s.text('*One* map.', { y: 445, size: 92, fx: 'rise', at: 1.1, color: SM.C.abyss, hlColor: SM.C.signal, out: 'rise', outAt: 2.5 });
+
+// zoom to Beirut, phone slides in with a real Telegram flow
+m.camera(2.6, { focus: 'W1', zoom: 1.9, dur: 1.2 });
+const c = s.chat({ x: 540, y: 1330, w: 800, in: 'rise', at: 2.9, dist: 1100, out: 'sink', outAt: 6.55 });
+c.type(3.3, 'sent 40 LED strips from Beirut to Sidon', { cps: 26 });
+c.bot(5.0, 'Got it. Draft sent to Karim to approve.', { typing: .45 });
+c.draft(5.6, { code: 'Draft TRF-24019' });
+c.approve(6.25);
+s.text('One message.', { y: 330, size: 86, fx: 'pop', at: 3.1, color: SM.C.abyss, out: 'fade', outAt: 6.4 });
+
+// the truck leaves Beirut and the camera follows it to Sidon
+m.select('W1', 6.5); m.select('W1', 10, false);
+m.truck({ from: 'W1', to: 'W2', at: 6.7, dur: 2.9, eta: 73, qty: 40, item: 'LED Strip 5m', glow: true, follow: true, followZoom: 1.55 });
+m.select('W2', 9.6);
+s.text('Stock moves. *The map moves.*', { y: 330, size: 78, fx: 'blur', at: 7.1, color: SM.C.abyss, hlColor: SM.C.signal, w: 940 });
+R.badge('Prototype · demo data', { at: .5, theme: 'light' });
+
+// ── End card: the dots become the logo ───────────────────────────────────────
+R.endcard('dots', { in: 'dots', tagline: 'both', dur: 3.6 });
+R.vignette(.5).grain(.06).safe();
+R.audio({ music: '/assets/audio/music/placeholder-calm.mp3' });
+R.cover(1.6);
+</script></body></html>

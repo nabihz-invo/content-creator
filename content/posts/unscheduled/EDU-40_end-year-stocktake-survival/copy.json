@@ -1,0 +1,36 @@
+{
+ "id": "EDU-40",
+ "size": "portrait",
+ "changes": ["Slide 8: \"Book a demo\" → \"Book a meeting\" (body and button); micro-text \"Prototype features shown; availability confirmed during discovery.\" → \"Features shown; availability confirmed during discovery.\"", "Caption: dropped \"🟢 Prototype features shown for steps 3–5; availability confirmed during discovery.\"; \"Book a demo in bio\" → \"Book a meeting in bio\".", "Zones map uses Signal / Ocean tints only (no warm colours)."],
+ "slides": [
+  {"type": "cover", "art": "calendar",
+   "en": {"title": "The end-of-year stocktake *survival guide.*", "lead": "6 steps to a stocktake that doesn't ruin December."},
+   "ar": {"title": "دليل النجاة من *جرد آخر السنة.*", "lead": "٦ خطوات لجرد ما بيخرب كانون الأوّل."}},
+  {"num": "01", "icon": "clock",
+   "en": {"title": "Freeze the noise.", "body": "Pause non-essential movements during the count. Every transfer during a stocktake is a discrepancy waiting to happen."},
+   "ar": {"title": "وقّف الضجّة.", "body": "وقّف الحركات اللي مش ضرورية خلال الجرد. كل تحويل وقت الجرد هوّي فرق ناطر يصير."}},
+  {"num": "02", "art": "cubes",
+   "en": {"title": "Count in zones, not all at once.", "body": "Split locations into zones and assign each to a specific person. One zone, one owner, one count sheet."},
+   "ar": {"title": "عِدّ بمناطق، مش كلّو مرّة وحدة.", "body": "قسّم المواقع لمناطق وعطي كل منطقة لشخص محدّد. منطقة وحدة، مسؤول واحد، ورقة جرد وحدة."}},
+  {"num": "03", "img": {"name": "count", "src": "app", "h": 470},
+   "en": {"title": "Record discrepancies immediately.", "body": "Don't \"fix it later.\" A discrepancy written down later is a discrepancy lost. Record it with the user, time, and location."},
+   "ar": {"title": "سجّل الفروقات فوراً.", "body": "ما في «منصلّحها بعدين». الفرق اللي بينكتب بعدين فرق ضايع. سجّلو مع الشخص والوقت والموقع."}},
+  {"num": "04", "art": "roles",
+   "en": {"title": "Separate the counter from the approver.", "body": "The person who counts shouldn't be the only person who approves the adjustment. Separation of duties catches honest mistakes."},
+   "ar": {"title": "افصل اللي بيعدّ عن اللي بيوافق.", "body": "اللي بيعدّ ما لازم يكون الوحيد اللي بيوافق عالتعديل. فصل المهام بيمسك الغلطات البريئة."}},
+  {"num": "05", "img": {"name": "map", "src": "app", "h": 470},
+   "en": {"title": "Compare against the map, not a spreadsheet.", "body": "If your system shows location-level stock on a map, the stocktake becomes a visual reconciliation — not a spreadsheet archaeology project."},
+   "ar": {"title": "قارن عالخريطة، مش عالشيت.", "body": "إذا نظامك بيعرض مخزون كل موقع على خريطة، الجرد بيصير مطابقة بالعين — مش حفريات بالشيتات."}},
+  {"num": "06", "icon": "list",
+   "en": {"title": "Write down what you learned.", "body": "The discrepancies are the lesson. Were they counting errors? Unrecorded transfers? Theft? The pattern matters more than the number.", "items": ["Counting errors", "Unrecorded transfers", "Theft"]},
+   "ar": {"title": "اكتب شو تعلّمت.", "body": "الفروقات هيّي الدرس. كانت غلطات عدّ؟ تحويلات ما تسجّلت؟ سرقة؟ النمط أهم من الرقم.", "items": ["غلطات بالعدّ", "تحويلات ما تسجّلت", "سرقة"]}, "mark": "☐"},
+  {"type": "cta",
+   "en": {"title": "Make next year's stocktake *easier.*", "lead": "Book a meeting and see how Stacko records movements, adjustments, and approvals — so December isn't a spreadsheet marathon.", "micro": "Features shown; availability confirmed during discovery."},
+   "ar": {"title": "خلّي جرد السنة الجايي *أسهل.*", "lead": "احجز اجتماعاً وشوف كيف ستاكو بيسجّل الحركات والتعديلات والموافقات — حتى ما يصير كانون ماراتون شيتات.", "micro": "الميزات معروضة؛ توفّرها منأكّدو بمرحلة التعارف."}}
+ ],
+ "caption": {
+  "en": "The end-of-year stocktake is coming.\n\n6 steps to survive it:\n\n01 Freeze the noise — pause non-essential movements during the count\n02 Count in zones, not all at once — one zone, one owner, one count sheet\n03 Record discrepancies immediately — not \"later\"\n04 Separate the counter from the approver — separation of duties catches honest mistakes\n05 Compare against the map, not a spreadsheet\n06 Write down what you learned — the pattern matters more than the number\n\n👉 Save this for December. Book a meeting in bio.",
+  "ar": "جرد آخر السنة جايي.\n\n٦ خطوات لتنجى منو:\n\n٠١ وقّف الضجّة — وقّف الحركات اللي مش ضرورية خلال الجرد\n٠٢ عِدّ بمناطق — منطقة وحدة، مسؤول واحد، ورقة وحدة\n٠٣ سجّل الفروقات فوراً — مش «بعدين»\n٠٤ افصل اللي بيعدّ عن اللي بيوافق — فصل المهام بيمسك الغلطات البريئة\n٠٥ قارن عالخريطة، مش عالشيت\n٠٦ اكتب شو تعلّمت — النمط أهم من الرقم\n\n👉 احفظها لكانون. احجز اجتماعاً من البايو."
+ },
+ "hashtags": "#Stocktake #YearEnd #InventoryManagement #SMB #Stacko #SupplyChain #WarehouseManagement #InventoryControl #BusinessOperations #InventoryAudit"
+}

@@ -1,0 +1,104 @@
+/* Shared layouts for generated Stacko posts, carousels and stories (built from each item's copy.json). */
+body{display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px 0}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;display:flex;flex-direction:column;padding:84px 88px 76px}
+.slide.story{height:1920px;padding:220px 88px 420px}
+.dark{background:var(--night-bg);color:#fff}
+.light{background:var(--paper);color:var(--abyss)}
+.top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:52px;height:52px}
+.brand .wm{font-size:38px}
+.brand .wm-ar{font-size:34px}
+.count{font-size:22px;font-weight:500;color:var(--ink2);font-variant-numeric:tabular-nums}
+.dark .count{color:var(--visor)}
+.body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center}
+.body.top-aligned{justify-content:flex-start;padding-top:64px}
+.num{font-size:200px;font-weight:700;line-height:.8;letter-spacing:-.06em;color:var(--signal);opacity:.9}
+h1{font-size:92px;font-weight:600;line-height:1.03;letter-spacing:-.045em;text-wrap:balance}
+h2{font-size:66px;font-weight:600;line-height:1.08;letter-spacing:-.035em;text-wrap:balance;margin-top:34px}
+h1 em,h2 em{font-style:normal;color:var(--glow)}
+.light h1 em,.light h2 em{color:var(--signal)}
+.sub{font-size:33px;line-height:1.45;color:var(--ink2);margin-top:28px;max-width:860px}
+.dark .sub{color:var(--visor)}
+.eyebrow + h1,.eyebrow + h2{margin-top:26px}
+html[lang=ar] h1{font-size:76px;line-height:1.38;font-weight:700}
+html[lang=ar] h2{font-size:56px;line-height:1.5;font-weight:700}
+html[lang=ar] .sub{font-size:31px;line-height:1.75}
+html[lang=ar] .num{letter-spacing:-.03em}
+.art{position:relative;height:380px;margin-top:52px}
+.art svg{width:100%;height:100%;overflow:visible}
+.shot{position:relative;margin-top:48px;border-radius:26px;overflow:hidden;box-shadow:0 34px 80px rgba(14,36,64,.22);border:1px solid #DCE6EE;background:#fff;align-self:center;max-width:100%}
+.dark .shot{border-color:rgba(201,216,228,.25);box-shadow:0 40px 90px rgba(0,0,0,.45)}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:500;color:var(--ink2)}
+.dark .foot{color:var(--visor)}
+.swipe{color:var(--signal);font-weight:600}
+.dark .swipe{color:var(--glow)}
+.cta{display:inline-flex;margin-top:52px;padding:26px 42px;border-radius:22px;background:var(--ocean);color:#fff;font-size:34px;font-weight:600;align-self:flex-start}
+.light .cta{background:var(--abyss)}
+.tagnote{font-size:20px;padding:10px 18px;border-radius:999px;background:rgba(10,27,49,.72);color:var(--visor)}
+.light .tagnote{background:rgba(14,36,64,.06);color:var(--ink2)}
+.bg-art{position:absolute;left:0;right:0;bottom:0;height:620px;z-index:1;-webkit-mask-image:linear-gradient(transparent 0%,#000 32%);mask-image:linear-gradient(transparent 0%,#000 32%)}
+.bg-art img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.cover-art{position:absolute;right:-110px;bottom:120px;width:900px;height:700px;z-index:1}
+html[dir=rtl] .cover-art{right:auto;left:-110px}
+/* list slide */
+.list{list-style:none;margin-top:44px;display:grid;gap:22px}
+.list li{display:flex;gap:24px;align-items:flex-start;font-size:36px;font-weight:500;line-height:1.35}
+html[lang=ar] .list li{font-size:33px;line-height:1.65}
+.list .tick{flex:none;width:52px;height:52px;border-radius:15px;background:rgba(8,149,166,.14);display:grid;place-items:center;margin-top:2px;color:var(--signal);font-weight:700;font-size:26px}
+.dark .list .tick{background:rgba(46,242,238,.14);color:var(--glow)}
+/* myth / reality */
+.mr{margin-top:20px;display:grid;gap:30px}
+.mr div{border-radius:30px;padding:44px 46px}
+.mr .m{background:rgba(194,51,74,.08);border:1.5px solid rgba(194,51,74,.25)}
+.mr .r{background:rgba(8,149,166,.1);border:1.5px solid rgba(8,149,166,.3)}
+.mr b{display:block;font-size:26px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+html[lang=ar] .mr b{letter-spacing:0;font-size:25px}
+.mr .m b{color:var(--alert)}.mr .r b{color:var(--signal)}
+.mr p{font-size:48px;font-weight:600;line-height:1.25;letter-spacing:-.02em}
+.mr .r p{font-size:40px;font-weight:500;line-height:1.35}
+html[lang=ar] .mr p{font-size:42px;line-height:1.55;letter-spacing:0}
+html[lang=ar] .mr .r p{font-size:35px;line-height:1.7}
+/* story extras */
+.story .ask{margin-top:60px;border-radius:30px;border:2px dashed rgba(121,192,222,.45);padding:40px;font-size:34px;color:var(--visor);text-align:center}
+.light.story .ask{border-color:rgba(47,134,184,.35);color:var(--ink2)}
+.opts{margin-top:56px;display:grid;gap:20px}
+.opts span{display:block;padding:28px 34px;border-radius:24px;background:rgba(255,255,255,.08);border:1.5px solid rgba(121,192,222,.3);font-size:38px;font-weight:600}
+.light .opts span{background:#fff;border-color:#DCE6EE}
+.list em{font-style:normal;font-weight:700;color:var(--signal)}
+.dark .list em{color:var(--glow)}
+.list .tick.x{background:rgba(194,51,74,.1);color:var(--alert)}
+.why{margin-top:56px;border-radius:28px;padding:36px 40px;background:rgba(8,149,166,.1);border:1.5px solid rgba(8,149,166,.3)}
+.dark .why{background:rgba(46,242,238,.08);border-color:rgba(46,242,238,.25)}
+.why b{display:block;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:12px}
+.dark .why b{color:var(--glow)}
+html[lang=ar] .why b{letter-spacing:0;font-size:27px}
+.why p{font-size:36px;line-height:1.4;font-weight:500}
+html[lang=ar] .why p{font-size:32px;line-height:1.7}
+/* chat log (meme posts) */
+.chat{border-radius:34px;background:#0B1F33;border:1px solid rgba(121,192,222,.25);padding:28px 30px 34px;box-shadow:0 40px 90px rgba(0,0,0,.35)}
+.light .chat{background:#fff;border-color:#DCE6EE;box-shadow:0 34px 80px rgba(14,36,64,.15)}
+.chat-h{display:flex;align-items:center;gap:16px;padding-bottom:20px;margin-bottom:18px;border-bottom:1px solid rgba(121,192,222,.2);font-size:32px}
+.chat-h .av{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--signal),var(--ocean))}
+.msg{max-width:78%;margin-top:14px;padding:16px 22px 12px;border-radius:24px 24px 24px 8px;background:rgba(121,192,222,.14)}
+.light .msg{background:#EEF6F9}
+.msg.me{margin-inline-start:auto;border-radius:24px 24px 8px 24px;background:rgba(8,149,166,.35)}
+.light .msg.me{background:#BCE5E0}
+html[dir=rtl] .msg{border-radius:24px 24px 8px 24px}
+html[dir=rtl] .msg.me{border-radius:24px 24px 24px 8px}
+.msg p{font-size:32px;line-height:1.35;font-weight:500}
+.msg time{display:block;margin-top:6px;font-size:20px;color:var(--glow);opacity:.85;text-align:end}
+.light .msg time{color:var(--signal)}
+/* folder listing (meme posts) */
+.folder{border-radius:28px;background:#fff;color:var(--abyss);border:1px solid #DCE6EE;box-shadow:0 34px 80px rgba(14,36,64,.2);overflow:hidden}
+.folder-h{padding:24px 32px;background:#E9F0F5;font-size:28px;font-weight:600;color:var(--ink2)}
+.file{display:flex;align-items:center;gap:20px;padding:20px 32px;border-top:1px solid #EEF3F6;font-size:31px;font-weight:500;direction:ltr}
+.file .xl{width:44px;height:44px;border-radius:9px;background:#1F7A4D;color:#fff;display:grid;place-items:center;font-size:24px;font-weight:700}
+.file.hot{background:rgba(194,51,74,.08);color:var(--alert);font-weight:700}
+.mail{border-radius:28px;background:#fff;color:var(--abyss);border:1px solid #DCE6EE;box-shadow:0 34px 80px rgba(14,36,64,.2);padding:0 40px 34px}
+.mail-h{display:grid;gap:10px;padding:28px 0 22px;margin-bottom:12px;border-bottom:1px solid #E3ECF2;font-size:26px;color:var(--ink2)}
+.mail-h b{color:var(--abyss)}
+.mail p{font-size:30px;line-height:1.45;margin-top:16px}
+html[lang=ar] .mail p{font-size:28px;line-height:1.75}
+.mail p em{font-style:normal;color:var(--signal);font-weight:600}

@@ -1,0 +1,26 @@
+EDU-05 · Reel ·  · 32s · 1080x1920
+Title: No, our AI does not change your stock automatically
+Files: EDU-05_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Will your AI change my stock automatically?" No, and that's on purpose.
+
+Stacko's AI reads the supplier invoice and prepares a draft. Drafts don't touch your stock. Anything new or unclear is flagged, never guessed. An authorised person approves, and only then is it recorded, with who, what and when.
+
+AI should speed up the boring part, not take responsibility away from your team.
+
+Questions about how it works? Ask below, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  Will AI change my stock automatically? Short answer: no. And that's on purpose.
+  6.6s  Stacko's AI reads the supplier invoice and prepares a draft. The draft doesn't touch your stock.
+ 12.7s  If something is new or unclear, it's flagged, not guessed.
+ 16.9s  An authorised person reviews and approves, and only then is it recorded, with who, what, and when.
+ 23.7s  AI speeds up the boring part. Your team stays in control. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

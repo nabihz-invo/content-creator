@@ -1,0 +1,76 @@
+{
+ "id": "EDU-32",
+ "file": "EDU-32",
+ "short": true,
+ "lines": [
+  {
+   "vo": {
+    "en": "Every warehouse.",
+    "ar": "كل مستودع."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.25,
+     1.0
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "Every *warehouse.*"
+    },
+    "ar": {
+     "head": "كل *مستودع.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Every movement.",
+    "ar": "كل حركة."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "scr/SCR-02_live-map-only.png",
+    "h": 680,
+    "top": 600,
+    "zoom": [
+     1.0,
+     1.18
+    ],
+    "origin": "42% 62%",
+    "tag": "demo",
+    "en": {
+     "head": "Every *movement.*"
+    },
+    "ar": {
+     "head": "كل *حركة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "One map. Your stock, always in sight. Book a meeting with our team.",
+    "ar": "خريطة وحدة. مخزونك دايماً قدّام عينك. احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {},
+    "ar": {}
+   }
+  }
+ ],
+ "caption": null,
+ "hashtags": null,
+ "changes": [
+  "15s reel version: CTA \"Book a demo\" → \"Book a meeting\"; 🟢 prototype badge dropped.",
+  "Line 2: drawn \"route\" scene replaced with the real screen SCR-02_live-map-only.png (Background Library), tagged Demo data."
+ ],
+ "hold": [
+  2.2,
+  2.4
+ ]
+}

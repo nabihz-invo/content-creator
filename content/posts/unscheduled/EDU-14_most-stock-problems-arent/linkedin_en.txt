@@ -1,0 +1,31 @@
+Most stock problems aren't stock problems.
+
+They're visibility problems.
+
+I've been talking to distributors and multi-branch retailers for months now. The pattern is always the same:
+
+The stock exists. The movements happened. The data is real.
+
+It's just scattered — across Excel files, WhatsApp groups, paper invoices, and people's heads.
+
+So the manager does what any reasonable person does: calls three branches, checks two spreadsheets, and answers "I think we have 38… maybe 41?"
+
+That "I think" is the most expensive phrase in inventory.
+
+It becomes a declined order. A duplicate purchase. A customer who calls the competitor first next time.
+
+The fix isn't a better spreadsheet. It's a different view.
+
+One map. Every warehouse. Every branch. Every movement.
+
+That's what Stacko is for.
+
+Not because inventory software is new — it isn't.
+
+Because the *visibility* layer has been missing for the businesses that need it most.
+
+If you run stock across multiple locations, I'd love to hear: how do you answer "where is my stock?" today?
+
+👇
+
+#InventoryManagement #SupplyChain #SMB #Founders #B2B #Stacko

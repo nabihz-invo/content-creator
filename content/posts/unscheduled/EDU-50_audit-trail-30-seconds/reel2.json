@@ -1,0 +1,96 @@
+{
+ "id": "EDU-50",
+ "lines": [
+  {
+   "vo": {
+    "en": "Who changed this quantity?",
+    "ar": "مين غيّر هالكمية؟"
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "\"Who changed *this quantity?*\""
+    },
+    "ar": {
+     "big": "«مين غيّر *هالكمية؟*»"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Open a transaction. User. Time. Action.",
+    "ar": "افتح الحركة. المستخدم. الوقت. الإجراء."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-adj.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 70%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 70%",
+    "tag": "demo",
+    "en": {
+     "head": "User. Time. *Action.*"
+    },
+    "ar": {
+     "head": "المستخدم. الوقت. *الإجراء.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Before and after, where appropriate.",
+    "ar": "قبل وبعد، وين لازم."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-count.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "concept",
+    "en": {
+     "head": "Before → After, *where appropriate.*"
+    },
+    "ar": {
+     "head": "قبل ← بعد، *وين لازم.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Every important change, recorded. Ask who changed this, and get an answer. Book a meeting with our team.",
+    "ar": "كل تغيير مهم، متسجّل. اسأل مين غيّرها، وبتلاقي جواب. احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "Every important change, recorded."
+    },
+    "ar": {
+     "ask": "كل تغيير مهم، متسجّل."
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "\"Who changed this quantity?\"\n\nWith an audit trail, that question stops being a mystery and becomes a lookup: user. Time. Action. Before → after, where appropriate.\n\nEvery important change recorded. Every dispute resolvable without chat history archaeology.\n\n👉 Book a meeting — link in bio.",
+  "ar": "«مين غيّر هالكمية؟»\n\nمع سجل التدقيق، هالسؤال ما بيضل لغز، بيصير بحث بسيط: المستخدم. الوقت. الإجراء. وقبل ← بعد وين لازم.\n\nكل تغيير مهم متسجّل. وكل خلاف إلو حل بلا ما تنبش بالشات.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#AuditTrail #InventoryManagement #SMB #Stacko #SupplyChain #StockControl #InternalControls #WarehouseManagement #InventoryTech #BusinessOperations",
+ "changes": [
+  "Real app screens: an adjustment with its approval line; a count sheet (system qty vs counted) for before/after, tagged Concept because before/after values in the audit entry are 🟡.",
+  "Caption: dropped \"🟢 Prototype audit trail; 🟡 before/after values planned.\"; \"Book a demo\" → \"Book a meeting\"."
+ ]
+}

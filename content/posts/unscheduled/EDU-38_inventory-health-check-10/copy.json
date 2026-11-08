@@ -1,0 +1,28 @@
+{
+ "id": "EDU-38",
+ "size": "portrait",
+ "changes": ["Last slide: \"Book a demo\" → \"Book a meeting\" (body and button); \"Stacko is built around closing them\" kept.", "Caption: \"Book a demo in bio\" → \"Book a meeting in bio\".", "PDF lead-magnet export not produced (the EDU-69 checklist PDF exists; ask if a separate PDF is wanted)."],
+ "slides": [
+  {"type": "cover", "art": "clipboard",
+   "en": {"title": "The inventory *health check.*", "lead": "10 questions to ask yourself before your next stocktake."},
+   "ar": {"title": "فحص *صحّة المخزون.*", "lead": "١٠ أسئلة اسألها لحالك قبل الجرد الجاي."}},
+  {"num": "01", "en": {"title": "Can you answer \"where is my stock?\" in under 10 seconds?", "lead": "If not, your data is scattered."}, "ar": {"title": "فيك تجاوب «وين مخزوني؟» بأقل من ١٠ ثواني؟", "lead": "إذا لأ، داتاك مفرّقة."}},
+  {"num": "02", "en": {"title": "Do you know which transactions are pending approval right now?", "lead": "Pending items are where errors hide."}, "ar": {"title": "بتعرف أيّا معاملات ناطرة موافقة هلّق؟", "lead": "المعاملات المعلّقة هيّي وين بتتخبّى الغلطات."}},
+  {"num": "03", "en": {"title": "Can you trace every stock movement to a user and a timestamp?", "lead": "If not, you can't resolve disputes."}, "ar": {"title": "فيك تربط كل حركة مخزون بشخص ووقت؟", "lead": "إذا لأ، ما فيك تحلّ الخلافات."}},
+  {"num": "04", "en": {"title": "Are permissions scoped by action and location?", "lead": "A warehouse user in one branch shouldn't adjust another."}, "ar": {"title": "الصلاحيات محدّدة حسب الإجراء والموقع؟", "lead": "مسؤول مستودع بفرع ما لازم يعدّل بفرع تاني."}},
+  {"num": "05", "en": {"title": "Is the person who creates a transaction different from the person who approves it?", "lead": "Separation of duties catches errors."}, "ar": {"title": "اللي بيعمل المعاملة غير اللي بيوافق عليها؟", "lead": "فصل المهام بيمسك الغلطات."}},
+  {"num": "06", "en": {"title": "Do you have duplicate protection on invoices and imports?", "lead": "Duplicates are silent losses."}, "ar": {"title": "عندك حماية من التكرار عالفواتير والاستيراد؟", "lead": "التكرار خسارة صامتة."}},
+  {"num": "07", "en": {"title": "Can you see stock across all locations in one view — not a report?", "lead": "Reports answer yesterday's question. A map answers today's."}, "ar": {"title": "فيك تشوف المخزون بكل المواقع بشاشة وحدة — مش بتقرير؟", "lead": "التقرير بيجاوب سؤال مبارح. الخريطة بتجاوب سؤال اليوم."}},
+  {"num": "08", "en": {"title": "Does your team know what \"source of truth\" means for each data type?", "lead": "Ambiguity creates conflicting records."}, "ar": {"title": "فريقك بيعرف شو يعني «مصدر الحقيقة» لكل نوع داتا؟", "lead": "الغموض بيخلق سجلات متضاربة."}},
+  {"num": "09", "en": {"title": "Can you onboard a new employee without giving them full access?", "lead": "Role-scoped views reduce risk."}, "ar": {"title": "فيك تبلّش موظف جديد بلا ما تعطيه كل الصلاحيات؟", "lead": "الشاشات حسب الدور بتخفّف المخاطر."}},
+  {"num": "10", "en": {"title": "If a customer asks for 40 units right now, can you answer confidently?", "lead": "This is the only question that matters."}, "ar": {"title": "إذا زبون طلب ٤٠ قطعة هلّق، فيك تجاوب وإنت متأكّد؟", "lead": "هيدا السؤال الوحيد اللي بيفرق."}},
+  {"type": "cta",
+   "en": {"title": "How many did you answer *\"no\"* to?", "lead": "Every \"no\" is a gap. Stacko is built around closing them. Book a meeting and we'll walk through your answers.", "micro": "Save this checklist for your next stocktake."},
+   "ar": {"title": "عكم سؤال *جاوبت «لا»؟*", "lead": "كل «لا» فجوة. ستاكو مبني ليسكّرها. احجز اجتماعاً ومنمرق معك على أجوبتك.", "micro": "احفظ هالقائمة للجرد الجاي."}}
+ ],
+ "caption": {
+  "en": "The inventory health check: 10 questions to ask yourself before your next stocktake.\n\n01 Can you answer \"where is my stock?\" in under 10 seconds?\n02 Do you know which transactions are pending approval right now?\n03 Can you trace every movement to a user and a timestamp?\n04 Are permissions scoped by action and location?\n05 Is the creator of a transaction different from the approver?\n06 Do you have duplicate protection on invoices and imports?\n07 Can you see stock across all locations in one view?\n08 Does your team know the source of truth for each data type?\n09 Can you onboard a new employee without full access?\n10 If a customer asks for 40 units right now, can you answer confidently?\n\nHow many did you answer \"no\" to? Every \"no\" is a gap.\n\n👉 Save this checklist. Book a meeting in bio.",
+  "ar": "فحص صحّة المخزون: ١٠ أسئلة اسألها لحالك قبل الجرد الجاي.\n\n٠١ فيك تجاوب «وين مخزوني؟» بأقل من ١٠ ثواني؟\n٠٢ بتعرف أيّا معاملات ناطرة موافقة هلّق؟\n٠٣ فيك تربط كل حركة بشخص ووقت؟\n٠٤ الصلاحيات محدّدة حسب الإجراء والموقع؟\n٠٥ اللي بيعمل المعاملة غير اللي بيوافق عليها؟\n٠٦ عندك حماية من التكرار عالفواتير والاستيراد؟\n٠٧ فيك تشوف المخزون بكل المواقع بشاشة وحدة؟\n٠٨ فريقك بيعرف مصدر الحقيقة لكل نوع داتا؟\n٠٩ فيك تبلّش موظف جديد بلا كل الصلاحيات؟\n١٠ إذا زبون طلب ٤٠ قطعة هلّق، فيك تجاوب وإنت متأكّد؟\n\nعكم سؤال جاوبت «لا»؟ كل «لا» فجوة.\n\n👉 احفظ القائمة. احجز اجتماعاً من البايو."
+ },
+ "hashtags": "#InventoryManagement #StockControl #SMB #Stacko #SupplyChain #InventoryHealthCheck #WarehouseManagement #BusinessOperations #AuditTrail #InventoryVisibility"
+}

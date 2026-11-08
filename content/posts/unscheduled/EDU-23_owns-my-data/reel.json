@@ -1,0 +1,43 @@
+{
+ "id": "EDU-23",
+ "title": "FAQ: Who owns my data?",
+ "caption": "\"Who owns the data I put into Stacko?\" You do.\n\nEach company's data is kept separate, and only the people you give access to can see it. And if you connect your ERP, you decide which system holds the official numbers.\n\nOwnership shouldn't be a footnote. Ask about it: book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Who owns the data you put into Stacko? You do.",
+   "scene": {
+    "type": "text",
+    "big": "Who owns *my data?*"
+   }
+  },
+  {
+   "vo": "Each company's data is kept separate, and only the people you give access to can see it.",
+   "scene": {
+    "type": "shot",
+    "img": "rolepick",
+    "head": "Only who *you allow.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "And if you connect your ERP, you decide which system holds the official numbers.",
+   "scene": {
+    "type": "shot",
+    "img": "erp-sync",
+    "head": "You decide *the source.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Your stock, always in sight. Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ],
+ "notes": [
+  "Answers follow the FAQ and trust sections of the Stacko website.",
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "id": "EDU-27",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Where does your stock data *live today?*",
+    "lead": "Be honest."
+   },
+   "ar": {
+    "title": "وين عايشة داتا *مخزونك اليوم؟*",
+    "lead": "كون صريح."
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "Interesting — *[X]% said \"all of the above.\"*",
+    "lead": "That's exactly the problem."
+   },
+   "ar": {
+    "title": "لافت — *[X]٪ قالوا «كلّو».*",
+    "lead": "وهيدي بالضبط المشكلة."
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "What's the most chaotic place your stock data has *ever lived?*",
+    "lead": "(We've heard: a notebook in a drawer, a WhatsApp group called \"warehouse stuff,\" and a whiteboard.)"
+   },
+   "ar": {
+    "title": "شو أكتر مكان فوضوي *عاشت فيه داتا مخزونك؟*",
+    "lead": "(سمعنا: دفتر بالجارور، مجموعة واتساب اسمها «أغراض المستودع»، ولوح أبيض.)"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "You're *not alone.* 👇",
+    "lead": "[Anonymized answers]"
+   },
+   "ar": {
+    "title": "مش *لحالك.* 👇",
+    "lead": "[أجوبة بلا أسماء]"
+   }
+  }
+ ],
+ "changes": [
+  "Story 4 link sticker \"Book a demo\" → \"Book a meeting\"; caption: added \"Book a meeting with our team.\"",
+  "Stories 2 and 4 are templates with placeholders ([X]%, answers)."
+ ],
+ "caption": {
+  "en": "Where does your stock data live today?\n\nExcel? ERP? Paper? WhatsApp? All of the above? 😅\n\nVote in our stories — be honest. We'll share the results tomorrow.\n\n(We've heard some incredible answers: a notebook in a drawer, a WhatsApp group called \"warehouse stuff,\" and a whiteboard that gets erased every Friday.)\n\n👉 Tell us yours in the comments.\n\nBook a meeting with our team.\n\nNOTES\n- Story 1: poll (4 options max): Excel / ERP / Paper / All of the above.\n- Story 2: template — replace [X] with the real result; link sticker \"See how Stacko solves it →\".\n- Story 3: question box sticker.\n- Story 4: template — real anonymized answers; link sticker \"Book a meeting\".",
+  "ar": "وين عايشة داتا مخزونك اليوم؟\n\nإكسل؟ ERP؟ ورق؟ واتساب؟ كلّو؟ 😅\n\nصوّت بالستوري — وكون صريح. منشارك النتيجة بكرا.\n\n(سمعنا أجوبة بتجنّن: دفتر بالجارور، مجموعة واتساب اسمها «أغراض المستودع»، ولوح أبيض بينمحى كل جمعة.)\n\n👉 خبّرنا جوابك بالتعليقات.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#InventoryManagement #StockControl #SMB #Stacko #WarehouseLife #SupplyChain #Poll #InventoryVisibility #BusinessOperations #DistributorLife"
+}

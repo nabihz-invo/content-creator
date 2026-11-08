@@ -1,0 +1,20 @@
+D30-11 · How one Telegram message becomes a stock move · Carousel (8 slides)
+Stage / Claim Label: 🟢 Prototype (demo data)
+Review flag: Original was a webhook config guide for IT leads. Replaced with the user flow. Check numbers match the screenshots.
+
+NEEDS YOUR REVIEW
+- NUMBERS DON'T MATCH (review flag "Check numbers match the screenshots"): slide 6 says "Beirut drops from 420 to 380". The real demo screens (website demo and the SCR-11 ledger) show LED Strip 5m in Beirut going 640 → 600. I kept the script's text and kept every 640 → 600 off the slides: slide 7 is cropped to the Sidon arrival row (85 → 125). Fix the script (to 640 → 600) or the demo before posting.
+- Slide 2 uses SCR-07 (phone Telegram chat). The Background Library says SCR-07 is the client-deck flow redrawn for a phone, so it's not a direct capture.
+- Cover changed from IMG-14 (laptop) to BG-26, following the Library Guide (feed covers: BG-03 or BG-26; BG-26 is the Telegram one). IMG-10 and IMG-14 are not used.
+- Slide 8 background is IMG-26 (AI illustration), tagged "Illustration" as its library note asks.
+
+CHECKS PASSED
+- 🟢 Prototype (demo data) label on every slide.
+- All product visuals are real screens from the Background Library (screens/): BG-26 cover (SCR-07 on the phone), SCR-07 chat, SCR-03a draft waiting for approval, SCR-02 map with truck countdowns, SCR-11 ledger.
+- Checklist 3: AI output is shown going to a manager for approval (slides 4–5).
+- Hadi and Karim are fictional demo names; all data is demo data.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

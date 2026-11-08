@@ -1,0 +1,15 @@
+{
+ "id": "EDU-41",
+ "size": "portrait",
+ "changes": ["Static: button \"Book a demo\" → \"Book a meeting\"; dropped micro-text \"Prototype preview — features in development.\"", "Calendar art uses a Glow pin, not coral.", "Caption: dropped \"🟢 Prototype preview — features in development.\"; \"Book a demo\" → \"Book a meeting\".", "The 15s reel version is produced with the route-B motion pipeline."],
+ "slides": [
+  {"type": "cta", "bg": "story-map",
+   "en": {"title": "New year. *Same stock problems?*", "lead": "Resolutions are easy. Visibility is better."},
+   "ar": {"title": "سنة جديدة. *نفس مشاكل المخزون؟*", "lead": "القرارات سهلة. الرؤية أحسن."}}
+ ],
+ "caption": {
+  "en": "New year. Same stock problems?\n\nResolutions are easy. Visibility is better.\n\n\"Where is my stock?\" isn't a resolution. It's a question — and it deserves an answer in seconds, not phone calls.\n\n👉 Book a meeting — link in bio.",
+  "ar": "سنة جديدة. نفس مشاكل المخزون؟\n\nالقرارات سهلة. الرؤية أحسن.\n\n«وين مخزوني؟» مش قرار سنة جديدة. هوّي سؤال — وبيستاهل جواب بثواني، مش بتلفونات.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#NewYear #InventoryManagement #SMB #Stacko #SupplyChain #StockVisibility #BusinessOperations #WarehouseManagement #InventoryControl #DistributorLife"
+}

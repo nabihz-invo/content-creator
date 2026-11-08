@@ -1,0 +1,15 @@
+How to evaluate inventory software in 30 minutes.
+
+The framework we'd use if we were buying:
+
+01 Visibility — can you see stock across every location in one view?
+02 Movement tracing — can you trace every movement to a user and timestamp?
+03 Control — are permissions scoped? Is the creator different from the approver? Is there an audit trail?
+04 Automation — does AI create drafts or make decisions? Are uncertain fields flagged or guessed?
+05 Fit — does it work alongside your ERP? Is the source of truth defined?
+
+Score each category 1–5. Total out of 25. Anything below 18 is a warning. Below 12 is a no.
+
+Use this on us first. Then use it on everyone else. May the best system win.
+
+👉 Save this. Book a meeting in bio.

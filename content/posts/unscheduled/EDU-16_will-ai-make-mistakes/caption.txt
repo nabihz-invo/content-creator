@@ -1,0 +1,26 @@
+EDU-16 · Reel ·  · 29s · 1080x1920
+Title: Will AI make mistakes? Yes. Here's why that's fine.
+Files: EDU-16_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Will your AI make mistakes?" Yes. Every AI does. Anyone who says otherwise is selling, not building.
+
+The real question is what happens when it does. In Stacko, the AI only prepares drafts, anything new or unclear is flagged, and stock changes only after someone with approval rights confirms. Every entry keeps who, what and when.
+
+If an AI tool can't tell you what happens when it's wrong, keep looking.
+
+Questions? Ask below, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.4s  Will Stacko's AI make mistakes? Yes. Every AI does.
+  3.9s  The real question is: what happens when it does?
+  6.8s  Our answer: the AI only prepares drafts, and anything new or unclear is flagged.
+ 14.6s  Stock changes only after someone with approval rights confirms, and every entry keeps who, what, and when.
+ 20.1s  If an AI tool can't tell you what happens when it's wrong, keep looking. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

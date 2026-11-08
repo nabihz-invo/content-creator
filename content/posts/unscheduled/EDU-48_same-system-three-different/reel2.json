@@ -1,0 +1,122 @@
+{
+ "id": "EDU-48",
+ "lines": [
+  {
+   "vo": {
+    "en": "Same system. Three different views.",
+    "ar": "نفس النظام. ٣ شاشات مختلفة."
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "Same system. *Three different views.*"
+    },
+    "ar": {
+     "big": "نفس النظام. *٣ شاشات مختلفة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "The warehouse user records moves for their own locations, and sees only those.",
+    "ar": "مسؤول المستودع بيسجّل حركات مواقعو، وما بيشوف غيرها."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-hadi-map.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 18%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "Warehouse user: *sees only their locations.*"
+    },
+    "ar": {
+     "head": "مسؤول المستودع: *بيشوف مواقعو بس.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "The document clerk uploads invoices and sees their submissions and status.",
+    "ar": "موظف المستندات بيرفع الفواتير وبيشوف اللي رفعو وحالتو."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-rana-docs.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "Document clerk: *uploads, tracks status.*"
+    },
+    "ar": {
+     "head": "موظف المستندات: *بيرفع وبيتابع الحالة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "The manager approves, resolves, and reviews the trail.",
+    "ar": "المدير بيوافق، بيحلّ، وبيراجع السجل."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-approvals.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "Manager: *approves and reviews.*"
+    },
+    "ar": {
+     "head": "المدير: *بيوافق وبيراجع.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "One system. Everyone sees exactly what they need. Book a meeting with our team.",
+    "ar": "نظام واحد. كل واحد بيشوف اللي بيلزمو بالضبط. احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "One system. Everyone sees exactly what they need."
+    },
+    "ar": {
+     "ask": "نظام واحد. كل واحد بيشوف اللي بيلزمو."
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "Same system. Three different views.\n\n👷 Warehouse user — records moves for assigned locations only. Sees only their locations.\n\n📄 Document clerk — uploads documents and sees their submissions and statuses.\n\n✅ Manager/approver — reviews pending transactions, approves, resolves exceptions, and reads the audit trail.\n\nOne system. Everyone sees exactly what they need — and nothing they don't. That's how you keep records reliable without slowing the team down.\n\n👉 Book a meeting — link in bio.",
+  "ar": "نفس النظام. ٣ شاشات مختلفة.\n\n👷 مسؤول المستودع — بيسجّل حركات مواقعو بس، وما بيشوف غيرها.\n\n📄 موظف المستندات — بيرفع المستندات وبيشوف اللي رفعو وحالتو.\n\n✅ المدير — بيراجع المعلّق، بيوافق، بيحلّ المشاكل، وبيقرا سجل التدقيق.\n\nنظام واحد. كل واحد بيشوف اللي بيلزمو بالضبط — ولا شي زيادة. هيك بتضل السجلات موثوقة بلا ما يبطّى الشغل.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#RoleBasedAccess #InventoryManagement #SMB #Stacko #SupplyChain #WarehouseManagement #InternalControls #AuditTrail #InventoryTech #BusinessOperations",
+ "changes": [
+  "Real demo logins: floor staff (Hadi, scoped to WH-01), document clerk (Rana), owner/approver (Maya). \"Invoice user … Nothing else.\" → document clerk \"uploads … sees their submissions and status\" (the demo clerk can also open other screens).",
+  "Caption: dropped \"🟢 Prototype views; 🟡 per-location granularity planned.\"; \"Book a demo\" → \"Book a meeting\"."
+ ]
+}

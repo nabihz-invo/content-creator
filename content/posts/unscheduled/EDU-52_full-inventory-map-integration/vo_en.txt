@@ -1,0 +1,9 @@
+Two ways to use Stacko.
+
+Mode A: full inventory management — products, locations, movements, history, roles.
+
+Mode B: a map and integration layer — synchronized locations and stock from your existing system.
+
+Same map. Same AI. Your choice of foundation.
+
+Book a meeting with our team.

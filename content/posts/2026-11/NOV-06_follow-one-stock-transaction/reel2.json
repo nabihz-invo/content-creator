@@ -1,0 +1,123 @@
+{
+ "id": "NOV-06",
+ "lines": [
+  {
+   "vo": {
+    "en": "Can you follow this stock transaction from start to finish?",
+    "ar": "فيك تلحق هالحركة من أولها لآخرها؟"
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "Can you follow this stock transaction *from start to finish?*"
+    },
+    "ar": {
+     "big": "فيك تلحق هالحركة *من أولها لآخرها؟*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Here's one stock transaction in Stacko,",
+    "ar": "هيدي حركة مخزون وحدة بستاكو،"
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-moves.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "One transfer, *TRF-00014.*"
+    },
+    "ar": {
+     "head": "نقلة وحدة، *TRF-00014.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "and the information available at each step:",
+    "ar": "والمعلومات اللي بتلاقيها بكل خطوة:"
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-trf.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "What moved, *from where to where.*"
+    },
+    "ar": {
+     "head": "شو تحرّك، *من وين لوين.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "who created it, when, and how it was approved.",
+    "ar": "مين عملها، إيمتى، وكيف انوافق عليها."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-trf.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 85%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 80%",
+    "tag": "demo",
+    "en": {
+     "head": "Who, when, *and the approval.*"
+    },
+    "ar": {
+     "head": "مين، إيمتى، *والموافقة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "What would you need to see when reviewing a stock transaction? Book a meeting with our team.",
+    "ar": "شو بدّك تشوف وإنت عم تراجع حركة مخزون؟ احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "What would you need to see when reviewing a transaction?"
+    },
+    "ar": {
+     "ask": "شو بدّك تشوف وإنت عم تراجع حركة؟"
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "A short look at one workflow in Stacko. This video shows only the steps available in the app today, with demo data. We're interested in learning what information teams need when following a stock transaction.\n\nWhat would you need to see when reviewing a stock transaction?\n\nBook a meeting with our team.",
+  "ar": "نظرة سريعة على شغلة وحدة بستاكو. الفيديو بيفرجي بس الخطوات الموجودة بالتطبيق اليوم، مع بيانات تجريبية. حابّين نعرف شو المعلومات اللي بتحتاجها الفرق لتلحق حركة مخزون.\n\nشو بدّك تشوف وإنت عم تراجع حركة مخزون؟\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#Stacko #StockManagement #BuildingInPublic #InventoryControl",
+ "changes": [
+  "VO \"In this prototype walkthrough, we're looking at one stock transaction and the information available at each step.\" → \"Here's one stock transaction in Stacko, and the information available at each step\" (split across two scenes, \"prototype\" dropped); added \"who created it, when, and how it was approved\" to narrate the real approval screen; CTA + Book a meeting.",
+  "Real app screens (demo company, existing transfer TRF-00014), tagged \"Demo data\" instead of \"Prototype walkthrough\".",
+  "Caption: \"the Stacko prototype\" → \"Stacko\"; \"currently available in the build\" → \"available in the app today, with demo data\"."
+ ]
+}

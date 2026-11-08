@@ -1,0 +1,39 @@
+{
+ "id": "EDU-02",
+ "size": "portrait",
+ "changes": ["Slide 9: \"Book a 20-minute demo\" → \"Book a meeting\"; button → \"Book a meeting\"; dropped micro-text \"Prototype preview — some steps planned for later releases\".", "🟡 slides (03 Extract, 04 Match) carry the Concept tag instead of a Planned badge; 🟢 badges are not printed.", "Caption: dropped \"🟢 Prototype flow — some steps planned for later releases.\"; \"Book a demo in bio\" → \"Book a meeting in bio\"."],
+ "slides": [
+  {"type": "cover", "img": {"name": "invoice", "h": 470},
+   "en": {"title": "From paper invoice to *approved transaction.*", "lead": "Step by step — with a human in control at every stage."},
+   "ar": {"title": "من فاتورة ورق *لحركة معتمدة.*", "lead": "خطوة بخطوة — والإنسان ماسك القرار بكل مرحلة."}},
+  {"num": "01", "icon": "upload",
+   "en": {"title": "Upload.", "body": "Your invoice user uploads or captures a supported invoice or document. Photo, scan, or PDF."},
+   "ar": {"title": "رفع.", "body": "المسؤول عن الفواتير بيرفع أو بيصوّر فاتورة أو مستند مدعوم. صورة، سكان، أو PDF."}},
+  {"num": "02", "img": {"name": "paper", "h": 470}, "concept": true,
+   "en": {"title": "Extract.", "body": "The AI agent reads fields: supplier, invoice number, date, line items, quantities, units, totals — when present."},
+   "ar": {"title": "استخراج.", "body": "الذكاء الاصطناعي بيقرا الحقول: المورّد، رقم الفاتورة، التاريخ، الأصناف، الكميات، الوحدات، والمجاميع — إذا موجودين."}},
+  {"num": "03", "art": "transfer", "concept": true,
+   "en": {"title": "Match.", "body": "Extracted products and suppliers are matched to your existing records where possible.", "labels": ["Invoice line", "Your item", "", "ok"]},
+   "ar": {"title": "مطابقة.", "body": "الأصناف والمورّدين اللي انقروا بيتطابقوا مع سجلاتك الموجودة قدر الإمكان.", "labels": ["سطر الفاتورة", "صنفك", "", "ok"]}},
+  {"num": "04", "icon": "flag",
+   "en": {"title": "Flag, don't guess.", "body": "Missing, uncertain, or mismatched fields are flagged for review — never silently guessed.", "items": ["Unit uncertain — please confirm."]},
+   "ar": {"title": "علّم، ما تخمّن.", "body": "الحقول الناقصة أو المش أكيدة أو المش مطابقة بتتعلّم للمراجعة — وما بتنحزر بالسكت.", "items": ["الوحدة مش أكيدة — أكّدها لو سمحت."]}, "mark": "?"},
+  {"num": "05", "icon": "lock",
+   "en": {"title": "Draft.", "body": "A draft transaction is created. Confirmed stock is **not** changed automatically.", "items": ["No stock change yet."]},
+   "ar": {"title": "مسودّة.", "body": "بتنعمل حركة مسودّة. المخزون المؤكّد **ما بيتغيّر** لحالو.", "items": ["بعد ما في تغيير بالمخزون."]}},
+  {"num": "06", "img": {"name": "approvals", "src": "app", "h": 440},
+   "en": {"title": "Review.", "body": "An authorized user reviews the draft, corrects anything the AI flagged, and confirms the details."},
+   "ar": {"title": "مراجعة.", "body": "شخص مخوّل بيراجع المسودّة، بيصحّح أي شي علّمو الذكاء الاصطناعي، وبيأكّد التفاصيل."}},
+  {"num": "07", "img": {"name": "ledger", "h": 400},
+   "en": {"title": "Approve & record.", "body": "An authorized user confirms. Stock updates. An audit entry records the document reference, creator, reviewer, status, and timestamp."},
+   "ar": {"title": "موافقة وتسجيل.", "body": "شخص مخوّل بيأكّد. المخزون بيتحدّث. وسجل تدقيق بيحفظ مرجع المستند، مين عملو، مين راجعو، الحالة، والوقت."}},
+  {"type": "cta",
+   "en": {"title": "AI proposes. *Your team approves.*", "lead": "That's the guardrail. Want to see it in action? Book a meeting."},
+   "ar": {"title": "الذكاء الاصطناعي بيقترح. *فريقك بيوافق.*", "lead": "هيدا الضابط. بدّك تشوفو عم يشتغل؟ احجز اجتماعاً."}}
+ ],
+ "caption": {
+  "en": "\"Will AI change my stock automatically?\"\n\nNo. And that's the point.\n\nHere's exactly how Stacko's AI document workflow is designed:\n\n01 Upload → 02 Extract → 03 Match → 04 Flag, don't guess → 05 Draft (no stock change) → 06 Human review → 07 Approved & recorded.\n\nAI output is a proposed draft — not guaranteed truth. Every high-impact stock change passes through validation warnings and human approval, with an audit entry for the record.\n\n👉 Save this for your next software evaluation. Book a meeting in bio.",
+  "ar": "«الذكاء الاصطناعي رح يغيّر مخزوني لحالو؟»\n\nلا. وهيدا كل القصة.\n\nهيك بالضبط مصمّم شغل المستندات بالذكاء الاصطناعي بستاكو:\n\n٠١ رفع ← ٠٢ استخراج ← ٠٣ مطابقة ← ٠٤ علّم ما تخمّن ← ٠٥ مسودّة (بلا تغيير بالمخزون) ← ٠٦ مراجعة بشرية ← ٠٧ موافقة وتسجيل.\n\nاللي بيطلّعو الذكاء الاصطناعي مسودّة مقترحة — مش حقيقة مضمونة. كل تغيير مهم بالمخزون بيمرق بتحذيرات تحقّق وموافقة بشرية، مع سجل تدقيق.\n\n👉 احفظ هالبوست لتقييمك الجاي لأي برنامج. احجز اجتماعاً من البايو."
+ },
+ "hashtags": "#AIinInventory #InvoiceAutomation #InventoryManagement #StockControl #WarehouseTech #Stacko #SMBTech #SupplyChainInnovation #ApprovalWorkflow #AuditTrail"
+}

@@ -1,0 +1,5 @@
+A short look at one workflow in Stacko. This video shows only the steps available in the app today, with demo data. We're interested in learning what information teams need when following a stock transaction.
+
+What would you need to see when reviewing a stock transaction?
+
+Book a meeting with our team.

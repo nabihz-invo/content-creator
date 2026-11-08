@@ -1,0 +1,38 @@
+{
+ "id": "NOV-S1",
+ "size": "story",
+ "standalone": true,
+ "slides": [
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "How many stock locations *do you manage?*",
+    "lead": "1–2 / 3–5 / 6+"
+   },
+   "ar": {
+    "title": "كم موقع مخزون *عندك؟*",
+    "lead": "١–٢ / ٣–٥ / +٦"
+   }
+  },
+  {
+   "type": "cover",
+   "theme": "dark",
+   "en": {
+    "title": "What is hardest about getting an overview of stock *across locations?*"
+   },
+   "ar": {
+    "title": "شو أصعب شي لتشوف المخزون *بكل المواقع؟*"
+   },
+   "art": "network"
+  }
+ ],
+ "changes": [
+  "Story frames only; stickers are added in Instagram. Share responses only anonymized and with permission."
+ ],
+ "caption": {
+  "en": "— (Stories: no caption needed)\n\nNOTES\n- Frame 1: Add the poll sticker in Instagram in the empty lower half of the frame. Options: 1–2 / 3–5 / 6+.\n- Frame 2: Add the question sticker in Instagram in the empty lower half of the frame.",
+  "ar": "— (ستوري: ما في حاجة لكابشن)"
+ },
+ "hashtags": "— (Stories: no hashtags)"
+}

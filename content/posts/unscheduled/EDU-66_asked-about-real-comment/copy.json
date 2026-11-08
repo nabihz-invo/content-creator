@@ -1,0 +1,40 @@
+{
+ "id": "EDU-66",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "chatlog",
+   "theme": "dark",
+   "en": {
+    "group": "Comment",
+    "msgs": [
+     [
+      "",
+      "[comment]"
+     ]
+    ],
+    "title": "You asked. *Here's our answer.*",
+    "lead": "[Short, honest answer — 2–3 sentences.]"
+   },
+   "ar": {
+    "group": "تعليق",
+    "msgs": [
+     [
+      "",
+      "[التعليق]"
+     ]
+    ],
+    "title": "سألت. *وهيدا جوابنا.*",
+    "lead": "[جواب قصير وصريح — ٢–٣ جمل.]"
+   }
+  }
+ ],
+ "changes": [
+  "TEMPLATE (route F): needs a real comment. 🟢/🟡/🔵 line replaced by the Concept-tag rule; added \"Book a meeting\"."
+ ],
+ "caption": {
+  "en": "You asked: \"[comment]\"\n\nHere's our answer: [short, honest answer].\n\n[Optional: one sentence of nuance or caveat.]\n\nAsk us anything — we answer publicly every week. Link in bio.\n\nBook a meeting with our team.\n\nENGAGEMENT PLAN\n- Each Friday, pick the best comment from the week.\n- Turn it into a quote card within 48 hours.\n- Tag the original commenter (with permission) in the post.",
+  "ar": "سألت: «[التعليق]»\n\nوهيدا جوابنا: [جواب قصير وصريح].\n\n[اختياري: جملة تفاصيل أو تحفّظ.]\n\nاسألنا أي شي — منجاوب عالعلن كل جمعة. الرابط بالبايو.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#AskUsAnything #InventoryManagement #SMB #Stacko #SupplyChain #Community #QandA #BusinessOperations #DistributorLife #WarehouseManagement"
+}

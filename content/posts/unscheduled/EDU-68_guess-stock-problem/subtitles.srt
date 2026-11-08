@@ -1,0 +1,76 @@
+1
+00:00:00,420 --> 00:00:02,140
+Guess the stock problem.
+
+2
+00:00:02,200 --> 00:00:05,960
+A manager calls three warehouses to confirm stock.
+
+3
+00:00:05,960 --> 00:00:08,370
+Then calls a customer back with:
+
+4
+00:00:08,370 --> 00:00:11,050
+I think we have thirty-eight.
+
+5
+00:00:11,280 --> 00:00:13,150
+What's the real problem?
+
+6
+00:00:13,150 --> 00:00:14,160
+A: bad staff.
+
+7
+00:00:14,160 --> 00:00:15,950
+B: too many warehouses.
+
+8
+00:00:15,950 --> 00:00:17,280
+C: no visibility.
+
+9
+00:00:17,280 --> 00:00:18,790
+D: slow phone.
+
+10
+00:00:18,790 --> 00:00:19,920
+C: no visibility.
+
+11
+00:00:19,920 --> 00:00:21,260
+The stock was there.
+
+12
+00:00:21,260 --> 00:00:22,990
+The movement was recorded.
+
+13
+00:00:22,990 --> 00:00:24,190
+The data was real.
+
+14
+00:00:24,190 --> 00:00:27,000
+It just wasn't visible in one place.
+
+15
+00:00:27,000 --> 00:00:27,800
+One map.
+
+16
+00:00:27,800 --> 00:00:29,410
+Every warehouse.
+
+17
+00:00:29,410 --> 00:00:31,540
+Answer in seconds.
+
+18
+00:00:31,540 --> 00:00:32,920
+Comment your guess,
+
+19
+00:00:32,920 --> 00:00:35,820
+and book a meeting with our team.
+

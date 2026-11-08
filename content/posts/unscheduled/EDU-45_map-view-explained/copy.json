@@ -1,0 +1,136 @@
+{
+ "id": "EDU-45",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "cover",
+   "img": {
+    "name": "map",
+    "src": "app",
+    "h": 520
+   },
+   "en": {
+    "title": "The map view, *explained.*",
+    "lead": "Every warehouse. Every branch. One screen."
+   },
+   "ar": {
+    "title": "شاشة الخريطة، *بالتفصيل.*",
+    "lead": "كل مستودع. كل فرع. شاشة وحدة."
+   }
+  },
+  {
+   "num": "01",
+   "img": {
+    "name": "map",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Locations, not spreadsheets.",
+    "body": "Every warehouse and branch appears as a pin on the map. Not a row in a table — a place you can see."
+   },
+   "ar": {
+    "title": "مواقع، مش شيتات.",
+    "body": "كل مستودع وفرع بيظهر نقطة عالخريطة. مش سطر بجدول — مكان فيك تشوفو."
+   }
+  },
+  {
+   "num": "02",
+   "img": {
+    "name": "map-wh2",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Click a pin. See the stock.",
+    "body": "One click opens the location's stock summary — quantities, status, and what's available."
+   },
+   "ar": {
+    "title": "كبوس عالنقطة. شوف المخزون.",
+    "body": "كبسة وحدة بتفتح ملخّص مخزون الموقع — الكميات، الحالة، وشو متوفّر."
+   }
+  },
+  {
+   "num": "03",
+   "img": {
+    "name": "map",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "See movement, not just quantities.",
+    "body": "The map shows what moved between locations — so you understand the story, not just the snapshot."
+   },
+   "ar": {
+    "title": "شوف الحركة، مش بس الكميات.",
+    "body": "الخريطة بتفرجيك شو تحرّك بين المواقع — فبتفهم القصّة، مش بس اللقطة."
+   }
+  },
+  {
+   "num": "04",
+   "img": {
+    "name": "map",
+    "src": "app",
+    "h": 560
+   },
+   "concept": true,
+   "en": {
+    "title": "Spot what needs attention.",
+    "body": "Locations with low stock or pending transactions are visually distinct — so nothing hides in a column."
+   },
+   "ar": {
+    "title": "انتبه للي بدّو انتباه.",
+    "body": "المواقع اللي مخزونها قليل أو فيها معاملات معلّقة بتبيّن مختلفة — حتى ما يتخبّى شي بعامود."
+   }
+  },
+  {
+   "num": "05",
+   "img": {
+    "name": "ph-hadi-map",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Scoped to what you're allowed to see.",
+    "body": "The map respects permissions. A warehouse user sees their locations. A manager sees all. A read-only viewer sees without editing."
+   },
+   "ar": {
+    "title": "على قدّ اللي مسموحلك تشوفو.",
+    "body": "الخريطة بتحترم الصلاحيات. مسؤول المستودع بيشوف مواقعو. المدير بيشوف الكل. والمشاهد فقط بيشوف بلا ما يعدّل."
+   }
+  },
+  {
+   "type": "big",
+   "icon": "eye",
+   "en": {
+    "title": "What the map is not.",
+    "body": "It's not a replacement for your ERP ledger. It's the visual layer that answers \"where is it?\" — fast."
+   },
+   "ar": {
+    "title": "شو الخريطة مش.",
+    "body": "مش بديل عن دفتر الـERP تبعك. هيّي الطبقة اللي بتجاوب «وينو؟» — بسرعة."
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "See your own locations *on the map.*",
+    "lead": "Book a meeting. Bring your warehouse and branch list."
+   },
+   "ar": {
+    "title": "شوف مواقعك إنت *عالخريطة.*",
+    "lead": "احجز اجتماعاً. وجيب لايحة مستودعاتك وفروعك."
+   }
+  }
+ ],
+ "caption": {
+  "en": "The map view, explained.\n\nEvery warehouse. Every branch. One screen.\n\n01 Locations, not spreadsheets — each warehouse and branch is a pin, not a row\n02 Click a pin, see the stock — quantities, status, availability\n03 See movement, not just quantities — what moved between locations\n04 Spot what needs attention — low stock and pending items are visually distinct (Concept)\n05 Scoped to permissions — warehouse users, managers, and viewers each see what they should\n\nWhat the map is *not*: a replacement for your ERP ledger. It's the visual layer that answers \"where is it?\" — fast.\n\n👉 Book a meeting — link in bio.",
+  "ar": "شاشة الخريطة، بالتفصيل.\n\nكل مستودع. كل فرع. شاشة وحدة.\n\n٠١ مواقع، مش شيتات — كل مستودع وفرع نقطة، مش سطر\n٠٢ كبوس عالنقطة، شوف المخزون — كميات، حالة، توفّر\n٠٣ شوف الحركة، مش بس الكميات — شو تحرّك بين المواقع\n٠٤ انتبه للي بدّو انتباه — المخزون القليل والمعلّق بيبيّن مختلف (مفهوم)\n٠٥ على قدّ الصلاحيات — كل واحد بيشوف اللي إلو\n\nشو الخريطة *مش*: بديل عن دفتر الـERP. هيّي الطبقة اللي بتجاوب «وينو؟» — بسرعة.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#InventoryManagement #StockVisibility #MapView #SMB #Stacko #WarehouseManagement #SupplyChain #InventoryTech #DistributorLife #BusinessOperations",
+ "changes": [
+  "Real app screenshots (demo company); slide 5 (🟡 alerts) tagged Concept; slide 6 uses the floor-staff login, which only sees its own warehouse.",
+  "Slide 8: \"Book a 20-minute demo\" → \"Book a meeting\"; dropped micro-text \"Prototype view; some indicators planned.\"",
+  "Caption: 🟡 → \"(Concept)\"; dropped \"🟢 Prototype view; 🟡 some indicators planned.\"; \"Book a demo\" → \"Book a meeting\"."
+ ]
+}

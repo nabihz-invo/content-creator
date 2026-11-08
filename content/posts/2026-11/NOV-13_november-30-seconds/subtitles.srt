@@ -1,0 +1,32 @@
+1
+00:00:00,440 --> 00:00:03,030
+This month, we focused on one challenge:
+
+2
+00:00:03,030 --> 00:00:06,310
+stock visibility across multiple locations.
+
+3
+00:00:06,310 --> 00:00:07,460
+From scattered sheets and calls,
+
+4
+00:00:07,460 --> 00:00:08,100
+to one map.
+
+5
+00:00:08,100 --> 00:00:09,030
+We're learning
+
+6
+00:00:09,030 --> 00:00:12,530
+from the businesses Stacko is meant to serve.
+
+7
+00:00:12,670 --> 00:00:14,060
+What should we explore next?
+
+8
+00:00:14,060 --> 00:00:16,000
+Book a meeting with our team.
+

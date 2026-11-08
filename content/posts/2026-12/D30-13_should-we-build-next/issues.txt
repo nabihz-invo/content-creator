@@ -1,0 +1,17 @@
+D30-13 · What should we build next? · Story series (3 frames)
+Stage / Claim Label: 🟡 Planned — phase 2
+Review flag: Original asked 'launch next week?' — nothing is launching next week. Changed to a roadmap vote.
+
+NEEDS YOUR REVIEW
+- Frame 1 (8-sec founder video) is not built. Founder footage comes later.
+- Poll and question stickers must be added in Instagram. Their text is in caption.txt.
+- Frame 2 has no headline in the script, so I used the row's Hook, "You pick what we build next." Change it if you want something else above the poll.
+
+CHECKS PASSED
+- 🟡 Planned — phase 2 label on both frames.
+- Review flag: no "launch next week" claim. Options are only the real phase 2 list.
+- Brand: colours, fonts and type styles from the Stacko brand kit (content/_brand/stacko.css); logos from the logo pack. Backgrounds follow the Background Library guide §4: GFX-10 cover/inner dark for carousels, GFX-09 for Stories, GFX-01 behind closing slides. All on-slide text is copied from the Full Script.
+
+NOT DONE
+- Arabic version: skipped until the English version is approved.
+- Status in the sheet is still "Pending". Produced on the reviewer's go-ahead (26 Oct 2026).

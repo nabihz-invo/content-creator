@@ -1,0 +1,36 @@
+{
+ "id": "EDU-71",
+ "size": "portrait",
+ "changes": ["Slide 5 (🟡) carries the Concept tag; no badges printed otherwise.", "Slide 8: button \"Calculate your cost\" → \"Book a meeting\"; \"book a demo\" → \"book a meeting\".", "Caption: dropped \"🟢/🟡\"; added \"Book a meeting with our team.\"", "No numbers filled in for the reader; the 2 h/day → 40 h/month example is the sheet's own conditional.", "REVIEW / HOLD: slides 7–8 and the caption promise a calculator (\"We built a simple calculator\"). It does not exist yet (sheet: \"Calculator page\"); do not publish until it does."],
+ "slides": [
+  {"type": "cover", "icon": "money", "art": "clock",
+   "en": {"title": "What is manual invoice entry *actually costing you?*", "lead": "It's more than the typing time."},
+   "ar": {"title": "قدّيش عم يكلّفك *إدخال الفواتير باليد؟*", "lead": "أكتر من وقت الطباعة."}},
+  {"icon": "clock",
+   "en": {"title": "The visible cost.", "body": "Time. If someone spends 2 hours a day typing invoice data, that's 40 hours a month — a full work week, every month."},
+   "ar": {"title": "الكلفة اللي بتبيّن.", "body": "الوقت. إذا حدا قاعد ساعتين باليوم عم يطبع داتا فواتير، يعني ٤٠ ساعة بالشهر — جمعة شغل كاملة، كل شهر."}},
+  {"icon": "alert",
+   "en": {"title": "The hidden costs.", "items": ["Typos that become wrong stock.", "Duplicate invoices that get paid twice.", "Discrepancies discovered weeks later.", "The opportunity cost of a smart employee doing data entry instead of analysis."]},
+   "ar": {"title": "الكلفة المخبّاية.", "items": ["غلطات طباعة بتصير مخزون غلط.", "فواتير مكرّرة بتندفع مرّتين.", "فروقات بتنكشف بعد أسابيع.", "موظف شاطر عم يطبع داتا بدل ما يحلّل."]}},
+  {"type": "compare",
+   "en": {"title": "The math — *using your numbers.*", "rows": [["Your input", "×", "="], ["Hours per week typing invoices", "× hourly cost × 52 weeks", "= annual manual entry cost"], ["+ one duplicate invoice per month", "", ""], ["+ one lost customer per quarter", "", ""]]},
+   "ar": {"title": "الحساب — *بأرقامك إنت.*", "rows": [["رقمك", "×", "="], ["ساعات الطباعة بالجمعة", "× كلفة الساعة × ٥٢ جمعة", "= كلفة الإدخال باليد بالسنة"], ["+ فاتورة مكرّرة كل شهر", "", ""], ["+ زبون ضايع كل ٣ أشهر", "", ""]]}},
+  {"img": {"name": "invoice", "h": 470}, "concept": true,
+   "en": {"title": "What AI changes.", "body": "It doesn't eliminate the work — it shifts it. Upload → extract → draft → review → approve. The typing becomes reviewing. The human is still in control."},
+   "ar": {"title": "شو بيغيّر الذكاء الاصطناعي.", "body": "ما بيلغي الشغل — بينقلو. رفع ← قراءة ← مسودّة ← مراجعة ← موافقة. الطباعة بتصير مراجعة. والإنسان بعدو ماسك القرار."}},
+  {"icon": "shield",
+   "en": {"title": "What AI doesn't change.", "body": "The need for accuracy. The need for approval. The need for an audit trail. AI speeds up the boring part — it doesn't take responsibility."},
+   "ar": {"title": "شو ما بيغيّر.", "body": "الحاجة للدقّة. الحاجة للموافقة. الحاجة لسجل تدقيق. الذكاء الاصطناعي بيسرّع الجزء المملّ — ما بياخد المسؤولية."}},
+  {"icon": "chart",
+   "en": {"title": "Run your own numbers.", "body": "We built a simple calculator. Enter your hours, your hourly cost, and your invoice volume. See the annual cost of manual entry — before you talk to us."},
+   "ar": {"title": "احسبها بأرقامك.", "body": "عملنا حاسبة بسيطة. حطّ ساعاتك، كلفة الساعة، وعدد الفواتير. وشوف كلفة الإدخال باليد بالسنة — قبل ما تحكي معنا."}},
+  {"type": "cta",
+   "en": {"title": "The number *will surprise you.*", "lead": "Calculate your cost first. Then book a meeting if it's worth discussing.", "micro": "Calculator is free; no email required."},
+   "ar": {"title": "الرقم *رح يفاجئك.*", "lead": "احسب كلفتك أوّل. وبعدين احجز اجتماعاً إذا بيستاهل نحكي.", "micro": "الحاسبة مجانية؛ بلا إيميل."}}
+ ],
+ "caption": {
+  "en": "What is manual invoice entry actually costing you?\n\nIt's more than the typing time.\n\nThe visible cost: if someone spends 2 hours a day typing invoice data, that's 40 hours a month — a full work week, every month.\n\nThe hidden costs: typos that become wrong stock. Duplicate invoices paid twice. Discrepancies discovered weeks later. The opportunity cost of a smart employee doing data entry.\n\nRun the math with your own numbers:\nHours per week × hourly cost × 52 = annual cost\nPlus one duplicate invoice per month.\nPlus one lost customer per quarter.\n\nWhat AI changes: the typing becomes reviewing. Upload → extract → draft → review → approve.\nWhat AI doesn't change: the need for accuracy, approval, and an audit trail.\n\n👉 Calculate your cost — link in bio. No email required.\n\nBook a meeting with our team.",
+  "ar": "قدّيش عم يكلّفك إدخال الفواتير باليد؟\n\nأكتر من وقت الطباعة.\n\nالكلفة اللي بتبيّن: إذا حدا قاعد ساعتين باليوم عم يطبع داتا فواتير، يعني ٤٠ ساعة بالشهر — جمعة شغل كاملة كل شهر.\n\nالكلفة المخبّاية: غلطات طباعة بتصير مخزون غلط. فواتير مكرّرة بتندفع مرّتين. فروقات بتنكشف بعد أسابيع. وموظف شاطر عم يطبع بدل ما يحلّل.\n\nاحسبها بأرقامك:\nساعات بالجمعة × كلفة الساعة × ٥٢ = الكلفة بالسنة\nزائد فاتورة مكرّرة كل شهر.\nزائد زبون ضايع كل ٣ أشهر.\n\nشو بيغيّر الذكاء الاصطناعي: الطباعة بتصير مراجعة. رفع ← قراءة ← مسودّة ← مراجعة ← موافقة.\nشو ما بيغيّر: الحاجة للدقّة وللموافقة ولسجل التدقيق.\n\n👉 احسب كلفتك — الرابط بالبايو. بلا إيميل.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#ROI #InvoiceAutomation #InventoryManagement #SMB #Stacko #SupplyChain #CostSavings #AIinBusiness #BusinessOperations #DistributorLife"
+}

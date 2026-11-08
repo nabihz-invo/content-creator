@@ -1,0 +1,25 @@
+Every stock manager asks three questions. Every day.
+
+1. "Where is it?"
+2. "What moved?"
+3. "Who changed it?"
+
+They sound simple. They're not.
+
+"Where is it?" means: I have stock across multiple locations and no single view. I need to answer a customer in seconds, not phone calls.
+
+"What moved?" means: something happened to my inventory and I need to trace it. Not guess. Trace.
+
+"Who changed it?" means: I need to trust my records. Which means I need to know who created, who approved, and when — without digging through chat history.
+
+Most inventory tools answer one of these well. The others are an afterthought.
+
+We built Stacko around all three:
+
+Visibility — the map.
+Movement — the transaction history.
+Control — the roles and audit trail.
+
+If you're a stock manager, I'd love to know: which of the three questions do you ask most often?
+
+👇

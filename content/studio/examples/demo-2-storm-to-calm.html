@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Demo 2 · Storm to calm</title>
+<!-- Recipe RC-04 Notification storm → calm · Hook HK-02 sound-first + HK-07 dialect quote · Opener OP-03 buzz + storm
+     TX stamp / kinetic beats / marquee · TR glitch, iris · Components: storm, live map + header, notify banner · End card EC-06 truck -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'Demo 2 · Storm to calm' });
+
+// 1 — the storm: everyone asks where the stock is
+const a = R.scene(3.4, { bg: 'night', name: 'storm' });
+a.storm({ at: .05, dur: 2.4, count: 15 });
+a.text(SM.t('Sound familiar?', 'مألوف؟'), { y: 960, size: 96, fx: 'stamp', at: 2.35, style: 'pill' });
+
+// 2 — kinetic beats on paper, with the question running behind
+const b = R.scene(2.2, { in: 'glitch', bg: 'paper', name: 'beats' });
+b.marquee(SM.t('Where is the shipment?', 'وين صارت البضاعة؟'), { y: 1260, rot: -6, bg: SM.C.abyss, size: 58, speed: 260 });
+b.beats(SM.ar() ? ['نفس', 'السؤال.', '*كل* يوم.'] : ['Same', 'question.', '*Every* day.'], { at: .1, beat: .5, size: 150, y: 760, theme: 'light', keepLast: true, hlColor: SM.C.signal, color: SM.C.abyss });
+
+// 3 — calm: the answer is already on the map
+const c = R.scene(6.0, { in: 'iris', inOpts: { cx: 50, cy: 40 }, name: 'map' });
+const m = c.map({ view: 'all', fitH: .46, textSpace: -.02, fadeH: 820 });
+m.header({ y: 250, at: .3 });
+m.camera(4.5, { focus: 'W3', zoom: 1.25, offset: [0, 300], dur: .2 });   // stay on Tripoli after the follow ends
+m.truck({ from: 'W1', to: 'W3', at: .4, dur: 4.2, eta: 95, qty: 60, item: 'Security Camera', glow: true, follow: true, followZoom: 1.25, followOffset: [0, 300], toast: false });
+c.text(SM.t('Answer *once.*', 'جاوب *مرّة وحدة.*'), { y: 560, size: 104, fx: 'rise', at: .6, color: SM.C.abyss, hlColor: SM.C.signal, out: 'rise', outAt: 2.6 });
+c.text(SM.t('It’s already *on the map.*', 'هيّي أصلاً *عالخريطة.*'), { y: 560, size: 84, fx: 'blur', at: 2.9, color: SM.C.abyss, hlColor: SM.C.signal, w: 900 });
+c.notify({ at: 4.2, y: 1430, app: 'STACKO', title: 'Low stock · LED Strip 5m', text: '12 left in WH-03 Tripoli. 600 arriving in Sidon in 4 days.', w: 900 });
+m.low('W3', 4.3, 3);
+R.badge('Map: prototype · Alerts: in development', { at: 7.2, theme: 'light' });
+
+// 4 — end card: a branded truck drives in
+R.endcard('truck', { in: 'wipe', text: 'stacko', cta: SM.t('Answer once. It’s on the map.', 'جاوب مرّة وحدة. هيّي عالخريطة.') });
+R.grain(.05).safe();
+R.cover(2.6);
+</script></body></html>

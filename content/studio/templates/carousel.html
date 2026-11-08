@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>{{ID}} · {{TITLE}}</title>
+<!-- Workbook row {{ID}} · Recipe {{RC}} · Layouts {{CL}} · Logo {{LG}} · Photos {{PI}}
+     1080×1350. Each scene is one slide, exported with:  node studio/render.mjs <this file> --stills --lang all
+     → slide-01_EN.png … and slide-01_AR.png … — one language per image (SM.t('English', 'عربي')).
+     One theme for the whole carousel: every slide dark (Night / dark photo) OR every slide light (Paper) — never switch mid-carousel.
+     Rules: never the same layout twice in a row; one idea per slide; text ≥ 42 px; pager dots on every slide. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.carousel({ title: '{{ID}} · {{TITLE}}' });
+const N = 5;   // number of slides
+const pager = (s, i, theme) => { for (let k = 0; k < N; k++) { const d = SM.el('div', '', s.el); d.style.cssText = `position:absolute;bottom:64px;left:${540 - (N - 1) * 14 + k * 28}px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:${k === i ? (theme === 'light' ? SM.C.signal : SM.C.glow) : (theme === 'light' ? SM.C.visor : 'rgba(201,216,228,.35)')}`; } };
+
+// 1 — cover (CL-03 photo or CL-05 iso or CL-01 statement)
+let s = R.scene(2, { bg: '/assets/post-images/final/PI-xx.png', gradient: true, name: 'slide-01' });
+s.text(SM.t('{{HOOK_EN}}', '{{HOOK_AR}}'), { x: 80, y: 1000, align: 'left', size: 92, fx: 'none', w: 920 });
+pager(s, 0);
+
+// 2 … N-1 — one idea per slide
+s = R.scene(2, { bg: 'night', name: 'slide-02' });
+s.text('01', { x: 80, y: 300, align: 'left', size: 260, fx: 'none', color: SM.C.deep, weight: 700 });
+s.text(SM.t('First point.', 'النقطة الأولى.'), { x: 80, y: 560, align: 'left', size: 80, fx: 'none' });
+pager(s, 1);
+
+// N — CTA closer (CL-15)
+s = R.scene(2.8, { bg: 'night', name: 'slide-05' });
+s.logoDots({ y: 470, size: 300, from: 'center', at: 0, dur: 1.2, tagline: SM.lang, endorse: false });
+s.text(SM.t('{{CTA_EN}}', '{{CTA_AR}}'), { y: 1040, size: 58, fx: 'none' });
+pager(s, N - 1);
+</script></body></html>

@@ -1,0 +1,3 @@
+The AI drafts. A manager decides. And if the stock isn't there, it doesn't move.
+
+That's how Stacko is designed: fast for the team, safe for the owner.

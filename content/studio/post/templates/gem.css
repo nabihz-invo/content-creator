@@ -1,0 +1,4 @@
+.h1{position:absolute;left:64px;top:160px;width:952px;font-size:72px}
+.h1 em{font-style:normal;color:var(--glow)}
+.sub{position:absolute;left:64px;top:336px;width:952px;font-size:32px}
+.fade{position:absolute;left:0;right:0;pointer-events:none}

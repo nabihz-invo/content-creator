@@ -1,0 +1,52 @@
+{
+ "id": "EDU-15",
+ "title": "We're not asking you to rip out your ERP",
+ "caption": "\"We already have Odoo. We already have SAP.\" Good. Keep it.\n\nERPs are excellent at recording transactions. Seeing where your stock is across every site is another story: a report, a filter, an export, a squint.\n\nStacko sits on top of your system and adds the live map and AI document capture. You choose the limits (read-only, draft for approval, or send after approval) and every sync carries a reference, so nothing is recorded twice.\n\nKeep your ERP, add the view. Book a meeting to discuss your setup. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "We already have Odoo. We already have SAP. Good. Keep it.",
+   "scene": {
+    "type": "text",
+    "big": "“We already have an ERP.” *Good. Keep it.*"
+   }
+  },
+  {
+   "vo": "ERPs are great at recording transactions. Seeing where your stock is, across every site, is another story.",
+   "scene": {
+    "type": "shot",
+    "img": "erp-card",
+    "head": "Built for records, *not for sight.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Stacko sits on top of your system and adds the live map and AI document capture.",
+   "scene": {
+    "type": "app",
+    "zoom": "overview",
+    "head": "Add *the map.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "You choose the limits: read-only, draft for approval, or send after approval. And every sync carries a reference, so nothing is recorded twice.",
+   "scene": {
+    "type": "shot",
+    "img": "erp-sync",
+    "head": "You choose *the limits.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Keep your ERP. Add the view. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "Keep your ERP.<br>*Add the view.*"
+   }
+  }
+ ],
+ "notes": [
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

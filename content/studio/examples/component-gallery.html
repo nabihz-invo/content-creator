@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Component gallery</title>
+<!-- A visual index of the building blocks. Render with:  node studio/render.mjs studio/examples/component-gallery.html --stills
+     Each slide is named after the workbook code it shows (LG-xx, CP-xx, AN-xx). -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.carousel({ title: 'Component gallery' });
+const tag = (s, t, theme) => s.text(t, { x: 60, y: 70, align: 'left', va: 'top', size: 30, fx: 'none', upper: true, color: theme === 'light' ? SM.C.deep : SM.C.dolphin });
+
+// 1 — logo lockups on dark
+let s = R.scene(1.6, { bg: 'night', name: 'LG-dark-lockups' }); tag(s, 'LG-05 · LG-07 · LG-08 · LG-11 · LG-09 — dark');
+s.lockup({ layout: 'h', size: 110, y: 260 });
+s.lockup({ layout: 'v', size: 150, y: 590, tagline: 'en' });
+s.lockup({ layout: 'ar', size: 100, y: 900 });
+s.lockup({ layout: 'bi', size: 80, y: 1070 });
+s.lockup({ layout: 'icon', size: 90, x: 900, y: 1220 });
+s.lockup({ layout: 'mark', variant: 'white', size: 90, x: 180, y: 1220 });
+
+// 2 — logo lockups on light
+s = R.scene(1.6, { bg: 'paper', name: 'LG-light-lockups' }); tag(s, 'LG-02 · LG-04 · LG-06 — light', 'light');
+s.lockup({ layout: 'h', variant: 'light', size: 110, y: 300, tagline: 'en' });
+s.lockup({ layout: 'v', variant: 'navy', size: 150, y: 700 });
+s.lockup({ layout: 'bi', variant: 'light', size: 80, y: 1050, endorse: true });
+
+// 3 — map with five warehouses (W4/W5 added on the fly)
+SM.PT.W4 = [33.846, 35.902]; SM.WH_NAMES.W4 = { code: 'WH-04', en: 'Zahle', ar: 'زحلة', units: 2140 };
+SM.PT.W5 = [33.271, 35.203]; SM.WH_NAMES.W5 = { code: 'WH-05', en: 'Tyre', ar: 'صور', units: 1860 };
+s = R.scene(1.6, { name: 'AN-map-5-warehouses' });
+const m = s.map({ warehouses: ['W1', 'W2', 'W3', 'W4', 'W5'], fitH: .62, textSpace: .02, fadeH: 300 });
+tag(s, 'CP-28 map · 5 warehouses', 'light');
+
+// 4 — iso yard (pop intro) + clock
+s = R.scene(2.2, { bg: 'night', name: 'CP-iso-clock' }); tag(s, 'CP-24 iso · CP-20 clock');
+s.iso({ x: 560, y: 820, scale: 3.6, intro: 'pop', items: [
+  { id: 'ground', o: { k: 'concrete' }, x: -20, y: -20, d: -99 }, { id: 'warehouse', o: { size: 'm', doors: 3, open: 1 }, x: 0, y: -10 },
+  { id: 'racking', o: { fill: .7 }, x: 70, y: 40 }, { id: 'forklift', o: {}, x: 40, y: 62 }, { id: 'people', o: { vest: true }, x: 22, y: 70 }, { id: 'boxTruck', o: { named: true, text: 'stacko' }, x: -40, y: 70 } ] });
+s.clock({ from: 8 * 60, to: 9 * 60, at: 0, dur: 2, y: 260, size: 150 });
+
+// 5 — poll + checklist
+s = R.scene(2.4, { bg: 'paper', name: 'CP-poll-checklist' }); tag(s, 'CP-18 poll · CP-15 checklist', 'light');
+s.poll({ y: 420, q: 'How many locations do you run?', at: 0, revealAt: .6 });
+s.checklist({ y: 1000, w: 900, items: ['Low stock', 'What is in transit', 'Yesterday\'s gaps'], at: 0, stagger: .3 });
+
+// 6 — sheet + notes
+s = R.scene(1.6, { bg: 'night', name: 'CP-sheet-notes' }); tag(s, 'CP-12 sheet · CP-13 notes');
+s.sheet({ y: 700, w: 940, h: 1000, scroll: { at: 0, dur: 1.6, x: -200, y: -300 } });
+s.notes({ at: 0, stagger: .08, area: [160, 380, 920, 1100] });
+
+// 7 — invoice + callout
+s = R.scene(2.4, { bg: 'night', name: 'CP-invoice-callout' }); tag(s, 'CP-07 invoice · CP-11 callout · AN-13');
+const inv = s.invoice({ y: 420, w: 900 }); inv.scan(0, .8); inv.draft(.9, { y: 820, w: 900, stagger: .15 });
+s.callout({ x: 640, y: 1010, dx: -140, dy: 180, label: 'New item — confirm', at: 1.6 });
+
+// 8 — ledger + kpis
+s = R.scene(1.8, { bg: 'paper', name: 'CP-ledger-kpis' }); tag(s, 'CP-09 ledger · CP-10 kpis · AN-16', 'light');
+s.kpis({ y: 260, at: 0 });
+s.ledger({ y: 800, w: 980, at: .1, stagger: .12 });
+
+// 9 — whiteboard
+s = R.scene(2.4, { bg: '#F7F7F2', name: 'CP-whiteboard' }); tag(s, 'CP-23 whiteboard · TX-20 handwriting', 'light');
+s.whiteboard({ lines: [{ t: 'Supplier → Port → Warehouse → Shelf', x: 80, y: 420, at: 0, size: 64, cps: 40 }, { t: 'tracking breaks here ✗', x: 330, y: 640, at: 1.0, size: 60, color: SM.C.red, cps: 40 }],
+  arrows: [{ d: 'M 470 600 C 430 540, 420 500, 430 470', at: .9, dur: .4 }] });
+
+// 10 — chat with three outcomes
+s = R.scene(3.0, { bg: 'night', name: 'CP-chat-states' }); tag(s, 'CP-02 chat · AN-12 · AN-14');
+const c = s.chat({ y: 760, w: 640 }); c.type(0, 'sent 40 LED strips to Sidon', { cps: 60 }); c.bot(.8, 'Draft ready — approve?', { typing: .3 }); c.draft(1.3); c.approve(2.2);
+
+// 11 — journey
+s = R.scene(4.8, { bg: 'night', name: 'CP-journey' }); tag(s, 'CP-17 journey · AN-18');
+s.journey({ x: 170, y: 330, gap: 270, at: 0, dur: 4.4, dayX: 560, dayY: -120 });
+</script></body></html>

@@ -1,0 +1,23 @@
+EDU-25 · Reel ·  · 23s · 1080x1920
+Title: FAQ: What happens when AI gets something wrong?
+Files: EDU-25_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"What happens when the AI gets something wrong?"
+
+Unclear items are flagged, and products, locations, quantities and units are checked before anything counts. Nothing changes until a person approves, and if something slips through, the fix is a new entry, never an edit, so the history stays clean.
+
+AI drafts, people approve. Book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  What happens when the AI gets something wrong?
+  3.4s  Unclear items are flagged, and products, locations, quantities, and units are checked before anything counts.
+ 10.1s  Nothing changes until a person approves. And if something slips through, the fix is a new entry, never an edit.
+ 17.4s  AI drafts. People approve. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Answers follow the FAQ and trust sections of the Stacko website.

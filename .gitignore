@@ -27,3 +27,24 @@ tmp/
 
 # Skill packages as delivered (the unpacked copy lives in templates/studio/docs/motion/)
 skills/*.zip
+
+# Machine-specific Claude Code settings (can hold commands with secrets)
+.claude/settings.local.json
+
+# content/: tools, assets, plans and post sources are tracked. Rendered output stays on the PC that
+# made it (finished posts are in the CRM), so it never fills the repo.
+content/studio/examples/**/*.png
+content/assets/**/*.rar
+content/posts/**/en/
+content/posts/**/ar/
+content/posts/**/ar-needs-native-review/
+content/posts/**/png-en/
+content/posts/**/png-ar/
+content/posts/**/html/
+content/posts/**/preview/
+content/posts/**/*.png
+content/posts/**/*.pdf
+!content/posts/**/img/
+!content/posts/**/img/*.png
+# Reel footage is source material, unlike rendered .mp4 files
+!content/assets/clips/**/*.mp4

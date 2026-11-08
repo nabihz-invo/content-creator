@@ -1,0 +1,13 @@
+Stacko vs. spreadsheets. An honest comparison.
+
+What spreadsheets do well: flexible, free, everyone knows them. Great for one-time analysis and small single-location operations.
+
+Where spreadsheets break: no location-level view, no audit trail, no role-based access, no duplicate protection, no document capture. Every update is a manual entry waiting for a typo.
+
+What Stacko does well: map view, transaction history, role-scoped access, AI document drafts with human approval.
+
+What Stacko doesn't do: forecasting, full accounting, custom reports.
+
+The honest verdict: spreadsheets are a tool. Stacko is a system. If you're running one location and one person, a spreadsheet is fine. If you're running multiple locations and a team, you need a system.
+
+👉 Book a meeting — link in bio.

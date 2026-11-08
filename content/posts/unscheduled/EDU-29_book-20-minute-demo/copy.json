@@ -1,0 +1,30 @@
+{
+ "id": "EDU-29",
+ "size": "portrait",
+ "changes": ["\"demo call\" → \"meeting\" throughout; slide 6 \"Book a 20-minute demo\" → \"Book a meeting\"; button → \"Book a meeting\"; micro-text \"Demo shows prototype features; availability confirmed during discovery.\" → \"Features shown in the meeting; availability confirmed during discovery.\"", "Slides 4–5 (🟢/🟡) carry the Concept tag.", "Caption: dropped \"🟢 Demo shows prototype features; availability confirmed during discovery.\"; \"Book a demo\" → \"Book a meeting\".", "REVIEW / HOLD: sheet says \"Hold until booking works\" and \"Demo booking path must be live first\". The 20-minute structure is kept from the sheet."],
+ "slides": [
+  {"type": "cover", "art": "calendar",
+   "en": {"title": "20 minutes. *No pitch deck.* No pressure.", "lead": "Here's exactly what happens in a Stacko meeting."},
+   "ar": {"title": "٢٠ دقيقة. *بلا عرض تقديمي.* بلا ضغط.", "lead": "هيك بالضبط بيمرق اجتماع ستاكو."}},
+  {"num": "01", "icon": "list",
+   "en": {"title": "You tell us your setup. (5 min)", "body": "How many warehouses and branches? Which system do you use today? How many SKUs, how many invoices a week?"},
+   "ar": {"title": "بتخبّرنا عن وضعك. (٥ دقايق)", "body": "قدّيش مستودع وفرع؟ شو النظام اللي عم تستعملو اليوم؟ قدّيش صنف، وقدّيش فاتورة بالجمعة؟"}},
+  {"num": "02", "img": {"name": "map", "src": "app", "h": 520},
+   "en": {"title": "We show the map. (5 min)", "body": "Your locations on a map. Click a pin. See the stock. This is the visibility story in real time."},
+   "ar": {"title": "منفرجيك الخريطة. (٥ دقايق)", "body": "مواقعك على خريطة. كبوس عالنقطة. شوف المخزون. هيدي قصّة الرؤية مباشرة."}},
+  {"num": "03", "img": {"name": "invoice", "h": 470}, "concept": true,
+   "en": {"title": "We walk the workflow. (5 min)", "body": "Receipts, issues, transfers, adjustments — and the AI invoice flow with review and approval guardrails."},
+   "ar": {"title": "منمرق عالشغل. (٥ دقايق)", "body": "استلام، إخراج، تحويل، تعديل — وشغل الفواتير بالذكاء الاصطناعي مع ضوابط المراجعة والموافقة."}},
+  {"type": "compare", "num": "04", "concept": true,
+   "en": {"title": "We tell you what's live and what's planned. (5 min)", "rows": [["", "Live today", "Planned"], ["Your question", "We show it", "We say so"], ["Your ERP connector", "If available", "We say so"]], "body": "No surprises. If it's not built yet, we say so. If your ERP connector isn't available, we say so."},
+   "ar": {"title": "منقلّك شو شغّال وشو مخطّط. (٥ دقايق)", "rows": [["", "شغّال اليوم", "مخطّط"], ["سؤالك", "منفرجيك", "منقلّك"], ["موصل الـERP تبعك", "إذا متوفّر", "منقلّك"]], "body": "ما في مفاجآت. إذا شي مش مبني بعد، منقلّك. إذا موصل الـERP تبعك مش متوفّر، منقلّك."}},
+  {"type": "cta",
+   "en": {"title": "If it's a fit, great. *If not, you'll still leave with a clearer picture.*", "lead": "Book a meeting. Bring your hardest question.", "micro": "Features shown in the meeting; availability confirmed during discovery."},
+   "ar": {"title": "إذا مناسب، ممتاز. *وإذا لأ، بتطلع بصورة أوضح.*", "lead": "احجز اجتماعاً. وجيب أصعب سؤال عندك.", "micro": "الميزات اللي منفرجيك ياها بالاجتماع؛ توفّرها منأكّدو بمرحلة التعارف."}}
+ ],
+ "caption": {
+  "en": "20 minutes. No pitch deck. No pressure.\n\nHere's exactly what happens in a Stacko meeting:\n\n01 You tell us your setup (5 min) — locations, SKUs, invoices, current system\n02 We show the map (5 min) — your locations, click a pin, see the stock\n03 We walk the workflow (5 min) — receipts, transfers, AI drafts, approvals\n04 We tell you what's live and what's planned (5 min) — no surprises\n\nIf it's a fit, great. If not, you'll still leave with a clearer picture of your options.\n\nBring your hardest question. We'll answer it.\n\n👉 Book a meeting — link in bio.",
+  "ar": "٢٠ دقيقة. بلا عرض تقديمي. بلا ضغط.\n\nهيك بالضبط بيمرق اجتماع ستاكو:\n\n٠١ بتخبّرنا عن وضعك (٥ دقايق) — المواقع، الأصناف، الفواتير، والنظام الحالي\n٠٢ منفرجيك الخريطة (٥ دقايق) — مواقعك، كبسة عالنقطة، والمخزون قدّامك\n٠٣ منمرق عالشغل (٥ دقايق) — استلام، تحويل، مسودّات الذكاء الاصطناعي، موافقات\n٠٤ منقلّك شو شغّال وشو مخطّط (٥ دقايق) — بلا مفاجآت\n\nإذا مناسب، ممتاز. وإذا لأ، بتطلع بصورة أوضح عن خياراتك.\n\nجيب أصعب سؤال عندك. منجاوبك.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#Demo #InventoryManagement #SMB #Stacko #SupplyChain #ERP #DigitalTransformation #InventoryVisibility #BusinessOperations #B2B"
+}

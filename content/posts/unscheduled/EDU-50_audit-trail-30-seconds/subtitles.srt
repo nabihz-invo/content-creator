@@ -1,0 +1,40 @@
+1
+00:00:00,460 --> 00:00:02,180
+Who changed this quantity?
+
+2
+00:00:02,200 --> 00:00:03,610
+Open a transaction.
+
+3
+00:00:03,610 --> 00:00:03,990
+User.
+
+4
+00:00:03,990 --> 00:00:04,360
+Time.
+
+5
+00:00:04,360 --> 00:00:05,230
+Action.
+
+6
+00:00:05,230 --> 00:00:07,400
+Before and after, where appropriate.
+
+7
+00:00:07,400 --> 00:00:09,840
+Every important change, recorded.
+
+8
+00:00:09,840 --> 00:00:11,390
+Ask who changed this,
+
+9
+00:00:11,390 --> 00:00:12,730
+and get an answer.
+
+10
+00:00:12,730 --> 00:00:15,370
+Book a meeting with our team.
+

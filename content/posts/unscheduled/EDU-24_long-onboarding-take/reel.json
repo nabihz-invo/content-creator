@@ -1,0 +1,45 @@
+{
+ "id": "EDU-24",
+ "title": "FAQ: How long does setup take?",
+ "caption": "\"How long does setup take?\" Honest answer: it depends on how many locations and products you have, and whether we connect to an existing system.\n\nSetup includes importing your products, locations and opening stock from your current files, so your team starts with real numbers. We agree on a clear plan in the meeting, before you start.\n\nBook a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "How long does setup take? Honest answer: it depends.",
+   "scene": {
+    "type": "text",
+    "big": "How long does *setup take?*"
+   }
+  },
+  {
+   "vo": "On how many locations and products you have, and whether we connect to an existing system.",
+   "scene": {
+    "type": "app",
+    "zoom": "overview",
+    "head": "It depends on *your setup.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Setup includes importing your products, locations, and opening stock from your current files, so your team starts with real numbers.",
+   "scene": {
+    "type": "shot",
+    "img": "inv-card",
+    "head": "Start with *real numbers.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "We agree on a clear plan in the meeting. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "A clear plan,<br>*before you start.*"
+   }
+  }
+ ],
+ "notes": [
+  "Answers follow the FAQ and trust sections of the Stacko website.",
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage.",
+  "No specific timelines are promised (as on the website)."
+ ]
+}

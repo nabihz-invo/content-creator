@@ -1,0 +1,81 @@
+{
+ "id": "EDU-67",
+ "size": "portrait",
+ "changes": [
+  "Calendar checkmarks in Signal (no coral).",
+  "Slide 5: button \"Join the challenge\" → \"Book a meeting\"; \"Join the challenge — comment \\\"in\\\"\" kept as the line above.",
+  "Caption: added \"Book a meeting with our team.\"",
+  "The 5 daily story frames are text-only prompts in the caption; render them with the G story template if wanted."
+ ],
+ "slides": [
+  {
+   "type": "cover",
+   "art": "calendar",
+   "en": {
+    "title": "The 5-day stock *visibility challenge.*",
+    "lead": "5 days. 5 small steps. A clearer view by Friday."
+   },
+   "ar": {
+    "title": "تحدّي ٥ أيام *لرؤية أوضح لمخزونك.*",
+    "lead": "٥ أيام. ٥ خطوات صغيرة. صورة أوضح قبل الجمعة."
+   }
+  },
+  {
+   "num": "Day 1",
+   "icon": "list",
+   "en": {
+    "title": "Count your systems.",
+    "body": "How many places does your stock data live? Excel files, WhatsApp groups, paper invoices, ERP, sticky notes. Count them. Write the number down."
+   },
+   "ar": {
+    "title": "عِدّ أنظمتك.",
+    "body": "بكم مكان عايشة داتا مخزونك؟ ملفات إكسل، مجموعات واتساب، فواتير ورق، ERP، أوراق صغيرة. عِدّهن. واكتب الرقم.",
+    "num": "اليوم ١"
+   }
+  },
+  {
+   "num": "Day 2",
+   "icon": "team",
+   "en": {
+    "title": "Ask your team.",
+    "body": "Ask each person who touches stock: \"What's the hardest part of your day?\" Write down their answers. Don't fix anything yet."
+   },
+   "ar": {
+    "title": "اسأل فريقك.",
+    "body": "اسأل كل حدا بيشتغل بالمخزون: «شو أصعب شي بنهارك؟» اكتب أجوبتهم. وما تصلّح شي بعد.",
+    "num": "اليوم ٢"
+   }
+  },
+  {
+   "num": "Day 3",
+   "icon": "route",
+   "en": {
+    "title": "Trace one movement.",
+    "body": "Pick one recent stock movement. Trace it from start to finish. Did it get recorded? By whom? When? Could you find it again?"
+   },
+   "ar": {
+    "title": "تتبّع حركة وحدة.",
+    "body": "اختار حركة مخزون صارت مؤخّراً. تتبّعها من أوّلها لآخرها. تسجّلت؟ مين سجّلها؟ إيمتى؟ فيك تلاقيها مرّة تانية؟",
+    "num": "اليوم ٣"
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "Days 4–5 — *Share and reflect.*",
+    "lead": "Share what you found with us (anonymized if you prefer). On Friday, we'll post the most common patterns — and what they mean.",
+    "micro": "Join the challenge — comment \"in\"."
+   },
+   "ar": {
+    "title": "اليوم ٤–٥ — *شارك وفكّر.*",
+    "lead": "شاركنا شو لقيت (من دون اسم إذا بتفضّل). يوم الجمعة منشارك أكتر الأنماط اللي تكرّرت — وشو معناها.",
+    "micro": "انضمّ للتحدّي — علّق «معكن»."
+   }
+  }
+ ],
+ "caption": {
+  "en": "The 5-day stock visibility challenge.\n\n5 days. 5 small steps. A clearer view by Friday.\n\nDay 1 — Count your systems: how many places does your stock data live?\nDay 2 — Ask your team: \"What's the hardest part of your day?\"\nDay 3 — Trace one movement: did it get recorded? By whom? When?\nDay 4 — Share what you found (anonymized if you prefer)\nDay 5 — We'll post the most common patterns and what they mean\n\nNo product pitch. Just a week of seeing your own setup more clearly.\n\nJoin the challenge — comment \"in\" and we'll send you the daily prompts in stories.\n\nBook a meeting with our team.\n\nDaily story prompts:\n- Day 1: \"How many systems do you count? Reply with your number.\"\n- Day 2: \"What did your team say? Reply with one quote.\"\n- Day 3: \"Could you find the movement again? Yes/No.\"\n- Day 4: \"Share your findings — anonymized if you prefer.\"\n- Day 5: \"Patterns post: here's what we heard.\"",
+  "ar": "تحدّي ٥ أيام لرؤية أوضح لمخزونك.\n\n٥ أيام. ٥ خطوات صغيرة. صورة أوضح قبل الجمعة.\n\nاليوم ١ — عِدّ أنظمتك: بكم مكان عايشة داتا مخزونك؟\nاليوم ٢ — اسأل فريقك: «شو أصعب شي بنهارك؟»\nاليوم ٣ — تتبّع حركة وحدة: تسجّلت؟ مين؟ إيمتى؟\nاليوم ٤ — شارك شو لقيت (من دون اسم إذا بتفضّل)\nاليوم ٥ — منشارك أكتر الأنماط وشو معناها\n\nما في بيع. بس أسبوع لتشوف وضعك أوضح.\n\nانضمّ للتحدّي — علّق «معكن» ومنبعتلك الأسئلة اليومية بالستوري.\n\nاحجز اجتماعاً مع فريقنا.\n\nأسئلة الستوري اليومية:\n- اليوم ١: «كم نظام عدّيت؟ جاوب برقم.»\n- اليوم ٢: «شو قال فريقك؟ جاوب بجملة وحدة.»\n- اليوم ٣: «قدرت تلاقي الحركة مرّة تانية؟ إيه/لأ.»\n- اليوم ٤: «شارك شو لقيت — من دون اسم إذا بتفضّل.»\n- اليوم ٥: «بوست الأنماط: هيدا اللي سمعناه.»"
+ },
+ "hashtags": "#StockVisibilityChallenge #InventoryManagement #SMB #Stacko #SupplyChain #Community #WarehouseManagement #DistributorLife #BusinessOperations #InventoryVisibility"
+}

@@ -1,0 +1,36 @@
+{
+ "id": "EDU-06",
+ "size": "portrait",
+ "changes": ["Slide 8: button \"Discuss your setup\" → \"Book a meeting\"; \"book a call\" → \"book a meeting\".", "🟡 slides (2 ERP modes, 6 integration) carry the Concept tag; 🟢 badges are not printed.", "Caption: dropped \"🟢 Prototype features shown. 🟡 Integration capabilities planned — connector availability confirmed during discovery.\"; \"Book a call in bio\" → \"Book a meeting in bio\".", "REVIEW: Odoo and SAP are named (the website also names them); sheet asks to verify before naming."],
+ "slides": [
+  {"type": "cover", "theme": "dark",
+   "en": {"eyebrow": "Myth vs. Reality", "title": "Myth vs. *Reality.*", "lead": "5 things people believe about inventory software — and what's actually true."},
+   "ar": {"eyebrow": "خرافة ولا واقع", "title": "خرافة ولا *واقع؟*", "lead": "٥ أشيا الناس مصدّقينها عن برامج المخزون — وشو الصحيح فعلاً."}},
+  {"type": "myth", "concept": true,
+   "en": {"myth": "\"I have to replace my ERP.\"", "reality": "No. Stacko has two modes: a full inventory system, or a map + AI layer on top of an existing system like Odoo or SAP — where supported."},
+   "ar": {"myth": "«لازم بدّل نظام الـERP تبعي.»", "reality": "لا. ستاكو إلو وضعين: نظام مخزون كامل، أو طبقة خريطة وذكاء اصطناعي فوق نظام موجود متل Odoo أو SAP — وين مدعوم."}},
+  {"type": "myth",
+   "en": {"myth": "\"AI will change my stock without permission.\"", "reality": "AI output is a proposed draft, not truth. Confirmed stock changes only after an authorized person approves — with an audit entry."},
+   "ar": {"myth": "«الذكاء الاصطناعي رح يغيّر مخزوني بلا إذن.»", "reality": "اللي بيطلّعو الذكاء الاصطناعي مسودّة مقترحة، مش حقيقة. المخزون المؤكّد ما بيتغيّر إلّا بعد ما شخص مخوّل يوافق — مع سجل تدقيق."}},
+  {"type": "myth",
+   "en": {"myth": "\"It's just another spreadsheet with a login.\"", "reality": "A visual map of warehouses and branches, traceable movements, role-based approvals, and AI document capture — in one view."},
+   "ar": {"myth": "«هيدا شيت تاني بس مع تسجيل دخول.»", "reality": "خريطة للمستودعات والفروع، حركات إلها أثر، موافقات حسب الدور، وقراءة مستندات بالذكاء الاصطناعي — بشاشة وحدة."}},
+  {"type": "myth",
+   "en": {"myth": "\"My team won't use it.\"", "reality": "Roles are scoped to what each person actually does. The warehouse user records movements. The invoice user uploads documents. Nobody faces a screen full of options they don't need."},
+   "ar": {"myth": "«فريقي ما رح يستعملو.»", "reality": "كل دور على قدّ شغل صاحبو. مسؤول المستودع بيسجّل الحركات. مسؤول الفواتير بيرفع المستندات. وما حدا بيواجه شاشة مليانة خيارات ما بيحتاجها."}},
+  {"type": "myth", "concept": true,
+   "en": {"myth": "\"Integration means duplicate records and conflicts.\"", "reality": "Only if the source of truth isn't defined. Stacko supports read-only, draft-for-approval, and approved write-back modes — with duplicate protection and sync status visibility."},
+   "ar": {"myth": "«الربط يعني سجلات مكرّرة وتضارب.»", "reality": "بس إذا مصدر الحقيقة مش محدّد. ستاكو بيدعم قراءة فقط، مسودّة للموافقة، وكتابة بعد الموافقة — مع حماية من التكرار وحالة مزامنة واضحة."}},
+  {"type": "myth",
+   "en": {"myth": "\"It'll take months to onboard.\"", "reality": "We start with one workflow, one location, one team. Data import, setup, and training are scoped during discovery — not guessed."},
+   "ar": {"myth": "«رح ياخد أشهر لنبلّش فيه.»", "reality": "منبلّش بشغلة وحدة، بموقع واحد، مع فريق واحد. استيراد الداتا والإعداد والتدريب منحدّدهم بمرحلة التعارف — مش بالتخمين."}},
+  {"type": "cta",
+   "en": {"title": "Have a myth *we haven't answered?*", "lead": "Tell us in the comments. Or book a meeting and we'll discuss your exact setup — ERP or not.", "micro": "Integration capabilities and connector availability vary; confirmed during discovery."},
+   "ar": {"title": "عندك خرافة *ما جاوبنا عليها؟*", "lead": "خبّرنا بالتعليقات. أو احجز اجتماعاً ومنحكي عن وضعك بالضبط — مع ERP أو بلاه.", "micro": "قدرات الربط وتوفّر الموصلات بتختلف؛ منأكّدها بمرحلة التعارف."}}
+ ],
+ "caption": {
+  "en": "5 myths about inventory software — busted.\n\n❌ \"I have to replace my ERP.\"\n❌ \"AI will change my stock without permission.\"\n❌ \"It's just a spreadsheet with a login.\"\n❌ \"My team won't use it.\"\n❌ \"Integration means duplicate records.\"\n\nThe reality is more boring — and more useful. Stacko works as a full inventory system *or* as a map + AI layer on top of an existing system where supported. AI creates drafts, humans approve. Roles are scoped to what people actually do. And source of truth is defined before any sync.\n\n👉 Have a myth we missed? Comment it. Book a meeting in bio.",
+  "ar": "٥ خرافات عن برامج المخزون — وكلّها مش صحيحة.\n\n❌ «لازم بدّل الـERP تبعي.»\n❌ «الذكاء الاصطناعي رح يغيّر مخزوني بلا إذن.»\n❌ «هيدا شيت مع تسجيل دخول.»\n❌ «فريقي ما رح يستعملو.»\n❌ «الربط يعني سجلات مكرّرة.»\n\nالواقع أهدى — وأنفع. ستاكو بيشتغل كنظام مخزون كامل *أو* كطبقة خريطة وذكاء اصطناعي فوق نظام موجود وين مدعوم. الذكاء الاصطناعي بيعمل مسودّات، والناس بيوافقوا. الأدوار على قدّ شغل كل واحد. ومصدر الحقيقة بيتحدّد قبل أي مزامنة.\n\n👉 في خرافة نسيناها؟ اكتبها. احجز اجتماعاً من البايو."
+ },
+ "hashtags": "#InventorySoftware #ERPinventory #Odoo #SAP #DigitalTransformation #SMB #Stacko #InventoryManagement #TechMyths #SupplyChainTech"
+}

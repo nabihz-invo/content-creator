@@ -1,0 +1,33 @@
+{
+ "id": "EDU-07",
+ "size": "portrait",
+ "changes": ["Slide 7: \"demo call\" → \"meeting\"; button \"Book a demo\" → \"Book a meeting\".", "Caption: \"Ask us on the demo call\" → \"Ask us in a meeting\"; \"Book a demo in bio\" → \"Book a meeting in bio\".", "Clipboard art uses Signal teal checkboxes (no coral)."],
+ "slides": [
+  {"type": "cover", "art": "clipboard",
+   "en": {"title": "5 questions to ask before you buy *any* inventory system.", "lead": "(Yes, even ours.)"},
+   "ar": {"title": "٥ أسئلة لازم تسألها قبل ما تشتري *أي* نظام مخزون.", "lead": "(إيه، حتى نظامنا.)"}},
+  {"num": "01", "art": "roles",
+   "en": {"title": "Who can create a transaction, and who can approve it?", "body": "If the answer is \"the same person,\" ask why. Separation of duties is how errors and unauthorized changes get caught."},
+   "ar": {"title": "مين بيقدر يعمل معاملة، ومين بيوافق عليها؟", "body": "إذا الجواب «نفس الشخص»، اسأل ليش. فصل المهام هوّي اللي بيمسك الغلطات والتعديلات بلا إذن."}},
+  {"num": "02", "icon": "lock",
+   "en": {"title": "Are permissions scoped by action *and* location?", "body": "A warehouse user in Beirut shouldn't be able to adjust stock in Tripoli. Granularity matters."},
+   "ar": {"title": "الصلاحيات محدّدة حسب الإجراء *والموقع؟*", "body": "مسؤول مستودع ببيروت ما لازم يقدر يعدّل مخزون بطرابلس. التفصيل مهم."}},
+  {"num": "03", "icon": "list",
+   "en": {"title": "Is there an audit trail with before/after values?", "body": "\"Who changed this, when, and from what to what?\" If the system can't answer, it can't be trusted with stock.", "items": ["Quantity 40 → 38 · User: R.H. · 14:32"]},
+   "ar": {"title": "في سجل تدقيق فيه القيمة قبل وبعد؟", "body": "«مين غيّرها، إيمتى، ومن شو لشو؟» إذا النظام ما بيعرف يجاوب، ما فيك تأمّنو عالمخزون.", "items": ["الكمية ٤٠ ← ٣٨ · المستخدم: R.H. · ١٤:٣٢"]}, "mark": "↺"},
+  {"num": "04", "icon": "flag",
+   "en": {"title": "What happens when AI gets something wrong?", "body": "Good systems flag uncertainty instead of guessing. Great systems require human approval before high-impact changes.", "items": ["Unit uncertain — please confirm."]},
+   "ar": {"title": "شو بيصير إذا الذكاء الاصطناعي غلط؟", "body": "النظام المنيح بيعلّم الشي المش أكيد بدل ما يخمّن. والنظام الممتاز بيطلب موافقة بشرية قبل أي تغيير مهم.", "items": ["الوحدة مش أكيدة — أكّدها لو سمحت."]}, "mark": "?"},
+  {"num": "05", "icon": "link",
+   "en": {"title": "What is the source of truth for each data type?", "body": "If you use an ERP alongside, decide now: which system owns stock quantities, which owns documents, and what syncs where."},
+   "ar": {"title": "شو مصدر الحقيقة لكل نوع داتا؟", "body": "إذا عندك ERP معو، قرّر هلّق: أيّا نظام مسؤول عن كميات المخزون، أيّا واحد عن المستندات، وشو بيتزامن لوين."}},
+  {"type": "cta",
+   "en": {"title": "We built Stacko around *these five answers.*", "lead": "But don't take our word for it — ask us these questions in a meeting.", "micro": "Save this checklist for your next software evaluation."},
+   "ar": {"title": "بنينا ستاكو حول *هالخمس أجوبة.*", "lead": "بس ما تاخد كلمتنا — اسألنا هالأسئلة باجتماع.", "micro": "احفظ هالقائمة لتقييمك الجاي لأي برنامج."}}
+ ],
+ "caption": {
+  "en": "Before you buy *any* inventory system — including ours — ask these 5 questions:\n\n01 Who can create a transaction, and who can approve it?\n02 Are permissions scoped by action *and* location?\n03 Is there an audit trail with before/after values?\n04 What happens when the AI gets something wrong?\n05 What is the source of truth for each data type?\n\nIf a vendor can't answer all five clearly, that's your answer.\n\nWe built Stacko around these principles — but don't take our word for it. Ask us in a meeting. We'll show you exactly how each one works.\n\n👉 Save this checklist. Book a meeting in bio.",
+  "ar": "قبل ما تشتري أي نظام مخزون — حتى نظامنا — اسأل هالـ٥ أسئلة:\n\n٠١ مين بيعمل المعاملة، ومين بيوافق عليها؟\n٠٢ الصلاحيات محدّدة حسب الإجراء *والموقع*؟\n٠٣ في سجل تدقيق فيه القيمة قبل وبعد؟\n٠٤ شو بيصير إذا الذكاء الاصطناعي غلط؟\n٠٥ شو مصدر الحقيقة لكل نوع داتا؟\n\nإذا الشركة ما عرفت تجاوب عالخمسة بوضوح، هيدا هوّي جوابك.\n\nبنينا ستاكو حول هالمبادئ — بس ما تاخد كلمتنا. اسألنا باجتماع، ومنفرجيك كيف كل وحدة بتشتغل.\n\n👉 احفظ القائمة. احجز اجتماعاً من البايو."
+ },
+ "hashtags": "#InventoryManagement #SoftwareEvaluation #InternalControls #SMB #Stacko #InventoryTech #AuditTrail #RoleBasedAccess #BusinessOperations #Procurement"
+}

@@ -1,0 +1,50 @@
+{
+ "id": "EDU-22",
+ "title": "FAQ: Is my data safe?",
+ "caption": "\"Is my data safe?\" It should be your first question.\n\nIn Stacko, each company's data is kept separate from every other company's, and access follows the roles you set. Every change keeps who, what, when and where, with before and after values, and a correction is a new entry, never an edit.\n\nMore security questions? Ask below, or book a meeting and a person from our team will answer. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Is my data safe with Stacko? It should be your first question.",
+   "scene": {
+    "type": "text",
+    "big": "Is my data *safe?*"
+   }
+  },
+  {
+   "vo": "Each company's data is kept separate, and access follows the roles you set.",
+   "scene": {
+    "type": "shot",
+    "img": "rolecard",
+    "head": "Separate. *Role-based.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Every change keeps who, what, when, and where, with before and after values. A correction is a new entry, never an edit.",
+   "scene": {
+    "type": "shot",
+    "img": "ledger",
+    "head": "A history that *only grows.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Have more security questions? Ask us anything, and a person from our team will answer.",
+   "scene": {
+    "type": "text",
+    "big": "Ask us *anything.*"
+   }
+  },
+  {
+   "vo": "Your stock, always in sight. Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ],
+ "notes": [
+  "Answers follow the FAQ and trust sections of the Stacko website.",
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

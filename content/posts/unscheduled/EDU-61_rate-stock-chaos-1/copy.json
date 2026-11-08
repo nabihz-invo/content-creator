@@ -1,0 +1,24 @@
+{
+ "id": "EDU-61",
+ "size": "portrait",
+ "changes": ["Scale shown in Signal → Deep (no coral for 10).", "Caption: \"Book a demo\" → \"Book a meeting\".", "Story poll: add the Instagram slider sticker on slide 1 when posting (not rendered)."],
+ "slides": [
+  {"type": "cover", "art": "network",
+   "en": {"title": "Rate your *stock chaos.*", "lead": "1 = calm. 10 = WhatsApp group called \"URGENT.\""},
+   "ar": {"title": "قيّم *فوضى مخزونك.*", "lead": "١ = هدوء. ١٠ = مجموعة واتساب اسمها «مستعجل»."}},
+  {"type": "big", "num": "1–3", "icon": "map",
+   "en": {"title": "The Zen Stock Manager.", "body": "One system. One view. You answer \"where is my stock?\" before the customer finishes asking. We respect you."},
+   "ar": {"title": "مسؤول المخزون الرايق.", "body": "نظام واحد. شاشة وحدة. بتجاوب «وين مخزوني؟» قبل ما الزبون يخلّص سؤالو. منحترمك."}},
+  {"type": "big", "num": "4–7", "icon": "sheet",
+   "en": {"title": "The Juggler.", "body": "Spreadsheets, a WhatsApp group, and one sticky note you refuse to throw away. You're managing — but it's costing you."},
+   "ar": {"title": "اللاعب بالطابات.", "body": "شيتات، مجموعة واتساب، وورقة صغيرة رافض ترميها. ماشي الحال — بس عم يكلّفك."}},
+  {"type": "big", "num": "8–10", "icon": "phonecall",
+   "en": {"title": "The Firefighter.", "body": "Three branches, no visibility, and a phone that never stops ringing. Every day is a stocktake. Every stocktake is a surprise.", "micro": "Drop your number. Be honest."},
+   "ar": {"title": "رجل الإطفاء.", "body": "٣ فروع، ما في رؤية، وتلفون ما بيوقف يرنّ. كل يوم جرد. وكل جرد مفاجأة.", "micro": "حطّ رقمك. وكون صريح."}}
+ ],
+ "caption": {
+  "en": "Rate your stock chaos.\n\n1 = calm. 10 = WhatsApp group called \"URGENT.\"\n\n1–3: The Zen Stock Manager — one system, one view, answers in seconds\n4–7: The Juggler — spreadsheets, a WhatsApp group, one sticky note you refuse to throw away\n8–10: The Firefighter — three branches, no visibility, a phone that never stops ringing\n\nDrop your number. Be honest.\n\n👉 Book a meeting — link in bio.",
+  "ar": "قيّم فوضى مخزونك.\n\n١ = هدوء. ١٠ = مجموعة واتساب اسمها «مستعجل».\n\n١–٣: مسؤول المخزون الرايق — نظام واحد، شاشة وحدة، أجوبة بثواني\n٤–٧: اللاعب بالطابات — شيتات، مجموعة واتساب، وورقة صغيرة رافض ترميها\n٨–١٠: رجل الإطفاء — ٣ فروع، ما في رؤية، وتلفون ما بيوقف يرنّ\n\nحطّ رقمك. وكون صريح.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#InventoryManagement #StockControl #SMB #Stacko #SupplyChain #Engagement #DistributorLife #WarehouseManagement #BusinessOperations #InventoryHumor"
+}

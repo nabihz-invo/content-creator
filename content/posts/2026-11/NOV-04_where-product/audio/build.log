@@ -1,0 +1,38 @@
+frame 0/730
+frame 60/730
+frame 120/730
+frame 180/730
+frame 240/730
+frame 300/730
+frame 360/730
+frame 420/730
+frame 480/730
+frame 540/730
+frame 600/730
+frame 660/730
+frame 720/730
+wrote C:\Users\Hp\AppData\Local\Temp\reel-NOV-04\silent.mp4
+[fc#0 @ 0000026aef416940] Stream specifier 'v' in filtergraph description [0]adelay=400:all=1,aformat=sample_rates=48000:channel_layouts=stereo,apad=pad_dur=4.4,atrim=0:24.34[v];[1]atrim=0:24.34,afade=t=out:st=21.84:d=2.5,volume=0.6[m];[m][v]sidechaincompress=threshold=0.03:ratio=6:attack=40:release=400[duck];[v][duck]amix=inputs=2:normalize=0:duration=longest,loudnorm=I=-14:TP=-1.5:LRA=11,atrim=0:24.34[out] matches no streams.
+Error binding filtergraph inputs/outputs: Invalid argument
+take 21.76 s · total 24.34 s · 5 scenes · 12 captions
+    0.00–  3.40 pain
+    3.40–  8.88 text
+    8.88– 13.64 app
+   13.64– 18.22 app
+   18.22– 24.34 end
+Traceback (most recent call last):
+  File "C:\Users\Hp\stacko-content-tools\build_reel.py", line 98, in <module>
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', take, '-i', os.path.join(TOOLS, 'music-bed.wav'), '-filter_complex',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        f"[0]adelay={ms}:all=1,aformat=sample_rates=48000:channel_layouts=stereo,apad=pad_dur={TAIL + 2},atrim=0:{total}[v];"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        f"[1]atrim=0:{total},afade=t=out:st={total - 2.5}:d=2.5,volume=0.6[m];[m][v]sidechaincompress=threshold=0.03:ratio=6:attack=40:release=400[duck];"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        f"[v][duck]amix=inputs=2:normalize=0:duration=longest,loudnorm=I=-14:TP=-1.5:LRA=11,atrim=0:{total}[out]",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '-map', '[out]', '-ar', '48000', mix], check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Hp\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['ffmpeg', '-loglevel', 'error', '-y', '-i', 'c:\\nabih\\projects\\AIphin\\Stacko\\content\\videos\\NOV-04\\audio\\take1.mp3', '-i', 'C:\\Users\\Hp\\stacko-content-tools\\music-bed.wav', '-filter_complex', '[0]adelay=400:all=1,aformat=sample_rates=48000:channel_layouts=stereo,apad=pad_dur=4.4,atrim=0:24.34[v];[1]atrim=0:24.34,afade=t=out:st=21.84:d=2.5,volume=0.6[m];[m][v]sidechaincompress=threshold=0.03:ratio=6:attack=40:release=400[duck];[v][duck]amix=inputs=2:normalize=0:duration=longest,loudnorm=I=-14:TP=-1.5:LRA=11,atrim=0:24.34[out]', '-map', '[out]', '-ar', '48000', 'C:\\Users\\Hp\\AppData\\Local\\Temp\\reel-NOV-04\\mix.wav']' returned non-zero exit status 4294967274.

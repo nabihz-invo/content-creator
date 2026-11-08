@@ -1,0 +1,32 @@
+1
+00:00:00,460 --> 00:00:02,640
+What if you could start with the location,
+
+2
+00:00:02,640 --> 00:00:04,020
+not another list?
+
+3
+00:00:04,080 --> 00:00:05,590
+For multi-location businesses,
+
+4
+00:00:05,590 --> 00:00:08,450
+knowing where to look is part of the challenge.
+
+5
+00:00:08,450 --> 00:00:10,120
+Stacko offers a map-based way
+
+6
+00:00:10,120 --> 00:00:13,220
+to make stock locations easier to understand.
+
+7
+00:00:13,310 --> 00:00:15,930
+Would a map-based view be useful in your operation?
+
+8
+00:00:15,930 --> 00:00:17,920
+Book a meeting with our team.
+

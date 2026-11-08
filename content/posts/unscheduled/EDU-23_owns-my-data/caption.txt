@@ -1,0 +1,24 @@
+EDU-23 · Reel ·  · 20s · 1080x1920
+Title: FAQ: Who owns my data?
+Files: EDU-23_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"Who owns the data I put into Stacko?" You do.
+
+Each company's data is kept separate, and only the people you give access to can see it. And if you connect your ERP, you decide which system holds the official numbers.
+
+Ownership shouldn't be a footnote. Ask about it: book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  Who owns the data you put into Stacko? You do.
+  3.1s  Each company's data is kept separate, and only the people you give access to can see it.
+  9.1s  And if you connect your ERP, you decide which system holds the official numbers.
+ 13.8s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Answers follow the FAQ and trust sections of the Stacko website.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

@@ -1,0 +1,11 @@
+"Will AI change my stock automatically?"
+
+No. And that's the point.
+
+Here's exactly how Stacko's AI document workflow is designed:
+
+01 Upload → 02 Extract → 03 Match → 04 Flag, don't guess → 05 Draft (no stock change) → 06 Human review → 07 Approved & recorded.
+
+AI output is a proposed draft — not guaranteed truth. Every high-impact stock change passes through validation warnings and human approval, with an audit entry for the record.
+
+👉 Save this for your next software evaluation. Book a meeting in bio.

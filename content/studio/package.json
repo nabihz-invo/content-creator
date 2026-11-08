@@ -1,0 +1,14 @@
+{
+  "name": "stacko-studio",
+  "private": true,
+  "type": "module",
+  "description": "Stacko Motion engine + renderer for reels, carousels and YouTube",
+  "scripts": {
+    "serve": "node render.mjs --serve",
+    "setup": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "playwright": "^1.47.0"
+  }
+}

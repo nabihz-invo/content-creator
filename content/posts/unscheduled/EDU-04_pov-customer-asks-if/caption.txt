@@ -1,0 +1,24 @@
+EDU-04 · Reel ·  · 20s · 1080x1920
+Title: POV: A customer asks if you have 40 units in stock
+Files: EDU-04_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"I think we have 38… maybe 41?"
+
+The most expensive words in inventory. Because "I think" turns into a lost sale, a double order, or a customer who doesn't call back.
+
+Stacko puts every warehouse and branch on one live map. Tap a location, see the stock, answer in seconds.
+
+Tag a stock manager who made this call today, or book a meeting with our team. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.5s  A customer asks if you have forty units in stock.
+  3.7s  Three calls and two spreadsheets later, the answer is: I think we have thirty-eight… maybe forty-one?
+ 11.4s  Or: one map, one tap, one answer.
+ 14.0s  Your stock, always in sight. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.

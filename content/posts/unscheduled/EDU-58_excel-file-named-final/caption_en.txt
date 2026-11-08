@@ -1,0 +1,14 @@
+Every stock manager has this folder:
+
+Stock_2026.xlsx
+Stock_2026_v2.xlsx
+Stock_2026_FINAL.xlsx
+Stock_2026_FINAL_v3.xlsx
+Stock_2026_FINAL_v3_USE_THIS_ONE.xlsx ←
+Stock_2026_FINAL_v3_USE_THIS_ONE_ACTUALLY.xlsx
+
+If you have this folder, you don't have an inventory system. You have a version-control problem.
+
+Tag the colleague who made the last file. 😅
+
+Book a meeting with our team.

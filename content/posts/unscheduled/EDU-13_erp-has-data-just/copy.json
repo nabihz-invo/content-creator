@@ -1,0 +1,36 @@
+{
+ "id": "EDU-13",
+ "size": "portrait",
+ "changes": ["All integration slides (3, 4, 5, 7) and the CTA are 🟡, so they carry the Concept tag; no connector names or logos on slides.", "Slide 8: \"Book a call\" → \"Book a meeting\"; button \"Discuss your setup\" → \"Book a meeting\".", "Caption: dropped \"🟡 Integration capabilities are planned — connector availability confirmed during discovery. ✅\" (kept as the slide micro-text instead); \"Book a call\" → \"Book a meeting\".", "REVIEW: hashtags name #Odoo #SAP — verify integrations before naming them (sheet note)."],
+ "slides": [
+  {"type": "cover", "art": "fog",
+   "en": {"title": "Your ERP has the data.", "lead": "You just can't *see* it."},
+   "ar": {"title": "الداتا موجودة بالـERP تبعك.", "lead": "بس مش عم *تشوفها.*"}},
+  {"img": {"name": "ledger", "h": 420},
+   "en": {"title": "ERPs are built for records, not for sight.", "body": "Your ERP knows every transaction. But \"where is my stock across three warehouses?\" usually means opening a report, filtering, exporting, and squinting at a table."},
+   "ar": {"title": "الـERP معمول للسجلات، مش للعين.", "body": "الـERP تبعك بيعرف كل معاملة. بس سؤال «وين مخزوني بالـ٣ مستودعات؟» يعني عادةً: تفتح تقرير، تفلتر، تصدّر، وتبحلق بجدول."}},
+  {"img": {"name": "erp-card", "h": 470}, "concept": true,
+   "en": {"title": "The map layer.", "body": "Stacko can sit on top of an existing system through an API or supported connector — displaying synchronized locations and stock on a visual map. Read-only visibility when you want it."},
+   "ar": {"title": "طبقة الخريطة.", "body": "ستاكو فيه يقعد فوق نظامك الموجود من خلال API أو موصل مدعوم — وبيعرض المواقع والمخزون متزامنين على خريطة. وبس قراءة إذا هيك بدّك."}},
+  {"type": "compare", "concept": true,
+   "en": {"title": "Source of truth comes first.", "rows": [["Data type", "ERP", "Stacko"], ["Stock quantities", "✓", "—"], ["Locations", "✓", "—"], ["Documents", "—", "✓"]], "body": "Before any sync is enabled, we define which system owns each data type. Stock quantities? Locations? Documents? No ambiguity, no duplicate records, no conflicting values."},
+   "ar": {"title": "مصدر الحقيقة أوّل شي.", "rows": [["نوع الداتا", "ERP", "ستاكو"], ["كميات المخزون", "✓", "—"], ["المواقع", "✓", "—"], ["المستندات", "—", "✓"]], "body": "قبل ما تشتغل أي مزامنة، منحدّد أيّا نظام مسؤول عن كل نوع داتا. كميات المخزون؟ المواقع؟ المستندات؟ لا غموض، لا سجلات مكرّرة، ولا قيم متضاربة."}},
+  {"icon": "arrows", "concept": true,
+   "en": {"title": "Read-only, draft, or write-back.", "items": ["**Read-only:** see the map, change nothing.", "**Draft-for-approval:** Stacko prepares records, your team reviews.", "**Approved write-back:** confirmed records sync back to your system where supported."]},
+   "ar": {"title": "قراءة، مسودّة، أو كتابة.", "items": ["**قراءة فقط:** شوف الخريطة، وما تغيّر شي.", "**مسودّة للموافقة:** ستاكو بيحضّر السجلات، وفريقك بيراجع.", "**كتابة بعد الموافقة:** السجلات المؤكّدة بترجع لنظامك وين مدعوم."]}},
+  {"img": {"name": "erp-sync", "h": 420},
+   "en": {"title": "No rip-and-replace.", "body": "We're not asking you to abandon your ERP. We're adding the visual and AI layer your ERP never had — map view, document capture, and reviewable drafts."},
+   "ar": {"title": "ما في قلع وتبديل.", "body": "ما عم نطلب منك تترك الـERP تبعك. عم نزيد طبقة الخريطة والذكاء الاصطناعي اللي عمرو ما كان فيها — خريطة، قراءة مستندات، ومسودّات بتراجعها."}},
+  {"img": {"name": "sync", "h": 420}, "concept": true,
+   "en": {"title": "Duplicate protection by design.", "body": "Imports and write-backs use idempotency and external transaction references, with sync status, errors, conflicts, and timestamps visible — so integrations don't create ghost records."},
+   "ar": {"title": "حماية من التكرار من الأساس.", "body": "الاستيراد والكتابة بيستعملوا مراجع خارجية لكل معاملة، مع حالة المزامنة والأخطاء والتضاربات والأوقات ظاهرين — حتى الربط ما يخلق سجلات وهمية."}},
+  {"type": "cta", "concept": true,
+   "en": {"title": "Keep your ERP. *Add the view.*", "lead": "Book a meeting and we'll map your setup — which system owns what, and where Stacko fits.", "micro": "Integration capabilities are planned; connector availability confirmed during discovery."},
+   "ar": {"title": "خلّي الـERP تبعك. *وزيد الرؤية.*", "lead": "احجز اجتماعاً ومنرسم وضعك — أيّا نظام مسؤول عن شو، ووين بيركب ستاكو.", "micro": "قدرات الربط مخطّط إلها؛ توفّر الموصلات منأكّدو بمرحلة التعارف."}}
+ ],
+ "caption": {
+  "en": "Your ERP has the data. You just can't see it.\n\nERPs are built for records, not for sight. Yours knows every transaction — but \"where is my stock across three warehouses?\" usually means opening a report, filtering, exporting, and squinting at a table.\n\nStacko can sit on top of an existing system through an API or supported connector — displaying synchronized locations and stock on a visual map. Read-only visibility when you want it. Draft-for-approval when you need review. Approved write-back where supported.\n\nBefore any sync: we define the source of truth per data type. No duplicate records. No conflicting values. Sync status, errors, conflicts, and timestamps visible.\n\nWe're not asking you to abandon your ERP. We're adding the visual and AI layer it never had.\n\n👉 Book a meeting — link in bio.",
+  "ar": "الداتا موجودة بالـERP تبعك. بس مش عم تشوفها.\n\nالـERP معمول للسجلات، مش للعين. بيعرف كل معاملة — بس سؤال «وين مخزوني بالـ٣ مستودعات؟» يعني عادةً تقرير، فلترة، تصدير، وبحلقة بجدول.\n\nستاكو فيه يقعد فوق نظامك الموجود من خلال API أو موصل مدعوم — وبيعرض المواقع والمخزون متزامنين على خريطة. قراءة فقط إذا بدّك. مسودّة للموافقة إذا بدّك مراجعة. وكتابة بعد الموافقة وين مدعوم.\n\nقبل أي مزامنة: منحدّد مصدر الحقيقة لكل نوع داتا. لا سجلات مكرّرة. لا قيم متضاربة. وحالة المزامنة والأخطاء والتضاربات والأوقات كلّها ظاهرة.\n\nما عم نطلب منك تترك الـERP. عم نزيد الطبقة اللي عمرها ما كانت فيه.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#ERP #Odoo #SAP #InventoryManagement #DigitalTransformation #Stacko #SMB #SupplyChain #Integration #InventoryVisibility"
+}

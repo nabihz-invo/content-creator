@@ -1,0 +1,36 @@
+{
+ "id": "EDU-03",
+ "size": "portrait",
+ "changes": ["Slide 8: \"book a demo\" → \"book a meeting\"; button → \"Book a meeting\"; micro-text kept as \"Role model from current build; per-location granularity is a Concept.\" (word \"prototype\" removed).", "Per-location granularity is 🟡, so slides 4 and 8 carry the Concept tag.", "Caption: \"🟢 Prototype role model; per-location granularity planned.\" dropped; \"Book a demo in bio\" → \"Book a meeting in bio\".", "REVIEW: sheet says 7 roles; the website lists 9. Kept the sheet text as instructed."],
+ "slides": [
+  {"type": "cover", "img": {"name": "rolecard", "h": 520},
+   "en": {"title": "7 roles. *One clean workflow.*", "lead": "Because \"everyone has access\" is not a permission strategy."},
+   "ar": {"title": "٧ أدوار. *شغل واحد مرتّب.*", "lead": "لأنو «الكل عندو صلاحية» مش استراتيجية صلاحيات."}},
+  {"icon": "upload", "num": "1",
+   "en": {"title": "Invoice / document user", "body": "Uploads documents. Prepares invoice drafts. Sees own submissions and their status. That's it."},
+   "ar": {"title": "مسؤول الفواتير والمستندات", "body": "بيرفع مستندات. بيحضّر مسودّات فواتير. بيشوف اللي رفعو هوّي وحالتو. وبس."}},
+  {"icon": "cart", "num": "2",
+   "en": {"title": "Purchase user", "body": "Creates or reviews purchase drafts and receipts — within assigned permissions only."},
+   "ar": {"title": "مسؤول المشتريات", "body": "بيعمل أو بيراجع مسودّات المشتريات والاستلامات — ضمن الصلاحيات المعطاة إلو بس."}},
+  {"icon": "box", "num": "3", "concept": true,
+   "en": {"title": "Warehouse / stock user", "body": "Records authorized receipts, issues, transfers, and adjustments — for assigned locations only."},
+   "ar": {"title": "مسؤول المستودع والمخزون", "body": "بيسجّل الاستلامات والإخراجات والتحويلات والتعديلات المسموحة — للمواقع المعطاة إلو بس."}},
+  {"icon": "eye", "num": "4",
+   "en": {"title": "Manager / admin reviewer", "body": "Approves transactions. Resolves exceptions. Manages permissions. Reviews activity."},
+   "ar": {"title": "المدير أو المراجع", "body": "بيوافق عالمعاملات. بيحلّ الاستثناءات. بيدير الصلاحيات. بيراجع النشاط."}},
+  {"icon": "gear", "num": "5–7",
+   "en": {"title": "Administrator · Billing · Read-only viewer", "body": "Admin configures the system. Billing manages the subscription. Read-only viewers see permitted map, stock, and reports — without editing anything."},
+   "ar": {"title": "الإدارة · الفوترة · مشاهد فقط", "body": "الأدمن بيضبط النظام. الفوترة بتدير الاشتراك. والمشاهد فقط بيشوف الخريطة والمخزون والتقارير المسموحة — بلا ما يعدّل شي."}},
+  {"art": "roles",
+   "en": {"title": "Why this matters.", "body": "The person who creates a transaction shouldn't be the only person who approves it. Separate responsibilities = fewer accidents, fewer unauthorized changes, cleaner records."},
+   "ar": {"title": "ليش هيدا مهم.", "body": "الشخص اللي بيعمل المعاملة ما لازم يكون الوحيد اللي بيوافق عليها. فصل المسؤوليات = حوادث أقل، تعديلات بلا إذن أقل، وسجلات أنضف."}},
+  {"type": "cta", "concept": true,
+   "en": {"title": "Which role *are you?*", "lead": "Tell us in the comments. Then book a meeting and we'll show you your role's exact view.", "micro": "Role model from current build; per-location granularity is a Concept."},
+   "ar": {"title": "أيّا دور *إنت؟*", "lead": "خبّرنا بالتعليقات. وبعدين احجز اجتماعاً ومنفرجيك شاشة دورك بالضبط.", "micro": "نموذج الأدوار من النسخة الحالية؛ الصلاحيات حسب كل موقع مفهوم."}}
+ ],
+ "caption": {
+  "en": "\"Who changed this stock quantity?\"\n\nIf that question makes you nervous, you don't have a permissions problem. You have a *trust* problem.\n\nStacko's role model separates responsibilities on purpose:\n\n1️⃣ Invoice/document user — uploads, drafts\n2️⃣ Purchase user — purchase drafts & receipts\n3️⃣ Warehouse/stock user — receipts, issues, transfers, adjustments (assigned locations only)\n4️⃣ Manager/admin reviewer — approves, resolves, manages permissions\n5️⃣ Administrator — configures\n6️⃣ Billing — subscription only\n7️⃣ Read-only viewer — sees permitted data, edits nothing\n\nThe person who creates a transaction shouldn't be the only person who approves it. That's not bureaucracy — that's how you keep records reliable.\n\n👉 Which role are you? Comment below. Book a meeting in bio.",
+  "ar": "«مين غيّر هالكمية؟»\n\nإذا هالسؤال بيوتّرك، مشكلتك مش بالصلاحيات. مشكلتك *بالثقة*.\n\nنموذج الأدوار بستاكو بيفصل المسؤوليات عن قصد:\n\n1️⃣ مسؤول الفواتير والمستندات — رفع ومسودّات\n2️⃣ مسؤول المشتريات — مسودّات الشراء والاستلامات\n3️⃣ مسؤول المستودع — استلام، إخراج، تحويل، تعديل (للمواقع المعطاة بس)\n4️⃣ المدير أو المراجع — موافقة، حلّ مشاكل، إدارة صلاحيات\n5️⃣ الأدمن — الإعدادات\n6️⃣ الفوترة — الاشتراك بس\n7️⃣ مشاهد فقط — بيشوف المسموح، وما بيعدّل شي\n\nاللي بيعمل المعاملة ما لازم يكون الوحيد اللي بيوافق عليها. هيدا مش روتين — هيك بتضل السجلات موثوقة.\n\n👉 أيّا دور إنت؟ علّق تحت. احجز اجتماعاً من البايو."
+ },
+ "hashtags": "#RoleBasedAccess #InventoryControl #AuditTrail #StockManagement #SMB #Stacko #WarehouseManagement #InternalControls #InventoryTech #BusinessOperations"
+}

@@ -1,0 +1,107 @@
+{
+ "id": "EDU-47",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "cover",
+   "img": {
+    "name": "newmove",
+    "src": "app",
+    "h": 520
+   },
+   "en": {
+    "title": "4 operations. *4 screens.*",
+    "lead": "Receipts. Issues. Transfers. Adjustments."
+   },
+   "ar": {
+    "title": "٤ عمليات. *٤ شاشات.*",
+    "lead": "استلام. إخراج. تحويل. تعديل."
+   }
+  },
+  {
+   "icon": "upload",
+   "img": {
+    "name": "op-receipt",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Receipt — stock coming in.",
+    "body": "Record incoming stock from a supplier or purchase. Who received it, where, how many, and when."
+   },
+   "ar": {
+    "title": "استلام — بضاعة داخلة.",
+    "body": "سجّل البضاعة الواصلة من مورّد أو شراء. مين استلم، وين، قدّيش، وإيمتى."
+   }
+  },
+  {
+   "icon": "box",
+   "img": {
+    "name": "op-issue",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Issue — stock going out.",
+    "body": "Record stock leaving a location — for an order, production, or internal use. Scoped to the user's assigned locations."
+   },
+   "ar": {
+    "title": "إخراج — بضاعة طالعة.",
+    "body": "سجّل البضاعة الطالعة من موقع — لطلبية، لإنتاج، أو لاستعمال داخلي. ضمن المواقع المعطاة للمستخدم."
+   }
+  },
+  {
+   "icon": "arrows",
+   "img": {
+    "name": "op-transfer",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Transfer — stock moving between locations.",
+    "body": "Move stock from one warehouse or branch to another. The transfer is recorded with sender, receiver, and timestamp."
+   },
+   "ar": {
+    "title": "تحويل — بضاعة بين المواقع.",
+    "body": "انقل بضاعة من مستودع أو فرع لتاني. التحويل بيتسجّل مع المرسل والمستلم والوقت."
+   }
+  },
+  {
+   "icon": "check",
+   "img": {
+    "name": "op-adjust",
+    "src": "app",
+    "h": 560
+   },
+   "concept": true,
+   "en": {
+    "title": "Adjustment — correcting the record.",
+    "body": "Correct a quantity after a count or discrepancy — with the reason, the user, and the before/after values recorded."
+   },
+   "ar": {
+    "title": "تعديل — تصحيح السجل.",
+    "body": "صحّح كمية بعد جرد أو فرق — مع السبب، المستخدم، والقيمة قبل وبعد متسجّلين."
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "Every operation is a *recorded transaction.*",
+    "lead": "Book a meeting and walk through your own workflow."
+   },
+   "ar": {
+    "title": "كل عملية *معاملة متسجّلة.*",
+    "lead": "احجز اجتماعاً ومنمرق معك على طريقة شغلك."
+   }
+  }
+ ],
+ "caption": {
+  "en": "4 operations. 4 screens.\n\n📥 Receipts — stock coming in\n📤 Issues — stock going out\n🔁 Transfers — stock moving between locations\n⚖️ Adjustments — correcting the record\n\nEvery one of them is a recorded transaction — with the user, the location, and the timestamp. No WhatsApp transfers. No spreadsheet overwrites.\n\n👉 Book a meeting and walk through your own workflow — link in bio.",
+  "ar": "٤ عمليات. ٤ شاشات.\n\n📥 استلام — بضاعة داخلة\n📤 إخراج — بضاعة طالعة\n🔁 تحويل — بضاعة بين المواقع\n⚖️ تعديل — تصحيح السجل\n\nكل وحدة منهن معاملة متسجّلة — مع المستخدم والموقع والوقت. بلا تحويلات عالواتساب. بلا كتابة فوق الشيت.\n\n👉 احجز اجتماعاً ومنمرق معك على طريقة شغلك — الرابط بالبايو."
+ },
+ "hashtags": "#InventoryOperations #WarehouseManagement #StockControl #SMB #Stacko #SupplyChain #InventoryTech #Transfers #StockAdjustment #BusinessOperations",
+ "changes": [
+  "Real \"New move\" screens from the app (demo company) for each operation; adjustment slide tagged Concept (discrepancy handling 🟡). Emojis kept in the caption only.",
+  "\"Book a demo\" → \"Book a meeting\"; caption dropped \"🟢 Prototype screens; 🟡 advanced discrepancy handling planned.\""
+ ]
+}

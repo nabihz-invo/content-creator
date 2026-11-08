@@ -1,0 +1,26 @@
+EDU-15 · Reel ·  · 33s · 1080x1920
+Title: We're not asking you to rip out your ERP
+Files: EDU-15_reel.mp4 (final) · cover.png · reel.html (source) · reel.json (script) · audio/
+
+CAPTION
+"We already have Odoo. We already have SAP." Good. Keep it.
+
+ERPs are excellent at recording transactions. Seeing where your stock is across every site is another story: a report, a filter, an export, a squint.
+
+Stacko sits on top of your system and adds the live map and AI document capture. You choose the limits (read-only, draft for approval, or send after approval) and every sync carries a reference, so nothing is recorded twice.
+
+Keep your ERP, add the view. Book a meeting to discuss your setup. Link in bio.
+
+#Stacko #InventoryManagement #WarehouseManagement #StockVisibility
+
+VOICE-OVER (ElevenLabs · "Justin Case – Warm, Trustworthy, Clear" · eleven_v4)
+  0.4s  We already have Odoo. We already have SAP. Good. Keep it.
+  4.4s  ERPs are great at recording transactions. Seeing where your stock is, across every site, is another story.
+ 11.1s  Stacko sits on top of your system and adds the live map and AI document capture.
+ 17.4s  You choose the limits: read-only, draft for approval, or send after approval. And every sync carries a reference, so nothing is recorded twice.
+ 26.6s  Keep your ERP. Add the view. Book a meeting with our team.
+
+NOTES
+- Product footage is recorded from the Stacko website, with demo data.
+- Music bed is a placeholder pad; swap for a licensed track or add music in Instagram.
+- Originally a founder-on-camera script; produced as a voice-over reel with website footage.

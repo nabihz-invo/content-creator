@@ -1,0 +1,47 @@
+{
+ "id": "EDU-30",
+ "title": "Bring your hardest question",
+ "caption": "If you book a meeting with Stacko, bring your hardest question.\n\nNot \"can you show me the map?\" (we'll show you that anyway). The hard ones: \"Will this work with my ERP?\" \"What happens when the AI is wrong?\" \"Who owns my data?\"\n\nWe'll answer straight, and if we're not the right fit, we'll tell you.\n\nDrop your hardest question below, or book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "If you book a meeting with Stacko, bring your hardest question.",
+   "scene": {
+    "type": "text",
+    "big": "Bring your *hardest question.*"
+   }
+  },
+  {
+   "vo": "Not, can you show me the map? We'll show you that anyway.",
+   "scene": {
+    "type": "app",
+    "zoom": "site",
+    "head": "The map? *We'll show you anyway.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "The hard ones. Will this work with my ERP? What happens when the AI is wrong? Who owns my data?",
+   "scene": {
+    "type": "text",
+    "big": "My ERP? The AI? *My data?*"
+   }
+  },
+  {
+   "vo": "We'll answer straight. And if we're not the right fit, we'll tell you.",
+   "scene": {
+    "type": "text",
+    "big": "Straight answers. *No pitch deck.*"
+   }
+  },
+  {
+   "vo": "Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ],
+ "notes": [
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

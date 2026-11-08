@@ -1,0 +1,171 @@
+{
+ "id": "EDU-46",
+ "lines": [
+  {
+   "vo": {
+    "en": "Sixty seconds inside Stacko.",
+    "ar": "٦٠ ثانية جوّا ستاكو."
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "60 seconds *inside Stacko.*"
+    },
+    "ar": {
+     "big": "٦٠ ثانية *جوّا ستاكو.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "One: your locations, on one map.",
+    "ar": "واحد: مواقعك، على خريطة وحدة."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-map.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 18%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "① Your locations, *on one map.*"
+    },
+    "ar": {
+     "head": "① مواقعك، *على خريطة وحدة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Two: click, and see the stock.",
+    "ar": "اتنين: كبسة، وبتشوف المخزون."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-map-wh2.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 62%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 60%",
+    "tag": "demo",
+    "en": {
+     "head": "② Click. *See the stock.*"
+    },
+    "ar": {
+     "head": "② كبسة. *شوف المخزون.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Three: every movement, every record.",
+    "ar": "تلاتة: كل حركة، كل سجل."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-trf.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "③ Every movement. *Every record.*"
+    },
+    "ar": {
+     "head": "③ كل حركة. *كل سجل.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Four: AI drafts, and you approve.",
+    "ar": "أربعة: الذكاء الاصطناعي بيعمل مسودّة، وإنت بتوافق."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-owner-doc.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center top",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "concept",
+    "en": {
+     "head": "④ AI drafts. *You approve.*"
+    },
+    "ar": {
+     "head": "④ الذكاء الاصطناعي بيكتب. *إنت بتوافق.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Five: scoped to every role.",
+    "ar": "خمسة: كل دور إلو حدودو."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-ph-hadi-map.png",
+    "w": 760,
+    "h": 1150,
+    "top": 480,
+    "focus": "center 18%",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "origin": "50% 20%",
+    "tag": "demo",
+    "en": {
+     "head": "⑤ Scoped to *every role.*"
+    },
+    "ar": {
+     "head": "⑤ على قدّ *كل دور.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Your stock, always in sight. Book a meeting with our team.",
+    "ar": "مخزونك دايماً قدّام عينك. احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {},
+    "ar": {}
+   }
+  }
+ ],
+ "caption": {
+  "en": "60 seconds inside Stacko.\n\n① Your locations, on one map\n② Click a pin, see the stock\n③ Every movement, every record\n④ AI drafts, you approve\n⑤ Scoped to every role\n\nVisibility, automation, and control in one view — shown with demo data.\n\n👉 Book a meeting — link in bio.",
+  "ar": "٦٠ ثانية جوّا ستاكو.\n\n① مواقعك، على خريطة وحدة\n② كبسة عالموقع، وبتشوف المخزون\n③ كل حركة، كل سجل\n④ الذكاء الاصطناعي بيكتب مسودّة، وإنت بتوافق\n⑤ كل دور على قدّو\n\nرؤية، أتمتة، وضبط بشاشة وحدة — ببيانات تجريبية.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#ProductDemo #InventoryManagement #SMB #Stacko #SupplyChain #InventoryTech #StockVisibility #WarehouseManagement #AIinBusiness #BusinessOperations",
+ "changes": [
+  "Real app screens (demo company, phone layout) with VO written from the on-screen texts; the AI-draft step (🟢/🟡) carries the Concept tag; role scene shows the floor-staff user who only sees his warehouse.",
+  "Caption: dropped \"This is the prototype — not a finished product.\" and \"🟢 Prototype segments shown; 🟡 some AI steps planned.\"; \"Book a demo\" → \"Book a meeting\".",
+  "Length follows the voice-over (~30s) rather than a fixed 60s."
+ ]
+}

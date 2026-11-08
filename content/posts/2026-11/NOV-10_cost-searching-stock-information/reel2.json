@@ -1,0 +1,113 @@
+{
+ "id": "NOV-10",
+ "lines": [
+  {
+   "vo": {
+    "en": "How much time does your team spend looking for stock information?",
+    "ar": "قدّيش بيضيّع فريقك وقت ليلاقي معلومة عن البضاعة؟"
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "How much time does your team spend *looking?*"
+    },
+    "ar": {
+     "big": "قدّيش بيضيّع فريقك وقت *عم يفتّش؟*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Every extra check adds coordination work.",
+    "ar": "كل تشييك زيادة بيزيد شغل تنسيق."
+   },
+   "scene": {
+    "type": "chaos",
+    "shake": true,
+    "en": {
+     "items": [
+      {
+       "kind": "sheet",
+       "label": "Stock_FINAL_v3.xlsx"
+      },
+      {
+       "kind": "chat",
+       "text": "Anyone checked WH-2?"
+      },
+      {
+       "kind": "call",
+       "text": "Branch B"
+      }
+     ],
+     "head": "Every check *adds up.*"
+    },
+    "ar": {
+     "items": [
+      {
+       "kind": "sheet",
+       "label": "مخزون_نهائي_٣.xlsx"
+      },
+      {
+       "kind": "chat",
+       "label": "فريق المستودع",
+       "text": "حدا شيّك عالمستودع ٢؟"
+      },
+      {
+       "kind": "call",
+       "label": "عم نتّصل…",
+       "text": "الفرع ب"
+      }
+     ],
+     "head": "كل تشييك *بيتراكم.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Clearer stock-location visibility can help teams find their bearings faster.",
+    "ar": "رؤية أوضح لمواقع المخزون بتساعد الفرق تعرف وين هيّي بسرعة أكبر."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "One place *to look.*"
+    },
+    "ar": {
+     "head": "مكان واحد *تتطلّع فيه.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Where does your team lose the most time? Book a meeting with our team.",
+    "ar": "وين فريقك بيضيّع أكتر وقت؟ احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "Where does your team lose the most time?"
+    },
+    "ar": {
+     "ask": "وين بيضيع أكتر وقت عند فريقك؟"
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "Searching across records, messages, and branches can create extra work. We're not assigning a number to that cost; every business is different. We'd like to understand where your team spends time when checking stock across locations. Tell us about your process.\n\nBook a meeting with our team.",
+  "ar": "التفتيش بين السجلات والرسائل والفروع بيخلق شغل زيادة. ما رح نحطّ رقم لهالكلفة؛ كل شركة غير. بدنا نفهم وين فريقك بيصرف وقتو وهوّي عم يشيّك المخزون بكذا موقع. خبّرنا عن طريقتك.\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#Stacko #WarehouseOperations #InventoryManagement #StockVisibility",
+ "changes": [
+  "VO \"We're exploring how clearer stock-location visibility could help…\" → \"Clearer stock-location visibility can help…\"; added Book a meeting. No metrics on screen."
+ ]
+}

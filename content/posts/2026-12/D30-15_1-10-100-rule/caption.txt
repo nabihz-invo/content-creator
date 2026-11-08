@@ -1,0 +1,13 @@
+CAPTION
+An old rule of thumb about data quality, applied to stock: catching a mistake at the source costs far less than fixing it later.
+
+Where does your team usually catch mistakes?
+
+HASHTAGS
+#Stacko #DataQuality #InventoryManagement
+
+CTA
+Where do you catch mistakes: $1, $10 or $100?
+
+PINNED COMMENT
+It's a rule of thumb, not exact maths. But it matches what most stock managers tell us.

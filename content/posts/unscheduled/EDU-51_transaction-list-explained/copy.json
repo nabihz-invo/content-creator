@@ -1,0 +1,123 @@
+{
+ "id": "EDU-51",
+ "size": "portrait",
+ "slides": [
+  {
+   "type": "cover",
+   "img": {
+    "name": "moves",
+    "src": "app",
+    "h": 520
+   },
+   "en": {
+    "title": "The transaction list, *explained.*",
+    "lead": "The screen you'll check every morning."
+   },
+   "ar": {
+    "title": "لايحة الحركات، *بالتفصيل.*",
+    "lead": "الشاشة اللي رح تفتحها كل صبح."
+   }
+  },
+  {
+   "num": "01",
+   "img": {
+    "name": "moves",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "What's on each row.",
+    "body": "Type (receipt, issue, transfer, adjustment), location, quantity, status, and who created it."
+   },
+   "ar": {
+    "title": "شو في بكل سطر.",
+    "body": "النوع (استلام، إخراج، تحويل، تعديل)، الموقع، الكمية، الحالة، ومين عملها."
+   }
+  },
+  {
+   "num": "02",
+   "img": {
+    "name": "approvals",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Status tells you what to do.",
+    "body": "Pending means it needs review. Approved means it's recorded. Flagged means something needs attention."
+   },
+   "ar": {
+    "title": "الحالة بتقلّك شو تعمل.",
+    "body": "معلّقة يعني بدها مراجعة. موافق عليها يعني متسجّلة. متعلّمة يعني في شي بدّو انتباه."
+   }
+  },
+  {
+   "num": "03",
+   "img": {
+    "name": "reports",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Find what matters.",
+    "body": "Filter by location, type, status, or date. The list is designed to be scanned, not scrolled."
+   },
+   "ar": {
+    "title": "لاقي اللي بيهمّك.",
+    "body": "فلتر حسب الموقع، النوع، الحالة، أو التاريخ. اللايحة معمولة لتنقرا بنظرة، مش لتنزل فيها."
+   }
+  },
+  {
+   "num": "04",
+   "img": {
+    "name": "move-adj",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "Open a transaction. See its history.",
+    "body": "Each row expands to show the audit trail — who created, who reviewed, who approved, and when."
+   },
+   "ar": {
+    "title": "افتح المعاملة. شوف تاريخها.",
+    "body": "كل سطر بيفتح على سجل التدقيق — مين عمل، مين راجع، مين وافق، وإيمتى."
+   }
+  },
+  {
+   "num": "05",
+   "img": {
+    "name": "ph-hadi-moves",
+    "src": "app",
+    "h": 560
+   },
+   "en": {
+    "title": "You see what your role allows.",
+    "body": "A warehouse user sees their locations' transactions. A manager sees all pending items. An approver sees what needs approval."
+   },
+   "ar": {
+    "title": "بتشوف اللي دورك بيسمحلو.",
+    "body": "مسؤول المستودع بيشوف معاملات مواقعو. المدير بيشوف كل المعلّق. والمراجع بيشوف اللي بدّو موافقة."
+   }
+  },
+  {
+   "type": "cta",
+   "en": {
+    "title": "One list. *Every movement.*",
+    "lead": "Book a meeting and we'll walk through your own transaction types."
+   },
+   "ar": {
+    "title": "لايحة وحدة. *كل حركة.*",
+    "lead": "احجز اجتماعاً ومنمرق معك على أنواع معاملاتك."
+   }
+  }
+ ],
+ "caption": {
+  "en": "The transaction list — the screen you'll check every morning.\n\n01 What's on each row — type, location, quantity, status, creator\n02 Status tells you what to do — pending, approved, flagged\n03 Find what matters — filter by location, type, status, date\n04 Open a transaction, see its history — who created, reviewed, approved, when\n05 You see what your role allows — warehouse users, managers, approvers\n\nOne list. Every movement. No spreadsheet archaeology.\n\n👉 Book a meeting — link in bio.",
+  "ar": "لايحة الحركات — الشاشة اللي رح تفتحها كل صبح.\n\n٠١ شو في بكل سطر — النوع، الموقع، الكمية، الحالة، ومين عمل\n٠٢ الحالة بتقلّك شو تعمل — معلّقة، موافق عليها، متعلّمة\n٠٣ لاقي اللي بيهمّك — فلتر حسب الموقع، النوع، الحالة، التاريخ\n٠٤ افتح المعاملة، شوف تاريخها — مين عمل، راجع، وافق، وإيمتى\n٠٥ بتشوف اللي دورك بيسمحلو\n\nلايحة وحدة. كل حركة. بلا تنقيب بالشيتات.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#InventoryManagement #TransactionHistory #SMB #Stacko #SupplyChain #StockControl #WarehouseManagement #InventoryTech #AuditTrail #BusinessOperations",
+ "changes": [
+  "Real app screenshots: moves list, approvals queue, movement report (date/location/item filters), an adjustment with its approval trail, and the floor-staff moves view.",
+  "\"Book a demo\" → \"Book a meeting\"; caption dropped \"🟢 Prototype screens; 🟡 advanced filters planned.\"",
+  "REVIEW: the app shows \"Waiting approval / Completed\" rather than a \"Flagged\" status; slide 2 text kept from the sheet."
+ ]
+}

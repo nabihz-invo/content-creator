@@ -1,0 +1,53 @@
+{
+ "id": "EDU-04",
+ "title": "POV: A customer asks if you have 40 units in stock",
+ "caption": "\"I think we have 38… maybe 41?\"\n\nThe most expensive words in inventory. Because \"I think\" turns into a lost sale, a double order, or a customer who doesn't call back.\n\nStacko puts every warehouse and branch on one live map. Tap a location, see the stock, answer in seconds.\n\nTag a stock manager who made this call today, or book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "A customer asks if you have forty units in stock.",
+   "scene": {
+    "type": "pain",
+    "head": "POV: a customer asks for *40 units.*",
+    "cards": [
+     {
+      "kind": "chat",
+      "label": "Customer",
+      "text": "Do you have 40 in stock?"
+     },
+     {
+      "kind": "call",
+      "text": "Branch 2 · Sidon"
+     },
+     {
+      "kind": "sheet",
+      "text": "stock_FINAL_v3.xlsx"
+     }
+    ]
+   }
+  },
+  {
+   "vo": "Three calls and two spreadsheets later, the answer is: I think we have thirty-eight… maybe forty-one?",
+   "scene": {
+    "type": "text",
+    "big": "“I think we have 38… *maybe 41?*”"
+   }
+  },
+  {
+   "vo": "Or: one map, one tap, one answer.",
+   "scene": {
+    "type": "app",
+    "zoom": "site",
+    "head": "One map. One tap. *One answer.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Your stock, always in sight. Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ],
+ "notes": []
+}

@@ -1,0 +1,15 @@
+{
+ "id": "EDU-79",
+ "size": "portrait",
+ "changes": ["\"demo\" → \"meeting\" in the overlay and caption; \"Book a demo\" → \"Book a meeting\".", "Static only; the carousel version is not produced (the static carries all five sections).", "REVIEW: the 48-hour written summary is a process promise — confirm the team will deliver it."],
+ "slides": [
+  {"type": "email", "theme": "dark",
+   "en": {"subject": "Your Stacko meeting — summary", "lines": ["**What we discussed** — your locations, current system, and the questions you brought.", "**What's possible today** — the parts of your workflow Stacko covers now.", "**What's planned** — items that are not available yet, clearly marked.", "**What's not a fit** — what we don't do, and what to look for instead.", "**Proposed next step** — one clear action, no pressure."], "title": "Within 48 hours of your meeting, you get this. *In writing.*"},
+   "ar": {"subject": "اجتماعك مع ستاكو — ملخّص", "lines": ["**شو حكينا** — مواقعك، نظامك الحالي، والأسئلة اللي جبتها.", "**شو ممكن اليوم** — أجزاء شغلك اللي ستاكو بيغطّيها هلّق.", "**شو مخطّط** — أشيا مش متوفّرة بعد، وواضحة.", "**شو مش مناسب** — شو ما منعمل، وشو تدوّر بدالو.", "**الخطوة الجاية** — خطوة وحدة واضحة، بلا ضغط."], "title": "خلال ٤٨ ساعة من الاجتماع، بيوصلك هيدا. *مكتوب.*"}}
+ ],
+ "caption": {
+  "en": "Within 48 hours of your meeting, you get this. In writing.\n\nA one-page summary:\n• What we discussed\n• What's possible today\n• What's planned\n• What's not a fit\n• Proposed next step\n\nNo vague promises. No \"we'll circle back.\" A document you can forward to your boss.\n\n👉 Book a meeting — link in bio.",
+  "ar": "خلال ٤٨ ساعة من الاجتماع، بيوصلك هيدا. مكتوب.\n\nملخّص بصفحة وحدة:\n• شو حكينا\n• شو ممكن اليوم\n• شو مخطّط\n• شو مش مناسب\n• الخطوة الجاية\n\nبلا وعود مبهمة. بلا «منرجع منحكي». مستند فيك تبعتو لمديرك.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#SalesProcess #InventoryManagement #SMB #Stacko #SupplyChain #Demo #BusinessOperations #DistributorLife #WarehouseManagement #InventoryTech"
+}

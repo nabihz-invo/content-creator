@@ -1,0 +1,5 @@
+Spreadsheets are great at counting. They're bad at telling you where things are, and what's moving.
+
+That's why Stacko starts with a map.
+
+List person or map person?

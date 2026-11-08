@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>__ID__ · __TITLE__</title>
+<link rel="stylesheet" href="../../_brand/stacko.css">
+<style>
+  /* One 1080x1350 post, four versions: post.html?lang=en|ar&theme=dark|light
+     Elements with data-edit become editable text boxes in the PPTX (Canva import). */
+  body{display:flex;justify-content:center;padding:40px 0}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden}
+  .dark{background:var(--night-bg);color:#fff}
+  .light{background:var(--paper);color:var(--abyss)}
+  .notext [data-edit]{visibility:hidden}
+  .brand{position:absolute;inset-inline-start:88px;top:80px;display:flex;align-items:center;gap:14px}
+  .brand img{width:52px;height:52px}
+  .brand .wm{font-size:38px}
+  .brand .wm-ar{font-size:34px}
+  .eyebrow{position:absolute;inset-inline-start:88px;top:184px}
+  h1{position:absolute;inset-inline-start:88px;top:230px;width:904px;font-size:100px;font-weight:600;line-height:1.02;letter-spacing:-.045em}
+  html[lang=ar] h1{font-size:74px;line-height:1.35;font-weight:700}
+  h1 em{font-style:normal;color:var(--glow)}
+  .light h1 em{color:var(--signal)}
+  .art{position:absolute;left:0;right:0;top:450px;height:520px}
+  .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .dark .art::after{content:"";position:absolute;inset:0;background:linear-gradient(#0E2440 0%,rgba(14,36,64,0) 16%,rgba(14,36,64,0) 80%,#10294A 100%)}
+  .light .art{left:52px;right:52px;top:462px;height:500px;border-radius:26px;overflow:hidden;box-shadow:0 40px 90px rgba(14,36,64,.22);border:1px solid #DCE6EE;background:#fff}
+  .light .art img{object-fit:cover;object-position:top}
+  /* any screenshot other than the hero illustration sits in a framed card, in both themes */
+  .framed .art{left:52px;right:52px;top:462px;height:500px;border-radius:26px;overflow:hidden;box-shadow:0 40px 90px rgba(14,36,64,.3);border:1px solid rgba(201,216,228,.35);background:#fff}
+  .framed .art::after{display:none}
+  .framed .art img{object-fit:cover;object-position:top}
+  .framed.dark .note{top:978px}
+  .phone{display:none}
+  .light .phone{display:block;position:absolute;inset-inline-start:70px;top:640px;width:196px;border-radius:30px;box-shadow:0 30px 60px rgba(14,36,64,.35)}
+  .note{position:absolute;inset-inline-end:88px;top:984px;font-size:20px;color:var(--visor);opacity:.8}
+  .light .note{top:978px;color:var(--ink2)}
+  .points{position:absolute;inset-inline:88px;top:1020px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .light .points{top:1020px}
+  .pt{display:flex;flex-direction:column;gap:14px}
+  .ic{width:58px;height:58px;border-radius:16px;background:rgba(8,149,166,.18);display:grid;place-items:center}
+  .light .ic{background:rgba(8,149,166,.12)}
+  .ic svg{width:32px;height:32px}
+  .pt p{font-size:25px;font-weight:500;line-height:1.3}
+  html[lang=ar] .pt p{font-size:23px;line-height:1.6}
+  .cta{position:absolute;inset-inline-start:88px;bottom:52px;padding:22px 38px;border-radius:20px;background:var(--ocean);color:#fff;font-size:32px;font-weight:600}
+  .light .cta{background:var(--abyss)}
+</style>
+</head>
+<body>
+<section class="slide" id="post">
+  <div class="dots"></div>
+  <div class="brand"><img id="mark" alt=""><span id="wm" data-edit></span></div>
+  <span class="eyebrow" id="eyebrow" data-edit></span>
+  <h1 id="h1" data-edit></h1>
+  <div class="art"><img id="art" alt=""></div>
+  <img class="phone" id="phone" alt="">
+  <span class="note" id="note" data-edit></span>
+  <div class="points">
+    <div class="pt"><span class="ic">__IC1__</span><p id="p1" data-edit></p></div>
+    <div class="pt"><span class="ic">__IC2__</span><p id="p2" data-edit></p></div>
+    <div class="pt"><span class="ic">__IC3__</span><p id="p3" data-edit></p></div>
+  </div>
+  <span class="cta" id="cta" data-edit></span>
+</section>
+<script>
+const q = new URLSearchParams(location.search), lang = q.get('lang') || 'en', theme = q.get('theme') || 'dark';
+const T = __T__[lang];
+const ART = __ART__, PHONE = __PHONE__;
+document.documentElement.lang = lang;
+document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+const s = document.getElementById('post');
+s.classList.add(theme);
+if (!ART[theme].includes('hero')) s.classList.add('framed');
+if (theme === 'dark') document.querySelectorAll('.ic svg').forEach(v => v.setAttribute('stroke', '#2EF2EE'));
+const set = (id, html) => document.getElementById(id).innerHTML = html;
+['eyebrow', 'h1', 'p1', 'p2', 'p3', 'cta'].forEach(k => set(k, T[k]));
+set('wm', T.wm); set('note', T.note[theme]);
+// headlines must fit two lines above the artwork: shrink until they do
+document.fonts.ready.then(() => { const h = document.getElementById('h1'); let fs = parseFloat(getComputedStyle(h).fontSize); const lh = parseFloat(getComputedStyle(h).lineHeight) / fs;
+  while (h.offsetHeight > fs * lh * 2.1 && fs > 56) { fs -= 3; h.style.fontSize = fs + 'px'; } });
+document.getElementById('wm').className = lang === 'ar' ? 'wm-ar' : 'wm';
+document.getElementById('mark').src = `../../_brand/mark-on-${theme}.svg`;
+if (PHONE) document.getElementById('phone').src = `../../_brand/site/${lang}-phone.png`; else document.getElementById('phone').remove();
+document.getElementById('art').src = `../../_brand/site/${lang}-${ART[theme]}.png`;
+</script>
+</body>
+</html>

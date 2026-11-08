@@ -1,0 +1,31 @@
+{
+ "id": "EDU-60",
+ "size": "portrait",
+ "standalone": true,
+ "slides": [
+  {
+   "img": {
+    "name": "emptymap",
+    "src": "app",
+    "h": 760
+   },
+   "en": {
+    "title": "Caption this *screenshot.*",
+    "micro": "Best caption wins a shoutout. (It's an empty map — no data loaded yet. Or is it?)"
+   },
+   "ar": {
+    "title": "اكتب تعليق *على هالصورة.*",
+    "micro": "أحلى تعليق بياخد شاوت أوت. (خريطة فاضية — بعد ما تحمّلت الداتا. ولّا؟)"
+   }
+  }
+ ],
+ "caption": {
+  "en": "Caption this screenshot.\n\nBest one gets a shoutout in our next post.\n\n(It's an empty map with no data loaded. Or is it?)\n\nBook a meeting with our team.\n\nENGAGEMENT PLAN\n- Reply to every caption within 2 hours of posting.\n- Pick a winner within 48 hours.\n- Feature the winner in a Story + pinned comment on the next post.",
+  "ar": "اكتب تعليق على هالصورة.\n\nأحلى تعليق بيطلع ببوستنا الجاي.\n\n(خريطة فاضية بلا داتا. ولّا؟)\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#CaptionThis #InventoryManagement #SMB #Stacko #SupplyChain #Engagement #InventoryTech #BusinessOperations #DistributorLife #WarehouseManagement",
+ "changes": [
+  "Real app map, zoomed and panned to an area with no locations (the demo data is still loaded — it is the \"Or is it?\" of the caption). No empty company was created.",
+  "Caption: dropped \"🟢 Prototype screenshot — no claims implied.\"; added \"Book a meeting with our team.\""
+ ]
+}

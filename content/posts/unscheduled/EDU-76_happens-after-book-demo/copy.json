@@ -1,0 +1,30 @@
+{
+ "id": "EDU-76",
+ "size": "portrait",
+ "changes": ["\"book a demo\" → \"book a meeting\" throughout (title, slide 6, button, caption); \"The call\" kept.", "Timeline pins in Signal/Glow (no coral).", "REVIEW: the 48-hour written summary and 20-minute agenda are process promises from the sheet — confirm the team will deliver them."],
+ "slides": [
+  {"type": "cover", "art": "network",
+   "en": {"title": "What happens after you *book a meeting.*", "lead": "No black box. Here's the full journey."},
+   "ar": {"title": "شو بيصير بعد ما *تحجز اجتماع.*", "lead": "ما في شي مخبّى. هيدي الرحلة كاملة."}},
+  {"num": "01", "icon": "calendar",
+   "en": {"title": "Confirmation.", "body": "You get a calendar invite with a 20-minute agenda. No surprise sales deck. Just a clear structure."},
+   "ar": {"title": "التأكيد.", "body": "بيوصلك دعوة عالروزنامة مع جدول ٢٠ دقيقة. بلا عرض مبيعات مفاجئ. بس ترتيب واضح."}},
+  {"num": "02", "img": {"name": "map", "src": "app", "h": 470},
+   "en": {"title": "The call.", "body": "We ask about your setup, show the map with your locations, walk through the workflow, and tell you what's live vs. planned."},
+   "ar": {"title": "الاجتماع.", "body": "منسألك عن وضعك، منفرجيك الخريطة مع مواقعك، منمرق عالشغل، ومنقلّك شو شغّال وشو مخطّط."}},
+  {"num": "03", "icon": "doc",
+   "en": {"title": "The follow-up.", "body": "Within 48 hours, you get a written summary: what we discussed, what's possible, what isn't, and a proposed next step. No pressure."},
+   "ar": {"title": "المتابعة.", "body": "خلال ٤٨ ساعة بيوصلك ملخّص مكتوب: شو حكينا، شو ممكن، شو مش ممكن، والخطوة الجاية المقترحة. بلا ضغط."}},
+  {"num": "04", "icon": "check",
+   "en": {"title": "If it's a fit.", "body": "We scope the pilot or subscription: locations, users, AI volume, onboarding, support level. Everything in writing before you commit."},
+   "ar": {"title": "إذا مناسب.", "body": "منحدّد التجربة أو الاشتراك: المواقع، المستخدمين، حجم الذكاء الاصطناعي، التشغيل، ومستوى الدعم. كل شي مكتوب قبل ما تلتزم."}},
+  {"type": "cta",
+   "en": {"title": "If it's not a fit, *we'll tell you.*", "lead": "And we'll tell you what to look for instead. Book a meeting.", "micro": "No commitment required at any stage."},
+   "ar": {"title": "إذا مش مناسب، *منقلّك.*", "lead": "ومنقلّك شو تدوّر بدالو. احجز اجتماعاً.", "micro": "ما في التزام بأي مرحلة."}}
+ ],
+ "caption": {
+  "en": "What happens after you book a meeting.\n\nNo black box. Here's the full journey:\n\n01 Confirmation — calendar invite, 20-minute agenda, no surprise sales deck\n02 The call — your setup, your locations on the map, live vs. planned\n03 The follow-up — written summary within 48 hours, no pressure\n04 If it's a fit — pilot or subscription scoped in writing: locations, users, AI volume, onboarding, support\n05 If it's not — we'll tell you, and tell you what to look for instead\n\nNo commitment required at any stage.\n\n👉 Book a meeting — link in bio.",
+  "ar": "شو بيصير بعد ما تحجز اجتماع.\n\nما في شي مخبّى. هيدي الرحلة كاملة:\n\n٠١ التأكيد — دعوة عالروزنامة، جدول ٢٠ دقيقة، بلا عرض مبيعات مفاجئ\n٠٢ الاجتماع — وضعك، مواقعك عالخريطة، شو شغّال وشو مخطّط\n٠٣ المتابعة — ملخّص مكتوب خلال ٤٨ ساعة، بلا ضغط\n٠٤ إذا مناسب — تجربة أو اشتراك محدّد بالمكتوب: مواقع، مستخدمين، حجم ذكاء اصطناعي، تشغيل، دعم\n٠٥ إذا مش مناسب — منقلّك، ومنقلّك شو تدوّر بدالو\n\nما في التزام بأي مرحلة.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#Demo #InventoryManagement #SMB #Stacko #SupplyChain #SalesProcess #BusinessOperations #DistributorLife #WarehouseManagement #InventoryTech"
+}

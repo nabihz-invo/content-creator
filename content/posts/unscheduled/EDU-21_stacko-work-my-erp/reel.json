@@ -1,0 +1,50 @@
+{
+ "id": "EDU-21",
+ "title": "FAQ: Does Stacko work with my ERP?",
+ "caption": "\"Does Stacko work with my ERP?\" Yes.\n\nIf you use Odoo, SAP or another system, Stacko can sit on top of it and add the map and AI document capture. If you don't have a system, Stacko can be your full inventory.\n\nConnections are set up for each customer: tell us what you run, and we'll confirm what's possible before any commitment.\n\nBook a meeting to discuss your setup. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Does Stacko work with your ERP? Yes.",
+   "scene": {
+    "type": "text",
+    "big": "Does Stacko work with *my ERP?*"
+   }
+  },
+  {
+   "vo": "If you use Odoo, SAP, or another system, Stacko can sit on top of it and add the map and AI document capture.",
+   "scene": {
+    "type": "app",
+    "zoom": "overview",
+    "head": "On top of *your system.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "If you don't have a system, Stacko can be your full inventory.",
+   "scene": {
+    "type": "shot",
+    "img": "inv-card",
+    "head": "Or your *full inventory.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "Connections are set up for each customer. Tell us what you run, and we'll confirm what's possible before any commitment.",
+   "scene": {
+    "type": "text",
+    "big": "Tell us what you run. *We'll confirm.*"
+   }
+  },
+  {
+   "vo": "Your stock, always in sight. Book a meeting with our team.",
+   "scene": {
+    "type": "end"
+   }
+  }
+ ],
+ "notes": [
+  "Answers follow the FAQ and trust sections of the Stacko website.",
+  "Originally a founder-on-camera script; produced as a voice-over reel with website footage."
+ ]
+}

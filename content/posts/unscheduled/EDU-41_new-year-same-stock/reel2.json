@@ -1,0 +1,82 @@
+{
+ "id": "EDU-41",
+ "file": "EDU-41",
+ "short": true,
+ "lines": [
+  {
+   "vo": {
+    "en": "New year. Same stock problems?",
+    "ar": "سنة جديدة. نفس مشاكل المخزون؟"
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "New year. *Same stock problems?*"
+    },
+    "ar": {
+     "big": "سنة جديدة. *نفس مشاكل المخزون؟*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "\"Where is my stock?\" is not a resolution. It's a question.",
+    "ar": "«وين مخزوني؟» مش قرار سنة جديدة. هوّي سؤال."
+   },
+   "scene": {
+    "type": "big",
+    "en": {
+     "big": "\"Where is my stock?\" is not a resolution. *It's a question.*"
+    },
+    "ar": {
+     "big": "«وين مخزوني؟» مش قرار سنة جديدة. *هوّي سؤال.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Answer it in seconds.",
+    "ar": "جاوبو بثواني."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "Answer it *in seconds.*"
+    },
+    "ar": {
+     "head": "جاوبو *بثواني.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "Book a meeting with our team.",
+    "ar": "احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {},
+    "ar": {}
+   }
+  }
+ ],
+ "caption": null,
+ "hashtags": null,
+ "changes": [
+  "15s reel version: CTA \"Book a demo\" → \"Book a meeting\"; 🟢 badge dropped."
+ ],
+ "hold": [
+  0.8,
+  0.8,
+  1.6
+ ]
+}

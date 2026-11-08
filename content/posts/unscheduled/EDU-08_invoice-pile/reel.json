@@ -1,0 +1,62 @@
+{
+ "id": "EDU-08",
+ "title": "The invoice pile",
+ "caption": "The invoice pile. Every stock manager's quiet enemy.\n\nSupplier, invoice number, date, items, quantities, totals, typed by hand, line after line. And one typo is all it takes to throw off your records.\n\nWith Stacko, upload the invoice as a PDF, Excel file or photo. AI reads every line into a draft, flags anything new or unclear, and a person approves before anything is recorded.\n\nBe honest: how many invoices are on your desk right now? Tell us below, or book a meeting with our team. Link in bio.",
+ "tags": "#Stacko #InventoryManagement #WarehouseManagement #StockVisibility",
+ "lines": [
+  {
+   "vo": "Every stock manager has this pile.",
+   "scene": {
+    "type": "pain",
+    "head": "The invoice *pile.*",
+    "cards": [
+     {
+      "kind": "sheet",
+      "text": "Supplier invoice GL-2611-084"
+     },
+     {
+      "kind": "sheet",
+      "text": "Packing list · SHP-24017"
+     },
+     {
+      "kind": "chat",
+      "label": "Manager",
+      "text": "Can you enter these today?"
+     }
+    ]
+   }
+  },
+  {
+   "vo": "Supplier, invoice number, date, items, quantities, totals. Typed by hand, line after line. And one typo is all it takes.",
+   "scene": {
+    "type": "text",
+    "big": "One typo is all *it takes.*"
+   }
+  },
+  {
+   "vo": "With Stacko, upload the invoice as a PDF, Excel file, or photo, and AI reads every line into a draft.",
+   "scene": {
+    "type": "inv",
+    "head": "Upload. *AI reads it.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "New or unclear items are flagged for a person to confirm.",
+   "scene": {
+    "type": "shot",
+    "img": "shipment",
+    "head": "Review what's *flagged.*",
+    "tag": "Demo data"
+   }
+  },
+  {
+   "vo": "AI proposes. You approve. Book a meeting with our team.",
+   "scene": {
+    "type": "end",
+    "big": "AI proposes.<br>*You approve.*"
+   }
+  }
+ ],
+ "notes": []
+}

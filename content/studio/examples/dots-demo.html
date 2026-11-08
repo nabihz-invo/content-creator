@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Dot effects demo</title>
+<!-- CP-33 dotMorph + EC-10 dotword + EC-11 dotmap. Render both language versions:
+     node studio/render.mjs studio/examples/dots-demo.html --lang all          (dots-demo_EN.mp4 + dots-demo_AR.mp4) -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'Dot effects demo' });
+
+// 1 — OP-23: dots build the hook number, break apart, become a truck, then the map of Lebanon
+const a = R.scene(6.2, { bg: 'night', name: 'dots' });
+a.dotMorph({ count: 520, y: 900, steps: [
+  { at: 0, shape: 'scatter' },
+  { at: .1, shape: { text: '41', size: 520 }, dur: .9 },
+  { at: 1.7, shape: { icon: 'truck', size: 560 }, dur: 1 },
+  { at: 3.3, shape: 'lebanon', size: 980, dur: 1.1 },
+  { at: 5.3, shape: 'explode', dur: .8 } ] });
+a.text(SM.t('41 in the system. *Where are they?*', '٤١ عالسيستم. *وين هنّي؟*'), { y: 330, size: 72, fx: 'rise', at: .3, w: 900, out: 'blur', outAt: 1.6 });
+a.text(SM.t('Moving between warehouses…', 'عم تتنقّل بين المستودعات…'), { x: 80, y: 330, align: 'left', size: 64, fx: 'blur', at: 1.9, out: 'blur', outAt: 3.2 });
+a.text(SM.t('Every location. *One map.*', 'كل المواقع. *خريطة وحدة.*'), { y: 330, size: 72, fx: 'rise', at: 3.5, w: 900 });
+
+// 2 — EC-10 dot word → logo
+R.endcard('dotword', { word: SM.t('in sight', 'قدّام عينك') });
+R.grain(.03).safe();
+R.cover(1.2);
+</script></body></html>

@@ -1,0 +1,16 @@
+The inventory health check: 10 questions to ask yourself before your next stocktake.
+
+01 Can you answer "where is my stock?" in under 10 seconds?
+02 Do you know which transactions are pending approval right now?
+03 Can you trace every movement to a user and a timestamp?
+04 Are permissions scoped by action and location?
+05 Is the creator of a transaction different from the approver?
+06 Do you have duplicate protection on invoices and imports?
+07 Can you see stock across all locations in one view?
+08 Does your team know the source of truth for each data type?
+09 Can you onboard a new employee without full access?
+10 If a customer asks for 40 units right now, can you answer confidently?
+
+How many did you answer "no" to? Every "no" is a gap.
+
+👉 Save this checklist. Book a meeting in bio.

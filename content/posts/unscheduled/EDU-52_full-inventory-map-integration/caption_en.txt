@@ -1,0 +1,9 @@
+Two ways to use Stacko.
+
+🅰️ Full inventory management — products, locations, movements, history, roles. For businesses without an ERP.
+
+🅱️ Map + integration layer — synchronized locations and stock from your existing system. Read-only, draft-for-approval, or approved write-back where supported. For businesses that already have an ERP.
+
+Same map. Same AI workflow. Your choice of foundation.
+
+👉 Book a meeting — link in bio.

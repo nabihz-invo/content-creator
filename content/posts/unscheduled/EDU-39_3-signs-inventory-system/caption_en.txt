@@ -1,0 +1,11 @@
+3 signs your inventory system is failing you:
+
+1️⃣ You answer "where is my stock?" with "let me check."
+2️⃣ Nobody knows who changed the quantity.
+3️⃣ You find out about shortages after the customer does.
+
+If any of these sound familiar, the problem isn't your team. It's your visibility.
+
+Stacko puts every warehouse and branch on one map, traces every movement to a user and timestamp, and scopes permissions by action and location.
+
+👉 Book a meeting — link in bio.

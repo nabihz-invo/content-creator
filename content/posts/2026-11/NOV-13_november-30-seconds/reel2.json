@@ -1,0 +1,94 @@
+{
+ "id": "NOV-13",
+ "lines": [
+  {
+   "vo": {
+    "en": "This month, we focused on one challenge: stock visibility across multiple locations.",
+    "ar": "هالشهر ركّزنا على تحدّي واحد: رؤية المخزون بكذا موقع."
+   },
+   "scene": {
+    "type": "warehouses",
+    "n": 3,
+    "q": true,
+    "en": {
+     "head": "November, *in 30 seconds.*"
+    },
+    "ar": {
+     "head": "تشرين التاني *بـ٣٠ ثانية.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "From scattered sheets and calls, to one map.",
+    "ar": "من شيتات وتلفونات مفرّقة، لخريطة وحدة."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "app/{lang}-map.png",
+    "h": 760,
+    "top": 560,
+    "zoom": [
+     1.0,
+     1.12
+    ],
+    "origin": "45% 40%",
+    "tag": "demo",
+    "en": {
+     "head": "From scattered *to one map.*"
+    },
+    "ar": {
+     "head": "من التفرقة *لخريطة وحدة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "We're learning from the businesses Stacko is meant to serve.",
+    "ar": "عم نتعلّم من الشركات اللي ستاكو معمول لإلها."
+   },
+   "scene": {
+    "type": "shot",
+    "img": "scr/SCR-02_live-map-only.png",
+    "h": 680,
+    "top": 600,
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "tag": "demo",
+    "en": {
+     "head": "Listening to *multi-location teams.*"
+    },
+    "ar": {
+     "head": "عم نسمع *لفرق المواقع المتعدّدة.*"
+    }
+   }
+  },
+  {
+   "vo": {
+    "en": "What should we explore next? Book a meeting with our team.",
+    "ar": "شو لازم نحكي عنو بعدين؟ احجز اجتماع مع فريقنا."
+   },
+   "scene": {
+    "type": "end",
+    "en": {
+     "ask": "What should we cover next?"
+    },
+    "ar": {
+     "ask": "شو بدّك نحكي عنو بعدين؟"
+    }
+   }
+  }
+ ],
+ "caption": {
+  "en": "November was about exploring one question: how can businesses with multiple warehouses or branches get a clearer view of their stock locations? We're listening. What topic should we cover next?\n\nBook a meeting with our team.",
+  "ar": "تشرين التاني كان عن سؤال واحد: كيف الشركات اللي عندها كذا مستودع أو فرع فيها تشوف مواقع مخزونها بوضوح أكتر؟ نحنا عم نسمع. شو الموضوع الجاي؟\n\nاحجز اجتماعاً مع فريقنا."
+ },
+ "hashtags": "#Stacko #BuildingInPublic #InventoryManagement",
+ "changes": [
+  "Built with the same motion system instead of cutting NOV-01–12 renders (those are new in this batch). Added the short line \"From scattered sheets and calls, to one map.\" for scene 2, which had no VO in the sheet.",
+  "VO 3 \"Stacko is still in development.\" dropped; caption \"Stacko is still taking shape\" dropped; added Book a meeting.",
+  "Line 3: drawn \"warehouses\" scene replaced with the real screen SCR-02_live-map-only.png (Background Library), tagged Demo data."
+ ]
+}

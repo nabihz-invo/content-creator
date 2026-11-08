@@ -1,0 +1,30 @@
+{
+ "id": "EDU-77",
+ "size": "portrait",
+ "changes": ["Slide 2: \"what Stacko can and can't do today\" kept; slide 5 \"what we'll build next\" kept (feedback context).", "Slide 6: button \"Apply for the pilot\" → \"Book a meeting\"; caption \"Apply for the pilot\" → \"Book a meeting\".", "Week labels kept as illustrative sequence (per the sheet's creator note).", "REVIEW / HOLD: pilot plan not confirmed (sheet: \"Pilot plan\"). Do not publish until the pilot offer is real."],
+ "slides": [
+  {"type": "cover", "art": "network",
+   "en": {"title": "What a pilot *looks like.*", "lead": "Week by week — no mystery, no surprises."},
+   "ar": {"title": "كيف بتكون *التجربة.*", "lead": "جمعة بجمعة — بلا غموض، بلا مفاجآت."}},
+  {"num": "1", "icon": "search",
+   "en": {"eyebrow": "Week 1", "title": "Discovery.", "body": "We learn your locations, SKUs, invoice volume, team roles, and current workflow. You learn what Stacko can and can't do today."},
+   "ar": {"eyebrow": "الجمعة ١", "title": "التعارف.", "body": "منتعرّف على مواقعك، أصنافك، حجم فواتيرك، أدوار فريقك، وطريقة شغلك اليوم. وإنت بتعرف شو ستاكو بيعمل وشو ما بيعمل اليوم."}},
+  {"num": "2–3", "icon": "gear",
+   "en": {"eyebrow": "Weeks 2–3", "title": "Setup.", "body": "We import your locations and stock, configure roles, and walk through the map and transaction flow with your team."},
+   "ar": {"eyebrow": "الجمعة ٢–٣", "title": "الإعداد.", "body": "منستورد مواقعك ومخزونك، منضبط الأدوار، ومنمرق مع فريقك عالخريطة وعلى شغل المعاملات."}},
+  {"num": "4–6", "img": {"name": "moves", "src": "app", "h": 440},
+   "en": {"eyebrow": "Weeks 4–6", "title": "Live use.", "body": "Your team uses Stacko for a real workflow — receipts, transfers, invoices, or all three. We check in weekly and take notes."},
+   "ar": {"eyebrow": "الجمعة ٤–٦", "title": "استعمال فعلي.", "body": "فريقك بيستعمل ستاكو بشغل حقيقي — استلام، تحويلات، فواتير، أو التلاتة. ومنتابع كل جمعة ومنسجّل ملاحظات."}},
+  {"num": "7–8", "icon": "flag",
+   "en": {"eyebrow": "Weeks 7–8", "title": "Feedback & decision.", "body": "You give us structured feedback. We show you what we learned and what we'll build next. Then you decide: continue, pause, or stop."},
+   "ar": {"eyebrow": "الجمعة ٧–٨", "title": "الملاحظات والقرار.", "body": "بتعطينا ملاحظات مرتّبة. منفرجيك شو تعلّمنا وشو رح نبني بعدين. وبعدين إنت بتقرّر: منكمّل، منوقّف شوي، أو منوقّف."}},
+  {"type": "cta",
+   "en": {"title": "Apply for *the pilot.*", "lead": "Small group. Real feedback. Honest product.", "micro": "Pilot timelines confirmed during discovery; no commitment beyond the pilot."},
+   "ar": {"title": "قدّم *عالتجربة.*", "lead": "مجموعة صغيرة. ملاحظات حقيقية. منتج صريح.", "micro": "مواعيد التجربة منأكّدها بمرحلة التعارف؛ ما في التزام بعد التجربة."}}
+ ],
+ "caption": {
+  "en": "What a pilot looks like. Week by week — no mystery.\n\nWeek 1 — Discovery: your locations, SKUs, invoices, team, workflow\nWeeks 2–3 — Setup: data import, roles, map walkthrough\nWeeks 4–6 — Live use: real workflow, weekly check-ins\nWeeks 7–8 — Feedback & decision: structured feedback, then you decide\n\nSmall group. Real feedback. Honest product.\n\n🟢 Pilot program open. Timelines confirmed during discovery.\n\n👉 Book a meeting — link in bio.",
+  "ar": "كيف بتكون التجربة. جمعة بجمعة — بلا غموض.\n\nالجمعة ١ — التعارف: مواقعك، أصنافك، فواتيرك، فريقك، وشغلك\nالجمعة ٢–٣ — الإعداد: استيراد الداتا، الأدوار، وجولة عالخريطة\nالجمعة ٤–٦ — استعمال فعلي: شغل حقيقي ومتابعة كل جمعة\nالجمعة ٧–٨ — الملاحظات والقرار: ملاحظات مرتّبة، وبعدين إنت بتقرّر\n\nمجموعة صغيرة. ملاحظات حقيقية. منتج صريح.\n\n🟢 التجربة مفتوحة. المواعيد منأكّدها بمرحلة التعارف.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+ },
+ "hashtags": "#PilotProgram #InventoryManagement #SMB #Stacko #SupplyChain #Lebanon #EarlyAdopters #BusinessOperations #DistributorLife #WarehouseManagement"
+}

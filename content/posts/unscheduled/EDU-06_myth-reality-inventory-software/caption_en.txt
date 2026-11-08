@@ -1,0 +1,11 @@
+5 myths about inventory software — busted.
+
+❌ "I have to replace my ERP."
+❌ "AI will change my stock without permission."
+❌ "It's just a spreadsheet with a login."
+❌ "My team won't use it."
+❌ "Integration means duplicate records."
+
+The reality is more boring — and more useful. Stacko works as a full inventory system *or* as a map + AI layer on top of an existing system where supported. AI creates drafts, humans approve. Roles are scoped to what people actually do. And source of truth is defined before any sync.
+
+👉 Have a myth we missed? Comment it. Book a meeting in bio.

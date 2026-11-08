@@ -1,0 +1,11 @@
+- [Content production rules](content-production-rules.md) — v1 rules for Stacko posts (old; status log now in content/plans/archive)
+- [Content production pipeline](content-production-pipeline.md) — Edge/Playwright/virtual-time/ElevenLabs gotchas for rendering content
+- [Content v2 production rules](content-v2-production-rules.md) — v2 sheet rules (old; outputs merged into content/posts/)
+- [Stacko background library](stacko-background-library.md) — BG/GFX/PI now in the CRM Visual library (library.mjs); screens + Library Guide rules still in the workbook
+- [Handoff checklist plan](handoff-checklist-plan.md) — phases 1-3 done, 4-7 left; resume from PLAN.md
+- [content-creation DB testing](content-creation-db-testing.md) — Docker can't start (Hyper-V off); run pgTAP on hosted in rolled-back psql txns; user runs db push
+- [content-creation storage rules](content-creation-storage-rules.md) — minimise uploads; deletes remove storage; free storage after publishing, keep the live link
+- [Motion production mode](motion-production-mode.md) — content made in the CRM; pipeline runs on the user's PC (scripts/pipeline.ps1, job runner replaces n8n)
+- [Terminology standard](terminology-standard.md) — EN/AR inventory terms in app/docs/TERMINOLOGY.md; use on every screen
+- [Research → content SQL](research-to-content-sql.md) — research inbox → RES briefs → import SQL; export wrapper + Bible-lag gotchas; next is RES-09
+- [Content folder layout](content-folder-layout.md) — content/ merged 2026-11-06: posts/<YYYY-MM>/<ID>_<slug>/, plans/, references/; register posts in the CRM

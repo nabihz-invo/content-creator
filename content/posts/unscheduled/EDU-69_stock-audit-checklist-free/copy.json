@@ -1,0 +1,27 @@
+{
+ "id": "EDU-69",
+ "size": "portrait",
+ "changes": ["\"Free download\" badge in Signal, not coral.", "Slide 7: button \"Download the checklist\" → \"Book a meeting\" per the CTA rule; \"Download the checklist\" kept as the lead line. REVIEW: with \"No demo required\" on the same slide you may prefer to keep a download button here.", "checklist-en.pdf / checklist-ar.pdf (25 questions, 5 areas) included in this folder.", "REVIEW: landing page / download link must be set up (sheet)."],
+ "slides": [
+  {"type": "cover", "art": "clipboard",
+   "en": {"eyebrow": "Free download", "title": "The stock *audit checklist.*", "lead": "25 questions to run on your inventory — before your next stocktake."},
+   "ar": {"eyebrow": "تحميل مجاني", "title": "لايحة *تدقيق المخزون.*", "lead": "٢٥ سؤال اسألهن عن مخزونك — قبل الجرد الجاي."}},
+  {"icon": "clock",
+   "en": {"title": "Why run a stock audit?", "body": "Because most stock problems are discovered too late — after the shortage, after the duplicate invoice, after the customer leaves. An audit finds them early."},
+   "ar": {"title": "ليش تعمل تدقيق مخزون؟", "body": "لأنو أغلب مشاكل المخزون بتنكشف متأخّر — بعد النقص، بعد الفاتورة المكرّرة، بعد ما يفلّ الزبون. التدقيق بيلاقيهن بكّير."}},
+  {"icon": "list",
+   "en": {"title": "What's inside.", "lead": "25 questions across 5 categories:", "items": ["Visibility", "Movements", "Permissions", "AI / document handling", "Integration readiness"]},
+   "ar": {"title": "شو جوّا.", "lead": "٢٥ سؤال على ٥ محاور:", "items": ["الرؤية", "الحركات", "الصلاحيات", "الذكاء الاصطناعي والمستندات", "الجاهزية للربط"]}},
+  {"type": "quote", "en": {"eyebrow": "Sample: Visibility.", "quote": "Can you answer 'where is my stock?' in under 10 seconds — across every location?"}, "ar": {"eyebrow": "مثال: الرؤية.", "quote": "فيك تجاوب «وين مخزوني؟» بأقل من ١٠ ثواني — بكل المواقع؟"}},
+  {"type": "quote", "en": {"eyebrow": "Sample: Permissions.", "quote": "Is the person who creates a transaction different from the person who approves it?"}, "ar": {"eyebrow": "مثال: الصلاحيات.", "quote": "اللي بيعمل المعاملة غير اللي بيوافق عليها؟"}},
+  {"type": "quote", "en": {"eyebrow": "Sample: AI & documents.", "quote": "When your AI extracts a field incorrectly, is it flagged for human review — or silently accepted?"}, "ar": {"eyebrow": "مثال: الذكاء الاصطناعي والمستندات.", "quote": "لمّا الذكاء الاصطناعي يقرا حقل غلط، بيتعلّم لمراجعة بشرية — ولّا بينقبل بالسكت؟"}},
+  {"type": "cta",
+   "en": {"title": "Get the full *25-question checklist.*", "lead": "Free. No demo required. Just a clearer view of your own setup. Download the checklist.", "micro": "We'll email you the PDF. Unsubscribe anytime."},
+   "ar": {"title": "خود اللايحة *الكاملة بالـ٢٥ سؤال.*", "lead": "مجاناً. بلا عرض. بس صورة أوضح عن وضعك. حمّل اللايحة.", "micro": "منبعتلك الـPDF عالإيميل. فيك تلغي الاشتراك أي وقت."}}
+ ],
+ "caption": {
+  "en": "The stock audit checklist.\n\n25 questions to run on your inventory — before your next stocktake.\n\nMost stock problems are discovered too late. An audit finds them early.\n\n25 questions across 5 categories:\n• Visibility — can you answer \"where is my stock?\" in 10 seconds?\n• Movements — can you trace every transfer to a user and timestamp?\n• Permissions — is the creator different from the approver?\n• AI & documents — are uncertain fields flagged, never guessed?\n• Integration readiness — is the source of truth defined for each data type?\n\nFree download. No demo required.\n\n👉 Get the checklist — link in bio.\n\nLanding page copy (for link-in-bio):\nHeadline: The Stock Audit Checklist\nSubhead: 25 questions to run on your inventory — free, no demo required.\nForm: First name + work email.\nBelow form: \"We'll email you the PDF within 2 minutes. No sales call unless you ask for one.\"\nMicro-text: Unsubscribe anytime. We don't share your email.",
+  "ar": "لايحة تدقيق المخزون.\n\n٢٥ سؤال اسألهن عن مخزونك — قبل الجرد الجاي.\n\nأغلب مشاكل المخزون بتنكشف متأخّر. التدقيق بيلاقيهن بكّير.\n\n٢٥ سؤال على ٥ محاور:\n• الرؤية — فيك تجاوب «وين مخزوني؟» بـ١٠ ثواني؟\n• الحركات — فيك تربط كل تحويل بشخص ووقت؟\n• الصلاحيات — اللي بيعمل غير اللي بيوافق؟\n• الذكاء الاصطناعي والمستندات — الحقول المش أكيدة بتتعلّم، وما بتنحزر؟\n• الجاهزية للربط — مصدر الحقيقة محدّد لكل نوع داتا؟\n\nتحميل مجاني. بلا عرض.\n\n👉 خود اللايحة — الرابط بالبايو."
+ },
+ "hashtags": "#StockAudit #InventoryManagement #SMB #Stacko #SupplyChain #FreeDownload #WarehouseManagement #InventoryControl #BusinessOperations #DistributorLife"
+}

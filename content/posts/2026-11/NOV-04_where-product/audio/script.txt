@@ -1,0 +1,9 @@
+A customer needs an item. Which warehouse has it?
+
+When stock is spread across sites, the answer means calls, messages, and guesswork.
+
+With Stacko, tap a warehouse on the map and see what it holds, right now.
+
+Or just ask, and get the answer by site, from the same live stock.
+
+Your stock, always in sight. Book a meeting with our team.

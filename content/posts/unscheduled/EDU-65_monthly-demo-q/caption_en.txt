@@ -1,0 +1,12 @@
+Monthly Stacko demo + Q&A, live.
+
+15 minutes walking through Stacko. 15 minutes of open questions — including the ones we can't answer yet. Every feature is labelled on screen.
+
+[DATE · TIME] — tap to set a reminder.
+
+Book a meeting with our team.
+
+SESSION STRUCTURE (30 min)
+0:00–0:05 Welcome · 0:05–0:20 Demo (map → pin → stock → transactions → AI draft → roles → audit trail; tag anything not built as Concept) · 0:20–0:28 Q&A · 0:28–0:30 CTA: book a meeting.
+
+RECAP POST (day after): slide 2 of this folder, filled with the real top 3 questions.

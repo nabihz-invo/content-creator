@@ -1,0 +1,11 @@
+The transaction list — the screen you'll check every morning.
+
+01 What's on each row — type, location, quantity, status, creator
+02 Status tells you what to do — pending, approved, flagged
+03 Find what matters — filter by location, type, status, date
+04 Open a transaction, see its history — who created, reviewed, approved, when
+05 You see what your role allows — warehouse users, managers, approvers
+
+One list. Every movement. No spreadsheet archaeology.
+
+👉 Book a meeting — link in bio.

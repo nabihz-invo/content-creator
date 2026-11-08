@@ -1,0 +1,28 @@
+1
+00:00:00,470 --> 00:00:02,040
+How much time does your team spend
+
+2
+00:00:02,040 --> 00:00:03,920
+looking for stock information?
+
+3
+00:00:03,940 --> 00:00:06,740
+Every extra check adds coordination work.
+
+4
+00:00:06,800 --> 00:00:08,760
+Clearer stock-location visibility can
+
+5
+00:00:08,760 --> 00:00:11,270
+help teams find their bearings faster.
+
+6
+00:00:11,400 --> 00:00:13,410
+Where does your team lose the most time?
+
+7
+00:00:13,410 --> 00:00:15,370
+Book a meeting with our team.
+
