@@ -78,26 +78,21 @@ SQL on hosted: `bash scripts/sql.sh "select 1"` or `bash scripts/sql.sh -f file.
 
 On Windows, shell heredocs break on quotes and non-ASCII text. Write Python edit scripts to a file first and run them with `python -X utf8`.
 
-## 6. Where things stand (2026-11-08)
+## 6. Where things stand (updated 2026-11-08, evening)
 
 **Library:** 70 new images are in (BG-56…61, OB-01…40, SC-01…16, SE-01…04, UI-01…03, PR-01), all approved.
 
 **Ideas:** IDEA-001…187 are in the CRM as pending.
 
-**Built, waiting for the owner's approval in Idea review:** IDEA-002, 025, 001, 046, 026, 038 (9–14 Nov).
+**Built and attached to the CRM (waiting for the owner's review):** every dated IDEA post from 9 Nov 2026 to 24 Mar 2027 except the reels: 84 posts. Generators per month: `content/posts/2026-11/build_idea_week*.py`, `2026-12/build_idea_dec_[abc].py`, `2027-01/build_idea_jan_[abc].py`, `2027-02/build_idea_feb_[ab].py`, `2027-03/build_idea_mar_[ab].py` (they share helpers from `build_idea_week1.py`, `build_idea_week3.py` and `build_idea_dec_a.py`). The owner reviews in the CRM and leaves notes (`scripts/ideas/feedback.mjs list`).
 
-**Next batches, week of 15 Nov:**
+**CRM uploads are JPG q92** (about 8× smaller than PNG); the PNGs stay in each post's `en/` and `ar/`. `finished-posts.mjs` reads JPEG dimensions too.
 
-| Date | Post | Format |
-|---|---|---|
-| 16 Nov | IDEA-015 Ask it like a colleague | Static |
-| 17 Nov | IDEA-027 Story slider: how sure are you? | Story |
-| 18 Nov | IDEA-030 Beirut → Zahle, you'll know when it lands | Static |
-| 19 Nov | IDEA-076 Is your stock ready for White Friday? | Static |
-| 20 Nov | IDEA-028 Story this-or-that | Story |
-| 21 Nov | IDEA-010 5 signs you've outgrown your spreadsheet | Carousel |
-| 22 Nov | IDEA-031 Lebanon Independence Day | Static |
-| 22 Nov | IDEA-078 Story countdown to White Friday | Story |
+**Not built yet:**
+- Reels IDEA-032, 041, 058, 072 (dated) and 8 undated reels: need the motion engine and, where there is voice, ElevenLabs takes from the owner.
+- 99 undated ideas (60 static, 26 carousel, 5 story, 8 reel). Storage was 952 MB after the March batch; check the Supabase plan's storage limit before uploading more.
+
+**Flagged in the posts' notes.md (CHECK):** IDEA-018 and IDEA-013 founder quotes (confirm with Nabih), IDEA-086/087/088 Ramadan and Eid dates (moon sighting), IDEA-071 onboarding timeline (confirm with product).
 
 **Open with the owner:**
 - The older NOV plan has posts on some of the same days (NOV-04, S2, 05, 06, 07, S3, 08, 09). Owner decides which to keep.
