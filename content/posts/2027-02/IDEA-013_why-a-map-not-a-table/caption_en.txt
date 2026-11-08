@@ -1,0 +1,4 @@
+When we started Stacko, the first client had three warehouses and one problem: nobody logged anything.
+The fix wasn't a better table. It was making every log visible.
+
+What would make your team log?

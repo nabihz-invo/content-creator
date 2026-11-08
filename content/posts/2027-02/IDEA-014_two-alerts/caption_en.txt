@@ -1,0 +1,4 @@
+Two alerts, one goal: no surprises.
+Low stock tells you before the shelf is empty. Mismatch tells you before a wrong number gets approved.
+
+Which one would have saved you last month?
