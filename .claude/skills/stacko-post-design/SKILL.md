@@ -21,6 +21,7 @@ All paths below are relative to the `content/` folder (run commands from there).
 8. **No third-party app branding** on the visual (no Telegram/WhatsApp logos or names). Say "from your phone"; the chat avatar is the Stacko mark.
 9. **Deliver editable HTML + PNG.** Per post: `source/` HTML, `preview/` PNGs for review; after approval the final PNGs (`en/`, `ar/`) and a bundled self-contained HTML (Edit text + Save PNG) in `html/`.
 10. **English and Arabic** for every post unless the user says otherwise: build EN first, then AR from the same layout.
+11. **Clear on its own.** Anyone who sees the post in a feed, with no caption, must know what it is about: the headline says the problem or benefit in plain words, and the visual shows the actual thing (the card, the chat, the map, the number), not decoration. If a stranger would ask "what is this about?", rewrite it.
 
 ## Core method: AI scene + HTML layer
 
