@@ -113,8 +113,10 @@ def dark_car(pid, folder, lang, cover_img, cover, slides, title, kick=None, slid
     sl = [("cover", f"""<img class="bg" src="/assets/post-images/final/{cover_img}" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
 <h1 class="h1">{h}</h1><p class="sub">{s}</p>""")]
-    for i, (h, c) in enumerate(slides):
-        k = f'<div class="kick">{kick.format(n=i + 1)}</div>' if kick else ""
+    for i, sd in enumerate(slides):
+        h, c = sd[0], sd[1]
+        kt = sd[2] if len(sd) > 2 else (kick.format(n=i + 1) if kick else "")
+        k = f'<div class="kick">{kt}</div>' if kt else ""
         sl.append(("", f"""{slide_bg}
 {k}
 <h1 class="h1">{h}</h1>
@@ -135,8 +137,10 @@ def light_car(pid, folder, lang, cover_img, cover_top, cover, slides, title, kic
     h, s = cover
     sl = [("cover", f"""<div class="panel" style="top:520px;height:700px"><img src="/assets/post-images/final/{cover_img}" alt="" style="width:952px;left:0;top:{cover_top}px"></div>
 <h1 class="h1">{h}</h1><p class="sub">{s}</p>""")]
-    for i, (h, c) in enumerate(slides):
-        k = f'<div class="kick">{kick.format(n=i + 1)}</div>' if kick else ""
+    for i, sd in enumerate(slides):
+        h, c = sd[0], sd[1]
+        kt = sd[2] if len(sd) > 2 else (kick.format(n=i + 1) if kick else "")
+        k = f'<div class="kick">{kt}</div>' if kt else ""
         sl.append(("", f"""{BG57}<style>{EXTRA_CSS}</style>
 {k}
 <h1 class="h1">{h}</h1>
