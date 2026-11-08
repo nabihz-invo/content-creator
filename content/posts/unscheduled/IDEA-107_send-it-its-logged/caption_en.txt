@@ -1,0 +1,1 @@
+Logging a stock move should be as easy as sending a message. With Stacko, it is one.

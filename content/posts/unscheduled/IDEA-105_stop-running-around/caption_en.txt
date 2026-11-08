@@ -1,0 +1,2 @@
+How many steps does your team walk every day looking for one item?
+Stacko gives them the shortest path: an answer.

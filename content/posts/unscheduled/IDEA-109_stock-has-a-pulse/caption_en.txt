@@ -1,0 +1,1 @@
+Stock isn't a number you check once a month. It changes every hour. Stacko updates the moment someone logs a move.

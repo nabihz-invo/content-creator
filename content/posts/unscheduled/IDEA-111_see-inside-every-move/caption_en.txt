@@ -1,0 +1,1 @@
+Every stock number in Stacko can be traced back to the person and the moment it changed.
