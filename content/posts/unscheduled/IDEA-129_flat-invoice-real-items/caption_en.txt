@@ -1,0 +1,1 @@
+Supplier invoices used to mean an hour of typing. Now they turn into items and an incoming shipment on their own.
