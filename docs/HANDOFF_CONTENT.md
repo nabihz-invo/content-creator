@@ -88,9 +88,14 @@ On Windows, shell heredocs break on quotes and non-ASCII text. Write Python edit
 
 **CRM uploads are JPG q92** (about 8× smaller than PNG); the PNGs stay in each post's `en/` and `ar/`. `finished-posts.mjs` reads JPEG dimensions too.
 
+**Undated ideas (IDEA-089…187) are built too, locally only (not uploaded, CRM storage is the limit):** `content/posts/unscheduled/` with generators `build_idea_und_01…11.py` and shared helpers `und_lib.py`. Upload them with the same staging + `finished-posts.mjs` flow once storage is sorted.
+
+**Posting order:** `content/plans/posting-order.md` (168 posts from 9 Nov 2026). The launch block introduces Stacko first; seasonal posts keep their dates. The same dates are in the CRM (`source_metadata.publish_date`).
+
 **Not built yet:**
 - Reels IDEA-032, 041, 058, 072 (dated) and 8 undated reels: need the motion engine and, where there is voice, ElevenLabs takes from the owner.
-- 99 undated ideas (60 static, 26 carousel, 5 story, 8 reel). Storage was 952 MB after the March batch; check the Supabase plan's storage limit before uploading more.
+- IDEA-171 (needs real team photos) and IDEA-180 (needs a real customs-broker partner). Templates IDEA-132, 168, 169 are built but need real numbers/permission.
+- Storage was 952 MB after the March batch; check the Supabase plan's storage limit before uploading the undated posts.
 
 **Flagged in the posts' notes.md (CHECK):** IDEA-018 and IDEA-013 founder quotes (confirm with Nabih), IDEA-086/087/088 Ramadan and Eid dates (moon sighting), IDEA-071 onboarding timeline (confirm with product).
 
