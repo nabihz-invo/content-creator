@@ -109,6 +109,20 @@ export function pngSize(buf) {
     : {};
 }
 
+/** Width and height from a JPEG's SOF marker (baseline or progressive). */
+export function jpegSize(buf) {
+  if (buf.length < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) return {};
+  let i = 2;
+  while (i + 9 < buf.length) {
+    if (buf[i] !== 0xff) return {};
+    const marker = buf[i + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker))
+      return { width: buf.readUInt16BE(i + 7), height: buf.readUInt16BE(i + 5) };
+    i += 2 + buf.readUInt16BE(i + 2);
+  }
+  return {};
+}
+
 function videoInfo(file) {
   const ff = process.env.FFMPEG_PATH;
   if (!ff) return {};
@@ -133,7 +147,7 @@ function fileItem(path, language, kind, slideIndex, metadata = {}) {
     mime_type: MIME[ext],
     file_size: buf.length,
     checksum: createHash("sha256").update(buf).digest("hex"),
-    ...(ext === ".png" ? pngSize(buf) : ext === ".mp4" ? videoInfo(path) : {}),
+    ...(ext === ".png" ? pngSize(buf) : ext === ".jpg" || ext === ".jpeg" ? jpegSize(buf) : ext === ".mp4" ? videoInfo(path) : {}),
     metadata,
   };
 }
