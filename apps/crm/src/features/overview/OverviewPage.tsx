@@ -1,45 +1,18 @@
-import { OVERVIEW_GROUPS } from "@cc/shared";
-import { AlertTriangle, ArrowUpRight, Plus } from "lucide-react";
+import { AlertTriangle, Plus } from "lucide-react";
 import { Link } from "react-router";
-import { ErrorState, ListSkeleton, PageHeader } from "@/components/States";
-import { StatusBadge } from "@/components/StatusBadge";
+import { ListSkeleton, PageHeader } from "@/components/States";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { NewIdeaDialog } from "@/features/inbox/NewIdeaDialog";
+import { StageBadge, StageCards } from "@/features/inbox/StageCards";
 import { formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
-import type { MessageKey } from "@/lib/i18n/en";
-import { useAttentionJobs, useProjects, useStatusCounts } from "@/lib/queries";
-import { cn } from "@/lib/utils";
+import { useAttentionJobs, useProjects } from "@/lib/queries";
 import { useWorkspace } from "@/lib/workspace";
-
-type Group = keyof typeof OVERVIEW_GROUPS;
-const GROUP_ORDER: Group[] = [
-  "awaiting_analysis",
-  "awaiting_answers",
-  "scripts_in_review",
-  "creatives_in_review",
-  "rendering",
-  "media_in_review",
-  "ready_to_publish",
-  "scheduled",
-  "published",
-  "needs_attention",
-];
-/** Groups where a human must act — highlighted. */
-const ACTION_GROUPS = new Set<Group>([
-  "awaiting_answers",
-  "scripts_in_review",
-  "creatives_in_review",
-  "media_in_review",
-  "needs_attention",
-]);
 
 export function OverviewPage() {
   const { t, locale } = useI18n();
   const { workspaceId, can } = useWorkspace();
-  const counts = useStatusCounts(workspaceId);
   const recent = useProjects(workspaceId, { page: 0 });
   const attention = useAttentionJobs(workspaceId);
 
@@ -60,41 +33,7 @@ export function OverviewPage() {
         }
       />
 
-      {counts.isError ? (
-        <ErrorState error={counts.error} onRetry={() => void counts.refetch()} />
-      ) : (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {GROUP_ORDER.map((g) => {
-            const n = counts.data?.groups[g] ?? 0;
-            const highlight = ACTION_GROUPS.has(g) && n > 0;
-            return (
-              <Link
-                key={g}
-                to={`/inbox?group=${g}`}
-                className={cn(
-                  "group rounded-xl border bg-card p-4 shadow-xs transition hover:border-primary/40 hover:shadow-sm",
-                  highlight &&
-                    (g === "needs_attention"
-                      ? "border-destructive/40 bg-destructive/5"
-                      : "border-warning/50 bg-warning/5"),
-                )}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <span className="text-xs leading-snug text-muted-foreground">
-                    {t(`overview.group.${g}` as MessageKey)}
-                  </span>
-                  <ArrowUpRight className="size-3.5 shrink-0 text-muted-foreground opacity-0 transition group-hover:opacity-100 rtl:-scale-x-100" />
-                </div>
-                {counts.isLoading ? (
-                  <Skeleton className="mt-2 h-8 w-10" />
-                ) : (
-                  <div className="mt-2 text-3xl font-semibold tabular-nums">{n}</div>
-                )}
-              </Link>
-            );
-          })}
-        </div>
-      )}
+      <StageCards />
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
@@ -123,7 +62,7 @@ export function OverviewPage() {
                           {t(`source.${p.input_source}`)} · {formatRelative(p.submitted_at, locale)}
                         </div>
                       </div>
-                      <StatusBadge status={p.status} />
+                      <StageBadge stage={p.inbox_stage} />
                     </Link>
                   </li>
                 ))}

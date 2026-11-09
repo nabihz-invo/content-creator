@@ -4,7 +4,6 @@ import {
   type Answers,
   type Brief,
   OVERVIEW_GROUPS,
-  type ProjectStatus,
   type Questionnaire,
   type Script,
 } from "@cc/shared";
@@ -87,31 +86,6 @@ export function useProjects(workspaceId: string | null, filters: ProjectFilters)
       const { data, error, count } = await q;
       if (error) throw error;
       return { rows: (data ?? []) as unknown as ProjectListRow[], count: count ?? 0 };
-    },
-  });
-}
-
-export function useStatusCounts(workspaceId: string | null) {
-  return useQuery({
-    queryKey: ["status-counts", workspaceId],
-    enabled: !!workspaceId,
-    refetchInterval: 30_000,
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("project_status_counts")
-        .select("status, count")
-        .eq("workspace_id", workspaceId!);
-      if (error) throw error;
-      const byStatus = Object.fromEntries((data ?? []).map((r) => [r.status, r.count])) as Partial<
-        Record<ProjectStatus, number>
-      >;
-      const groups = Object.fromEntries(
-        Object.entries(OVERVIEW_GROUPS).map(([g, statuses]) => [
-          g,
-          statuses.reduce((n, s) => n + (byStatus[s] ?? 0), 0),
-        ]),
-      ) as Record<keyof typeof OVERVIEW_GROUPS, number>;
-      return { byStatus, groups };
     },
   });
 }
