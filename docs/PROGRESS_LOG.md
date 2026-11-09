@@ -21,6 +21,12 @@ Template:
 - Verification: pgTAP 21 on hosted in a rolled-back transaction: 16/16, nothing persisted; live split then: 147 new, 203 content, 1 media, 1 declined, 1 ready, 4 cancelled; the count query took about 14 ms; `db push --dry-run` lists only this migration. CRM typecheck, ESLint, Prettier, 19/19 tests. Headless Edge against mocked API data: cards, open a stage, back, search, reload on a stage, 375 px and Arabic RTL, no horizontal overflow, no `content_projects` request on the cards view.
 - Open: owner to run `db push` before the CRM deploys (the list selects `inbox_stage`); not yet checked against the live API. Stages only group existing work: nothing was changed in how the AI redoes declined content or when storage is freed.
 
+## 2026-11-09 — P5-T23 "Needs revision" stage and agent queue — in progress
+- Agent/branch: local Claude Code (main)
+- Why: owner wants commented ideas in their own stage for the agent to redo. They already landed in the computed `declined` stage, but the name clashed with the Decline button (which cancels) and `feedback.mjs list` never showed posts sent back with Request changes.
+- Changes: stage shown as "Needs revision" (EN/AR; key stays `declined`, so no migration); `feedback.mjs list` also lists posts sent back (`--json` is now `{ notes, posts_sent_back }`); CLAUDE.md §3a.
+- Not verified: the stage card in a browser.
+
 ## 2026-11-08 — P5-T20 Idea review shows only what waits for the owner — in progress
 - Agent/branch: local Claude Code (main)
 - Why: owner wants approved or commented ideas off the page. A note and a post's review both leave the status `new`, so those cards came back on reload.

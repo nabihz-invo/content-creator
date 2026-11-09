@@ -405,9 +405,9 @@ export const ar: Record<MessageKey, string> = {
   "inbox.stage.content.help": "تم تحليلها، ويحضّر الذكاء الاصطناعي محتوى HTML لتعتمده.",
   "inbox.stage.media.title": "تجهيز الوسائط",
   "inbox.stage.media.help": "تم اعتماد المحتوى، والوسائط النهائية قيد التجهيز أو بانتظار مراجعتك.",
-  "inbox.stage.declined.title": "مرفوض",
+  "inbox.stage.declined.title": "بحاجة إلى تعديل",
   "inbox.stage.declined.help":
-    "أُعيد مع ملاحظات. يعدّله الذكاء الاصطناعي ثم يعود إلى تحضير المحتوى.",
+    "أعدته مع ملاحظات. يقرؤها وكيل الذكاء الاصطناعي ويعيد العمل عليه، ثم يعود إليك للموافقة.",
   "inbox.stage.ready.title": "جاهز للنشر",
   "inbox.stage.ready.help": "الوسائط النهائية معتمدة وبانتظار النشر.",
   "inbox.stage.published.title": "منشور",

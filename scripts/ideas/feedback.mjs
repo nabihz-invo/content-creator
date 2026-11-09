@@ -6,6 +6,9 @@
  * session the agent lists the open notes, revises each idea, and answers the note; the answer shows
  * under the note in the CRM, the old text stays in the project's history.
  *
+ * `list` also shows finished posts sent back with "Request changes". They have no answer step:
+ * redo the files and re-import them; a changed file clears the review and the post returns for approval.
+ *
  *   node --env-file=workers/.env scripts/ideas/feedback.mjs list [--json]
  *   node --env-file=workers/.env scripts/ideas/feedback.mjs answer <comment-id> \
  *        --response "What changed" [--title "New title"] [--idea-file new-idea.txt]
@@ -42,15 +45,26 @@ async function rest_(path, init = {}) {
 }
 
 if (cmd === "list") {
-  const rows = await rest_(
-    "/idea_comments?status=eq.open&order=created_at.asc&select=id,body,created_at,project:content_projects(id,title,status,original_idea,plan_id:source_metadata->>plan_id)",
-  );
+  const [rows, posts] = await Promise.all([
+    rest_(
+      "/idea_comments?status=eq.open&order=created_at.asc&select=id,body,created_at,project:content_projects(id,title,status,original_idea,plan_id:source_metadata->>plan_id)",
+    ),
+    rest_(
+      "/content_projects?status=eq.new&source_metadata->review->>status=eq.changes_requested&order=submitted_at.asc&select=id,title,plan_id:source_metadata->>plan_id,review:source_metadata->review",
+    ),
+  ]);
   if (rest.includes("--json")) {
-    console.log(JSON.stringify(rows, null, 2));
-  } else if (!rows.length) {
-    console.log("No open notes on ideas.");
+    console.log(JSON.stringify({ notes: rows, posts_sent_back: posts }, null, 2));
+  } else if (!rows.length && !posts.length) {
+    console.log("No open notes on ideas and no posts sent back.");
   } else {
-    console.log(`${rows.length} open note(s):\n`);
+    if (posts.length) console.log(`${posts.length} finished post(s) sent back for changes:\n`);
+    for (const p of posts) {
+      console.log(`── post ${p.plan_id ?? "(no plan ID)"}  ${p.title}`);
+      console.log(`   project ${p.id}  (${p.review.at.slice(0, 16).replace("T", " ")})`);
+      console.log(`   CHANGES: ${(p.review.note ?? "").replace(/\n/g, "\n            ")}\n`);
+    }
+    if (rows.length) console.log(`${rows.length} open note(s):\n`);
     for (const c of rows) {
       const p = c.project;
       console.log(`── note ${c.id}  (${c.created_at.slice(0, 16).replace("T", " ")})`);

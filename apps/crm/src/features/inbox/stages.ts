@@ -1,4 +1,7 @@
-/** The Idea inbox stages, in flow order. Worked out by `public.inbox_stage` in the database. */
+/**
+ * The Idea inbox stages, in flow order. Worked out by `public.inbox_stage` in the database.
+ * `declined` is the stage shown as "Needs revision": sent back with comments, waiting for the agent.
+ */
 export const FLOW_STAGES = ["new", "content", "media", "declined", "ready", "published"] as const;
 
 /** Outside the flow: shown as small links under the stage cards. */

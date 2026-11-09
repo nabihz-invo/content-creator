@@ -406,9 +406,9 @@ export const en = {
   "inbox.stage.media.title": "Making media",
   "inbox.stage.media.help":
     "Content approved. The final media is being made or waits for your check.",
-  "inbox.stage.declined.title": "Declined",
+  "inbox.stage.declined.title": "Needs revision",
   "inbox.stage.declined.help":
-    "Sent back with comments. The AI revises it, then it returns to Preparing content.",
+    "You sent it back with comments. The AI agent reads them and redoes it, then it returns for your approval.",
   "inbox.stage.ready.title": "Ready to publish",
   "inbox.stage.ready.help": "Final media approved and waiting to be posted.",
   "inbox.stage.published.title": "Published",
