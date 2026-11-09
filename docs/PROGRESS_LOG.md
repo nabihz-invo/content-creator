@@ -14,6 +14,13 @@ Template:
 
 ---
 
+## 2026-11-09 — P5-T23 Idea inbox stage cards — in progress
+- Agent/branch: local Claude Code (main)
+- Why: owner found the inbox statuses confusing and wants a faster page: six stages as cards, ideas shown on click.
+- Changes: migration `20261109100000` (`inbox_stage`, `inbox_stage_counts`); pgTAP `21_inbox_stages`; `features/inbox/StageCards.tsx`, `stages.ts`; `InboxPage` shows the cards first and loads a stage's list when opened (`?stage=`; Overview's `?group=` links still work); `useStageCounts`; cards show the stage instead of the status; Analyze only on New and failed; EN/AR texts.
+- Verification: pgTAP 21 on hosted in a rolled-back transaction: 16/16, nothing persisted; live split then: 147 new, 203 content, 1 media, 1 declined, 1 ready, 4 cancelled; the count query took about 14 ms; `db push --dry-run` lists only this migration. CRM typecheck, ESLint, Prettier, 19/19 tests. Headless Edge against mocked API data: cards, open a stage, back, search, reload on a stage, 375 px and Arabic RTL, no horizontal overflow, no `content_projects` request on the cards view.
+- Open: owner to run `db push` before the CRM deploys (the list selects `inbox_stage`); not yet checked against the live API. Stages only group existing work: nothing was changed in how the AI redoes declined content or when storage is freed.
+
 ## 2026-11-08 — P5-T20 Idea review shows only what waits for the owner — in progress
 - Agent/branch: local Claude Code (main)
 - Why: owner wants approved or commented ideas off the page. A note and a post's review both leave the status `new`, so those cards came back on reload.

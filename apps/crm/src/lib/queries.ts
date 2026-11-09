@@ -20,6 +20,7 @@ import type {
   WorkflowJob,
 } from "@/types/db";
 import { needsReview } from "@/features/ideas/needs-review";
+import type { InboxStage } from "@/features/inbox/stages";
 import { supabase } from "./supabase";
 
 export const PAGE_SIZE = 24;
@@ -27,6 +28,7 @@ export const PAGE_SIZE = 24;
 export interface ProjectFilters {
   search?: string;
   statusGroup?: keyof typeof OVERVIEW_GROUPS | "";
+  stage?: InboxStage | null;
   source?: InputSource | "";
   contentType?: NonNullable<ContentProject["content_type"]> | "";
   brandId?: string;
@@ -52,6 +54,7 @@ export type ProjectListRow = Pick<
   /** From source_metadata: the content plan's format label (e.g. "FAQ Reel") and planned day. */
   format: string | null;
   publish_date: string | null;
+  inbox_stage: InboxStage;
 };
 
 export function useProjects(workspaceId: string | null, filters: ProjectFilters) {
@@ -67,7 +70,7 @@ export function useProjects(workspaceId: string | null, filters: ProjectFilters)
       let q = supabase
         .from("content_projects")
         .select(
-          `id, title, original_idea, input_source, source_url, status, brand_id, duplicate_of, submitted_at, content_type, format:source_metadata->>format, publish_date:source_metadata->>publish_date, brands(name), ${tagJoin}`,
+          `id, title, original_idea, input_source, source_url, status, brand_id, duplicate_of, submitted_at, content_type, format:source_metadata->>format, publish_date:source_metadata->>publish_date, inbox_stage, brands(name), ${tagJoin}`,
           { count: "exact" },
         )
         .eq("workspace_id", workspaceId!)
@@ -76,6 +79,7 @@ export function useProjects(workspaceId: string | null, filters: ProjectFilters)
       if (filters.search?.trim())
         q = q.textSearch("search", filters.search.trim(), { type: "websearch", config: "simple" });
       if (filters.statusGroup) q = q.in("status", [...OVERVIEW_GROUPS[filters.statusGroup]!]);
+      if (filters.stage) q = q.eq("inbox_stage", filters.stage);
       if (filters.source) q = q.eq("input_source", filters.source);
       if (filters.contentType) q = q.eq("content_type", filters.contentType);
       if (filters.brandId) q = q.eq("brand_id", filters.brandId);
@@ -108,6 +112,24 @@ export function useStatusCounts(workspaceId: string | null) {
         ]),
       ) as Record<keyof typeof OVERVIEW_GROUPS, number>;
       return { byStatus, groups };
+    },
+  });
+}
+
+/** Ideas per inbox stage. Under "status-counts" so everything that changes a status refreshes it. */
+export function useStageCounts(workspaceId: string | null) {
+  return useQuery({
+    queryKey: ["status-counts", "stages", workspaceId],
+    enabled: !!workspaceId,
+    refetchInterval: 30_000,
+    queryFn: async () => {
+      const { data, error } = await supabase.rpc("inbox_stage_counts", {
+        p_workspace_id: workspaceId!,
+      });
+      if (error) throw error;
+      return Object.fromEntries(
+        ((data ?? []) as { stage: InboxStage; total: number }[]).map((r) => [r.stage, r.total]),
+      ) as Partial<Record<InboxStage, number>>;
     },
   });
 }

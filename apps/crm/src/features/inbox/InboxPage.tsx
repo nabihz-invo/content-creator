@@ -1,6 +1,7 @@
 import { OVERVIEW_GROUPS } from "@cc/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
+  ArrowLeft,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
@@ -19,7 +20,6 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { EmptyState, ErrorState, ListSkeleton, PageHeader } from "@/components/States";
-import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -44,6 +44,8 @@ import { useWorkspace } from "@/lib/workspace";
 import type { InputSource } from "@/types/db";
 import { CsvImportDialog } from "./CsvImportDialog";
 import { NewIdeaDialog } from "./NewIdeaDialog";
+import { StageBadge, StageCards, StageHeading } from "./StageCards";
+import { parseInboxStage } from "./stages";
 
 const SOURCES: InputSource[] = ["manual", "telegram", "csv", "url"];
 type Group = keyof typeof OVERVIEW_GROUPS;
@@ -57,16 +59,102 @@ function useDebounced<T>(value: T, ms = 300) {
   return v;
 }
 
+function useSetParam() {
+  const [params, setParams] = useSearchParams();
+  return (key: string, value: string) => {
+    const next = new URLSearchParams(params);
+    if (value) next.set(key, value);
+    else next.delete(key);
+    if (key !== "page") next.delete("page");
+    setParams(next, { replace: true });
+  };
+}
+
+function parseGroup(value: string | null): Group | "" {
+  return value && value in OVERVIEW_GROUPS ? value : "";
+}
+
+/** Stage cards first; the ideas of a stage (or a search) load only once it is opened. */
 export function InboxPage() {
   const { t } = useI18n();
-  const { workspaceId, can } = useWorkspace();
-  const [params, setParams] = useSearchParams();
+  const { can } = useWorkspace();
+  const [params] = useSearchParams();
   const [search, setSearch] = useState(params.get("q") ?? "");
   const debounced = useDebounced(search);
+  const setParam = useSetParam();
+
+  const stage = parseInboxStage(params.get("stage"));
+  const group = parseGroup(params.get("group"));
+  const showList = Boolean(stage || group || debounced.trim());
+
+  useEffect(() => {
+    if ((params.get("q") ?? "") !== debounced) setParam("q", debounced);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounced]);
+
+  return (
+    <>
+      <PageHeader
+        title={t("inbox.title")}
+        subtitle={t("inbox.subtitle")}
+        actions={
+          can("edit") && (
+            <>
+              <CsvImportDialog>
+                <Button variant="outline">
+                  <Upload />
+                  {t("inbox.importCsv")}
+                </Button>
+              </CsvImportDialog>
+              <NewIdeaDialog>
+                <Button>
+                  <Plus />
+                  {t("idea.new")}
+                </Button>
+              </NewIdeaDialog>
+            </>
+          )
+        }
+      />
+
+      {showList && (
+        <Button variant="ghost" size="sm" asChild className="mb-3 -ms-2">
+          <Link to="/inbox" onClick={() => setSearch("")}>
+            <ArrowLeft className="rtl:-scale-x-100" />
+            {t("inbox.allStages")}
+          </Link>
+        </Button>
+      )}
+
+      <div className="relative mb-4 max-w-md">
+        <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          type="search"
+          className="ps-9"
+          placeholder={t("inbox.searchPlaceholder")}
+          aria-label={t("common.search")}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      {showList ? <IdeaList key={stage ?? group ?? "search"} search={debounced} /> : <StageCards />}
+    </>
+  );
+}
+
+function IdeaList({ search }: { search: string }) {
+  const { t } = useI18n();
+  const { workspaceId, can } = useWorkspace();
+  const [params] = useSearchParams();
+  const setParam = useSetParam();
+  const stage = parseInboxStage(params.get("stage"));
+  const group = parseGroup(params.get("group"));
 
   const filters: ProjectFilters = {
-    search: debounced,
-    statusGroup: (params.get("group") as Group | null) ?? "",
+    search,
+    statusGroup: group,
+    stage,
     source: (params.get("source") as InputSource | null) ?? "",
     contentType: (params.get("type") as ContentType | null) ?? "",
     brandId: params.get("brand") ?? undefined,
@@ -79,22 +167,9 @@ export function InboxPage() {
   const brands = useBrands(workspaceId);
   const tags = useTags(workspaceId);
 
-  function setParam(key: string, value: string) {
-    const next = new URLSearchParams(params);
-    if (value) next.set(key, value);
-    else next.delete(key);
-    if (key !== "page") next.delete("page");
-    setParams(next, { replace: true });
-  }
-
-  useEffect(() => {
-    if ((params.get("q") ?? "") !== debounced) setParam("q", debounced);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounced]);
-
   const qc = useQueryClient();
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const analyzable = (status: string) => status === "new" || status === "failed";
+  const analyzable = (p: ProjectListRow) => p.inbox_stage === "new" || p.inbox_stage === "failed";
   const toggle = (id: string) =>
     setSelected((prev) => {
       const next = new Set(prev);
@@ -122,65 +197,22 @@ export function InboxPage() {
   const page = filters.page ?? 0;
   const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const hasFilters = Boolean(
-    debounced ||
-    filters.statusGroup ||
-    filters.source ||
-    filters.contentType ||
-    filters.brandId ||
-    filters.tagId,
+    search || filters.source || filters.contentType || filters.brandId || filters.tagId,
   );
 
   return (
     <>
-      <PageHeader
-        title={t("inbox.title")}
-        subtitle={t("inbox.subtitle")}
-        actions={
-          can("edit") && (
-            <>
-              <CsvImportDialog>
-                <Button variant="outline">
-                  <Upload />
-                  {t("inbox.importCsv")}
-                </Button>
-              </CsvImportDialog>
-              <NewIdeaDialog>
-                <Button>
-                  <Plus />
-                  {t("idea.new")}
-                </Button>
-              </NewIdeaDialog>
-            </>
-          )
-        }
-      />
+      {stage ? (
+        <StageHeading stage={stage} total={projects.data?.count} />
+      ) : (
+        group && (
+          <h2 className="mb-4 text-lg font-semibold">
+            {t(`overview.group.${group}` as MessageKey)}
+          </h2>
+        )
+      )}
 
-      <div className="mb-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-[2fr_repeat(4,1fr)]">
-        <div className="relative sm:col-span-2 lg:col-span-1">
-          <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            type="search"
-            className="ps-9"
-            placeholder={t("inbox.searchPlaceholder")}
-            aria-label={t("common.search")}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-        <NativeSelect
-          aria-label={t("inbox.filter.status")}
-          value={filters.statusGroup}
-          onChange={(e) => setParam("group", e.target.value)}
-        >
-          <option value="">
-            {t("inbox.filter.status")}: {t("common.all")}
-          </option>
-          {(Object.keys(OVERVIEW_GROUPS) as Group[]).map((g) => (
-            <option key={g} value={g}>
-              {t(`overview.group.${g}` as MessageKey)}
-            </option>
-          ))}
-        </NativeSelect>
+      <div className="mb-4 grid gap-2 sm:grid-cols-3">
         <NativeSelect
           aria-label={t("inbox.filter.source")}
           value={filters.source}
@@ -232,7 +264,7 @@ export function InboxPage() {
       ) : projects.isLoading ? (
         <ListSkeleton rows={8} />
       ) : !projects.data?.rows.length ? (
-        <EmptyState message={hasFilters ? t("inbox.empty") : t("inbox.emptyAll")} />
+        <EmptyState message={hasFilters ? t("inbox.empty") : t("inbox.stageEmpty")} />
       ) : (
         <>
           {selected.size > 0 && (
@@ -258,7 +290,7 @@ export function InboxPage() {
                   image={images.data?.[p.id] ? urls.data?.[images.data[p.id]!] : undefined}
                   selected={selected.has(p.id)}
                 />
-                {can("edit") && analyzable(p.status) && (
+                {can("edit") && analyzable(p) && (
                   <div className="absolute end-2 top-2 z-10 rounded-md bg-background/90 p-1 shadow-sm">
                     <Checkbox
                       aria-label={`${t("inbox.selectRow")}: ${p.title}`}
@@ -394,7 +426,7 @@ function ProjectCard({
           </div>
         )}
         <div className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 pt-2 text-xs text-muted-foreground">
-          <StatusBadge status={p.status} />
+          <StageBadge stage={p.inbox_stage} />
           {p.publish_date ? (
             <span className="inline-flex items-center gap-1" dir="ltr">
               <CalendarDays className="size-3" />
