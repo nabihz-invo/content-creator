@@ -185,7 +185,7 @@ def idea_040():
         "ar": dict(h="راحة البال<br><em>كمان ميزة.</em>", s="اعرف مخزونك بلا ما تتّصل بحدا.", c="0 مفاجآت"),
     }
     for lang, t in T.items():
-        body = f"""<img class="bg" src="/assets/post-images/final/SC-03.jpg" alt="">
+        body = f"""<img class="bg" src="/assets/post-images/final/SC-03.jfif" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
 <h1 class="h1">{t['h']}</h1>
 <p class="sub" style="top:{380 if lang == 'en' else 420}px">{t['s']}</p>

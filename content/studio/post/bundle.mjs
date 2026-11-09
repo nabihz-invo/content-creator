@@ -12,7 +12,7 @@ const files = []; let out = null;
 for (let i = 0; i < args.length; i++) { if (args[i] === '--out') out = args[++i]; else files.push(args[i]); }
 const resolveRef = (dir, ref) => ref.startsWith('/') ? path.join(ROOT, ref) : path.resolve(dir, ref);
 
-const MIME = { '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.css': 'text/css' };
+const MIME = { '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.jfif': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.css': 'text/css' };
 const dataUri = (p) => `data:${MIME[path.extname(p).toLowerCase()] || 'application/octet-stream'};base64,${fs.readFileSync(p).toString('base64')}`;
 
 function inlineCss(cssPath, isArabic) {

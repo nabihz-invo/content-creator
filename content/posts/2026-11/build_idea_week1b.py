@@ -121,7 +121,7 @@ def idea_038():
                    ok="كل التحويلات وصلت"),
     }
     for lang, t in T.items():
-        body = f"""<img class="bg" src="/assets/post-images/final/SC-03.jpg" alt="">
+        body = f"""<img class="bg" src="/assets/post-images/final/SC-03.jfif" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
 <div class="halo"></div>
 <div class="kick">{t['k']}</div>

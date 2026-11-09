@@ -69,7 +69,7 @@ def idea_176():
 
 def idea_177():
     for lang in ("en", "ar"):
-        dark_static("IDEA-177", "IDEA-177_ramadan-sahoor-check", lang, OB("SC-03"),
+        dark_static("IDEA-177", "IDEA-177_ramadan-sahoor-check", lang, "/assets/post-images/final/SC-03.jfif",
                     T_(lang, "Ramadan nights.<br><em>Stock checks move to sahoor.</em>", "ليالي رمضان.<br><em>تشييك المخزون صار عالسحور.</em>"),
                     T_(lang, "Check it from your phone, whenever your day ends.", "شيّكه من تلفونك، إيمتى ما خلص نهارك."),
                     extra=chip("left:560px;top:760px", T_(lang, "All transfers arrived ✓", "كل التحويلات وصلت ✓"), "var(--glow)"),

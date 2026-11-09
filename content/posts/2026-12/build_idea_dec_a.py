@@ -307,7 +307,7 @@ def idea_039():
     }
     for lang, t in T.items():
         h, s = t["cover"]
-        sl = [("cover", f"""<div class="panel" style="top:520px;height:700px"><img src="/assets/post-images/final/SC-03.jpg" alt="" style="width:952px;left:0;top:-160px"></div>
+        sl = [("cover", f"""<div class="panel" style="top:520px;height:700px"><img src="/assets/post-images/final/SC-03.jfif" alt="" style="width:952px;left:0;top:-160px"></div>
 <h1 class="h1">{h}</h1><p class="sub">{s}</p>""")]
         a, b, c = t["c1"]
         cards = [f'<div class="wc pc"><div class="lab">{a}</div><b class="t">{b}</b><div class="t2 okc">{c}</div></div>']
