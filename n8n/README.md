@@ -3,7 +3,7 @@
 n8n orchestrates; the stage logic (prompts, schemas, validation, saving) lives
 in the `api` Edge Function (ADR-0006). The workflows are therefore thin and
 generated from `n8n/scripts/build-workflows.mjs`:
-test
+ 
 | File | What it does |
 |------|--------------|
 | `workflows/stage-runner.json` | Webhook `POST /webhook/cc/:workflow` → verify HMAC → `notify`: look up the owner (`notification_target` RPC) and send a Telegram message in their language; anything else: signed `POST /functions/v1/api/internal/run-job` (with retries). Covers Workflows B, C, D (and later E–G). |
