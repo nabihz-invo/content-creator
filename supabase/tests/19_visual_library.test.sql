@@ -7,8 +7,9 @@ select tests.create_user('vl-admin@example.com') as admin \gset
 select tests.create_user('vl-rev@example.com') as reviewer \gset
 select tests.create_user('vl-out@example.com') as outsider \gset
 select tests.workspace_of(:'admin') as ws \gset
-select tests.add_member(:'ws', :'reviewer', 'reviewer');
+insert into workspace_members (workspace_id, user_id, role) values (:'ws', :'reviewer', 'reviewer');
 insert into brands (workspace_id, name) values (:'ws', 'VL brand') returning id as brand \gset
+insert into brand_members (brand_id, user_id) values (:'brand', :'reviewer');
 
 -- Entries through RLS
 select tests.as_user(:'admin');

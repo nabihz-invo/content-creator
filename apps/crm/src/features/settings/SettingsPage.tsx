@@ -13,10 +13,11 @@ import { api } from "@/lib/api";
 import { type Locale, useI18n } from "@/lib/i18n";
 import { supabase } from "@/lib/supabase";
 import { useWorkspace } from "@/lib/workspace";
+import { TeamCard } from "./TeamCard";
 
 export function SettingsPage() {
   const { t, setLocale } = useI18n();
-  const { profile, userId, workspaceName, role } = useWorkspace();
+  const { profile, userId, workspaceName, role, can } = useWorkspace();
   const qc = useQueryClient();
   const [name, setName] = useState(profile?.display_name ?? "");
   const [locale, setLoc] = useState<Locale>(profile?.locale ?? "en");
@@ -159,6 +160,8 @@ export function SettingsPage() {
             </dl>
           </CardContent>
         </Card>
+
+        {can("admin") && <TeamCard />}
       </div>
     </>
   );

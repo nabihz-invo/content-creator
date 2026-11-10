@@ -60,7 +60,7 @@ export async function requireWorkspaceRole(
   return { workspaceId: row.workspace_id, role: row.role };
 }
 
-/** Checks the user's role in the project's workspace before any other work (404 hides foreign projects). */
+/** Checks the user's role and brand link for the project before any other work (404 hides foreign projects). */
 export async function requireProjectRole(
   sql: Sql,
   userId: string,
@@ -70,6 +70,9 @@ export async function requireProjectRole(
   const [row] = await sql<{ role: Role | null }[]>`
     select m.role from public.content_projects p
     left join public.workspace_members m on m.workspace_id = p.workspace_id and m.user_id = ${userId}
+      and (m.role = 'admin' or exists (
+        select 1 from public.brand_members bm where bm.brand_id = p.brand_id and bm.user_id = ${userId}
+      ))
     where p.id = ${projectId}`;
   if (!row || !row.role) throw new ApiError("not_found", "project not found");
   if (!roles.includes(row.role))

@@ -15,6 +15,15 @@ export interface Profile {
 export interface Workspace {
   id: string;
   name: string;
+  created_by?: string | null;
+}
+
+export interface WorkspaceMember {
+  user_id: string;
+  email: string;
+  display_name: string | null;
+  role: MemberRole;
+  brand_ids: string[];
 }
 
 export interface WorkspaceMembership {

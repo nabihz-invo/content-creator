@@ -168,7 +168,12 @@ export async function importCsv(
   }
 
   const brands = await sql<{ id: string; name: string }[]>`
-    select id, name from public.brands where workspace_id = ${input.workspaceId} and archived_at is null`;
+    select b.id, b.name from public.brands b
+    join public.workspace_members m on m.workspace_id = b.workspace_id and m.user_id = ${input.actorId}
+    where b.workspace_id = ${input.workspaceId} and b.archived_at is null
+      and (m.role = 'admin' or exists (
+        select 1 from public.brand_members bm where bm.brand_id = b.id and bm.user_id = ${input.actorId}
+      ))`;
   const brandIdByName = new Map(brands.map((b) => [b.name.toLowerCase(), b.id]));
   if (input.request.brand_id && !brands.some((b) => b.id === input.request.brand_id)) {
     throw new ApiError("validation_failed", "brand_id is not in this workspace");
@@ -200,18 +205,19 @@ export async function importCsv(
         const hash = await dedupeHash(rec.original_idea, rec.source_url);
         const [existing] = await sql<{ id: string }[]>`
           select id from public.content_projects
-          where workspace_id = ${input.workspaceId} and dedupe_hash = ${hash} and status <> 'cancelled'
+          where workspace_id = ${input.workspaceId} and brand_id is not distinct from ${rec.brand_id ?? null}
+            and dedupe_hash = ${hash} and status <> 'cancelled'
           order by created_at limit 1`;
         if (existing) {
           report.push({ row: rowNumber, status: "duplicate", duplicate_of: existing.id });
-        } else if (seenInFile.has(hash)) {
+        } else if (seenInFile.has(`${rec.brand_id ?? ""}:${hash}`)) {
           report.push({
             row: rowNumber,
             status: "duplicate",
-            error: `same idea as row ${seenInFile.get(hash)}`,
+            error: `same idea as row ${seenInFile.get(`${rec.brand_id ?? ""}:${hash}`)}`,
           });
         } else {
-          seenInFile.set(hash, rowNumber);
+          seenInFile.set(`${rec.brand_id ?? ""}:${hash}`, rowNumber);
           report.push({ row: rowNumber, status: "valid" });
         }
         continue;

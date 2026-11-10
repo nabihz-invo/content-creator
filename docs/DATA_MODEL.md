@@ -177,13 +177,14 @@ Rows from an existing content plan are created with `create_project()` (status `
 
 ## 6. RLS summary
 
-- Helper `is_member(workspace_id, roles[])`.
-- `select`: any member of the project's workspace.
+- Helpers `is_member(workspace_id, roles[])` and `has_brand_access(workspace_id, brand_id, roles[])` (P5-T24).
+- Brand separation (`brand_members`): admins reach every brand in their workspace; editors and reviewers reach only the brands they are linked to (one or several). A project with no brand is admin-only. RPCs enforce the same through `require_role` and `library_role`.
+- `select`: a member of the project's workspace with access to its brand.
 - `insert/update` on editable drafts: `admin`, `editor`.
 - `approvals insert`: only via `record_approval` (RPC) — direct insert denied.
 - `brands`, `ai_settings`, `connected_accounts` write: `admin` only.
 - `workflow_jobs`, `workflow_events`: read for members; write only service role / RPCs.
-- Storage buckets: `brand-assets` (members read, admin write), `imports` (editor write), `previews` (members read via signed URL, worker write), `media` (members read via signed URL, worker write).
+- Storage buckets, read limited to the brand as above: `brand-assets` (members read, admin write), `imports` (editor write), `previews` (members read via signed URL, worker write), `media` (members read via signed URL, worker write).
 
 ## 7. Storage layout
 

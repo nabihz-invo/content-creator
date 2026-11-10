@@ -7,6 +7,9 @@ This folder holds everything for Stacko's (ستاكو) social content: plans, sk
 - **Reels, stories, motion carousels (HTML motion engine)** → `stacko-content-studio` (`../.claude/skills/stacko-content-studio/SKILL.md`).
 - Always load `stacko-brand` too (logo, colours, fonts, voice). Product facts only from `docs/product-bible.md` or the plan row.
 
+## Other brands
+The rules in this file are for Stacko. **Aiphin** (the agency) has its own kit in `brands/aiphin/` (start with its README) and its own guide, the `aiphin-brand` skill. Never mix the two kits, and pass `--brand Aiphin` to the CRM scripts (they default to Stacko).
+
 ## Layout
 ```
 CLAUDE.md · README.md
