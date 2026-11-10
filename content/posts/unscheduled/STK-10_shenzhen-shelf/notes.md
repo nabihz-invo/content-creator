@@ -20,3 +20,5 @@ Support line: Track every import by sea or air, leg by leg.
 - `source/` HTML to edit (links /assets/…; render with `node studio/post/render.mjs`)
 - `en/`, `ar/` final PNGs (`slide-NN.png`, the layout the CRM importer reads)
 - `html/` self-contained editable HTML (Edit text + Save PNG)
+
+Revised 10 Nov 2026: Arabic version built from the approved English layout (review comment: approved, build the Arabic).

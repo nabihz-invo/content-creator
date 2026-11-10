@@ -20,3 +20,5 @@ Support line: Sound familiar?
 - `source/` HTML to edit (links /assets/…; render with `node studio/post/render.mjs`)
 - `en/`, `ar/` final PNGs (`slide-NN.png`, the layout the CRM importer reads)
 - `html/` self-contained editable HTML (Edit text + Save PNG)
+
+Revised 10 Nov 2026: Reworked from review: headline kept at the same size, "Sound familiar?" replaced by a problem line, Today / With Stacko cards added, Arabic version added. img/ holds map-element sprites. source/ is the master for this post.

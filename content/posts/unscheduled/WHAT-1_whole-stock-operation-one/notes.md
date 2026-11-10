@@ -20,3 +20,5 @@ Support line: 7 features listed as chips
 - `source/` HTML to edit (links /assets/…; render with `node studio/post/render.mjs`)
 - `en/`, `ar/` final PNGs (`slide-NN.png`, the layout the CRM importer reads)
 - `html/` self-contained editable HTML (Edit text + Save PNG)
+
+Revised 10 Nov 2026: Arabic: مخزون replaced by مخازن in the headline and the map chip (review comment).

@@ -183,17 +183,16 @@ def idea_049():
 .shade-b{background:linear-gradient(180deg,rgba(244,248,250,0),rgba(244,248,250,.95) 60%)}
 """
     T = {
-        "en": dict(h="Empty shelves hurt twice<br><em>on White Friday.</em>", s="Once in lost sales. Once in lost customers.",
-                   cd="2 days to White Friday", c1="Lost sale", c2="Lost customer"),
-        "ar": dict(h="الرفّ الفاضي بالوايت فرايداي<br><em>بيوجع مرّتين.</em>", s="مرّة ببيعة راحت. ومرّة بزبون راح.",
-                   cd="يومين للوايت فرايداي", c1="بيعة راحت", c2="زبون راح"),
+        "en": dict(h="Empty shelves<br><em>hurt twice.</em>", s="Once in lost sales. Once in lost customers.",
+                   c1="Lost sale", c2="Lost customer"),
+        "ar": dict(h="الرفّ الفاضي<br><em>بيوجع مرّتين.</em>", s="مرّة ببيعة راحت. ومرّة بزبون راح.",
+                   c1="بيعة راحت", c2="زبون راح"),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/SC-05.jpg" alt="">
 <div class="veil"></div><div class="shade-b"></div>
 <h1 class="h1">{t['h']}</h1>
 <p class="sub" style="top:{352 if lang == 'en' else 390}px">{t['s']}</p>
-<div class="cd"><i></i>{t['cd']}</div>
 <div class="gap"></div>
 <div class="cost c1"><b class="ltr">−1</b>{t['c1']}</div>
 <div class="cost c2"><b class="ltr">−1</b>{t['c2']}</div>

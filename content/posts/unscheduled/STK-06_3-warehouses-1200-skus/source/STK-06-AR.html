@@ -1,0 +1,97 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>STK-06-AR · 3 warehouses 1 spreadsheet</title>
+<link rel="stylesheet" href="/assets/brand/brand.css"><style>
+.h1{position:absolute;left:64px;top:160px;width:952px;font-size:72px}
+.light .h1 em{font-style:normal;color:var(--signal)} .dark .h1 em{font-style:normal;color:var(--glow)}
+.sub{position:absolute;left:64px;top:336px;width:952px;font-size:32px}
+.kick{position:absolute;left:64px;top:156px;font-size:20px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.light .kick{color:var(--signal)} .dark .kick{color:var(--dolphin)}
+.card{background:#fff;border-radius:26px;box-shadow:0 14px 40px rgba(22,59,98,.12)}
+.dark .glass{background:rgba(255,255,255,.06);border:1px solid rgba(201,216,228,.2);border-radius:26px}
+svg.ic{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.grid-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(121,192,222,.18) 1.4px,transparent 1.6px);background-size:28px 28px;pointer-events:none}
+.light .grid-bg{background-image:radial-gradient(rgba(44,89,116,.13) 1.4px,transparent 1.6px)}
+
+.sheet{position:absolute;left:0;right:0;top:140px;bottom:120px;
+ background-image:linear-gradient(rgba(121,192,222,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(121,192,222,.10) 1px,transparent 1px);
+ background-size:180px 58px;-webkit-mask-image:radial-gradient(90% 70% at 60% 50%,#000 30%,transparent 80%);mask-image:radial-gradient(90% 70% at 60% 50%,#000 30%,transparent 80%)}
+.nums{position:absolute;left:64px;top:270px;display:flex;flex-direction:column;gap:6px}
+.n{display:flex;align-items:baseline;gap:26px}
+.n b{font-size:230px;font-weight:600;letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.n span{font-size:56px;font-weight:600;letter-spacing:-.03em;color:var(--visor)}
+.n.hi b,.n.hi span{color:var(--glow)}
+.q2{position:absolute;left:64px;top:1120px;font-size:40px;color:#fff;font-weight:400}
+.nums{top:128px;gap:0}
+.n{height:186px;align-items:flex-end}
+.n b{line-height:186px}
+.prob{position:absolute;left:64px;right:64px;top:722px;font-size:36px;color:var(--visor)}
+.cards{position:absolute;left:64px;right:64px;top:790px;height:328px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cd6{border-radius:26px;padding:22px 24px;position:relative;overflow:hidden}
+.cd6 h3{font-size:26px;font-weight:600;position:relative}
+.today{background:rgba(255,255,255,.06);border:1px solid rgba(201,216,228,.2);color:var(--visor)}
+.sh{margin-top:16px;border:1px solid rgba(201,216,228,.28);border-radius:12px;overflow:hidden}
+.sr{display:grid;grid-template-columns:1.15fr 1fr 1fr;height:56px;border-bottom:1px solid rgba(201,216,228,.2)}
+.sr:last-child{border-bottom:0}
+.sr>*{display:flex;align-items:center;justify-content:center;border-inline-start:1px solid rgba(201,216,228,.2);font-size:22px;font-weight:600}
+.sr>*:first-child{border-inline-start:0;color:#fff}
+.sr u{display:block;width:60%;height:10px;border-radius:5px;background:rgba(201,216,228,.28);text-decoration:none}
+.sr .x{color:#fff;font-size:28px;background:rgba(201,216,228,.14)}
+.stale{position:absolute;left:24px;right:24px;bottom:22px;font-size:22px;color:rgba(201,216,228,.75)}
+.live{background:#EEF6F9;color:var(--abyss)}
+.live h3{color:var(--abyss)}
+.mp{position:absolute;left:0;top:0;width:100%;height:100%}
+.live img{position:absolute;display:block}
+.wp,.et,.lw{position:absolute;white-space:nowrap;border-radius:999px;font-size:20px;font-weight:600;padding:3px 11px;direction:ltr}
+.wp{background:#fff;color:var(--abyss);box-shadow:0 3px 10px rgba(14,36,64,.16)}
+.et{background:var(--abyss);color:#fff}
+.lw{background:#FBE3E7;color:#B4233C}
+.dotg{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--glow);box-shadow:0 0 0 3px rgba(14,36,64,.9),0 0 14px var(--glow)}
+.q3{position:absolute;left:64px;right:64px;top:1146px;font-size:36px;color:#fff;font-weight:500}
+[dir=rtl] .n span,[dir=rtl] .cd6 h3{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;letter-spacing:0}
+[dir=rtl] .n b{direction:ltr}
+[dir=rtl] .stale{font-size:23px}
+[dir=rtl] .lw{direction:rtl}
+
+[dir=rtl] .h1{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;letter-spacing:0;line-height:1.38;font-size:60px}
+[dir=rtl] .sub{font-size:31px;line-height:1.45}
+[dir=rtl] .kick{letter-spacing:0;text-transform:none;font-size:22px;left:auto;right:64px}
+.aword{font-family:'Noto Kufi Arabic',sans-serif;font-weight:700;font-size:38px;line-height:1}
+.dark .aword{color:#fff}.dark .aword i{color:var(--glow)}.light .aword{color:var(--abyss)}.light .aword i{color:var(--signal)}
+.aword i{font-style:normal}
+.top .lockup{direction:ltr}
+[dir=rtl] .foot .by b{direction:ltr;display:inline-block}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+[dir=rtl] .nums{left:auto;right:64px}
+</style></head><body>
+<div class="post dark">
+
+<div class="sheet"></div>
+<div class="nums">
+ <div class="n"><b>3</b><span>مخازن.</span></div>
+ <div class="n"><b>1,200</b><span>صنف.</span></div>
+ <div class="n hi"><b>1</b><span>ملف.</span></div>
+</div>
+<p class="prob">كل حركة بتنتظر حدا يحدّث الملف.</p>
+<div class="cards">
+ <div class="cd6 today"><h3>اليوم</h3>
+  <div class="sh"><div class="sr"><span dir="ltr">WH-01</span><span><u></u></span><span><u></u></span></div><div class="sr"><span dir="ltr">WH-02</span><span class="x">?</span><span><u></u></span></div><div class="sr"><span dir="ltr">WH-03</span><span><u></u></span><span><u></u></span></div></div>
+  <div class="stale">آخر تحديث: قبل 3 أيام</div></div>
+ <div class="cd6 live" dir="ltr">
+  <svg class="mp" viewBox="0 0 464 328"><path d="M112 262C190 276 290 276 362 240" fill="none" stroke="#0895A6" stroke-width="5" stroke-linecap="round"/></svg>
+  <h3 dir="rtl">مع ستاكو</h3>
+  <img src="../img/wh.svg" alt="" style="left:188px;top:62px;width:84px">
+  <img src="../img/wh.svg" alt="" style="left:30px;top:192px;width:84px">
+  <img src="../img/wh.svg" alt="" style="left:352px;top:176px;width:84px">
+  <img src="../img/truck.svg" alt="" style="left:208px;top:232px;width:56px">
+  <i class="dotg" style="left:178px;top:262px"></i>
+  <div class="et" style="left:176px;top:188px">ETA 1h 20m</div>
+  <div class="wp" style="left:42px;top:286px">WH-01</div>
+  <div class="wp" style="left:278px;top:92px">WH-02</div>
+  <div class="wp" style="left:366px;top:266px">WH-03</div>
+  <div class="lw" style="left:288px;top:128px">نقص</div>
+ </div>
+</div>
+<p class="q3">مع ستاكو، شوف المخازن التلاتة على خريطة وحدة حيّة.</p>
+<div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="aword">ستاك<i>و</i></div></div></div>
+<div class="foot"><div class="by">منتج من <b><span>AI</span>PHIN</b></div><div dir="ltr">www.stacko-lb.com</div></div>
+</div></body></html>
