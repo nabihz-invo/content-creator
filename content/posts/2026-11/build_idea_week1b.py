@@ -22,28 +22,64 @@ def idea_046():
 .card{position:absolute;left:470px;top:820px;background:#fff;color:var(--abyss);border-radius:22px;padding:20px 26px;
   box-shadow:0 18px 50px rgba(14,36,64,.30);min-width:420px}
 .card b{display:block;font-size:30px;letter-spacing:-.02em}
+[dir=rtl] .card b{font-size:32px}
 .card .rw{display:flex;gap:16px;margin-top:8px;font-size:23px;color:var(--deep)}
+[dir=rtl] .card .rw{font-size:25px}
 .card .zero{color:#B4233C;font-weight:600}
 .card .there{color:#0B7A87;font-weight:600}
 .stem{position:absolute;left:216px;bottom:100%;width:2px;height:24px;background:var(--signal)}
-.shade-b{background:linear-gradient(180deg,rgba(244,248,250,0),rgba(244,248,250,.95) 60%)}
+[dir=rtl] .stem{left:216px;right:auto}
+.alert{position:absolute;right:626px;top:852px;display:flex;align-items:center;gap:10px;background:#F0AAAA;color:var(--abyss);
+  border-radius:999px;padding:10px 18px;font-size:22px;font-weight:600;box-shadow:0 10px 26px rgba(14,36,64,.22);white-space:nowrap}
+[dir=rtl] .alert{font-size:23px}
+.alert i{width:12px;height:12px;border-radius:50%;background:#B4233C}
+.shade-b{height:520px;background:linear-gradient(180deg,rgba(244,248,250,0),rgba(244,248,250,.95) 45%)}
+.fix{position:absolute;left:64px;right:64px;top:986px;background:#fff;border-radius:24px;padding:20px 26px 22px;
+  box-shadow:0 10px 34px rgba(22,59,98,.16);color:var(--abyss)}
+.fix h3{font-size:24px;font-weight:600;color:var(--signal);letter-spacing:.02em;margin-bottom:12px}
+[dir=rtl] .fix h3{font-size:26px}
+.fix .st{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:24px}
+[dir=rtl] .fix .st{grid-template-columns:1.22fr 1.12fr .96fr;gap:20px}
+.fix .s{display:flex;flex-direction:column;gap:6px}
+.fix .s .t{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:600;color:var(--abyss);line-height:1.2}
+[dir=rtl] .fix .s .t{font-size:25px}
+.fix .s .t span.n{flex:none;width:34px;height:34px;border-radius:50%;background:#EEF6F9;display:grid;place-items:center}
+.fix .s svg{width:20px;height:20px;stroke:var(--signal);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.fix .s p{font-size:21px;line-height:1.35;color:var(--deep)}
+[dir=rtl] .fix .s p{font-size:22px;line-height:1.5}
 """
+    ICO = [
+        '<svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l2 2H4z"/><path d="M10 21h4"/></svg>',
+        '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>',
+        '<svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>',
+    ]
     T = {
         "en": dict(h="The empty spot costs<br><em>more than the stock.</em>",
                    s="Every gap is a sale walking out the door.",
-                   item="Desk Lamp", zero="0 here", there="45 in Jounieh"),
-        "ar": dict(h="الرفّ الفاضي بيكلّف<br><em>أكتر من البضاعة.</em>",
+                   item="Desk Lamp", zero="0 here", there="45 in Jounieh", al="Low stock · Desk Lamp",
+                   fh="How Stacko fixes it",
+                   steps=[("Stacko spots the gap", "Low-stock alert on Desk Lamp, before a customer asks."),
+                          ("Finds the stock", "45 are in Jounieh."),
+                          ("Move it", "Log the transfer, the empty spot gets filled.")]),
+        "ar": dict(h="المكان الفاضي بيكلّف<br><em>أكتر من البضاعة.</em>",
                    s="كل فراغ هو بيعة طالعة من الباب.",
-                   item='<span class="ltr">Desk Lamp</span>', zero="0 هون", there="45 بجونيه"),
+                   item="مصباح مكتب", zero="0 هون", there="45 بجونيه", al="مخزون قليل · مصباح مكتب",
+                   fh="كيف ستاكو بيحلّها",
+                   steps=[("ستاكو بيلحق الفراغ", "ستاكو بينبّهك إنو مصباح المكتب قليل، قبل ما يسأل الزبون."),
+                          ("بيدلّك وين البضاعة", "في 45 مصباح بجونيه."),
+                          ("انقلها", "سجّل التحويل، والمكان الفاضي بيتعبّى.")]),
     }
     for lang, t in T.items():
+        steps = "".join(f'<div class="s"><div class="t"><span class="n">{ICO[k]}</span>{a}</div><p>{b}</p></div>' for k, (a, b) in enumerate(t["steps"]))
         body = f"""<img class="bg" src="/assets/post-images/final/SC-05.jpg" alt="">
 <div class="veil"></div><div class="shade-b"></div>
 <h1 class="h1">{t['h']}</h1>
 <p class="sub" style="top:{352 if lang == 'en' else 390}px">{t['s']}</p>
 <div class="gap"></div>
+<div class="alert"><i></i>{t['al']}</div>
 <div class="card"><div class="stem"></div><b>{t['item']}</b>
   <div class="rw"><span class="zero">{t['zero']}</span><span>·</span><span class="there">{t['there']}</span></div></div>
+<div class="fix"><h3>{t['fh']}</h3><div class="st">{steps}</div></div>
 {top(lang, light=True)}
 {FOOT[lang]}"""
         name = "IDEA-046" if lang == "en" else "IDEA-046-AR"

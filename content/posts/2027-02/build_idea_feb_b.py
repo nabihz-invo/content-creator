@@ -16,6 +16,9 @@ da.MONTH = HERE
 write = da.write
 ROWS_CSS, BG57, MAPCARD = da.ROWS_CSS, da.BG57, da.MAPCARD
 
+# flat truck icon from assets/map-elements (StackoMap.render("ui_truck", {accent: Signal}, 2))
+TRUCK = '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="44" data-anchor-x="48" data-anchor-y="22" viewBox="0 0 48 22"><rect x="1" y="2" width="31" height="15" rx="2.5" fill="#FFFFFF" stroke="#0E2440" stroke-width="1.4"/><rect x="4" y="12" width="25" height="2.2" rx="1" fill="#0895A6"/><path d="M33 5 H40 L46 11 V17 H33 Z" fill="#0E2440"/><path d="M36 7 H39.5 L43.5 11 H36 Z" fill="#BCE5E0"/><circle cx="9" cy="18.5" r="2.6" fill="#0E2440"/><circle cx="24" cy="18.5" r="2.6" fill="#0E2440"/><circle cx="40" cy="18.5" r="2.6" fill="#0E2440"/></svg>'
+
 GLOSS_CSS = CARD_CSS + ROWS_CSS + """
 .post.light{background:#F4F8FA}
 .grid-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(44,89,116,.13) 1.4px,transparent 1.6px);background-size:28px 28px}
@@ -171,16 +174,40 @@ def idea_060():
 .shade-t{height:600px;background:linear-gradient(180deg,rgba(8,20,36,.98),rgba(8,20,36,.7) 60%,rgba(8,20,36,0))}
 .h1{font-size:68px;line-height:1.1}
 [dir=rtl] .h1{font-size:60px}
+.sub b{color:var(--glow);font-weight:600}
+.log{position:absolute;left:108px;right:108px;top:1000px;background:rgba(27,65,107,.86);border-radius:20px;padding:20px 26px 18px;
+  border:1.5px solid rgba(46,242,238,.55);box-shadow:0 18px 50px rgba(0,0,0,.45);backdrop-filter:blur(6px);color:#fff}
+.log .hd{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.log .hd b{font-size:24px;font-weight:600;color:#EEF6F9}
+.log .ok{background:#BCE5E0;color:var(--abyss);border-radius:999px;padding:6px 16px;font-size:21px;font-weight:600;white-space:nowrap}
+.log .rw{display:flex;align-items:center;gap:14px;padding:9px 0;border-top:1px solid rgba(201,216,228,.18);font-size:22px;color:var(--visor);
+  font-variant-numeric:tabular-nums;direction:ltr}
+[dir=rtl] .log .rw{direction:rtl}
+.log .hd{padding-bottom:10px}
+.log .rw .q{min-width:64px;font-weight:600;color:#fff}
+.log .rw .it{flex:1;color:#fff}
+.log .nt{margin-top:8px;font-size:21px;color:var(--visor)}
+[dir=rtl] .log .hd b{font-size:25px} [dir=rtl] .log .rw,[dir=rtl] .log .nt{font-size:23px}
 """
     T = {
-        "en": dict(h="Every hour spent counting<br><em>is an hour not selling.</em>", s="Small, frequent counts and logged moves keep the numbers right."),
-        "ar": dict(h="كل ساعة جرد<br><em>هي ساعة ما عم تبيع فيها.</em>", s="جرد صغير ومتكرّر، وحركات مسجّلة، بيخلّوا الأرقام مزبوطة."),
+        "en": dict(h="Every hour spent counting<br><em>is an hour not selling.</em>",
+                   s="With <b>Stacko</b>, every move is logged,<br>so the count becomes a quick check.",
+                   lh="Stacko · live stock log", ok="Numbers match ✓",
+                   rows=[("−25", "LED Strip 5m", "Rami · 4:12 PM"), ("+40", "Desk Lamp", "WH-02 Sidon · 3:40 PM")],
+                   nt="Every move is logged. Counting is only a check."),
+        "ar": dict(h="كل ساعة جرد<br><em>هي ساعة ما عم تبيع فيها.</em>",
+                   s="مع <b>ستاكو</b>، كل حركة بتتسجّل،<br>فالجرد بيصير مجرّد تأكّد سريع.",
+                   lh="ستاكو · سجل المخزون المباشر", ok="الأرقام مزبوطة ✓",
+                   rows=[(L("−25"), L("LED Strip 5m"), f"رامي · {L('4:12 PM')}"), (L("+40"), "مصباح مكتب", f"{L('WH-02')} صيدا · {L('3:40 PM')}")],
+                   nt="كل حركة مسجّلة. والجرد بس تأكّد."),
     }
     for lang, t in T.items():
+        rows = "".join(f'<div class="rw"><span class="q">{q}</span><span class="it">{it}</span><span>{w}</span></div>' for q, it, w in t["rows"])
         body = f"""<img class="bg" src="/assets/post-images/final/OB-01.jpg" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
 <h1 class="h1">{t['h']}</h1>
 <p class="sub" style="top:{370 if lang == 'en' else 400}px">{t['s']}</p>
+<div class="log"><div class="hd"><b>{t['lh']}</b><span class="ok">{t['ok']}</span></div>{rows}<div class="nt">{t['nt']}</div></div>
 {top(lang)}
 {FOOT[lang]}"""
         nm = name("IDEA-060", lang)
@@ -200,10 +227,34 @@ def idea_054():
 .files span{background:#fff;border-radius:999px;padding:10px 18px;font-size:22px;color:var(--deep);text-decoration:line-through;opacity:.75;
   box-shadow:0 6px 18px rgba(14,36,64,.12)}
 .shade-b{background:linear-gradient(180deg,rgba(244,248,250,0),rgba(244,248,250,.95) 62%)}
+.smap{position:absolute;left:694px;right:24px;top:640px;background:#fff;border-radius:22px;padding:18px 20px 22px;
+  box-shadow:0 10px 34px rgba(22,59,98,.16);color:var(--abyss)}
+.smap .th{position:relative;height:150px;border-radius:14px;overflow:hidden;background:#EEF6F9}
+.smap .th img{position:absolute;width:480px;left:-18px;top:-100px}
+.smap .trk{position:absolute;left:16px;top:44px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;direction:ltr}
+.smap .trk svg{width:46px;height:auto;filter:drop-shadow(0 3px 6px rgba(14,36,64,.25))}
+.smap .eta{background:var(--abyss);color:#fff;border-radius:999px;padding:3px 10px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:6px}
+.smap .eta i{width:7px;height:7px;border-radius:50%;background:#2F86B8}
+.smap h3{margin:16px 0 6px;font-size:28px;font-weight:600;color:var(--abyss);letter-spacing:-.01em}
+[dir=rtl] .smap h3{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;font-size:28px}
+.smap .rw{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid #E1EAF0;font-size:22px;line-height:1.32;color:var(--deep)}
+[dir=rtl] .smap .rw{font-size:24px;line-height:1.45}
+.smap .rw svg{flex:none;width:28px;height:28px;margin-top:1px;stroke:var(--signal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 """
+    ICO = [
+        '<svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6v10H3z"/><path d="M8 20v-6h8v6"/></svg>',
+        '<svg viewBox="0 0 24 24"><path d="M2 7h11v9H2z"/><path d="M13 10h4l4 3v3h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>',
+        '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.2 3.2 0 010 6.3M18 14.3c1.8.8 3 2.6 3 4.7"/></svg>',
+    ]
     T = {
-        "en": dict(h="End the<br><em>“which file is right?” meeting.</em>", s="One source of truth, updated by every move."),
-        "ar": dict(h="خلّصنا من اجتماع<br><em>«أيّ ملف هو الصح؟»</em>", s="مصدر واحد للحقيقة، بيتحدّث مع كل حركة."),
+        "en": dict(h="End the<br><em>“which file is right?” meeting.</em>", s="One source of truth, updated by every move.",
+                   mt="The Stacko map", eta="50m",
+                   rows=["Every warehouse, with its units and low-stock count", "Every shipment on its route, with an ETA",
+                         "Every move logged, and seen by the whole team"]),
+        "ar": dict(h="خلّصنا من اجتماع<br><em>«أيّ ملف هو الصح؟»</em>", s="مصدر واحد للحقيقة، بيتحدّث مع كل حركة.",
+                   mt="خريطة ستاكو", eta="50m",
+                   rows=["كل مخزن، مع وحداته وعدد الأصناف القليلة", "كل شحنة على مسارها، مع وقت الوصول",
+                         "كل حركة مسجّلة، وكل الفريق بيشوفها"]),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/SC-07.jpg" alt="">
@@ -212,6 +263,9 @@ def idea_054():
 <h1 class="h1">{t['h']}</h1>
 <p class="sub" style="top:{356 if lang == 'en' else 392}px">{t['s']}</p>
 <div class="files" style="top:{440 if lang == 'en' else 470}px"><span>stock_v5.xlsx</span><span>stock_FINAL.xlsx</span><span>stock_NEW.xlsx</span></div>
+<div class="smap"><div class="th"><img src="/assets/screens/live-map/map-crop.jpg" alt="">
+  <div class="trk">{TRUCK}<span class="eta"><i></i>{t['eta']}</span></div></div>
+  <h3>{t['mt']}</h3>{''.join(f'<div class="rw">{ICO[i]}<span>{r}</span></div>' for i, r in enumerate(t['rows']))}</div>
 {top(lang, light=True)}
 {FOOT[lang]}"""
         nm = name("IDEA-054", lang)

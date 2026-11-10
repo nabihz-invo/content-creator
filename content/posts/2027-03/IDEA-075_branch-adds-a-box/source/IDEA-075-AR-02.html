@@ -70,10 +70,55 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 .bx b{color:var(--abyss)}
 .bx.q{border-color:#B4233C;color:#B4233C;font-weight:700}
 .calls{position:absolute;left:0;right:0;bottom:640px;display:flex;justify-content:center;gap:24px;font-size:72px;color:var(--signal)}
+</style><style>
+.ex{position:absolute;left:64px;right:64px;top:1010px;background:#EEF6F9;border-radius:22px;padding:22px 28px;font-size:28px;line-height:1.4;
+  color:var(--abyss);box-shadow:0 10px 34px rgba(22,59,98,.12);border:1px solid rgba(201,216,228,.7)}
+[dir=rtl] .ex{font-size:32px;line-height:1.55}
+.spr{position:absolute;display:block}
+.box1{left:800px;top:300px}
+[dir=rtl] .box1{left:150px}.spr svg{display:block;height:auto}
+.xl{position:absolute;left:150px;right:150px;top:440px;background:#fff;border-radius:16px;overflow:hidden;direction:ltr;
+  box-shadow:0 22px 60px rgba(14,36,64,.22);border:1px solid #D5E0E8;font-family:'Readex Pro',sans-serif}
+.xl .tb{background:#1E6E43;color:#fff;font-size:20px;font-weight:600;padding:12px 18px;display:flex;align-items:center;gap:10px}
+.xl .tb i{display:inline-flex;gap:6px}.xl .tb i b{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.55)}
+.xl .tb span{margin-left:auto;opacity:.85;font-weight:400}
+.xl table{width:100%;border-collapse:collapse;font-size:21px;color:#1F2D3A}
+.xl th{background:#EEF3EF;color:#3B5547;font-weight:600;text-align:left;padding:9px 14px;border:1px solid #DCE5DE}
+.xl td{padding:8px 14px;border:1px solid #E3E9EE}
+.xl td.n,.xl th.n{text-align:right;font-variant-numeric:tabular-nums}
+.xl td.rn,.xl th.rn{width:40px;text-align:center;color:#7A8B98;background:#F5F8F6;font-weight:400}
+.mess{position:absolute;inset:0}
+.ttw{position:absolute;left:50%;top:400px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.95}
+.ttw div{width:250px;height:76px;border-radius:8px;background:linear-gradient(180deg,#D7B582,#C49A62);box-shadow:inset 0 -6px 0 rgba(0,0,0,.08),0 8px 18px rgba(14,36,64,.18);position:relative}
+.ttw div::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:26px;transform:translateX(-50%);background:rgba(255,255,255,.28)}
+.mc{position:absolute;background:#fff;border-radius:16px;padding:14px 20px;box-shadow:0 16px 40px rgba(14,36,64,.22);color:var(--abyss);font-size:23px;line-height:1.3}
+.mc b{display:block;font-size:22px;color:var(--deep);font-weight:600;direction:ltr}
+[dir=rtl] .mc b{text-align:right}
+.mc .v{font-size:26px;font-weight:600;direction:ltr;display:block}
+[dir=rtl] .mc .v{text-align:right}
+.mc.bad{border:2px solid #B4233C}.mc.bad b,.mc.bad .v{color:#B4233C}
+.mc.bub{background:#2F86B8;color:#fff;border-radius:22px 22px 6px 22px;font-size:25px;font-weight:500}
+.mc.bub.g{background:#fff;color:var(--abyss);border-radius:22px 22px 22px 6px}
+.mc.note{background:#F4F1EA;font-family:'Readex Pro',sans-serif;font-style:italic;color:#4A4A4A;border-radius:4px}
+[dir=rtl] .mc{font-size:25px}
+.qm{position:absolute;font-size:84px;font-weight:700;color:#B4233C;opacity:.85}
+.qm.s{color:var(--signal);font-size:64px}
+.mp{position:absolute;left:64px;right:64px;top:370px;height:560px;border-radius:28px;overflow:hidden;background:#E9EEF1;
+  box-shadow:0 22px 60px rgba(14,36,64,.22)}
+.mp > img{position:absolute;width:1073px;left:-14px;top:-230px}
+.mp .chip{position:absolute;display:flex;align-items:center;gap:10px;background:#fff;color:var(--abyss);border-radius:999px;padding:8px 10px 8px 16px;
+  font-size:19px;font-weight:600;box-shadow:0 6px 18px rgba(14,36,64,.2);direction:ltr;white-space:nowrap}
+.mp .chip span{background:#BCE5E0;border-radius:999px;padding:2px 10px;font-size:18px}
+.mp .eta{position:absolute;display:flex;align-items:center;gap:7px;background:var(--abyss);color:#fff;border-radius:999px;padding:5px 12px;font-size:17px;font-weight:600;direction:ltr}
+.mp .eta i{width:8px;height:8px;border-radius:50%;background:#2F86B8}
+.ex .cta{display:block;margin-top:12px;font-size:30px;font-weight:600;color:var(--signal)}
 </style>
 <div class="kick">الفرع 1</div>
 <h1 class="h1" style="font-size:66px;line-height:1.1">ملف واحد.<br><em>ماشي الحال.</em></h1>
-<div class="tw"><div class="bx"><b>stock.xlsx</b></div></div>
+<div class="xl"><div class="tb"><i><b></b><b></b><b></b></i>stock.xlsx<span>Sheet1</span></div><table><tr><th class="rn"></th><th>Item</th><th class="n">Qty</th><th>Location</th></tr><tr><td class="rn">1</td><td>LED Strip 5m</td><td class="n">1,380</td><td>Beirut</td></tr><tr><td class="rn">2</td><td>Desk Lamp</td><td class="n">45</td><td>Beirut</td></tr><tr><td class="rn">3</td><td>USB-C Cable 1m</td><td class="n">220</td><td>Beirut</td></tr><tr><td class="rn">4</td><td>Power Bank 10k</td><td class="n">96</td><td>Beirut</td></tr><tr><td class="rn">5</td><td>Wall Socket 2-way</td><td class="n">310</td><td>Beirut</td></tr><tr><td class="rn">6</td><td>Extension Cord 3m</td><td class="n">140</td><td>Beirut</td></tr><tr><td class="rn">7</td><td>Smart Bulb E27</td><td class="n">260</td><td>Beirut</td></tr><tr><td class="rn">8</td><td>Ceiling Light 40W</td><td class="n">75</td><td>Beirut</td></tr></table></div><span class="spr box1" data-id="cartonStack" data-w="150"></span>
+<div class="ex">فرع واحد، ملف واحد. سهل تضلّو محدّث.</div><script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script>document.querySelectorAll('.spr').forEach(e=>{e.innerHTML=StackoMap.render(e.dataset.id,{accent:e.dataset.a||'#0895A6'});
+const v=e.querySelector('svg');v.removeAttribute('height');v.setAttribute('width',e.dataset.w);});</script>
 <div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-light.svg" alt=""><div class="aword">ستاك<i>و</i></div></div></div>
 <div class="bar"><div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div><div><b>اسحب</b> ←</div></div>
 </div></body></html>

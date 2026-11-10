@@ -1,3 +1,1 @@
-Most stock records answer one or two of these. Stacko answers all four, every time.
-
-Which piece is missing in your system?
+A stock record needs four answers: who, what, when and where. Most systems capture one or two. Stacko captures all four on every move, so you always know what happened. Save this and share it with your team.

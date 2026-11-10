@@ -18,6 +18,44 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 .pill.low{background:#FBE3E7;color:#B4233C}
 .pill.ok{background:#BCE5E0;color:#0B7A87}
 
+.ilp{position:absolute;left:64px;right:64px;top:580px;height:430px;border-radius:28px;padding:30px 24px 26px;
+  background:radial-gradient(120% 120% at 30% 20%,rgba(27,65,107,.96),rgba(14,36,64,.97));border:1px solid rgba(121,192,222,.22);
+  box-shadow:0 30px 80px rgba(0,0,0,.55);display:flex;align-items:center;gap:26px}
+.ilc{position:absolute;left:64px;right:64px;top:1040px;font-size:32px;line-height:1.4;color:#C9D8E4}
+[dir=rtl] .ilc{font-size:34px}
+.ilc b{color:#fff;font-weight:600}
+.col2{flex:1;display:flex;flex-direction:column;align-items:center;gap:16px}
+.tag{font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px}
+[dir=rtl] .tag{letter-spacing:0;font-size:24px}
+.tag.st{color:#8197AA;border:1px solid rgba(201,216,228,.25)}
+.tag.mv{color:#79C0DE;border:1px solid rgba(121,192,222,.5)}
+.tbl{width:100%;border-collapse:collapse;direction:ltr;font-size:21px;color:rgba(201,216,228,.62);background:rgba(201,216,228,.05);border-radius:12px;overflow:hidden}
+.tbl th{font-weight:600;text-align:left;padding:12px 12px;border-bottom:1px solid rgba(201,216,228,.2);color:rgba(201,216,228,.5)}
+.tbl td{padding:12px 12px;border-bottom:1px solid rgba(201,216,228,.1)}
+.tbl .q{text-align:right;font-variant-numeric:tabular-nums}
+.vs{width:1px;align-self:stretch;background:rgba(201,216,228,.15)}
+.st3{flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.st3 .tile{width:190px;height:190px;border-radius:26px;background:rgba(121,192,222,.08);border:1px solid rgba(121,192,222,.25);display:grid;place-items:center;position:relative}
+.st3 .tile svg{width:110px;height:110px;fill:none;stroke:#79C0DE;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.st3 .tile.dull{background:rgba(201,216,228,.04);border:1px dashed rgba(201,216,228,.2)}
+.st3 .tile.dull svg{stroke:rgba(201,216,228,.25)}
+.st3 p{font-size:24px;color:#C9D8E4;line-height:1.3}
+[dir=rtl] .st3 p{font-size:26px}
+.st3 p.dim{color:rgba(201,216,228,.38)}
+.later{position:absolute;right:-18px;top:-20px;background:rgba(201,216,228,.12);color:rgba(201,216,228,.5);border-radius:16px 16px 16px 4px;padding:6px 14px;font-size:20px}
+[dir=rtl] .later{right:auto;left:-18px;border-radius:16px 16px 4px 16px}
+.arr{font-size:36px;color:rgba(201,216,228,.45);flex:none}
+.ilp{gap:18px}
+.bub{background:#2F86B8;color:#fff;border-radius:22px 22px 6px 22px;padding:18px 20px;font-size:27px;line-height:1.3;max-width:250px}
+[dir=rtl] .bub{border-radius:22px 22px 22px 6px;font-size:28px}
+.sc3{background:#fff;color:#0E2440;border-radius:20px;padding:18px 20px;text-align:start;width:250px}
+.sc3 b{display:block;color:#0B7A87;font-size:30px}
+.sc3 span{display:block;font-size:27px;margin-top:4px;font-weight:600}
+.sc3 .tm{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:12px;font-size:21px;line-height:1.25;color:#2C5974}
+.sc3 .tm i{width:24px;height:24px;border-radius:50%;background:#C9D8E4;border:2px solid #fff;margin-inline-end:-12px}
+.sc3 .tm em{font-style:normal;margin-inline-start:16px}
+.cta3{position:absolute;left:64px;right:64px;top:1130px;font-size:32px;font-weight:600;color:#fff}
+
 .kick{top:166px;color:var(--glow)}
 [dir=rtl] .kick{top:160px}
 .h1{top:300px;font-size:70px;line-height:1.12}
@@ -30,14 +68,19 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 [dir=rtl] .n{left:auto;right:64px}
 .pc{left:64px;right:64px;top:640px;padding:14px}
 .pc img{display:block;width:100%;border-radius:18px}
+.il .h1{top:270px;font-size:64px}
+[dir=rtl] .il .h1{font-size:54px}
 
 </style></head><body>
-<div class="post dark">
-<img class="bg bg60" src="/assets/backgrounds/final/BG-60.jpg" alt="">
+<div class="post dark il">
+<img class="bg bg60" src="/assets/backgrounds/final/BG-60.jpg" alt="" style="filter:brightness(.4)">
 <div class="kick">From the founder</div>
 <div class="n">02</div>
 <h1 class="h1">Teams skip logging<br><em>when nothing visible happens.</em></h1>
-
+<div class="ilp"><div class="st3"><div class="tile"><svg viewBox="0 0 48 48"><circle cx="16" cy="9" r="4.5"/><path d="M16 14v13l-5 13M16 27l5 13M16 18l9 5"/><rect x="26" y="18" width="16" height="13" rx="1.5"/><path d="M26 23h16"/></svg></div><p>Moves the boxes</p></div><span class="arr">→</span>
+<div class="st3"><div class="tile"><svg viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="32" rx="3"/><path d="M6 16h36M6 24h36M6 32h36M18 8v32"/><path d="M38 34v8M34 38h8" stroke="#2F86B8" stroke-width="2.4"/></svg></div><p>Adds a row</p></div><span class="arr">→</span>
+<div class="st3"><div class="tile dull"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><path d="M17 24l5 5 9-10"/></svg><span class="later">Later…</span></div><p class="dim">Nothing happens</p></div></div>
+<p class="ilc">No feedback, no habit. <b>So the log gets skipped.</b></p>
 <div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
 <div class="bar"><div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div><div><b>Swipe</b> →</div></div>
 </div></body></html>

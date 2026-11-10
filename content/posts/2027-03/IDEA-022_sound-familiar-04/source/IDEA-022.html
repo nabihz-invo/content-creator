@@ -27,12 +27,30 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 
 .bg{filter:brightness(.75)}
 .shade-t{height:760px;background:linear-gradient(180deg,rgba(8,20,36,.9),rgba(8,20,36,.6) 70%,rgba(8,20,36,0))}
+.shade-b{height:900px;background:linear-gradient(180deg,rgba(8,20,36,0),rgba(8,20,36,.82) 40%)}
 .kick{top:180px;color:var(--glow)}
 [dir=rtl] .kick{top:174px}
 .h1{top:230px;font-size:72px;line-height:1.08}
 [dir=rtl] .h1{top:224px;font-size:66px}
 .sub{color:var(--visor)}
-.sc{left:64px;right:64px;top:620px;padding:26px 34px}
+.sc{left:64px;right:64px;top:510px;padding:14px 34px}
+[dir=rtl] .sc{top:536px}
+.sc .rw2,.ss .rw2{padding:15px 0}
+.sc .rws,.ss .rws{margin-top:0}
+.ss{position:absolute;left:64px;right:64px;top:850px;padding:14px 34px;border-radius:24px;background:rgba(27,65,107,.9);
+  border:2px solid rgba(46,242,238,.55);box-shadow:0 22px 60px rgba(0,0,0,.45),0 0 30px rgba(46,242,238,.12);color:#fff}
+[dir=rtl] .ss{top:876px}
+.ss .rw2{border-bottom-color:rgba(201,216,228,.18)}
+.ss .rw2 b{color:#fff} .ss .rw2 .sp{color:var(--visor)}
+.ss .ok2{color:#BCE5E0;font-weight:600}
+.with{position:absolute;left:64px;right:64px;top:778px;display:flex;align-items:center;gap:16px;font-size:30px;font-weight:600;color:#fff}
+[dir=rtl] .with{top:804px}
+.with em{font-style:normal;color:var(--glow)}
+.with svg{width:34px;height:34px;stroke:var(--visor);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.with i{flex:1;height:2px;background:linear-gradient(90deg,rgba(201,216,228,.5),rgba(201,216,228,0))}
+[dir=rtl] .with i{background:linear-gradient(270deg,rgba(201,216,228,.5),rgba(201,216,228,0))}
+.mgr{position:absolute;left:64px;right:64px;top:1112px;font-size:30px;line-height:1.35;color:var(--visor)}
+[dir=rtl] .mgr{top:1136px;font-size:32px}
 
 </style></head><body>
 <div class="post dark">
@@ -41,7 +59,10 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 <div class="kick">Sound familiar? #4</div>
 <h1 class="h1">The container arrived.<br><em>The stock didn't.</em></h1>
 <p class="sub" style="top:420px">Arrived in the port, missing in the system.</p>
-<div class="wc sc"><div class="rws"><div class="rw2"><b>Port of Beirut</b><span class="sp">SHP-24021</span><span class="okc">Unloaded ✓</span></div><div class="rw2"><b>WH-01 Beirut</b><span class="sp">Received</span><span class="zero">0</span></div><div class="rw2"><b>The system</b><span class="sp"></span><span class="">“Where is it?”</span></div></div></div>
+<div class="wc sc"><div class="rws"><div class="rw2"><b>Port of Beirut</b><span class="sp">SHP-24021</span><span class="okc">Unloaded ✓</span></div><div class="rw2"><b>WH-01 Beirut</b><span class="sp">Received</span><span class="zero">0</span></div><div class="rw2"><b>The system</b><span class="sp"></span><span class="zero">“Where is it?”</span></div></div></div>
+<div class="with"><svg viewBox="0 0 24 24"><path d="M12 4v16M5 13l7 7 7-7"/></svg><span>With <em>Stacko</em></span><i></i></div>
+<div class="ss"><div class="rws"><div class="rw2"><b>Port of Beirut</b><span class="sp">SHP-24021</span><span class="ok2">Unloaded ✓</span></div><div class="rw2"><b>On the way</b><span class="sp">to WH-01</span><span class="ok2">ETA 50m</span></div><div class="rw2"><b>WH-01 Beirut</b><span class="sp">Received</span><span class="ok2">40 ✓</span></div></div></div>
+<p class="mgr">Managers see where every container is, from port to shelf.</p>
 <div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
 <div class="foot"><div class="by">A product by <b><span>AI</span>PHIN</b></div><div>www.stacko-lb.com</div></div>
 </div></body></html>

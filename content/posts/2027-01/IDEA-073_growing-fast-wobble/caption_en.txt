@@ -1,1 +1,1 @@
-Growth adds branches, products and people. A file can't carry all of that for long.
+Growth adds branches, products and people. A file can't carry all of that for long. Stacko is the stock management system built for several warehouses, with every item and every move on one live map.

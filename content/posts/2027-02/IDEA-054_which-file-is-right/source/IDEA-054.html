@@ -16,6 +16,19 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 .files span{background:#fff;border-radius:999px;padding:10px 18px;font-size:22px;color:var(--deep);text-decoration:line-through;opacity:.75;
   box-shadow:0 6px 18px rgba(14,36,64,.12)}
 .shade-b{background:linear-gradient(180deg,rgba(244,248,250,0),rgba(244,248,250,.95) 62%)}
+.smap{position:absolute;left:694px;right:24px;top:640px;background:#fff;border-radius:22px;padding:18px 20px 22px;
+  box-shadow:0 10px 34px rgba(22,59,98,.16);color:var(--abyss)}
+.smap .th{position:relative;height:150px;border-radius:14px;overflow:hidden;background:#EEF6F9}
+.smap .th img{position:absolute;width:480px;left:-18px;top:-100px}
+.smap .trk{position:absolute;left:16px;top:44px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;direction:ltr}
+.smap .trk svg{width:46px;height:auto;filter:drop-shadow(0 3px 6px rgba(14,36,64,.25))}
+.smap .eta{background:var(--abyss);color:#fff;border-radius:999px;padding:3px 10px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:6px}
+.smap .eta i{width:7px;height:7px;border-radius:50%;background:#2F86B8}
+.smap h3{margin:16px 0 6px;font-size:28px;font-weight:600;color:var(--abyss);letter-spacing:-.01em}
+[dir=rtl] .smap h3{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;font-size:28px}
+.smap .rw{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid #E1EAF0;font-size:22px;line-height:1.32;color:var(--deep)}
+[dir=rtl] .smap .rw{font-size:24px;line-height:1.45}
+.smap .rw svg{flex:none;width:28px;height:28px;margin-top:1px;stroke:var(--signal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 </style></head><body>
 <div class="post light">
@@ -25,6 +38,9 @@ html,body{width:1080px;height:1350px} .post{width:1080px;height:1350px}
 <h1 class="h1">End the<br><em>“which file is right?” meeting.</em></h1>
 <p class="sub" style="top:356px">One source of truth, updated by every move.</p>
 <div class="files" style="top:440px"><span>stock_v5.xlsx</span><span>stock_FINAL.xlsx</span><span>stock_NEW.xlsx</span></div>
+<div class="smap"><div class="th"><img src="/assets/screens/live-map/map-crop.jpg" alt="">
+  <div class="trk"><svg xmlns="http://www.w3.org/2000/svg" width="96" height="44" data-anchor-x="48" data-anchor-y="22" viewBox="0 0 48 22"><rect x="1" y="2" width="31" height="15" rx="2.5" fill="#FFFFFF" stroke="#0E2440" stroke-width="1.4"/><rect x="4" y="12" width="25" height="2.2" rx="1" fill="#0895A6"/><path d="M33 5 H40 L46 11 V17 H33 Z" fill="#0E2440"/><path d="M36 7 H39.5 L43.5 11 H36 Z" fill="#BCE5E0"/><circle cx="9" cy="18.5" r="2.6" fill="#0E2440"/><circle cx="24" cy="18.5" r="2.6" fill="#0E2440"/><circle cx="40" cy="18.5" r="2.6" fill="#0E2440"/></svg><span class="eta"><i></i>50m</span></div></div>
+  <h3>The Stacko map</h3><div class="rw"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6v10H3z"/><path d="M8 20v-6h8v6"/></svg><span>Every warehouse, with its units and low-stock count</span></div><div class="rw"><svg viewBox="0 0 24 24"><path d="M2 7h11v9H2z"/><path d="M13 10h4l4 3v3h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span>Every shipment on its route, with an ETA</span></div><div class="rw"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.2 3.2 0 010 6.3M18 14.3c1.8.8 3 2.6 3 4.7"/></svg><span>Every move logged, and seen by the whole team</span></div></div>
 <div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-light.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
 <div class="foot"><div class="by">A product by <b><span>AI</span>PHIN</b></div><div>www.stacko-lb.com</div></div>
 </div></body></html>

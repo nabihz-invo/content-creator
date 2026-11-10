@@ -136,20 +136,26 @@ def idea_073():
 .col h1{font-size:62px;line-height:1.1;font-weight:600;letter-spacing:-.03em}
 [dir=rtl] .col h1{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;letter-spacing:0;font-size:52px;line-height:1.45}
 .col h1 em{font-style:normal;color:var(--glow)}
-.col p{margin-top:28px;font-size:30px;line-height:1.4;color:var(--visor)}
+.col p{margin-top:30px;font-size:36px;line-height:1.38;color:#EEF6F9}
+.col p b{font-weight:600;color:#fff}
+[dir=rtl] .col p{font-size:38px;line-height:1.6}
 .q{position:absolute;left:40px;top:620px;direction:ltr;display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--abyss);border-radius:999px;
   padding:10px 20px;font-size:26px;font-weight:700;box-shadow:0 12px 34px rgba(0,0,0,.45)}
 .q i{width:12px;height:12px;border-radius:50%;background:#B4233C}
+.q.ok{font-weight:600;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.q.ok i{background:#0B7A87}
 """
     T = {
-        "en": dict(h="Growing fast?<br><em>Your stock system shouldn't wobble.</em>", s="Built for several warehouses and new SKUs every month."),
-        "ar": dict(h="عم تكبر بسرعة؟<br><em>نظام المخزون ما لازم يهتزّ.</em>", s="مبني لكذا مستودع، وأصناف جديدة كل شهر."),
+        "en": dict(h="Growing fast?<br><em>Your stock system shouldn't wobble.</em>", s="<b>Stacko</b> is the stock management system built for several warehouses."),
+        "ar": dict(h="عم تكبر بسرعة؟<br><em>نظام المخزون ما لازم يهتزّ.</em>", s="<b>ستاكو</b> هو نظام إدارة المخازن المصمّم لعدّة مستودعات."),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/OB-06.jpg" alt="">
 <div class="shade-b"></div>
 <div class="col"><h1>{t['h']}</h1><p>{t['s']}</p></div>
 <div class="q"><i></i>WH-03?</div>
+<div class="q ok" style="top:880px"><i></i>WH-02</div>
+<div class="q ok" style="top:1010px"><i></i>WH-01</div>
 {top(lang)}
 {FOOT[lang]}"""
         nm = name("IDEA-073", lang)
@@ -242,7 +248,7 @@ def idea_048():
             s3="It's in your Jounieh branch:<br><em>45 units.</em>", pin="Desk Lamp · 45 in Jounieh",
             s4="Transfer it.<br><em>Keep the sale.</em>", tr=("Transfer", "Jounieh → Beirut", "10 × Desk Lamp · arrives in 35m")),
         "ar": dict(
-            cover=("خلصان…<br><em>ولا مش مبيّن؟</em>", "كتير مرّات الصنف موجود. بس مش عهالرف."),
+            cover=("الصنف ناقص…<br><em>أو مش مبيّن؟</em>", "كتير مرّات الصنف موجود. بس مش عهالرف."),
             s2="الصنف<br><em>مش عهالرف.</em>", tag=f"{L('Desk Lamp')} · 0 هون",
             s3="موجود بفرع جونيه:<br><em>45 قطعة.</em>", pin=f"{L('Desk Lamp')} · 45 بجونيه",
             s4="حوّله.<br><em>وخلّي البيعة.</em>", tr=("تحويل", "جونيه ← بيروت", f"{L('10 × Desk Lamp')} · بتوصل خلال 35 دقيقة")),

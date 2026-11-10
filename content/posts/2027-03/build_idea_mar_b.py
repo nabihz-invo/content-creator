@@ -299,27 +299,57 @@ def idea_022():
     css = CARD_CSS + ROWS_CSS + """
 .bg{filter:brightness(.75)}
 .shade-t{height:760px;background:linear-gradient(180deg,rgba(8,20,36,.9),rgba(8,20,36,.6) 70%,rgba(8,20,36,0))}
+.shade-b{height:900px;background:linear-gradient(180deg,rgba(8,20,36,0),rgba(8,20,36,.82) 40%)}
 .kick{top:180px;color:var(--glow)}
 [dir=rtl] .kick{top:174px}
 .h1{top:230px;font-size:72px;line-height:1.08}
 [dir=rtl] .h1{top:224px;font-size:66px}
 .sub{color:var(--visor)}
-.sc{left:64px;right:64px;top:620px;padding:26px 34px}
+.sc{left:64px;right:64px;top:510px;padding:14px 34px}
+[dir=rtl] .sc{top:536px}
+.sc .rw2,.ss .rw2{padding:15px 0}
+.sc .rws,.ss .rws{margin-top:0}
+.ss{position:absolute;left:64px;right:64px;top:850px;padding:14px 34px;border-radius:24px;background:rgba(27,65,107,.9);
+  border:2px solid rgba(46,242,238,.55);box-shadow:0 22px 60px rgba(0,0,0,.45),0 0 30px rgba(46,242,238,.12);color:#fff}
+[dir=rtl] .ss{top:876px}
+.ss .rw2{border-bottom-color:rgba(201,216,228,.18)}
+.ss .rw2 b{color:#fff} .ss .rw2 .sp{color:var(--visor)}
+.ss .ok2{color:#BCE5E0;font-weight:600}
+.with{position:absolute;left:64px;right:64px;top:778px;display:flex;align-items:center;gap:16px;font-size:30px;font-weight:600;color:#fff}
+[dir=rtl] .with{top:804px}
+.with em{font-style:normal;color:var(--glow)}
+.with svg{width:34px;height:34px;stroke:var(--visor);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.with i{flex:1;height:2px;background:linear-gradient(90deg,rgba(201,216,228,.5),rgba(201,216,228,0))}
+[dir=rtl] .with i{background:linear-gradient(270deg,rgba(201,216,228,.5),rgba(201,216,228,0))}
+.mgr{position:absolute;left:64px;right:64px;top:1112px;font-size:30px;line-height:1.35;color:var(--visor)}
+[dir=rtl] .mgr{top:1136px;font-size:32px}
 """
+    ARROW = '<svg viewBox="0 0 24 24"><path d="M12 4v16M5 13l7 7 7-7"/></svg>'
     T = {
         "en": dict(k="Sound familiar? #4", h="The container arrived.<br><em>The stock didn't.</em>", s="Arrived in the port, missing in the system.",
-                   r=[("Port of Beirut", "SHP-24021", "Unloaded ✓", "okc"), ("WH-01 Beirut", "Received", "0", "zero"), ("The system", "", "“Where is it?”", "")]),
+                   r=[("Port of Beirut", "SHP-24021", "Unloaded ✓", "okc"), ("WH-01 Beirut", "Received", "0", "zero"), ("The system", "", "“Where is it?”", "zero")],
+                   w='With <em>Stacko</em>',
+                   r2=[("Port of Beirut", "SHP-24021", "Unloaded ✓"), ("On the way", "to WH-01", "ETA 50m"), ("WH-01 Beirut", "Received", "40 ✓")],
+                   m="Managers see where every container is, from port to shelf."),
         "ar": dict(k="مألوفة؟ #4", h="الحاوية وصلت.<br><em>المخزون؟ لأ.</em>", s="وصلت عالمرفأ، ومش موجودة بالنظام.",
-                   r=[("مرفأ بيروت", L("SHP-24021"), "انفضّت ✓", "okc"), (f"{L('WH-01')} بيروت", "استلمنا", "0", "zero"), ("النظام", "", "«وينها؟»", "")]),
+                   r=[("مرفأ بيروت", L("SHP-24021"), "انفضّت ✓", "okc"), (f"{L('WH-01')} بيروت", "استلمنا", "0", "zero"), ("النظام", "", "«وينها؟»", "zero")],
+                   w='مع <em>ستاكو</em>',
+                   r2=[("مرفأ بيروت", L("SHP-24021"), "انفضّت ✓"), ("عالطريق", f"لـ{L('WH-01')}", "بتوصل خلال 50 دقيقة"),
+                       (f"{L('WH-01')} بيروت", "استلمنا", "40 ✓")],
+                   m="المدير بيشوف وين كل حاوية، من المرفأ للرفّ."),
     }
     for lang, t in T.items():
         rows = "".join(f'<div class="rw2"><b>{a}</b><span class="sp">{b}</span><span class="{c}">{d}</span></div>' for a, b, d, c in t["r"])
+        rows2 = "".join(f'<div class="rw2"><b>{a}</b><span class="sp">{b}</span><span class="ok2">{d}</span></div>' for a, b, d in t["r2"])
         body = f"""<img class="bg" src="/assets/backgrounds/final/BG-60.jpg" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
 <div class="kick">{t['k']}</div>
 <h1 class="h1">{t['h']}</h1>
 <p class="sub" style="top:{420 if lang == 'en' else 450}px">{t['s']}</p>
 <div class="wc sc"><div class="rws">{rows}</div></div>
+<div class="with">{ARROW}<span>{t['w']}</span><i></i></div>
+<div class="ss"><div class="rws">{rows2}</div></div>
+<p class="mgr">{t['m']}</p>
 {top(lang)}
 {FOOT[lang]}"""
         nm = name("IDEA-022", lang)

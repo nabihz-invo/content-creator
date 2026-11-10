@@ -1,3 +1,1 @@
-Every business we talk to tells the same story after branch three.
-
-Where are you on the tower?
+Every business tells the same story after branch three: more files, more calls, less certainty. Stacko is the stock management system built for several warehouses. It puts every branch, item and shipment on one live map.

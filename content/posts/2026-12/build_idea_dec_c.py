@@ -190,10 +190,14 @@ def idea_070():
   border:2px solid var(--glow);color:#fff;border-radius:999px;padding:14px 26px;font-size:28px;font-weight:600;
   box-shadow:0 0 30px rgba(46,242,238,.4)}
 .live i{width:14px;height:14px;border-radius:50%;background:var(--glow);box-shadow:0 0 12px var(--glow)}
+.bg{transform:translateY(80px)}
+[dir=rtl] .bg{transform:translateY(80px) scaleX(-1)}
+.live{top:840px}
+[dir=rtl] .live{left:auto;right:640px}
 """
     T = {
-        "en": dict(h="From notebook<br><em>to map.</em>", s="Same stock. Finally visible.", c="3 warehouses · live"),
-        "ar": dict(h="من الدفتر<br><em>للخريطة.</em>", s="نفس المخزون. وأخيراً بيبيّن.", c="3 مستودعات · مباشر"),
+        "en": dict(h="From notebook<br><em>to map.</em>", s="With Stacko, move your stock<br>from the notebook to the map.", c="3 warehouses · live"),
+        "ar": dict(h="من الدفتر<br><em>للخريطة.</em>", s="مع ستاكو، بتنقل مخزونك<br>من الدفتر للخريطة.", c="3 مخازن · مباشر"),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/OB-05.jpg" alt="">

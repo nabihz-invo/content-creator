@@ -34,6 +34,11 @@ def idea_077():
 .cover .sub{top:420px;font-size:36px}
 [dir=rtl] .cover .sub{top:460px}
 .cover .shade-t{height:640px}
+.cover .bg{transform:translateY(70px)}
+.cover .sub2{position:absolute;left:64px;right:64px;top:480px;font-size:28px;color:var(--visor)}
+[dir=rtl] .cover .sub2{top:530px;font-size:30px}
+.why{position:absolute;left:64px;right:64px;top:380px;font-size:32px;line-height:1.4;color:#C9D8E4;font-weight:400}
+[dir=rtl] .why{top:400px;font-size:34px;line-height:1.55}
 .pc{left:64px;right:64px;top:560px;padding:34px 40px;border-radius:30px}
 .pc b.t{font-size:44px}
 .pc .t2{font-size:32px;color:var(--deep);margin-top:6px}
@@ -48,42 +53,46 @@ def idea_077():
 """
     T = {
         "en": dict(
-            cover=("White Friday<br><em>stock checklist.</em>", "Save this for Thursday."),
+            cover=("White Friday<br><em>stock checklist.</em>", "4 checks before your busiest sales week.", "Save this for your peak week."),
             k="Check {n} of 4",
             items=["Know your best sellers' stock<br><em>in every branch.</em>",
                    "Move stock to the branches<br><em>that sell most, now.</em>",
                    "Check what's still<br><em>at sea or in customs.</em>",
                    "Watch low-stock alerts<br><em>on your top items.</em>"],
+            why=["So you never promise what a branch doesn't have.", "Items sitting in the wrong branch don't sell.",
+                 "Know what arrives in time and what won't.", "Catch a stock-out before the customer does."],
             best=("Best seller", "LED Strip 5m", [("Beirut", "1,380"), ("Tripoli", "210"), ("Sidon", "0")]),
             eta=("Transfer", "Beirut → Tripoli", "Arrives in 1h 30m"),
             ship=("Incoming", [("SHP-24021", "Shenzhen → Beirut", "At sea · day 24 of ~30"),
                                ("SHP-24035", "Port of Beirut", "In customs · ~2 days")]),
             low=("Low-stock alerts", [("Desk Lamp", "3 left in Jounieh"), ("USB-C Cable", "8 left in Sidon")], "Low"),
-            end=("Good luck<br><em>this Friday.</em>", "Your stock, always in sight."),
+            end=("Good luck<br><em>this peak week.</em>", "See your stock live."),
             done=["Best sellers checked in every branch", "Stock moved to where it sells",
                   "Shipments at sea and in customs checked", "Low-stock alerts watched"]),
         "ar": dict(
-            cover=("قائمة تجهيز<br><em>الوايت فرايداي.</em>", "احفظها لنهار الخميس."),
+            cover=("قائمة تجهيز<br><em>الوايت فرايداي.</em>", "4 شغلات تشيّكها قبل أعجق أسبوع مبيعات.", "احفظها لأسبوع الذروة."),
             k="خطوة {n} من 4",
             items=["اعرف مخزون الأكتر مبيعاً<br><em>بكل فرع.</em>",
                    "حرّك البضاعة للفروع<br><em>اللي بتبيع أكتر، هلّق.</em>",
                    "شيّك شو بعد<br><em>بالبحر أو بالجمرك.</em>",
                    "انتبه لتنبيهات النقص<br><em>عالأصناف الأساسية.</em>"],
+            why=["حتى ما توعد بشي مش موجود بالفرع.", "البضاعة القاعدة بالفرع الغلط ما بتنباع.",
+                 "اعرف شو رح يوصل عالوقت وشو لأ.", "الحق النقص قبل ما يلاحظه الزبون."],
             best=("الأكتر مبيعاً", L("LED Strip 5m"), [("بيروت", "1,380"), ("طرابلس", "210"), ("صيدا", "0")]),
             eta=("تحويل", "بيروت ← طرابلس", "بتوصل خلال ساعة ونص"),
             ship=("واردة", [(L("SHP-24021"), "شنتشن ← بيروت", "بالبحر · اليوم 24 من حوالي 30"),
                             (L("SHP-24035"), "مرفأ بيروت", "بالجمرك · حوالي يومين")]),
             low=("تنبيهات النقص", [(L("Desk Lamp"), "باقي 3 بجونيه"), (L("USB-C Cable"), "باقي 8 بصيدا")], "ناقص"),
-            end=("بالتوفيق<br><em>هالجمعة.</em>", "مخزونك دايماً قدّام عينك."),
+            end=("بالتوفيق<br><em>بأسبوع الذروة.</em>", "شوف مخزونك مباشر."),
             done=["شيّكت الأكتر مبيعاً بكل فرع", "حرّكت البضاعة لوين بتنباع", "شيّكت الشحنات بالبحر والجمرك", "تابعت تنبيهات النقص"]),
     }
     n = 6
     for lang, t in T.items():
         slides = []
-        h, s = t["cover"]
+        h, s, s2 = t["cover"]
         slides.append(("cover", f"""<img class="bg" src="/assets/post-images/final/SE-01.jpg" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
-<h1 class="h1">{h}</h1><p class="sub">{s}</p>"""))
+<h1 class="h1">{h}</h1><p class="sub">{s}</p><p class="sub2">{s2}</p>"""))
         for i, h in enumerate(t["items"]):
             if i == 0:
                 a, b, br = t["best"]
@@ -103,6 +112,7 @@ def idea_077():
             slides.append(("", f"""<img class="bg" src="/assets/backgrounds/final/BG-56.jpg" alt="">
 <div class="kick"><i></i>{t['k'].format(n=i + 1)}</div>
 <h1 class="h1">{h}</h1>
+<p class="why">{t['why'][i]}</p>
 {card}"""))
         h, s = t["end"]
         li = "".join(f'<div class="li"><i>✓</i>{x}</div>' for x in t["done"])
