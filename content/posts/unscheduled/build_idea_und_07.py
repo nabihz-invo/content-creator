@@ -35,14 +35,14 @@ def idea_141():
               (T_(lang, "Stacko reads it:<br><em>item, quantity, from, to.</em>", "ستاكو بيقراها:<br><em>الصنف، الكمية، من، ولوين.</em>"),
                rowscard([(T_(lang, "Item", "الصنف"), "", L("LED Strip 5m"), ""), (T_(lang, "Quantity", "الكمية"), "", "40", ""),
                          (T_(lang, "From", "من"), "", T_(lang, "WH-01 · Beirut", f"{L('WH-01')} · بيروت"), ""), (T_(lang, "To", "لـ"), "", T_(lang, "WH-03 · Tripoli", f"{L('WH-03')} · طرابلس"), "okc")])),
-              (T_(lang, "Stock is deducted<br><em>at the source.</em>", "المخزون بينقص<br><em>من المصدر.</em>"),
+              (T_(lang, "Stock is deducted<br><em>at the source.</em>", "الكميات بتنقص<br><em>من المصدر.</em>"),
                rowscard([(T_(lang, "WH-01 · Beirut", f"{L('WH-01')} · بيروت"), L("LED Strip 5m"), L("1,380 → 1,340"), "okc")])),
               (T_(lang, "A truck moves on the map<br><em>with a live countdown.</em>", "شاحنة بتمشي عالخريطة<br><em>مع عدّاد مباشر.</em>"),
                mapcard() + f'<div style="position:absolute;left:50%;transform:translateX(-50%);top:1060px;display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--abyss);border-radius:999px;padding:14px 24px;font-size:27px;font-weight:600;white-space:nowrap;box-shadow:0 0 0 3px rgba(46,242,238,.6)"><i style="width:12px;height:12px;border-radius:50%;background:var(--signal)"></i>{T_(lang, "Beirut → Tripoli · ETA 1h 30m", "بيروت ← طرابلس · بتوصل خلال ساعة ونص")}</div>'),
               (T_(lang, "Tripoli sees the ETA.<br><em>No calls.</em>", "طرابلس بتشوف وقت الوصول.<br><em>بلا تلفونات.</em>"),
                card(f'<div class="lab">{inc}</div><b class="t">{L("40 × LED Strip 5m")}</b>'
                     f'<div class="t2 okc">{T_(lang, "From Beirut · arrives in 1h 30m", "من بيروت · بتوصل خلال ساعة ونص")}</div>')),
-              (T_(lang, "On arrival, the stock lands.<br><em>Every step has a name and a time.</em>", "لمّا توصل، المخزون بينزل.<br><em>وكل خطوة إلها اسم ووقت.</em>"),
+              (T_(lang, "On arrival, the stock lands.<br><em>Every step has a name and a time.</em>", "لمّا توصل، الكميات بتنزل.<br><em>وكل خطوة إلها اسم ووقت.</em>"),
                phone(trf, s=0.78, left=170, top_=360))]
         # dark_car with the cover on the phone frame: build via dark_car then swap cover art
         dark_car("IDEA-141", "IDEA-141_one-transfer-start-to-finish", lang, "UI-01.jpg", cover,
@@ -99,7 +99,7 @@ def idea_145():
          "ar": dict(h=f"جداول، ولا {L('ERP')} كبير،<br><em>ولا ستاكو؟</em>", s="اختار الأداة اللي على قدّ مشكلتك.",
                     c=[("الجداول", ["ببلاش بالبداية", "ما في صورة مباشرة", "فوضى نسخ"]),
                        (f"{L('ERP')} كبير", ["بيعمل كل شي", "تركيب طويل", "تدريب تقيل"]),
-                       ("ستاكو", ["المخزون والحركات والاستيراد على خريطة وحدة", "التسجيل برسالة", "عربي وإنكليزي"])])}
+                       ("ستاكو", ["المخازن والحركات والاستيراد على خريطة وحدة", "التسجيل برسالة", "عربي وإنكليزي"])])}
     for lang, t in T.items():
         cols = "".join(f'<div class="col{" st" if i == 2 else ""}"><h3>{h}</h3>' + "".join(f"<p>{x}</p>" for x in ps) + "</div>" for i, (h, ps) in enumerate(t["c"]))
         body = f"""{BG57}
@@ -193,7 +193,7 @@ def idea_148():
     for lang in ("en", "ar"):
         dark_static("IDEA-148", "IDEA-148_system-40-shelf-0", lang, OB("OB-33"),
                     T_(lang, "The system says 40.<br><em>The shelf says 0.</em>", "النظام بيقول 40.<br><em>الرفّ بيقول 0.</em>"),
-                    T_(lang, "That's phantom stock.", "هيدا المخزون الوهمي."),
+                    T_(lang, "That's phantom stock.", "هيدا البضاعة الوهمية."),
                     extra=f'<div class="chipx" style="left:50%;transform:translateX(-50%);top:560px"><i style="background:#8A5A00"></i>{T_(lang, "In system: 40 · On shelf: 0", "بالنظام: 40 · عالرف: 0")}</div>',
                     h_size=T_(lang, 76, 72), sub_top=T_(lang, 380, 420), title="phantom stock")
 
@@ -213,7 +213,7 @@ def idea_149():
                      ("تعديلات<br><em>بلا اسم عليها.</em>", "كل تغيير إلو اسم ووقت.")])
         sl = [(h, card(f'<div class="lab">{fx}</div><div style="font-size:38px;font-weight:600;line-height:1.3;margin-top:6px">{f}</div>')) for h, f in causes]
         dark_car("IDEA-149", "IDEA-149_where-phantom-stock-comes-from", lang, "OB-33.jpg",
-                 (T_(lang, "Where phantom stock<br><em>comes from.</em>", "من وين بيجي<br><em>المخزون الوهمي؟</em>"),
+                 (T_(lang, "Where phantom stock<br><em>comes from.</em>", "من وين بيجي<br><em>البضاعة الوهمية؟</em>"),
                   T_(lang, "4 everyday causes, and the fix for each.", "4 أسباب يومية، والحل لكل واحد.")),
                  sl, "phantom stock causes", kick=T_(lang, "Cause {n} of 4", "سبب {n} من 4"))
 
@@ -222,7 +222,7 @@ def idea_150():
     for lang in ("en", "ar"):
         dark_static("IDEA-150", "IDEA-150_cash-gathering-dust", lang, OB("OB-34"),
                     T_(lang, "How much cash<br><em>is gathering dust?</em>", "قدّيش مصاري<br><em>عم تجمع غبرة؟</em>"),
-                    T_(lang, "Stock that hasn't moved in months is money that isn't working.", "المخزون اللي ما تحرّك من أشهر، مصاري مش عم تشتغل."),
+                    T_(lang, "Stock that hasn't moved in months is money that isn't working.", "البضاعة اللي ما تحرّكت من أشهر، مصاري مش عم تشتغل."),
                     h_size=T_(lang, 72, 68), title="gathering dust")
 
 
@@ -249,7 +249,7 @@ def idea_151():
 def idea_152():
     for lang in ("en", "ar"):
         dark_static("IDEA-152", "IDEA-152_cash-that-cant-move", lang, OB("OB-35"),
-                    T_(lang, "Stock is cash<br><em>that can't move.</em>", "المخزون هو<br><em>مصاري واقفة.</em>"),
+                    T_(lang, "Stock is cash<br><em>that can't move.</em>", "المخازن هو<br><em>مصاري واقفة.</em>"),
                     T_(lang, "Until you know where it is, and what isn't selling.", "لحتى تعرف وينه، وشو مش عم ينباع."),
                     h_size=T_(lang, 84, 76), sub_top=T_(lang, 400, 430), title="cash that can't move")
 

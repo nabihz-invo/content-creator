@@ -14,20 +14,20 @@
    "ar": {"title": "تلفون من فرع لفرع.", "body": "الموظف بيتّصل بالفرع التاني. ما حدا بيرد. بيتّصل بالمستودع. «خلّيني شوف». بيرجع يتّصل. وبهالوقت الزبون فلّ.", "labels": ["عم نتّصل بالفرع ٢…", "ما في رد", "خلّيني شوف."]}},
   {"img": {"name": "map", "src": "app", "h": 520},
    "en": {"title": "What if the answer was *already on screen?*", "body": "One map. Every branch. Stock visible at a glance. Click the pin. See the units. Reserve or transfer — with the right permissions."},
-   "ar": {"title": "شو لو الجواب *كان عالشاشة من الأوّل؟*", "body": "خريطة وحدة. كل فرع. المخزون واضح من أوّل نظرة. كبوس عالنقطة. شوف القطع. احجز أو حوّل — بالصلاحيات الصح."}},
+   "ar": {"title": "شو لو الجواب *كان عالشاشة من الأوّل؟*", "body": "خريطة وحدة. كل فرع. المخازن واضحة من أوّل نظرة. كبوس عالنقطة. شوف القطع. احجز أو حوّل — بالصلاحيات الصح."}},
   {"img": {"name": "move-trf", "src": "app", "h": 520},
    "en": {"title": "And the transfer is *traceable.*", "body": "When stock moves from one branch to another, the movement is recorded. Who sent it, who received it, when. No \"I thought you had it\" conversations."},
-   "ar": {"title": "والتحويل *إلو أثر.*", "body": "لمّا المخزون يتحرّك من فرع لفرع، الحركة بتتسجّل. مين بعت، مين استلم، وإيمتى. ما في حكي «كنت فكرانو عندك»."}},
+   "ar": {"title": "والتحويل *إلو أثر.*", "body": "لمّا البضاعة تتحرّك من فرع لفرع، الحركة بتتسجّل. مين بعت، مين استلم، وإيمتى. ما في حكي «كنت فكرانو عندك»."}},
   {"img": {"name": "rolepick", "h": 470},
    "en": {"title": "Built for retail teams, not spreadsheet people.", "body": "Role-scoped views mean the floor staff see stock, managers see approvals, and nobody accidentally edits a quantity."},
-   "ar": {"title": "مبني لفرق البيع، مش لناس الشيتات.", "body": "كل دور إلو شاشتو: الموظفين بيشوفوا المخزون، المدراء بيشوفوا الموافقات، وما حدا بيعدّل كمية بالغلط."}},
+   "ar": {"title": "مبني لفرق البيع، مش لناس الشيتات.", "body": "كل دور إلو شاشتو: الموظفين بيشوفوا المخازن، المدراء بيشوفوا الموافقات، وما حدا بيعدّل كمية بالغلط."}},
   {"type": "cta",
    "en": {"title": "Keep the sale. *Lose the phone calls.*", "lead": "Book a meeting and see your branches on one map."},
    "ar": {"title": "خلّي البيعة. *وخلّص من التلفونات.*", "lead": "احجز اجتماعاً وشوف فروعك على خريطة وحدة."}}
  ],
  "caption": {
   "en": "\"Which branch has the last 12 units?\"\n\nIf answering takes more than 10 seconds, you're not managing stock — you're managing phone calls.\n\nRetail is a race against the walkout. The customer is at your counter. They want 12 units. You have 12 units — at another branch. Confirm in 30 seconds and you keep the sale. Take 3 phone calls and they're already on their phone.\n\nStacko puts every branch on one map. Click the pin. See the units. Reserve or transfer — with role-scoped permissions so the floor staff see stock without editing it. And every transfer is recorded: who sent it, who received it, when.\n\n👉 Book a meeting — link in bio.",
-  "ar": "«أي فرع فيه آخر ١٢ قطعة؟»\n\nإذا الجواب بياخد أكتر من ١٠ ثواني، إنت مش عم تدير مخزون — عم تدير تلفونات.\n\nالبيع بالمفرّق سباق قبل ما يفلّ الزبون. واقف عالكاونتر، بدّو ١٢ قطعة، والـ١٢ موجودين — بس بفرع تاني. أكّد بـ٣٠ ثانية وبتربح البيعة. اعمل ٣ تلفونات وبيكون صار عالتلفون عم يدوّر بمحل تاني.\n\nستاكو بيحطّ كل الفروع على خريطة وحدة. كبوس عالنقطة. شوف القطع. احجز أو حوّل — بصلاحيات حسب الدور، فالموظفين بيشوفوا المخزون بلا ما يعدّلوه. وكل تحويل بيتسجّل: مين بعت، مين استلم، وإيمتى.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "«أي فرع فيه آخر ١٢ قطعة؟»\n\nإذا الجواب بياخد أكتر من ١٠ ثواني، إنت مش عم تدير مخازن — عم تدير تلفونات.\n\nالبيع بالمفرّق سباق قبل ما يفلّ الزبون. واقف عالكاونتر، بدّو ١٢ قطعة، والـ١٢ موجودين — بس بفرع تاني. أكّد بـ٣٠ ثانية وبتربح البيعة. اعمل ٣ تلفونات وبيكون صار عالتلفون عم يدوّر بمحل تاني.\n\nستاكو بيحطّ كل الفروع على خريطة وحدة. كبوس عالنقطة. شوف القطع. احجز أو حوّل — بصلاحيات حسب الدور، فالموظفين بيشوفوا المخازن بلا ما يعدّلوه. وكل تحويل بيتسجّل: مين بعت، مين استلم، وإيمتى.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#RetailManagement #MultiBranch #InventoryManagement #StockVisibility #RetailTech #Stacko #SMB #InventoryControl #CustomerExperience #RetailOperations"
 }

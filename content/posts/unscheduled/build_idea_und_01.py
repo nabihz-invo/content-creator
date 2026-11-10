@@ -41,7 +41,7 @@ def idea_091():
         pos = [(250, 760), (560, 880), (280, 1010)]
         extra = "".join(f'<div class="lbl" style="left:{x}px;top:{y}px"><i></i>{t}</div>' for t, (x, y) in zip(lb, pos))
         dark_static("IDEA-091", "IDEA-091_just-the-tip", lang, OB("OB-08"),
-                    T_(lang, "The stock you see<br><em>is just the tip.</em>", "المخزون اللي بتشوفه<br><em>هو بس الراس.</em>"),
+                    T_(lang, "The stock you see<br><em>is just the tip.</em>", "البضاعة اللي بتشوفها<br><em>هو بس الراس.</em>"),
                     T_(lang, "Unlogged moves, stock in transit, forgotten boxes:<br>the rest is below.", "حركات مش مسجّلة، بضاعة عالطريق، كراتين منسيّة:<br>الباقي تحت."),
                     extra=extra, css=css, title="just the tip")
 
@@ -77,7 +77,7 @@ def idea_093():
 def idea_095():
     for lang in ("en", "ar"):
         dark_static("IDEA-095", "IDEA-095_always-in-sight-lighthouse", lang, OB("OB-10"),
-                    T_(lang, "Your stock,<br><em>always in sight.</em>", "مخزونك<br><em>دايماً قدّام عينك.</em>"),
+                    T_(lang, "Your stock,<br><em>always in sight.</em>", "مخزنك<br><em>دايماً قدّام عينك.</em>"),
                     T_(lang, "Even at night. Even across branches.", "حتى بالليل. وحتى بين الفروع."),
                     h_size=T_(lang, 76, 68), sub_top=T_(lang, 380, 410), title="always in sight",
                     css="[dir=rtl] .h1,[dir=rtl] .sub{right:auto;left:64px;width:620px}")
@@ -85,7 +85,7 @@ def idea_095():
 
 def idea_096():
     for lang in ("en", "ar"):
-        sl = [(T_(lang, "Stock in<br><em>every location.</em>", "المخزون<br><em>بكل موقع.</em>"),
+        sl = [(T_(lang, "Stock in<br><em>every location.</em>", "المخازن<br><em>بكل موقع.</em>"),
                rowscard([(T_(lang, "Beirut", "بيروت"), "WH-01", "2,140", ""), (T_(lang, "Sidon", "صيدا"), "WH-02", "860", ""),
                          (T_(lang, "Tripoli", "طرابلس"), "WH-03", "640", ""), (T_(lang, "Dubai", "دبي"), "DXB-01", "1,720", "")])),
               (T_(lang, "Trucks on the road,<br><em>with ETAs.</em>", "الشاحنات عالطريق،<br><em>مع أوقات الوصول.</em>"),

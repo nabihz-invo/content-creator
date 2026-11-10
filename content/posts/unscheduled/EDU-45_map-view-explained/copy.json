@@ -46,8 +46,8 @@
     "body": "One click opens the location's stock summary — quantities, status, and what's available."
    },
    "ar": {
-    "title": "كبوس عالنقطة. شوف المخزون.",
-    "body": "كبسة وحدة بتفتح ملخّص مخزون الموقع — الكميات، الحالة، وشو متوفّر."
+    "title": "كبوس عالنقطة. شوف المخازن.",
+    "body": "كبسة وحدة بتفتح ملخّص كميات الموقع — الكميات، الحالة، وشو متوفّر."
    }
   },
   {
@@ -80,7 +80,7 @@
    },
    "ar": {
     "title": "انتبه للي بدّو انتباه.",
-    "body": "المواقع اللي مخزونها قليل أو فيها معاملات معلّقة بتبيّن مختلفة — حتى ما يتخبّى شي بعامود."
+    "body": "المواقع اللي فيها نقص أو فيها معاملات معلّقة بتبيّن مختلفة — حتى ما يتخبّى شي بعامود."
    }
   },
   {
@@ -125,7 +125,7 @@
  ],
  "caption": {
   "en": "The map view, explained.\n\nEvery warehouse. Every branch. One screen.\n\n01 Locations, not spreadsheets — each warehouse and branch is a pin, not a row\n02 Click a pin, see the stock — quantities, status, availability\n03 See movement, not just quantities — what moved between locations\n04 Spot what needs attention — low stock and pending items are visually distinct (Concept)\n05 Scoped to permissions — warehouse users, managers, and viewers each see what they should\n\nWhat the map is *not*: a replacement for your ERP ledger. It's the visual layer that answers \"where is it?\" — fast.\n\n👉 Book a meeting — link in bio.",
-  "ar": "شاشة الخريطة، بالتفصيل.\n\nكل مستودع. كل فرع. شاشة وحدة.\n\n٠١ مواقع، مش شيتات — كل مستودع وفرع نقطة، مش سطر\n٠٢ كبوس عالنقطة، شوف المخزون — كميات، حالة، توفّر\n٠٣ شوف الحركة، مش بس الكميات — شو تحرّك بين المواقع\n٠٤ انتبه للي بدّو انتباه — المخزون القليل والمعلّق بيبيّن مختلف (مفهوم)\n٠٥ على قدّ الصلاحيات — كل واحد بيشوف اللي إلو\n\nشو الخريطة *مش*: بديل عن دفتر الـERP. هيّي الطبقة اللي بتجاوب «وينو؟» — بسرعة.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "شاشة الخريطة، بالتفصيل.\n\nكل مستودع. كل فرع. شاشة وحدة.\n\n٠١ مواقع، مش شيتات — كل مستودع وفرع نقطة، مش سطر\n٠٢ كبوس عالنقطة، شوف المخازن — كميات، حالة، توفّر\n٠٣ شوف الحركة، مش بس الكميات — شو تحرّك بين المواقع\n٠٤ انتبه للي بدّو انتباه — النقص والمعلّق بيبيّن مختلف (مفهوم)\n٠٥ على قدّ الصلاحيات — كل واحد بيشوف اللي إلو\n\nشو الخريطة *مش*: بديل عن دفتر الـERP. هيّي الطبقة اللي بتجاوب «وينو؟» — بسرعة.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#InventoryManagement #StockVisibility #MapView #SMB #Stacko #WarehouseManagement #SupplyChain #InventoryTech #DistributorLife #BusinessOperations",
  "changes": [

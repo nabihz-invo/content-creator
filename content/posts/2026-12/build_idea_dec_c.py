@@ -59,7 +59,7 @@ def idea_083():
 """
     T = {
         "en": dict(h="Season's greetings<br><em>from the Stacko team.</em>", s="Rest well. Your stock will still be on the map."),
-        "ar": dict(h="أعياد مجيدة<br><em>من فريق ستاكو.</em>", s="ارتاحوا منيح. مخزونكن رح يضلّ عالخريطة."),
+        "ar": dict(h="أعياد مجيدة<br><em>من فريق ستاكو.</em>", s="ارتاحوا منيح. مخزنكن رح يضلّ عالخريطة."),
     }
     for lang, t in T.items():
         body = f"""<div class="zoom"><img src="/assets/post-images/final/SE-02.jpg" alt=""></div>
@@ -88,7 +88,7 @@ def idea_068():
     T = {
         "en": dict(h="Stock data<br><em>with no missing pieces.</em>", s="Who, what, when and where, for every move.",
                    q=[("Who", "Rami"), ("What", "−25 · LED Strip 5m"), ("When", "Today, 4:12 PM"), ("Where", "WH-01 · Beirut")]),
-        "ar": dict(h="بيانات مخزون<br><em>بلا قطع ناقصة.</em>", s="مين، شو، إيمتى ووين، لكل حركة.",
+        "ar": dict(h="بيانات مخازن<br><em>بلا قطع ناقصة.</em>", s="مين، شو، إيمتى ووين، لكل حركة.",
                    q=[("مين", "رامي"), ("شو", f"{L('−25')} · {L('LED Strip 5m')}"), ("إيمتى", "اليوم، 4:12 بعد الضهر"), ("وين", f"{L('WH-01')} · بيروت")]),
     }
     for lang, t in T.items():
@@ -197,7 +197,7 @@ def idea_070():
 """
     T = {
         "en": dict(h="From notebook<br><em>to map.</em>", s="With Stacko, move your stock<br>from the notebook to the map.", c="3 warehouses · live"),
-        "ar": dict(h="من الدفتر<br><em>للخريطة.</em>", s="مع ستاكو، بتنقل مخزونك<br>من الدفتر للخريطة.", c="3 مخازن · مباشر"),
+        "ar": dict(h="من الدفتر<br><em>للخريطة.</em>", s="مع ستاكو، بتنقل مخزنك<br>من الدفتر للخريطة.", c="3 مخازن · مباشر"),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/OB-05.jpg" alt="">

@@ -11,7 +11,7 @@
    "ar": {"eyebrow": "الجمعة ١", "title": "التعارف.", "body": "منتعرّف على مواقعك، أصنافك، حجم فواتيرك، أدوار فريقك، وطريقة شغلك اليوم. وإنت بتعرف شو ستاكو بيعمل وشو ما بيعمل اليوم."}},
   {"num": "2–3", "icon": "gear",
    "en": {"eyebrow": "Weeks 2–3", "title": "Setup.", "body": "We import your locations and stock, configure roles, and walk through the map and transaction flow with your team."},
-   "ar": {"eyebrow": "الجمعة ٢–٣", "title": "الإعداد.", "body": "منستورد مواقعك ومخزونك، منضبط الأدوار، ومنمرق مع فريقك عالخريطة وعلى شغل المعاملات."}},
+   "ar": {"eyebrow": "الجمعة ٢–٣", "title": "الإعداد.", "body": "منستورد مواقعك ومخزنك، منضبط الأدوار، ومنمرق مع فريقك عالخريطة وعلى شغل المعاملات."}},
   {"num": "4–6", "img": {"name": "moves", "src": "app", "h": 440},
    "en": {"eyebrow": "Weeks 4–6", "title": "Live use.", "body": "Your team uses Stacko for a real workflow — receipts, transfers, invoices, or all three. We check in weekly and take notes."},
    "ar": {"eyebrow": "الجمعة ٤–٦", "title": "استعمال فعلي.", "body": "فريقك بيستعمل ستاكو بشغل حقيقي — استلام، تحويلات، فواتير، أو التلاتة. ومنتابع كل جمعة ومنسجّل ملاحظات."}},

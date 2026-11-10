@@ -28,7 +28,7 @@ def idea_115():
                rowscard([(T_(lang, "Beirut", "بيروت"), "WH-01", "96", ""), (T_(lang, "Sidon", "صيدا"), "WH-02", "71", ""), (T_(lang, "Tripoli", "طرابلس"), "WH-03", "47", "")],
                         T_(lang, "Moves logged this week", "حركات تسجّلت هالجمعة")))]
         light_car("IDEA-115", "IDEA-115_5-steps-cleaner-stock", lang, "OB-20.jpg", -160,
-                  (T_(lang, "5 steps to<br><em>cleaner stock.</em>", "5 خطوات<br><em>لمخزون أنضف.</em>"),
+                  (T_(lang, "5 steps to<br><em>cleaner stock.</em>", "5 خطوات<br><em>لمخازن أنضف.</em>"),
                    T_(lang, "Start at the bottom. Climb one step a week.", "ابدأ من تحت. وطلاع درجة كل جمعة.")), sl, "5 steps",
                   kick=T_(lang, "Step {n} of 5", "خطوة {n} من 5"))
 
@@ -44,7 +44,7 @@ def idea_117():
     for lang in ("en", "ar"):
         dark_static("IDEA-117", "IDEA-117_stacko-is-live", lang, OB("OB-21"),
                     T_(lang, "Stacko<br><em>is live.</em>", "ستاكو<br><em>صار جاهز.</em>"),
-                    T_(lang, "Your stock, always in sight.", "مخزونك دايماً قدّام عينك."),
+                    T_(lang, "Your stock, always in sight.", "مخزنك دايماً قدّام عينك."),
                     h_size=T_(lang, 110, 96), sub_top=T_(lang, 430, 470), title="Stacko is live")
 
 
@@ -72,7 +72,7 @@ def idea_119():
         extra = (f'<span class="ty" style="left:90px;top:700px">{a}</span><span class="ty" style="left:330px;top:690px">{b}</span>'
                  f'<span class="ty" style="left:130px;top:1090px">{c}</span><div class="tl"><i></i>{d}</div>')
         light_static("IDEA-119", "IDEA-119_untangle-your-stock", lang, OB("OB-22"),
-                     T_(lang, "Untangle<br><em>your stock.</em>", "فكّ عقدة<br><em>مخزونك.</em>"),
+                     T_(lang, "Untangle<br><em>your stock.</em>", "فكّ عقدة<br><em>مخزنك.</em>"),
                      T_(lang, "Calls, files and chats in. One clear line out.", "تلفونات وملفات ومحادثات بتفوت. وخط واحد واضح بيطلع."),
                      extra=extra, css=css + ".h1{font-size:88px}[dir=rtl] .h1{font-size:76px}", sub_top=T_(lang, 400, 430), title="untangle")
 
@@ -80,7 +80,7 @@ def idea_119():
 def idea_120():
     for lang in ("en", "ar"):
         light_static("IDEA-120", "IDEA-120_meme-stock-process", lang, OB("OB-22"),
-                     T_(lang, "Your stock process,<br><em>honestly:</em>", "عملية المخزون عندك،<br><em>بصراحة:</em>"), "",
+                     T_(lang, "Your stock process,<br><em>honestly:</em>", "عملية المخازن عندك،<br><em>بصراحة:</em>"), "",
                      css=".h1{font-size:84px;line-height:1.08}[dir=rtl] .h1{font-size:76px}", title="meme")
 
 
@@ -88,7 +88,7 @@ def idea_121():
     for lang in ("en", "ar"):
         dark_static("IDEA-121", "IDEA-121_no-crystal-ball", lang, OB("OB-23"),
                     T_(lang, "No crystal ball<br><em>needed.</em>", "ما في داعي<br><em>للبصّارة.</em>"),
-                    T_(lang, "Just a live map of your stock.", "بس خريطة مباشرة لمخزونك."),
+                    T_(lang, "Just a live map of your stock.", "بس خريطة مباشرة لمخزنك."),
                     h_size=T_(lang, 88, 80), sub_top=T_(lang, 400, 440), title="no crystal ball")
 
 
@@ -103,14 +103,14 @@ def idea_122():
         lt = T_(lang, "ABC", "أبج")
         extra = '<div class="abc">' + "".join(f"<span><b>{lt[i]}</b>{x}</span>" for i, x in enumerate(o)) + "</div>"
         dark_static("IDEA-122", "IDEA-122_guess-or-know-poll", lang, OB("OB-23"),
-                    T_(lang, "Do you guess your stock,<br><em>or know it?</em>", "بتخمّن مخزونك،<br><em>ولا بتعرفه؟</em>"), "",
+                    T_(lang, "Do you guess your stock,<br><em>or know it?</em>", "بتخمّن مخزنك،<br><em>ولا بتعرفه؟</em>"), "",
                     extra=extra, css=css, h_size=T_(lang, 70, 66), title="guess or know")
 
 
 def idea_123():
     for lang in ("en", "ar"):
         dark_static("IDEA-123", "IDEA-123_cash-on-shelves", lang, OB("OB-24"),
-                    T_(lang, "Your stock is<br><em>cash on shelves.</em>", "مخزونك هو<br><em>مصاري عالرفوف.</em>"),
+                    T_(lang, "Your stock is<br><em>cash on shelves.</em>", "مخزنك هو<br><em>مصاري عالرفوف.</em>"),
                     T_(lang, "Treat it like cash: every move recorded.", "عامله متل المصاري: كل حركة مسجّلة."),
                     extra=f'<div class="chipx" style="left:470px;top:760px"><i></i>{T_(lang, "Every move: who · when", "كل حركة: مين · إيمتى")}</div>',
                     h_size=T_(lang, 84, 76), sub_top=T_(lang, 400, 430), title="cash on shelves")

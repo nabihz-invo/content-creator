@@ -7,7 +7,7 @@ Prices, client estimates and running costs are deliberately left out: never put 
 
 Stacko (ستاكو) is an AI-assisted stock system that shows every warehouse, item and shipment on one live map, so teams actually log their moves.
 
-- Tagline: **Your stock, always in sight** / **مخزونك دايماً قدّام عينك**
+- Tagline: **Your stock, always in sight** / **مخزنك دايماً قدّام عينك**
 - Product of **Aiphin**, shown as "A product by AIPHIN". Website: **www.stacko-lb.com**
 - Who it's for: trading and distribution SMEs in Lebanon and the GCC with several warehouses and frequent imports
 - The idea in one line: logging a move makes a truck drive on the map, so the visual is the reward for keeping data clean

@@ -28,7 +28,7 @@ def idea_167():
               (T_(lang, "So we made logging<br><em>take 10 seconds.</em>", "فعملنا التسجيل<br><em>ياخد 10 ثواني.</em>"), big("10s", T_(lang, "one message from the phone", "رسالة وحدة من التلفون"))),
               (T_(lang, "And made every log<br><em>visible on a map.</em>", "وخلّينا كل تسجيل<br><em>يبيّن عالخريطة.</em>"), mapcard()),
               (T_(lang, "We're building it together.<br><em>More soon.</em>", "عم نبنيه سوا.<br><em>والجايي أكتر.</em>"),
-               card(f'<div style="font-size:34px;font-weight:600;line-height:1.4">{T_(lang, "Your stock, always in sight.", "مخزونك دايماً قدّام عينك.")}</div>'))]
+               card(f'<div style="font-size:34px;font-weight:600;line-height:1.4">{T_(lang, "Your stock, always in sight.", "مخزنك دايماً قدّام عينك.")}</div>'))]
         dark_car("IDEA-167", "IDEA-167_how-stacko-started", lang, "SC-08.jpg",
                  (T_(lang, "3 warehouses. Monthly imports.<br><em>No clear picture.</em>", "3 مستودعات. استيراد كل شهر.<br><em>وما في صورة واضحة.</em>"),
                   T_(lang, "How Stacko started, with a real business.", "كيف بلّش ستاكو، مع شغل حقيقي.")), sl, "how Stacko started", slide_bg=BG58D)
@@ -83,7 +83,7 @@ def idea_183():
         sl.append((T_(lang, "Comment CALENDAR<br><em>for the full PDF.</em>", f"اكتب {L('CALENDAR')} بالكومنت<br><em>لتاخد الـ{L('PDF')} كامل.</em>"),
                    card('<div style="font-size:64px;font-weight:700;text-align:center;color:var(--signal);direction:ltr">CALENDAR</div>')))
         dark_car("IDEA-183", "IDEA-183_2027-import-calendar", lang, "OB-40.jpg",
-                 (T_(lang, "Your 2027<br><em>import calendar.</em>", "روزنامة الاستيراد<br><em>لـ2027.</em>"), T_(lang, "The dates that move your stock.", "التواريخ اللي بتحرّك مخزونك.")),
+                 (T_(lang, "Your 2027<br><em>import calendar.</em>", "روزنامة الاستيراد<br><em>لـ2027.</em>"), T_(lang, "The dates that move your stock.", "التواريخ اللي بتحرّك مخزنك.")),
                  sl, "import calendar", slide_bg=BG58D)
 
 
@@ -94,12 +94,12 @@ def idea_184():
             f'<span style="width:40px;height:40px;border:3px solid var(--signal);border-radius:10px"></span>{x}</div>' for x in T_(lang, ["Yes", "No"], ["إيه", "لأ"])) + "</div>")
         qs = T_(lang, ["Do you know your stock<br><em>in every location today?</em>", "Is every transfer logged<br><em>the same day?</em>",
                        "Do you know what's at sea<br><em>right now?</em>", "Can you say who changed<br><em>any quantity?</em>"],
-                ["بتعرف مخزونك بكل موقع<br><em>اليوم؟</em>", "كل تحويل بيتسجّل<br><em>بنفس النهار؟</em>", "بتعرف شو بالبحر<br><em>هلّق؟</em>", "فيك تقول مين غيّر<br><em>أيّ كمية؟</em>"])
+                ["بتعرف مخزنك بكل موقع<br><em>اليوم؟</em>", "كل تحويل بيتسجّل<br><em>بنفس النهار؟</em>", "بتعرف شو بالبحر<br><em>هلّق؟</em>", "فيك تقول مين غيّر<br><em>أيّ كمية؟</em>"])
         sl = [(q, yn) for q in qs]
         sl.append((T_(lang, "Score under 7?<br><em>Comment CHECK for the full guide.</em>", f"نتيجتك تحت الـ7؟<br><em>اكتب {L('CHECK')} للدليل الكامل.</em>"),
                    card('<div style="font-size:64px;font-weight:700;text-align:center;color:var(--signal);direction:ltr">CHECK</div>'), ""))
         text_cover("IDEA-184", "IDEA-184_stock-health-check", lang,
-                   (T_(lang, "Stock health check:<br><em>10 questions.</em>", "فحص صحة المخزون:<br><em>10 أسئلة.</em>"), T_(lang, "Score yourself out of 10.", "قيّم حالك من 10.")),
+                   (T_(lang, "Stock health check:<br><em>10 questions.</em>", "فحص صحة المخازن:<br><em>10 أسئلة.</em>"), T_(lang, "Score yourself out of 10.", "قيّم حالك من 10.")),
                    yn.replace('style="top:560px"', 'style="top:520px"'), sl, "health check", kick=T_(lang, "Question {n} of 10", "سؤال {n} من 10"))
 
 

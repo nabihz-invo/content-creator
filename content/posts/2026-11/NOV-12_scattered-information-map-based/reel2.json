@@ -74,7 +74,7 @@
   {
    "vo": {
     "en": "Stacko offers a map-based way to make stock locations easier to understand.",
-    "ar": "ستاكو بيقدّم طريقة عالخريطة لتصير مواقع المخزون أسهل للفهم."
+    "ar": "ستاكو بيقدّم طريقة عالخريطة لتصير مواقع المخازن أسهل للفهم."
    },
    "scene": {
     "type": "shot",
@@ -113,7 +113,7 @@
  ],
  "caption": {
   "en": "Lists and reports can be useful, but sometimes the first question is simply where a location sits in the bigger picture. Stacko offers a map-based view for stock locations, and we'd value your perspective.\n\nBook a meeting with our team.",
-  "ar": "اللوايح والتقارير مفيدة، بس أحياناً أوّل سؤال هوّي ببساطة وين الموقع بالصورة الكبيرة. ستاكو بيقدّم رؤية عالخريطة لمواقع المخزون، ويهمّنا رأيك.\n\nاحجز اجتماعاً مع فريقنا."
+  "ar": "اللوايح والتقارير مفيدة، بس أحياناً أوّل سؤال هوّي ببساطة وين الموقع بالصورة الكبيرة. ستاكو بيقدّم رؤية عالخريطة لمواقع المخازن، ويهمّنا رأيك.\n\nاحجز اجتماعاً مع فريقنا."
  },
  "hashtags": "#Stacko #StockVisibility #WarehouseManagement #BuildingInPublic",
  "changes": [

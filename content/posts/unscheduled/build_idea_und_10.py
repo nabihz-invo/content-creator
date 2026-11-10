@@ -52,7 +52,7 @@ def idea_175():
     for lang in ("en", "ar"):
         r, t = T_(lang, ("Beirut → Batroun", "ETA 55m"), ("بيروت ← البترون", "بتوصل خلال 55 دقيقة"))
         dark_static("IDEA-175", "IDEA-175_summer-right-branch", lang, OB("SC-01"),
-                    T_(lang, "Summer brings the crowds.<br><em>Is your stock in the right branch?</em>", "الصيفية جايبة العجقة.<br><em>مخزونك بالفرع الصح؟</em>"),
+                    T_(lang, "Summer brings the crowds.<br><em>Is your stock in the right branch?</em>", "الصيفية جايبة العجقة.<br><em>مخزنك بالفرع الصح؟</em>"),
                     T_(lang, "Move stock before the rush, not during it.", "حرّك البضاعة قبل العجقة، مش خلالها."),
                     extra=f'<div class="vd"></div><div class="eta"><b>{r}</b><div class="t">{t}</div><div class="stem"></div></div>', css=css,
                     h_size=T_(lang, 54, 60), title="summer")
@@ -70,7 +70,7 @@ def idea_176():
 def idea_177():
     for lang in ("en", "ar"):
         dark_static("IDEA-177", "IDEA-177_ramadan-sahoor-check", lang, "/assets/post-images/final/SC-03.jfif",
-                    T_(lang, "Ramadan nights.<br><em>Stock checks move to sahoor.</em>", "ليالي رمضان.<br><em>تشييك المخزون صار عالسحور.</em>"),
+                    T_(lang, "Ramadan nights.<br><em>Stock checks move to sahoor.</em>", "ليالي رمضان.<br><em>تشييك المخازن صار عالسحور.</em>"),
                     T_(lang, "Check it from your phone, whenever your day ends.", "شيّكه من تلفونك، إيمتى ما خلص نهارك."),
                     extra=chip("left:560px;top:760px", T_(lang, "All transfers arrived ✓", "كل التحويلات وصلت ✓"), "var(--glow)"),
                     h_size=T_(lang, 62, 58), title="Ramadan nights")
@@ -107,7 +107,7 @@ def idea_178():
 
 def idea_182():
     for lang in ("en", "ar"):
-        story("IDEA-182", "IDEA-182_story-ask-us-anything", lang, T_(lang, "Ask us anything<br><em>about stock.</em>", "اسألنا أيّ شي<br><em>عن المخزون.</em>"),
+        story("IDEA-182", "IDEA-182_story-ask-us-anything", lang, T_(lang, "Ask us anything<br><em>about stock.</em>", "اسألنا أيّ شي<br><em>عن المخازن.</em>"),
               T_(lang, "Weekly question box.<br>The best answers become posts.", "صندوق أسئلة كل جمعة.<br>أحلى الأجوبة بتصير بوستات."), "ask us")
 
 
@@ -133,7 +133,7 @@ def idea_185():
         body = f"""<div style="position:absolute;inset:0;background:#081A30"></div>
 {ph}
 <div class="shade-b"></div>
-<h1 class="h1" style="font-size:{T_(lang, 66, 60)}px">{T_(lang, "See your stock on a map<br><em>in 2 minutes.</em>", "شوف مخزونك على خريطة<br><em>بدقيقتين.</em>")}</h1>
+<h1 class="h1" style="font-size:{T_(lang, 66, 60)}px">{T_(lang, "See your stock on a map<br><em>in 2 minutes.</em>", "شوف مخزنك على خريطة<br><em>بدقيقتين.</em>")}</h1>
 <p class="sub" style="top:{T_(lang, 340, 380)}px">{T_(lang, "Send us “MAP”.", "ابعتلنا «" + L("MAP") + "».")}</p>
 {top(lang)}
 {FOOT[lang]}"""
@@ -181,7 +181,7 @@ def idea_187():
                     items=["Live: updates as moves are logged", "Units in transit", "Low-stock lines", "A warehouse and its units",
                            "A shipment with its ETA", "Stock per warehouse, low first"]),
          "ar": dict(h="الخريطة الحيّة،<br><em>مشروحة.</em>", s="ست شغلات بتشوفها بنظرة وحدة.",
-                    items=["مباشر: بيتحدّث مع كل تسجيل", "وحدات عالطريق", "أصناف ناقصة", "مستودع ووحداته", "شحنة مع وقت وصولها", "المخزون بكل مستودع، الناقص أوّل"])}
+                    items=["مباشر: بيتحدّث مع كل تسجيل", "وحدات عالطريق", "أصناف ناقصة", "مستودع ووحداته", "شحنة مع وقت وصولها", "المخازن بكل مستودع، الناقص أوّل"])}
     for lang, t in T.items():
         nums = "".join(f'<div class="n" style="left:{x}px;top:{y}px">{i + 1}</div>' for i, (x, y) in enumerate(P[lang]))
         lg = "".join(f"<div><b>{i + 1}</b>{x}</div>" for i, x in enumerate(t["items"]))

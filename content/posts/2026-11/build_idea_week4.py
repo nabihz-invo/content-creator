@@ -72,7 +72,7 @@ def idea_077():
         "ar": dict(
             cover=("قائمة تجهيز<br><em>الوايت فرايداي.</em>", "4 شغلات تشيّكها قبل أعجق أسبوع مبيعات.", "احفظها لأسبوع الذروة."),
             k="خطوة {n} من 4",
-            items=["اعرف مخزون الأكتر مبيعاً<br><em>بكل فرع.</em>",
+            items=["اعرف كميات الأكتر مبيعاً<br><em>بكل فرع.</em>",
                    "حرّك البضاعة للفروع<br><em>اللي بتبيع أكتر، هلّق.</em>",
                    "شيّك شو بعد<br><em>بالبحر أو بالجمرك.</em>",
                    "انتبه لتنبيهات النقص<br><em>عالأصناف الأساسية.</em>"],
@@ -83,7 +83,7 @@ def idea_077():
             ship=("واردة", [(L("SHP-24021"), "شنتشن ← بيروت", "بالبحر · اليوم 24 من حوالي 30"),
                             (L("SHP-24035"), "مرفأ بيروت", "بالجمرك · حوالي يومين")]),
             low=("تنبيهات النقص", [(L("Desk Lamp"), "باقي 3 بجونيه"), (L("USB-C Cable"), "باقي 8 بصيدا")], "ناقص"),
-            end=("بالتوفيق<br><em>بأسبوع الذروة.</em>", "شوف مخزونك مباشر."),
+            end=("بالتوفيق<br><em>بأسبوع الذروة.</em>", "شوف مخزنك مباشر."),
             done=["شيّكت الأكتر مبيعاً بكل فرع", "حرّكت البضاعة لوين بتنباع", "شيّكت الشحنات بالبحر والجمرك", "تابعت تنبيهات النقص"]),
     }
     n = 6
@@ -147,7 +147,7 @@ def idea_029():
         "en": dict(h="Ask us anything about<br><em>running stock across branches.</em>",
                    s="Type your question in the box.<br>The best ones become posts.",
                    exl="For example:", ex=["How do you track transfers between branches?", "How often should we count?"]),
-        "ar": dict(h="اسألنا أيّ شي<br><em>عن المخزون بين الفروع.</em>",
+        "ar": dict(h="اسألنا أيّ شي<br><em>عن المخازن بين الفروع.</em>",
                    s="اكتب سؤالك بالمربّع.<br>أحلى الأسئلة بتصير بوستات.",
                    exl="مثلاً:", ex=["كيف بتتابعوا التحويلات بين الفروع؟", "كل قدّيش لازم نجرد؟"]),
     }
@@ -330,7 +330,7 @@ def idea_079():
         "en": dict(h="The rush is over.<br><em>Do you know what's left?</em>", s="Now is the best time to see your real stock.",
                    lab="Alert", n="Low stock: 14 items", p="Low",
                    rows=[("Desk Lamp", "3 left in Jounieh"), ("Wireless Earbuds", "5 left in Tripoli")]),
-        "ar": dict(h="خلصت العجقة.<br><em>بتعرف شو بقي؟</em>", s="هلّق أحسن وقت تشوف مخزونك الحقيقي.",
+        "ar": dict(h="خلصت العجقة.<br><em>بتعرف شو بقي؟</em>", s="هلّق أحسن وقت تشوف مخزنك الحقيقي.",
                    lab="تنبيه", n="نقص بـ14 صنف", p="ناقص",
                    rows=[(L("Desk Lamp"), "باقي 3 بجونيه"), (L("Wireless Earbuds"), "باقي 5 بطرابلس")]),
     }

@@ -45,7 +45,7 @@
   {
    "vo": {
     "en": "Two: click, and see the stock.",
-    "ar": "اتنين: كبسة، وبتشوف المخزون."
+    "ar": "اتنين: كبسة، وبتشوف المخازن."
    },
    "scene": {
     "type": "shot",
@@ -64,7 +64,7 @@
      "head": "② Click. *See the stock.*"
     },
     "ar": {
-     "head": "② كبسة. *شوف المخزون.*"
+     "head": "② كبسة. *شوف المخازن.*"
     }
    }
   },
@@ -149,7 +149,7 @@
   {
    "vo": {
     "en": "Your stock, always in sight. Book a meeting with our team.",
-    "ar": "مخزونك دايماً قدّام عينك. احجز اجتماع مع فريقنا."
+    "ar": "مخزنك دايماً قدّام عينك. احجز اجتماع مع فريقنا."
    },
    "scene": {
     "type": "end",
@@ -160,7 +160,7 @@
  ],
  "caption": {
   "en": "60 seconds inside Stacko.\n\n① Your locations, on one map\n② Click a pin, see the stock\n③ Every movement, every record\n④ AI drafts, you approve\n⑤ Scoped to every role\n\nVisibility, automation, and control in one view — shown with demo data.\n\n👉 Book a meeting — link in bio.",
-  "ar": "٦٠ ثانية جوّا ستاكو.\n\n① مواقعك، على خريطة وحدة\n② كبسة عالموقع، وبتشوف المخزون\n③ كل حركة، كل سجل\n④ الذكاء الاصطناعي بيكتب مسودّة، وإنت بتوافق\n⑤ كل دور على قدّو\n\nرؤية، أتمتة، وضبط بشاشة وحدة — ببيانات تجريبية.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "٦٠ ثانية جوّا ستاكو.\n\n① مواقعك، على خريطة وحدة\n② كبسة عالموقع، وبتشوف المخازن\n③ كل حركة، كل سجل\n④ الذكاء الاصطناعي بيكتب مسودّة، وإنت بتوافق\n⑤ كل دور على قدّو\n\nرؤية، أتمتة، وضبط بشاشة وحدة — ببيانات تجريبية.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#ProductDemo #InventoryManagement #SMB #Stacko #SupplyChain #InventoryTech #StockVisibility #WarehouseManagement #AIinBusiness #BusinessOperations",
  "changes": [

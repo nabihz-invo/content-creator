@@ -52,7 +52,7 @@ if (SM.ar()) {
   e.text('stacko', { y: 900, size: 170, fx: 'scramble', at: .3, ls: '-.045em', weight: 600, out: 'fade', outAt: 1.25 });   // TX-09: resolves…
   e.html(`<div style="font-size:170px;line-height:1">${SM.wordmark('dark')}</div>`, { y: 900, in: 'fade', at: 1.2 });          // …into the real wordmark with the teal o
 }
-e.text(SM.t('Your stock, *always in sight.*', 'مخزونك *دايماً* قدّام عينك'), { size: 64, y: 1120, at: 1.4, fx: 'blur', w: 900, weight: 500 });
+e.text(SM.t('Your stock, *always in sight.*', 'مخزنك *دايماً* قدّام عينك'), { size: 64, y: 1120, at: 1.4, fx: 'blur', w: 900, weight: 500 });
 const endo = SM.el('div', '', e.el, SM.endorse('dark')); endo.style.cssText = 'position:absolute;left:50%;top:1330px;transform:translateX(-50%);font-size:30px';
 e.set(endo, { o: 0 }); e.anim(endo, { o: [0, 1] }, 1.9, .5);
 e.sfx('ding', .2, .4);

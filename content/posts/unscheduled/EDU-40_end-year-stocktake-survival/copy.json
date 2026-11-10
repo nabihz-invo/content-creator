@@ -20,7 +20,7 @@
    "ar": {"title": "افصل اللي بيعدّ عن اللي بيوافق.", "body": "اللي بيعدّ ما لازم يكون الوحيد اللي بيوافق عالتعديل. فصل المهام بيمسك الغلطات البريئة."}},
   {"num": "05", "img": {"name": "map", "src": "app", "h": 470},
    "en": {"title": "Compare against the map, not a spreadsheet.", "body": "If your system shows location-level stock on a map, the stocktake becomes a visual reconciliation — not a spreadsheet archaeology project."},
-   "ar": {"title": "قارن عالخريطة، مش عالشيت.", "body": "إذا نظامك بيعرض مخزون كل موقع على خريطة، الجرد بيصير مطابقة بالعين — مش حفريات بالشيتات."}},
+   "ar": {"title": "قارن عالخريطة، مش عالشيت.", "body": "إذا نظامك بيعرض كميات كل موقع على خريطة، الجرد بيصير مطابقة بالعين — مش حفريات بالشيتات."}},
   {"num": "06", "icon": "list",
    "en": {"title": "Write down what you learned.", "body": "The discrepancies are the lesson. Were they counting errors? Unrecorded transfers? Theft? The pattern matters more than the number.", "items": ["Counting errors", "Unrecorded transfers", "Theft"]},
    "ar": {"title": "اكتب شو تعلّمت.", "body": "الفروقات هيّي الدرس. كانت غلطات عدّ؟ تحويلات ما تسجّلت؟ سرقة؟ النمط أهم من الرقم.", "items": ["غلطات بالعدّ", "تحويلات ما تسجّلت", "سرقة"]}, "mark": "☐"},

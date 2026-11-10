@@ -8,7 +8,7 @@ description: "Stacko brand guide (AI stock-management product by Aiphin): Dot co
 **Stacko (ستاكو)** is an AI-assisted stock-management product by **Aiphin**, Nabih's MENA AI agency (aiphin.me). It shows every warehouse, item and shipment on one live map, so teams actually log their moves. The name comes from *stacking* goods.
 
 - **Tagline (EN):** Your stock, always in sight
-- **Tagline (AR):** مخزونك دايماً قدّام عينك
+- **Tagline (AR):** مخزنك دايماً قدّام عينك
 - **Endorsement:** "A product by AIPHIN" (AIPHIN set in Audiowide, "AI" Signal + "PHIN" Abyss on light; "AI" Glow + "PHIN" white on dark)
 - **Audience:** trading and distribution SMEs in Lebanon and the GCC with several warehouses and frequent imports (often from China)
 - **First customer:** a client with 3 warehouses, ~10,000 SKUs, ~20 staff, monthly China imports
@@ -129,6 +129,6 @@ Stacko sounds like a calm, competent warehouse manager who loves good data: **cl
 - [ ] Lowercase "stacko" in Readex Pro 600 with the teal "o"; ستاكو in Noto Kufi Arabic where Arabic appears
 - [ ] Aiphin palette only; Glow only on dark; Night gradient for heroes
 - [ ] "A product by AIPHIN" endorsement on external pieces
-- [ ] Tagline exact: "Your stock, always in sight" / "مخزونك دايماً قدّام عينك"
+- [ ] Tagline exact: "Your stock, always in sight" / "مخزنك دايماً قدّام عينك"
 - [ ] Facts and prices only from the Product Bible or the user
 - [ ] English and Arabic versions with proper RTL

@@ -167,7 +167,7 @@ def idea_075():
             mess=["أيّ ملف هو الأخير؟", f"حدا يعيد جرد {L('LED Strip')} مرّة تانية؟", f"{L('LED Strip 5m = 1,300??')} اسأل رامي"],
             end=("ابني على خريطة،<br><em>مش على برج.</em>",
                  "ستاكو بيبني خريطة لكل مستودعاتك وشحناتك، وكل فرع قدّام عينك."),
-            cta="شوف مخزونك مباشر ←", sidon="WH-02 · Sidon", eta="ETA 50m"),
+            cta="شوف مخزنك مباشر ←", sidon="WH-02 · Sidon", eta="ETA 50m"),
     }
     rows = [("LED Strip 5m", "1,380"), ("Desk Lamp", "45"), ("USB-C Cable 1m", "220"), ("Power Bank 10k", "96"),
             ("Wall Socket 2-way", "310"), ("Extension Cord 3m", "140"), ("Smart Bulb E27", "260"), ("Ceiling Light 40W", "75")]

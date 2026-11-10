@@ -104,7 +104,7 @@ def idea_161():
                card(f'<div style="font-size:34px;font-weight:600;line-height:1.4">{T_(lang, "Sort by value. Mark the top 20 as A. Count them first.", "رتّب حسب القيمة. علّم أوّل 20 بـA. واجردهن أوّل شي.")}</div>'), "")]
         text_cover("IDEA-161", "IDEA-161_abc-analysis-60-seconds", lang,
                    (T_(lang, "ABC analysis,<br><em>in 60 seconds.</em>", "تحليل ABC،<br><em>بدقيقة وحدة.</em>"),
-                    T_(lang, "Not all stock deserves the same attention.", "مش كل المخزون بيستاهل نفس الانتباه.")),
+                    T_(lang, "Not all stock deserves the same attention.", "مش كل البضاعة بتستاهل نفس الانتباه.")),
                    card(bars(lang), 520), sl, "ABC analysis", kick=T_(lang, "Class {n} of 3", "فئة {n} من 3"))
 
 
@@ -115,14 +115,14 @@ def idea_162():
         op = lambda o: f'<span style="font-size:40px;font-weight:700;color:var(--signal);margin:0 10px">{o}</span>'
         formula = card('<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px">'
                        + fbox(T_(lang, "Daily sales", "المبيع اليومي")) + op("×") + fbox(T_(lang, "Lead time", "مدّة التوريد")) + op("+")
-                       + fbox(T_(lang, "Safety stock", "مخزون أمان")) + "</div>")
+                       + fbox(T_(lang, "Safety stock", "كمية أمان")) + "</div>")
         example = card('<div style="direction:ltr;text-align:center;font-size:52px;font-weight:700;color:var(--abyss)">10 × 35 + 50 = <span style="color:var(--signal)">400</span></div>'
                        f'<div class="t2" style="text-align:center">{T_(lang, "10 a day · 35 days by sea, door to door · 50 extra", "10 باليوم · 35 يوم بالبحر للباب · 50 زيادة")}</div>')
         level = card('<div style="position:relative;height:60px;border-radius:14px;background:linear-gradient(90deg,#FBE3E7,#EEF4F7 40%);direction:ltr">'
                      '<div style="position:absolute;left:40%;top:-10px;bottom:-10px;border-left:4px solid var(--signal)"></div>'
                      '<div style="position:absolute;left:40%;top:70px;transform:translateX(-50%);font-size:26px;font-weight:700;color:var(--signal)">400</div></div>'
-                     f'<div class="t2" style="margin-top:50px">{T_(lang, "Stock falls to 400 → the next container should be at sea.", "المخزون نزل لـ400 → الحاوية الجاية لازم تكون بالبحر.")}</div>')
-        sl = [(T_(lang, "Daily sales × lead time<br><em>+ safety stock.</em>", "المبيع اليومي × مدّة التوريد<br><em>+ مخزون أمان.</em>"), formula),
+                     f'<div class="t2" style="margin-top:50px">{T_(lang, "Stock falls to 400 → the next container should be at sea.", "الكمية نزلت لـ400 → الحاوية الجاية لازم تكون بالبحر.")}</div>')
+        sl = [(T_(lang, "Daily sales × lead time<br><em>+ safety stock.</em>", "المبيع اليومي × مدّة التوريد<br><em>+ كمية أمان.</em>"), formula),
               (T_(lang, "Example:<br><em>10 a day × 35 days + 50 = 400.</em>", "مثال:<br><em>10 باليوم × 35 يوم + 50 = 400.</em>"), example),
               (T_(lang, "When you hit 400,<br><em>the next order should already be leaving.</em>", "لمّا توصل لـ400،<br><em>الطلبية الجاية لازم تكون طالعة.</em>"), level),
               (T_(lang, "Stacko's low-stock alerts<br><em>tell you when you reach your minimum.</em>", "تنبيهات النقص بستاكو<br><em>بتخبّرك لمّا توصل للحدّ الأدنى.</em>"),

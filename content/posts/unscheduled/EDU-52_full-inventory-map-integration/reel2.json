@@ -26,7 +26,7 @@
      "cols": [
       {
        "label": "الوضع أ",
-       "title": "مخزون كامل"
+       "title": "مخازن كاملة"
       },
       {
        "label": "الوضع ب",
@@ -41,7 +41,7 @@
   {
    "vo": {
     "en": "Mode A: full inventory management — products, locations, movements, history, roles.",
-    "ar": "الوضع أ: إدارة مخزون كاملة — أصناف، مواقع، حركات، سجل، وأدوار."
+    "ar": "الوضع أ: إدارة مخازن كاملة — أصناف، مواقع، حركات، سجل، وأدوار."
    },
    "scene": {
     "type": "shot",
@@ -58,14 +58,14 @@
      "head": "Mode A: *full inventory.*"
     },
     "ar": {
-     "head": "الوضع أ: *مخزون كامل.*"
+     "head": "الوضع أ: *مخازن كاملة.*"
     }
    }
   },
   {
    "vo": {
     "en": "Mode B: a map and integration layer — synchronized locations and stock from your existing system.",
-    "ar": "الوضع ب: طبقة خريطة وربط — مواقع ومخزون متزامنين من نظامك الموجود."
+    "ar": "الوضع ب: طبقة خريطة وربط — مواقع وكميات متزامنة من نظامك الموجود."
    },
    "scene": {
     "type": "shot",
@@ -121,7 +121,7 @@
      "cols": [
       {
        "label": "الوضع أ",
-       "title": "مخزون كامل",
+       "title": "مخازن كاملة",
        "items": [
         "الأصناف",
         "المواقع",
@@ -134,7 +134,7 @@
        "title": "خريطة + ربط",
        "items": [
         "الـERP بيضل",
-        "مخزون متزامن",
+        "كميات متزامنة",
         "نفس الخريطة والذكاء"
        ],
        "concept": true
@@ -158,7 +158,7 @@
  ],
  "caption": {
   "en": "Two ways to use Stacko.\n\n🅰️ Full inventory management — products, locations, movements, history, roles. For businesses without an ERP.\n\n🅱️ Map + integration layer — synchronized locations and stock from your existing system. Read-only, draft-for-approval, or approved write-back where supported. For businesses that already have an ERP.\n\nSame map. Same AI workflow. Your choice of foundation.\n\n👉 Book a meeting — link in bio.",
-  "ar": "طريقتين لتستعمل ستاكو.\n\n🅰️ إدارة مخزون كاملة — أصناف، مواقع، حركات، سجل، أدوار. للشركات اللي ما عندها ERP.\n\n🅱️ طبقة خريطة وربط — مواقع ومخزون متزامنين من نظامك الموجود. قراءة فقط، مسودّة للموافقة، أو كتابة بعد الموافقة وين مدعوم. للشركات اللي عندها ERP.\n\nنفس الخريطة. نفس شغل الذكاء الاصطناعي. وإنت بتختار الأساس.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "طريقتين لتستعمل ستاكو.\n\n🅰️ إدارة مخازن كاملة — أصناف، مواقع، حركات، سجل، أدوار. للشركات اللي ما عندها ERP.\n\n🅱️ طبقة خريطة وربط — مواقع وكميات متزامنة من نظامك الموجود. قراءة فقط، مسودّة للموافقة، أو كتابة بعد الموافقة وين مدعوم. للشركات اللي عندها ERP.\n\nنفس الخريطة. نفس شغل الذكاء الاصطناعي. وإنت بتختار الأساس.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#ERP #InventoryManagement #SMB #Stacko #SupplyChain #Integration #DigitalTransformation #Odoo #SAP #BusinessOperations",
  "changes": [

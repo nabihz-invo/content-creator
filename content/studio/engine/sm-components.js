@@ -290,7 +290,7 @@
     return { layer: L, el: c, rows: trs };
   };
   S.kpis = function (o = {}) {
-    const s = this, R = s.R, items = o.items || [[SM.t('Units in stock', 'قطع بالمخزون'), 15350], [SM.t('In transit', 'عالطريق'), 1240], [SM.t('Low-stock lines', 'أصناف ناقصة'), 4, true]], L = s.layer(o.x ?? R.w / 2, o.y ?? R.h / 2, o.parent);
+    const s = this, R = s.R, items = o.items || [[SM.t('Units in stock', 'قطع بالمخازن'), 15350], [SM.t('In transit', 'عالطريق'), 1240], [SM.t('Low-stock lines', 'أصناف ناقصة'), 4, true]], L = s.layer(o.x ?? R.w / 2, o.y ?? R.h / 2, o.parent);
     const row = mk('div', 'sm-kpis', L); centerBox(row); if (o.vertical) row.style.flexDirection = 'column';
     items.forEach((it, i) => { const k = mk('div', 'sm-kpi' + (it[2] ? ' alert' : ''), row, `<b>0</b><small>${esc(it[0])}</small>`), b = k.firstChild, a = (o.at || 0) + i * .18; s.anim(k, { o: [0, 1], y: [50, 0] }, a, .5, 'outBack'); let last = ''; s.on(a + .1, a + 1.3, p => { const v = SM.fmtNum(it[1] * E.outExpo(p), {}); if (v !== last) b.textContent = last = v; }); });
     return { layer: L, el: row };
@@ -528,7 +528,7 @@
     if (tagL) { const mkT = (txt, ar, a) => { const [tw, t] = wrapAt(L, 0, yy, '', esc(txt)); t.style.cssText = `position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font-size:${o.tagSize || 46}px;font-weight:${ar ? 700 : 400};color:${theme === 'light' ? C.deep : C.visor};${ar ? "font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;direction:rtl" : ''}`; s.anim(tw, { o: [0, 1], blur: [10, 0] }, a, .5); return tw; };
       const ta = at + d * .85 + .35;
       if (tagL === 'en') mkT('Your stock, always in sight', false, ta);
-      if (tagL === 'ar') mkT('مخزونك دايماً قدّام عينك', true, ta);
+      if (tagL === 'ar') mkT('مخزنك دايماً قدّام عينك', true, ta);
       yy += (o.tagSize || 46) * 1.9; }
     if (o.cta) { const [cw, c] = wrapAt(L, 0, yy, '', esc(o.cta)); c.style.cssText = `position:absolute;left:0;top:0;transform:translate(-50%,0);white-space:nowrap;font-size:${o.ctaSize || 40}px;font-weight:600;padding:18px 36px;border-radius:999px;background:${theme === 'light' ? C.ocean : C.glow};color:${theme === 'light' ? '#fff' : C.abyss}`; s.anim(cw, { o: [0, 1], s: [.7, 1] }, at + d + .8, .45, 'outBack'); out.cta = cw; }
     if (o.endorse !== false) { const e = mk('div', '', s.el, SM.endorse(theme)); e.style.cssText = `position:absolute;left:50%;bottom:${o.endorseY ?? 470}px;transform:translateX(-50%);font-size:28px`; s.anim(e, { o: [0, 1] }, at + d + .6, .5); out.endorse = e; }
@@ -548,7 +548,7 @@
     const L = s.layer(o.x ?? s.R.w / 2, o.y ?? s.R.h / 2, o.parent), main = theme === 'light' ? (v === 'navy' ? C.abyss : C.abyss) : '#fff', teal = v === 'white' ? '#fff' : v === 'navy' ? C.abyss : theme === 'light' ? C.signal : C.glow;
     const word = `<span class="sm-word" style="font-size:${size * .78}px;color:${main}">stack<i style="font-style:normal;color:${teal}">o</i></span>`;
     const wordAr = `<span style="font:700 ${size * .62}px 'Noto Kufi Arabic','Readex Pro',sans-serif;color:${main};direction:rtl;line-height:1.1">ستاك<span style="color:${teal}">و</span></span>`;
-    const tag = o.tagline ? `<div style="font-size:${size * .2}px;font-weight:400;color:${theme === 'light' ? C.deep : C.visor};margin-top:${size * .08}px;white-space:nowrap">${o.tagline === 'ar' ? '<span style="font-family:\'Noto Kufi Arabic\',sans-serif;direction:rtl">مخزونك دايماً قدّام عينك</span>' : o.tagline === 'both' ? 'Your stock, always in sight · <span style="font-family:\'Noto Kufi Arabic\',sans-serif">مخزونك دايماً قدّام عينك</span>' : 'Your stock, always in sight'}</div>` : '';
+    const tag = o.tagline ? `<div style="font-size:${size * .2}px;font-weight:400;color:${theme === 'light' ? C.deep : C.visor};margin-top:${size * .08}px;white-space:nowrap">${o.tagline === 'ar' ? '<span style="font-family:\'Noto Kufi Arabic\',sans-serif;direction:rtl">مخزنك دايماً قدّام عينك</span>' : o.tagline === 'both' ? 'Your stock, always in sight · <span style="font-family:\'Noto Kufi Arabic\',sans-serif">مخزنك دايماً قدّام عينك</span>' : 'Your stock, always in sight'}</div>` : '';
     let html;
     if (lay === 'mark') html = SM.mark(v, size);
     else if (lay === 'icon') html = `<div style="width:${size * 1.25}px;height:${size * 1.25}px;border-radius:${size * .29}px;background:${SM.NIGHT};display:grid;place-items:center;box-shadow:0 18px 50px rgba(3,9,18,.45)">${SM.mark('dark', size)}</div>`;
@@ -671,27 +671,27 @@
     wordmark: (R, o) => { const s = R.scene(o.dur || 2.6, { in: o.in || 'push-up', bg: 'paper', name: 'endcard' });
       s.html(SM.lang === 'ar' ? SM.wordmarkAr('light') : SM.wordmark('light'), { y: R.h * .42, css: `font-size:${SM.lang === 'ar' ? 180 : 230}px`, in: 'blur', at: .2 });
       s.logo({ variant: 'light', size: 110, y: R.h * .3, in: 'pop', at: .9 }).el.querySelector('.sm-word').style.display = 'none';
-      s.text(o.cta || SM.t('See your stock live', 'شوف مخزونك مباشرة'), { size: 'sub', y: R.h * .52, theme: 'light', fx: 'blur', at: 1.1, color: C.deep, weight: 400 });
+      s.text(o.cta || SM.t('See your stock live', 'شوف مخزنك مباشرة'), { size: 'sub', y: R.h * .52, theme: 'light', fx: 'blur', at: 1.1, color: C.deep, weight: 400 });
       const e = mk('div', '', s.el, SM.endorse('light')); e.style.cssText = 'position:absolute;left:50%;bottom:470px;transform:translateX(-50%);font-size:28px'; s.anim(e, { o: [0, 1] }, 1.4, .4); return s; },
     /** EC-04 tagline card — one language only (the version's) */
     bilingual: (R, o) => EC.tagline(R, o),
     tagline: (R, o) => { const s = R.scene(o.dur || 3.4, { in: o.in || 'blur', bg: 'night', name: 'endcard' }); s.lockup({ variant: 'dark', size: 96, y: R.h * .3, in: 'fade', at: .1 });
-      s.text(SM.t('Your stock, *always in sight.*', 'مخزونك *دايماً* قدّام عينك'), { size: 96, y: R.h * .5, at: .4, fx: 'blur', w: 900 }); return s; },
-    truck: (R, o) => { const s = R.scene(o.dur || 3.2, { in: o.in || 'wipe', bg: 'night', name: 'endcard' }); const y = s.iso({ x: R.w / 2 + 40, y: R.h * .52, scale: o.scale || 13, intro: 'none', items: [{ key: 't', id: 'boxTruck', o: { named: true, text: o.text || 'stacko', accent: o.accent || C.signal }, x: 0, y: 0 }] }); s.anim(y.items.t.wrap, { x: [-1500, y.items.t.px], y: [-860, y.items.t.py] }, .1, 1.1, 'outQuart'); s.shake(1.1, .25, 8); s.sfx('engine', .1, .6); s.lockup({ variant: 'dark', size: 90, y: R.h * .3, in: 'rise', at: 1.0 }); s.text(o.cta || SM.t('Your stock, always in sight.', 'مخزونك دايماً قدّام عينك'), { size: 'sub', y: R.h * .68, fx: 'blur', at: 1.3, weight: 400, color: C.visor }); return s; },
-    phone: (R, o) => { const s = R.scene(o.dur || 3.4, { in: o.in || 'stack', bg: 'night', name: 'endcard' }); const c = s.chat({ y: R.h * .5, w: 620, in: 'rise', at: 0 }); c.bot(.4, o.botText || SM.t('See your stock live → stacko-lb.com', 'شوف مخزونك مباشرة ← stacko-lb.com'), { typing: .6 }); s.lockup({ variant: 'dark', size: 70, y: 260, in: 'fade', at: .2 }); return s; },
+      s.text(SM.t('Your stock, *always in sight.*', 'مخزنك *دايماً* قدّام عينك'), { size: 96, y: R.h * .5, at: .4, fx: 'blur', w: 900 }); return s; },
+    truck: (R, o) => { const s = R.scene(o.dur || 3.2, { in: o.in || 'wipe', bg: 'night', name: 'endcard' }); const y = s.iso({ x: R.w / 2 + 40, y: R.h * .52, scale: o.scale || 13, intro: 'none', items: [{ key: 't', id: 'boxTruck', o: { named: true, text: o.text || 'stacko', accent: o.accent || C.signal }, x: 0, y: 0 }] }); s.anim(y.items.t.wrap, { x: [-1500, y.items.t.px], y: [-860, y.items.t.py] }, .1, 1.1, 'outQuart'); s.shake(1.1, .25, 8); s.sfx('engine', .1, .6); s.lockup({ variant: 'dark', size: 90, y: R.h * .3, in: 'rise', at: 1.0 }); s.text(o.cta || SM.t('Your stock, always in sight.', 'مخزنك دايماً قدّام عينك'), { size: 'sub', y: R.h * .68, fx: 'blur', at: 1.3, weight: 400, color: C.visor }); return s; },
+    phone: (R, o) => { const s = R.scene(o.dur || 3.4, { in: o.in || 'stack', bg: 'night', name: 'endcard' }); const c = s.chat({ y: R.h * .5, w: 620, in: 'rise', at: 0 }); c.bot(.4, o.botText || SM.t('See your stock live → stacko-lb.com', 'شوف مخزنك مباشرة ← stacko-lb.com'), { typing: .6 }); s.lockup({ variant: 'dark', size: 70, y: 260, in: 'fade', at: .2 }); return s; },
     photo: (R, o) => { const s = R.scene(o.dur || 3, { in: o.in || 'fade', bg: o.src || 'night', move: 'push', dim: .25, name: 'endcard' }); const sw = mk('div', 'sm-fill', s.el); sw.style.background = 'linear-gradient(110deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.35) 50%,rgba(255,255,255,0) 60%)'; s.set(sw, { x: -R.w }); s.anim(sw, { x: [-R.w, R.w] }, .6, 1.2, 'inOutQuad'); s.lockup({ variant: 'white', size: 96, y: R.h * .78, in: 'rise', at: 1.0 }); return s; },
     /** EC-10 · the hook's key word is built from dots, then the dots regroup into the Dot core + wordmark */
     dotword: (R, o) => { const s = R.scene(o.dur || 4.2, { in: o.in || 'blur', bg: 'night', name: 'endcard' });
       s.dotMorph({ count: o.count || 520, y: R.h * .4, steps: [{ at: 0, shape: 'scatter' }, { at: .15, shape: { text: o.word || SM.t('in sight', 'قدّام عينك'), size: o.wordSize || 230 }, dur: 1.1 }, { at: 1.75, shape: 'logo', size: 420, dur: 1.15 }] });
       s.html(SM.lang === 'ar' ? SM.wordmarkAr('dark') : SM.wordmark('dark'), { y: R.h * .4 + 330, css: `font-size:${SM.lang === 'ar' ? 132 : 170}px`, in: 'blur', at: 2.85 });
-      s.text(SM.t('Your stock, always in sight', 'مخزونك دايماً قدّام عينك'), { size: 46, weight: 400, color: C.visor, y: R.h * .4 + 470, fx: 'blur', at: 3.15 });
+      s.text(SM.t('Your stock, always in sight', 'مخزنك دايماً قدّام عينك'), { size: 46, weight: 400, color: C.visor, y: R.h * .4 + 470, fx: 'blur', at: 3.15 });
       const e = mk('div', '', s.el, SM.endorse('dark')); e.style.cssText = 'position:absolute;left:50%;bottom:470px;transform:translateX(-50%);font-size:28px'; s.set(e, { o: 0 }); s.anim(e, { o: [0, 1] }, 3.4, .4); return s; },
     /** EC-11 · dots draw the three warehouses as glowing pins on a Lebanon outline, then fly together into the Dot core */
     dotmap: (R, o) => { const s = R.scene(o.dur || 4.4, { in: o.in || 'fade', bg: 'night', name: 'endcard' });
       s.dotMorph({ count: o.count || 560, y: R.h * .42, steps: [{ at: 0, shape: 'rain' }, { at: .1, shape: 'lebanon', size: 900, dur: 1.2 }, { at: 1.9, shape: 'logo', size: 420, dur: 1.1 }] });
       s.text(SM.t('Every location. One map.', 'كل المواقع. خريطة وحدة.'), { size: 64, y: 330, fx: 'blur', at: .4, out: 'blur', outAt: 1.8 });
       s.html(SM.lang === 'ar' ? SM.wordmarkAr('dark') : SM.wordmark('dark'), { y: R.h * .42 + 330, css: `font-size:${SM.lang === 'ar' ? 132 : 170}px`, in: 'blur', at: 2.95 });
-      s.text(SM.t('Your stock, always in sight', 'مخزونك دايماً قدّام عينك'), { size: 46, weight: 400, color: C.visor, y: R.h * .42 + 470, fx: 'blur', at: 3.25 });
+      s.text(SM.t('Your stock, always in sight', 'مخزنك دايماً قدّام عينك'), { size: 46, weight: 400, color: C.visor, y: R.h * .42 + 470, fx: 'blur', at: 3.25 });
       const e = mk('div', '', s.el, SM.endorse('dark')); e.style.cssText = 'position:absolute;left:50%;bottom:470px;transform:translateX(-50%);font-size:28px'; s.set(e, { o: 0 }); s.anim(e, { o: [0, 1] }, 3.5, .4); return s; },
   };
   SM.Reel.prototype.endcard = function (type = 'dots', o = {}) { const f = EC[type]; if (!f) throw new Error('Unknown end card: ' + type + '. Use ' + Object.keys(EC).join(', ')); return f(this, o); };

@@ -58,7 +58,7 @@ def tips(pid, folder, lang, cover_img, cover_top, cover, k, items, end, title):
 def idea_055():
     E = dict(cover=("How to get your team<br><em>to actually log stock.</em>", "5 things that work."), k="Tip {n} of 5",
              end=("What works<br><em>in your team?</em>", "Tell us in the comments."))
-    A = dict(cover=("كيف تخلّي فريقك<br><em>يسجّل المخزون فعلاً.</em>", "5 شغلات بتزبط."), k="نصيحة {n} من 5",
+    A = dict(cover=("كيف تخلّي فريقك<br><em>يسجّل المخازن فعلاً.</em>", "5 شغلات بتزبط."), k="نصيحة {n} من 5",
              end=("شو بيزبط<br><em>مع فريقك؟</em>", "خبّرنا بالكومنت."))
     for lang, t in (("en", E), ("ar", A)):
         en = lang == "en"
@@ -84,7 +84,7 @@ def idea_055():
 def idea_037():
     E = dict(cover=("Opening a Gulf branch?<br><em>5 stock lessons.</em>", "Before the first shipment lands."), k="Lesson {n} of 5",
              end=("Planning a Gulf branch?<br><em>Tell us where.</em>", "Lebanon and the Gulf, on one map."))
-    A = dict(cover=("فاتح فرع بالخليج؟<br><em>5 دروس بالمخزون.</em>", "قبل ما توصل أوّل شحنة."), k="درس {n} من 5",
+    A = dict(cover=("فاتح فرع بالخليج؟<br><em>5 دروس بالمخازن.</em>", "قبل ما توصل أوّل شحنة."), k="درس {n} من 5",
              end=("عم تخطّط لفرع بالخليج؟<br><em>خبّرنا وين.</em>", "لبنان والخليج، على خريطة وحدة."))
     for lang, t in (("en", E), ("ar", A)):
         en = lang == "en"
@@ -191,7 +191,7 @@ def idea_009():
                    d="One code per product variant. A navy mug and a light-blue mug are two SKUs.",
                    lab="In Stacko", say=mugs + "Search across 10,000+ SKUs, low stock first.", r=[],
                    see="See also: variant, item code, cycle count (#04)."),
-        "ar": dict(k="قاموس مدير المخزون · 05", w=L("SKU"), ph=f"<i>رمز الصنف</i> · {L('Stock Keeping Unit')}",
+        "ar": dict(k="قاموس مدير المخازن · 05", w=L("SKU"), ph=f"<i>رمز الصنف</i> · {L('Stock Keeping Unit')}",
                    d="رمز واحد لكل نوع من المنتج. كوب كحلي وكوب أزرق فاتح هنّي صنفين.",
                    lab="بستاكو", say=mugs + f"دوّر بين أكتر من {L('10,000')} صنف، والناقص أوّل شي.", r=[],
                    see=f"شوف كمان: النوع، رمز الصنف، الجرد الدوري ({L('#04')})."),
@@ -210,7 +210,7 @@ def idea_067():
     crown = ('<svg class="crown" viewBox="0 0 64 54"><path d="M4 16l14 12 14-22 14 22 14-12-6 30H10z" fill="#2EF2EE" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>'
              '<rect x="10" y="46" width="44" height="6" rx="2" fill="#2EF2EE"/></svg>')
     T = {"en": dict(h="Checkmate,<br><em>stockouts.</em>", s="Know your stock, win the sale."),
-         "ar": dict(h="كش ملك<br><em>للنواقص.</em>", s="اعرف مخزونك، واربح البيعة.")}
+         "ar": dict(h="كش ملك<br><em>للنواقص.</em>", s="اعرف مخزنك، واربح البيعة.")}
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/OB-03.jpg" alt="">
 <div class="shade-t"></div><div class="shade-b"></div>
@@ -234,7 +234,7 @@ def idea_045():
 """
     T = {"en": dict(h="The people who really<br><em>move your stock.</em>", s="Drivers, storekeepers, buyers.<br>Stacko is built for their 10 seconds.",
                     r=["Driver", "Storekeeper", "Buyer"]),
-         "ar": dict(h="الناس اللي فعلاً<br><em>بيحرّكوا مخزونك.</em>", s="الشوفيرية، أمناء المخازن، والمشترين.<br>ستاكو مبني لعشر ثواني تبعهن.",
+         "ar": dict(h="الناس اللي فعلاً<br><em>بيحرّكوا مخزنك.</em>", s="الشوفيرية، أمناء المخازن، والمشترين.<br>ستاكو مبني لعشر ثواني تبعهن.",
                     r=["الشوفير", "أمين المخزن", "المشتري"])}
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/SC-04.jpg" alt="">
@@ -269,7 +269,7 @@ def idea_023():
                    end=("With Stacko,<br><em>you might start.</em>", "Your stock, always in sight.")),
         "ar": dict(cover=("جمل ما بتسمعها<br><em>من مدير مستودع.</em>", "اسحب إذا إنت كمان عمرك ما قلتها."),
                    q=["«الجدول محدّث.»", "«بعرف بالزبط شو في بطرابلس.»", "«الكل سجّل حركاته اليوم.»", "«الجرد طابق من أوّل مرّة.»"], st="أبداً",
-                   end=("مع ستاكو،<br><em>يمكن تبلّش تقولها.</em>", "مخزونك دايماً قدّام عينك.")),
+                   end=("مع ستاكو،<br><em>يمكن تبلّش تقولها.</em>", "مخزنك دايماً قدّام عينك.")),
     }
     for lang, t in T.items():
         h, s = t["cover"]
@@ -331,7 +331,7 @@ def idea_022():
                    w='With <em>Stacko</em>',
                    r2=[("Port of Beirut", "SHP-24021", "Unloaded ✓"), ("On the way", "to WH-01", "ETA 50m"), ("WH-01 Beirut", "Received", "40 ✓")],
                    m="Managers see where every container is, from port to shelf."),
-        "ar": dict(k="مألوفة؟ #4", h="الحاوية وصلت.<br><em>المخزون؟ لأ.</em>", s="وصلت عالمرفأ، ومش موجودة بالنظام.",
+        "ar": dict(k="مألوفة؟ #4", h="الحاوية وصلت.<br><em>المخازن؟ لأ.</em>", s="وصلت عالمرفأ، ومش موجودة بالنظام.",
                    r=[("مرفأ بيروت", L("SHP-24021"), "انفضّت ✓", "okc"), (f"{L('WH-01')} بيروت", "استلمنا", "0", "zero"), ("النظام", "", "«وينها؟»", "zero")],
                    w='مع <em>ستاكو</em>',
                    r2=[("مرفأ بيروت", L("SHP-24021"), "انفضّت ✓"), ("عالطريق", f"لـ{L('WH-01')}", "بتوصل خلال 50 دقيقة"),

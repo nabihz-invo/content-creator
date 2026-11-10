@@ -5,7 +5,7 @@
  "slides": [
   {"type": "cover", "art": "boxes",
    "en": {"title": "Show us your *stock setup.*", "lead": "We'll feature the best ones (with your permission)."},
-   "ar": {"title": "فرجينا كيف *مرتّب مخزونك.*", "lead": "منعرض أحلاهن (بإذنك)."}},
+   "ar": {"title": "فرجينا كيف *مرتّب مخزنك.*", "lead": "منعرض أحلاهن (بإذنك)."}},
   {"icon": "box",
    "en": {"title": "What counts as a \"setup\"?", "body": "Your desk. Your shelf. Your spreadsheet. Your sticky-note wall. Your warehouse. The chaos is the point."},
    "ar": {"title": "شو بيُعتبر «ترتيب»؟", "body": "مكتبك. رفّك. الشيت تبعك. حيط الأوراق الصغيرة. مستودعك. الفوضى هيّي الفكرة."}},
@@ -18,7 +18,7 @@
  ],
  "caption": {
   "en": "Show us your stock setup.\n\nYour desk. Your shelf. Your spreadsheet. Your sticky-note wall. Your warehouse. The chaos is the point.\n\nPost a photo or story and tag us — or DM it to us. We'll feature the best ones every Friday (anonymized if you prefer).\n\nReady? Tag us. 👇\n\nBook a meeting with our team.",
-  "ar": "فرجينا كيف مرتّب مخزونك.\n\nمكتبك. رفّك. الشيت تبعك. حيط الأوراق الصغيرة. مستودعك. الفوضى هيّي الفكرة.\n\nنزّل صورة أو ستوري وطلّعنا فيها — أو ابعتها برسالة. منعرض أحلاهن كل جمعة (ومن دون اسم إذا بتفضّل).\n\nجاهز؟ طلّعنا. 👇\n\nاحجز اجتماعاً مع فريقنا."
+  "ar": "فرجينا كيف مرتّب مخزنك.\n\nمكتبك. رفّك. الشيت تبعك. حيط الأوراق الصغيرة. مستودعك. الفوضى هيّي الفكرة.\n\nنزّل صورة أو ستوري وطلّعنا فيها — أو ابعتها برسالة. منعرض أحلاهن كل جمعة (ومن دون اسم إذا بتفضّل).\n\nجاهز؟ طلّعنا. 👇\n\nاحجز اجتماعاً مع فريقنا."
  },
  "hashtags": "#ShowUsYourSetup #InventoryManagement #SMB #Stacko #SupplyChain #UGC #WarehouseLife #DistributorLife #BusinessOperations #Community"
 }

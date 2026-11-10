@@ -8,7 +8,7 @@
    "ar": {"title": "٥٠٠ صنف، ٤٠ فاتورة بالجمعة، *وشخص واحد عم يطبع.*", "lead": "هيدا عنق الزجاجة عند المستورد."}},
   {"art": "mismatch",
    "en": {"title": "Spare parts don't forgive typos.", "body": "\"BR-2204\" and \"BR-220A\" are different parts. One typo means the wrong part in stock, the right part out of stock, and a customer waiting on a shipment.", "labels": ["Ordered", "Typed", "Part number", "BR-2204", "BR-220A"]},
-   "ar": {"title": "قطع الغيار ما بتسامح بغلطة طباعة.", "body": "«BR-2204» و«BR-220A» قطعتين مختلفين. غلطة وحدة يعني القطعة الغلط بالمخزون، والقطعة الصح ناقصة، وزبون عم يستنّى شحنة.", "labels": ["المطلوب", "المطبوع", "رقم القطعة", "BR-2204", "BR-220A"]}},
+   "ar": {"title": "قطع الغيار ما بتسامح بغلطة طباعة.", "body": "«BR-2204» و«BR-220A» قطعتين مختلفين. غلطة وحدة يعني القطعة الغلط بالمخازن، والقطعة الصح ناقصة، وزبون عم يستنّى شحنة.", "labels": ["المطلوب", "المطبوع", "رقم القطعة", "BR-2204", "BR-220A"]}},
   {"img": {"name": "paper", "h": 470},
    "en": {"title": "The invoice pile is the bottleneck.", "body": "Every invoice means supplier, invoice number, date, line items, quantities, units, totals — typed by hand. Forty times a week. Every week."},
    "ar": {"title": "كومة الفواتير هيي المشكلة.", "body": "كل فاتورة يعني: المورّد، رقم الفاتورة، التاريخ، الأصناف، الكميات، الوحدات، المجاميع — بالإيد. ٤٠ مرّة بالجمعة. كل جمعة."}},
@@ -17,10 +17,10 @@
    "ar": {"title": "شو لو الفاتورة بتفوت لحالها… *تقريباً؟*", "body": "ارفع مستند مدعوم. الذكاء الاصطناعي بيطلّع المورّد ورقم الفاتورة والتاريخ والأصناف والكميات والوحدات والمجاميع، وبيطابق الأصناف والمورّدين مع سجلاتك قدر الإمكان."}},
   {"icon": "flag",
    "en": {"title": "And when it's uncertain?", "body": "Missing, uncertain, or mismatched fields are flagged — never silently guessed. \"Unit uncertain — please confirm\" beats a wrong quantity in stock."},
-   "ar": {"title": "وإذا مش أكيد؟", "body": "الحقول الناقصة أو المش أكيدة أو المش مطابقة بتتعلّم — وما بتنحزر بالسكت. «الوحدة مش أكيدة — أكّدها» أحسن من كمية غلط بالمخزون."}},
+   "ar": {"title": "وإذا مش أكيد؟", "body": "الحقول الناقصة أو المش أكيدة أو المش مطابقة بتتعلّم — وما بتنحزر بالسكت. «الوحدة مش أكيدة — أكّدها» أحسن من كمية غلط بالمخازن."}},
   {"icon": "lock",
    "en": {"title": "A draft, *not a decision.*", "body": "The AI creates a draft transaction. Confirmed stock is not changed automatically. An authorized person reviews, corrects, and approves. Then stock updates — with an audit entry.", "items": ["No stock change yet."]},
-   "ar": {"title": "مسودّة، *مش قرار.*", "body": "الذكاء الاصطناعي بيعمل حركة مسودّة. المخزون المؤكّد ما بيتغيّر لحالو. شخص مخوّل بيراجع، بيصحّح، وبيوافق. بعدين المخزون بيتحدّث — مع سجل تدقيق.", "items": ["بعد ما في تغيير بالمخزون."]}},
+   "ar": {"title": "مسودّة، *مش قرار.*", "body": "الذكاء الاصطناعي بيعمل حركة مسودّة. الكميات المؤكّدة ما بيتغيّر لحالو. شخص مخوّل بيراجع، بيصحّح، وبيوافق. بعدين الكميات بتتحدّث — مع سجل تدقيق.", "items": ["بعد ما في تغيير بالمخازن."]}},
   {"icon": "box", "concept": true,
    "en": {"title": "Built for volume.", "body": "Importers and spare-parts businesses run on high SKU counts and frequent movements. Stacko's AI workflow is designed for exactly that — with duplicate prevention and validation, not blind automation."},
    "ar": {"title": "مبني للكميات الكبيرة.", "body": "المستوردين وتجّار قطع الغيار شغلهم أصناف كتير وحركات متكرّرة. شغل الذكاء الاصطناعي بستاكو مصمّم لهيدا بالضبط — مع منع التكرار والتحقّق، مش أتمتة عمياء."}},
@@ -30,7 +30,7 @@
  ],
  "caption": {
   "en": "500 SKUs. 40 invoices a week. 1 person typing.\n\nSpare parts don't forgive typos. \"BR-2204\" and \"BR-220A\" are different parts — and one typo means the wrong part in stock, the right part out of stock, and a customer waiting on a shipment.\n\nThe bottleneck isn't the parts. It's the invoice pile. Every invoice: supplier, invoice number, date, line items, quantities, units, totals. Typed by hand. Forty times a week.\n\nStacko's AI workflow: upload a supported document → fields extract → products and suppliers match where possible → uncertain fields are flagged, never guessed → a draft is created → an authorized person reviews and approves → stock updates with an audit entry.\n\nAI proposes. You approve. Nothing changes without you.\n\n👉 Importers & spare-parts businesses: book a meeting — link in bio.",
-  "ar": "٥٠٠ صنف. ٤٠ فاتورة بالجمعة. شخص واحد عم يطبع.\n\nقطع الغيار ما بتسامح بغلطة طباعة. «BR-2204» و«BR-220A» قطعتين مختلفين — وغلطة وحدة يعني القطعة الغلط بالمخزون، والصح ناقصة، وزبون عم يستنّى شحنة.\n\nالمشكلة مش بالقطع. المشكلة بكومة الفواتير. كل فاتورة: مورّد، رقم، تاريخ، أصناف، كميات، وحدات، مجاميع. بالإيد. ٤٠ مرّة بالجمعة.\n\nشغل الذكاء الاصطناعي بستاكو: بترفع مستند مدعوم ← الحقول بتنقرا ← الأصناف والمورّدين بيتطابقوا قدر الإمكان ← الشي المش أكيد بيتعلّم وما بينحزر ← بتنعمل مسودّة ← شخص مخوّل بيراجع وبيوافق ← المخزون بيتحدّث مع سجل تدقيق.\n\nالذكاء الاصطناعي بيقترح. إنت بتوافق. ولا شي بيتغيّر بلاك.\n\n👉 مستوردين وتجّار قطع غيار: احجزوا اجتماعاً — الرابط بالبايو."
+  "ar": "٥٠٠ صنف. ٤٠ فاتورة بالجمعة. شخص واحد عم يطبع.\n\nقطع الغيار ما بتسامح بغلطة طباعة. «BR-2204» و«BR-220A» قطعتين مختلفين — وغلطة وحدة يعني القطعة الغلط بالمخازن، والصح ناقصة، وزبون عم يستنّى شحنة.\n\nالمشكلة مش بالقطع. المشكلة بكومة الفواتير. كل فاتورة: مورّد، رقم، تاريخ، أصناف، كميات، وحدات، مجاميع. بالإيد. ٤٠ مرّة بالجمعة.\n\nشغل الذكاء الاصطناعي بستاكو: بترفع مستند مدعوم ← الحقول بتنقرا ← الأصناف والمورّدين بيتطابقوا قدر الإمكان ← الشي المش أكيد بيتعلّم وما بينحزر ← بتنعمل مسودّة ← شخص مخوّل بيراجع وبيوافق ← الكميات بتتحدّث مع سجل تدقيق.\n\nالذكاء الاصطناعي بيقترح. إنت بتوافق. ولا شي بيتغيّر بلاك.\n\n👉 مستوردين وتجّار قطع غيار: احجزوا اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#Importers #SpareParts #InventoryManagement #InvoiceAutomation #AIinBusiness #Stacko #SMB #SupplyChain #StockControl #AccountsPayable"
 }

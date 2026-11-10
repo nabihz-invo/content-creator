@@ -70,7 +70,7 @@ def idea_139():
         a, b = T_(lang, ("Before", "With Stacko"), ("قبل", "مع ستاكو"))
         extra = f'<div class="tag2" style="left:90px;top:860px">{a}</div><div class="tag2 w" style="right:70px;top:860px"><i></i>{b}</div>'
         dark_static("IDEA-139", "IDEA-139_switch-on-your-stock", lang, OB("OB-32"),
-                    T_(lang, "Switch on<br><em>your stock.</em>", "شعّل الضو<br><em>على مخزونك.</em>"),
+                    T_(lang, "Switch on<br><em>your stock.</em>", "شعّل الضو<br><em>على مخزنك.</em>"),
                     T_(lang, "From guessing in the dark to seeing every box.", "من التخمين بالعتمة، لتشوف كل كرتونة."),
                     extra=extra, css=MINI + ".shade-t{height:620px}", h_size=T_(lang, 88, 80), sub_top=T_(lang, 400, 440), title="switch on")
 

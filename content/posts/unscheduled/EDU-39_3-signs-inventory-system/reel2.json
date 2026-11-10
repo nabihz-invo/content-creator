@@ -4,7 +4,7 @@
   {
    "vo": {
     "en": "Three signs your inventory system is failing you.",
-    "ar": "٣ علامات إنو نظام مخزونك عم يخذلك."
+    "ar": "٣ علامات إنو نظام مخزنك عم يخذلك."
    },
    "scene": {
     "type": "big",
@@ -12,14 +12,14 @@
      "big": "3 signs your inventory system is *failing you.*"
     },
     "ar": {
-     "big": "٣ علامات إنو نظام مخزونك *عم يخذلك.*"
+     "big": "٣ علامات إنو نظام مخزنك *عم يخذلك.*"
     }
    }
   },
   {
    "vo": {
     "en": "One: you answer \"where is my stock?\" with \"let me check.\"",
-    "ar": "واحد: بتجاوب على «وين مخزوني؟» بـ«خلّيني شوف»."
+    "ar": "واحد: بتجاوب على «وين مخزني؟» بـ«خلّيني شوف»."
    },
    "scene": {
     "type": "chaos",
@@ -42,7 +42,7 @@
       {
        "kind": "chat",
        "label": "فريق المستودع",
-       "text": "وين مخزون الـLED؟"
+       "text": "وين كمية الـLED؟"
       },
       {
        "kind": "call",
@@ -75,7 +75,7 @@
      "items": [
       {
        "kind": "sheet",
-       "label": "المخزون.xlsx — تعدّل",
+       "label": "المخازن.xlsx — تعدّل",
        "text": "الكمية ٤٠ ← ٣٨ · مين؟"
       }
      ],
@@ -139,7 +139,7 @@
   {
    "vo": {
     "en": "Your stock, always in sight. Book a meeting with our team.",
-    "ar": "مخزونك دايماً قدّام عينك. احجز اجتماع مع فريقنا."
+    "ar": "مخزنك دايماً قدّام عينك. احجز اجتماع مع فريقنا."
    },
    "scene": {
     "type": "end",
@@ -150,7 +150,7 @@
  ],
  "caption": {
   "en": "3 signs your inventory system is failing you:\n\n1️⃣ You answer \"where is my stock?\" with \"let me check.\"\n2️⃣ Nobody knows who changed the quantity.\n3️⃣ You find out about shortages after the customer does.\n\nIf any of these sound familiar, the problem isn't your team. It's your visibility.\n\nStacko puts every warehouse and branch on one map, traces every movement to a user and timestamp, and scopes permissions by action and location.\n\n👉 Book a meeting — link in bio.",
-  "ar": "٣ علامات إنو نظام مخزونك عم يخذلك:\n\n1️⃣ بتجاوب على «وين مخزوني؟» بـ«خلّيني شوف».\n2️⃣ ما حدا بيعرف مين غيّر الكمية.\n3️⃣ بتعرف بالنقص بعد ما يعرف الزبون.\n\nإذا في شي من هول بيشبهك، المشكلة مش بفريقك. المشكلة بالرؤية.\n\nستاكو بيحطّ كل مستودع وفرع على خريطة وحدة، بيربط كل حركة بشخص ووقت، وبيحدّد الصلاحيات حسب الإجراء والموقع.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "٣ علامات إنو نظام مخزنك عم يخذلك:\n\n1️⃣ بتجاوب على «وين مخزني؟» بـ«خلّيني شوف».\n2️⃣ ما حدا بيعرف مين غيّر الكمية.\n3️⃣ بتعرف بالنقص بعد ما يعرف الزبون.\n\nإذا في شي من هول بيشبهك، المشكلة مش بفريقك. المشكلة بالرؤية.\n\nستاكو بيحطّ كل مستودع وفرع على خريطة وحدة، بيربط كل حركة بشخص ووقت، وبيحدّد الصلاحيات حسب الإجراء والموقع.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#InventoryManagement #StockControl #SMB #Stacko #SupplyChain #InventoryVisibility #WarehouseManagement #BusinessOperations #AuditTrail #InventoryTech",
  "changes": [

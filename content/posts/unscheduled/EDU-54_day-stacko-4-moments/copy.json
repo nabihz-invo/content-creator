@@ -14,7 +14,7 @@
    "ar": {"title": "الفاتورة وصلت.", "body": "مسؤول الفواتير بيرفع مستند مدعوم. الحقول بتنقرا. بتنعمل مسودّة. والأشيا المتعلّمة بتنحطّ للمراجعة."}},
   {"num": "14:00", "img": {"name": "newmove", "src": "app", "h": 470},
    "en": {"title": "The transfer.", "body": "A branch needs stock. The warehouse user records a transfer — from location, to location, quantity, user, timestamp."},
-   "ar": {"title": "التحويل.", "body": "فرع بحاجة مخزون. مسؤول المستودع بيسجّل تحويل — من موقع، لموقع، الكمية، المستخدم، والوقت."}},
+   "ar": {"title": "التحويل.", "body": "فرع بحاجة بضاعة. مسؤول المستودع بيسجّل تحويل — من موقع، لموقع، الكمية، المستخدم، والوقت."}},
   {"num": "17:00", "img": {"name": "moves", "src": "app", "h": 470},
    "en": {"title": "The review.", "body": "The manager opens the transaction list, reviews what happened, approves what's pending, and reads the audit trail. Everything is recorded."},
    "ar": {"title": "المراجعة.", "body": "المدير بيفتح لايحة المعاملات، بيراجع شو صار، بيوافق عالمعلّق، وبيقرا سجل التدقيق. كل شي متسجّل."}},

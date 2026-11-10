@@ -31,7 +31,7 @@ def idea_053():
     T = {
         "en": dict(h="Everyone sees<br><em>the same stock.</em>", s="Owner, manager, staff: one picture, no arguments.",
                    r=[("Owner", "watches the map"), ("Warehouse manager", "approves transfers"), ("Staff", "log from the phone")]),
-        "ar": dict(h="الكل بيشوف<br><em>نفس المخزون.</em>", s="صاحب الشغل، المدير، والفريق: صورة وحدة، بلا نقاش.",
+        "ar": dict(h="الكل بيشوف<br><em>نفس المخازن.</em>", s="صاحب الشغل، المدير، والفريق: صورة وحدة، بلا نقاش.",
                    r=[("صاحب الشغل", "بيتابع الخريطة"), ("مدير المستودع", "بيوافق عالتحويلات"), ("الفريق", "بيسجّل من التلفون")]),
     }
     for lang, t in T.items():
@@ -80,12 +80,12 @@ def idea_066():
             imp=("Lead times", [("Sea", "Shenzhen → Beirut", "~30 days + customs"), ("Air", "Guangzhou → Beirut", "~14 h + customs")]),
             end=("Which move<br><em>is first for you?</em>", ["Rebalance", "Clear", "Plan imports"], "ABC")),
         "ar": dict(
-            cover=("3 حركات بالمخزون<br><em>قبل آخر السنة.</em>", "حركات صغيرة، وربع أوّل أقوى."),
+            cover=("3 حركات بالمخازن<br><em>قبل آخر السنة.</em>", "حركات صغيرة، وربع أوّل أقوى."),
             moves=[("حركة 1 · وزّع", "حرّك البضاعة للفرع<br><em>اللي بيبيعها.</em>"),
                    ("حركة 2 · صفّي", "لاقي الأصناف<br><em>اللي ما تحرّكت من أشهر.</em>"),
                    ("حركة 3 · خطّط للاستيراد", "البحر: حوالي 5 أسابيع للباب.<br><em>الجو: كم يوم.</em>")],
-            reb=(L("Wireless Earbuds"), [(f"{L('WH-02')} · صيدا", "120 بالمخزون", "4 طلعوا هالشهر"),
-                                         (f"{L('WH-01')} · بيروت", "8 بالمخزون", "46 طلعوا هالشهر")], "تحويل 60 ← بيروت"),
+            reb=(L("Wireless Earbuds"), [(f"{L('WH-02')} · صيدا", "120 بالمخازن", "4 طلعوا هالشهر"),
+                                         (f"{L('WH-01')} · بيروت", "8 بالمخازن", "46 طلعوا هالشهر")], "تحويل 60 ← بيروت"),
             clr=("آخر حركة", [(L("USB-C Cable 1m"), f"{L('WH-04')} · جونيه", "من 5 أشهر"), (L("Desk Lamp"), f"{L('WH-02')} · صيدا", "من 4 أشهر")]),
             imp=("مدة الشحن", [("بحر", "شنتشن ← بيروت", "حوالي 30 يوم + جمرك"), ("جو", "غوانجو ← بيروت", "حوالي 14 ساعة + جمرك")]),
             end=("أيّا حركة<br><em>أوّل شي عندك؟</em>", ["وزّع", "صفّي", "خطّط للاستيراد"], "أبج")),
@@ -147,7 +147,7 @@ def idea_034():
     T = {
         "en": dict(h="Your Dubai branch,<br><em>on the same map.</em>", s="Lebanon and the Gulf, one view of your stock.",
                    p1=("Beirut", "WH-01", "2,140"), p2=("Dubai", "DXB-01", "1,720")),
-        "ar": dict(h="فرعك بدبي،<br><em>على نفس الخريطة.</em>", s="لبنان والخليج، بنظرة وحدة لمخزونك.",
+        "ar": dict(h="فرعك بدبي،<br><em>على نفس الخريطة.</em>", s="لبنان والخليج، بنظرة وحدة لمخزنك.",
                    p1=("بيروت", L("WH-01"), "2,140"), p2=("دبي", L("DXB-01"), "1,720")),
     }
     for lang, t in T.items():
@@ -182,7 +182,7 @@ def idea_059():
     T = {
         "en": dict(h="How many hours does<br><em>your stock count take?</em>",
                    o=["Under 2 hours", "A full day", "A weekend", "We don't count"], L="ABCD"),
-        "ar": dict(h="قدّيش بياخد<br><em>جرد المخزون عندك؟</em>",
+        "ar": dict(h="قدّيش بياخد<br><em>جرد المخازن عندك؟</em>",
                    o=["أقل من ساعتين", "نهار كامل", "ويك إند", "ما منجرد"], L="أبجد"),
     }
     for lang, t in T.items():
@@ -292,7 +292,7 @@ def idea_006():
             end=("Save this<br><em>glossary.</em>", "More terms coming in the series."),
             cta="See your stock live →"),
         "ar": dict(
-            k="قاموس مدير المخزون · 02",
+            k="قاموس مدير المخازن · 02",
             cover=(f"القاموس {L('#02')}<br><em>5 مصطلحات</em>", "5 مصطلحات قصيرة لازم يعرفها كل فريق مخزن."),
             terms=[("ETA", "وقت الوصول المتوقّع"), ("ETD", "وقت المغادرة المتوقّع"), ("SKU", "رمز الصنف"),
                    ("WH", "مخزن"), ("MOQ", "الحد الأدنى للطلب")],
@@ -319,7 +319,7 @@ def idea_006():
             ],
             wh=[("WH-01 · Beirut", "7,250", "4"), ("WH-02 · Sidon", "1,210", "")],
             end=("احفظ<br><em>القاموس.</em>", "في مصطلحات أكتر جايي بالسلسلة."),
-            cta="شوف مخزونك مباشر ←"),
+            cta="شوف مخزنك مباشر ←"),
     }
     for lang, t in T.items():
         n = 7

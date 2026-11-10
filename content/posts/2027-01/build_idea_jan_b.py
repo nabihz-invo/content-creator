@@ -147,7 +147,7 @@ def idea_073():
 """
     T = {
         "en": dict(h="Growing fast?<br><em>Your stock system shouldn't wobble.</em>", s="<b>Stacko</b> is the stock management system built for several warehouses."),
-        "ar": dict(h="عم تكبر بسرعة؟<br><em>نظام المخزون ما لازم يهتزّ.</em>", s="<b>ستاكو</b> هو نظام إدارة المخازن المصمّم لعدّة مستودعات."),
+        "ar": dict(h="عم تكبر بسرعة؟<br><em>نظام المخازن ما لازم يهتزّ.</em>", s="<b>ستاكو</b> هو نظام إدارة المخازن المصمّم لعدّة مستودعات."),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/OB-06.jpg" alt="">
@@ -175,9 +175,9 @@ def idea_061():
             aud=("LED Strip 5m · −25", [("By", "Rami"), ("When", "Today, 4:12 PM"), ("Where", "WH-01 · Beirut")]),
             end=("Get those<br><em>hours back.</em>", "Which one takes most of your week?", ["Calls", "Merging files", "Typing invoices", "Chasing who moved it"], "ABCD")),
         "ar": dict(
-            cover=("لوين بتروح<br><em>الساعات؟</em>", "كلفة الوقت المخفيّة لإدارة المخزون باليد."),
+            cover=("لوين بتروح<br><em>الساعات؟</em>", "كلفة الوقت المخفيّة لإدارة المخازن باليد."),
             k="مضيعة وقت {n} من 4", w="مع ستاكو",
-            tasks=[("تتّصل بالفروع<br><em>لتشيّك المخزون.</em>", "اتطلّع عالخريطة."), ("تدمج<br><em>تلات جداول ببعض.</em>", "مصدر واحد."),
+            tasks=[("تتّصل بالفروع<br><em>لتشيّك المخازن.</em>", "اتطلّع عالخريطة."), ("تدمج<br><em>تلات جداول ببعض.</em>", "مصدر واحد."),
                    ("تكتب فواتير المورّد<br><em>سطر سطر.</em>", "الذكاء الاصطناعي بيقراها."), ("تسأل<br><em>مين حرّكها.</em>", "اسم ووقت.")],
             files=(["stock_beirut.xlsx", "stock_sidon.xlsx", "stock_tripoli.xlsx"], "صورة وحدة مباشرة"),
             inv=([L("LED Strip 5m × 1,200"), L("Desk Lamp × 300"), L("USB-C Cable 1m × 2,000")], "انعملوا 12 صنف ✓"),

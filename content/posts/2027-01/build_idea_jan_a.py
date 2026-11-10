@@ -27,7 +27,7 @@ def idea_084():
 """
     T = {
         "en": dict(k="1 January 2027", h="New year,<br><em>clear stock.</em>", s="Happy 2027 from the Stacko team."),
-        "ar": dict(k="1 كانون التاني 2027", h="سنة جديدة،<br><em>مخزون واضح.</em>", s="سنة 2027 سعيدة من فريق ستاكو."),
+        "ar": dict(k="1 كانون التاني 2027", h="سنة جديدة،<br><em>مخازن واضحة.</em>", s="سنة 2027 سعيدة من فريق ستاكو."),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/SE-03.jpg" alt="">
@@ -65,7 +65,7 @@ def idea_011():
                       ("Who changed it?", "No idea", "Name and time"),
                       ("Shipments", "In emails", "On the map, with ETA"),
                       ("Arabic", "Depends on the file", "Full RTL interface")]),
-        "ar": dict(h="الجدول<br><em>أو ستاكو؟</em>", s="نفس المخزون. نهار مختلف كتير.", c=("", "الجدول", "ستاكو"),
+        "ar": dict(h="الجدول<br><em>أو ستاكو؟</em>", s="نفس المخازن. نهار مختلف كتير.", c=("", "الجدول", "ستاكو"),
                    r=[("التحديث", "لمّا حدا يتذكّر", "لمّا حدا يبعت رسالة"),
                       ("وينها؟", "اتّصل بالفرع", "اتطلّع عالخريطة"),
                       ("مين غيّرها؟", "ما حدا بيعرف", "اسم ووقت"),
@@ -100,7 +100,7 @@ def idea_085():
             calls=[("Before", "“Can you check if we still have…?”"), ("Now", "The answer is on the map")],
             end=("Which one<br><em>is yours?</em>", ["Stop guessing", "Log the same day", "One map", "Fewer calls"], "ABCD")),
         "ar": dict(
-            cover=("قرارات 2027<br><em>لكل مدير مخزون.</em>", "اختار واحد. والتزم فيه."),
+            cover=("قرارات 2027<br><em>لكل مدير مخازن.</em>", "اختار واحد. والتزم فيه."),
             k="قرار {n} من 4",
             res=["بطّل تخمّن.<br><em>وابدأ تشوف.</em>", "سجّل كل حركة<br><em>بنفس النهار.</em>",
                  "خريطة وحدة،<br><em>مش خمس ملفات.</em>", "تلفونات أقل،<br><em>مبيعات أكتر.</em>"],

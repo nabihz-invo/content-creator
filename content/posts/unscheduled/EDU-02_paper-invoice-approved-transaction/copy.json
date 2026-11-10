@@ -20,20 +20,20 @@
    "ar": {"title": "علّم، ما تخمّن.", "body": "الحقول الناقصة أو المش أكيدة أو المش مطابقة بتتعلّم للمراجعة — وما بتنحزر بالسكت.", "items": ["الوحدة مش أكيدة — أكّدها لو سمحت."]}, "mark": "?"},
   {"num": "05", "icon": "lock",
    "en": {"title": "Draft.", "body": "A draft transaction is created. Confirmed stock is **not** changed automatically.", "items": ["No stock change yet."]},
-   "ar": {"title": "مسودّة.", "body": "بتنعمل حركة مسودّة. المخزون المؤكّد **ما بيتغيّر** لحالو.", "items": ["بعد ما في تغيير بالمخزون."]}},
+   "ar": {"title": "مسودّة.", "body": "بتنعمل حركة مسودّة. الكميات المؤكّدة **ما بيتغيّر** لحالو.", "items": ["بعد ما في تغيير بالمخازن."]}},
   {"num": "06", "img": {"name": "approvals", "src": "app", "h": 440},
    "en": {"title": "Review.", "body": "An authorized user reviews the draft, corrects anything the AI flagged, and confirms the details."},
    "ar": {"title": "مراجعة.", "body": "شخص مخوّل بيراجع المسودّة، بيصحّح أي شي علّمو الذكاء الاصطناعي، وبيأكّد التفاصيل."}},
   {"num": "07", "img": {"name": "ledger", "h": 400},
    "en": {"title": "Approve & record.", "body": "An authorized user confirms. Stock updates. An audit entry records the document reference, creator, reviewer, status, and timestamp."},
-   "ar": {"title": "موافقة وتسجيل.", "body": "شخص مخوّل بيأكّد. المخزون بيتحدّث. وسجل تدقيق بيحفظ مرجع المستند، مين عملو، مين راجعو، الحالة، والوقت."}},
+   "ar": {"title": "موافقة وتسجيل.", "body": "شخص مخوّل بيأكّد. الكميات بتتحدّث. وسجل تدقيق بيحفظ مرجع المستند، مين عملو، مين راجعو، الحالة، والوقت."}},
   {"type": "cta",
    "en": {"title": "AI proposes. *Your team approves.*", "lead": "That's the guardrail. Want to see it in action? Book a meeting."},
    "ar": {"title": "الذكاء الاصطناعي بيقترح. *فريقك بيوافق.*", "lead": "هيدا الضابط. بدّك تشوفو عم يشتغل؟ احجز اجتماعاً."}}
  ],
  "caption": {
   "en": "\"Will AI change my stock automatically?\"\n\nNo. And that's the point.\n\nHere's exactly how Stacko's AI document workflow is designed:\n\n01 Upload → 02 Extract → 03 Match → 04 Flag, don't guess → 05 Draft (no stock change) → 06 Human review → 07 Approved & recorded.\n\nAI output is a proposed draft — not guaranteed truth. Every high-impact stock change passes through validation warnings and human approval, with an audit entry for the record.\n\n👉 Save this for your next software evaluation. Book a meeting in bio.",
-  "ar": "«الذكاء الاصطناعي رح يغيّر مخزوني لحالو؟»\n\nلا. وهيدا كل القصة.\n\nهيك بالضبط مصمّم شغل المستندات بالذكاء الاصطناعي بستاكو:\n\n٠١ رفع ← ٠٢ استخراج ← ٠٣ مطابقة ← ٠٤ علّم ما تخمّن ← ٠٥ مسودّة (بلا تغيير بالمخزون) ← ٠٦ مراجعة بشرية ← ٠٧ موافقة وتسجيل.\n\nاللي بيطلّعو الذكاء الاصطناعي مسودّة مقترحة — مش حقيقة مضمونة. كل تغيير مهم بالمخزون بيمرق بتحذيرات تحقّق وموافقة بشرية، مع سجل تدقيق.\n\n👉 احفظ هالبوست لتقييمك الجاي لأي برنامج. احجز اجتماعاً من البايو."
+  "ar": "«الذكاء الاصطناعي رح يغيّر مخزني لحالو؟»\n\nلا. وهيدا كل القصة.\n\nهيك بالضبط مصمّم شغل المستندات بالذكاء الاصطناعي بستاكو:\n\n٠١ رفع ← ٠٢ استخراج ← ٠٣ مطابقة ← ٠٤ علّم ما تخمّن ← ٠٥ مسودّة (بلا تغيير بالمخازن) ← ٠٦ مراجعة بشرية ← ٠٧ موافقة وتسجيل.\n\nاللي بيطلّعو الذكاء الاصطناعي مسودّة مقترحة — مش حقيقة مضمونة. كل تغيير مهم بالمخازن بيمرق بتحذيرات تحقّق وموافقة بشرية، مع سجل تدقيق.\n\n👉 احفظ هالبوست لتقييمك الجاي لأي برنامج. احجز اجتماعاً من البايو."
  },
  "hashtags": "#AIinInventory #InvoiceAutomation #InventoryManagement #StockControl #WarehouseTech #Stacko #SMBTech #SupplyChainInnovation #ApprovalWorkflow #AuditTrail"
 }

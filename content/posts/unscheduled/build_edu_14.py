@@ -30,7 +30,7 @@ T = {
                s="With <b>Stacko</b>, you see your stock: every warehouse, every shipment, live on one map.",
                img="en-hero-island.png"),
     "ar": dict(h="معظم مشاكل المستودعات ليست في مشكلات تتعلق بالمخازن، <em>بل مشكلات تتعلق بوضوح الرؤية.</em>",
-               s="مع <b>ستاكو</b>، مخزونك دايماً قدّام عينك: كل مستودع وكل شحنة على خريطة وحدة مباشرة.",
+               s="مع <b>ستاكو</b>، مخزنك دايماً قدّام عينك: كل مستودع وكل شحنة على خريطة وحدة مباشرة.",
                img="ar-hero-island.png"),
 }
 

@@ -45,7 +45,7 @@
      "items": [
       {
        "kind": "sheet",
-       "label": "مخزون_نهائي_٣.xlsx"
+       "label": "جرد_نهائي_٣.xlsx"
       },
       {
        "kind": "chat",
@@ -65,7 +65,7 @@
   {
    "vo": {
     "en": "Clearer stock-location visibility can help teams find their bearings faster.",
-    "ar": "رؤية أوضح لمواقع المخزون بتساعد الفرق تعرف وين هيّي بسرعة أكبر."
+    "ar": "رؤية أوضح لمواقع المخازن بتساعد الفرق تعرف وين هيّي بسرعة أكبر."
    },
    "scene": {
     "type": "shot",
@@ -104,7 +104,7 @@
  ],
  "caption": {
   "en": "Searching across records, messages, and branches can create extra work. We're not assigning a number to that cost; every business is different. We'd like to understand where your team spends time when checking stock across locations. Tell us about your process.\n\nBook a meeting with our team.",
-  "ar": "التفتيش بين السجلات والرسائل والفروع بيخلق شغل زيادة. ما رح نحطّ رقم لهالكلفة؛ كل شركة غير. بدنا نفهم وين فريقك بيصرف وقتو وهوّي عم يشيّك المخزون بكذا موقع. خبّرنا عن طريقتك.\n\nاحجز اجتماعاً مع فريقنا."
+  "ar": "التفتيش بين السجلات والرسائل والفروع بيخلق شغل زيادة. ما رح نحطّ رقم لهالكلفة؛ كل شركة غير. بدنا نفهم وين فريقك بيصرف وقتو وهوّي عم يشيّك المخازن بكذا موقع. خبّرنا عن طريقتك.\n\nاحجز اجتماعاً مع فريقنا."
  },
  "hashtags": "#Stacko #WarehouseOperations #InventoryManagement #StockVisibility",
  "changes": [

@@ -19,7 +19,7 @@
   {
    "vo": {
     "en": "Here's one stock transaction in Stacko,",
-    "ar": "هيدي حركة مخزون وحدة بستاكو،"
+    "ar": "هيدي حركة بالمخازن وحدة بستاكو،"
    },
    "scene": {
     "type": "shot",
@@ -97,7 +97,7 @@
   {
    "vo": {
     "en": "What would you need to see when reviewing a stock transaction? Book a meeting with our team.",
-    "ar": "شو بدّك تشوف وإنت عم تراجع حركة مخزون؟ احجز اجتماع مع فريقنا."
+    "ar": "شو بدّك تشوف وإنت عم تراجع حركة بالمخازن؟ احجز اجتماع مع فريقنا."
    },
    "scene": {
     "type": "end",
@@ -112,7 +112,7 @@
  ],
  "caption": {
   "en": "A short look at one workflow in Stacko. This video shows only the steps available in the app today, with demo data. We're interested in learning what information teams need when following a stock transaction.\n\nWhat would you need to see when reviewing a stock transaction?\n\nBook a meeting with our team.",
-  "ar": "نظرة سريعة على شغلة وحدة بستاكو. الفيديو بيفرجي بس الخطوات الموجودة بالتطبيق اليوم، مع بيانات تجريبية. حابّين نعرف شو المعلومات اللي بتحتاجها الفرق لتلحق حركة مخزون.\n\nشو بدّك تشوف وإنت عم تراجع حركة مخزون؟\n\nاحجز اجتماعاً مع فريقنا."
+  "ar": "نظرة سريعة على شغلة وحدة بستاكو. الفيديو بيفرجي بس الخطوات الموجودة بالتطبيق اليوم، مع بيانات تجريبية. حابّين نعرف شو المعلومات اللي بتحتاجها الفرق لتلحق حركة بالمخازن.\n\nشو بدّك تشوف وإنت عم تراجع حركة بالمخازن؟\n\nاحجز اجتماعاً مع فريقنا."
  },
  "hashtags": "#Stacko #StockManagement #BuildingInPublic #InventoryControl",
  "changes": [

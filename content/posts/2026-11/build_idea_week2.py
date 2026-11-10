@@ -86,7 +86,7 @@ def idea_027():
     T = {
         "en": dict(h="How sure are you about<br><em>today's stock numbers?</em>", s="Slide to answer. Be honest.",
                    lo="Guessing", hi="Certain"),
-        "ar": dict(h="قدّيش متأكّد <em>من أرقام مخزونك اليوم؟</em>", s="حرّك وجاوب. بصراحة.",
+        "ar": dict(h="قدّيش متأكّد <em>من أرقام مخزنك اليوم؟</em>", s="حرّك وجاوب. بصراحة.",
                    lo="عم خمّن", hi="متأكّد"),
     }
     for lang, t in T.items():

@@ -5,13 +5,13 @@
  "slides": [
   {"type": "cover", "theme": "dark",
    "en": {"eyebrow": "Myth vs. Reality", "title": "Myth vs. *Reality.*", "lead": "5 things people believe about inventory software — and what's actually true."},
-   "ar": {"eyebrow": "خرافة ولا واقع", "title": "خرافة ولا *واقع؟*", "lead": "٥ أشيا الناس مصدّقينها عن برامج المخزون — وشو الصحيح فعلاً."}},
+   "ar": {"eyebrow": "خرافة ولا واقع", "title": "خرافة ولا *واقع؟*", "lead": "٥ أشيا الناس مصدّقينها عن برامج المخازن — وشو الصحيح فعلاً."}},
   {"type": "myth", "concept": true,
    "en": {"myth": "\"I have to replace my ERP.\"", "reality": "No. Stacko has two modes: a full inventory system, or a map + AI layer on top of an existing system like Odoo or SAP — where supported."},
-   "ar": {"myth": "«لازم بدّل نظام الـERP تبعي.»", "reality": "لا. ستاكو إلو وضعين: نظام مخزون كامل، أو طبقة خريطة وذكاء اصطناعي فوق نظام موجود متل Odoo أو SAP — وين مدعوم."}},
+   "ar": {"myth": "«لازم بدّل نظام الـERP تبعي.»", "reality": "لا. ستاكو إلو وضعين: نظام مخازن كامل، أو طبقة خريطة وذكاء اصطناعي فوق نظام موجود متل Odoo أو SAP — وين مدعوم."}},
   {"type": "myth",
    "en": {"myth": "\"AI will change my stock without permission.\"", "reality": "AI output is a proposed draft, not truth. Confirmed stock changes only after an authorized person approves — with an audit entry."},
-   "ar": {"myth": "«الذكاء الاصطناعي رح يغيّر مخزوني بلا إذن.»", "reality": "اللي بيطلّعو الذكاء الاصطناعي مسودّة مقترحة، مش حقيقة. المخزون المؤكّد ما بيتغيّر إلّا بعد ما شخص مخوّل يوافق — مع سجل تدقيق."}},
+   "ar": {"myth": "«الذكاء الاصطناعي رح يغيّر مخزني بلا إذن.»", "reality": "اللي بيطلّعو الذكاء الاصطناعي مسودّة مقترحة، مش حقيقة. الكميات المؤكّدة ما بيتغيّر إلّا بعد ما شخص مخوّل يوافق — مع سجل تدقيق."}},
   {"type": "myth",
    "en": {"myth": "\"It's just another spreadsheet with a login.\"", "reality": "A visual map of warehouses and branches, traceable movements, role-based approvals, and AI document capture — in one view."},
    "ar": {"myth": "«هيدا شيت تاني بس مع تسجيل دخول.»", "reality": "خريطة للمستودعات والفروع، حركات إلها أثر، موافقات حسب الدور، وقراءة مستندات بالذكاء الاصطناعي — بشاشة وحدة."}},
@@ -30,7 +30,7 @@
  ],
  "caption": {
   "en": "5 myths about inventory software — busted.\n\n❌ \"I have to replace my ERP.\"\n❌ \"AI will change my stock without permission.\"\n❌ \"It's just a spreadsheet with a login.\"\n❌ \"My team won't use it.\"\n❌ \"Integration means duplicate records.\"\n\nThe reality is more boring — and more useful. Stacko works as a full inventory system *or* as a map + AI layer on top of an existing system where supported. AI creates drafts, humans approve. Roles are scoped to what people actually do. And source of truth is defined before any sync.\n\n👉 Have a myth we missed? Comment it. Book a meeting in bio.",
-  "ar": "٥ خرافات عن برامج المخزون — وكلّها مش صحيحة.\n\n❌ «لازم بدّل الـERP تبعي.»\n❌ «الذكاء الاصطناعي رح يغيّر مخزوني بلا إذن.»\n❌ «هيدا شيت مع تسجيل دخول.»\n❌ «فريقي ما رح يستعملو.»\n❌ «الربط يعني سجلات مكرّرة.»\n\nالواقع أهدى — وأنفع. ستاكو بيشتغل كنظام مخزون كامل *أو* كطبقة خريطة وذكاء اصطناعي فوق نظام موجود وين مدعوم. الذكاء الاصطناعي بيعمل مسودّات، والناس بيوافقوا. الأدوار على قدّ شغل كل واحد. ومصدر الحقيقة بيتحدّد قبل أي مزامنة.\n\n👉 في خرافة نسيناها؟ اكتبها. احجز اجتماعاً من البايو."
+  "ar": "٥ خرافات عن برامج المخازن — وكلّها مش صحيحة.\n\n❌ «لازم بدّل الـERP تبعي.»\n❌ «الذكاء الاصطناعي رح يغيّر مخزني بلا إذن.»\n❌ «هيدا شيت مع تسجيل دخول.»\n❌ «فريقي ما رح يستعملو.»\n❌ «الربط يعني سجلات مكرّرة.»\n\nالواقع أهدى — وأنفع. ستاكو بيشتغل كنظام مخازن كامل *أو* كطبقة خريطة وذكاء اصطناعي فوق نظام موجود وين مدعوم. الذكاء الاصطناعي بيعمل مسودّات، والناس بيوافقوا. الأدوار على قدّ شغل كل واحد. ومصدر الحقيقة بيتحدّد قبل أي مزامنة.\n\n👉 في خرافة نسيناها؟ اكتبها. احجز اجتماعاً من البايو."
  },
  "hashtags": "#InventorySoftware #ERPinventory #Odoo #SAP #DigitalTransformation #SMB #Stacko #InventoryManagement #TechMyths #SupplyChainTech"
 }

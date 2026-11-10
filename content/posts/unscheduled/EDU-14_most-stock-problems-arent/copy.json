@@ -6,11 +6,11 @@
  "slides": [
   {"type": "cta",
    "en": {"title": "Most stock problems aren't stock problems. *They're visibility problems.*"},
-   "ar": {"title": "أغلب مشاكل المخزون مش مشاكل مخزون. *هيّي مشاكل رؤية.*"}}
+   "ar": {"title": "أغلب مشاكل المخازن مش مشاكل مخازن. *هيّي مشاكل رؤية.*"}}
  ],
  "caption": {
   "en": "Most stock problems aren't stock problems.\n\nThey're visibility problems.\n\nThe stock exists. The movements happened. The data is real. It's just scattered across Excel files, WhatsApp groups, paper invoices, and people's heads.\n\nSo the manager calls three branches, checks two spreadsheets, and answers \"I think we have 38… maybe 41?\"\n\nThat \"I think\" is the most expensive phrase in inventory.\n\nOne map. Every warehouse. Every branch. Every movement. That's what Stacko is for.\n\nHow do you answer \"where is my stock?\" today? 👇",
-  "ar": "أغلب مشاكل المخزون مش مشاكل مخزون.\n\nهيّي مشاكل رؤية.\n\nالمخزون موجود. الحركات صارت. الداتا حقيقية. بس مفرّقة بين ملفات إكسل، مجموعات واتساب، فواتير ورق، وراس الناس.\n\nفالمدير بيتّصل بـ٣ فروع، بيفتح شيتين، وبيجاوب «بظنّ عنّا ٣٨… يمكن ٤١؟»\n\nهالـ«بظنّ» هيي أغلى كلمة بالمخزون.\n\nخريطة وحدة. كل مستودع. كل فرع. كل حركة. لهيك ستاكو موجود.\n\nكيف بتجاوب اليوم عن سؤال «وين مخزوني؟» 👇"
+  "ar": "أغلب مشاكل المخازن مش مشاكل مخازن.\n\nهيّي مشاكل رؤية.\n\nالبضاعة موجودة. الحركات صارت. الداتا حقيقية. بس مفرّقة بين ملفات إكسل، مجموعات واتساب، فواتير ورق، وراس الناس.\n\nفالمدير بيتّصل بـ٣ فروع، بيفتح شيتين، وبيجاوب «بظنّ عنّا ٣٨… يمكن ٤١؟»\n\nهالـ«بظنّ» هيي أغلى كلمة بالمخازن.\n\nخريطة وحدة. كل مستودع. كل فرع. كل حركة. لهيك ستاكو موجود.\n\nكيف بتجاوب اليوم عن سؤال «وين مخزني؟» 👇"
  },
  "hashtags": "#InventoryManagement #SupplyChain #SMB #Founders #B2B #Stacko #StockVisibility"
 }

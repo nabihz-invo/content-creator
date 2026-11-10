@@ -4,7 +4,7 @@
   {
    "vo": {
     "en": "Guess the stock problem.",
-    "ar": "حزّر شو مشكلة المخزون."
+    "ar": "حزّر شو مشكلة المخازن."
    },
    "scene": {
     "type": "big",
@@ -12,14 +12,14 @@
      "big": "Guess the *stock problem.*"
     },
     "ar": {
-     "big": "حزّر *مشكلة المخزون.*"
+     "big": "حزّر *مشكلة المخازن.*"
     }
    }
   },
   {
    "vo": {
     "en": "A manager calls three warehouses to confirm stock. Then calls a customer back with: I think we have thirty-eight.",
-    "ar": "مدير بيتّصل بـ٣ مستودعات ليتأكّد من المخزون. وبعدين بيرجع للزبون: بظنّ عنّا تمانية وتلاتين."
+    "ar": "مدير بيتّصل بـ٣ مستودعات ليتأكّد من المخازن. وبعدين بيرجع للزبون: بظنّ عنّا تمانية وتلاتين."
    },
    "scene": {
     "type": "chaos",
@@ -162,7 +162,7 @@
  ],
  "caption": {
   "en": "Guess the stock problem.\n\nA manager calls three warehouses to confirm stock. Then calls a customer back with \"I think we have 38.\"\n\nWhat's the real problem?\nA) Bad staff\nB) Too many warehouses\nC) No visibility\nD) Slow phone\n\nComment your guess before you watch again. The answer is in the video.\n\n👉 Book a meeting — link in bio.",
-  "ar": "حزّر شو مشكلة المخزون.\n\nمدير بيتّصل بـ٣ مستودعات ليتأكّد من المخزون. وبعدين بيرجع للزبون: «بظنّ عنّا ٣٨».\n\nشو المشكلة الحقيقية؟\nأ) موظفين مش منيحين\nب) مستودعات كتير\nج) ما في رؤية\nد) التلفون بطيء\n\nاكتب جوابك قبل ما ترجع تحضر. الجواب بالفيديو.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "حزّر شو مشكلة المخازن.\n\nمدير بيتّصل بـ٣ مستودعات ليتأكّد من المخازن. وبعدين بيرجع للزبون: «بظنّ عنّا ٣٨».\n\nشو المشكلة الحقيقية؟\nأ) موظفين مش منيحين\nب) مستودعات كتير\nج) ما في رؤية\nد) التلفون بطيء\n\nاكتب جوابك قبل ما ترجع تحضر. الجواب بالفيديو.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#Quiz #InventoryManagement #StockControl #SMB #Stacko #SupplyChain #Engagement #InventoryVisibility #BusinessOperations #DistributorLife",
  "changes": [

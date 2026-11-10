@@ -19,7 +19,7 @@ def idea_098():
     css = ".bg{transform:scale(1.25);transform-origin:50% 62%}"
     for lang in ("en", "ar"):
         dark_static("IDEA-098", "IDEA-098_calm-holidays", lang, OB("OB-11"),
-                    T_(lang, "Calm holidays,<br><em>clear stock.</em>", "أعياد هادية،<br><em>ومخزون واضح.</em>"),
+                    T_(lang, "Calm holidays,<br><em>clear stock.</em>", "أعياد هادية،<br><em>ومخازن واضحة.</em>"),
                     T_(lang, "Season's greetings from the Stacko team.", "أعياد مجيدة من فريق ستاكو."),
                     css=css, h_size=T_(lang, 88, 76), sub_top=T_(lang, 400, 430), title="calm holidays")
 
@@ -75,7 +75,7 @@ def idea_102():
         six = T_(lang, ["Counts", "Transfers", "Imports", "Who moved it", "Low stock", "Arabic"],
                  ["الجرد", "التحويلات", "الاستيراد", "مين حرّكها", "النقص", "العربي"])
         dark_static("IDEA-102", "IDEA-102_sides-solved", lang, OB("OB-13"),
-                    T_(lang, "How many sides of your stock<br><em>are solved?</em>", "قدّيش وجه من مخزونك<br><em>محلول؟</em>"),
+                    T_(lang, "How many sides of your stock<br><em>are solved?</em>", "قدّيش وجه من مخزنك<br><em>محلول؟</em>"),
                     T_(lang, "Comment your number, out of 6.", "كتبلنا رقمك، من 6."),
                     extra='<div class="six">' + "".join(f"<span><i></i>{x}</span>" for x in six) + "</div>", css=css,
                     h_size=T_(lang, 64, 60), title="sides solved")
@@ -94,7 +94,7 @@ def idea_103():
 """
     T = {"en": dict(h="Keep every branch<br><em>in balance.</em>", s="See where stock is piling up, and move it where it sells.",
                     a=("Beirut", "320"), b=("Jounieh", "45"), mv="Move 100 → Jounieh"),
-         "ar": dict(h="خلّي كل الفروع<br><em>بتوازن.</em>", s="شوف وين المخزون عم يتكدّس، وحرّكه لوين بينباع.",
+         "ar": dict(h="خلّي كل الفروع<br><em>بتوازن.</em>", s="شوف وين البضاعة عم تتكدّس، وحرّكه لوين بينباع.",
                     a=("بيروت", "320"), b=("جونيه", "45"), mv="حرّك 100 لجونيه")}
     for lang, t in T.items():
         body = f"""<img class="bg" src="{OB('OB-14')}" alt="">
@@ -117,7 +117,7 @@ def idea_104():
                T_(lang, "Sign 1 of 3", "علامة 1 من 3")),
               (T_(lang, "You re-order items<br><em>you already have elsewhere.</em>", "بتطلب أصناف<br><em>موجودة عندك بمحل تاني.</em>"),
                rowscard([(T_(lang, "New order", "طلبية جديدة"), L("200 × USB-C Cable"), T_(lang, "Supplier", "المورّد"), ""),
-                         (T_(lang, "Already in stock", "موجود بالمخزون"), L("640 × USB-C Cable"), T_(lang, "WH-03 · Tripoli", f"{L('WH-03')} · طرابلس"), "okc")]),
+                         (T_(lang, "Already in stock", "موجود بالمخازن"), L("640 × USB-C Cable"), T_(lang, "WH-03 · Tripoli", f"{L('WH-03')} · طرابلس"), "okc")]),
                T_(lang, "Sign 2 of 3", "علامة 2 من 3")),
               (T_(lang, "Transfers happen only<br><em>after a customer complains.</em>", "التحويل ما بيصير<br><em>إلّا بعد ما يشتكي زبون.</em>"),
                rowscard([(T_(lang, "2:10 PM", "2:10 بعد الضهر"), T_(lang, "Customer asks for earbuds", "زبون بيسأل عن السمّاعات"), T_(lang, "Not here", "مش هون"), "zero"),
@@ -126,7 +126,7 @@ def idea_104():
               (T_(lang, "Fix: one map for every branch.<br><em>Move stock early.</em>", "الحل: خريطة وحدة لكل الفروع.<br><em>وحرّك البضاعة بكّير.</em>"),
                mapcard(), "")]
         light_car("IDEA-104", "IDEA-104_out-of-balance-3-signs", lang, "OB-14.jpg", -200,
-                  (T_(lang, "3 signs your stock<br><em>is out of balance.</em>", "3 علامات إنّ مخزونك<br><em>مش متوازن.</em>"),
+                  (T_(lang, "3 signs your stock<br><em>is out of balance.</em>", "3 علامات إنّ مخزنك<br><em>مش متوازن.</em>"),
                    T_(lang, "And what to do about each.", "وشو تعمل بكل وحدة.")), sl, "out of balance")
 
 

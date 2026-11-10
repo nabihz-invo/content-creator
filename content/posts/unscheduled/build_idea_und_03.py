@@ -70,7 +70,7 @@ def idea_109():
         extra = (f'<div class="chipx" style="left:64px;top:760px"><i></i>{a}</div>'
                  f'<div class="chipx" style="right:64px;top:760px"><i style="background:#B4233C"></i>{b}</div>')
         dark_static("IDEA-109", "IDEA-109_stock-has-a-pulse", lang, OB("OB-17"),
-                    T_(lang, "Your stock<br><em>has a pulse.</em>", "مخزونك<br><em>إلو نبض.</em>"),
+                    T_(lang, "Your stock<br><em>has a pulse.</em>", "مخزنك<br><em>إلو نبض.</em>"),
                     T_(lang, "Every move shows up the moment it's logged.", "كل حركة بتبيّن أوّل ما تتسجّل."),
                     extra=extra, h_size=T_(lang, 88, 76), sub_top=T_(lang, 400, 430), title="pulse")
 
@@ -83,7 +83,7 @@ def idea_110():
         extra = (f'<div class="flat"></div><div class="chipd" style="left:40px;top:720px"><i style="background:#8AA3B5"></i>{a}</div>'
                  f'<div class="chipx" style="right:64px;top:960px"><i></i>{b}</div>')
         dark_static("IDEA-110", "IDEA-110_alive-or-snapshot", lang, OB("OB-17"),
-                    T_(lang, "Is your stock data alive,<br><em>or a snapshot?</em>", "بيانات مخزونك حيّة،<br><em>ولا صورة قديمة؟</em>"),
+                    T_(lang, "Is your stock data alive,<br><em>or a snapshot?</em>", "بيانات مخزنك حيّة،<br><em>ولا صورة قديمة؟</em>"),
                     T_(lang, "A spreadsheet is a photo. Stacko is a live feed.", "الجدول صورة. ستاكو بثّ مباشر."),
                     extra=extra, css=css, h_size=T_(lang, 64, 60), title="alive or snapshot")
 
@@ -133,7 +133,7 @@ def idea_113():
     for lang in ("en", "ar"):
         pins = T_(lang, ["Beirut", "Dubai"], ["بيروت", "دبي"])
         body = f"""<div class="panel"><img src="{OB('OB-19')}" alt=""></div>
-<h1 class="h1">{T_(lang, "Ready to grow?<br><em>Bring your stock with you.</em>", "جاهز تكبر؟<br><em>خود مخزونك معك.</em>")}</h1>
+<h1 class="h1">{T_(lang, "Ready to grow?<br><em>Bring your stock with you.</em>", "جاهز تكبر؟<br><em>خود مخزنك معك.</em>")}</h1>
 <p class="sub" style="top:{356 if lang == 'en' else 392}px">{T_(lang, "New branch, new city, new country. Same map.", "فرع جديد، مدينة جديدة، بلد جديد. نفس الخريطة.")}</p>
 <div class="pins">{"".join(f"<span><i></i>{p}</span>" for p in pins)}</div>
 {top(lang, light=True)}
@@ -154,7 +154,7 @@ def idea_114():
                rowscard([(T_(lang, "Beirut", "بيروت"), "WH-01", "2,140", ""), (T_(lang, "Dubai", "دبي"), "DXB-01", "1,720", "")]))]
         light_car("IDEA-114", "IDEA-114_beirut-to-dubai", lang, "OB-19.jpg", -330,
                   (T_(lang, "From Beirut<br><em>to Dubai.</em>", "من بيروت<br><em>لدبي.</em>"),
-                   T_(lang, "Expanding to the Gulf, without losing sight of your stock.", "تتوسّع عالخليج، بلا ما يغيب مخزونك عن عينك.")), sl, "Beirut to Dubai")
+                   T_(lang, "Expanding to the Gulf, without losing sight of your stock.", "تتوسّع عالخليج، بلا ما يغيب مخزنك عن عينك.")), sl, "Beirut to Dubai")
 
 
 if __name__ == "__main__":

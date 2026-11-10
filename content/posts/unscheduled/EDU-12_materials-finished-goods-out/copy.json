@@ -8,13 +8,13 @@
    "ar": {"title": "مواد داخلة، *بضاعة جاهزة طالعة.*", "lead": "شايف الاتنين بنفس الوقت؟", "labels": ["مواد أوّلية", "بضاعة جاهزة", ""]}},
   {"icon": "box",
    "en": {"title": "Manufacturers run two inventories at once.", "body": "Raw materials and components on one side. Finished goods on the other. Most systems track one well and the other as an afterthought."},
-   "ar": {"title": "المصنّع عندو مخزونين بنفس الوقت.", "body": "مواد أوّلية وقطع من جهة، وبضاعة جاهزة من الجهة التانية. أغلب الأنظمة بتتابع وحدة منيح والتانية على الهامش."}},
+   "ar": {"title": "المصنّع عندو مخزنين بنفس الوقت.", "body": "مواد أوّلية وقطع من جهة، وبضاعة جاهزة من الجهة التانية. أغلب الأنظمة بتتابع وحدة منيح والتانية على الهامش."}},
   {"icon": "alert",
    "en": {"title": "The result: quiet stockouts.", "body": "You have finished goods but not the component to fulfil the next order. Or raw materials sitting unused while a finished-goods shortage blocks a shipment.", "items": ["Finished but not buildable", "Raw but not sellable"]},
    "ar": {"title": "النتيجة: نقص بلا ما حدا ينتبه.", "body": "عندك بضاعة جاهزة بس ما عندك القطعة لتلبّي الطلبية الجايي. أو مواد أوّلية قاعدة بلا شغل، ونقص بالبضاعة الجاهزة موقّف شحنة.", "items": ["جاهز بس ما فيك تكمّل", "مواد بس ما فيك تبيع"]}, "mark": "!"},
   {"img": {"name": "map", "src": "app", "h": 520}, "concept": true,
    "en": {"title": "Both, *on one map.*", "body": "Location-level stock for materials and finished goods, in the same view. Click a pin. See what's there — whether it's raw or ready."},
-   "ar": {"title": "الاتنين *على خريطة وحدة.*", "body": "مخزون كل موقع، للمواد وللبضاعة الجاهزة، بنفس الشاشة. كبوس عالنقطة وشوف شو في — مواد أوّلية أو جاهز."}},
+   "ar": {"title": "الاتنين *على خريطة وحدة.*", "body": "كميات كل موقع، للمواد وللبضاعة الجاهزة، بنفس الشاشة. كبوس عالنقطة وشوف شو في — مواد أوّلية أو جاهز."}},
   {"img": {"name": "moves", "src": "app", "h": 520},
    "en": {"title": "Movements, *traced.*", "body": "Receipts of raw materials. Issues to production. Transfers between storage and floor. Every movement recorded, with the user and timestamp."},
    "ar": {"title": "الحركات، *إلها أثر.*", "body": "استلام المواد الأوّلية. إخراج للإنتاج. تحويل بين المخزن وأرض المعمل. كل حركة متسجّلة، مع المستخدم والوقت."}},
@@ -23,11 +23,11 @@
    "ar": {"title": "مصنع صغير ≠ ضبط صغير.", "body": "الصلاحيات حسب الدور: موظفين الإنتاج بيسجّلوا الإخراج، موظفين المستودع بيسجّلوا الاستلام، والمدراء بيوافقوا عالتعديلات. نفس انضباط الشركات الكبيرة — بلا تعقيدها."}},
   {"type": "cta",
    "en": {"title": "See *both sides* of your inventory.", "lead": "Book a meeting and we'll walk through your materials + finished goods workflow."},
-   "ar": {"title": "شوف *الجهتين* من مخزونك.", "lead": "احجز اجتماعاً ومنمرق معك على شغل المواد والبضاعة الجاهزة عندك."}}
+   "ar": {"title": "شوف *الجهتين* من مخزنك.", "lead": "احجز اجتماعاً ومنمرق معك على شغل المواد والبضاعة الجاهزة عندك."}}
  ],
  "caption": {
   "en": "Materials in. Finished goods out.\n\nCan you see both at the same time?\n\nManufacturers run two inventories at once — raw materials and components on one side, finished goods on the other. Most systems track one well and treat the other as an afterthought.\n\nThe result: quiet stockouts. Finished goods you can't build the next batch for. Raw materials sitting unused while a finished-goods shortage blocks a shipment.\n\nStacko puts both on one map. Location-level stock for materials and finished goods in the same view. Receipts, issues, transfers, adjustments — every movement traced with user and timestamp. Role-scoped so production staff, warehouse staff, and managers each see what they need.\n\nSmall manufacturer ≠ small controls.\n\n👉 Book a meeting — link in bio.",
-  "ar": "مواد داخلة. بضاعة جاهزة طالعة.\n\nشايف الاتنين بنفس الوقت؟\n\nالمصنّع عندو مخزونين بنفس الوقت — مواد أوّلية وقطع من جهة، وبضاعة جاهزة من التانية. أغلب الأنظمة بتتابع وحدة منيح والتانية على الهامش.\n\nالنتيجة: نقص بلا ما حدا ينتبه. بضاعة جاهزة ما فيك تكمّل الدفعة الجايي منها. ومواد قاعدة بلا شغل ونقص بالجاهز موقّف شحنة.\n\nستاكو بيحطّ الاتنين على خريطة وحدة. مخزون كل موقع للمواد والجاهز بنفس الشاشة. استلام، إخراج، تحويل، تعديل — كل حركة إلها أثر مع المستخدم والوقت. وكل دور بيشوف اللي بيلزمو: الإنتاج، المستودع، والمدراء.\n\nمصنع صغير ≠ ضبط صغير.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "مواد داخلة. بضاعة جاهزة طالعة.\n\nشايف الاتنين بنفس الوقت؟\n\nالمصنّع عندو مخزنين بنفس الوقت — مواد أوّلية وقطع من جهة، وبضاعة جاهزة من التانية. أغلب الأنظمة بتتابع وحدة منيح والتانية على الهامش.\n\nالنتيجة: نقص بلا ما حدا ينتبه. بضاعة جاهزة ما فيك تكمّل الدفعة الجايي منها. ومواد قاعدة بلا شغل ونقص بالجاهز موقّف شحنة.\n\nستاكو بيحطّ الاتنين على خريطة وحدة. كميات كل موقع للمواد والجاهز بنفس الشاشة. استلام، إخراج، تحويل، تعديل — كل حركة إلها أثر مع المستخدم والوقت. وكل دور بيشوف اللي بيلزمو: الإنتاج، المستودع، والمدراء.\n\nمصنع صغير ≠ ضبط صغير.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#Manufacturing #InventoryManagement #ProductionPlanning #StockVisibility #Stacko #SMB #SupplyChain #MaterialsManagement #InventoryControl #ManufacturingTech"
 }

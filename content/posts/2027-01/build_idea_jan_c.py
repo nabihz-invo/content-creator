@@ -32,7 +32,7 @@ def idea_018():
 """
     T = {
         "en": dict(q="“", t="We didn't build a stock system.<br><em>We built a reason to log.</em>", w="Nabih, founder"),
-        "ar": dict(q="«", t="ما بنينا نظام مخزون.<br><em>بنينا سبب لنسجّل.</em>", w="نبيه، المؤسّس"),
+        "ar": dict(q="«", t="ما بنينا نظام مخازن.<br><em>بنينا سبب لنسجّل.</em>", w="نبيه، المؤسّس"),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/backgrounds/final/BG-60.jpg" alt="">
@@ -105,11 +105,11 @@ def idea_007():
                    lab="In Stacko", say="Every move is logged with a date, so stock that hasn't moved is easy to spot.",
                    r=[("USB-C Cable 1m", "WH-04 · Jounieh", "Last move: 5 months ago"), ("Desk Lamp", "WH-02 · Sidon", "Last move: 4 months ago")],
                    see="See also: slow mover, stock age, ETA (#02)."),
-        "ar": dict(k="قاموس مدير المخزون · 03", w="المخزون الراكد", ph=f"<i>اسم</i> · {L('Dead stock')}",
+        "ar": dict(k="قاموس مدير المخازن · 03", w="البضاعة الراكدة", ph=f"<i>اسم</i> · {L('Dead stock')}",
                    d="أصناف بتقعد أشهر بلا ما تنباع. بتاخد محل وبتجمّد مصاري.",
-                   lab="بستاكو", say="كل حركة بتتسجّل مع تاريخها، فالمخزون اللي ما تحرّك بيبيّن بسهولة.",
+                   lab="بستاكو", say="كل حركة بتتسجّل مع تاريخها، فالبضاعة اللي ما تحرّكتت بتبيّن بسهولة.",
                    r=[(L("USB-C Cable 1m"), f"{L('WH-04')} · جونيه", "آخر حركة: من 5 أشهر"), (L("Desk Lamp"), f"{L('WH-02')} · صيدا", "آخر حركة: من 4 أشهر")],
-                   see=f"شوف كمان: صنف بطيء، عمر المخزون، {L('ETA (#02)')}."),
+                   see=f"شوف كمان: صنف بطيء، عمر البضاعة، {L('ETA (#02)')}."),
     }
     for lang, t in T.items():
         rows = "".join(f'<div class="rw2"><b>{a}</b><span class="sp">{b}</span><span class="okc">{c}</span></div>' for a, b, c in t["r"])
@@ -139,7 +139,7 @@ def idea_065():
     T = {
         "en": dict(h="Move your stock like a strategy,<br><em>not a guess.</em>", s="See every location before you make the next move.",
                    c="Move 30 → Jounieh"),
-        "ar": dict(h="حرّك مخزونك بخطة،<br><em>مش بالتخمين.</em>", s="شوف كل موقع قبل ما تعمل الحركة الجاية.", c="حرّك 30 ← جونيه"),
+        "ar": dict(h="حرّك مخزنك بخطة،<br><em>مش بالتخمين.</em>", s="شوف كل موقع قبل ما تعمل الحركة الجاية.", c="حرّك 30 ← جونيه"),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/OB-03.jpg" alt="">
@@ -166,7 +166,7 @@ def idea_035():
             lang=("Warehouse", "المستودع")),
         "ar": dict(
             cover=("بلدين.<br><em>خريطة وحدة.</em>", "للشركات اللي كبرت لبرّا الحدود."),
-            s=["بيروت، طرابلس، دبي:<br><em>كل موقع دبّوس مع مخزونه.</em>", "دوّر على أيّ صنف<br><em>بكل المواقع سوا.</em>",
+            s=["بيروت، طرابلس، دبي:<br><em>كل موقع دبّوس مع مخزنه.</em>", "دوّر على أيّ صنف<br><em>بكل المواقع سوا.</em>",
                "عربي أو إنكليزي،<br><em>لكل فريق.</em>"],
             pins=[("بيروت", L("WH-01"), "2,140"), ("طرابلس", L("WH-03"), "860"), ("دبي", L("DXB-01"), "1,720")],
             q=L("LED Strip 5m"), hits=[("بيروت", "1,380"), ("طرابلس", "210"), ("دبي", "640")],

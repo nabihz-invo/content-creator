@@ -11,7 +11,7 @@
    "ar": {"title": "ما بتخمّن.", "body": "الحقول الناقصة أو المش أكيدة أو المش مطابقة بتتعلّم للمراجعة — وما بتنعبّى بالسكت.", "items": ["الوحدة مش أكيدة — أكّدها لو سمحت."]}, "mark": "?"},
   {"num": "02", "icon": "lock",
    "en": {"title": "It won't change confirmed stock.", "body": "The AI creates a draft. Confirmed stock doesn't move until an authorized person approves.", "items": ["No stock change yet."]},
-   "ar": {"title": "ما بتغيّر المخزون المؤكّد.", "body": "الذكاء الاصطناعي بيعمل مسودّة. المخزون المؤكّد ما بيتحرّك قبل ما شخص مخوّل يوافق.", "items": ["بعد ما في تغيير بالمخزون."]}},
+   "ar": {"title": "ما بتغيّر الكميات المؤكّدة.", "body": "الذكاء الاصطناعي بيعمل مسودّة. الكميات المؤكّدة ما بيتحرّك قبل ما شخص مخوّل يوافق.", "items": ["بعد ما في تغيير بالمخازن."]}},
   {"num": "03", "img": {"name": "approvals", "src": "app", "h": 470},
    "en": {"title": "It won't approve itself.", "body": "Review and approval are human steps. The system records who uploaded, who reviewed, who approved, and when."},
    "ar": {"title": "ما بتوافق على حالها.", "body": "المراجعة والموافقة خطوات بشرية. النظام بيسجّل مين رفع، مين راجع، مين وافق، وإيمتى."}},
@@ -21,7 +21,7 @@
  ],
  "caption": {
   "en": "The AI invoice draft — 3 things it *won't* do.\n\n01 It won't guess — uncertain fields are flagged, never silently filled\n02 It won't change confirmed stock — drafts wait for human approval\n03 It won't approve itself — review and approval are human steps, with an audit entry\n\nKnowing the limits is as important as knowing the features.\n\n👉 Ask us anything, or book a meeting — link in bio.",
-  "ar": "مسودّة الفاتورة بالذكاء الاصطناعي — ٣ شغلات *ما بتعملها*.\n\n٠١ ما بتخمّن — الحقول المش أكيدة بتتعلّم، وما بتنعبّى بالسكت\n٠٢ ما بتغيّر المخزون المؤكّد — المسودّات بتستنّى موافقة بشرية\n٠٣ ما بتوافق على حالها — المراجعة والموافقة خطوات بشرية، مع سجل تدقيق\n\nمعرفة الحدود مهمّة متل معرفة الميزات.\n\n👉 اسألنا أي شي، أو احجز اجتماعاً — الرابط بالبايو."
+  "ar": "مسودّة الفاتورة بالذكاء الاصطناعي — ٣ شغلات *ما بتعملها*.\n\n٠١ ما بتخمّن — الحقول المش أكيدة بتتعلّم، وما بتنعبّى بالسكت\n٠٢ ما بتغيّر الكميات المؤكّدة — المسودّات بتستنّى موافقة بشرية\n٠٣ ما بتوافق على حالها — المراجعة والموافقة خطوات بشرية، مع سجل تدقيق\n\nمعرفة الحدود مهمّة متل معرفة الميزات.\n\n👉 اسألنا أي شي، أو احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#AIinBusiness #InventoryManagement #HumanInTheLoop #Stacko #SMB #SupplyChain #InvoiceAutomation #TrustInTech #AuditTrail #BusinessOperations"
 }

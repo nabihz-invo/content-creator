@@ -56,7 +56,7 @@
   {
    "vo": {
     "en": "Click a pin. See the stock. Answer the question you get every morning.",
-    "ar": "كبوس عالموقع. شوف المخزون. وجاوب السؤال اللي بيجيك كل صبح."
+    "ar": "كبوس عالموقع. شوف المخازن. وجاوب السؤال اللي بيجيك كل صبح."
    },
    "scene": {
     "type": "shot",
@@ -75,7 +75,7 @@
      "head": "Click. See the stock. *Answer.*"
     },
     "ar": {
-     "head": "كبسة. شوف المخزون. *جاوب.*"
+     "head": "كبسة. شوف المخازن. *جاوب.*"
     }
    }
   },
@@ -97,7 +97,7 @@
  ],
  "caption": {
   "en": "Here's the map — but this is our demo data.\n\nIn a meeting, we load your warehouse and branch names, and show you your own locations on the map. Click a pin. See the stock. Answer the question you get every morning.\n\n20 minutes. Your locations. Bring your hardest question.\n\n👉 Book a meeting — link in bio.",
-  "ar": "هيدي الخريطة — بس هيدي داتا تجريبية.\n\nبالاجتماع، منحطّ أسماء مستودعاتك وفروعك ومنفرجيك مواقعك إنت على الخريطة. كبوس عالموقع. شوف المخزون. وجاوب السؤال اللي بيجيك كل صبح.\n\n٢٠ دقيقة. مواقعك. جيب أصعب سؤال عندك.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
+  "ar": "هيدي الخريطة — بس هيدي داتا تجريبية.\n\nبالاجتماع، منحطّ أسماء مستودعاتك وفروعك ومنفرجيك مواقعك إنت على الخريطة. كبوس عالموقع. شوف المخازن. وجاوب السؤال اللي بيجيك كل صبح.\n\n٢٠ دقيقة. مواقعك. جيب أصعب سؤال عندك.\n\n👉 احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#ProductDemo #InventoryManagement #SMB #Stacko #SupplyChain #StockVisibility #MapView #WarehouseManagement #InventoryTech #BusinessOperations",
  "changes": [

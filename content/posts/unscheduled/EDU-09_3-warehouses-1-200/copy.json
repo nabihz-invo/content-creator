@@ -8,29 +8,29 @@
    "ar": {"title": "٣ مستودعات. ١٢٠٠ صنف. *شيت وحدة.*", "lead": "بيشبهك؟", "labels": ["مستودع ١", "مستودع ٢", "مستودع ٣"]}},
   {"icon": "phonecall",
    "en": {"title": "The distributor's daily reality.", "body": "A sales rep calls asking if you can fulfil 200 units by Thursday. You have the stock — probably — but it's split across three warehouses and nobody updated the file since Tuesday.", "items": ["Last saved: Tue 4:12 PM"]},
-   "ar": {"title": "يوميّات الموزّع.", "body": "مندوب مبيعات بيتّصل بيسأل إذا فيك تأمّن ٢٠٠ قطعة قبل الخميس. المخزون موجود — على الأرجح — بس موزّع على ٣ مستودعات وما حدا حدّث الملف من التلاتا.", "items": ["آخر حفظ: التلاتا ٤:١٢ بعد الضهر"]}, "mark": "⏱"},
+   "ar": {"title": "يوميّات الموزّع.", "body": "مندوب مبيعات بيتّصل بيسأل إذا فيك تأمّن ٢٠٠ قطعة قبل الخميس. البضاعة موجودة — على الأرجح — بس موزّع على ٣ مستودعات وما حدا حدّث الملف من التلاتا.", "items": ["آخر حفظ: التلاتا ٤:١٢ بعد الضهر"]}, "mark": "⏱"},
   {"art": "chat",
    "en": {"title": "So you do what everyone does.", "body": "Call warehouse 1. Call warehouse 2. WhatsApp warehouse 3. Wait. Add up numbers on a sticky note. Call the rep back with \"I think we can.\"", "labels": ["WH-3, how many left?", "Checking…", "I think we can."]},
    "ar": {"title": "فبتعمل متل الكل.", "body": "بتتّصل بالمستودع ١. بتتّصل بالمستودع ٢. بتبعت واتساب للمستودع ٣. بتستنّى. بتجمع الأرقام على ورقة. وبترجع تتّصل بالمندوب: «بظنّ منقدر».", "labels": ["مستودع ٣، قدّيش باقي؟", "عم شوف…", "بظنّ منقدر."]}},
   {"icon": "alert",
    "en": {"title": "The cost isn't the 20 minutes.", "body": "It's the order you declined because you couldn't confirm stock. The duplicate purchase because nobody saw the inbound shipment. The customer who now calls your competitor first."},
-   "ar": {"title": "الكلفة مش الـ٢٠ دقيقة.", "body": "هيي الطلبية اللي رفضتها لأنك ما قدرت تأكّد المخزون. الشراء المكرّر لأنو ما حدا شاف الشحنة الجايي. والزبون اللي صار يتّصل بمنافسك أوّل."}},
+   "ar": {"title": "الكلفة مش الـ٢٠ دقيقة.", "body": "هيي الطلبية اللي رفضتها لأنك ما قدرت تأكّد الكميات. الشراء المكرّر لأنو ما حدا شاف الشحنة الجايي. والزبون اللي صار يتّصل بمنافسك أوّل."}},
   {"icon": "eye",
    "en": {"title": "Distributors don't have a stock problem.", "lead": "They have a *visibility* problem.", "body": "The stock exists. The movements happened. The data is real. It's just scattered across files, branches, and people's heads."},
-   "ar": {"title": "الموزّعين ما عندهم مشكلة مخزون.", "lead": "عندهم مشكلة *رؤية.*", "body": "المخزون موجود. الحركات صارت. الداتا حقيقية. بس مفرّقة بين ملفات وفروع وراس الناس."}},
+   "ar": {"title": "الموزّعين ما عندهم مشكلة مخازن.", "lead": "عندهم مشكلة *رؤية.*", "body": "البضاعة موجودة. الحركات صارت. الداتا حقيقية. بس مفرّقة بين ملفات وفروع وراس الناس."}},
   {"img": {"name": "map", "src": "app", "h": 560},
    "en": {"title": "One map. Every warehouse. *Every movement.*", "body": "See location-level stock across all warehouses. Click a pin. See what's there. Trace what moved and when. No spreadsheet archaeology."},
-   "ar": {"title": "خريطة وحدة. كل مستودع. *كل حركة.*", "body": "شوف المخزون بكل موقع وبكل المستودعات. كبوس عالنقطة. شوف شو في. اعرف شو تحرّك وإيمتى. بلا تنقيب بالشيتات."}},
+   "ar": {"title": "خريطة وحدة. كل مستودع. *كل حركة.*", "body": "شوف المخازن بكل موقع وبكل المستودعات. كبوس عالنقطة. شوف شو في. اعرف شو تحرّك وإيمتى. بلا تنقيب بالشيتات."}},
   {"icon": "check", "concept": true,
    "en": {"title": "Built for distributors first.", "body": "Multiple warehouses, high SKU counts, frequent movements, and teams that need role-scoped access — not a generic inventory tool retrofitted for distribution.", "items": ["Locations", "SKUs", "Movements", "Roles"]},
-   "ar": {"title": "مبني للموزّعين أوّل شي.", "body": "كذا مستودع، أصناف كتير، حركات متكرّرة، وفرق بدها صلاحيات حسب الدور — مش برنامج مخزون عام ركّبوه عالتوزيع.", "items": ["المواقع", "الأصناف", "الحركات", "الأدوار"]}},
+   "ar": {"title": "مبني للموزّعين أوّل شي.", "body": "كذا مستودع، أصناف كتير، حركات متكرّرة، وفرق بدها صلاحيات حسب الدور — مش برنامج مخازن عام ركّبوه عالتوزيع.", "items": ["المواقع", "الأصناف", "الحركات", "الأدوار"]}},
   {"type": "cta", "concept": true,
    "en": {"title": "Running *2+ warehouses?*", "lead": "Book a meeting. We'll walk through your exact setup — locations, SKUs, and who needs to see what.", "micro": "Advanced filters and analytics are a Concept."},
    "ar": {"title": "عندك *مستودعين أو أكتر؟*", "lead": "احجز اجتماعاً. منمرق معك على وضعك بالضبط — المواقع، الأصناف، ومين لازم يشوف شو.", "micro": "الفلاتر والتحليلات المتقدّمة مفهوم."}}
  ],
  "caption": {
   "en": "3 warehouses. 1,200 SKUs. 1 spreadsheet.\n\nThe distributor's math never adds up — because the data never lives in one place.\n\nA rep asks for 200 units by Thursday. You have the stock — probably. But it's split across three warehouses, and nobody updated the file since Tuesday. So: 3 calls, 2 WhatsApp groups, 1 sticky note, and a \"I think we can.\"\n\nThe cost isn't the 20 minutes. It's the order you declined. The duplicate purchase. The customer who calls your competitor first.\n\nDistributors don't have a stock problem. They have a visibility problem. Stacko puts every warehouse, every branch, and every movement on one map — with role-scoped access so each person sees exactly what they need.\n\n👉 Running 2+ warehouses? Book a meeting — link in bio.",
-  "ar": "٣ مستودعات. ١٢٠٠ صنف. شيت وحدة.\n\nحسابات الموزّع عمرها ما بتظبط — لأنو الداتا عمرها ما بتكون بمكان واحد.\n\nمندوب بيطلب ٢٠٠ قطعة قبل الخميس. المخزون موجود — على الأرجح. بس موزّع على ٣ مستودعات، وما حدا حدّث الملف من التلاتا. فبتعمل: ٣ تلفونات، مجموعتين واتساب، ورقة صغيرة، و«بظنّ منقدر».\n\nالكلفة مش الـ٢٠ دقيقة. هيي الطلبية اللي رفضتها. الشراء المكرّر. والزبون اللي صار يتّصل بمنافسك أوّل.\n\nالموزّعين ما عندهم مشكلة مخزون. عندهم مشكلة رؤية. ستاكو بيحطّ كل مستودع وكل فرع وكل حركة على خريطة وحدة — مع صلاحيات حسب الدور، فكل واحد بيشوف اللي بيلزمو بالضبط.\n\n👉 عندك مستودعين أو أكتر؟ احجز اجتماعاً — الرابط بالبايو."
+  "ar": "٣ مستودعات. ١٢٠٠ صنف. شيت وحدة.\n\nحسابات الموزّع عمرها ما بتظبط — لأنو الداتا عمرها ما بتكون بمكان واحد.\n\nمندوب بيطلب ٢٠٠ قطعة قبل الخميس. البضاعة موجودة — على الأرجح. بس موزّع على ٣ مستودعات، وما حدا حدّث الملف من التلاتا. فبتعمل: ٣ تلفونات، مجموعتين واتساب، ورقة صغيرة، و«بظنّ منقدر».\n\nالكلفة مش الـ٢٠ دقيقة. هيي الطلبية اللي رفضتها. الشراء المكرّر. والزبون اللي صار يتّصل بمنافسك أوّل.\n\nالموزّعين ما عندهم مشكلة مخازن. عندهم مشكلة رؤية. ستاكو بيحطّ كل مستودع وكل فرع وكل حركة على خريطة وحدة — مع صلاحيات حسب الدور، فكل واحد بيشوف اللي بيلزمو بالضبط.\n\n👉 عندك مستودعين أو أكتر؟ احجز اجتماعاً — الرابط بالبايو."
  },
  "hashtags": "#WholesaleDistribution #DistributorLife #InventoryManagement #WarehouseManagement #StockVisibility #Stacko #SupplyChain #SMB #MultiWarehouse #InventoryControl"
 }

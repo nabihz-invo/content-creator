@@ -11,11 +11,11 @@
   {"icon": "files", "en": {"title": "Teams may be using different versions of a record."}, "ar": {"title": "يمكن كل فريق عم يشتغل على نسخة غير من السجل."}},
   {"icon": "clipboard", "en": {"title": "A count may reveal a discrepancy that needs investigation."}, "ar": {"title": "الجرد ممكن يكشف فرق لازم ينفحص."}},
   {"icon": "search", "en": {"title": "Start by identifying where the *information gap* appears."}, "ar": {"title": "ابدأ بإنك تعرف وين بتبلّش *فجوة المعلومات*."}},
-  {"type": "cta", "en": {"title": "How does your team *investigate* stock differences?"}, "ar": {"title": "كيف فريقك *بيفحص* فروقات المخزون؟"}}
+  {"type": "cta", "en": {"title": "How does your team *investigate* stock differences?"}, "ar": {"title": "كيف فريقك *بيفحص* فروقات الكميات؟"}}
  ],
  "caption": {
   "en": "A stock discrepancy is a signal to investigate, not a reason to guess. The cause may be related to recording, timing, transfers, or counting. The important first step is to find where the records and the physical stock stop matching. How does your team handle discrepancies today?",
-  "ar": "فرق المخزون إشارة لازم تفحصها، مش سبب لتخمّن. السبب ممكن يكون بالتسجيل، بالتوقيت، بالتحويلات أو بالجرد. أوّل خطوة مهمّة إنك تلاقي وين السجلات والمخزون الفعلي بطّلوا يتطابقوا. كيف فريقك بيتعامل مع الفروقات اليوم؟"
+  "ar": "فرق الكميات إشارة لازم تفحصها، مش سبب لتخمّن. السبب ممكن يكون بالتسجيل، بالتوقيت، بالتحويلات أو بالجرد. أوّل خطوة مهمّة إنك تلاقي وين السجلات والبضاعة الفعلية بطّلوا يتطابقوا. كيف فريقك بيتعامل مع الفروقات اليوم؟"
  },
  "hashtags": "#Stacko #InventoryManagement #StockControl #WarehouseManagement"
 }

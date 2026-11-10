@@ -6,7 +6,7 @@
   {
    "vo": {
     "en": "New year. Same stock problems?",
-    "ar": "سنة جديدة. نفس مشاكل المخزون؟"
+    "ar": "سنة جديدة. نفس مشاكل المخازن؟"
    },
    "scene": {
     "type": "big",
@@ -14,14 +14,14 @@
      "big": "New year. *Same stock problems?*"
     },
     "ar": {
-     "big": "سنة جديدة. *نفس مشاكل المخزون؟*"
+     "big": "سنة جديدة. *نفس مشاكل المخازن؟*"
     }
    }
   },
   {
    "vo": {
     "en": "\"Where is my stock?\" is not a resolution. It's a question.",
-    "ar": "«وين مخزوني؟» مش قرار سنة جديدة. هوّي سؤال."
+    "ar": "«وين مخزني؟» مش قرار سنة جديدة. هوّي سؤال."
    },
    "scene": {
     "type": "big",
@@ -29,7 +29,7 @@
      "big": "\"Where is my stock?\" is not a resolution. *It's a question.*"
     },
     "ar": {
-     "big": "«وين مخزوني؟» مش قرار سنة جديدة. *هوّي سؤال.*"
+     "big": "«وين مخزني؟» مش قرار سنة جديدة. *هوّي سؤال.*"
     }
    }
   },

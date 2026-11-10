@@ -17,7 +17,7 @@
    "ar": {"title": "شو ما منطلب.", "items": ["التزام طويل.", "ميزانية كبيرة."]}},
   {"img": {"name": "map", "src": "app", "h": 520},
    "en": {"title": "Who it's for.", "body": "Lebanese wholesalers, distributors, multi-branch retailers, importers, spare-parts businesses, and small manufacturers with 2+ locations and real stock complexity."},
-   "ar": {"title": "لمين.", "body": "تجّار الجملة والموزّعين والمحلات بكذا فرع والمستوردين وتجّار قطع الغيار والمصانع الصغيرة بلبنان، اللي عندهم موقعين أو أكتر ومخزون معقّد فعلاً."}},
+   "ar": {"title": "لمين.", "body": "تجّار الجملة والموزّعين والمحلات بكذا فرع والمستوردين وتجّار قطع الغيار والمصانع الصغيرة بلبنان، اللي عندهم موقعين أو أكتر ومخازن معقّد فعلاً."}},
   {"type": "cta", "bg": "story-map",
    "en": {"title": "Apply for *the pilot.*", "lead": "Small group. Real feedback. Honest product.", "micro": "Pilot availability limited; pilot terms confirmed during discovery."},
    "ar": {"title": "قدّم *عالتجربة.*", "lead": "مجموعة صغيرة. ملاحظات حقيقية. منتج صريح.", "micro": "الأماكن محدودة؛ شروط التجربة منأكّدها بمرحلة التعارف."}}

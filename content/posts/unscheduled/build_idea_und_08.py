@@ -71,7 +71,7 @@ def idea_156():
 def idea_157():
     for lang in ("en", "ar"):
         light_static("IDEA-157", "IDEA-157_receiving-bottleneck", lang, OB("OB-36"),
-                     T_(lang, "Receiving is where<br><em>stock data gets stuck.</em>", "الاستلام هو المكان<br><em>اللي بتعلق فيه بيانات المخزون.</em>"),
+                     T_(lang, "Receiving is where<br><em>stock data gets stuck.</em>", "الاستلام هو المكان<br><em>اللي بتعلق فيه بيانات المخازن.</em>"),
                      T_(lang, "The container arrives. The typing takes days.", "الحاوية بتوصل. والكتابة بتاخد أيام."),
                      extra=f'<div class="chipx" style="right:64px;top:700px"><i style="background:#B4233C"></i>{T_(lang, "Not logged yet: 3 days", "بعد مش مسجّلة: 3 أيام")}</div>',
                      css="[dir=rtl] .h1{font-size:56px}", title="receiving")
