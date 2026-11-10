@@ -39,6 +39,7 @@ Every action is stored with who, what, when and where, so any stock number can b
 | Alerts and questions | Low-stock and mismatch alerts; ask "how much of X do we have, and where?" |
 | Roles and audit trail | Accounts for the team; every move logged with user and time |
 | Arabic and English | Full RTL Arabic interface with a one-tap language switch |
+| Online store connection (WooCommerce, live; owner 10 Nov 2026) | The shop appears in Stacko as one "Online store" location. Its products and stock update in Stacko on their own; moves into or out of that location change the shop's stock. Posts name WooCommerce in the caption only (no third-party logos on visuals). It does not reserve stock in a warehouse or track customer deliveries. |
 
 ## Roadmap (not live yet — never present as available)
 

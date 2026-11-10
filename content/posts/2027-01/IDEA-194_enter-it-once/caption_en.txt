@@ -1,0 +1,1 @@
+Every time the same order is typed twice, a mistake gets a second chance. With WooCommerce connected, your online store's stock updates in Stacko without retyping.

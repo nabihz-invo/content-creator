@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>IDEA-213 · Every order, the stock updates</title>
+<!-- Round 3. HTML only for now: render with node studio/render.mjs <this file> --lang all when approved. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'IDEA-213 · Stock countdown' });
+const s = R.scene(6.4, { bg: '/assets/backgrounds/final/BG-56.jpg', name: 'countdown' });
+s.text(SM.t('Every order, *the stock updates.*', 'كل طلبية، *المخازن بتتحدّث.*'), { y: 340, size: 86, fx: 'rise', at: .15 });
+const box = 'background:#fff;color:#0E2440;border-radius:32px;padding:44px;box-shadow:0 30px 80px rgba(0,0,0,.4);font-family:Readex Pro,Noto Kufi Arabic,sans-serif';
+s.html(`<div style="${box};width:860px;display:flex;gap:36px;align-items:center" dir="${SM.ar() ? 'rtl' : 'ltr'}">
+  <div style="width:220px;height:220px;border-radius:24px;background:#EEF6F9;display:grid;place-items:center;"><svg viewBox="0 0 48 48" style="width:130px;height:130px;stroke:#0895A6;fill:none;stroke-width:2;stroke-linejoin:round"><path d="M6 15l18-9 18 9v19l-18 9-18-9z"/><path d="M6 15l18 9 18-9M24 24v19"/></svg></div>
+  <div><div style="font-size:50px;font-weight:600">${SM.t('Desk Lamp', 'لمبة مكتب')}</div><div style="font-size:34px;color:#2C5974;margin-top:10px">${SM.t('Your online store', 'متجرك أونلاين')}</div></div></div>`, { x: 540, y: 730, in: 'rise', at: .5 });
+s.html(`<div style="${box};width:860px;display:flex;justify-content:space-between;align-items:center" dir="${SM.ar() ? 'rtl' : 'ltr'}">
+  <div><div style="font-size:30px;color:#0895A6;font-weight:600">${SM.t('In Stacko', 'بستاكو')}</div><div style="font-size:44px;font-weight:600;margin-top:6px">${SM.t('Online store', 'متجر أونلاين')}</div></div>
+  <div id="n" style="font-size:140px;font-weight:600;line-height:1;direction:ltr">12</div></div>`, { x: 540, y: 1050, in: 'rise', at: .9 });
+s.on(0, 6.4, (p, t) => { const e = document.getElementById('n'); if (e) e.textContent = t < 2.3 ? '12' : t < 4.1 ? '11' : '10'; });
+for (const [at, y] of [[2.1, 1330], [3.9, 1430]]) s.text(SM.t('New order · 1 sold', 'طلبية جديدة · انباعت وحدة'), { y, size: 44, weight: 600, style: 'pill', fx: 'pop', at });
+R.endcard('dots', { in: 'dots', dur: 1.6, tagline: SM.ar() ? 'off' : 'en' });
+R.grain(.04).vignette(.5);
+R.audio({ music: '/assets/audio/music/placeholder-calm.mp3', musicVolume: .22 });
+R.cover(4.5);
+</script></body></html>

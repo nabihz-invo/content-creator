@@ -1,0 +1,5 @@
+# IDEA-231 · round 3
+
+Built by posts/build_idea_round3.py from plans/Stacko_New_Ideas_Round3.xlsx (HTML only for now).
+
+HTML motion page (reel.html) built on the real live-map capture with a slow day-to-night grade; no MP4 rendered yet. Replace with a screen recording of the demo map when one exists.

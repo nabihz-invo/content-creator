@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>IDEA-231 · The map never sleeps</title>
+<!-- Round 3. HTML only for now: render with node studio/render.mjs <this file> --lang all when approved. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'IDEA-231 · The map never sleeps' });
+const s = R.scene(6.4, { bg: '/assets/screens/live-map/map-full.jpg', focus: '55% 60%', name: 'map' });
+const night = s.fill('background:#0B1E3A;mix-blend-mode:multiply');
+s.anim(night, { o: [0, .92] }, .6, 4.6, 'inOutSine');
+const dot = (x, y, dx, dy) => { const l = s.layer(x, y); l.innerHTML = '<div style="position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;background:#2EF2EE;box-shadow:0 0 34px 12px rgba(46,242,238,.6)"></div>'; s.anim(l, { x: [x, x + dx], y: [y, y + dy] }, 0, 6.4, 'linear'); };
+dot(420, 1040, 180, -70); dot(620, 1240, -150, 110); dot(300, 1300, 200, 90);
+s.text(SM.t('The map *never sleeps.*', 'الخريطة *ما بتنام.*'), { y: 330, size: 92, fx: 'rise', at: .2 });
+s.text(SM.t('9 AM', '9 الصبح'), { y: 1600, size: 58, weight: 600, style: 'pill', fx: 'pop', at: .4, out: 'fade', outAt: 2.6 });
+s.text(SM.t('9 PM', '9 بالليل'), { y: 1600, size: 58, weight: 600, style: 'pill', fx: 'pop', at: 3.4 });
+R.endcard('dots', { in: 'dots', dur: 1.6, tagline: SM.ar() ? 'off' : 'en' });
+R.grain(.04).vignette(.5);
+R.audio({ music: '/assets/audio/music/placeholder-calm.mp3', musicVolume: .22 });
+R.cover(5);
+</script></body></html>

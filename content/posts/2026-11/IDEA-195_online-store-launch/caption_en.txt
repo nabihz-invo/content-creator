@@ -1,0 +1,2 @@
+New: Stacko now connects to WooCommerce. Your store knows what sold, your warehouses know what's left, and now they know it at the same time.
+If you run a WooCommerce store, message us.

@@ -1,0 +1,1 @@
+Your WooCommerce store sells; Stacko sees it. The store's stock updates in Stacko on its own, and when you move stock to the shop, its number goes up on the store too. One sale, no retyping.

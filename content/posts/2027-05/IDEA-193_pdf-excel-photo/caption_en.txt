@@ -1,0 +1,1 @@
+Suppliers send invoices in every format. Stacko reads all three and turns them into the same clean items and incoming shipment.
