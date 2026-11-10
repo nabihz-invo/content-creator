@@ -73,8 +73,7 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
     onError: (e) => toast.error(e.message),
   });
   const download = useMutation({
-    mutationFn: async (language: "en" | "ar" | undefined) =>
-      saveBlob(await api.downloadImported(project.id, language)),
+    mutationFn: async () => saveBlob(await api.downloadImported(project.id)),
     onSuccess: () => {
       for (const key of ["project", "project-events"])
         void qc.invalidateQueries({ queryKey: [key] });
@@ -110,6 +109,8 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
   const i = Math.min(index, files.length - 1);
   const f = files[i]!;
   const stored = files.filter((x) => x.storage_path);
+  // The download is one zip of every language, so it stays available on a tab already freed.
+  const canDownload = approved && media.some((m) => m.storage_path);
   const src = f.storage_path ? urls.data?.[f.storage_path] : undefined;
   const url = live(lang);
   const canFree = stored.length > 0 && (!!url || (approved && downloaded(lang)));
@@ -261,17 +262,17 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
                 })
               : t("finished.allReleased")}
           </p>
-          {(approved && stored.length > 0) || (canFree && can("edit")) ? (
+          {canDownload || (canFree && can("edit")) ? (
             <div className="flex flex-wrap gap-2">
-              {approved && stored.length > 0 && (
+              {canDownload && (
                 <Button
                   size="sm"
-                  variant={downloaded(lang) ? "outline" : "default"}
+                  variant={review?.downloaded?.all ? "outline" : "default"}
                   disabled={download.isPending}
-                  onClick={() => download.mutate(lang ?? undefined)}
+                  onClick={() => download.mutate()}
                 >
                   <Download />
-                  {t("finished.download")}
+                  {t(groups.length > 1 ? "finished.downloadAll" : "finished.download")}
                 </Button>
               )}
               {canFree && can("edit") && (

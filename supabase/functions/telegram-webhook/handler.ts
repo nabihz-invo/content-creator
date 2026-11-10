@@ -43,6 +43,8 @@ const T = {
     created: (url: string) => `Idea saved ✅ It's being analyzed now.\n${url}`,
     duplicate: (url: string) => `You already sent this idea — here it is:\n${url}`,
     forbidden: "Your role can't submit ideas in this workspace.",
+    chooseBrand:
+      "You work on several brands. Please add this idea from the CRM so you can choose its brand.",
     failed: "Sorry, I couldn't save that idea. Please try again.",
   },
   ar: {
@@ -56,6 +58,8 @@ const T = {
     created: (url: string) => `تم حفظ الفكرة ✅ يجري تحليلها الآن.\n${url}`,
     duplicate: (url: string) => `أرسلت هذه الفكرة من قبل — ها هي:\n${url}`,
     forbidden: "صلاحيتك لا تسمح بإضافة أفكار في مساحة العمل هذه.",
+    chooseBrand:
+      "أنت تعمل على أكثر من علامة تجارية. يُرجى إضافة هذه الفكرة من النظام لتختار علامتها.",
     failed: "عذرًا، لم أتمكن من حفظ الفكرة. حاول مرة أخرى.",
   },
 } as const;
@@ -159,6 +163,8 @@ export function createTelegramHandler(deps: Deps) {
     } catch (err) {
       if (err instanceof ApiError && err.code === "forbidden")
         return reply(msg.chat.id, t.forbidden);
+      if (err instanceof ApiError && err.message.startsWith("brand_required"))
+        return reply(msg.chat.id, t.chooseBrand);
       if (err instanceof ApiError && err.code === "validation_failed")
         return reply(msg.chat.id, t.unsupported);
       console.error("telegram intake failed", err);

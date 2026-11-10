@@ -11,7 +11,7 @@ select tests.add_member(:'ws', :'reviewer', 'reviewer');
 create function pg_temp.imported(p_ws uuid, p_admin uuid, p_id text)
 returns uuid language sql as $$
   select (create_project(p_ws, p_admin, jsonb_build_object('title', p_id, 'original_idea', 'plan row ' || p_id,
-    'input_source', 'csv', 'content_type', 'carousel',
+    'input_source', 'csv', 'brand_id', tests.default_brand(p_ws), 'content_type', 'carousel',
     'source_metadata', jsonb_build_object('origin', 'content_plan_import', 'plan_id', p_id)),
     encode(sha256(convert_to(p_id, 'UTF8')), 'hex'), false, 'content-plan:test:' || p_id, false) ->> 'project_id')::uuid;
 $$;

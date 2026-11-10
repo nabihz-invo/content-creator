@@ -40,13 +40,13 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("workspace_members")
-        .select("workspace_id, role, workspaces(id, name)")
+        .select("workspace_id, role, workspaces(id, name, created_by)")
         .eq("user_id", userId)
-        .order("created_at")
-        .limit(1)
-        .maybeSingle();
+        .order("created_at");
       if (error) throw error;
-      return data as unknown as WorkspaceMembership | null;
+      const rows = (data ?? []) as unknown as WorkspaceMembership[];
+      // Every sign-up also gets a personal workspace; the team's one comes first.
+      return rows.find((m) => m.workspaces.created_by !== userId) ?? rows[0] ?? null;
     },
   });
 

@@ -10,7 +10,7 @@ instead — see `DEVELOPMENT.md`.
 |-------|-------|-------|
 | Database, Auth, Storage | Supabase project | `npx supabase db push` applies `supabase/migrations` |
 | `api`, `telegram-webhook` | Supabase Edge Functions | Secrets: `supabase/functions/.env.example` |
-| CRM (`apps/crm`) | Any static host | Build with `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` |
+| CRM (`apps/crm`) | Vercel (Root Directory `apps/crm`), or any static host that serves `index.html` for unknown paths | Build with `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`. The rewrite for direct links is in `apps/crm/vercel.json` |
 | n8n (`n8n/workflows`) | Self-hosted n8n | Import the JSON exports; see `n8n/README.md` |
 | **Creative worker** (`workers/creative-worker`) | Always-on server/container | Claims creative jobs from Postgres; writes to the creatives repo |
 | **Render worker** (`workers/render-worker`) | Always-on server/container | `workers/render-worker/Dockerfile` |

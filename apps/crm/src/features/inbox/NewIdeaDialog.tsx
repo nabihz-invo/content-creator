@@ -35,14 +35,16 @@ export function parseTags(raw: string): string[] {
 
 export function NewIdeaDialog({ children }: { children: ReactNode }) {
   const { t, dir } = useI18n();
-  const { workspaceId } = useWorkspace();
+  const { workspaceId, can } = useWorkspace();
   const brands = useBrands(workspaceId);
   const qc = useQueryClient();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [idea, setIdea] = useState("");
   const [url, setUrl] = useState("");
-  const [brandId, setBrandId] = useState("");
+  const [picked, setBrandId] = useState("");
+  // Only admins can leave an idea without a brand.
+  const brandId = picked || (can("admin") ? "" : (brands.data?.[0]?.id ?? ""));
   const [contentType, setContentType] = useState("");
   const [tags, setTags] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -157,7 +159,7 @@ export function NewIdeaDialog({ children }: { children: ReactNode }) {
                 value={brandId}
                 onChange={(e) => setBrandId(e.target.value)}
               >
-                <option value="">{t("common.none")}</option>
+                {can("admin") && <option value="">{t("common.none")}</option>}
                 {brands.data?.map((b) => (
                   <option key={b.id} value={b.id}>
                     {b.name}

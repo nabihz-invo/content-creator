@@ -55,6 +55,7 @@ select throws_ok(format($$select transition_project(%L, 'analyzing')$$, :'p1'),
 select is((transition_project(:'p1', 'awaiting_answers')).failed_from_status, null, 'retry returns to the failed-from status');
 
 -- users: read via RLS, limited column updates
+update content_projects set brand_id = tests.default_brand(:'ws') where workspace_id = :'ws';
 select tests.as_user(:'reviewer');
 select is((select count(*)::int from content_projects), 3, 'members can read projects');
 select is_empty(format($$update content_projects set title = 'x' where id = %L returning id$$, :'p1'),

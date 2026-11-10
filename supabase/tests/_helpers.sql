@@ -20,9 +20,22 @@ returns uuid language sql security definer set search_path = '' as $$
   select w.id from public.workspaces w where w.created_by = p_user order by w.created_at limit 1;
 $$;
 
+-- P5-T24: non-admins only reach projects of a brand they're linked to, so tests share one default brand.
+create or replace function tests.default_brand(p_workspace uuid)
+returns uuid language plpgsql security definer set search_path = '' as $$
+declare b uuid;
+begin
+  select id into b from public.brands where workspace_id = p_workspace and name = '__test_brand';
+  if b is null then
+    insert into public.brands (workspace_id, name) values (p_workspace, '__test_brand') returning id into b;
+  end if;
+  return b;
+end $$;
+
 create or replace function tests.add_member(p_workspace uuid, p_user uuid, p_role public.member_role)
 returns void language sql security definer set search_path = '' as $$
   insert into public.workspace_members (workspace_id, user_id, role) values (p_workspace, p_user, p_role);
+  insert into public.brand_members (brand_id, user_id) values (tests.default_brand(p_workspace), p_user);
 $$;
 
 -- Act as a signed-in user / the service role / anonymous. Call tests.reset_role() to return to postgres.
@@ -68,7 +81,7 @@ returns uuid language plpgsql security definer set search_path = '' as $$
 begin
   return (public.create_project(
     p_workspace, p_actor,
-    jsonb_build_object('original_idea', p_idea, 'input_source', 'manual'),
+    jsonb_build_object('original_idea', p_idea, 'input_source', 'manual', 'brand_id', tests.default_brand(p_workspace)),
     encode(extensions.digest(p_idea, 'sha256'), 'hex'),
     false, null, p_auto
   ) ->> 'project_id')::uuid;

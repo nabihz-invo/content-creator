@@ -227,11 +227,9 @@ export const api = {
   downloadBundle: (publishingJobId: string) =>
     downloadZip(`/publishing-jobs/${publishingJobId}/bundle`),
 
-  /** Zip of an approved imported post (one language or all); unlocks freeing its storage (P5-T17). */
-  downloadImported: (projectId: string, language?: "en" | "ar") =>
-    downloadZip(
-      `/content-projects/${projectId}/imported-media/bundle${language ? `?language=${language}` : ""}`,
-    ),
+  /** Zip of every language of an approved imported post; unlocks freeing its storage (P5-T17). */
+  downloadImported: (projectId: string) =>
+    downloadZip(`/content-projects/${projectId}/imported-media/bundle`),
 
   reviewImported: (projectId: string, decision: "approved" | "changes_requested", note?: string) =>
     apiRequest<{ review: { status: string } }>(`/content-projects/${projectId}/imported-review`, {

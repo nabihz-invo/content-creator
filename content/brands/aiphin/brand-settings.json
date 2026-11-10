@@ -1,0 +1,171 @@
+{
+  "name": "Aiphin",
+  "description": "Aiphin (أيفِن): AI and automation agency in Beirut for MENA. One team for business consulting, customer support, operations automation, AI integrations, business diagnostics and CRM tools. We build what we recommend, and we stay to run it.",
+  "default_language": "en",
+  "brand_settings": {
+    "languages": ["en", "ar"],
+    "taglines": {
+      "en": "One team. Every expert.",
+      "ar": "فريق واحد. كل الخبرات."
+    },
+    "positioning": {
+      "en": "We build what we recommend, and we stay to run it.",
+      "ar": "نبني ما نوصي به، ونبقى لنُديره معكم."
+    },
+    "hook": {
+      "en": "Nobody wakes up wanting AI. They want the WhatsApp answered, the quote out before lunch, and the stock number to be right.",
+      "ar": "لا أحد يستيقظ صباحاً راغباً في الذكاء الاصطناعي. الناس يريدون الردّ على رسائل واتساب، وعرض السعر جاهزاً قبل الغداء، ورقم المخزون صحيحاً."
+    },
+    "voice": {
+      "tone": "Practical, plain-spoken, confident, helpful, a little playful through the mascot: a senior consultant who also builds.",
+      "personality": "Problem-first and concrete. Pushes back on hype and is honest: if automation isn't the answer, we say so.",
+      "do": [
+        "Lead with the business pain (the unanswered WhatsApp, the Thursday Excel report), then the fix. AI is the means, never the headline promise.",
+        "Short sentences, one idea at a time, AI explained in plain words.",
+        "Contrast lines: \"We don't sell you a roadmap. We build it and run it.\"",
+        "Concrete before/after: \"Leads at 9pm, replies at 9:01pm.\"",
+        "Specific scenes instead of abstractions: \"the quote out before lunch\".",
+        "\"We\" for the agency; Aiphin in the first person only where the mascot appears.",
+        "End every piece with one clear next step.",
+        "Write the Arabic natively in Modern Standard Arabic for region-wide pieces; use a dialect only when a market is named. Keep AI, CRM, WhatsApp and chatbot in Latin script where that reads naturally."
+      ],
+      "dont": [
+        "leverage",
+        "synergy",
+        "holistic",
+        "world-class",
+        "best-in-class",
+        "seamless",
+        "revolutionary",
+        "game-changer",
+        "fear-based AI messaging (\"AI will replace you\")",
+        "more than one sea pun per piece",
+        "hedging (\"we try to\")"
+      ]
+    },
+    "palette": [
+      { "name": "Abyss", "hex": "#0E2440", "role": "Main text, PHIN, dark backgrounds" },
+      { "name": "Signal", "hex": "#0895A6", "role": "AI on light backgrounds, links, icons, small accents on white" },
+      { "name": "Glow", "hex": "#2EF2EE", "role": "AI signal, on dark only, one thing per layout" },
+      { "name": "Ocean", "hex": "#2F86B8", "role": "Brand blue, hero backgrounds, buttons on light" },
+      { "name": "Dolphin", "hex": "#79C0DE", "role": "Secondary blue, illustrations, charts" },
+      { "name": "Deep sea", "hex": "#2C5974", "role": "Shadows, secondary dark, chart series" },
+      { "name": "Visor", "hex": "#C9D8E4", "role": "Borders, dividers, UI lines" },
+      { "name": "Foam", "hex": "#EEF6F9", "role": "Light backgrounds, cards" }
+    ],
+    "backgrounds": {
+      "ocean_glow": "radial-gradient(120% 90% at 50% 0%, #4AA3D3 0%, #2F86B8 55%, #2A79A8 100%). White text; AI accents in Abyss or white.",
+      "night": "radial-gradient(120% 90% at 70% 0%, #1B416B 0%, #0E2440 60%). Glow accents and a soft cyan halo behind Aiphin.",
+      "clean": "White or Foam, Abyss text, Signal accents."
+    },
+    "color_rules": [
+      "Blue and navy carry the brand. Glow is for one thing per layout.",
+      "Never Glow text on white or Foam, never Dolphin text on Ocean.",
+      "Body text is Abyss on light and white on dark; no long text in teal or cyan.",
+      "No orange, yellow or red."
+    ],
+    "typography": {
+      "heading_font": "Audiowide",
+      "body_font": "Readex Pro",
+      "arabic_font": "Noto Kufi Arabic",
+      "rules": "English headlines in Audiowide, short (about 6 words at most), letter-spacing 0.03 to 0.05em, never for body text. Arabic headlines in Noto Kufi Arabic 600 or 700. Body, UI, buttons and captions in Readex Pro 400 and 600 in both languages. Line height 1.5 for body, 1.15 to 1.2 for headlines. Arabic body about 10% larger than English."
+    },
+    "logo": {
+      "wordmark": "AIPHIN in Audiowide, all caps, AI and PHIN in two colours. Arabic أيفِن in Noto Kufi Arabic 600, split أي and فِن the same way, kasra always kept. Use the outlined files only.",
+      "versions": {
+        "primary": "AI Signal + PHIN Abyss, on white, Foam and light photos",
+        "reversed": "AI Glow + PHIN white, on Abyss and dark backgrounds",
+        "ocean": "AI Abyss + PHIN white, on Ocean",
+        "navy": "One colour Abyss, for stamps, invoices, embossing",
+        "white": "One colour white, for photos and busy backgrounds"
+      },
+      "rules": "Clear space at least the height of the A. Minimum 80 px wide (20 mm in print); avatar 32 px. Never recolour outside the versions, stretch, rotate, outline, shadow, re-space or mirror either wordmark. Always spell أيفِن, never إيفن."
+    },
+    "character": {
+      "name": "Aiphin, the AI dolphin",
+      "file": "brand/logo/character/aiphin-character-transparent.png",
+      "look": "Stylised 3D Pixar-like dolphin: sky-blue body, white-grey belly, big blue eyes, white AR visor with cyan HUD lines, white headset with cyan ear-light and mic boom, glass backpack with cyan neural core, white belt with cyan chip buckle. Cyan glow on the tech parts only.",
+      "personality": "Smart, calm, helpful and a little playful. Never goofy, sarcastic or scary.",
+      "usage": "Faces the text or CTA he presents; faces left by default and may be mirrored (the wordmark never). About 25 to 40% of a social post. Soft cyan halo on dark backgrounds. Keep the 3D style and all gear."
+    },
+    "services": [
+      { "en": "Automation & integration", "ar": "الأتمتة والربط بين الأنظمة" },
+      { "en": "Chatbots & voicebots", "ar": "بوتات الدردشة والصوت" },
+      { "en": "Business diagnostic", "ar": "التشخيص التجاري" },
+      { "en": "Smart website", "ar": "موقع ذكي" },
+      { "en": "Custom CRM", "ar": "CRM مخصّص" },
+      { "en": "Data & dashboards", "ar": "البيانات ولوحات المتابعة" },
+      { "en": "Social content", "ar": "محتوى التواصل الاجتماعي" },
+      { "en": "Lead generation", "ar": "توليد العملاء المحتملين" }
+    ],
+    "process": ["Diagnose", "Quantify", "Design", "Prove"],
+    "products": [
+      { "name": "Stacko", "note": "Aiphin's own product, a separate brand with its own kit. Site: stacko-lb.com" }
+    ],
+    "audiences": [
+      {
+        "id": "owners",
+        "name": "Business owners and general managers (Lebanon, Gulf)",
+        "description": "Losing money and hours to handovers between people and systems. Want a costed picture before committing, and proof in weeks."
+      },
+      {
+        "id": "sales-service",
+        "name": "Sales and customer service leads",
+        "description": "Same questions answered by hand in three places; leads at 9pm answered at 11am the next day; WhatsApp-first customers."
+      },
+      {
+        "id": "ops-finance",
+        "name": "Operations and finance managers",
+        "description": "Sales in spreadsheets, delivery in the ERP, neither trusts the other's numbers; the weekly report rebuilt by hand in Excel."
+      }
+    ],
+    "platform_rules": {
+      "instagram": "Reels 9:16, 30 to 45 s, Aiphin narrating in the first person. English and Arabic posted as two separate reels. Beats: hook (0-3 s), cost (3-10 s), fix (10-25 s), proof (25-32 s), CTA (32-40 s). Carousels 1080x1350.",
+      "tiktok": "Same 9:16 reel format as Instagram, English and Arabic as separate videos.",
+      "youtube": "Shorts: same 9:16 reel format as Instagram, English and Arabic as separate videos.",
+      "linkedin": "Same 9:16 reel format as Instagram, English and Arabic as separate videos. Keep the problem-first business framing."
+    },
+    "cta": {
+      "default": "Message us on WhatsApp",
+      "preferred": [
+        "Message us on WhatsApp",
+        "Chat with Aiphin",
+        "Tell us what's slowing you down",
+        "Start a project",
+        "See what we build",
+        "Visit aiphin.me"
+      ],
+      "contact": {
+        "whatsapp": "+961 71 313 917",
+        "whatsapp_link": "https://wa.me/96171313917",
+        "web": "aiphin.me",
+        "email": "info@aiphin.me",
+        "location": "Based in Beirut, Lebanon, working across the Gulf and remote"
+      },
+      "first_step": "Offer the business diagnostic: the client keeps the written diagnosis whatever they decide. A senior consultant replies within one business day."
+    },
+    "claims": {
+      "permitted": [
+        "4.2 hrs saved per employee each week",
+        "68% of routine tickets answered without a human",
+        "12 systems connected into one source of truth",
+        "40+ automation and platform projects delivered",
+        "6 weeks typical time from diagnosis to first live workflow",
+        "24/7 coverage on chat, WhatsApp, email and voice",
+        "1 team: strategy, build and support under one contract"
+      ],
+      "prohibited": [
+        "Rounding, combining or restating the proof points as new claims",
+        "Invented prices, results, clients, testimonials or percentages",
+        "Calling the business diagnostic free",
+        "The retired number +961 78 763729",
+        "Invocom's name, logo, colours or fonts"
+      ],
+      "requires_verification": [
+        "Prices (use a marked placeholder such as [PRICE])",
+        "Client names, logos and case studies",
+        "Any figure not in the permitted list"
+      ]
+    }
+  }
+}

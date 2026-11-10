@@ -14,6 +14,29 @@ Template:
 
 ---
 
+## 2026-11-09 — P5-T24 Users linked to brands — in progress
+- Agent/branch: local Claude Code (main)
+- Why: Aiphin is now a second brand; the owner wants each user tied to their brand so brands can't conflict. Owner chose strict enforcement, one or several brands per user, admins see all.
+- Changes: migration `20261109110000` (`brand_members`, `has_brand_access`, RLS, storage, `require_role`, `library_role`, `create_project`, `list_workspace_members`, `add_workspace_member`); pgTAP `22_brand_members`; `_helpers.sql` gives tests a default brand; `requireProjectRole`, CSV import and the Telegram reply follow brand access; duplicates are detected per brand; Settings → Team and brands (`TeamCard`); the CRM prefers the team workspace over the personal one every sign-up gets.
+- Verification: full pgTAP suite on hosted in rolled-back transactions, nothing persisted. `14` and `19` only pass after clearing live rows that collide with their fixtures (the real storage-deletion queue, Stacko's BG-60/61), so they need a clean database. CRM typecheck, ESLint and vitest pass. Deno API tests not run (no Deno on this PC).
+- Open: owner runs `db push`, deploys `api` and `telegram-webhook` and the CRM, then checks the Team section live. Tags and connected social accounts are still workspace-wide. Leave status `in-progress` until then.
+
+---
+
+## 2026-11-09 — CRM pages 404 when opened directly — in progress
+- Agent/branch: local Claude Code (main)
+- Why: opening any CRM page in a new tab (or reloading it) gave Vercel's 404; only `/` worked. The rewrite added in 40a50bd sits in the repo-root `vercel.json`, and the deployed commit contains it but the live site does not apply it, so the Vercel project builds from `apps/crm`, where that file is not read.
+- Changes: moved the rewrite to `apps/crm/vercel.json`; removed the root file.
+- Verification: reproduced on content-creator-crm.vercel.app before the change (`/` and `/favicon.svg` 200; `/inbox` and `/projects/<id>` 404). The file is valid JSON.
+- Not verified: the live site after deploying; Vercel's Root Directory setting was inferred, not read.
+
+## 2026-11-09 — Project page downloads every language in one click — in progress
+- Agent/branch: local Claude Code (main)
+- Why: the Download button only fetched the language tab that was open, usually Arabic.
+- Changes: `FinishedMedia` always asks for the all-languages zip (`en/`, `ar/` folders plus captions and hashtags; the bundle route already supported it, so no backend change) and labels it "Download all" when a post has several versions. The button stays visible on a tab whose files were already freed, while another version is still stored. Freeing storage is still one language at a time.
+- Verification: CRM typecheck, ESLint, Prettier, unit tests, production build. Largest stored post is 19.7 MB across both languages, so the zip fits in the function's memory.
+- Not verified: the button in a browser against the live API.
+
 ## 2026-11-09 — P5-T23 Idea inbox stage cards — in progress
 - Agent/branch: local Claude Code (main)
 - Why: owner found the inbox statuses confusing and wants a faster page: six stages as cards, ideas shown on click.

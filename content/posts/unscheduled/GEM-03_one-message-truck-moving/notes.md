@@ -22,3 +22,7 @@ Support line: Log stock moves from your phone in 10 seconds.
 - `source/` HTML to edit (links /assets/…; render with `node studio/post/render.mjs`)
 - `en/`, `ar/` final PNGs (`slide-NN.png`, the layout the CRM importer reads)
 - `html/` self-contained editable HTML (Edit text + Save PNG)
+
+## Revisions
+
+- 2026-11-10: `en/slide-01.png` replaced with the owner's hand-fixed image (speech bubble alignment). `source/` and `html/` still have the old bubbles; re-rendering would undo the fix.
