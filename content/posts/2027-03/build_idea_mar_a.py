@@ -263,7 +263,7 @@ def idea_040():
 """
     T = {
         "en": dict(h="Peace of mind<br><em>is a feature.</em>", s="Know your stock without calling anyone.", c="0 surprises"),
-        "ar": dict(h="راحة البال<br><em>كمان ميزة.</em>", s="اعرف مخزونك بلا ما تتّصل بحدا.", c="0 مفاجآت"),
+        "ar": dict(h="راحة البال<br><em>كمان ميزة.</em>", s="اعرف مخزنك بلا ما تتّصل بحدا.", c="0 مفاجآت"),
     }
     for lang, t in T.items():
         body = f"""<img class="bg" src="/assets/post-images/final/SC-03.jfif" alt="">
