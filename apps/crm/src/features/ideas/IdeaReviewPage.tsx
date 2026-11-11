@@ -40,6 +40,7 @@ import { formatDateTime, formatRelative, textDir } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import { type PendingIdea, useIdeaComments, usePendingIdeas, useSignedUrls } from "@/lib/queries";
 import { MediaViewer } from "@/features/projects/FinishedMedia";
+import { HtmlPage } from "@/features/projects/HtmlPage";
 import type { ImportedMediaRow } from "@/types/db";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
@@ -730,7 +731,11 @@ function MediaPreview({
   const urls = useSignedUrls(load ? stored.map((m) => m.storage_path!) : [], "media");
   const first = stored[0];
   const src = first?.storage_path ? urls.data?.[first.storage_path] : undefined;
-  const slides = files.filter((m) => m.kind === "carousel_slide").length;
+  const slides =
+    files.filter((m) => m.kind === "carousel_slide").length ||
+    (files.filter((m) => m.kind === "html").length > 1
+      ? files.filter((m) => m.kind === "html").length
+      : 0);
   const video = files.find((m) => m.kind === "video");
   const summary = slides
     ? t("ideas.files.slides", { n: slides })
@@ -752,6 +757,11 @@ function MediaPreview({
             aria-label={t("ideas.viewFiles")}
             className="group absolute inset-0 cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
+            {first.kind === "html" && (
+              <span className="absolute inset-0">
+                <HtmlPage row={first} load={load} fill />
+              </span>
+            )}
             {src && first.mime_type.startsWith("image/") && (
               <img src={src} alt={first.file_name} className="size-full object-contain" />
             )}

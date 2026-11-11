@@ -42,6 +42,7 @@ content/posts/**/png-en/
 content/posts/**/png-ar/
 content/posts/**/html/
 content/posts/**/preview/
+content/posts/**/final/
 content/posts/**/*.png
 content/posts/**/*.pdf
 !content/posts/**/img/

@@ -120,7 +120,9 @@ Posts are tracked in the **content-creation CRM** (its own Supabase project; too
 
 - Each post is a `content_projects` row with `source_metadata.origin = 'content_plan_import'` and `source_metadata.plan_id = <ID>`. Plan IDs must match `^[A-Z][A-Z0-9]{1,4}-[A-Z]?\d+[a-z]?$` (e.g. `STK-11`, `WHY-3`) because the media importer finds post folders by that name.
 - New post: add it to the register, then create the project with `content-creation/scripts/import/content-plan-to-sql.py` (JSON input, `workbook_key` = `stacko-content-register`) and run the SQL (ask the user first).
-- Finished files: `node scripts/import/finished-posts.mjs --from <folder> --only <ID>` in `content-creation` (needs SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY). It reads `<folder>/<ID>/en/slide-NN.png`, `ar/…`, `caption_*.txt`, `hashtags.txt`, `links.txt`, so stage a copy named by the bare ID. It uploads only what isn't live yet (storage is limited: upload finished posts only).
+- Finished posts go to the CRM as **HTML** (P5-T25): `node --env-file=workers/.env scripts/html/publish-html.mjs --only <ID>` in `content-creation`. It bundles each `source/` page (EN + AR, every slide), shares the pictures and fonts per brand, stores `caption_*.txt` / `hashtags.txt`, and removes the post's old PNGs from storage. Keep every page self-contained in the kit: only `/assets/…` and `/studio/…` root paths, no external URLs (the CRM sandbox blocks them).
+- After the owner approves it: `node --env-file=workers/.env scripts/html/render-approved.mjs --only <ID>` renders the approved pages to `<post>/final/en|ar/slide-NN.png` locally. Never upload PNGs for posts that have source HTML.
+- Posts without source HTML (footage videos) still use `scripts/import/finished-posts.mjs --from <folder> --only <ID>`.
 - Review happens in the CRM: approve → `ready_to_publish`; changes requested → the note is in `source_metadata.review.note` (fix, re-render, re-import the changed files and the post goes back to review); once live, "Mark as published" with the link frees the storage.
 - Never approve or mark a post published yourself.
 

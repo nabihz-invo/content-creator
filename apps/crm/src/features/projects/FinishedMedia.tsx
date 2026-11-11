@@ -33,6 +33,7 @@ import { useImportedMedia, useSignedUrls } from "@/lib/queries";
 import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 import type { ContentProject, ImportedMediaRow } from "@/types/db";
+import { HtmlPage, isHtml } from "./HtmlPage";
 import { liveLinks } from "./ImportedContentCard";
 
 const mb = (bytes: number) => (bytes / 1e6).toFixed(1);
@@ -110,10 +111,12 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
   const f = files[i]!;
   const stored = files.filter((x) => x.storage_path);
   // The download is one zip of every language, so it stays available on a tab already freed.
-  const canDownload = approved && media.some((m) => m.storage_path);
+  // HTML posts (P5-T25) are rendered locally from the approved pages: nothing to download or free.
+  const htmlPost = media.some(isHtml);
+  const canDownload = approved && !htmlPost && media.some((m) => m.storage_path);
   const src = f.storage_path ? urls.data?.[f.storage_path] : undefined;
   const url = live(lang);
-  const canFree = stored.length > 0 && (!!url || (approved && downloaded(lang)));
+  const canFree = !htmlPost && stored.length > 0 && (!!url || (approved && downloaded(lang)));
   const caption = lang ? captions?.[lang] : captions?.default;
   const step = (by: number) => setIndex((i + by + files.length) % files.length);
   const Prev = dir === "rtl" ? ChevronRight : ChevronLeft;
@@ -151,15 +154,25 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
               "group relative mx-auto flex max-h-[28rem] w-full items-center justify-center overflow-hidden rounded-lg border bg-muted",
               f.kind === "video" ? "aspect-[9/16] max-w-[15.75rem]" : "aspect-[4/5]",
             )}
+            style={
+              isHtml(f) && f.width && f.height
+                ? {
+                    aspectRatio: `${f.width} / ${f.height}`,
+                    maxWidth: `${(28 * 16 * f.width) / f.height}px`,
+                  }
+                : undefined
+            }
           >
-            {src ? (
+            {src || (isHtml(f) && f.storage_path) ? (
               <button
                 type="button"
                 aria-label={t("finished.view", { file: f.file_name })}
                 className="absolute inset-0 cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 onClick={() => setViewing({ files: stored, index: Math.max(0, stored.indexOf(f)) })}
               >
-                {f.mime_type.startsWith("image/") ? (
+                {isHtml(f) ? (
+                  <HtmlPage row={f} fill />
+                ) : f.mime_type.startsWith("image/") ? (
                   <img src={src} alt={f.file_name} className="size-full object-cover" />
                 ) : f.mime_type.startsWith("video/") ? (
                   <>
@@ -245,7 +258,9 @@ export function FinishedMedia({ project }: { project: ContentProject }) {
             dir="ltr"
           >
             <span className="truncate">
-              {f.kind === "carousel_slide" ? `#${f.slide_index}` : t(`finished.kind.${f.kind}`)}
+              {f.kind === "carousel_slide" || (f.kind === "html" && files.length > 1)
+                ? `#${f.slide_index}`
+                : t(`finished.kind.${f.kind}`)}
               {f.duration ? ` · ${Math.round(f.duration)}s` : ""} · {mb(f.file_size)} MB
             </span>
             {files.length > 1 && (
@@ -348,6 +363,7 @@ export function MediaViewer({
   const { t, dir } = useI18n();
   const file = viewing?.files[viewing.index];
   const src = file?.storage_path ? urls[file.storage_path] : undefined;
+  const html = !!file && isHtml(file);
   const count = viewing?.files.length ?? 0;
   const step = (by: number) => viewing && onIndex((viewing.index + by + count) % count);
   // Arrow keys follow the reading direction: in Arabic, left is "next".
@@ -374,14 +390,18 @@ export function MediaViewer({
           </DialogTitle>
           <DialogDescription className="text-xs">
             {file &&
-              (file.kind === "carousel_slide"
-                ? `${t("finished.kind.carousel_slide")} #${file.slide_index}`
+              (file.kind === "carousel_slide" || (file.kind === "html" && count > 1)
+                ? `${t(`finished.kind.${file.kind}`)} #${file.slide_index}`
                 : t(`finished.kind.${file.kind}`))}
             {count > 1 && ` · ${t("finished.counter", { i: (viewing?.index ?? 0) + 1, n: count })}`}
           </DialogDescription>
         </DialogHeader>
         <div className="flex max-h-[70dvh] min-h-48 items-center justify-center overflow-hidden rounded-md bg-black/90">
-          {!file || !src ? null : file.mime_type.startsWith("image/") ? (
+          {file && html && file.storage_path ? (
+            <div className="h-[70dvh] w-full p-2">
+              <HtmlPage key={file.id} row={file} fill interactive />
+            </div>
+          ) : !file || !src ? null : file.mime_type.startsWith("image/") ? (
             <img src={src} alt={file.file_name} className="max-h-[70dvh] w-auto object-contain" />
           ) : file.mime_type.startsWith("video/") ? (
             <video
@@ -411,7 +431,7 @@ export function MediaViewer({
               </>
             )}
           </div>
-          {src && (
+          {src && !html && (
             <Button size="sm" variant="ghost" asChild>
               <a href={src} target="_blank" rel="noopener noreferrer">
                 <ExternalLink />
@@ -516,7 +536,13 @@ function ImportedReview({ project }: { project: ContentProject }) {
         </p>
       )}
       {review?.status === "approved" && (
-        <p className="text-xs text-muted-foreground">{t("review.approvedHint")}</p>
+        <p className="text-xs text-muted-foreground">
+          {t(
+            project.source_metadata.finished?.format === "html"
+              ? "review.approvedHtmlHint"
+              : "review.approvedHint",
+          )}
+        </p>
       )}
 
       <Dialog open={!!dialog} onOpenChange={(o) => !o && setDialog(null)}>

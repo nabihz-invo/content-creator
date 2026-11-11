@@ -74,7 +74,7 @@ export interface ImportedMediaRow {
   id: string;
   project_id: string;
   language: "en" | "ar" | null;
-  kind: "image" | "carousel_slide" | "video" | "cover" | "document";
+  kind: "image" | "carousel_slide" | "video" | "cover" | "document" | "html";
   slide_index: number | null;
   file_name: string;
   storage_path: string | null;
@@ -83,7 +83,13 @@ export interface ImportedMediaRow {
   width: number | null;
   height: number | null;
   duration: number | null;
-  metadata: { needs_native_review?: boolean; kept_locally?: boolean };
+  /** html pages (P5-T25): `assets` are the brand-assets paths the page points at with @@asset:…@@ tokens. */
+  metadata: {
+    needs_native_review?: boolean;
+    kept_locally?: boolean;
+    assets?: string[];
+    source?: string;
+  };
   live_url: string | null;
   released_at: string | null;
 }
@@ -122,6 +128,8 @@ export interface ContentProject {
       captions?: { en?: string; ar?: string; default?: string };
       hashtags?: string;
       source?: string;
+      /** "html": the post is reviewed as HTML pages and rendered locally once approved (P5-T25). */
+      format?: "html";
     };
     /** Review of the finished files (P5-T17); cleared when a file changes. */
     review?: {

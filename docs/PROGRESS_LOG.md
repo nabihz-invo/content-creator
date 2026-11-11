@@ -14,6 +14,15 @@ Template:
 
 ---
 
+## 2026-11-10 — P5-T25 Finished posts reviewed as HTML — in progress
+- Agent/branch: local Claude Code (main, uncommitted)
+- Why: storage is full (972 MiB of ~1 GB) because every finished post goes up as PNG/MP4 and is downloaded and deleted after approval. The owner asked to upload HTML instead, review it in the CRM and render the PNGs locally once approved.
+- Changes: migration `20261110100000` (`imported_media` kind `html` with a slide number; `html_assets` for page files not already in the brand library, delete trigger queues their storage; `unused_html_assets()`); pgTAP `23_html_posts`; `scripts/html/lib.mjs` (bundler: inlines CSS/JS, `@@asset:<path>@@` tokens, CSP meta), `publish-html.mjs` (pages + shared files + captions, removes the post's old PNG/MP4 rows and storage; reels as half-size preview MP4s), `render-approved.mjs` (approved pages → `<post>/final/en|ar/slide-NN.png`, reels → full MP4 after checking `reel.html` is unchanged); CRM `HtmlPage` (downloads the page, signs its assets, shows it in `SandboxedPreview` with `srcDoc`), FinishedMedia + viewer + Idea review card, approved hint for HTML posts, i18n EN/AR; `.gitignore` `final/`; CLAUDE.md §3d, `content/CLAUDE.md`, `stacko-post-design` skill.
+- Verification: bundled pages of IDEA-054 (1 slide) and IDEA-075 (5 slides) EN+AR rendered through a local server are pixel-identical to the PNGs from `studio/post/render.mjs` (24/24 identical); page sizes 12–97 KB vs ~1 MB per PNG. CRM typecheck, ESLint, vitest (21) and production build pass. pgTAP on a local container: 23/23 files pass (`23_html_posts` 13 assertions). Signed brand-assets URLs answer with `Access-Control-Allow-Origin: *` and the right content type (font/woff2, image/svg+xml), so fonts load inside the opaque-origin sandbox. 2026-11-11: migrations `20261109110000` (P5-T24) and `20261110100000` applied to hosted with `supabase db push --db-url` (pooler connection from `supabase/.env.local`; a migrations-only `--workdir` because CLI 2.109 rejects `orioledb_version` in `config.toml`). Published NOV-11, then 131 more posts with source HTML (610 pages, 13 new shared files 3.9 MB, every other file reused from the brand library); NOV-11 rendered from storage through signed URLs under the page CSP is pixel-identical to `studio/post/render.mjs` (EN + AR). 15 reels published as preview MP4s.
+- Open: deploy the CRM (the live build does not show HTML pages yet); then `publish-html.mjs` for posts with source HTML and a check in the live CRM (render, approve, `render-approved`). Posts without source HTML (21 footage/D30 posts, the 63 legacy-template posts until they are rebuilt) keep `finished-posts.mjs`. List thumbnails (`card-images`) do not show HTML posts yet.
+
+---
+
 ## 2026-11-09 — P5-T24 Users linked to brands — in progress
 - Agent/branch: local Claude Code (main)
 - Why: Aiphin is now a second brand; the owner wants each user tied to their brand so brands can't conflict. Owner chose strict enforcement, one or several brands per user, admins see all.

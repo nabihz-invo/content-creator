@@ -47,7 +47,7 @@ The workbook's "Content folder" column says `content/<YYYY-MM>/<ID>_<slug>/`: re
 - `Stacko_Content_Studio.xlsx`: only the columns Status, Main file, Revision #.
 
 ## The content CRM (Supabase)
-Posts are tracked in the content-creation CRM (the parent folder, its own Supabase project). Each post = a `content_projects` row with `source_metadata.plan_id = <ID>` (origin `content_plan_import`). Create projects with `../scripts/import/content-plan-to-sql.py`, attach finished files with `../scripts/import/finished-posts.mjs` (it reads `<ID>/en/slide-NN.png`, `ar/…`, `caption_*.txt`, `hashtags.txt`, `links.txt`). Review, approval and "Mark as published" happen in the CRM; never approve or publish yourself. Upload only finished posts (storage is limited). Details: `stacko-post-design` → "The content CRM".
+Posts are tracked in the content-creation CRM (the parent folder, its own Supabase project). Each post = a `content_projects` row with `source_metadata.plan_id = <ID>` (origin `content_plan_import`). Create projects with `../scripts/import/content-plan-to-sql.py`, send finished posts with `../scripts/html/publish-html.mjs --only <ID>` (the HTML pages from `source/`, plus `caption_*.txt`, `hashtags.txt`; reels as a small preview video), and once the owner approves them render the PNGs/MP4 locally with `../scripts/html/render-approved.mjs --only <ID>` (→ `<post>/final/`). See `../CLAUDE.md` §3d. Only posts with no source HTML (footage videos) still go through `../scripts/import/finished-posts.mjs`. Review, approval and "Mark as published" happen in the CRM; never approve or publish yourself. Details: `stacko-post-design` → "The content CRM".
 
 ## Commands
 ```bash

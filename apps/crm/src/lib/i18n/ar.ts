@@ -269,7 +269,8 @@ export const ar: Record<MessageKey, string> = {
   "role.editor": "محرر محتوى",
   "role.reviewer": "مراجع",
   "team.title": "الفريق والعلامات التجارية",
-  "team.subtitle": "يرى المحررون والمراجعون العلامات المحددة هنا فقط. ويرى المسؤولون جميع العلامات.",
+  "team.subtitle":
+    "يرى المحررون والمراجعون العلامات المحددة هنا فقط. ويرى المسؤولون جميع العلامات.",
   "team.email": "البريد الإلكتروني",
   "team.role": "الصلاحية",
   "team.add": "إضافة عضو",
@@ -642,6 +643,8 @@ export const ar: Record<MessageKey, string> = {
   "review.requestChanges": "طلب تعديلات",
   "review.discard": "احذف المنشور",
   "review.approvedHint": "نزّل كل نسخة ثم حرّر تخزينها. أضف رابط المنشور بعد نشره.",
+  "review.approvedHtmlHint":
+    "تمت الموافقة. تُصنع الصور النهائية على الكمبيوتر من هذه النسخة بالذات، ولا حاجة لتنزيل أي شيء.",
   "review.changesTitle": "ما الذي يجب تعديله؟",
   "review.changesBody": "اشرح التعديل. أعد رفع الملفات المصحّحة ليعود المنشور إلى المراجعة.",
   "review.notePlaceholder": "مثال: الشريحة ٣، العنوان العربي مقطوع",
@@ -661,6 +664,9 @@ export const ar: Record<MessageKey, string> = {
   "finished.kind.video": "فيديو",
   "finished.kind.cover": "غلاف",
   "finished.kind.document": "مستند",
+  "finished.kind.html": "صفحة",
+  "finished.htmlLoading": "جارٍ تحميل الصفحة…",
+  "finished.htmlFailed": "تعذّر تحميل الصفحة",
   "event.imported_media.saved": "استُوردت الملفات النهائية",
   "event.imported_media.released": "تم تحرير التخزين؛ حلّ رابط المنشور محلّ الملفات",
   "event.imported_media.deleted": "حُذف ملف نهائي (مع نسخته المخزّنة)",

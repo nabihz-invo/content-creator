@@ -80,7 +80,7 @@ Comment button. At the start of every session, before other work:
    without revising.
    A note on a **finished post** (card shows "Finished post": images, slides or a video) is about
    the files: redo them in the post's folder under `content/posts/`, re-import with
-   `scripts/import/finished-posts.mjs --only <PLAN-ID>` (the review resets), then answer the note
+   `scripts/html/publish-html.mjs --only <PLAN-ID>` (§3d; the review resets), then answer the note
    without `--title`/`--idea-file` unless the text changes too.
    A post listed under **sent back for changes** came from "Request changes" on its page and has
    no note to answer: make the listed changes the same way and re-import it. A changed file clears
@@ -113,6 +113,25 @@ import `_import/ideas-plan.json` with `content-plan-to-sql.py`.
 
 The content kit is in `content/` (rules: `content/CLAUDE.md`, skills: `.claude/skills/`). Setup on a new PC,
 the two-PC workflow and the current state: `docs/HANDOFF_CONTENT.md`.
+
+## 3d. HTML posts (P5-T25): review the HTML, render the PNG locally
+
+Finished posts, carousels and motion reels go to the CRM as HTML, not as PNG/MP4, so storage stays small:
+
+1. Build the post as usual (`content/posts/<month>/<ID>_<slug>/source/<ID>[-AR][-NN].html`, captions in
+   `caption_en.txt` / `caption_ar.txt`, `hashtags.txt`).
+2. `node --env-file=workers/.env scripts/html/publish-html.mjs --only <ID>[,<ID>…]` (`--dry-run` first).
+   Each page is bundled into one small self-contained HTML file (CSS/JS inlined); its pictures and fonts
+   are stored once per brand and shared by every post (brand library files are reused by checksum).
+   The post's old PNG/MP4 rows and their storage are removed (`--keep-files` keeps them). A motion reel
+   (`reel.html`, no `source/` pages) is uploaded as a half-size preview MP4 per language instead.
+3. The owner reviews it in the CRM (the pages are shown live in a sandboxed frame).
+4. Once approved: `node --env-file=workers/.env scripts/html/render-approved.mjs [--only <ID>]` renders the
+   approved pages to `<post>/final/en|ar/slide-NN.png` (reels: the full MP4 from the same `reel.html`) on
+   this computer. Nothing heavy is uploaded and nothing needs downloading.
+
+Posts that have no source HTML (footage videos, old legacy-template posts) still use
+`scripts/import/finished-posts.mjs`.
 
 ## 4. Non-negotiable rules
 

@@ -270,7 +270,8 @@ export const en = {
   "role.editor": "Content editor",
   "role.reviewer": "Reviewer",
   "team.title": "Team and brands",
-  "team.subtitle": "Editors and reviewers see only the brands ticked here. Administrators see every brand.",
+  "team.subtitle":
+    "Editors and reviewers see only the brands ticked here. Administrators see every brand.",
   "team.email": "Email",
   "team.role": "Role",
   "team.add": "Add member",
@@ -650,6 +651,8 @@ export const en = {
   "review.discard": "Delete post",
   "review.approvedHint":
     "Download each version, then free its storage. Add the live link once it is posted.",
+  "review.approvedHtmlHint":
+    "Approved. The final images are made on the computer from this exact version; nothing else to download.",
   "review.changesTitle": "What should change?",
   "review.changesBody":
     "Describe the fix. Re-upload the corrected files and the post comes back for review.",
@@ -670,6 +673,9 @@ export const en = {
   "finished.kind.video": "Video",
   "finished.kind.cover": "Cover",
   "finished.kind.document": "Document",
+  "finished.kind.html": "Page",
+  "finished.htmlLoading": "Loading the page…",
+  "finished.htmlFailed": "The page could not be loaded",
   "event.imported_media.saved": "Finished files imported",
   "event.imported_media.released": "Storage freed; files replaced by the live post's link",
   "event.imported_media.deleted": "Finished file deleted (with its stored copy)",
