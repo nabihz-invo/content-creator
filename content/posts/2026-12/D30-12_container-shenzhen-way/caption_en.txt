@@ -1,5 +1,3 @@
-Ever wondered where your container is right now?
+Your container, on the map.
 
-In Stacko, every shipment moves on the map by its ETA, leg by leg: sea, customs, truck.
-
-(Positions are estimated from the ETA in phase 1. Live GPS is on the roadmap.)
+In Stacko, every shipment moves on the map by its ETA, leg by leg: sea, customs, truck. You always know which leg it is on.

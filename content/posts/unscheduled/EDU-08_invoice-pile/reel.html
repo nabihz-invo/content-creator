@@ -1,134 +1,75 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>EDU-08 · The invoice pile</title>
-<link rel="stylesheet" href="../../_brand/stacko.css">
-<style>
-  /* 1080x1920 reel generated from reel.json. seek(t) sets every layer for time t, so the render is frame-exact.
-     Text stays inside the Reels safe zone (clear of the top 190px and bottom 420px). */
-  body{display:flex;justify-content:center;padding:20px 0}
-  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--deepest);color:#fff}
-  .layer{position:absolute;inset:0;opacity:0;overflow:hidden}
-  .bgdark{background:radial-gradient(120% 80% at 50% 40%,#1B416B 0%,#0E2440 60%)}
-  video,.layer img.full{position:absolute;display:block}
-  .shade{position:absolute;inset:0;pointer-events:none}
-  .head{position:absolute;z-index:3;left:84px;right:84px;top:250px;font-size:84px;font-weight:600;line-height:1.05;letter-spacing:-.045em;text-shadow:0 6px 30px rgba(4,12,24,.55)}
-  .head em{font-style:normal;color:var(--glow)}
-  .tag{position:absolute;z-index:3;right:84px;top:190px;font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--visor);padding:9px 16px;border-radius:999px;background:rgba(10,27,49,.6);border:1px solid rgba(121,192,222,.25)}
-  .cap{position:absolute;z-index:5;left:70px;right:70px;top:1330px;display:flex;justify-content:center;opacity:0}
-  .cap span{background:rgba(10,27,49,.82);border:1px solid rgba(121,192,222,.22);padding:18px 30px;border-radius:22px;font-size:46px;font-weight:600;line-height:1.25;text-align:center;letter-spacing:-.01em}
-  .card{position:absolute;left:120px;right:120px;border-radius:28px;background:rgba(244,248,250,.97);color:var(--abyss);box-shadow:0 40px 90px rgba(4,12,24,.55);padding:30px 34px;opacity:0}
-  .card .lbl{font-size:24px;font-weight:600;color:var(--ink2)}
-  .card .big{font-size:40px;font-weight:600;letter-spacing:-.02em;margin-top:6px}
-  .rows{display:grid;gap:12px;margin-top:18px}
-  .rows i{display:block;height:24px;border-radius:7px;background:#E3ECF2}
-  .rows i:nth-child(2n){width:72%}
-  .bub{display:inline-block;margin-top:12px;padding:14px 22px;border-radius:20px;background:#E3ECF2;font-size:32px;font-weight:500}
-  .device{position:absolute;left:40px;top:560px;width:1000px;border-radius:26px;overflow:hidden;box-shadow:0 50px 120px rgba(0,0,0,.55);border:1px solid rgba(201,216,228,.35);transform-origin:0 0;background:#fff}
-  .device video{position:static;width:100%}
-  .tap{position:absolute;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;border:5px solid var(--glow);opacity:0}
-  .phone{position:absolute;width:330px;right:60px;top:960px;border-radius:44px;box-shadow:0 40px 90px rgba(0,0,0,.6);opacity:0}
-  .shotbox{position:absolute;left:70px;right:70px;top:560px;height:720px;display:flex;align-items:center;justify-content:center}
-  .shotbox img{max-width:100%;max-height:100%;border-radius:26px;box-shadow:0 50px 120px rgba(0,0,0,.5);border:1px solid rgba(201,216,228,.3)}
-  .big{position:absolute;z-index:3;left:84px;right:84px;top:520px;font-size:104px;font-weight:600;line-height:1.04;letter-spacing:-.05em}
-  .big em{font-style:normal;color:var(--glow)}
-  .bigsub{position:absolute;z-index:3;left:84px;right:84px;top:1000px;font-size:40px;line-height:1.45;color:var(--visor)}
-  .end{position:absolute;left:0;right:0;top:500px;display:flex;flex-direction:column;align-items:center;text-align:center}
-  .end img{width:180px;height:180px}
-  .end .wm{font-size:120px;margin-top:18px}
-  .end h2{font-size:84px;font-weight:600;letter-spacing:-.045em;line-height:1.04;margin-top:64px}
-  .end h2 em{font-style:normal;color:var(--glow)}
-  .btn{margin-top:56px;padding:28px 52px;border-radius:24px;background:var(--ocean);font-size:44px;font-weight:600;box-shadow:0 20px 50px rgba(47,134,184,.45)}
-</style>
-</head>
-<body>
-<div id="stage"></div>
-<script>
-// Timeline written by build_reel.js: scenes [{type,a,b,...}] and caption chunks [{t,a,b}] in seconds
-const DATA = {"scenes": [{"type": "pain", "head": "The invoice *pile.*", "cards": [{"kind": "sheet", "text": "Supplier invoice GL-2611-084"}, {"kind": "sheet", "text": "Packing list · SHP-24017"}, {"kind": "chat", "label": "Manager", "text": "Can you enter these today?"}], "a": 0, "b": 2.75}, {"type": "text", "big": "One typo is all *it takes.*", "a": 2.75, "b": 13.3}, {"type": "inv", "head": "Upload. *AI reads it.*", "tag": "Demo data", "a": 13.3, "b": 20.63}, {"type": "shot", "img": "shipment", "head": "Review what's *flagged.*", "tag": "Demo data", "a": 20.63, "b": 24.14}, {"type": "end", "big": "AI proposes.<br>*You approve.*", "a": 24.14, "b": 30.54}], "caps": [{"t": "Every stock manager has this pile.", "a": 0.45, "b": 2.96}, {"t": "Supplier, invoice number, date, items, quantities,", "a": 2.96, "b": 7.3}, {"t": "totals.", "a": 7.3, "b": 7.91}, {"t": "Typed by hand,", "a": 7.91, "b": 9.13}, {"t": "line after line.", "a": 9.13, "b": 10.52}, {"t": "And one typo is all it takes.", "a": 10.52, "b": 13.54}, {"t": "With Stacko, upload the invoice as a PDF,", "a": 13.56, "b": 16.38}, {"t": "Excel file, or photo,", "a": 16.38, "b": 17.82}, {"t": "and AI reads every line into a draft.", "a": 17.82, "b": 20.87}, {"t": "New or unclear items are flagged for a person", "a": 20.89, "b": 23.34}, {"t": "to confirm.", "a": 23.34, "b": 24.35}, {"t": "AI proposes.", "a": 24.35, "b": 25.21}, {"t": "You approve.", "a": 25.21, "b": 26.07}, {"t": "Book a meeting with our team.", "a": 26.07, "b": 28.64}]};
-const FOOT = { hero: { w: 3888, h: 1952, focusX: .66 }, app: { w: 2400, h: 1454 }, how: { w: 1920, h: 2400 }, inv: { w: 2400, h: 1224 } };
-const ZOOMS = { overview: [[0, .5, .5, 1], [1, .5, .5, 1.06]],
-  site: [[0, .5, .5, 1], [.35, .5, .5, 1.03], [.55, .2, .5, 1.75], [1, .2, .5, 1.85]],
-  panel: [[0, .5, .5, 1], [.35, .5, .5, 1.03], [.55, .83, .62, 1.75], [1, .83, .62, 1.85]],
-  'site-panel': [[0, .5, .5, 1], [.25, .5, .5, 1.03], [.4, .2, .5, 1.75], [.62, .2, .5, 1.8], [.72, .83, .62, 1.75], [1, .83, .62, 1.85]],
-  kpis: [[0, .5, .5, 1], [.35, .5, .5, 1.03], [.55, .78, .1, 1.9], [1, .78, .1, 2]] };
-const X = .45, stage = document.getElementById('stage');
-const clamp = v => Math.max(0, Math.min(1, v));
-const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
-const out3 = x => 1 - Math.pow(1 - clamp(x), 3);
-const ramp = (t, a, d = .45) => out3((t - a) / d);
-const win = (t, a, b, f = X) => Math.min(clamp((t - a) / f), 1 - clamp((t - b) / f));
-const rich = s => String(s || '').replace(/\*(.+?)\*/g, '<em>$1</em>');
-const el = (html) => { const d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; };
-function keys(k, u) {
-  if (u <= k[0][0]) return k[0].slice(1);
-  for (let i = 1; i < k.length; i++) if (u <= k[i][0]) { const [a0, ...a] = k[i - 1], [b0, ...b] = k[i], p = ease((u - a0) / (b0 - a0)); return a.map((v, j) => v + (b[j] - v) * p); }
-  return k[k.length - 1].slice(1);
-}
-function seekVideo(v, time) {
-  time = Math.max(0, Math.min(time, (v.duration || 1) - .05));
-  if (Math.abs(v.currentTime - time) < 1e-3) return Promise.resolve();
-  return new Promise(r => { v.addEventListener('seeked', r, { once: true }); v.currentTime = time; });
-}
-const coverVideo = (src, focusX) => { const f = FOOT[src], w = f.w * 1920 / f.h; return `<video src="../../_brand/footage/${src}.mp4" muted preload="auto" style="width:${w}px;height:1920px;top:0;left:${540 - focusX * w}px;transform-origin:${focusX * w}px 960px"></video>`; };
-const headHtml = s => (s.tag ? `<span class="tag">${s.tag}</span>` : '') + (s.head ? `<div class="head">${rich(s.head)}</div>` : '');
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>EDU-08 · The invoice pile</title>
+    <!-- Rebuilt 11 Nov 2026 in the motion engine (review: second scene was empty, remove "book a meeting").
+         Voice: the original English take, trimmed before "Book a meeting with our team" (assets/audio/voice/EDU-08_vo.mp3).
+         English only, like the original. Render: node studio/render.mjs <this file> --lang en -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "EDU-08 · The invoice pile" });
+      // Captions follow the voice (scene-local seconds).
+      const CAP = (s, list) => list.forEach(([t, a, b]) => s.text(t, { y: 1560, size: 40, weight: 600, style: "pill", fx: "fade", at: a, out: "fade", outAt: b, w: 920 }));
+      const card = (html, w = 760, rot = 0) => `<div style="width:${w}px;transform:rotate(${rot}deg);background:#fff;color:#0E2440;border-radius:26px;padding:28px 34px;box-shadow:0 30px 70px rgba(3,9,18,.45);font-family:'Readex Pro',sans-serif">${html}</div>`;
 
-// build one layer per scene
-DATA.scenes.forEach((s, i) => {
-  let h = '';
-  if (s.type === 'hero') h = coverVideo('hero', s.focusX || .66) + `<div class="shade" style="background:linear-gradient(rgba(10,27,49,.85) 0%,rgba(10,27,49,0) 32%,rgba(10,27,49,0) 62%,rgba(10,27,49,.8) 100%)"></div>`;
-  if (s.type === 'pain') h = coverVideo('hero', .66) + `<div class="shade" style="background:rgba(10,27,49,.55)"></div>` + (s.cards || []).map((c, k) => {
-    const top = 600 + k * 260;
-    if (c.kind === 'call') return `<div class="card" style="top:${top}px"><div class="lbl">${c.label || 'Calling…'}</div><div class="big">${c.text}</div></div>`;
-    if (c.kind === 'chat') return `<div class="card" style="top:${top}px"><div class="lbl">${c.label || 'Warehouse team'}</div><div class="bub">${c.text}</div></div>`;
-    return `<div class="card" style="top:${top}px"><div class="lbl">▦ ${c.text}</div><div class="rows"><i></i><i></i><i></i></div></div>`;
-  }).join('');
-  if (s.type === 'app') h = `<div class="dots"></div><div class="device"><video src="../../_brand/footage/app.mp4" muted preload="auto"></video><div class="tap"></div></div>` + (s.phone ? `<img class="phone" src="../../_brand/site/en-phone.png" alt="">` : '');
-  if (s.type === 'inv') h = `<div class="dots"></div><div class="device" style="height:${1000 * 1100 / 2400 + 0}px"><video src="../../_brand/footage/inv.mp4" muted preload="auto" style="margin-top:${-1000 * 124 / 2400}px"></video></div>`;
-  if (s.type === 'how') h = `<video src="../../_brand/footage/how.mp4" muted preload="auto" style="width:1080px;height:1350px;left:0;top:450px"></video><div class="shade" style="background:linear-gradient(#0E2440 0%,#0E2440 24%,rgba(14,36,64,0) 31%,rgba(14,36,64,0) 84%,#0E2440 93%,#0E2440 100%)"></div>`;
-  if (s.type === 'shot') h = `<div class="dots"></div><div class="shotbox"><img src="../../_brand/site/en-${s.img}.png" alt=""></div>`;
-  if (s.type === 'text') h = `<div class="dots"></div><div class="big">${rich(s.big)}</div>` + (s.sub ? `<div class="bigsub">${rich(s.sub)}</div>` : '');
-  if (s.type === 'end') h = `<div class="dots"></div><div class="end"><img src="../../_brand/mark-on-dark.svg" alt=""><span class="wm">stack<i>o</i></span><h2>${rich(s.big || 'Your stock,<br>*always in sight.*')}</h2><span class="btn">Book a meeting</span></div>`;
-  const bg = ['app', 'inv', 'shot', 'text', 'end', 'how'].includes(s.type) ? ' bgdark' : '';
-  const layer = el(`<div class="layer${bg}">${h}${s.type === 'end' ? '' : headHtml(s)}</div>`);
-  stage.appendChild(layer); s.el = layer;
-});
-DATA.caps.forEach(c => { c.el = el(`<div class="cap"><span>${c.t}</span></div>`); stage.appendChild(c.el); });
+      // ── 1 · The pile (0–2.5 s) ──────────────────────────────────────────────────────────────────────
+      const a = R.scene(2.5, { bg: "night", name: "pile" });
+      a.text("The invoice *pile.*", { y: 300, size: 96, fx: "rise", at: 0.05 });
+      [["Supplier invoice", "GL-2611-084", -6, 760], ["Packing list", "SHP-24017", 4, 860], ["Supplier invoice", "GL-2611-091", -2, 960]].forEach(([k, c, r, y], i) => {
+        a.html(card(`<div style="font-size:24px;color:#0895A6;font-weight:600">${k}</div><div style="font-size:40px;font-weight:600;margin-top:6px">${c}</div>
+          <div style="display:grid;gap:12px;margin-top:18px"><i style="display:block;height:20px;border-radius:6px;background:#E3ECF2"></i><i style="display:block;height:20px;width:70%;border-radius:6px;background:#E3ECF2"></i></div>`, 760, r), { x: 540, y, in: "drop", at: 0.1 + i * 0.2 });
+      });
+      a.html(`<div style="background:#2F86B8;color:#fff;font:500 34px 'Readex Pro';padding:20px 28px;border-radius:26px 26px 8px 26px;box-shadow:0 20px 50px rgba(0,0,0,.4)">Manager: can you enter these today?</div>`, { x: 600, y: 1240, in: "pop", at: 0.9 });
+      a.sfx("thud", 0.3, 0.5);
+      CAP(a, [["Every stock manager has this pile.", 0.0, 2.3]]);
 
-window.seek = async t => {
-  const waits = [];
-  DATA.scenes.forEach((s, i) => {
-    const first = i === 0, o = first ? 1 - clamp((t - s.b) / X) : win(t, s.a, s.b);
-    s.el.style.opacity = o;
-    const u = clamp((t - s.a) / (s.b - s.a)), local = Math.max(0, t - s.a), on = o > 0 || Math.abs(t - s.a) < 1;
-    const v = s.el.querySelector('video');
-    if (s.type === 'hero' || s.type === 'pain') {
-      v.style.transform = `scale(${1 + .1 * ease(u)})`;
-      if (s.type === 'pain') v.style.filter = 'blur(16px) brightness(.6)';
-      if (on) waits.push(seekVideo(v, (s.clipFrom || 0) + local % 6.5));
-      s.el.querySelectorAll('.card').forEach((c, k, all) => { const at = s.a + (s.b - s.a) * (.15 + .6 * k / Math.max(1, all.length - 1 || 1)); const p = ramp(t, at, .5), d = k % 2 ? 1 : -1; c.style.opacity = p; c.style.transform = `translateX(${(1 - p) * d * 220}px) rotate(${(1 - p) * d * 3}deg)`; });
-    }
-    if (s.type === 'app' || s.type === 'inv') {
-      const dev = s.el.querySelector('.device'), dh = dev.offsetHeight, [fx, fy, sc] = keys(ZOOMS[s.zoom || 'overview'], u), ent = ramp(t, s.a, .7);
-      dev.style.transform = `translate(${500 - sc * fx * 1000}px, ${dh / 2 - sc * fy * dh + (1 - ent) * 120}px) scale(${sc})`;
-      if (on) waits.push(seekVideo(v, (s.clipFrom || 0) + local * (s.rate || 1)));
-      const tap = s.el.querySelector('.tap');
-      if (tap) { const at = s.a + (s.b - s.a) * .5, tp = clamp((t - at) / .6); const z = s.zoom === 'panel' ? [.83, .62] : [.2, .5]; tap.style.left = z[0] * 100 + '%'; tap.style.top = z[1] * 100 + '%'; tap.style.opacity = (s.zoom || '').match(/site|panel/) && tp > 0 && tp < 1 ? 1 - tp : 0; tap.style.transform = `scale(${.4 + tp * 1.4})`; }
-      const ph = s.el.querySelector('.phone');
-      if (ph) { const pa = s.a + (s.b - s.a) * .5, pb = s.a + (s.b - s.a) * .92; ph.style.opacity = win(t, pa, pb, .4); ph.style.transform = `translateY(${(1 - ramp(t, pa, .5)) * 300}px)`; }
-      const hd = s.el.querySelector('.head'); if (hd && s.zoom && s.zoom !== 'overview') hd.style.opacity = 1 - clamp((u - .3) / .1);
-    }
-    if (s.type === 'how') { v.style.transform = `scale(${1 + .05 * ease(u)})`; if (on) waits.push(seekVideo(v, (s.clipFrom ?? 3) + u * ((s.clipTo ?? 9.6) - (s.clipFrom ?? 3)))); }
-    if (s.type === 'shot') { const im = s.el.querySelector('img'); im.style.transform = `scale(${1 + .06 * ease(u)}) translateY(${(1 - ramp(t, s.a, .7)) * 80}px)`; }
-    if (s.type === 'text') { const b = s.el.querySelector('.big'); b.style.transform = `translateY(${(1 - ramp(t, s.a + .1, .7)) * 40}px)`; }
-    if (s.type === 'end') { s.el.querySelector('.end').style.transform = `translateY(${(1 - ramp(t, s.a + .1, .7)) * 50}px)`; const bt = s.el.querySelector('.btn'); const ba = s.a + Math.min(2.2, (s.b - s.a) * .4); bt.style.opacity = ramp(t, ba, .5); bt.style.transform = `scale(${.9 + .1 * ramp(t, ba, .5)})`; }
-    const hd = s.el.querySelector('.head');
-    if (hd && !(s.type === 'app' && s.zoom && s.zoom !== 'overview' && u > .3)) { const p = ramp(t, s.a + (first ? .2 : .25), .6); hd.style.opacity = p; hd.style.transform = `translateY(${(1 - p) * 30}px)`; }
-  });
-  DATA.caps.forEach(c => { c.el.style.opacity = t >= c.a && t < c.b ? clamp((t - c.a) / .12) : 0; c.el.style.transform = `translateY(${(1 - ramp(t, c.a, .25)) * 14}px)`; });
-  await Promise.all(waits);
-};
-</script>
-</body>
+      // ── 2 · Typed by hand (2.5–13.0 s): rows typed one by one, then the typo ─────────────────────────
+      const b = R.scene(10.5, { in: "cut", bg: "night", name: "typing" });
+      b.text("Typed by hand, *line after line.*", { y: 290, size: 80, fx: "blur", at: 0.1, w: 940, out: "fade", outAt: 7.6 });
+      b.text("One typo is all *it takes.*", { y: 290, size: 84, fx: "pop", at: 7.9, w: 940 });
+      const rows = [["Supplier", "Supplier Trading Co., Ltd."], ["Invoice", "GL-2611-084"], ["Date", "14 Oct 2026"], ["LED Strip 5m", "600"], ["Wireless Earbuds", "3000"], ["Yoga Mat", "180"], ["Storage Box", "120"]];
+      const tbl = b.html(card(`<div style="font-size:24px;color:#0895A6;font-weight:600">stock_entry.xlsx</div>` + rows.map(([k, v], i) =>
+        `<div id="r${i}" style="display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid #E1EAF0;font-size:34px;opacity:0"><span style="color:#2C5974">${k}</span><b id="v${i}" style="font-weight:600;border-radius:8px;padding:0 8px">${v}</b></div>`).join(""), 860), { x: 540, y: 930, in: "rise", at: 0.2 });
+      rows.forEach((_, i) => b.anim(tbl.box.querySelector("#r" + i), { o: [0, 1] }, 0.6 + i * 0.95, 0.25));
+      rows.forEach((_, i) => b.sfx("typing", 0.6 + i * 0.95, 0.25));
+      b.on(8.1, 10.5, () => { const e = document.getElementById("v4"); if (e) { e.style.background = "#FBE3E7"; e.style.color = "#B4233C"; e.style.outline = "4px solid #B4233C"; } });
+      b.on(0, 8.1, () => { const e = document.getElementById("v4"); if (e) { e.style.background = ""; e.style.color = ""; e.style.outline = ""; } });
+      b.html(`<div style="background:#B4233C;color:#fff;font:600 32px 'Readex Pro';padding:14px 26px;border-radius:999px;white-space:nowrap">300 typed as 3000</div>`, { x: 700, y: 1420, in: "pop", at: 8.3 });
+      CAP(b, [["Supplier, invoice number, date,", 0.05, 2.25], ["items, quantities, totals.", 2.6, 4.7], ["Typed by hand, line after line.", 5.2, 7.65], ["And one typo is all it takes.", 8.1, 10.2]]);
+
+      // ── 3 · Upload, AI reads it (13.0–20.3 s) ────────────────────────────────────────────────────────
+      const c = R.scene(10.8, { in: "flash", bg: "night", name: "upload" });
+      c.text("Upload. *AI reads it.*", { y: 280, size: 84, fx: "blur", at: 0.3, w: 940, out: "fade", outAt: 7.1 });
+      ["PDF", "Excel", "Photo"].forEach((t, i) => c.html(`<div style="background:rgba(255,255,255,.1);border:1px solid rgba(201,216,228,.4);color:#fff;font:600 34px 'Readex Pro';padding:12px 30px;border-radius:999px">${t}</div>`, { x: 300 + i * 240, y: 430, in: "pop", at: 0.8 + i * 0.25 }));
+      const inv = c.invoice({ y: 820, w: 880, in: "drop", at: 0.2, dist: 1400, rot: -2 });
+      inv.scan(1.6, 1.4);
+      c.anim(inv.layer, { y: -200, s: 0.62, r: 0 }, 3.2, 0.6, "inOutCubic");
+      inv.draft(3.5, { y: 960, w: 900, stagger: 0.3 });
+      CAP(c, [["With Stacko, upload the invoice as a PDF, Excel file or photo,", 0.15, 3.5], ["and AI reads every line into a draft.", 3.6, 7.1]]);
+
+      c.text("Review what's *flagged.*", { y: 280, size: 84, fx: "highlight", hl: "marker", at: 7.4, w: 940 });
+      c.callout({ x: 270, y: 1260, dx: 40, dy: 160, label: "New item · confirm", at: 7.6 });
+      c.html(`<div style="padding:22px 64px;border-radius:999px;background:${SM.C.ocean};color:#fff;font:600 44px 'Readex Pro',sans-serif;box-shadow:0 18px 40px rgba(3,9,18,.4)">Approve</div>`, { x: 830, y: 1400, in: "pop", at: 8.0 });
+      c.cursor({ points: [{ x: 1090, y: 1650, at: 8.2 }, { x: 850, y: 1410, at: 9.2, click: true }, { x: 870, y: 1440, at: 9.8 }] });
+      CAP(c, [["New or unclear items are flagged for a person to confirm.", 7.5, 10.6]]);
+
+      // ── 5 · AI proposes, you approve (23.8–26.6 s) ───────────────────────────────────────────────────
+      const e = R.scene(2.8, { in: "dots", bg: "night", name: "approve" });
+      e.dotMorph({ count: 420, y: 860, steps: [{ at: 0, shape: "explode" }, { at: 0.1, shape: { icon: "check", size: 520 }, dur: 0.8 }] });
+      e.text("AI proposes. *You approve.*", { y: 1360, size: 76, fx: "blur", at: 0.2, w: 940 });
+      e.sfx("check", 0.9, 0.7);
+      CAP(e, [["AI proposes.", 0.15, 1.2], ["You approve.", 1.45, 2.6]]);
+
+      R.endcard("wordmark", { cta: "Invoices in. Drafts out. You approve." });
+      R.grain(0.02).vignette(0.45).safe();
+      R.audio({ voice: "/assets/audio/voice/EDU-08_vo.mp3", voiceAt: 0, music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.18, duck: true, lufs: -14, sfxVolume: 0.5 });
+      R.cover(8.5);
+    </script>
+  </body>
 </html>

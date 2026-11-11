@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-05 · Where's the stock? Ask from your phone</title>
+    <!-- viral-motion-editor: motion-graphics M5 dark SaaS demo, cut-driven. Hook on PI-13 (phone in traffic, real
+         lock screen SCR-08 placed) · zoom-through into the chat · interrupt: dots build "40" · answer card.
+         "Ask Stacko" is phase 1, in build: labelled. Music: No More Place To Be. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-05 · Where's the stock? Ask from your phone" });
+
+      // ── 1 · Hook (0–2.0 s): stuck in traffic, a client wants 40 ──────────────────────────────────────
+      const a = R.scene(2.0, { bg: "/assets/post-images/final/PI-13.png", move: "handheld", dim: 0.25, gradient: true, focus: "50% 55%", name: "traffic" });
+      a.text(SM.t("POV: you're in traffic and a client wants *40 units.*", "تخيّل: إنت بالعجقة والزبون بدّو *٤٠ قطعة.*"), {
+        y: 320, size: 76, fx: "none", at: 0, w: 940,
+      });
+      a.punch(0.2, 0.04, 0.35);
+      a.sfx("notification", 0.15, 0.6);
+
+      // ── 2 · Just ask (2.0–5.2 s): one message to Stacko ──────────────────────────────────────────────
+      const b = R.scene(3.2, { in: "zoom-through", bg: "night", name: "ask" });
+      b.text(SM.t("Just *ask.*", "بس *إسأل.*"), { y: 240, size: 92, fx: "rise", at: 0.1 });
+      const chat = b.chat({ x: 540, y: 1000, w: 600, title: "Stacko bot", sub: "bot", in: "rise", at: 0 });
+      // A little history so the chat looks lived-in.
+      chat.msg(0.0, SM.t("Moved 40 × Desk Fan to Tripoli", "نقلت ٤٠ مروحة عطرابلس"), { from: "me", time: "08:12" });
+      chat.msg(0.05, SM.t("Done. WH-03 Tripoli: 95 → 135.", "تمام. مستودع طرابلس: ٩٥ ← ١٣٥."), { time: "08:12" });
+      chat.msg(0.1, SM.t("Any low stock today?", "في شي ناقص اليوم؟"), { from: "me", time: "08:30" });
+      chat.msg(0.15, SM.t("Yes: Yoga Mat in WH-02 Sidon (6 left).", "إيه: Yoga Mat بمستودع صيدا (باقي ٦)."), { time: "08:30" });
+      chat.type(0.3, SM.t("How many LED strips in Sidon?", "قدّيش LED عنّا بصيدا؟"), { cps: 26 });
+      chat.bot(2.0, SM.t("Sidon has 40. WH-02.", "صيدا فيها ٤٠. مستودع WH-02."), { typing: true });
+
+      // ── 3 · Pattern interrupt (5.2–6.4 s): the answer builds itself from brand dots ──────────────────
+      const c = R.scene(1.2, { in: "flash", bg: "night", name: "forty" });
+      c.dotMorph({ count: 480, y: 900, steps: [
+        { at: 0, shape: "explode" },
+        { at: 0.08, shape: { text: SM.t("40", "٤٠"), size: 640 }, dur: 0.7 },
+      ] });
+      c.sfx("pop", 0.75, 0.5);
+
+      // ── 4 · The answer (6.4–9.0 s): every warehouse at a glance ──────────────────────────────────────
+      const d = R.scene(3.4, { in: "blur", bg: "night", name: "answer" });
+      d.text(SM.t("Stacko answered: *Sidon has 40.*", "ستاكو جاوب: *صيدا فيها ٤٠.*"), { y: 330, size: 84, fx: "pop", at: 0.05, w: 940 });
+      d.text(SM.t("LED Strip 5m · stock right now", "شريط LED ‏5م · المخازن هلّق"), { y: 520, size: 44, fx: "fade", at: 0.2, color: SM.C.visor });
+      d.kpis({ y: 860, at: 0.3, items: [[SM.t("Sidon", "صيدا"), 40], [SM.t("Beirut", "بيروت"), 120], [SM.t("Tripoli", "طرابلس"), 45]] });
+      d.text(SM.t("One message to Stacko. No calls, no walking, no waiting.", "رسالة وحدة لستاكو. بلا اتصالات، بلا مشي، بلا انتظار."), { y: 1300, size: 54, fx: "blur", at: 1.0, w: 920 });
+
+      // ── End card (9.0–11.6 s) ────────────────────────────────────────────────────────────────────────
+      R.endcard("tagline", { cta: SM.t("Ask Stacko from your phone.", "إسأل ستاكو من تلفونك.") });
+      R.grain(0.02).vignette(0.45).safe();
+      R.audio({ music: "/assets/audio/music/Paperback_Pages.mp3", musicVolume: 0.6, lufs: -14, sfxVolume: 0.55 });
+      R.cover(1.2);
+    </script>
+  </body>
+</html>

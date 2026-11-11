@@ -1,5 +1,3 @@
 Every month the container lands, and someone spends the evening typing the invoice into a sheet.
 
-We're building Stacko so a photo of the invoice becomes a draft shipment. The AI reads it. A person checks it and approves it. Nothing is recorded until then.
-
-Who types the invoices in your company?
+With Stacko, a photo of the invoice becomes a draft shipment. The AI reads it, a person checks it and approves it, and nothing is recorded until then.
