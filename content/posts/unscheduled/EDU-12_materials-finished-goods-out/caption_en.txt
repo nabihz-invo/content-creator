@@ -2,12 +2,10 @@ Materials in. Finished goods out.
 
 Can you see both at the same time?
 
-Manufacturers run two inventories at once — raw materials and components on one side, finished goods on the other. Most systems track one well and treat the other as an afterthought.
+Manufacturers run two inventories at once: raw materials and components on one side, finished goods on the other. Most systems track one well and treat the other as an afterthought.
 
 The result: quiet stockouts. Finished goods you can't build the next batch for. Raw materials sitting unused while a finished-goods shortage blocks a shipment.
 
-Stacko puts both on one map. Location-level stock for materials and finished goods in the same view. Receipts, issues, transfers, adjustments — every movement traced with user and timestamp. Role-scoped so production staff, warehouse staff, and managers each see what they need.
+Stacko puts both on one map. Location-level stock for materials and finished goods in the same view. Receipts, issues, transfers, adjustments: every movement traced with user and timestamp. Each person records their own part, and the manager approves.
 
-Small manufacturer ≠ small controls.
-
-👉 Book a meeting — link in bio.
+Stacko is the stock management system. Raw materials and finished goods on one map.
