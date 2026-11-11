@@ -18,7 +18,6 @@ import type {
   WorkflowEvent,
   WorkflowJob,
 } from "@/types/db";
-import { needsReview } from "@/features/ideas/needs-review";
 import type { InboxStage } from "@/features/inbox/stages";
 import { supabase } from "./supabase";
 
@@ -532,6 +531,34 @@ export function useCardImages(projectIds: string[]) {
   });
 }
 
+/**
+ * The first HTML page of each HTML post (P5-T25) for the project cards: slide 1 in English, else
+ * Arabic. Projects without pages are left out.
+ */
+export function useCardHtml(projectIds: string[]) {
+  return useQuery({
+    queryKey: ["card-html", projectIds],
+    enabled: projectIds.length > 0,
+    staleTime: 60_000,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("imported_media")
+        .select(
+          "id, project_id, language, kind, slide_index, file_name, storage_path, mime_type, file_size, width, height, duration, metadata, live_url, released_at",
+        )
+        .in("project_id", projectIds)
+        .eq("kind", "html")
+        .eq("slide_index", 1)
+        .not("storage_path", "is", null);
+      if (error) throw error;
+      const best: Record<string, ImportedMediaRow> = {};
+      for (const m of (data ?? []) as ImportedMediaRow[])
+        if (!best[m.project_id] || m.language === "en") best[m.project_id] = m;
+      return best;
+    },
+  });
+}
+
 export function useImportedMedia(projectId: string | undefined) {
   return useQuery({
     queryKey: ["imported-media", projectId],
@@ -774,79 +801,6 @@ export function useMonitorJobs(workspaceId: string | null, status: string, stage
       const { data, error } = await q;
       if (error) throw error;
       return (data ?? []) as unknown as MonitorJob[];
-    },
-  });
-}
-
-/** A pending item in the review slider (P5-T20): every project still `new`, ideas and finished imported posts alike. */
-export type PendingIdea = Pick<
-  ContentProject,
-  "id" | "title" | "original_idea" | "content_type" | "submitted_at" | "input_source" | "source_url"
-> & {
-  plan_id: string | null;
-  format: string | null;
-  publish_date: string | null;
-  sheet: string | null;
-  pillar: string | null;
-  brands: { name: string } | null;
-  project_tags: { tags: Tag }[];
-  idea_comments: { status: "open" | "addressed" }[];
-  /** Imported posts that are already made: their files (P5-T15) and review state (P5-T17). */
-  finished: unknown;
-  review: { status: "approved" | "changes_requested"; note: string | null } | null;
-  imported_media: ImportedMediaRow[];
-};
-
-export function usePendingIdeas(workspaceId: string | null) {
-  return useQuery({
-    queryKey: ["pending-ideas", workspaceId],
-    enabled: !!workspaceId,
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("content_projects")
-        .select(
-          "id, title, original_idea, content_type, submitted_at, input_source, source_url, plan_id:source_metadata->>plan_id, format:source_metadata->>format, publish_date:source_metadata->>publish_date, sheet:source_metadata->>sheet, pillar:source_metadata->content_plan->>Pillar, finished:source_metadata->finished, review:source_metadata->review, brands(name), project_tags(tags(id, name, color)), idea_comments(status), imported_media(id, project_id, language, kind, slide_index, file_name, storage_path, mime_type, file_size, width, height, duration, metadata, live_url, released_at)",
-        )
-        .eq("workspace_id", workspaceId!)
-        .eq("status", "new")
-        // Planned posts first, in publish order; then backlog and new ideas, oldest first.
-        .order("source_metadata->>publish_date", { ascending: true, nullsFirst: false })
-        .order("submitted_at", { ascending: true })
-        .limit(1000);
-      if (error) throw error;
-      const order = (m: ImportedMediaRow) =>
-        `${m.language ?? ""}|${m.kind === "cover" ? 0 : 1}|${String(m.slide_index ?? 0).padStart(3, "0")}`;
-      return ((data ?? []) as unknown as PendingIdea[]).filter(needsReview).map((p) => ({
-        ...p,
-        imported_media: [...p.imported_media].sort((a, b) => order(a).localeCompare(order(b))),
-      }));
-    },
-  });
-}
-
-export interface IdeaComment {
-  id: string;
-  project_id: string;
-  author_id: string | null;
-  body: string;
-  status: "open" | "addressed";
-  response: string | null;
-  addressed_at: string | null;
-  created_at: string;
-}
-
-export function useIdeaComments(projectId: string | undefined) {
-  return useQuery({
-    queryKey: ["idea-comments", projectId],
-    enabled: !!projectId,
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("idea_comments")
-        .select("id, project_id, author_id, body, status, response, addressed_at, created_at")
-        .eq("project_id", projectId!)
-        .order("created_at", { ascending: true });
-      if (error) throw error;
-      return (data ?? []) as IdeaComment[];
     },
   });
 }

@@ -6,7 +6,6 @@ import { ListSkeleton } from "@/components/States";
 import { LoginPage } from "@/features/auth/LoginPage";
 import { BrandDetailPage } from "@/features/brands/BrandDetailPage";
 import { BrandsPage } from "@/features/brands/BrandsPage";
-import { IdeaReviewPage } from "@/features/ideas/IdeaReviewPage";
 import { InboxPage } from "@/features/inbox/InboxPage";
 import { VisualLibraryPage } from "@/features/library/VisualLibraryPage";
 import { MediaLibraryPage } from "@/features/media/MediaLibraryPage";
@@ -33,7 +32,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <OverviewPage /> },
       { path: "inbox", element: <InboxPage /> },
-      { path: "ideas", element: <IdeaReviewPage /> },
       { path: "projects", element: <Navigate to="/inbox" replace /> },
       { path: "projects/:id", element: <ProjectDetailPage /> },
       { path: "brands", element: <BrandsPage /> },
