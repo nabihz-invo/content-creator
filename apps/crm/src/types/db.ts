@@ -1,7 +1,8 @@
 /** Row types for the tables the CRM reads (see supabase/migrations). */
 import type { ProjectStatus, Stage } from "@cc/shared";
 
-export type MemberRole = "admin" | "editor" | "reviewer";
+/** "client" (P5-T26): someone from the brand who only reviews the approved posts in a calendar. */
+export type MemberRole = "admin" | "editor" | "reviewer" | "client";
 export type InputSource = "manual" | "telegram" | "csv" | "url";
 export type ContentType = "static" | "carousel" | "video";
 
@@ -138,6 +139,15 @@ export interface ContentProject {
       by: string;
       at: string;
       downloaded?: Partial<Record<"en" | "ar" | "all", string>>;
+      /** "client": the client sent it back (P5-T26). */
+      from?: "client";
+    };
+    /** The client's decision on the team-approved version (P5-T26); dropped when the team approves again. */
+    client_review?: {
+      status: "approved" | "changes_requested";
+      note: string | null;
+      by: string;
+      at: string;
     };
     discarded?: { reason: string; by: string; at: string };
   };

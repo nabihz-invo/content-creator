@@ -2,7 +2,8 @@ import type { Sql } from "./db.ts";
 import { ApiError } from "./errors.ts";
 import { createClient } from "@supabase/supabase-js";
 
-export type Role = "admin" | "editor" | "reviewer";
+/** "client" (P5-T26) is named only by the client routes; every other route lists its roles without it. */
+export type Role = "admin" | "editor" | "reviewer" | "client";
 
 /** Verifies a bearer token and returns the user id. */
 export interface AuthVerifier {

@@ -457,6 +457,7 @@ function ImportedReview({ project }: { project: ContentProject }) {
   const [dialog, setDialog] = useState<"changes" | "discard" | null>(null);
   const [text, setText] = useState("");
   const review = project.source_metadata.review;
+  const clientReview = project.source_metadata.client_review;
   const done = () => {
     setDialog(null);
     setText("");
@@ -500,6 +501,13 @@ function ImportedReview({ project }: { project: ContentProject }) {
             {new Date(review.at).toLocaleDateString(locale)}
           </span>
         )}
+        {clientReview?.status === "approved" ? (
+          <Badge variant="success">{t("review.clientApproved")}</Badge>
+        ) : clientReview?.status === "changes_requested" ? (
+          <Badge variant="destructive">{t("review.clientChanges")}</Badge>
+        ) : review?.status === "approved" ? (
+          <Badge variant="outline">{t("review.withClient")}</Badge>
+        ) : null}
         <div className="ms-auto flex flex-wrap gap-2">
           {canReview && review?.status !== "approved" && (
             <Button
@@ -532,6 +540,9 @@ function ImportedReview({ project }: { project: ContentProject }) {
       </div>
       {review?.status === "changes_requested" && review.note && (
         <p className="whitespace-pre-line text-xs" dir="auto">
+          {review.from === "client" && (
+            <span className="font-medium">{t("review.fromClient")}: </span>
+          )}
           {review.note}
         </p>
       )}

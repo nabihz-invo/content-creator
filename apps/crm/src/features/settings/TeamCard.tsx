@@ -10,13 +10,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NativeSelect } from "@/components/ui/native-select";
+import { api } from "@/lib/api";
 import { useI18n } from "@/lib/i18n";
 import { useBrands } from "@/lib/queries";
 import { supabase } from "@/lib/supabase";
 import { useWorkspace } from "@/lib/workspace";
 import type { MemberRole, WorkspaceMember } from "@/types/db";
 
-const ROLES: MemberRole[] = ["admin", "editor", "reviewer"];
+const ROLES: MemberRole[] = ["admin", "editor", "reviewer", "client"];
 
 /** Admins add people to the workspace and choose which brands each person works on. */
 export function TeamCard() {
@@ -26,6 +27,9 @@ export function TeamCard() {
   const qc = useQueryClient();
   const [email, setEmail] = useState("");
   const [newRole, setNewRole] = useState<MemberRole>("editor");
+  // A client (P5-T26) is added with their brands; the account is created for them.
+  const [newBrands, setNewBrands] = useState<string[]>([]);
+  const isClient = newRole === "client";
   const key = ["workspace-members", workspaceId];
 
   const members = useQuery({
@@ -45,6 +49,10 @@ export function TeamCard() {
 
   const add = useMutation({
     mutationFn: async () => {
+      if (isClient) {
+        await api.addClient(workspaceId!, email.trim(), newBrands);
+        return;
+      }
       const { error } = await supabase.rpc("add_workspace_member", {
         p_workspace_id: workspaceId,
         p_email: email.trim(),
@@ -53,12 +61,18 @@ export function TeamCard() {
       if (error) throw error;
     },
     onSuccess: () => {
+      if (isClient) toast.success(t("team.clientAdded", { email: email.trim() }));
       setEmail("");
+      setNewBrands([]);
       refresh();
     },
     onError: (e) => {
       if (e.message.startsWith("no_account")) toast.error(t("team.noAccount"));
-      else if (e.message.startsWith("already_member")) toast.error(t("team.alreadyMember"));
+      else if (
+        e.message.includes("already_member") ||
+        e.message.includes("already in this workspace")
+      )
+        toast.error(t("team.alreadyMember"));
       else fail(e);
     },
   });
@@ -104,7 +118,7 @@ export function TeamCard() {
 
   function submit(e: FormEvent) {
     e.preventDefault();
-    if (email.trim()) add.mutate();
+    if (email.trim() && (!isClient || newBrands.length > 0)) add.mutate();
   }
 
   return (
@@ -139,12 +153,41 @@ export function TeamCard() {
               ))}
             </NativeSelect>
           </div>
-          <Button type="submit" disabled={!email.trim() || add.isPending}>
+          <Button
+            type="submit"
+            disabled={!email.trim() || add.isPending || (isClient && newBrands.length === 0)}
+          >
             <UserPlus />
             {t("team.add")}
           </Button>
+          {isClient && (
+            <fieldset className="flex flex-wrap gap-x-5 gap-y-2 sm:col-span-3">
+              <legend className="mb-2 text-sm font-medium">{t("team.clientBrands")}</legend>
+              {brands.data?.map((b) => {
+                const id = `team-new-${b.id}`;
+                return (
+                  <div key={b.id} className="flex items-center gap-2">
+                    <Checkbox
+                      id={id}
+                      checked={newBrands.includes(b.id)}
+                      onCheckedChange={(v) =>
+                        setNewBrands((list) =>
+                          v === true ? [...list, b.id] : list.filter((x) => x !== b.id),
+                        )
+                      }
+                    />
+                    <Label htmlFor={id} dir="auto">
+                      {b.name}
+                    </Label>
+                  </div>
+                );
+              })}
+            </fieldset>
+          )}
         </form>
-        <p className="text-sm text-muted-foreground">{t("team.signInFirst")}</p>
+        <p className="text-sm text-muted-foreground">
+          {t(isClient ? "team.clientHint" : "team.signInFirst")}
+        </p>
 
         {members.isError ? (
           <ErrorState error={members.error} onRetry={() => void members.refetch()} />

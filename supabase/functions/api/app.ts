@@ -20,6 +20,7 @@ import { verifySignature } from "../_shared/n8n.ts";
 import { enforceRateLimit } from "../_shared/ratelimit.ts";
 import { defaultNet, fetchAndExtract } from "../_shared/url-extract.ts";
 import { validate } from "../_shared/validate.ts";
+import { registerClientRoutes } from "./client-routes.ts";
 import { registerMediaRoutes } from "./media-routes.ts";
 import { registerPipelineRoutes } from "./pipeline-routes.ts";
 
@@ -241,5 +242,6 @@ export function createApp(deps: Deps) {
 
   registerPipelineRoutes(app as unknown as Parameters<typeof registerPipelineRoutes>[0], deps);
   registerMediaRoutes(app as unknown as Parameters<typeof registerMediaRoutes>[0], deps);
+  registerClientRoutes(app as unknown as Parameters<typeof registerClientRoutes>[0], deps);
   return app;
 }

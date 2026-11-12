@@ -6,6 +6,7 @@ import { sdkTransport } from "../_shared/llm.ts";
 import { relayTransport } from "../_shared/relay.ts";
 import { claudeStageAi, fakeStageAi } from "../_shared/stage-ai.ts";
 import { supabaseStorage } from "../_shared/storage.ts";
+import { supabaseUsers } from "../_shared/users.ts";
 import { createApp } from "./app.ts";
 
 const config = loadConfig();
@@ -31,6 +32,7 @@ const app = createApp({
   auth: supabaseAuthVerifier(config.supabaseUrl, config.supabaseAnonKey),
   dispatcher: n8nDispatcher(config.n8nBaseUrl, config.n8nWebhookSecret),
   storage: supabaseStorage(config.supabaseUrl, config.supabaseServiceRoleKey),
+  users: supabaseUsers(config.supabaseUrl, config.supabaseServiceRoleKey),
   config,
 });
 

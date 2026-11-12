@@ -6,18 +6,19 @@ import { ListSkeleton } from "@/components/States";
 import { LoginPage } from "@/features/auth/LoginPage";
 import { BrandDetailPage } from "@/features/brands/BrandDetailPage";
 import { BrandsPage } from "@/features/brands/BrandsPage";
+import { CalendarPage } from "@/features/calendar/CalendarPage";
+import { ClientApp } from "@/features/calendar/ClientApp";
 import { InboxPage } from "@/features/inbox/InboxPage";
 import { VisualLibraryPage } from "@/features/library/VisualLibraryPage";
 import { MediaLibraryPage } from "@/features/media/MediaLibraryPage";
 import { MonitorPage } from "@/features/monitor/MonitorPage";
 import { OverviewPage } from "@/features/overview/OverviewPage";
-import { PlaceholderPage } from "@/features/placeholders/PlaceholderPage";
 import { ProjectDetailPage } from "@/features/projects/ProjectDetailPage";
 import { SettingsPage } from "@/features/settings/SettingsPage";
 import { StudioPage } from "@/features/studio/StudioPage";
 import { AuthProvider, useAuth } from "@/lib/auth";
 import { I18nProvider, useI18n } from "@/lib/i18n";
-import { WorkspaceProvider } from "@/lib/workspace";
+import { useWorkspace, WorkspaceProvider } from "@/lib/workspace";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,16 +47,7 @@ const router = createBrowserRouter([
         path: "media",
         element: <MediaLibraryPage />,
       },
-      {
-        path: "calendar",
-        element: (
-          <PlaceholderPage
-            title="nav.calendar"
-            description="placeholder.calendar"
-            phase="Phase 6"
-          />
-        ),
-      },
+      { path: "calendar", element: <CalendarPage /> },
       {
         path: "monitor",
         element: <MonitorPage />,
@@ -64,6 +56,19 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+/** Client accounts (P5-T26) get their own app with only the calendar; everyone else the full CRM. */
+function RoleRouter() {
+  const { role, loading } = useWorkspace();
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-md p-10">
+        <ListSkeleton rows={3} />
+      </div>
+    );
+  }
+  return role === "client" ? <ClientApp /> : <RouterProvider router={router} />;
+}
 
 function Gate() {
   const { session, loading } = useAuth();
@@ -79,7 +84,7 @@ function Gate() {
     <>
       {session ? (
         <WorkspaceProvider>
-          <RouterProvider router={router} />
+          <RoleRouter />
         </WorkspaceProvider>
       ) : (
         <LoginPage />

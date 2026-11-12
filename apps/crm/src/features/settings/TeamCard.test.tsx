@@ -1,11 +1,23 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { I18nProvider } from "@/lib/i18n";
 import { TeamCard } from "./TeamCard";
 
-const { rpc, insert, del } = vi.hoisted(() => ({ rpc: vi.fn(), insert: vi.fn(), del: vi.fn() }));
+const { rpc, insert, del, addClient } = vi.hoisted(() => ({
+  rpc: vi.fn(),
+  insert: vi.fn(),
+  del: vi.fn(),
+  addClient: vi.fn(),
+}));
+vi.mock("@/lib/api", () => ({ api: { addClient } }));
+// jsdom has no ResizeObserver; Radix's checkbox uses it when one appears after the first render.
+globalThis.ResizeObserver ??= class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+} as unknown as typeof ResizeObserver;
 
 vi.mock("@/lib/supabase", () => ({
   supabase: {
@@ -39,6 +51,7 @@ function show() {
 }
 
 describe("TeamCard", () => {
+  afterEach(cleanup);
   beforeEach(() => {
     vi.clearAllMocks();
     insert.mockResolvedValue({ error: null });
@@ -84,5 +97,22 @@ describe("TeamCard", () => {
     await waitFor(() => expect(stacko).toBeEnabled());
     await user.click(stacko);
     await waitFor(() => expect(del).toHaveBeenCalledWith("user_id", "u2"));
+  });
+
+  it("adds a client with their brands through the API (the account is created there)", async () => {
+    const user = userEvent.setup();
+    addClient.mockResolvedValue({ user_id: "c1", created: true });
+    show();
+    await screen.findByText("Sam");
+    await user.type(screen.getByLabelText("Email"), "client@brand.com");
+    await user.selectOptions(document.getElementById("team-role")!, "client");
+    const add = screen.getByRole("button", { name: "Add member" });
+    expect(add).toBeDisabled(); // a client needs at least one brand
+    await user.click(document.getElementById("team-new-aiphin")!);
+    await user.click(add);
+    await waitFor(() =>
+      expect(addClient).toHaveBeenCalledWith("ws", "client@brand.com", ["aiphin"]),
+    );
+    expect(rpc).not.toHaveBeenCalledWith("add_workspace_member", expect.anything());
   });
 });

@@ -878,3 +878,96 @@ export function useLibrary(brandId: string | undefined) {
     },
   });
 }
+
+// ---------------------------------------------------------------------------
+// Publishing calendar and client review (P5-T26)
+// ---------------------------------------------------------------------------
+export type ClientReview = NonNullable<ContentProject["source_metadata"]["client_review"]>;
+
+/** One post on the calendar. `review` is the team's review (null for clients, who never see it). */
+export interface CalendarPost {
+  id: string;
+  title: string;
+  publish_date: string | null;
+  status: string;
+  content_type: string | null;
+  format: string | null;
+  client_review: ClientReview | null;
+  review: { status: "approved" | "changes_requested"; from?: "client" } | null;
+  brand: string | null;
+}
+
+/** The team's calendar: every imported post with a publish date (one light query, no files). */
+export function useTeamCalendar(workspaceId: string | null) {
+  return useQuery({
+    queryKey: ["calendar", "team", workspaceId],
+    enabled: !!workspaceId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("content_projects")
+        .select(
+          "id, title, status, content_type, publish_date:source_metadata->>publish_date, format:source_metadata->>format, review:source_metadata->review, client_review:source_metadata->client_review, brands(name)",
+        )
+        .eq("workspace_id", workspaceId!)
+        .eq("source_metadata->>origin", "content_plan_import")
+        .not("source_metadata->>publish_date", "is", null)
+        .not("status", "in", "(cancelled,failed)")
+        .limit(2000);
+      if (error) throw error;
+      return (
+        (data ?? []) as unknown as (Omit<CalendarPost, "brand"> & {
+          brands: { name: string } | null;
+        })[]
+      ).map(({ brands, ...p }) => ({ ...p, brand: brands?.name ?? null })) as CalendarPost[];
+    },
+  });
+}
+
+export interface ClientPost extends CalendarPost {
+  captions: { en?: string; ar?: string; default?: string } | null;
+  hashtags: string | null;
+  team_approved_at: string | null;
+}
+
+/** A client's posts: only the safe fields, from client_posts() (clients can't read post rows). */
+export function useClientPosts(workspaceId: string | null) {
+  return useQuery({
+    queryKey: ["calendar", "client", workspaceId],
+    enabled: !!workspaceId,
+    queryFn: async () => {
+      const { data, error } = await supabase.rpc("client_posts", { p_workspace_id: workspaceId! });
+      if (error) throw error;
+      return ((data ?? []) as Omit<ClientPost, "review" | "brand">[]).map((p) => ({
+        ...p,
+        review: null,
+        brand: null,
+      })) as ClientPost[];
+    },
+  });
+}
+
+export interface PostComment {
+  id: string;
+  body: string;
+  created_at: string;
+  author_id: string | null;
+  status: "open" | "addressed";
+  response: string | null;
+}
+
+/** Comments on a post. For a client, RLS returns only the comments clients wrote. */
+export function usePostComments(projectId: string | undefined) {
+  return useQuery({
+    queryKey: ["post-comments", projectId],
+    enabled: !!projectId,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("idea_comments")
+        .select("id, body, created_at, author_id, status, response")
+        .eq("project_id", projectId!)
+        .order("created_at");
+      if (error) throw error;
+      return (data ?? []) as PostComment[];
+    },
+  });
+}

@@ -236,6 +236,21 @@ export const api = {
       json: { decision, ...(note ? { note } : {}) },
     }),
 
+  /** A client approves, or sends back with a note, a post the team approved (P5-T26). */
+  clientReview: (projectId: string, decision: "approved" | "changes_requested", note?: string) =>
+    apiRequest<{ client_review: { status: string } }>(
+      `/content-projects/${projectId}/client-review`,
+      {
+        json: { decision, ...(note ? { note } : {}) },
+      },
+    ),
+
+  /** Adds a client login for the given brands; the account is created if it doesn't exist (admins). */
+  addClient: (workspaceId: string, email: string, brandIds: string[]) =>
+    apiRequest<{ user_id: string; created: boolean }>(`/workspaces/${workspaceId}/clients`, {
+      json: { email, brand_ids: brandIds },
+    }),
+
   /** Removes every finished file (and its storage) and cancels the imported post. */
   discardImported: (projectId: string, reason: string) =>
     apiRequest<{ files: number; bytes: number }>(`/content-projects/${projectId}/discard`, {

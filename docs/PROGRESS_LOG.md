@@ -14,6 +14,16 @@ Template:
 
 ---
 
+## 2026-11-12 — P5-T26 Client accounts and publishing calendar — in progress
+- Agent/branch: local Claude Code (main, uncommitted)
+- Why: owner: a login for the client with strict permission to view posts and approve, decline or comment, nothing else, in a calendar of publish dates. Owner chose: the client sees a post only after the team approved it; client logins are created from Settings → Team.
+- Changes: migrations `20261112100000` (enum value `client`, alone) and `20261112100100` (clients left out of every "any member" check; client-only policies and storage reads; `client_visible`, `client_posts`, `client_review_post`, `add_workspace_client`; `review_imported_post` drops the client's decision when the team approves again; `handle_new_user` skips the personal workspace for `app_metadata.stacko_client`; profiles: a client sees only their own); pgTAP `24_client_review` (34). API: `client-routes.ts` (`POST /workspaces/:id/clients`, `POST /content-projects/:id/client-review`), `_shared/users.ts` (account creation port), `Role` + `addClient` schema. CRM: `features/calendar/` (`ClientApp`, `ClientPostDialog`, `CalendarMonth`, `CalendarPage`, `calendar.ts`), role-based router in `App.tsx`, `/calendar` replaces the placeholder, Team card adds clients with brands, client decision on the post's review box, EN/AR strings. `feedback.mjs` marks client notes and change requests.
+- Verification: full pgTAP suite 01–23 on hosted with both migrations in rolled-back transactions: all pass except `19_visual_library`, which fails at the same line without these migrations (a live row collides with its fixture, as noted for P5-T24); nothing persisted (enum still admin/editor/reviewer). `24_client_review` can only run once `client` is committed (a new enum value can't be used in the transaction that adds it). API `deno check` passes. CRM typecheck, ESLint, Prettier, vitest (25, incl. calendar grid, calendar render, client invite) and production build pass. Run the CRM tests from `C:\…` (a lowercase `c:\` cwd loads React twice and every render test fails with "Invalid hook call").
+- Deployed 2026-11-12: owner ran `db push` (both migrations applied); `api` deployed with `supabase functions deploy api --use-api` (no Docker needed; token from `supabase/.env.local`), `/health` 200 and the new route answers 401 without a token. `24_client_review` on hosted in a rolled-back transaction: 34/34; nothing persisted.
+- Open: deploy the CRM, add a test client and check it live (only approved posts, approve / request changes / comment work, no other page or data). Mark done after that.
+
+---
+
 ## 2026-11-11 — P5-T25 HTML thumbnails in the inbox; Idea review page removed — in progress
 - Agent/branch: local Claude Code (main)
 - Why: owner: HTML posts showed on the project page but not on the inbox cards; remove the Idea review page.

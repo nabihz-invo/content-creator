@@ -45,14 +45,18 @@ async function rest_(path, init = {}) {
 }
 
 if (cmd === "list") {
-  const [rows, posts] = await Promise.all([
+  // P5-T26: notes and change requests from client accounts are marked, so the agent knows the brand asked.
+  const [rows, posts, members] = await Promise.all([
     rest_(
-      "/idea_comments?status=eq.open&order=created_at.asc&select=id,body,created_at,project:content_projects(id,title,status,original_idea,plan_id:source_metadata->>plan_id)",
+      "/idea_comments?status=eq.open&order=created_at.asc&select=id,body,created_at,author_id,project:content_projects(id,title,status,original_idea,plan_id:source_metadata->>plan_id)",
     ),
     rest_(
       "/content_projects?status=eq.new&source_metadata->review->>status=eq.changes_requested&order=submitted_at.asc&select=id,title,plan_id:source_metadata->>plan_id,review:source_metadata->review",
     ),
+    // role is text-compared so this also works before the 'client' role exists
+    rest_("/workspace_members?select=user_id,role"),
   ]);
+  const clients = new Set(members.filter((m) => m.role === "client").map((m) => m.user_id));
   if (rest.includes("--json")) {
     console.log(JSON.stringify({ notes: rows, posts_sent_back: posts }, null, 2));
   } else if (!rows.length && !posts.length) {
@@ -62,12 +66,14 @@ if (cmd === "list") {
     for (const p of posts) {
       console.log(`── post ${p.plan_id ?? "(no plan ID)"}  ${p.title}`);
       console.log(`   project ${p.id}  (${p.review.at.slice(0, 16).replace("T", " ")})`);
-      console.log(`   CHANGES: ${(p.review.note ?? "").replace(/\n/g, "\n            ")}\n`);
+      const who = p.review.from === "client" ? " (from the CLIENT)" : "";
+      console.log(`   CHANGES${who}: ${(p.review.note ?? "").replace(/\n/g, "\n            ")}\n`);
     }
     if (rows.length) console.log(`${rows.length} open note(s):\n`);
     for (const c of rows) {
       const p = c.project;
-      console.log(`── note ${c.id}  (${c.created_at.slice(0, 16).replace("T", " ")})`);
+      const from = clients.has(c.author_id) ? "  from the CLIENT" : "";
+      console.log(`── note ${c.id}  (${c.created_at.slice(0, 16).replace("T", " ")})${from}`);
       console.log(`   idea ${p.id}  [${p.status}]  ${p.title}`);
       console.log(`   NOTE: ${c.body.replace(/\n/g, "\n         ")}`);
       console.log(

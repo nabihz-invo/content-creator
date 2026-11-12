@@ -3,6 +3,7 @@ import type { Sql } from "./db.ts";
 import type { Dispatcher } from "./n8n.ts";
 import type { StageAi } from "./stage-ai.ts";
 import type { StoragePort } from "./storage.ts";
+import type { UserAdminPort } from "./users.ts";
 
 /** Everything a handler needs; tests inject fakes for auth, dispatch, storage, and network. */
 export interface Deps {
@@ -10,6 +11,8 @@ export interface Deps {
   auth: AuthVerifier;
   dispatcher: Dispatcher;
   storage: StoragePort;
+  /** Creates client accounts (P5-T26); absent in tests that don't need it. */
+  users?: UserAdminPort;
   config: {
     crmUrl: string;
     allowedOrigins: string[];
