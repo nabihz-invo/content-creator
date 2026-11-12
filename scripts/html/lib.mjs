@@ -10,7 +10,7 @@
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { basename, dirname, extname, join, posix, resolve } from "node:path";
+import { basename, dirname, extname, join, posix, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const REPO = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
@@ -203,7 +203,16 @@ export function postPages(id, dir) {
 // ---------------------------------------------------------------------------
 // Bundling
 // ---------------------------------------------------------------------------
-const ROOT_REF = /(?<=["'(\s=,])\/(?:assets|studio)\/[A-Za-z0-9._~%\-/@+]+/g;
+const ROOT_REF = /(?<=["'(\s=,])\/(?:assets|studio|posts)\/[A-Za-z0-9._~%\-/@+]+/g;
+
+/** Relative src/poster/url() references (e.g. src="../img/map-en.png") made root paths, so they are bundled too. */
+function absoluteRefs(html, file) {
+  const base = "/" + relative(CONTENT, dirname(file)).split(sep).join("/");
+  const fix = (u) => (/^(data:|https?:|blob:|#|\/|@@asset:)/.test(u) ? u : posix.normalize(posix.join(base, u)));
+  return html
+    .replace(/(\b(?:src|poster)=)(["'])([^"']+)\2/gi, (m, a, q, u) => a + q + fix(u) + q)
+    .replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (m, q, u) => `url(${q}${fix(u)}${q})`);
+}
 
 const local = (rootPath) => join(CONTENT, decodeURIComponent(rootPath).replace(/^\/+/, ""));
 
@@ -242,7 +251,7 @@ const CSP =
  */
 export async function bundlePage(file, resolveAsset) {
   const missing = new Set();
-  let html = readFileSync(file, "utf8");
+  let html = absoluteRefs(readFileSync(file, "utf8"), file);
   html = html.replace(/<link\b[^>]*rel=["']stylesheet["'][^>]*>/gi, (tag) => {
     const href = /href=["'](\/[^"']+)["']/i.exec(tag)?.[1];
     if (!href) return tag;
