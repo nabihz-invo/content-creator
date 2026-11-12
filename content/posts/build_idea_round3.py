@@ -38,16 +38,16 @@ def i188():
 
 
 def i189():
-    h = ("One order.<br><em>Connected from click to shelf.</em>", "طلبية وحدة.<br><em>موصولة من الكبسة للرف.</em>")
+    h = ("One order,<br><em>from click to shelf.</em>", "طلبية وحدة.<br><em>متصلة من الكبسة للرف.</em>")
     s = ("With Stacko, follow one online sale through your stock.", "مع ستاكو، تابع بيعة أونلاين وحدة بكل مخازنك.")
-    sl = [("A customer buys online.", "زبون اشترى أونلاين."), ("The sale reaches Stacko on its own.", "البيعة بتوصل ستاكو لحالها."),
-          ("Your team sees the store is running low.", "فريقك بيشوف إنّو المتجر عم يخلص."), ("A transfer refills it, on the map.", "تحويلة بتعبّيه، عالخريطة."),
+    sl = [("A customer buys online.", "زبون اشترى أونلاين."), ("The order reaches the system on its own.", "الطلبية بتوصل عالنظام."),
+          ("Your team sees the store is running low.", "فريقك بيشوف إنّو المتجر عم يخلص."), ("The team requests from another warehouse.", "الفريق بيطلب من مخزن ثاني."),
           ("One order,<br><em>zero retyping.</em>", "طلبية وحدة،<br><em>بلا إعادة كتابة.</em>")]
     reg("IDEA-189", "one-order-journey", "2026-12-12", "Carousel", h, s,
         ("Your WooCommerce store sells; Stacko sees it. The store's stock updates in Stacko on its own, and when you move stock to the shop, its number goes up on the store too. One sale, no retyping.",
          "متجرك على WooCommerce بيبيع، وستاكو بيشوف. كمية المتجر بتتحدّث بستاكو لحالها، ولمّا تنقل بضاعة عالمتجر، الرقم بيطلع عالموقع كمان. بيعة وحدة، بلا إعادة كتابة."),
         slides=[(h[0], h[1])] + sl,
-        note="Slides reworded to what the connector does: the shop is one Online store location, no reservation of stock and no delivery tracking. Footer rule: 'click to shelf' replaces 'click to delivery'.")
+        note="Owner review 2026-11-11: cover 'from click to shelf', متصلة instead of موصولة, slides 3 and 5 reworded, support line on the last slide. Slides reworded to what the connector does: the shop is one Online store location, no reservation of stock and no delivery tracking. Footer rule: 'click to shelf' replaces 'click to delivery'.")
     stops = [(340, 919), (434, 862), (673, 725), (804, 1059), (849, 631)]
     for l in LS:
         t = T(l)
@@ -56,12 +56,15 @@ def i189():
             strip(l, [(t("1 × Desk Lamp", f"{L('1 ×')} لمبة مكتب"), t("Sold on your store", "انباعت عالمتجر")), (t("Nobody", "ولا حدا"), t("had to type it", "اضطر يكتبها"))]),
             strip(l, [(t("Desk Lamp", "لمبة مكتب"), t("Online store", "متجر أونلاين")), (L("12 → 11"), t("Updated on its own", "تحدّثت لحالها"))]),
             strip(l, [(t("Desk Lamp", "لمبة مكتب"), t("Online store", "متجر أونلاين")), (t("3 left", f"{L('3')} باقيين"), t("Low stock alert", "تنبيه نقص"))]),
-            strip(l, [(t("WH-01 → Online store", f"{L('WH-01')} ← المتجر"), t("Transfer · 40 lamps", f"تحويلة · {L('40')} لمبة")), (t("ETA 35m", f"{L('35')} دقيقة"), t("On the map", "عالخريطة"))]),
+            strip(l, [(t("WH-01 → Online store", f"{L('WH-01')} ← المتجر"), t("Request · 40 lamps", f"طلب · {L('40')} لمبة")), (t("ETA 35m", f"{L('35')} دقيقة"), t("On the map", "عالخريطة"))]),
             strip(l, [(t("Online store", "متجر أونلاين"), t("Goes back up on the store", "الرقم بيطلع عالموقع")), (L("43"), t("In step, everywhere", "نفس الرقم بكل مكان"))]),
         ]
         slides = [dict(bg=PII("OB-42"), h=h[l == "ar"], s=s[l == "ar"], cover=True, extra=ring(stops[0]))]
         for i, (e, a) in enumerate(sl):
-            slides.append(dict(bg=PII("OB-42"), h=(e if l == "en" else a), kick=t(f"Step {i + 1} of 5", f"خطوة {L(i + 1)} من {L(5)}"), extra=ring(stops[i]) + strips[i]))
+            last = i == len(sl) - 1
+            sub = t("The order arrives, the team sees it, the stock goes back up. Nobody types it twice.", "الطلبية بتوصل، الفريق بيشوفها، والمخزون بيرجع بيطلع. وما حدا بيكتبها مرتين.")
+            slides.append(dict(bg=PII("OB-42"), h=(e if l == "en" else a), kick=t(f"Step {i + 1} of 5", f"خطوة {L(i + 1)} من {L(5)}"), extra=ring(stops[i]) + strips[i],
+                               **({"s": f'<span style="color:#C9D8E4">{sub}</span>'} if last else {})))
         car("IDEA-189", l, slides, "one order")
 
 
@@ -78,16 +81,15 @@ def i190():
 
 
 def i191():
-    h = ("Your branches<br><em>shouldn't be islands.</em>", "فروعك<br><em>ما لازم تكون جزر.</em>")
+    h = ("Your branches<br><em>shouldn't be islands.</em>", "فروعك<br><em>ما لازم تكون جزر معزولة.</em>")
     s = ("With Stacko, five locations share one live map and every transfer is visible.", "مع ستاكو، خمس مواقع على خريطة وحدة مباشرة، وكل تحويلة ظاهرة.")
     reg("IDEA-191", "branches-islands", "2027-05-14", "Static", h, s,
         ("When every branch keeps its own numbers, every transfer becomes a phone call. Put them on one map.",
          "لمّا كل فرع بيحتفظ بأرقامه لحاله، كل تحويلة بتصير تلفون. حطّهن على خريطة وحدة."), note="Closing question removed from the caption.")
     for l in LS:
         t = T(l)
-        x = (tag(230, 722, t("WH-01 Beirut", f"{L('WH-01')} بيروت")) + tag(610, 575, t("WH-02 Sidon", f"{L('WH-02')} صيدا")) + tag(590, 800, t("WH-03 Tripoli", f"{L('WH-03')} طرابلس"))
-             + tag(870, 700, t("BR-01 Jounieh", f"{L('BR-01')} جونية")) + tag(250, 995, t("DXB-01 Dubai", f"{L('DXB-01')} دبي"))
-             + strip(l, [(L("TRF-24031"), t("Beirut → Sidon", "بيروت ← صيدا")), (t("40 LED Strips", f"{L('40')} لمبات LED"), t("Transfer on the road", "تحويلة عالطريق")), (t("ETA 35m", f"{L('35')} دقيقة"), t("Visible to both", "ظاهرة للفرعين"))]))
+        # Owner review 2026-11-11: no city names (the islands are not real places), no bottom banner.
+        x = tag(230, 722, L("WH-01")) + tag(610, 575, L("WH-02")) + tag(590, 800, L("WH-03")) + tag(870, 700, L("BR-01")) + tag(250, 995, L("BR-02"))
         static("IDEA-191", l, PI("OB-44"), h[l == "ar"], s[l == "ar"], x, css=".bg{transform:translateY(60px)}")
 
 
@@ -133,31 +135,30 @@ def i194():
          "كل مرّة بتنكتب نفس الطلبية مرّتين، الغلطة بتاخد فرصة تانية. لمّا يكون WooCommerce موصول، كمية متجرك أونلاين بتتحدّث بستاكو بلا إعادة كتابة."))
     for l in LS:
         t = T(l)
-        x = tag(760, 330 + 110, t("Typed once ✓", "انكتبت مرّة ✓")) + strip(l, [(t("Desk Lamp", "لمبة مكتب"), t("Online store", "متجر أونلاين")), (L("12 → 11"), t("Updated on its own", "تحدّثت لحالها")), (L("0"), t("Times retyped", "مرّات إعادة كتابة"))])
+        x = tag(760, 330 + 110, t("Logged once ✓", "تسجّلت مرّة ✓"))
         static("IDEA-194", l, PI("OB-46"), h[l == "ar"], s[l == "ar"], x)
 
 
 def i195():
-    h = ("Your online store and your stock,<br><em>finally talking.</em>", "متجرك أونلاين ومخزنك،<br><em>أخيراً عم يحكوا مع بعض.</em>")
-    s = ("With Stacko, your online store's stock stays live on the same map.", "مع ستاكو، كميات متجرك أونلاين بتضلّ مباشرة على نفس الخريطة.")
+    h = ("Your online store and your stock,<br><em>finally talking.</em>", "موقعك الإلكتروني ومخزنك،<br><em>أخيراً عم يحكوا مع بعض.</em>")
+    s = ("With Stacko, the stock on your website stays matched with your warehouse, on the same map.", "مع ستاكو، الكمية الموجودة بموقعك بتضلّ مطابقة مع المخزن وعلى نفس الخريطة.")
     reg("IDEA-195", "online-store-launch", "2026-11-21", "Static", h, s,
         ("New: Stacko now connects to WooCommerce. Your store knows what sold, your warehouses know what's left, and now they know it at the same time.\nIf you run a WooCommerce store, message us.",
          "جديد: ستاكو صار يتوصّل بـWooCommerce. متجرك بيعرف شو انباع، ومخازنك بتعرف شو باقي، وهلّق بيعرفوا بنفس الوقت.\nإذا عندك متجر على WooCommerce، راسلنا."),
         note="'New' moved from a chip to a kicker (no status chips). WooCommerce named in the caption only. Caption question turned into a statement.")
     for l in LS:
         t = T(l)
-        x = (f'<div class="kick" style="top:128px;font-size:26px;letter-spacing:.04em;text-transform:none">{t("New: online store connection", "جديد: وصل المتجر أونلاين")}</div>'
-             + strip(l, [(L("342"), t("Online store", "متجر أونلاين")), (L("7,507"), t("WH-01 Beirut", f"{L('WH-01')} بيروت")), (t("Live", "مباشر"), t("One map, same numbers", "خريطة وحدة، نفس الأرقام"))]))
+        x = f'<div class="kick" style="top:128px;font-size:26px;letter-spacing:.04em;text-transform:none">{t("New: online store connection", "جديد: ربط الموقع الإلكتروني")}</div>'
         static("IDEA-195", l, PI("OB-47"), h[l == "ar"], s[l == "ar"], x, hs=t(58, 52), css=".h1{top:200px}.sub{margin-top:30px}.bg{transform:translateY(120px)}")
 
 
 def i196():
-    h = ("Connected<br><em>by Stacko.</em>", "موصول<br><em>بستاكو.</em>")
+    h = ("Connected<br><em>by Stacko.</em>", "كل شغلك<br><em>بيحكي مع ستاكو.</em>")
     s = ("With Stacko, your store, your phone and your invoices feed one live map.", "مع ستاكو، متجرك وتلفونك وفواتيرك بيغذّوا خريطة وحدة مباشرة.")
     sl = [("Online store:<br><em>stock stays in step.</em>", "المتجر أونلاين:<br><em>الكميات متطابقة.</em>"), ("From your phone:<br><em>ask and log in a chat.</em>", "من تلفونك:<br><em>إسأل وسجّل بمحادثة.</em>"),
           ("AI documents:<br><em>invoices become items.</em>", "المستندات بالذكاء الاصطناعي:<br><em>الفواتير بتصير أصناف.</em>"), ("Your stock,<br><em>always in sight.</em>", "مخزنك<br><em>دايماً قدّام عينك.</em>")]
     reg("IDEA-196", "connected-by-stacko", "2027-06-16", "Carousel", h, s,
-        ("Stacko isn't another island of data. Here's how it connects to the rest of your business.", "ستاكو مش جزيرة بيانات جديدة. هيك بيتوصّل بباقي شغلك."),
+        ("Stacko isn't another island of data. Here's how it connects to the rest of your business.", "ستاكو مش جزيرة بيانات جديدة. هيك بيحكي مع باقي شغلك."),
         slides=[h] + sl, note="ERP / accounting slide removed until confirmed. 5 slides instead of 6. Tagline uses مخزنك per the owner's wording rule; the brand guide still has the old form until decided.")
     for l in LS:
         t = T(l)
@@ -172,7 +173,7 @@ def i196():
 
 
 def i197():
-    h = ("Your stock has<br><em>a network map.</em>", "مخزنك<br><em>إلو خريطة شبكة.</em>")
+    h = ("Your stock has<br><em>a network map.</em>", "مخازنك كلها موصولة<br><em>مثل شبكة القطارات.</em>")
     s = ("With Stacko, warehouses are stations and transfers are trains. Nothing gets lost in between.", "مع ستاكو، المستودعات محطّات والتحويلات قطارات. وما في شي بيضيع بالنص.")
     reg("IDEA-197", "network-map", "2027-05-12", "Static", h, s,
         ("If your stock moved like a metro, you'd know every station, every line and every arrival time. That's the idea behind the Stacko map.",
@@ -202,7 +203,7 @@ def i199():
         ("Every time someone logs a move, the twin changes too. That's how the map stays true.", "كل مرّة حدا بيسجّل حركة، التوأم بيتغيّر كمان. هيك الخريطة بتضلّ صحيحة."))
     for l in LS:
         t = T(l)
-        x = tag(275, 985, t("On the shelf", "عالرف")) + tag(800, 985, t("On the map", "عالخريطة")) + strip(l, [(t("LED Strip 5m", "لمبات LED"), f"{L('WH-01')}"), (L("240"), t("On the shelf", "عالرف")), (L("240"), t("On the map", "عالخريطة"))])
+        x = tag(275, 985, t("On the shelf", "عالرف")) + tag(800, 985, t("On the map", "عالخريطة"))
         static("IDEA-199", l, PI("OB-49"), h[l == "ar"], s[l == "ar"], x, hs=t(60, 54))
 
 
@@ -210,12 +211,25 @@ def i200():
     h = ("The port outside.<br><em>The map inside.</em>", "المرفأ برّا.<br><em>والخريطة جوّا.</em>")
     s = ("With Stacko, see every container from your desk, leg by leg.", "مع ستاكو، بتشوف كل حاوية من مكتبك، مرحلة بمرحلة.")
     reg("IDEA-200", "port-outside-map-inside", "2027-05-18", "Static", h, s,
-        ("You don't need a view of the port to know where your container is.", "ما بدّك منظر عالمرفأ لتعرف وين حاويتك."))
+        ("You don't need a view of the port to know where your container is.", "ما بدّك منظر عالمرفأ لتعرف وين حاويتك."),
+        note="Owner review 2026-11-11: photo and map in two stacked panels (no reflection), dotted route between them, shipment chip on the map. 'day 24' is sample data.")
     for l in LS:
         t = T(l)
-        x = (f'<img src="{MAP("map-full")}" alt="" style="position:absolute;left:130px;top:470px;width:820px;opacity:.3;mix-blend-mode:screen">'
-             + strip(l, [(L("SHP-24021"), t("Shenzhen → Beirut", "شنزن ← بيروت")), (t("At sea", "بالبحر"), t("Day 24", f"نهار {L('24')}")), (t("Next", "الجاي"), t("Port of Beirut", "مرفأ بيروت"))]))
-        static("IDEA-200", l, PI("SC-17"), h[l == "ar"], s[l == "ar"], x)
+        # the cleaned live-map capture (2065x1415; the Arabic one is mirrored), map area only
+        mx0, k = (60, 952 / 1150) if l == "en" else (855, 952 / 1150)
+        mapimg = (f'<div style="position:absolute;inset:0;background:#EAF1F5 url({CAP(l + "-map-clean")}) no-repeat;'
+                  f'background-size:{2065 * k:.0f}px auto;background-position:{-mx0 * k:.0f}px {-500 * k:.0f}px"></div>')
+        chip = (f'<div style="position:absolute;left:22px;bottom:22px;background:rgba(14,36,64,.92);color:#fff;border-radius:18px;padding:12px 20px;font-size:24px;font-weight:600;line-height:1.35;box-shadow:0 10px 26px rgba(0,0,0,.35)" dir="{"rtl" if l == "ar" else "ltr"}">'
+                f'{L("SHP-24021")} · {t("at sea", "بالبحر")} · {t("day 24", "نهار " + L("24"))}<br><span style="font-weight:400;color:#C9D8E4">{t("Shenzhen → Beirut", "شنزن ← بيروت")}</span></div>')
+        # Owner review 2026-11-12: one city in the map and the chip -> the Beirut warehouse (capture x 480 / 1220, y 680)
+        pin = f'<div style="position:absolute;left:{t(343, 297)}px;top:158px;width:30px;height:30px;border-radius:50%;background:#0895A6;border:4px solid #fff;box-shadow:0 0 0 8px rgba(8,149,166,.25)"></div>'
+        x = (f'<div style="position:absolute;left:64px;right:64px;top:{t(410, 440)}px;height:340px;border-radius:28px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45)">'
+             f'<img src="{PI("SC-17")}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 46%"></div>'
+             f'<div style="position:absolute;left:64px;right:64px;top:{t(830, 850)}px;height:380px;border-radius:28px;overflow:hidden;background:#0E2440;border:10px solid #0E2440;box-sizing:border-box;box-shadow:0 0 0 2px #79C0DE,0 20px 50px rgba(0,0,0,.45)">'
+             f'{mapimg}{pin}{chip}</div>'
+             f'<svg width="1080" height="1350" style="position:absolute;left:0;top:0;pointer-events:none"><path d="M430 {t(640, 670)} C 430 {t(760, 790)}, {t(422, 376)} {t(820, 840)}, {t(422, 376)} {t(988, 1008)}" fill="none" stroke="#0895A6" stroke-width="5" stroke-dasharray="2 14" stroke-linecap="round"/>'
+             f'<circle cx="430" cy="{t(640, 670)}" r="9" fill="#0895A6" stroke="#fff" stroke-width="3"/></svg>')
+        static("IDEA-200", l, BG("BG-56"), h[l == "ar"], s[l == "ar"], x)
 
 
 def i201():
@@ -240,14 +254,14 @@ def i201():
 
 
 def i202():
-    h = ("From Tripoli to Tyre,<br><em>every box on one map.</em>", "من طرابلس لصور،<br><em>كل كرتونة على خريطة وحدة.</em>")
-    s = ("Built in Beirut: with Stacko, businesses across Lebanon and the Gulf see every box.", "معمول ببيروت: مع ستاكو، الشركات بلبنان والخليج بتشوف كل كرتونة.")
+    h = ("Every warehouse, every branch,<br><em>every box on one map.</em>", "كل مخزن، كل فرع،<br><em>كل كرتونة على خريطة وحدة.</em>")
+    s = ("With Stacko, businesses see every box, wherever their stock is.", "مع ستاكو، الشركات بتشوف كل كرتونة، وين ما كان مخزونها.")
     reg("IDEA-202", "tripoli-to-tyre", "2027-05-07", "Static", h, s,
-        ("Made in Lebanon, for the people who keep its shelves full.", "معمول بلبنان، للناس اللي بيعبّوا رفوفه."), note="Closing question removed from the caption.")
+        ("For the people who keep shelves full: every warehouse, branch and box on one live map.", "للناس اللي بيعبّوا الرفوف: كل مخزن وفرع وكرتونة على خريطة وحدة مباشرة."),
+        note="Owner review 2026-11-11: no city names or counts (Stacko is not limited to these cities), no 'made in' wording.")
     for l in LS:
         t = T(l)
-        x = tag(470, 480, t("Tripoli", "طرابلس")) + tag(470, 620, t("Jounieh", "جونية")) + tag(470, 770, t("Beirut", "بيروت")) + tag(470, 925, t("Sidon", "صيدا")) + tag(470, 1070, t("Tyre", "صور")) + tag(210, 800, t("+ Dubai", "+ دبي"))
-        x += strip(l, [(L("5"), t("Cities on the coast", "مدن عالساحل")), (L("1"), t("Live map", "خريطة مباشرة")), (t("+ Dubai", "+ دبي"), t("And the Gulf", "والخليج"))])
+        x = tag(470, 480, t("Warehouse", "مخزن")) + tag(470, 620, t("Branch", "فرع")) + tag(470, 770, t("Shop", "محل")) + tag(470, 925, t("Port", "مرفأ")) + tag(470, 1070, t("Warehouse", "مخزن"))
         static("IDEA-202", l, PI("OB-50"), h[l == "ar"], s[l == "ar"], x, css=".bg{transform:translateY(90px)}.shade-t{height:700px}", hs=t(66, 52))
 
 
@@ -356,12 +370,15 @@ def i210():
         ], "same stock", theme="light")
 
 
-def box_talk(pid, l, img, quote, s, x, css=""):
+def box_talk(pid, l, img, quote, s, x, css="", flip_ar=False):
     t = T(l)
     tp = 620 if l == "en" else 650
-    body = f"""<img class="bg" src="{img}" alt=""><div class="shade-b"></div>
+    flip = flip_ar and l == "ar"
+    side = "right:64px!important;left:auto!important" if flip else "left:64px!important;right:auto!important"
+    bg = f'<img class="bg" src="{img}" alt=""' + (' style="transform:scaleX(-1)"' if flip else "") + ">"
+    body = f"""{bg}<div class="shade-b"></div>
 <div class="bub">{quote}</div>
-<p class="sub" style="top:{tp}px;width:500px;left:64px!important;right:auto!important;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.7)">{s}</p>
+<p class="sub" style="top:{tp}px;width:500px;{side};color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.7)">{s}</p>
 {x}
 {top(l)}
 {FOOT[l]}"""
@@ -376,7 +393,7 @@ def i211():
         ("Every box in your warehouse has a story. Some of them are waiting for you to notice.", "كل كرتونة بمستودعك إلها قصّة. في منهن ناطرين تنتبهلهن."))
     for l in LS:
         t = T(l)
-        box_talk("IDEA-211", l, PI("OB-52"), h[l == "ar"], s[l == "ar"], strip(l, [(t("Desk Fan", "مروحة"), f"{L('WH-03')}"), (t("Last move", "آخر حركة"), t("5 months ago", f"من {L('5')} أشهر")), (L("86"), t("Units waiting", "قطعة ناطرة"))]))
+        box_talk("IDEA-211", l, PI("OB-52"), h[l == "ar"], s[l == "ar"], strip(l, [(t("Desk Fan", "مروحة"), f"{L('WH-03')}"), (t("Last move", "آخر حركة"), t("5 months ago", f"من {L('5')} أشهر")), (L("86"), t("Units waiting", "قطعة ناطرة"))]), flip_ar=True)
 
 
 def i212():
@@ -397,7 +414,15 @@ def i214():
     for l in LS:
         t = T(l)
         q = h[l == "ar"] if l == "en" else f"«أنا بالشاحنة.<br><em>صيدا رح تشوفني بعد {L('35')} دقيقة.»</em>"
-        box_talk("IDEA-214", l, PI("SC-01"), q, s[l == "ar"], strip(l, [(t("Beirut → Sidon", "بيروت ← صيدا"), t("Transfer on the road", "تحويلة عالطريق")), (t("ETA 35m", f"{L('35')} دقيقة"), t("Live countdown", "عدّ تنازلي مباشر"))]), css=".sub{text-shadow:0 2px 16px rgba(0,0,0,.6)}")
+        # Owner review 2026-11-11: the message must come from the truck. Pin above the van's roof (van roof about x 555, y 925).
+        pin = ('<div style="position:absolute;left:527px;top:844px;width:56px;height:56px;border-radius:50%;background:#0895A6;border:3px solid #EEF6F9;box-sizing:border-box;'
+               'display:grid;place-items:center;box-shadow:0 0 0 9px rgba(46,242,238,.22),0 0 30px 6px rgba(46,242,238,.45);z-index:3">'
+               '<svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"><path d="M6 15l18-9 18 9v19l-18 9-18-9z"/><path d="M6 15l18 9 18-9M24 24v19"/></svg></div>')
+        css = (".sub{text-shadow:0 2px 16px rgba(0,0,0,.6);width:440px!important}"
+               ".bub,[dir=rtl] .bub{top:auto;bottom:570px;left:548px;right:auto;width:468px;box-sizing:border-box;padding:26px 32px;font-size:40px;line-height:1.18}"
+               "[dir=rtl] .bub{font-size:36px;line-height:1.5}"
+               ".bub:after,[dir=rtl] .bub:after{right:auto;left:14px;bottom:-50px;border:22px solid transparent;border-top:32px solid #fff;border-left:24px solid #fff;border-right:22px solid transparent}")
+        box_talk("IDEA-214", l, PI("SC-01"), q, s[l == "ar"], pin + strip(l, [(t("Beirut → Sidon", "بيروت ← صيدا"), t("Transfer on the road", "تحويلة عالطريق")), (L("ETA 35m"), t("Live countdown", "عدّ تنازلي مباشر"))]), css=css)
 
 
 def i215():
@@ -426,13 +451,16 @@ def i215():
 
 
 def i216():
-    h = ("If your stock were a city,<br><em>could you see the skyline?</em>", "إذا مخزنك مدينة،<br><em>بتشوف أبراجها؟</em>")
-    s = ("With Stacko, each tower is a warehouse and its height is the stock.", "مع ستاكو، كل برج مستودع وعلوّه كميته.")
+    h = ("Every pile hides<br><em>a number.</em>", "كل كومة<br><em>مخبّية رقم.</em>")
+    s = ("With Stacko, each location shows what it holds and what is running low.", "مع ستاكو، كل موقع بيورجيك شو فيه وشو عم يخلص.")
     reg("IDEA-216", "stock-city-skyline", "2027-05-31", "Static", h, s,
-        ("Some towers grow, some shrink, one is always about to run out. The map shows the skyline every day.", "في أبراج بتكبر، وأبراج بتصغر، وواحد دايماً عم يخلص. الخريطة بتورجيك الأبراج كل يوم."))
+        ("A pile of boxes looks like stock. It doesn't tell you what is in it, where it is, or what is about to run out. With Stacko, every location shows its stock and flags what is running low.",
+         "كومة الكراتين بتبيّن مخزون، بس ما بتقلك شو فيها، وين هي، ولا شو عم يخلص. مع ستاكو، كل موقع بيورجيك مخزونو وبينبّهك لشو عم يخلص."),
+        note="Owner review 2026-11-11: new idea (a pile tells you nothing), no city/skyline wording, statuses instead of figures.")
     for l in LS:
         t = T(l)
-        x = tag(670, 450, "WH-01 · 7,507") + tag(300, 650, "WH-03 · 7,442") + tag(900, 800, "BR-01 · 992") + strip(l, [(L("15,941"), t("Units on the map", "قطعة عالخريطة")), (L("3"), t("Towers, one view", "أبراج، نظرة وحدة")), (t("Live", "مباشر"), t("Updates with every move", "بتتحدّث مع كل حركة"))])
+        low = f'<span style="display:inline-block;margin-inline-start:8px;padding:2px 14px;border-radius:999px;background:#F5A524;color:#0E2440;font-weight:600">{t("Low stock", "ناقص")}</span>'
+        x = tag(670, 450, f"{L('WH-01')} · {t('In stock', 'متوفر')}") + tag(300, 650, f"{L('WH-03')} · {t('In stock', 'متوفر')}") + tag(900, 800, f"{L('WH-02')} ·{low}")
         static("IDEA-216", l, PI("OB-54"), h[l == "ar"], s[l == "ar"], x, hs=t(60, 54))
 
 
@@ -466,13 +494,13 @@ def i219():
 
 
 def i220():
-    h = ("Back to school:<br><em>stationery in the right branch?</em>", "رجعة المدارس:<br><em>القرطاسية بالفرع الصح؟</em>")
+    h = ("Back to school:<br><em>stationery in the right branch?</em>", "رجعت المدارس:<br><em>القرطاسية بالفرع الصح؟</em>")
     s = ("With Stacko, see every branch and move stock before the rush.", "مع ستاكو، شوف كل الفروع وحرّك البضاعة قبل العجقة.")
     reg("IDEA-220", "back-to-school", "2027-08-30", "Static", h, s,
         ("September demand doesn't wait. Move stock to where parents shop, before they arrive.", "طلب أيلول ما بينطر. حرّك البضاعة لوين الأهل بيتسوّقوا، قبل ما يوصلوا."))
     for l in LS:
         t = T(l)
-        x = strip(l, [(t("Beirut → Tripoli", "بيروت ← طرابلس"), t("Transfer", "تحويلة")), (t("40 × Notebook A4", f"{L('40 ×')} دفتر {L('A4')}"), t("Moved before the rush", "انتقلت قبل العجقة")), (t("ETA 1h 30m", f"ساعة و{L('30')}"), t("On the map", "عالخريطة"))], light=True)
+        x = ""
         static("IDEA-220", l, PI("SE-06"), h[l == "ar"], s[l == "ar"], x, theme="light", hs=t(58, 54), css=".strip b{font-size:28px}")
 
 
@@ -494,7 +522,9 @@ def i221():
         panel_x = 1774 if l == "en" else 57
         B = BGI("BG-57")
         off = 495 if l == "en" else 0
-        lap = f'<div class="lap"><div style="background-image:url({src});background-size:{597 * 2560 / 2065:.0f}px auto;background-position:{-off * 597 / 2065:.0f}px 0"></div></div>'
+        # Owner review 2026-11-11: the whole app on the laptop was too small to read; show the warehouse panel only, zoomed
+        kz = 597 / 729
+        lap = f'<div class="lap"><div style="background-image:url({src});background-size:{2560 * kz:.0f}px auto;background-position:{-panel_x * kz:.0f}px {-383 * kz:.0f}px"></div></div>'
         sc = [EX(t("Every warehouse on the map is a building you can open.", "كل مستودع عالخريطة مبنى فيك تفتحه.")), EX(t("See how full it is and what's coming and going.", "شوف قدّيش مليان وشو داخل وطالع.")), EX(t("Find any item in seconds. What's running low comes up first.", "لاقي أي صنف بثواني. الناقص بيطلع أوّل."))]
         car("IDEA-221", l, [
             dict(bg=PII("UI-02"), h=h[l == "ar"], s=s[l == "ar"], cover=True, extra=lap),
@@ -523,6 +553,26 @@ def i222():
         car("IDEA-222", l, slides, "one transfer")
 
 
+def approval_screen(l):
+    """Owner review 2026-11-11: the tablet shows one large approval card (sample data), not the dense phone capture."""
+    t = T(l)
+    d = "rtl" if l == "ar" else "ltr"
+    btn = "flex:1;text-align:center;border-radius:16px;padding:16px 0;font-size:28px;font-weight:600"
+    row = "display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #DCE7EE;font-size:23px"
+    return (f'<div dir="{d}" style="height:100%;box-sizing:border-box;background:#F4F8FA;padding:30px 26px;font-family:\'Readex Pro\',\'Noto Kufi Arabic\',sans-serif;color:#0E2440">'
+            f'<div style="display:flex;align-items:center;gap:14px;margin-bottom:26px"><img src="/assets/brand/logo/mark-light.svg" alt="" style="width:44px;height:44px">'
+            f'<b style="font-size:30px">{t("Waiting for approval", "بانتظار الموافقة")}</b></div>'
+            f'<div style="background:#fff;border-radius:22px;padding:24px 24px 26px;box-shadow:0 10px 30px rgba(14,36,64,.14)">'
+            f'<div style="font-size:32px;font-weight:700;margin-bottom:8px">{t("Count adjustment", "تسوية جرد")}</div>'
+            f'<div style="{row}"><span>{L("WH-01")} · {t("Wireless Earbuds", "سمّاعات لاسلكية")}</span></div>'
+            f'<div style="{row}"><span>{t("System", "النظام")}: <b>{L("120")}</b> {"→" if l == "en" else "←"} {t("Counted", "المعدود")}: <b>{L("112")}</b></span></div>'
+            f'<div style="{row};border:0;color:#2C5974">{t("Requested by Rami", "طلب رامي")}</div>'
+            f'<div style="display:flex;gap:14px;margin-top:16px"><div style="{btn};background:#0895A6;color:#fff">{t("Approve", "وافق")}</div>'
+            f'<div style="{btn};border:2px solid #0E2440;color:#0E2440">{t("Reject", "ارفض")}</div></div></div>'
+            f'<div style="margin:18px 14px 0;height:30px;border-radius:14px 14px 0 0;background:#fff;opacity:.55;box-shadow:0 6px 18px rgba(14,36,64,.1)"></div>'
+            '</div>')
+
+
 def i223():
     h = ("Inside Stacko:<br><em>nothing changes without approval.</em>", "جوّا ستاكو:<br><em>ما في شي بيتغيّر بلا موافقة.</em>")
     s = ("With Stacko, adjustments wait for the owner.", "مع ستاكو، التسويات بتنطر صاحب الشغل.")
@@ -536,7 +586,7 @@ def i223():
         src = CAP(f"{l}-ph-owner-approvals")
         B = BGI("BG-57")
         car("IDEA-223", l, [
-            dict(bg=PII("UI-03", "top:100px"), h=h[l == "ar"], s=s[l == "ar"], cover=True, extra=f'<div class="tab"><img src="{src}" alt=""></div>'),
+            dict(bg=PII("UI-03", "top:100px"), h=h[l == "ar"], s=s[l == "ar"], cover=True, extra=f'<div class="tab">{approval_screen(l)}</div>'),
             dict(bg=B, h=sl[0][l == "ar"], col=[crop(src, 1075, 20, 1410, 1035, 430), EX(t("A count found a difference. Nothing moves until someone decides.", "الجرد لقى فرق. ما في شي بيتحرّك لحتى حدا يقرّر."))], col_top=430),
             dict(bg=B, h=sl[1][l == "ar"], col=[crop(src, 1075, 20, 1410, 1035, 430), EX(t("The reason sits next to the Approve and Reject buttons.", "السبب حدّ كبسات الموافقة والرفض."))], col_top=430),
             dict(bg=B, h=sl[2][l == "ar"], col=[crop(CAP(f"{l}-ph-owner-trf"), 1645, 30 if l == "en" else 645, 1784, 970, 280), EX(t("So any stock number can be traced back.", "فكل رقم فيك ترجّعه لمصدره."))], col_top=430),
@@ -571,10 +621,10 @@ def i224():
 def i225():
     h = ("How Lebanese warehouses<br><em>really talk.</em>", "كيف بتحكي المستودعات<br><em>اللبنانية فعلاً.</em>")
     s = ("Five phrases every storekeeper knows.", "خمس جمل بيعرفها كل أمين مستودع.")
-    ph = [("«شو في عندك؟»", "What's in stock?", "شو الكميات الموجودة؟"), ("«خلصان»", "Out of stock.", "ما بقي من الصنف."), ("«بعتلك ياهن»", "I sent them to you.", "البضاعة انبعتت."), ("«نزّلهن عالجرد»", "Put them on the count.", "زيدهن عالجرد."), ("«وصلت الحاوية؟»", "Did the container arrive?", "الحاوية وصلت عالمرفأ؟")]
+    ph = [("«شو في عندك؟»", "What's in stock?", "شو الكميات الموجودة؟"), ("«خالص»", "Out of stock.", "ما بقي من الصنف."), ("«بعتلك ياهن»", "I sent them to you.", "البضاعة انبعتت."), ("«نزّلهن عالجردة»", "Put them on the count.", "زيدهن عالجردة."), ("«وصلت الطلبية؟»", "Did the order arrive?", "الطلبية وصلت؟")]
     reg("IDEA-225", "lebanese-stock-words", "2027-06-05", "Carousel", h, s,
         ("Stock has its own language in every country.", "المخازن إلها لغتها بكل بلد."), slides=[h] + [(f"{a} = {b}", f"{a} = {c}") for a, b, c in ph] + [("Stacko speaks Arabic too.", "ستاكو بيحكي عربي كمان.")],
-        note="CHECK: native Lebanese check of the phrases. All 5 phrases used so the count matches. Last slide claims only the Arabic interface (message parsing in dialect is not confirmed). Caption question removed.")
+        note="Owner review 2026-11-11: خالص, الجردة, وصلت الطلبية. CHECK: native Lebanese check of the phrases. All 5 phrases used so the count matches. Last slide claims only the Arabic interface (message parsing in dialect is not confirmed). Caption question removed.")
     for l in LS:
         t = T(l)
         B = BGI("BG-57")
@@ -582,10 +632,10 @@ def i225():
             U.rowscard([(t("Desk Lamp", "لمبة مكتب"), t("WH-01 Beirut", f"{L('WH-01')} بيروت"), "240", "okc")], t("In Stacko", "بستاكو")),
             f'<div class="wc pc">{U.alertscard(l, [("low", t("USB-C Cable · Sidon · 0 left", f"كابل {L("USB-C")} · صيدا · {L("0")} باقي"))]).replace("wc pc", "")}</div>',
             U.rowscard([(t("Beirut → Sidon", "بيروت ← صيدا"), t("Transfer", "تحويلة"), t("35m", f"{L('35')} دقيقة"), "okc")], t("In Stacko", "بستاكو")),
-            U.rowscard([(t("Count", "جرد"), t("WH-03 Tripoli", f"{L('WH-03')} طرابلس"), t("System 240", f"النظام {L('240')}"), "okc")], t("In Stacko", "بستاكو")),
+            U.rowscard([(t("Count", "جردة"), t("WH-03 Tripoli", f"{L('WH-03')} طرابلس"), t("System 240", f"النظام {L('240')}"), "okc")], t("In Stacko", "بستاكو")),
             U.rowscard([(L("SHP-24021"), t("Port of Beirut", "مرفأ بيروت"), t("Arrived", "وصلت"), "okc")], t("In Stacko", "بستاكو")),
         ]
-        slides = [dict(bg=B, h=h[l == "ar"], s=s[l == "ar"], cover=True, col=[f'<div class="wc pc" style="font-size:56px;font-family:\'Noto Kufi Arabic\';direction:rtl;line-height:1.6;font-weight:700">شو في عندك؟<br>خلصان<br>بعتلك ياهن</div>'], col_top=560)]
+        slides = [dict(bg=B, h=h[l == "ar"], s=s[l == "ar"], cover=True, col=[f'<div class="wc pc" style="font-size:56px;font-family:\'Noto Kufi Arabic\';direction:rtl;line-height:1.6;font-weight:700">شو في عندك؟<br>خالص<br>بعتلك ياهن</div>'], col_top=560)]
         for i, (a, b, c) in enumerate(ph):
             big = f'<div style="font-family:\'Noto Kufi Arabic\';font-size:86px;font-weight:700;line-height:1.4;direction:rtl;text-align:center;color:var(--abyss)">{a}</div>'
             slides.append(dict(bg=B, h=(b if l == "en" else c), col=[big, proof[i]], col_top=420))
@@ -623,33 +673,37 @@ def i227():
 
 
 def i228():
-    h = ("Can your team log a move<br><em>in 10 seconds?</em>", f"فريقك بيقدر يسجّل حركة<br><em>بـ{L('10')} ثواني؟</em>")
-    s = ("Film it, tag us, we'll share the fastest. With Stacko, one message logs it.", "صوّرها، علّم علينا، ومنشارك الأسرع. مع ستاكو، رسالة وحدة بتسجّلها.")
-    reg("IDEA-228", "10-second-challenge", "2027-06-08", "Static", (h[0], "فريقك بيقدر يسجّل حركة بـ10 ثواني؟"), s,
-        ("Take the challenge: one move, one message, ten seconds. Tag us with your video.", "جرّب التحدّي: حركة وحدة، رسالة وحدة، عشر ثواني. علّم علينا بالفيديو."), note="Reshare entries only with permission.")
+    h = ("Log a move<br><em>in 10 seconds.</em>", f"سجّل حركة<br><em>بـ{L('10')} ثواني.</em>")
+    s = ("With Stacko, one message logs the move.", "مع ستاكو، رسالة وحدة وبتتسجّل الحركة.")
+    reg("IDEA-228", "10-second-challenge", "2027-06-08", "Static", (h[0], "سجّل حركة بـ10 ثواني."), s,
+        ("One move, one message, ten seconds. With Stacko, logging stock moves takes less time than writing the note.", "حركة وحدة، رسالة وحدة، عشر ثواني. مع ستاكو، تسجيل حركات المخزون بياخد وقت أقل من كتابة الملاحظة."),
+        note="Owner review 2026-11-11: no longer a challenge; hashtag chip and bottom banner removed.")
     for l in LS:
         t = T(l)
         x = ('<div style="position:absolute;left:400px;top:600px;width:280px;text-align:center;font-size:104px;font-weight:600;color:var(--abyss);direction:ltr">10s</div>'
-             + tag(250, 1040, "#10SecondChallenge") + strip(l, [(t("“Sent 40 LED strips to Sidon”", "«بعتت 40 لمبة LED لصيدا»"), t("One message", "رسالة وحدة")), (t("Logged ✓", "تسجّلت ✓"), t("On the map", "عالخريطة"))]))
+)
         static("IDEA-228", l, PI("OB-25"), h[l == "ar"], s[l == "ar"], x, hs=t(60, 54), css=".strip b{font-size:27px}")
 
 
 def i229():
     h = ("To the owner who still<br><em>counts at midnight.</em>", "لصاحب الشغل اللي بعده<br><em>عم يعدّ نصّ الليل.</em>")
     s = ("A short letter from the Stacko team.", "رسالة قصيرة من فريق ستاكو.")
-    sl = [("We know the shelves are full<br><em>and the numbers still feel wrong.</em>", "منعرف إنّو الرفوف مليانة<br><em>والأرقام بعد ما بتركب.</em>"), ("We know<br><em>the calls never stop.</em>", "منعرف إنّو<br><em>التلفونات ما بتوقف.</em>"), ("We built Stacko so you can<br><em>see it, not guess it.</em>", "عملنا ستاكو لتشوف،<br><em>مش لتخمّن.</em>"), ("Go home earlier.", "روّح بكّير.")]
+    sl = [("We know the shelves are full<br><em>and the numbers don't match.</em>", "منعرف إنّو الرفوف مليانة<br><em>والأرقام ما بتطابق.</em>"), ("We know<br><em>the calls never stop.</em>", "منعرف إنّو<br><em>التلفونات ما بتوقف.</em>"), ("We built Stacko so you can<br><em>see it, not guess it.</em>", "عملنا ستاكو لتشوف،<br><em>مش لتخمّن.</em>"), ("You can relax<br><em>and go home early.</em>", "فيك ترتاح<br><em>وتروح بكير ع بيتك.</em>")]
     reg("IDEA-229", "letter-to-the-owner", "2027-06-09", "Carousel", h, s,
-        ("This one is for everyone who has stayed late to count what should have been on a screen.", "هيدي لكل واحد سهر ليعدّ شي كان لازم يكون على شاشة."), slides=[h] + sl, note="Team voice, not a customer quote.")
+        ("This one is for everyone who has stayed late to count what should have been on a screen.", "هيدي لكل واحد سهر ليعدّ شي كان لازم يكون على شاشة."), slides=[h] + sl, note="Team voice, not a customer quote. Owner review 2026-11-11: slide 2 and 5 copy, one background per slide (BG-60, SE-06, OB-55, the clean live-map capture, SC-18), no long dashes.")
     for l in LS:
         t = T(l)
+        dim = lambda src, pos="50% 50%", a=(.55, .78, .9): (f'<img class="bg" src="{src}" alt="" style="object-fit:cover;object-position:{pos}">'
+                                                         f'<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,36,64,{a[2]}) 0%,rgba(14,36,64,{a[0]}) 45%,rgba(14,36,64,{a[1]}) 100%)"></div>')
         B = BGI("BG-60") + '<div style="position:absolute;inset:0;background:rgba(10,26,46,.45)"></div>'
-        sig = EX(t("— The Stacko team", "— فريق ستاكو"))
+        B2, B3, B4, B5 = dim(PI("SE-06"), "50% 80%", (.72, .85, .92)), dim(PI("OB-55"), "60% 60%", (.66, .8, .92)), dim(CAP(f"{l}-map-clean"), "30% 50%", (.7, .8, .92)), dim(PI("SC-18"), "50% 60%", (.5, .75, .9))
+        sig = EX(t("The Stacko team", "فريق ستاكو"))
         car("IDEA-229", l, [
             dict(bg=B, h=h[l == "ar"], s=s[l == "ar"], cover=True),
-            dict(bg=B, h=sl[0][l == "ar"], col=[U.rowscard([(t("On the shelf", "عالرف"), "", "236", "num"), (t("In the file", "بالملف"), "", "240", "zero")])], col_top=470),
-            dict(bg=B, h=sl[1][l == "ar"], col=[U.rowscard([(t("Beirut", "بيروت"), t("“Where is it?”", "«وينها؟»"), t("8:10", L("8:10")), "num"), (t("Sidon", "صيدا"), t("“Did it arrive?”", "«وصلت؟»"), t("8:25", L("8:25")), "num"), (t("Tripoli", "طرابلس"), t("“How many left?”", "«قدّيش باقي؟»"), t("8:40", L("8:40")), "num")], t("Before 9 AM", f"قبل الساعة {L('9')}"))], col_top=450),
-            dict(bg=B, h=sl[2][l == "ar"], col=[U.mapcard()], col_top=470),
-            dict(bg=B, h=sl[3][l == "ar"], col=[U.rowscard([(t("Today's moves", "حركات اليوم"), t("All logged", "كلّها مسجّلة"), "✓", "okc"), (t("Tonight's count", "جرد الليلة"), t("Not needed", "ما في لزوم"), "✓", "okc")]), sig], col_top=420),
+            dict(bg=B2, h=sl[0][l == "ar"], col=[U.rowscard([(t("On the shelf", "عالرف"), "", "236", "num"), (t("In the file", "بالملف"), "", "240", "zero")])], col_top=470),
+            dict(bg=B3, h=sl[1][l == "ar"], col=[U.rowscard([(t("Beirut", "بيروت"), t("“Where is it?”", "«وينها؟»"), t("8:10", L("8:10")), "num"), (t("Sidon", "صيدا"), t("“Did it arrive?”", "«وصلت؟»"), t("8:25", L("8:25")), "num"), (t("Tripoli", "طرابلس"), t("“How many left?”", "«قدّيش باقي؟»"), t("8:40", L("8:40")), "num")], t("Before 9 AM", f"قبل الساعة {L('9')}"))], col_top=450),
+            dict(bg=B4, h=sl[2][l == "ar"], col=[U.mapcard()], col_top=470),
+            dict(bg=B5, h=sl[3][l == "ar"], col=[U.rowscard([(t("Today's moves", "حركات اليوم"), t("All logged", "كلّها مسجّلة"), "✓", "okc"), (t("Tonight's count", "جردة الليلة"), t("Not needed", "ما في لزوم"), "✓", "okc")]), sig], col_top=420),
         ], "letter")
 
 

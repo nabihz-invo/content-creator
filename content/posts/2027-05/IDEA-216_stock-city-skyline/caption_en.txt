@@ -1,1 +1,1 @@
-Some towers grow, some shrink, one is always about to run out. The map shows the skyline every day.
+A pile of boxes looks like stock. It doesn't tell you what is in it, where it is, or what is about to run out. With Stacko, every location shows its stock and flags what is running low.

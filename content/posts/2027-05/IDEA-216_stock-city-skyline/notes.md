@@ -2,4 +2,4 @@
 
 Built by posts/build_idea_round3.py from plans/Stacko_New_Ideas_Round3.xlsx (HTML only for now).
 
-
+Owner review 2026-11-11: new idea (a pile tells you nothing), no city/skyline wording, statuses instead of figures.

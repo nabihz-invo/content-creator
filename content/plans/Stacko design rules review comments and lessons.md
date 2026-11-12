@@ -76,6 +76,32 @@ For the designer. Every comment Nabih has sent so far, grouped into rules to app
 - **Every hour counting is an hour not selling (IDEA-060):** added a "With Stacko" line and a compact UI card.
 - **Sound familiar? #4 (IDEA-022):** added the Stacko fix card (port, on the way with ETA, received at WH-01) and a manager line.
 
+### Round-3 review (2026-11-11, 22 posts)
+
+- **No bottom summary banner.** The dark stat strip above the footer (e.g. "Beirut → Tripoli · 40 × Notebook · ETA") was removed from IDEA-191, 194, 195, 199, 220 and 228. Prove Stacko with a tag, chip or card placed in the scene instead.
+- **Don't tie Stacko to a list of places.** City names and counts ("From Tripoli to Tyre", "5 coastal cities", "Built in Beirut", "معمول") made it look limited to those cities (IDEA-202), and city labels on imaginary islands were "not right" (IDEA-191). Use generic labels (Warehouse, Branch, Shop, Port) or codes only.
+- **Don't promise a picture we can't show.** "Your stock as a city skyline" (IDEA-216) was replaced by statuses per location (In stock / Low stock).
+- **No challenges or "film it, tag us" asks** (IDEA-228): state the benefit plainly.
+- **A speech bubble must visibly come from its subject**: a tail that points at a pin on the truck (IDEA-214), or flip the Arabic photo so the tail starts at the box (IDEA-211).
+- **Device screens:** one large, simple screen with text of 20 px or more at post size, never a dense app capture or "(demo)" header (IDEA-223, IDEA-221). Overlaid maps stay sharp and at full opacity in their own panel, not as a faint reflection (IDEA-200).
+- **Show the fix:** IDEA-181 needed "how Stacko fixes it" (invoice sets what's incoming, receiving shows the gap).
+- **Arabic words:** استمارات not فورمات · متصلة not موصولة for "connected", and a human phrase instead of «موصول بستاكو» · وصلت الطلبية not الحاوية · خالص not خلصان · الجردة not الجرد · تسجّلت not انكتبت · رجعت المدارس · من وين **بتجي** البضاعة · موقعك الإلكتروني for the online store in launch copy.
+- **No long dashes** anywhere, including signatures ("فريق ستاكو", "The Stacko team").
+
+### Review of 2026-11-12 (20 posts)
+
+- **Every problem post needs a "With Stacko" fix on the visual** (IDEA-150, 152, 157): a small white card with real rows (item, warehouse, last move, invoice -> incoming shipment) and one plain line.
+- **Flip the Arabic photo** when the subject sits where the Arabic text goes (IDEA-163, 181). Only the photo; cards keep their side.
+- **No comment or vote asks anywhere**: "comment COST", "answers in the comments", "vote below", "ask yours in the comments", closing questions in captions (IDEA-100, 144, 151, 179, 104, 187). End with what Stacko does.
+- **Puzzles become carousels**: question, then the answers marked on the photo, then how Stacko fixes each (IDEA-179).
+- **A slide must not repeat the one before it** (IDEA-162): the second slide explains the terms.
+- **Phones show phone-width screens** (the 1075 px app captures), cropped below the app header (it carries the demo company name); never a squeezed desktop capture (IDEA-141). A "truck moves on the map" slide shows trucks with ETA badges.
+- **Tablets held in a photo show their back cover with the Stacko logo**, not a screen (IDEA-155).
+- **One city per story**: the map and the chip must name the same place (IDEA-200).
+- **End educational carousels on Stacko**: a last slide with the website-header map (assets/screens/live-map/website-hero-en|ar.jpg) and "Use the right system: Stacko" (IDEA-090, 149).
+- **Arabic**: «الاستمارات» not «الفورمات», «البضاعة» not «الحاوية» for goods, «بعدها مش مسجّلة من 3 أيام», «أجوبة سريعة», «المخازن هي مصاري مجمّدة», no «لأ.» before an answer, «خالص».
+- **Pages must load images from /assets/** (or the upload script now resolves relative paths too): IDEA-187's screenshot was missing in the CRM because it used ../img/.
+
 ## 4. Checklist before sending a post for review
 
 - [ ] Logo at top; footer correct (or dots + Swipe on non-final slides)

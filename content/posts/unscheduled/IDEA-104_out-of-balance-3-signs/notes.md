@@ -3,3 +3,5 @@
 Copy: CRM plan row. Built by posts/unscheduled/build_idea_und_02.py.
 
 Carousel, 5 slides, light. Cover OB-14 in a panel on Paper; three signs with cards; fix slide with the real live map. Undated.
+
+Owner review 2026-11-12: fixed by hand in source/ (and the captions); do not regenerate from the build script.

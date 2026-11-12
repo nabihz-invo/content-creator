@@ -6,3 +6,5 @@ Story 1080x1920, OB-12 cropped to 9:16 (container top right). Add an Instagram P
   EN: I know exactly / I'd have to call
   AR: بعرف بالزبط / لازم اتّصل
 Undated.
+
+Owner review 2026-11-12: fixed by hand in source/ (and the captions); do not regenerate from the build script.

@@ -1,1 +1,3 @@
 Example: if a tenth of a $200,000 stock hasn't moved in six months, $20,000 is sitting still.
+
+With Stacko, every move is logged with its date, so stock that sits still stands out.

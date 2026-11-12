@@ -1,3 +1,3 @@
 Phantom stock isn't theft most of the time. It's small gaps in logging.
 
-Which one happens most in your warehouse?
+With Stacko, every move is logged with a name and a time, and lands on one live map.

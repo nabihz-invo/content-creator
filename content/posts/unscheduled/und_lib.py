@@ -9,6 +9,11 @@ frames. Never reuse those class names for other elements (they break layouts sil
 import sys
 from pathlib import Path
 
+if Path(sys.argv[0]).name.startswith("build_idea_und_") and "--force" not in sys.argv:
+    sys.exit("Stop: the posts these scripts build have been fixed by hand after the owner's reviews (since 2026-11-11), "
+             "and running a builder overwrites those fixes. Edit the post's source/ pages instead, "
+             "or pass --force to rebuild on purpose.")
+
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "2026-11"))
 sys.path.insert(0, str(HERE.parent / "2026-12"))
