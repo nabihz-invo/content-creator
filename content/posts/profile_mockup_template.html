@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stacko Instagram Preview</title>
+<!-- Template for posts/build_profile_mockup.py: the builder replaces the DATA placeholder below. -->
+<style>
+:root{--bg:#EEF1F4;--card:#fff;--ink:#0B1A2B;--mute:#6B7785;--line:#DBDFE4;--btn:#EFEFEF;--blue:#0095F6;--ok:#0B7A87;--warn:#B26B00;--bad:#B3261E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Arabic",Arial,sans-serif}
+.wrap{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:flex-start;padding:24px 16px 60px}
+.bar{width:100%;display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap}
+.bar b{font-size:15px}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;padding:7px 16px;border-radius:999px;font:600 13px inherit;font-family:inherit;cursor:pointer;color:var(--mute)}
+.seg button.on{background:var(--ink);color:#fff}
+.hint{color:var(--mute);font-size:12.5px;width:100%;text-align:center;margin-top:-4px}
+/* phone */
+.phone{width:100%;max-width:430px;background:#fff;border-radius:34px;box-shadow:0 20px 60px rgba(11,26,43,.18);overflow:hidden;border:1px solid var(--line)}
+.status{height:30px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-weight:600;font-size:13px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px}
+.top .h{font-weight:700;font-size:20px;display:flex;align-items:center;gap:4px}
+.top svg,.nav svg,.tabs svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icons{display:flex;gap:20px}
+.head{display:flex;align-items:center;gap:22px;padding:4px 16px 0}
+.av{flex:none;width:90px;height:90px;border-radius:50%;padding:3px;background:conic-gradient(#2EF2EE,#0E8FA0,#13355A,#2EF2EE)}
+.av img{width:100%;height:100%;border-radius:50%;border:3px solid #fff;display:block;object-fit:cover}
+.stats{flex:1;display:flex;justify-content:space-around;text-align:center}
+.stats b{display:block;font-size:17px}
+.stats span{font-size:13px}
+.info{padding:10px 16px 0}
+.info .nm{font-weight:600}
+.info .cat{color:var(--mute)}
+.bio{white-space:pre-line;margin:2px 0}
+.bio div{unicode-bidi:plaintext}
+.lnk{color:#00376B;font-weight:600;display:flex;align-items:center;gap:4px}
+.lnk svg{width:14px;height:14px;stroke:#00376B;fill:none;stroke-width:2}
+.btns{display:flex;gap:6px;padding:12px 16px 4px}
+.btns button{flex:1;border:0;border-radius:8px;padding:8px 0;font:600 14px inherit;font-family:inherit;background:var(--btn);color:var(--ink);cursor:default}
+.btns .f{background:var(--blue);color:#fff}
+.btns .sm{flex:0 0 36px}
+.hls{display:flex;gap:16px;overflow-x:auto;padding:14px 16px 10px;scrollbar-width:none}
+.hls::-webkit-scrollbar{display:none}
+.hl{flex:none;width:66px;text-align:center;cursor:pointer;border:0;background:none;padding:0;font:inherit;color:inherit}
+.hl i{display:block;width:66px;height:66px;border-radius:50%;padding:2px;border:1px solid var(--line);margin-bottom:5px}
+.hl img{width:100%;height:100%;border-radius:50%;display:block;object-fit:cover}
+.hl span{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:flex;border-top:1px solid var(--line)}
+.tabs div{flex:1;display:grid;place-items:center;padding:10px 0;border-bottom:1px solid transparent}
+.tabs .on{border-bottom-color:var(--ink)}
+.tabs div:not(.on) svg{stroke:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.cell{position:relative;aspect-ratio:3/4;background:#0E2440;overflow:hidden;cursor:pointer;border:0;padding:0}
+.cell img{width:100%;height:100%;object-fit:cover;display:block}
+.cell .ic{position:absolute;top:7px;right:7px;width:20px;height:20px;fill:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+.cell .tag{position:absolute;left:6px;bottom:6px;font:600 10px/1 inherit;font-family:inherit;color:#fff;background:rgba(0,0,0,.55);padding:4px 6px;border-radius:5px}
+.nav{display:flex;justify-content:space-around;align-items:center;border-top:1px solid var(--line);padding:12px 0 18px}
+.nav .me{width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);overflow:hidden}
+.nav .me img{width:100%;height:100%;display:block}
+/* setup sheet */
+.sheet{width:100%;max-width:560px;display:flex;flex-direction:column;gap:16px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.box h2{font-size:16px;margin:0 0 12px}
+.box h2 small{font-weight:400;color:var(--mute);font-size:12.5px;margin-inline-start:6px}
+.kv{display:grid;grid-template-columns:110px 1fr auto;gap:8px 12px;align-items:start}
+.kv dt{color:var(--mute);font-size:13px;padding-top:2px}
+.kv dd{margin:0;white-space:pre-line;unicode-bidi:plaintext;font-weight:500}
+.cp{border:1px solid var(--line);background:#fff;border-radius:7px;font:600 11.5px inherit;font-family:inherit;padding:4px 9px;cursor:pointer;color:var(--ink)}
+.cp.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+ol,ul{margin:0;padding-inline-start:20px}
+li{margin:5px 0}
+.st{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;margin-inline-start:6px;vertical-align:1px}
+.st.ready{background:#DDF3F1;color:var(--ok)}.st.content{background:#FFF1D6;color:var(--warn)}.st.new{background:#E7ECF2;color:#41536A}.st.cancelled{background:#FBE3E1;color:var(--bad)}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12.5px}
+.note{color:var(--mute);font-size:12.5px;margin-top:10px}
+a{color:#00376B}
+/* viewers */
+.ov{position:fixed;inset:0;background:rgba(8,14,22,.86);display:none;align-items:center;justify-content:center;z-index:10;padding:16px}
+.ov.on{display:flex}
+.x{position:fixed;top:14px;right:18px;background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer;z-index:12}
+.pv{background:#fff;border-radius:12px;overflow:hidden;width:min(500px,100%);max-height:94vh;display:flex;flex-direction:column}
+.pv .ph{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.pv .ph img{width:32px;height:32px;border-radius:50%}
+.pv .ph b{font-size:14px}.pv .ph small{color:var(--mute);margin-inline-start:auto;font-size:12px}
+.media{position:relative;background:#000;overflow:hidden;flex:none}
+.track{display:flex;transition:transform .3s ease}
+.track img{width:100%;flex:none;display:block}
+.media video{display:block;width:100%;max-height:70vh;background:#000}
+.arr{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.85);cursor:pointer;font-size:18px;line-height:30px;color:#000}
+.arr.l{left:10px}.arr.r{right:10px}
+.dots{display:flex;justify-content:center;gap:4px;padding:8px 0 0}
+.dots i{width:6px;height:6px;border-radius:50%;background:#C7CDD3}.dots i.on{background:var(--blue)}
+.cap{padding:10px 14px 16px;overflow:auto;white-space:pre-line;unicode-bidi:plaintext;font-size:13.5px}
+.cap b{margin-inline-end:6px}
+.sv{position:relative;height:min(92vh,calc((100vw - 32px)*16/9));aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden}
+.sv>img,.sv>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sv>img.contain{object-fit:contain;background:radial-gradient(circle at 50% 40%,#13355A,#081A30)}
+.prog{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:3px;z-index:3}
+.prog i{flex:1;height:2.5px;background:rgba(255,255,255,.35);border-radius:2px;overflow:hidden}
+.prog i b{display:block;height:100%;width:0;background:#fff}
+.sh{position:absolute;top:18px;left:10px;right:10px;display:flex;align-items:center;gap:8px;color:#fff;z-index:3;font-weight:600;font-size:13px;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.sh img{width:30px;height:30px;border-radius:50%}
+.sh small{opacity:.8;font-weight:400}
+.tap{position:absolute;top:0;bottom:0;width:35%;z-index:2;cursor:pointer}
+.tap.l{left:0}.tap.r{right:0;width:65%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar"><b>Feed language</b><div class="seg" id="seg"><button data-l="en" class="on">English posts</button><button data-l="ar">Arabic posts</button></div></div>
+  <div class="hint">Tap a post or a highlight to open it. The profile text is the same in both; the switch shows the English or the Arabic version of each post.</div>
+
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+    <div class="top">
+      <div class="h"><span id="handle"></span><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div class="icons"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+    </div>
+    <div class="head">
+      <div class="av"><img id="pfp" alt="Profile picture"></div>
+      <div class="stats"><div><b id="nposts"></b><span>posts</span></div><div><b>0</b><span>followers</span></div><div><b>0</b><span>following</span></div></div>
+    </div>
+    <div class="info">
+      <div class="nm" id="name"></div>
+      <div class="cat" id="cat"></div>
+      <div class="bio" id="bio"></div>
+      <div class="lnk"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span id="link"></span></div>
+    </div>
+    <div class="btns"><button class="f">Follow</button><button>Message</button><button>Email</button><button class="sm">⌄</button></div>
+    <div class="hls" id="hls"></div>
+    <div class="tabs">
+      <div class="on"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></div>
+      <div><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 8h18M8 3l3 5M14 3l3 5M10 12v6l5-3z"/></svg></div>
+      <div><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M6.5 19c1-3 3-4.5 5.5-4.5s4.5 1.5 5.5 4.5"/></svg></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="nav">
+      <svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z"/></svg>
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg>
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 8h18M10 12v6l5-3z"/></svg>
+      <div class="me"><img id="pfp2" alt=""></div>
+    </div>
+  </div>
+
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<div class="ov" id="pov"><button class="x" data-close>×</button><div class="pv" id="pv"></div></div>
+<div class="ov" id="sov"><button class="x" data-close>×</button><div class="sv" id="sv"></div></div>
+
+<script>
+const D = /*DATA*/null;
+const P = D.profile;
+let lang = "en";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ST = { ready: "Approved", content: "In review", new: "Idea", cancelled: "Cancelled" };
+const badge = (id) => { const s = D.status[id]; return s ? `<span class="st ${s}">${ST[s] || s}</span>` : ""; };
+const ICON = {
+  carousel: '<svg class="ic" viewBox="0 0 24 24"><path d="M7 3h11a3 3 0 0 1 3 3v11h-2V6a1 1 0 0 0-1-1H7z"/><rect x="3" y="7" width="14" height="14" rx="2.5"/></svg>',
+  reel: '<svg class="ic" viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm4.5 5.5v7l6-3.5z" fill-rule="evenodd"/></svg>',
+  pin: '<svg class="ic" viewBox="0 0 24 24"><path d="M14.5 2.5 21.5 9.5l-2 1-1-1-4 4 .5 4.5-1.5 1.5-4-4-5 5-1-1 5-5-4-4L6 9.5l4.5.5 4-4-1-1z"/></svg>',
+};
+
+function head() {
+  $("#handle").textContent = P.username;
+  $("#pfp").src = $("#pfp2").src = D.pfp;
+  $("#nposts").textContent = D.pins.length + D.grid.length;
+  $("#name").textContent = P.name;
+  $("#cat").textContent = P.category;
+  $("#bio").innerHTML = P.bio.split("\n").map((l) => `<div dir="auto">${esc(l)}</div>`).join("");
+  $("#link").textContent = P.link;
+  $("#hls").innerHTML = D.highlights.map((h, i) => `<button class="hl" data-h="${i}"><i><img src="${h.cover}" alt=""></i><span>${esc(h.name)}</span></button>`).join("");
+}
+
+function thumb(p) { const v = p.lang[lang]; return p.kind === "reel" ? v.cover : v.slides[0]; }
+function grid() {
+  const cells = [...D.pins.map((p) => [p, true]), ...D.grid.map((p) => [p, false])];
+  $("#grid").innerHTML = cells.map(([p, pin], i) =>
+    `<button class="cell" data-p="${i}"><img src="${thumb(p)}" alt="${esc(p.id)}" loading="lazy">${pin ? ICON.pin : p.kind === "reel" ? ICON.reel : p.kind === "carousel" ? ICON.carousel : ""}</button>`).join("");
+}
+const allPosts = () => [...D.pins, ...D.grid];
+
+// ── post viewer ──
+let cur = null, idx = 0;
+function openPost(i) {
+  cur = allPosts()[i]; idx = 0;
+  const v = cur.lang[lang];
+  let media;
+  if (cur.kind === "reel") {
+    media = v.video ? `<video src="${v.video}" poster="${v.cover}" controls autoplay loop playsinline></video>`
+                    : `<img src="${v.cover}" style="width:100%;display:block" alt=""><div style="position:absolute;left:0;right:0;bottom:0;padding:8px;color:#fff;background:rgba(0,0,0,.6);font-size:12px;text-align:center">Reel video not rendered on this PC: cover only</div>`;
+  } else {
+    media = `<div class="track" id="track">${v.slides.map((s) => `<img src="${s}" alt="">`).join("")}</div>` +
+      (v.slides.length > 1 ? `<button class="arr l" data-m="-1">‹</button><button class="arr r" data-m="1">›</button>` : "");
+  }
+  const dots = cur.kind !== "reel" && v.slides.length > 1 ? `<div class="dots" id="dots">${v.slides.map((_, j) => `<i class="${j ? "" : "on"}"></i>`).join("")}</div>` : "";
+  $("#pv").innerHTML = `<div class="ph"><img src="${D.pfp}" alt=""><b>${esc(P.username)}</b><small>${esc(cur.id)}${badge(cur.id)}</small></div>
+    <div class="media">${media}</div>${dots}<div class="cap" dir="auto"><b>${esc(P.username)}</b>${esc(v.caption)}</div>`;
+  $("#pov").classList.add("on");
+}
+function move(d) {
+  if (!cur || cur.kind === "reel") return;
+  const n = cur.lang[lang].slides.length;
+  idx = Math.max(0, Math.min(n - 1, idx + d));
+  $("#track").style.transform = `translateX(${-idx * 100}%)`;
+  document.querySelectorAll("#dots i").forEach((e, j) => e.classList.toggle("on", j === idx));
+}
+
+// ── story viewer ──
+let story = null, si = 0, timer = null;
+function openStory(h) { story = D.highlights[h]; si = 0; $("#sov").classList.add("on"); showStory(); }
+function showStory() {
+  clearTimeout(timer);
+  const items = story.items[lang];
+  if (si < 0) si = 0;
+  if (si >= items.length) return closeAll();
+  const it = items[si];
+  const bars = items.map((_, j) => `<i><b style="width:${j < si ? 100 : 0}%"></b></i>`).join("");
+  const media = it.type === "video" ? `<video id="sm" src="${it.src}" poster="${it.poster || ""}" autoplay playsinline></video>`
+                                    : `<img src="${it.src}" class="${it.fit === "contain" ? "contain" : ""}" alt="">`;
+  $("#sv").innerHTML = `${media}<div class="prog">${bars}</div><div class="sh"><img src="${D.highlights.indexOf(story) >= 0 ? story.cover : D.pfp}" alt="">${esc(P.username)} <small>${esc(story.name)}</small></div>
+    <div class="tap l" data-s="-1"></div><div class="tap r" data-s="1"></div>`;
+  const bar = $("#sv .prog i:nth-child(" + (si + 1) + ") b");
+  const run = (ms) => { bar.style.transition = `width ${ms}ms linear`; requestAnimationFrame(() => (bar.style.width = "100%")); timer = setTimeout(() => { si++; showStory(); }, ms); };
+  if (it.type === "video") {
+    const v = $("#sm");
+    v.onloadedmetadata = () => run(v.duration * 1000);
+    v.onerror = () => run(5000);
+  } else run(5000);
+}
+function closeAll() {
+  clearTimeout(timer); story = null; cur = null;
+  document.querySelectorAll(".ov").forEach((o) => o.classList.remove("on"));
+  $("#pv").innerHTML = $("#sv").innerHTML = "";
+}
+
+// ── setup sheet ──
+function sheet() {
+  const row = (k, v, copy = true) => `<dt>${k}</dt><dd>${esc(v)}</dd><div>${copy ? `<button class="cp" data-copy="${esc(v)}">Copy</button>` : ""}</div>`;
+  const bioLen = [...P.bio].length;
+  const name = (p) => p.label ? `${esc(p.label)}: ` : "";
+  $("#sheet").innerHTML = `
+  <div class="box"><h2>Edit profile <small>type these into Instagram</small></h2><dl class="kv">
+    ${row("Username", "@" + P.username)}${row("Name", P.name)}${row("Category", P.category)}
+    ${row("Bio", P.bio)}${row("Website", P.link)}${row("Email button", P.email)}
+    <dt>Picture</dt><dd><a href="${D.pfpFull}" download>IDEA-239 profile picture (1080 × 1080)</a>${badge("IDEA-239")}</dd><div></div>
+  </dl><div class="note">Bio: ${bioLen} / 150 characters. The username is a placeholder: the plan prefers @stacko, then @stacko.inventory or @stacko.lb. Turn on a professional account so the category and the Email button show.</div></div>
+
+  <div class="box"><h2>Pinned posts <small>pin in this order, so they read left to right</small></h2><ol>
+    ${D.pins.map((p) => `<li><span class="mono">${p.id}</span> · ${p.kind}${badge(p.id)}</li>`).join("")}
+  </ol><div class="note">Instagram puts the most recently pinned post first: pin ${D.pins[2].id}, then ${D.pins[1].id}, then ${D.pins[0].id}.</div></div>
+
+  <div class="box"><h2>Highlights <small>left to right; covers from IDEA-186 ${badge("IDEA-186")}</small></h2><ol>
+    ${D.highlights.map((h) => `<li><b><bdi>${esc(h.name)}</bdi></b>: ${h.items.en.length} ${h.items.en.length === 1 ? "story" : "stories"} · ${h.src.map((s) => `<span class="mono">${esc(s)}</span>${badge(s.split(" ")[0])}`).join(", ")}</li>`).join("")}
+  </ol><div class="note">Post each set as stories, then add them to the highlight. Type the highlight name in Instagram; the covers have no text.</div></div>
+
+  <div class="box"><h2>First nine posts <small>publish in this order</small></h2><ol>
+    ${[...D.grid].reverse().map((p) => `<li>${name(p)}<span class="mono">${p.id}</span> · ${p.kind}${badge(p.id)}</li>`).join("")}
+  </ol><div class="note">The newest post sits top-left under the pins, so post 1 ends up bottom-right.</div></div>`;
+}
+
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-p],[data-h],[data-m],[data-s],[data-close],[data-copy],[data-l]");
+  if (!t) { if (e.target.classList.contains("ov")) closeAll(); return; }
+  if (t.dataset.p) openPost(+t.dataset.p);
+  else if (t.dataset.h) openStory(+t.dataset.h);
+  else if (t.dataset.m) move(+t.dataset.m);
+  else if (t.dataset.s) { si += +t.dataset.s; showStory(); }
+  else if (t.dataset.close !== undefined) closeAll();
+  else if (t.dataset.copy !== undefined) { navigator.clipboard?.writeText(t.dataset.copy).then(() => { t.textContent = "Copied"; t.classList.add("done"); setTimeout(() => { t.textContent = "Copy"; t.classList.remove("done"); }, 1400); }); }
+  else if (t.dataset.l) { lang = t.dataset.l; document.querySelectorAll("#seg button").forEach((b) => b.classList.toggle("on", b === t)); grid(); }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeAll();
+  const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+  if (!d) return;
+  if (story) { si += d; showStory(); } else move(d);
+});
+head(); grid(); sheet();
+</script>
+</body>
+</html>

@@ -193,6 +193,7 @@ def story_page(pid, l, i, n, h, s, inner):
     hs = r3_lib.fit(h, 86 if l == "en" else 74, l)  # every line stays on one line
     st = int((270 + lines * hs * 1.06 + 26) if l == "en" else (262 + lines * hs * 1.32 + 14))
     fn = f'<div class="fn">{i} / {n}</div>' if l == "en" else f'<div class="fn">{i} من {n}</div>'
+    fn = fn if n > 1 else ""
     body = f'{STORY_BG}<h1 class="h1" style="font-size:{hs}px">{h}</h1><p class="sub" style="top:{st}px">{s}</p>{inner}{top(l)}{fn}{r3_lib.FOOT[l]}'
     nm = r3_lib.name(pid, l, i)
     r3_lib.write(pid, nm, r3_lib.page(l, f"{nm} · {r3_lib.clean(h)}", body, ST_CSS, size=(1080, 1920)))
@@ -277,12 +278,146 @@ def i236():
             story_page(pid, l, i + 1, len(feats), t(he, ha), t(se, sa), inner)
 
 
+QI = {  # 24-unit line icons for the FAQ / Contact stories
+    "box": '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
+    "team": '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 2 6 5.5"/>',
+    "new": '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M12 9v6M9 12h6"/>',
+    "file": '<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/>',
+    "pin": '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    "stack": '<path d="M4 8l8-4 8 4-8 4z"/><path d="M4 12l8 4 8-4M4 16l8 4 8-4"/>',
+    "map": '<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>',
+    "plan": '<rect x="4" y="4" width="16" height="17" rx="2"/><path d="M8 3v3M16 3v3M4 9h16M8 13.5l2.2 2.2L16 11"/>',
+    "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/>',
+    "mail": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
+}
+QI_CSS = """
+.tl{display:flex;align-items:center;gap:30px}
+.tl i{display:grid;place-items:center;flex:none;width:112px;height:112px;border-radius:50%;background:#E6F4F6}
+.tl svg{width:60px;height:60px;stroke:var(--signal);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tl b{display:block;font-size:42px;line-height:1.18;font-weight:600}
+.tl small{display:block;font-size:28px;color:var(--deep);margin-top:6px;line-height:1.32}
+.tl .ok{margin-inline-start:auto;flex:none;font-size:28px;font-weight:600;color:#0B7A87}
+.ct b{font-size:46px;direction:ltr;unicode-bidi:isolate}
+"""
+
+
+def tiles(rows, top_):
+    """A column of white cards: (icon, bold, small[, right-hand tag])."""
+    out = ""
+    for k, b, s, *ok in rows:
+        tag = f'<span class="ok">{ok[0]}</span>' if ok else ""
+        out += card(f'<div class="tl"><i><svg viewBox="0 0 24 24">{QI[k]}</svg></i><div><b>{b}</b>' + (f"<small>{s}</small>" if s else "") + f"</div>{tag}</div>", 0)
+    return f'<div class="stk" style="top:{top_}px">{out}</div>'
+
+
+def i237():
+    pid = "IDEA-237"
+    qs = [  # (question EN, AR, answer EN, AR); answers only from the product bible and the approved FAQ reels EDU-22/24/26
+        ("Who is Stacko<br><em>made for?</em>", "لمين<br><em>معمول ستاكو؟</em>",
+         "Trading and distribution businesses in Lebanon and the GCC, with several warehouses and frequent imports.",
+         "شركات التجارة والتوزيع بلبنان والخليج، اللي عندها أكتر من مستودع واستيراد دايم."),
+        ("How do staff<br><em>log a move?</em>", "كيف الفريق<br><em>بيسجّل الحركة؟</em>",
+         "A message, a photo or a quick form, from the phone. About 10 seconds.",
+         "برسالة، بصورة أو بفورم سريع، من التلفون. بحوالي 10 ثواني."),
+        ("Where do I<br><em>see my stock?</em>", "وين بشوف<br><em>مخزني؟</em>",
+         "On one live map: every warehouse, every shipment on the way, low stock first.",
+         "عخريطة وحدة مباشرة: كل مستودع، كل شحنة عالطريق، والناقص أوّل."),
+        ("Is my data<br><em>safe?</em>", "داتا شركتي<br><em>بأمان؟</em>",
+         "Each company's data is kept separate, and access follows the roles you set.",
+         "داتا كل شركة منفصلة عن غيرها، والصلاحيات حسب الأدوار اللي بتحدّدها."),
+        ("How long does<br><em>setup take?</em>", "قدّيش بياخد<br><em>التشغيل؟</em>",
+         "It depends on how many locations and products you have. We start from your current files.",
+         "بيتوقّف على عدد المواقع والأصناف عندك. ومنبلّش من ملفاتك الحالية."),
+        ("Can I see it<br><em>before I commit?</em>", "فيني شوفه<br><em>قبل ما إلتزم؟</em>",
+         "Yes. It starts with a meeting with our team.",
+         "أكيد. منبلّش باجتماع مع فريقنا."),
+    ]
+    reg(pid, "highlight-faq", "Story", (qs[0][0], qs[0][1]), (qs[0][2], qs[0][3]),
+        ("Highlight: FAQ. Six short answers: who it's for, logging, the map, data, setup and seeing it first.",
+         "هايلايت: أسئلة. ست أجوبة قصيرة: لمين، التسجيل، الخريطة، الداتا، التشغيل، وكيف بتشوفه قبل."),
+        slides=[(a, b) for a, b, *_ in qs],
+        note="Evergreen stories for the FAQ highlight (cover IDEA-186-05). Answers follow the product bible and the approved FAQ reels "
+             "EDU-22 (data), EDU-24 (setup, no timeline promised) and EDU-26 (meeting first, no free trial promised). ERP connection left out. "
+             "Real demo-company captures cropped below the app header.")
+    for l in LS:
+        t = T(l)
+        inners = [
+            tiles([("box", t("About 10,000 items", "حوالي 10,000 صنف"), t("With new items every month.", "مع أصناف جديدة كل شهر.")),
+                   ("team", t("About 20 staff", "حوالي 20 موظف"), t("Spread over several warehouses.", "موزّعين على أكتر من مستودع.")),
+                   ("pin", t("Lebanon and the GCC", "لبنان والخليج"), t("Branches, stores and a showroom.", "فروع، مخازن وصالة عرض."))], 760),
+            phone_chat(l, t("sent 40 LED strips from Beirut to Sidon", "بعتت 40 لمبة LED من بيروت لصيدا"),
+                       t('<span class="okc">Logged ✓</span> Beirut → Sidon is on the map, ETA 35m', '<span class="okc">تسجّلت ✓</span> بيروت ← صيدا عالخريطة، 35 دقيقة')),
+            phone(CAP(f"{l}-ph-owner-map"), 560),
+            phone(CAP(f"{l}-ph-owner-moves"), 400, h=760) + f'<div class="stk" style="top:1460px">{EX(t("Every change keeps who, what, when and where. A correction is a new entry, never an edit.", "كل تغيير بيحفظ مين، شو، إيمتى ووين. والتصحيح بيصير قيد جديد، مش تعديل."))}</div>',
+            tiles([("stack", t("Your products", "أصنافك"), t("From your current files.", "من ملفاتك الحالية."), "✓"),
+                   ("map", t("Your locations", "مواقعك"), t("Warehouses, branches, stores.", "مستودعات، فروع، مخازن."), "✓"),
+                   ("file", t("Your opening stock", "رصيدك الافتتاحي"), t("So the team starts with real numbers.", "ليبلّش الفريق بأرقام حقيقية."), "✓")], 760),
+            tiles([("map", t("We show you the live map", "منفرجيك الخريطة المباشرة"), t("On examples like yours.", "على أمثلة متل شغلك.")),
+                   ("file", t("Bring a real invoice", "جيب فاتورة حقيقية"), t("And watch the draft it becomes.", "وشوف كيف بتصير مسودّة.")),
+                   ("plan", t("A clear plan and a quote", "خطة واضحة وعرض سعر"), t("For your locations, users and setup.", "لمواقعك، المستخدمين والتشغيل."))], 760),
+        ]
+        for i, ((he, ha, se, sa), inner) in enumerate(zip(qs, inners)):
+            story_page(pid, l, i + 1, len(qs), t(he, ha), t(se, sa), inner)
+
+
+def i238():
+    pid = "IDEA-238"
+    h = ("Talk to<br><em>our team.</em>", "احكي<br><em>مع فريقنا.</em>")
+    s = ("Ask us anything about Stacko. A person from our team will answer.", "اسألنا أي شي عن ستاكو. حدا من فريقنا بيجاوبك.")
+    reg(pid, "highlight-contact", "Story", h, s,
+        ("Highlight: Contact. www.stacko-lb.com · info@stacko-lb.com", "هايلايت: تواصل. www.stacko-lb.com · info@stacko-lb.com"),
+        slides=[h], note="One evergreen story for the Contact highlight (cover IDEA-186-06). Website and business email only; no buttons.")
+    for l in LS:
+        t = T(l)
+        inner = tiles([("globe", L("www.stacko-lb.com"), t("Book a meeting from the website.", "احجز اجتماع من الموقع.")),
+                       ("mail", L("info@stacko-lb.com"), t("Write to us, in Arabic or English.", "راسلنا، بالعربي أو بالإنجليزي."))], 780)
+        inner = inner.replace('class="tl"', 'class="tl ct"')
+        inner += f'<div class="stk" style="top:1190px">{EX(t("We show you Stacko on examples like yours, then agree on a clear plan.", "منفرجيك ستاكو على أمثلة متل شغلك، وبعدين منتّفق على خطة واضحة."))}</div>'
+        story_page(pid, l, 1, 1, h[l == "ar"], s[l == "ar"], inner)
+
+
+PROFILE = {  # what goes in Instagram's Edit profile (the bio is exactly 150 characters, Instagram's limit)
+    "username": "stacko.lb",  # placeholder: the plan prefers @stacko, then @stacko.inventory or @stacko.lb
+    "name": "Stacko · Warehouse & Stock Management",
+    "category": "Software company",
+    "bio": "Your stock, always in sight · مخزنك دايماً قدّام عينك\nAll your warehouses on one live map\nImporters & distributors · Lebanon & GCC\nA product by AIPHIN",
+    "link": "stacko-lb.com",
+    "email": "info@stacko-lb.com",
+}
+
+
+def i239():
+    """Profile picture: the Dot core mark alone on Abyss, sized to survive Instagram's circle crop. Same file in EN and AR."""
+    from und_lib import page as upage
+    pid = "IDEA-239"
+    p = PROFILE
+    reg(pid, "instagram-profile", "Profile", ("Profile picture", "صورة الحساب"), ("Stacko mark on Abyss", "شعار ستاكو"),
+        (f"Name: {p['name']}\nCategory: {p['category']}\n\nBio:\n{p['bio']}\n\nLink: {p['link']}\nEmail button: {p['email']}",
+         f"Name: {p['name']}\nCategory: {p['category']}\n\nBio:\n{p['bio']}\n\nLink: {p['link']}\nEmail button: {p['email']}"),
+        note="Instagram profile: the profile picture (source/IDEA-239.html, 1080×1080, same in EN and AR) and the text for Edit profile "
+             "(captions). Bio is 150 characters, Instagram's limit. Username is a placeholder until the handle is chosen. "
+             "Full page preview: mockup/index.html (posts/build_profile_mockup.py).")
+    d = POSTS / "unscheduled" / REG[pid]["folder"] / "source"
+    d.mkdir(parents=True, exist_ok=True)
+    css = """
+.post.dark{background:radial-gradient(circle at 50% 46%,#1B4A78 0%,#0E2440 52%,#081A30 100%)}
+.halo{position:absolute;left:50%;top:50%;width:900px;height:900px;margin:-450px;border-radius:50%;background:radial-gradient(circle,rgba(46,242,238,.16),rgba(46,242,238,0) 66%)}
+.mk{position:absolute;left:50%;top:50%;width:820px;margin:-432px 0 0 -410px;filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
+"""
+    body = '<div class="halo"></div><img class="mk" src="/assets/brand/logo/mark-dark.svg" alt="">'
+    for l in LS:
+        nm = f"{pid}{'-AR' if l == 'ar' else ''}"
+        (d / f"{nm}.html").write_text(upage(l, f"{nm} · Instagram profile picture", body, css, size=(1080, 1080)), encoding="utf8")
+
+
+ST_CSS += QI_CSS
+
 if __name__ == "__main__":
     # The posts are fixed by hand after review (und_lib guard), so rebuild only what you name:
     #   python -I -X utf8 posts/build_page_kit.py --force --only i186 [--dump out.json]
     a = sys.argv[1:]
     only = a[a.index("--only") + 1].split(",") if "--only" in a else []
-    for fn in (i232, i233, i234, i186, i235, i236):
+    for fn in (i232, i233, i234, i186, i235, i236, i237, i238, i239):
         if not only or fn.__name__ in only:
             fn()
     if "--dump" in a:
