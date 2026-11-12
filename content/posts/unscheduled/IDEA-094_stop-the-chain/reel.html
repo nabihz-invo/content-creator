@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>IDEA-094 · Stop the chain</title>
+    <!-- Round 4 (12 Nov 2026), built by posts/build_round4_short_reels.py. OB-09 dominoes; low-stock alert (bible: alerts). No date in the plan. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <style>.sm-paper .ex{display:none}</style>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "IDEA-094 · Stop the chain" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg", PI = (c) => `/assets/post-images/final/${c}.jpg`;
+      const DIR = SM.ar() ? "rtl" : "ltr", FONT = SM.ar() ? "'Noto Kufi Arabic'" : "'Readex Pro'";
+      const card = (inner, w = 900) => `<div dir="${DIR}" style="width:${w}px;background:#fff;border-radius:32px;padding:30px 36px;box-shadow:0 26px 70px rgba(3,9,18,.45);font-family:${FONT},sans-serif;color:#0E2440">${inner}</div>`;
+      const pill = (bg, fg, t) => `<span style="background:${bg};color:${fg};border-radius:999px;padding:6px 16px;font-size:24px;font-weight:700;flex:none">${t}</span>`;
+      const row = (a, b, c) => `<div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #E1EAF0;font-size:31px"><b style="flex:1">${a}</b><span style="color:#2C5974">${b}</span>${c || ""}</div>`;
+      const FADE = "background:linear-gradient(180deg,rgba(244,248,250,0) 80%,rgba(244,248,250,.96) 88%,rgba(244,248,250,.96) 100%)";
+      const mapLine = (s, en, ar, at) => { s.fill(FADE); s.text(T(en, ar), { y: 1750, size: 58, fx: "rise", at, w: 980, color: SM.C.abyss, theme: "light" }); };
+
+      // ── image + hook ─────────────────────────────────────────────────────────────────
+      const a = R.scene(3, { bg: PI("OB-09"), move: "in", dim: .3, gradient: true, focus: "50% 55%", name: "image" });
+      a.text(T("Stop *the chain.*", "وقّف *السلسلة.*"), { y: 400, size: 96, fx: "blur", at: .1, w: 980 });
+      a.text(T("With Stacko, an alert comes before the shelf is empty.", "مع ستاكو، التنبيه بيوصل قبل ما يفضى الرف."), { y: 1640, size: 46, weight: 600, style: "pill", fx: "pop", at: .9, w: 980 });
+
+      const b = R.scene(5.4, { in: "zoom-through", bg: BG, name: "alert" });
+      b.text(T("One alert at the right moment\n*saves a week of fixing.*", "تنبيه واحد بالوقت الصح\n*بيوفّر أسبوع تصليح.*"), { y: 380, size: 70, fx: "rise", at: .05, w: 980 });
+      b.notify({ x: 540, y: 820, w: 900, app: "Stacko", title: T("Low stock", "نقص"), text: T("USB-C Cable · WH-02 Sidon · 3 left", "كابل USB-C · WH-02 صيدا · باقي 3"), at: .5 });
+      b.html(card(`${row(T("Missed sale", "بيعة ضايعة"), "", pill("#BCE5E0", "#0B7A87", T("avoided", "ما صارت")))}${row(T("Angry call", "تلفون معصّب"), "", pill("#BCE5E0", "#0B7A87", T("avoided", "ما صار")))}${row(T("Emergency order", "طلبية مستعجلة"), "", pill("#BCE5E0", "#0B7A87", T("avoided", "ما صارت")))}`), { x: 540, y: 1250, w: 900, in: "rise", at: 1.6 });
+
+      R.endcard("dots", { in: "dots", dur: 3.2 });
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: .6, from: .3, to: 8.1 });
+      R.grain(.03).vignette(.4).safe();
+      R.audio({ music: "/assets/audio/music/The_Slowest_Hour.mp3", musicVolume: .4, lufs: -14, sfxVolume: .5 });
+      R.cover(1.6);
+    </script>
+  </body>
+</html>

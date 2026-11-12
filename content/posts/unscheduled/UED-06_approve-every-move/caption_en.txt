@@ -1,0 +1,3 @@
+Approving everything slows the floor down. Approving nothing loses control.
+
+In Stacko, approval rules follow the move's type, location and quantity or value: small routine moves can be approved automatically, adjustments and big transfers wait for a manager, and your company decides whether people may approve their own moves.

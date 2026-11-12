@@ -1,0 +1,5 @@
+A stock system is only as good as what you load into it on day one.
+
+Five things to settle first: one name and code per item, the unit, every place stock sits, an opening count per location, and who logs and who approves.
+
+With Stacko, items, locations and opening stock come in from your current files, and the approval rules are set before the first move.

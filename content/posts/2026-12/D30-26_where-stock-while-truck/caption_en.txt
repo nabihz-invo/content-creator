@@ -1,0 +1,3 @@
+It's the gap nobody talks about: stock that has left one place and hasn't reached the other.
+
+In Stacko, stock leaves on dispatch, travels on the map with its ETA, and lands on arrival. It's never "nowhere".

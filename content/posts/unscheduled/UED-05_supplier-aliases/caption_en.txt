@@ -1,0 +1,3 @@
+Your supplier will never use your SKU. Matching their description to your item, and remembering it, is what stops the same product appearing twice in your stock.
+
+In Stacko, when an invoice is read, each line is matched to an item you already have. You confirm it once, the supplier's name for it is saved, and the next invoice matches on its own.

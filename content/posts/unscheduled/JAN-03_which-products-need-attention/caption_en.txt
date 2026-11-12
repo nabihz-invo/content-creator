@@ -1,0 +1,3 @@
+A good assistant doesn't just show numbers. It points at what to check first, and shows you why.
+
+Ask Stacko which products need your attention: low stock, moves waiting for approval and what's in transit, each with the record behind it. Suggestions for you to review; nothing changes until you act.

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-08 · Every container brings new products</title>
+    <!-- Round 4 (12 Nov 2026). Importers' pain: half the invoice is products you've never stocked. AI reads the invoice, matches the known items,
+         flags the new ones for a person to confirm. Owner rules: no "Planned" badge, no closing question. The invoice's "EXAMPLE" stamp is hidden. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+    <style>.sm-paper .ex{display:none}</style>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-08 · Every container brings new products" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg";
+
+      // ── hook: the container doors ────────────────────────────────────────────────────
+      const a = R.scene(2.8, { bg: "/assets/post-images/final/SC-08.jpg", move: "push", dim: 0.25, gradient: true, focus: "50% 55%", name: "container" });
+      a.text(T("Every container brings products\n*you've never stocked.*", "كل كونتينر بيجيب\n*أصناف ما عمرك بعتها.*"), { y: 420, size: 76, fx: "blur", at: 0.1, w: 980 });
+
+      // ── the invoice is read ──────────────────────────────────────────────────────────
+      const b = R.scene(6.4, { in: "zoom-through", bg: BG, name: "invoice" });
+      b.text(T("Upload the invoice.\n*AI reads every line.*", "ارفع الفاتورة.\n*والذكاء الاصطناعي بيقرا كل سطر.*"), { y: 300, size: 70, fx: "rise", at: 0.05, w: 980 });
+      const inv = b.invoice({ x: 540, y: 760, w: 900, in: "drop", at: 0.3, rot: -1.5 });
+      inv.scan(1.0, 1.4);
+      inv.draft(2.6, { x: 540, y: 1360, w: 900, code: "SHP-24017", label: T("Incoming shipment · draft", "شحنة واردة · مسودة") });
+
+      // ── known matched, new flagged ───────────────────────────────────────────────────
+      const c = R.scene(3.4, { in: "push-up", bg: BG, name: "flagged" });
+      c.dotMorph({ count: 380, y: 1100, steps: [{ at: 0, shape: "scatter" }, { at: 0.1, shape: { icon: "box" }, size: 480, dur: 0.8 }] });
+      c.text(T("Known items: *matched.*\nNew ones: *flagged.*", "الأصناف المعروفة: *انربطت.*\nالجديدة: *انعلّمت.*"), { y: 420, size: 84, fx: "rise", at: 0.1, w: 980 });
+      c.text(T("Nothing is created until someone confirms.", "ما في شي بينعمل قبل ما حدا يأكّد."), { y: 1650, size: 46, weight: 600, style: "pill", fx: "pop", at: 1.2, w: 960 });
+
+      R.endcard("dots", { in: "dots", dur: 3.2 });
+
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: 0.6, from: 0.3, to: 12.4 });
+      R.grain(0.03).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Paperback_Pages.mp3", musicVolume: 0.4, lufs: -14, sfxVolume: 0.5 });
+      R.cover(2.0);
+    </script>
+  </body>
+</html>

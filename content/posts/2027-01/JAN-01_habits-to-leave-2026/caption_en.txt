@@ -1,0 +1,5 @@
+Five habits that quietly make stock numbers wrong, and what to do instead.
+
+Log it when it moves. Let every move carry a name and a time. Check the map before you call. Quote what's available, not what's at sea. Fix a number with an adjustment and a reason, never by typing over it.
+
+Stacko is built so these become the normal way of working.

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-14 · Our trucks move without GPS. Here's how.</title>
+    <!-- Round 4 (12 Nov 2026). The real ETA logic from the product bible: phase 1 has no GPS; a truck is placed along the route by time since
+         dispatch over the ETA. The plan's founder talking head is replaced (no presenter clip exists). GPS is phase 2 and said to come later. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-14 · Our trucks move without GPS" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg";
+      const DIR = SM.ar() ? "rtl" : "ltr", FONT = SM.ar() ? "'Noto Kufi Arabic'" : "'Readex Pro'";
+
+      // ── hook ─────────────────────────────────────────────────────────────────────────
+      const a = R.scene(2.8, { bg: BG, name: "hook" });
+      a.dotMorph({ count: 380, y: 1150, steps: [{ at: 0, shape: "explode" }, { at: 0.2, shape: { icon: "truck" }, size: 520, dur: 0.9 }] });
+      a.text(T("Our trucks move on the map\n*without GPS.*", "الشاحنات عنّا بتمشي عالخريطة\n*بلا GPS.*"), { y: 470, size: 78, fx: "rise", at: 0.1, w: 980 });
+      a.text(T("Here's the trick.", "هيدا السرّ."), { y: 1650, size: 54, weight: 600, style: "pill", fx: "pop", at: 1.6 });
+
+      // ── the trick: time since it left ÷ the ETA ──────────────────────────────────────
+      const b = R.scene(5.2, { in: "push-left", bg: BG, name: "trick" });
+      b.text(T("We know when it left\n*and when it's due.*", "منعرف إيمتى طلعت\n*وإيمتى لازم توصل.*"), { y: 420, size: 78, fx: "rise", at: 0.05, w: 980 });
+      const card = b.html(`<div dir="${DIR}" style="width:900px;background:#fff;border-radius:34px;padding:34px 40px;box-shadow:0 26px 70px rgba(3,9,18,.45);font-family:${FONT},sans-serif;color:#0E2440">
+        <div style="display:flex;justify-content:space-between;font-size:32px"><span>${T("Left", "طلعت")} <b>09:10</b></span><span>${T("ETA", "الوصول")} <b>${T("73 min", "73 دقيقة")}</b></span></div>
+        <div style="position:relative;height:26px;border-radius:13px;background:#E1EAF0;margin:30px 0 18px;direction:ltr"><div class="fillbar" style="position:absolute;left:0;top:0;bottom:0;width:0;border-radius:13px;background:#0E8FA0"></div></div>
+        <div style="font-size:40px;font-weight:600"><span class="mins">0</span> ${T("min in", "دقيقة")} = <span class="pct" style="color:#0E8FA0">0%</span> ${T("of the road", "من الطريق")}</div></div>`, { x: 540, y: 1080, w: 900, in: "rise", at: 0.4 });
+      const el = card.box || card;
+      b.on(1.0, 4.4, (p) => {
+        const root = (el.querySelector ? el : document);
+        const f = root.querySelector(".fillbar"), mi = root.querySelector(".mins"), pc = root.querySelector(".pct");
+        const mins = Math.round(38 * p), pct = Math.round(mins / 73 * 100);
+        if (f) f.style.width = pct + "%"; if (mi) mi.textContent = mins; if (pc) pc.textContent = pct + "%";
+      });
+
+      // ── on the map ───────────────────────────────────────────────────────────────────
+      const c = R.scene(5, { in: "zoom-through", name: "map" });
+      const m = c.map({ intro: "drop", at: 0, fitH: 0.5 });
+      m.header({ y: 330, at: 0.2 });
+      m.truck({ from: "W1", to: "W2", at: 0.3, dur: 4.6, eta: 73, qty: 40, item: "LED Strip 5m", follow: true, followZoom: 1.6, followOffset: [0, 260] });
+      c.fill("background:linear-gradient(180deg,rgba(244,248,250,0) 80%,rgba(244,248,250,.96) 88%,rgba(244,248,250,.96) 100%)");
+      c.text(T("So that's where we draw it.\n*Real GPS comes later.*", "فمنرسمها هونيك.\n*والـGPS الحقيقي بعدين.*"), { y: 1730, size: 56, fx: "rise", at: 1.0, w: 980, color: SM.C.abyss, theme: "light" });
+
+      R.endcard("dots", { in: "dots", dur: 3.4 });
+
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: 0.6, from: 0.3, to: 12.8 });
+      R.grain(0.03).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Paperback_Pages.mp3", musicVolume: 0.4, lufs: -14, sfxVolume: 0.5 });
+      R.cover(2.0);
+    </script>
+  </body>
+</html>

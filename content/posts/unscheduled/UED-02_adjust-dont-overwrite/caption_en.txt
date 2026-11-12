@@ -1,0 +1,3 @@
+Overwriting a quantity fixes the number and hides the reason. An adjustment fixes it and keeps both: what changed, who changed it, and why.
+
+In Stacko, you find the reason in the item's history, record a stock adjustment with a note, and it goes through approval. The original records stay.

@@ -1,0 +1,5 @@
+Nobody on the floor wants another thing to fill in.
+
+In Stacko, a move is one message from the phone. A manager approves it, the truck shows up on the map, and the inventory ledger keeps who moved what and when.
+
+The point is knowing where the stock went.

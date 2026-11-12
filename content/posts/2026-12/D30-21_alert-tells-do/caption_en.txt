@@ -1,0 +1,3 @@
+A low-stock alert is useful. Seeing what's already on the way, on the same map, is better.
+
+In Stacko, the alert reaches your phone, and the map shows the incoming shipment and the stock in every other warehouse, so you can decide.

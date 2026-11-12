@@ -1,0 +1,3 @@
+Three people, three warehouses, the same item, the same minute.
+
+In Stacko each person logs from their own account, every move becomes its own line with a name and a time, and the total updates for everyone at once.

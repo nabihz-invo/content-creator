@@ -1,0 +1,7 @@
+For importers, stock spends weeks "somewhere". Knowing which leg it's on changes how you sell it.
+
+Factory to port, the sea (about a month from Shenzhen via Suez to Beirut) or the air (hours), customs (often a couple of days, the least predictable), then the truck to your warehouse.
+
+In Stacko, an incoming shipment shows each leg with its ETA on the map, and the stock joins the warehouse only when it's received.
+
+Durations are typical and vary by carrier and season.

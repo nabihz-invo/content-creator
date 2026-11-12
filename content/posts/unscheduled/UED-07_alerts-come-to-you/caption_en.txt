@@ -1,0 +1,3 @@
+Nobody can watch a stock system all day. Notifications bring the moments that need someone, an approval, a due shipment, a count mismatch, to the person who can act.
+
+In Stacko, each person chooses email or phone messages for themselves, and the company decides which events are on.

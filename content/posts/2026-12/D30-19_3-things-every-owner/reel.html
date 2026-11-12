@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>D30-19 · 3 things every owner should know each morning</title>
+    <!-- Round 4 (12 Nov 2026). A shareable framework: what's low, what's coming, what moved. No presenter clip exists, so the checklist builds
+         over a clock, then the Stacko map shows all three. Owner rules: no closing question. Demo figures. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "D30-19 · 3 things before 9 AM" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg";
+
+      // ── hook + clock ─────────────────────────────────────────────────────────────────
+      const a = R.scene(8, { bg: BG, name: "checklist" });
+      a.text(T("3 things to know about your stock\n*before 9 AM.*", "3 شغلات لازم تعرفها عن مخزنك\n*قبل الـ9 الصبح.*"), { y: 340, size: 72, fx: "rise", at: 0.1, w: 980 });
+      a.clock({ from: 8 * 60 + 57, to: 9 * 60, at: 0.3, dur: 7.4, size: 220, x: 540, y: 720 });
+      a.checklist({ x: 540, y: 1300, w: 900, at: 1.4, stagger: 1.6, title: T("Every morning", "كل صبحية"), items: [
+        T("What's running low", "شو عم يخلص"),
+        T("What's on the way, and when it lands", "شو جايي، وإيمتى بيوصل"),
+        T("What moved yesterday, and who moved it", "شو تحرّك مبارح، ومين حرّكه"),
+      ] });
+
+      // ── all three on one screen ──────────────────────────────────────────────────────
+      const b = R.scene(5.6, { in: "zoom-through", name: "map" });
+      const m = b.map({ intro: "drop", at: 0, fitH: 0.5 });
+      m.header({ y: 330, at: 0.2 });
+      m.low("W3", 0.6, 3); m.pulse("W3", 0.6);
+      m.ship({ at: 0.4, dur: 5, eta: 4 * 1440 });
+      m.truck({ from: "W1", to: "W2", at: 0.8, dur: 4.6, eta: 50, qty: 40, item: "LED Strip 5m" });
+      b.fill("background:linear-gradient(180deg,rgba(244,248,250,0) 80%,rgba(244,248,250,.96) 88%,rgba(244,248,250,.96) 100%)");
+      b.text(T("With Stacko, all three are\n*on one screen.*", "مع ستاكو، التلاتة\n*على شاشة وحدة.*"), { y: 1730, size: 54, fx: "rise", at: 1.0, w: 980, color: SM.C.abyss, theme: "light" });
+
+      R.endcard("dots", { in: "dots", dur: 3.2 });
+
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: 0.6, from: 0.3, to: 13.4 });
+      R.grain(0.03).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.4, lufs: -14, sfxVolume: 0.5 });
+      R.cover(6.5);
+    </script>
+  </body>
+</html>

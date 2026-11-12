@@ -1,0 +1,3 @@
+Most transfer problems start when the truck leaves and nobody records what actually arrives.
+
+In Stacko, a transfer is in transit until the other warehouse receives it. If fewer units arrive, it's partially received, and you can close it short with a reason.

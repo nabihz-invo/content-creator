@@ -1,0 +1,3 @@
+Log the move. Watch it arrive. That's it.
+
+In Stacko, every transfer drives on the live map with a countdown, and the stock lands at the other warehouse on arrival.

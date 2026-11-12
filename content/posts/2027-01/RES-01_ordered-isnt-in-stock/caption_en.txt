@@ -1,0 +1,5 @@
+Ordered is a promise. On hand is a fact.
+
+Between the supplier and your shelf, stock spends weeks on the water, at customs and on a truck. Sell it before it lands and you're selling a guess.
+
+In Stacko, incoming stock has its own line on the map and only joins the warehouse count when it's received.

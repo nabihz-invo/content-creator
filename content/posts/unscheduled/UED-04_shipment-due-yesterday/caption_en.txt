@@ -1,0 +1,3 @@
+Arrival dates change. The problem is when the change lives in one person's phone.
+
+In Stacko, every ETA change is kept with who changed it, a late shipment shows as Delayed, and due and overdue notices reach the right people by email or phone messages.

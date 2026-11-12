@@ -1,0 +1,3 @@
+Count the places your stock is right now: each warehouse, the showroom's back room, the truck on the road, the container at the port.
+
+In Stacko every warehouse is on one map, with transfers and incoming shipments moving between them.

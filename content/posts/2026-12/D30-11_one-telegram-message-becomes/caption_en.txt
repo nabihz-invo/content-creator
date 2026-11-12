@@ -1,0 +1,3 @@
+The whole idea of Stacko in eight slides.
+
+Hadi sends one message from his phone. AI reads the item, the quantity, where from and where to, and drafts the transfer. Nothing moves until the manager approves it. Then Beirut drops by 40, a truck drives on the map with its ETA, and Sidon goes up by 40 on arrival, logged with who, what and when.

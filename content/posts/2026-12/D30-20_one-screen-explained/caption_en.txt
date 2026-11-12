@@ -1,0 +1,5 @@
+The map isn't decoration. Every building, truck and ship on it is a real stock move someone logged.
+
+Warehouses with their units and low-stock count, transfers on the road with their ETA, the totals across the business, and each warehouse's stock one tap away.
+
+That's the idea behind Stacko: make logging visible, and people log.

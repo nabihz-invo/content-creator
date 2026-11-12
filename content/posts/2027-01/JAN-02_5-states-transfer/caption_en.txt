@@ -1,0 +1,5 @@
+Most "missing" stock between branches isn't missing. It's stuck between two states nobody recorded.
+
+Pending approval, approved, ready to dispatch, in transit, received: each one answers a question, and the stock only leaves on dispatch and only lands on receipt.
+
+In Stacko, every transfer shows its state, and the ones on the road drive on the map with their ETA.

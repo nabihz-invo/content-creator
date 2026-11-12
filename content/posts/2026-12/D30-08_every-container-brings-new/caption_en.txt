@@ -1,0 +1,3 @@
+If you import from China, you know the feeling: half the invoice is products you've never sold before.
+
+In Stacko, AI reads the supplier invoice, matches the items you already have and flags the new ones for a person to confirm. Nothing is created until someone does.

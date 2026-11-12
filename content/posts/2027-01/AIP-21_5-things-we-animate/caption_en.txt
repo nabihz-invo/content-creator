@@ -1,0 +1,3 @@
+Dashboards, maps, chats, invoices and logos: if it's on a screen, we can make it move.
+
+Every frame here is from Stacko, our own product.

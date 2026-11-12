@@ -1,0 +1,3 @@
+If logging is slow, the records will always be a day behind. The numbers are there; the truth isn't.
+
+Stacko makes logging fit where the team already works: one message from the phone, a manager's approval, and the move is on the live map.

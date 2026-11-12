@@ -1,0 +1,3 @@
+Phase 1 doesn't need GPS. If you know when the truck left and when it's due, you can show roughly where it is.
+
+Small idea, big difference for logging: people see the result of every move on the Stacko map. Real GPS comes later.

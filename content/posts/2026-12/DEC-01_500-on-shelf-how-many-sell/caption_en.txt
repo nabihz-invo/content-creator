@@ -1,0 +1,7 @@
+A customer asks for 450 units. Your records say 500. Can you say yes?
+
+Only if 450 are available. 80 may already be promised to orders waiting to go out, and the container at sea doesn't count until it's received.
+
+On hand is what you have. Available is what you can promise. Stacko shows on hand, committed, available and incoming for every item in every warehouse.
+
+Save this for the next time someone asks "how many do we have?"

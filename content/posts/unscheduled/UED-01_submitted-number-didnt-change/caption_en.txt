@@ -1,0 +1,5 @@
+"I logged it, so why is the number the same?" Usually the answer is the status.
+
+A move changes stock only once it's approved. A transfer takes stock out of the sending warehouse when it's dispatched and adds it to the other one when it's received. A draft hasn't been submitted, and a rejected move never changes stock.
+
+In Stacko, every transaction shows its status, so the answer is one tap away.

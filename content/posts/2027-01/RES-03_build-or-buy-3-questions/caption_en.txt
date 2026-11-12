@@ -1,0 +1,5 @@
+Build it, buy it, or wait for AI to make it easy?
+
+Before any of that, answer three questions: can you see every location right now, do you know what's incoming and when it lands, and will your team actually log every move?
+
+Your answers are the spec. Judge every option against them, ours included. Stacko was built around these three: every location on one live map, incoming shipments with their ETA, and logging in one message from the phone.

@@ -1,0 +1,3 @@
+Upload. Read. Done.
+
+In Stacko, AI reads the supplier invoice, creates the incoming shipment with every line on it, and flags new items for you to confirm before anything is recorded.

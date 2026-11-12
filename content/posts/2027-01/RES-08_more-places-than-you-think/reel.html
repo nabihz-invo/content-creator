@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>RES-08 · Your stock is in more places than you think</title>
+    <!-- Round 4 (12 Nov 2026). Count the places stock sits: warehouses, a showroom stockroom, the truck between sites, the container at the port.
+         Then the Stacko map shows the warehouses and what moves between them (no showroom pin on the map: the bible's map shows warehouses).
+         Owner rules: no Prototype badge, no closing question. Demo figures. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "RES-08 · More places than you think" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg";
+
+      // ── hook: one warehouse ──────────────────────────────────────────────────────────
+      const a = R.scene(2.6, { bg: BG, name: "hook" });
+      a.iso({ x: 540, y: 1150, scale: 4.2, intro: "pop", stagger: 0.1, at: 0.05, items: [
+        { id: "ground", o: { k: "concrete" }, x: -10, y: -10, d: -99 },
+        { id: "warehouse", o: { size: "m" }, x: 0, y: -10 },
+        { id: "pallet", o: { levels: 2, wrap: true }, x: 48, y: 46 },
+      ] });
+      a.text(T("If you run more than one warehouse,\n*your stock is in more places than you think.*", "إذا عندك أكتر من مستودع،\n*بضاعتك بمطارح أكتر ما بتفكّر.*"), { y: 450, size: 66, fx: "rise", at: 0.1, w: 980 });
+
+      // ── count the places ─────────────────────────────────────────────────────────────
+      const b = R.scene(6, { in: "cut", bg: BG, name: "places" });
+      b.iso({ x: 540, y: 1180, scale: 2.6, intro: "pop", stagger: 0.0, at: 0, items: [
+        { id: "ground", o: { k: "concrete" }, x: -60, y: -60, d: -99 },
+        { id: "warehouse", o: { size: "m" }, x: -60, y: -40, at: 0 },
+        { id: "warehouse", o: { size: "s", wall: "#8FA3B3", roof: "#C9D8E4" }, x: 70, y: -70, at: 0.9 },
+        { id: "shop", o: {}, x: -110, y: 70, at: 1.8 },
+        { id: "boxTruck", o: {}, x: 20, y: 40, at: 2.7 },
+        { id: "containerStack", o: {}, x: 120, y: 60, at: 3.6 },
+      ] });
+      const labels = [[T("Warehouse 1", "مستودع 1"), 0], [T("Warehouse 2", "مستودع 2"), 0.9], [T("Showroom stockroom", "مخزن صالة العرض"), 1.8], [T("The truck between sites", "الشاحنة بين المواقع"), 2.7], [T("The container at the port", "الكونتينر بالمرفأ"), 3.6]];
+      labels.forEach(([t, at], i) => b.text(t, { y: 1640, size: 48, weight: 600, style: "pill", fx: "pop", at, out: i < 4 ? "fade" : undefined, outAt: i < 4 ? labels[i + 1][1] - 0.05 : undefined }));
+      b.counter({ from: 1, to: 5, at: 0.2, dur: 3.5, y: 470, size: 150, format: "none", prefix: T("Places: ", ""), suffix: T("", " مطارح") });
+      b.text(T("If it holds stock, *it's a location.*", "إذا فيه بضاعة، *يعني هوّي موقع.*"), { y: 660, size: 58, fx: "rise", at: 4.2, w: 960 });
+
+      // ── one map ──────────────────────────────────────────────────────────────────────
+      const c = R.scene(6.2, { in: "dots", name: "map" });
+      const m = c.map({ intro: "draw", at: 0, fitH: 0.5 });
+      m.header({ y: 330, at: 0.4 });
+      m.ship({ at: 0.4, dur: 5.6, eta: 12 * 1440 });
+      m.truck({ from: "W1", to: "W2", at: 0.8, dur: 5, eta: 73, qty: 40, item: "LED Strip 5m" });
+      c.text(T("Every warehouse. Everything in between.\n*One map.*", "كل مستودع. وكل شي بيناتن.\n*خريطة وحدة.*"), { y: 1600, size: 60, fx: "rise", at: 1.2, w: 980, color: SM.C.abyss, theme: "light" });
+
+      R.endcard("truck", { in: "fade", dur: 3.5 });
+
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: 0.6, from: 0.3, to: 14.6 });
+      R.grain(0.03).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.4, lufs: -14, sfxVolume: 0.5 });
+      R.cover(1.9);
+    </script>
+  </body>
+</html>

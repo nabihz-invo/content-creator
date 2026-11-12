@@ -1,0 +1,5 @@
+The biggest risk in changing a stock system isn't the software. It's stopping work to switch.
+
+Start with one warehouse and one kind of move, count only what you'll track, and have one person check the log daily for two weeks. Keep the notebook for a month, compare, then let it go.
+
+With Stacko, you set up one warehouse, the team logs from the phone, and every move shows on the map while the rest keeps running.

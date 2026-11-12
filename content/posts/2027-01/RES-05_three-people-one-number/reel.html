@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>RES-05 · Three people, one item, one live number</title>
+    <!-- Round 4 (12 Nov 2026). Three people log the same item in the same minute; each move is its own ledger line and the total is live for everyone.
+         Owner rules: no Prototype badge, no Telegram, no closing question. Demo figures and first names. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "RES-05 · Three people, one number" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg";
+
+      // ── hook ─────────────────────────────────────────────────────────────────────────
+      const a = R.scene(2.4, { bg: BG, name: "hook" });
+      a.dotMorph({ count: 360, y: 1150, steps: [{ at: 0, shape: "explode" }, { at: 0.2, shape: { text: "09:00" }, size: 260, dur: 0.8 }] });
+      a.text(T("Same item. Same minute.\n*Which number is right?*", "نفس الصنف. نفس الدقيقة.\n*أيّا رقم الصح؟*"), { y: 470, size: 80, fx: "rise", at: 0.1, w: 960 });
+
+      // ── three people, three messages ─────────────────────────────────────────────────
+      const people = [
+        [T("Beirut · WH-01", "بيروت · WH-01"), T("out 12 LED strips", "طلّعت 12 لمبة LED"), T("Logged ✓ −12 at WH-01 · Rami 09:00", "تسجّلت ✓ −12 بـ WH-01 · رامي 09:00")],
+        [T("Sidon · WH-02", "صيدا · WH-02"), T("out 8 LED strips", "طلّعت 8 لمبات LED"), T("Logged ✓ −8 at WH-02 · Hadi 09:00", "تسجّلت ✓ −8 بـ WH-02 · هادي 09:00")],
+        [T("Tripoli · WH-03", "طرابلس · WH-03"), T("in 30 LED strips from the supplier", "فاتت 30 لمبة LED من المورّد"), T("Logged ✓ +30 at WH-03 · Lina 09:00", "تسجّلت ✓ +30 بـ WH-03 · لينا 09:00")],
+      ];
+      // one scene, three cards: who, where, the message, the logged reply
+      const bsc = R.scene(5.2, { in: "zoom-through", bg: BG, name: "three" });
+      bsc.text(T("Three people log it\n*at the same minute.*", "تلات أشخاص بيسجّلوا\n*بنفس الدقيقة.*"), { y: 330, size: 74, fx: "rise", at: 0.05, w: 960 });
+      const who = [T("Rami · Beirut", "رامي · بيروت"), T("Hadi · Sidon", "هادي · صيدا"), T("Lina · Tripoli", "لينا · طرابلس")];
+      const dir = SM.ar() ? "rtl" : "ltr";
+      people.forEach(([sub, msg, reply], i) => {
+        const html = `<div dir="${dir}" style="width:900px;background:#fff;border-radius:34px;padding:30px 36px;box-shadow:0 26px 70px rgba(3,9,18,.45);font-family:${SM.ar() ? "'Noto Kufi Arabic'" : "'Readex Pro'"},sans-serif;color:#0E2440">
+          <div style="font-size:30px;font-weight:600;color:#0E8FA0">${who[i]} · 09:00</div>
+          <div style="margin-top:14px;margin-inline-start:auto;width:fit-content;max-width:760px;background:#2F86B8;color:#fff;font-size:36px;padding:16px 26px;border-radius:26px">${msg}</div>
+          <div style="margin-top:14px;font-size:30px;font-weight:600;color:#0B7A87">${reply}</div></div>`;
+        bsc.html(html, { x: 540, y: 760 + i * 380, w: 900, in: "rise", at: 0.5 + i * 1.1 });
+        bsc.sfx("send", 0.5 + i * 1.1, 0.4);
+      });
+
+      // ── every move is its own line ───────────────────────────────────────────────────
+      const d = R.scene(4, { in: "push-up", bg: BG, name: "ledger" });
+      d.text(T("Every move: *its own line,\nits own name.*", "كل حركة: *إلها سطرها،\nوإلها اسم.*"), { y: 430, size: 76, fx: "rise", at: 0.1, w: 960 });
+      d.ledger({ x: 540, y: 1100, w: 960, at: 0.5, stagger: 0.35, kicker: T("Inventory ledger", "سجل حركة المخزون"), title: T("LED Strip 5m · today", "لمبات LED · اليوم"), rows: [
+        ["09:00:04", T("Rami", "رامي"), "📱", "OUT", T("12 × LED Strip 5m", "12 لمبة LED"), "WH-01", "420→408"],
+        ["09:00:06", T("Hadi", "هادي"), "📱", "OUT", T("8 × LED Strip 5m", "8 لمبات LED"), "WH-02", "300→292"],
+        ["09:00:09", T("Lina", "لينا"), "📱", "IN", T("30 × LED Strip 5m", "30 لمبة LED"), "WH-03", "520→550"],
+      ] });
+
+      // ── one live number on the map ───────────────────────────────────────────────────
+      const e = R.scene(5, { in: "zoom-out", name: "map" });
+      const m = e.map({ intro: "drop", at: 0, fitH: 0.5 });
+      m.header({ y: 330, at: 0.2 });
+      m.units("W1", 0.8, -12); m.pulse("W1", 0.8);
+      m.units("W2", 1.3, -8); m.pulse("W2", 1.3);
+      m.units("W3", 1.8, 30); m.pulse("W3", 1.8);
+      m.toast(2.2, T("LED Strip 5m · all warehouses: 1,240 → 1,250", "لمبات LED · كل المستودعات: 1,240 ← 1,250"));
+      e.text(T("Three people. *One number.*\nLive for everyone.", "تلات أشخاص. *رقم واحد.*\nمباشر للكل."), { y: 1760, size: 56, fx: "rise", at: 2.6, w: 980, color: SM.C.abyss, theme: "light" });
+
+      R.endcard("dots", { in: "dots", dur: 3.5 });
+
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: 0.6, from: 0.3, to: 17.2 });
+      R.grain(0.03).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Paperback_Pages.mp3", musicVolume: 0.4, lufs: -14, sfxVolume: 0.5 });
+      R.cover(2.0);
+    </script>
+  </body>
+</html>

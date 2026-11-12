@@ -1,0 +1,3 @@
+Every warehouse, item and shipment on one map. Here it is, live.
+
+Stacko is the stock management system built for businesses with several warehouses.

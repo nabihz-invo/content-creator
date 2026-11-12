@@ -1,0 +1,3 @@
+Every warehouse on the Stacko map is drawn piece by piece, down to the pallets and the forklift.
+
+Details matter, because it's your stock.

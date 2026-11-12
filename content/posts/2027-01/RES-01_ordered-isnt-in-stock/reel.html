@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>RES-01 · Ordered isn't in stock</title>
+    <!-- Round 4 (12 Nov 2026). Incoming vs on hand: the 1,200 on the water aren't on the shelf until they're received.
+         Owner rules: no Prototype badge, no closing question. Route and durations from the product bible ("about"). Demo figures. -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "RES-01 · Ordered isn't in stock" });
+      const T = SM.t, BG = "/assets/graphics/GFX-01_dark-backdrop_9x16.jpg";
+
+      // ── 0–3.0 · hook: 1,200 built from dots, the claim is struck ──────────────────────────
+      const a = R.scene(3, { bg: BG, name: "hook" });
+      a.dotMorph({ count: 420, y: 1060, steps: [{ at: 0, shape: "explode" }, { at: 0.15, shape: { text: "1,200" }, size: 300, dur: 0.9 }] });
+      a.text(T("It’s ordered, ~so it’s in stock.~", "طلبناها، ~يعني موجودة.~"), { y: 420, size: 72, fx: "rise", at: 0.1, w: 960 });
+      a.text(T("*Not yet.*", "*لسّا لأ.*"), { y: 600, size: 110, fx: "stamp", at: 1.6 });
+
+      // ── 3.0–5.2 · ordered ≠ on hand ──────────────────────────────────────────────────────
+      const b = R.scene(2.2, { in: "dots", bg: BG, name: "ship" });
+      b.dotMorph({ count: 420, y: 1000, steps: [{ at: 0, shape: "scatter" }, { at: 0.1, shape: { icon: "ship" }, size: 520, dur: 0.8 }] });
+      b.text(T("Ordered *≠* on hand", "مطلوب *≠* بالرصيد"), { y: 470, size: 96, fx: "pop", at: 0.3 });
+
+      // ── 5.2–12.0 · the live map: the shipment at sea, on hand doesn't move ───────────────
+      const c = R.scene(6.8, { in: "zoom-through", name: "map" });
+      const m = c.map({ intro: "draw", at: 0, fitH: 0.5 });
+      m.header({ y: 330, at: 0.4 });
+      m.ship({ at: 0.6, dur: 6.2, eta: 32 * 1440 });
+      c.text(T("On the water. At customs.\n*Still not sellable.*", "بالبحر. بالجمرك.\n*بعدها مش للبيع.*"), { y: 1600, size: 62, fx: "rise", at: 0.8, w: 960, color: SM.C.abyss, theme: "light" });
+      c.callout({ x: 470, y: 1180, dx: 170, dy: -140, label: T("WH-01 on hand: 7,250", "رصيد WH-01: 7,250"), at: 2.2, light: true });
+
+      // ── 12.0–16.0 · received: the stock joins the warehouse ──────────────────────────────
+      const d = R.scene(4, { in: "cut", name: "received" });
+      const m2 = d.map({ intro: "none", at: 0, fitH: 0.5 });
+      m2.header({ y: 330, at: 0 });
+      m2.camera(0.2, { focus: "W1", zoom: 2.2, dur: 1, offset: [0, 160] });
+      m2.units("W1", 1.0, 1200);
+      m2.pulse("W1", 1.0);
+      m2.toast(1.2, T("Received: 1,200 × LED Strip 5m · WH-01", "تسلّمت: 1,200 لمبة LED · WH-01"));
+      d.text(T("In stock = *arrived and received.*", "بالرصيد = *وصلت وتسلّمت.*"), { y: 1600, size: 66, fx: "rise", at: 1.6, w: 960, color: SM.C.abyss, theme: "light" });
+
+      // ── 16.0–19.5 · end card ─────────────────────────────────────────────────────────────
+      R.endcard("dotmap", { in: "dots", dur: 3.5 });
+
+      R.watermark({ variant: "white", size: 60, pos: "tr", op: 0.6, from: 0.3, to: 15.8 });
+      R.grain(0.03).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/The_Slowest_Hour.mp3", musicVolume: 0.4, lufs: -14, sfxVolume: 0.5 });
+      R.cover(1.9);
+    </script>
+  </body>
+</html>

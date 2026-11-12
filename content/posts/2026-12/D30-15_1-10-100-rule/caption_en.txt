@@ -1,0 +1,5 @@
+An old rule of thumb about data quality, applied to stock: catching a mistake when the stock moves costs far less than fixing it at the count, and much less than a customer finding it.
+
+With Stacko, logging a move takes one message from the phone, at the moment it happens.
+
+The 1-10-100 rule is a common data-quality rule of thumb, not a measured cost.
