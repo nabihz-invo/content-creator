@@ -6,6 +6,20 @@
 import type { Answers } from "@cc/shared";
 import { API_URL, supabase } from "./supabase";
 
+/** Why a post is discarded (P5-T27); same list as public.discard_categories(). */
+export const DISCARD_CATEGORIES = [
+  "duplicate",
+  "not_useful",
+  "not_clear",
+  "design",
+  "screens",
+  "audience",
+  "missing_asset",
+  "on_hold",
+  "other",
+] as const;
+export type DiscardCategory = (typeof DISCARD_CATEGORIES)[number];
+
 export interface ApiErrorBody {
   code: string;
   message: string;
@@ -252,9 +266,9 @@ export const api = {
     }),
 
   /** Removes every finished file (and its storage) and cancels the imported post. */
-  discardImported: (projectId: string, reason: string) =>
+  discardImported: (projectId: string, category: DiscardCategory, reason?: string) =>
     apiRequest<{ files: number; bytes: number }>(`/content-projects/${projectId}/discard`, {
-      json: { reason },
+      json: { category, ...(reason ? { reason } : {}) },
     }),
 
   /** Idea review: declines a pending idea (cancelled, the reason is kept in its history). */

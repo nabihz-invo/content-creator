@@ -14,6 +14,15 @@ Template:
 
 ---
 
+## 2026-11-12 — P5-T27 Discard reasons from a list — in progress
+- Agent/branch: local Claude Code (main, uncommitted)
+- Why: owner: when deleting a post, a select box of reasons with the comment under it, to analyse the reasons later.
+- Changes: migration `20261112110000` (`discard_categories()`, `discard_imported_post` with an optional category, earlier discards sorted into the list, view `discarded_posts`); pgTAP `25_discard_reasons` (9); API `discard` route + schema (`category`, optional `reason`; the 3-argument call is kept when no category is sent, so deploy order doesn't matter); CRM discard dialog (reason select + comment, comment required for "Other"), EN/AR.
+- Verification: on hosted in a rolled-back transaction: the 111 earlier discards sort into not_useful 39, duplicate 31, not_clear 25, design 5, screens 4, on_hold 3, audience 2, missing_asset 1, other 1 ("no body reply"); `25_discard_reasons` 9/9; `15_imported_review` 20/20 with the new function; nothing persisted. API `deno check`, CRM typecheck, ESLint and vitest (25) pass.
+- Open: owner runs `db push`; deploy `api`; push for the CRM; check one discard live.
+
+---
+
 ## 2026-11-12 — P5-T26 Client accounts and publishing calendar — in progress
 - Agent/branch: local Claude Code (main, uncommitted)
 - Why: owner: a login for the client with strict permission to view posts and approve, decline or comment, nothing else, in a calendar of publish dates. Owner chose: the client sees a post only after the team approved it; client logins are created from Settings → Team.

@@ -4,8 +4,15 @@
   "title": "POST /api/content-projects/{id}/discard",
   "type": "object",
   "additionalProperties": false,
-  "required": ["reason"],
   "properties": {
-    "reason": { "type": "string", "minLength": 3, "maxLength": 2000 }
+    "category": {
+      "enum": ["duplicate", "not_useful", "not_clear", "design", "screens", "audience", "missing_asset", "on_hold", "other"],
+      "description": "Why the post is discarded (P5-T27); without it the reason text is required"
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Comment under the reason; required for \"other\" or when no category is sent"
+    }
   }
 }

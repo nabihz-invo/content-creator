@@ -431,9 +431,16 @@ export function registerMediaRoutes(app: Hono, deps: Deps) {
     const userId = await requireUser(c.req.raw, deps.auth);
     const id = idParam(c, "project");
     await requireProjectRole(sql, userId, id, ["admin", "editor"]);
-    const input = validate<{ reason: string }>("discardImported", await body(c));
-    const [{ r }] = (await sql`
-      select public.discard_imported_post(${userId}, ${id}, ${input.reason}) as r`) as unknown as [
+    const input = validate<{ reason?: string; category?: string }>(
+      "discardImported",
+      await body(c),
+    );
+    // The reason from the list (P5-T27) is passed only when sent, so older callers keep the 3-argument form.
+    const [{ r }] = (input.category
+      ? await sql`
+      select public.discard_imported_post(${userId}, ${id}, ${input.reason ?? null}, ${input.category}) as r`
+      : await sql`
+      select public.discard_imported_post(${userId}, ${id}, ${input.reason ?? null}) as r`) as unknown as [
       { r: { project_id: string; files: number; bytes: number; status: string } },
     ];
     return c.json({ ...r, storage: await purgeStorage(sql, deps.storage) });

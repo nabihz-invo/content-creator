@@ -26,8 +26,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
-import { api, saveBlob } from "@/lib/api";
+import { api, DISCARD_CATEGORIES, type DiscardCategory, saveBlob } from "@/lib/api";
 import { useI18n } from "@/lib/i18n";
 import { useImportedMedia, useSignedUrls } from "@/lib/queries";
 import { cn } from "@/lib/utils";
@@ -456,11 +458,13 @@ function ImportedReview({ project }: { project: ContentProject }) {
   const qc = useQueryClient();
   const [dialog, setDialog] = useState<"changes" | "discard" | null>(null);
   const [text, setText] = useState("");
+  const [category, setCategory] = useState<DiscardCategory | "">("");
   const review = project.source_metadata.review;
   const clientReview = project.source_metadata.client_review;
   const done = () => {
     setDialog(null);
     setText("");
+    setCategory("");
     for (const key of ["project", "project-events", "imported-media", "projects", "status-counts"])
       void qc.invalidateQueries({ queryKey: [key] });
   };
@@ -476,7 +480,7 @@ function ImportedReview({ project }: { project: ContentProject }) {
     onError: (e) => toast.error(e.message),
   });
   const discard = useMutation({
-    mutationFn: () => api.discardImported(project.id, text.trim()),
+    mutationFn: () => api.discardImported(project.id, category as DiscardCategory, text.trim()),
     onSuccess: (r) => {
       toast.success(t("review.discardedToast", { n: r.files, mb: mb(r.bytes) }));
       done();
@@ -566,7 +570,32 @@ function ImportedReview({ project }: { project: ContentProject }) {
               {t(dialog === "discard" ? "review.discardBody" : "review.changesBody")}
             </DialogDescription>
           </DialogHeader>
+          {dialog === "discard" && (
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="discard-category">{t("review.discardReason")}</Label>
+              <NativeSelect
+                id="discard-category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value as DiscardCategory)}
+              >
+                <option value="" disabled>
+                  {t("review.discardPick")}
+                </option>
+                {DISCARD_CATEGORIES.map((c) => (
+                  <option key={c} value={c}>
+                    {t(`discard.${c}`)}
+                  </option>
+                ))}
+              </NativeSelect>
+              <Label htmlFor="discard-comment" className="mt-1">
+                {t(
+                  category === "other" ? "review.discardComment" : "review.discardCommentOptional",
+                )}
+              </Label>
+            </div>
+          )}
           <Textarea
+            id={dialog === "discard" ? "discard-comment" : undefined}
             dir="auto"
             rows={4}
             value={text}
@@ -582,7 +611,9 @@ function ImportedReview({ project }: { project: ContentProject }) {
             {dialog === "discard" ? (
               <Button
                 variant="destructive"
-                disabled={text.trim().length < 3 || discard.isPending}
+                disabled={
+                  !category || (category === "other" && text.trim().length < 3) || discard.isPending
+                }
                 onClick={() => discard.mutate()}
               >
                 <Trash2 />
