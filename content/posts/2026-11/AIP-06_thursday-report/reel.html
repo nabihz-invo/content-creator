@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>AIP-06 · Someone's Thursday</title>
+<!-- AIP-06 "Someone's Thursday, every Thursday" · Reel 9:16 · ~22 s · EN + AR (render --lang all)
+     Copy-paste between three systems every Thursday → the systems connected → Monday digest.
+     PR-06 (Aiphin with a chart). Music: Paperback_Pages (see notes.md). No phone number. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+<script src="/brands/aiphin/reel/aiphin-reel.js"></script>
+</head><body><script>
+const R = SM.reel({ title: "AIP-06 · Someone's Thursday" });
+const ar = SM.ar();
+const NAMES = [SM.t('CRM', 'CRM'), SM.t('ERP', 'ERP'), SM.t('Finance', 'المالية')];
+const win = (title, rows, w = 280) => `<div style="width:${w}px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);direction:${ar ? 'rtl' : 'ltr'}">
+  <div style="background:#EEF6F9;padding:14px 18px;font:600 24px/1 'Readex Pro',sans-serif;color:#2C5974;display:flex;gap:8px;align-items:center"><i style="width:10px;height:10px;border-radius:50%;background:#79C0DE;display:block"></i>${title}</div>
+  <div style="padding:16px 18px;display:flex;flex-direction:column;gap:10px">${rows.map(w2 => `<div style="height:12px;width:${w2}%;border-radius:6px;background:#C9D8E4"></div>`).join('')}</div></div>`;
+
+// ── 0.0–6.0 · every Thursday the same copy-paste into one sheet ────────────────────────────────
+const a = R.scene(6, { bg: AIP.NIGHT, name: 'thursday' });
+AIP.head(a, SM.t('Every Thursday, someone\nrebuilds *this report.*', 'كل خميس، يعيد أحدهم\nبناء *هذا التقرير.*'), { y: 360, size: ar ? 58 : 56, fx: 'rise', at: .1 });
+// the date pill flips through Thursdays
+const dates = ar ? ['الخميس 6', 'الخميس 13', 'الخميس 20', 'الخميس 27'] : ['Thu 6', 'Thu 13', 'Thu 20', 'Thu 27'];
+const pill = a.html(`<div class="aip-date" style="padding:14px 34px;border-radius:40px;background:rgba(201,216,228,.14);border:2px solid rgba(201,216,228,.4);font:600 34px/1 'Readex Pro',sans-serif;color:#fff">${dates[0]}</div>`, { x: 540, y: 560, in: 'pop', at: .3 });
+const dEl = pill.box.querySelector('.aip-date');
+a.on(0, 6, (p, lt) => { const i = Math.min(3, Math.floor(Math.max(0, lt - .6) / 1.3)); if (dEl.textContent !== dates[i]) dEl.textContent = dates[i]; });
+[.6, 1.9, 3.2, 4.5].forEach(t => a.sfx('tick', t, .35));
+// three systems on top, one spreadsheet below
+const xs = [210, 540, 870];
+NAMES.forEach((n, i) => a.html(win(n, [80, 60, 70]), { x: xs[i], y: 780, in: 'drop', at: .4 + i * .12 }));
+const sheet = a.html(`<div style="width:760px;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)">
+  <div style="background:#EEF6F9;padding:16px 22px;font:600 26px/1 'Readex Pro',sans-serif;color:#2C5974;direction:ltr;text-align:left">weekly_report_FINAL_v3.xlsx</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr)">${Array.from({ length: 30 }, (_, i) => `<div class="aip-cell" style="height:52px;border:1px solid #C9D8E4;background:${i < 5 ? '#F7FAFC' : '#fff'}"></div>`).join('')}</div></div>`, { x: 540, y: 1260, in: 'rise', at: .6 });
+const cells = [...sheet.box.querySelectorAll('.aip-cell')].slice(5);
+// copy-paste: chips fly from a system into the sheet, cells fill one by one
+for (let k = 0; k < 12; k++) {
+  const t = 1.0 + k * .38, from = xs[k % 3];
+  const chip = a.html(`<div style="width:110px;height:34px;border-radius:10px;background:#79C0DE;opacity:.95"></div>`, { x: from, y: 840 });
+  a.set(chip.layer, { o: 0 });
+  a.anim(chip.layer, { o: [0, 1] }, t, .08);
+  a.anim(chip.layer, { x: [0, 540 - from + (k % 5 - 2) * 140], y: [0, 300 + Math.floor(k / 5) * 52] }, t, .32, 'inOutCubic');
+  a.anim(chip.layer, { o: [1, 0] }, t + .3, .06);
+  const c = cells[k];
+  a.on(0, 6, (p, lt) => { const v = lt >= t + .3 ? '#DCEBF1' : '#fff'; if (c.style.background !== v) c.style.background = v; });
+}
+a.sfx('click', 1.0, .25); a.sfx('click', 2.5, .25); a.sfx('click', 4.0, .25);
+
+// ── 6.0–10.0 · the handover line ─────────────────────────────────────────────────────────────
+const b = R.scene(4, { in: 'blur', bg: AIP.NIGHT, name: 'handover' });
+AIP.head(b, SM.t("Most companies don't have\na software problem.", 'معظم الشركات لا تعاني\nمن مشكلة برمجيات.'), { y: 780, size: ar ? 62 : 60, fx: 'rise', at: .1, out: 'blur', outAt: 1.9 });
+AIP.head(b, SM.t('They have a\n*handover problem.*', 'بل من مشكلة\n*في تسليم البيانات.*'), { y: 960, size: ar ? 80 : 84, fx: 'stamp', at: 2.1 });
+b.sfx('impact', 2.1, .3);
+
+// ── 10.0–17.0 · the systems connect into one dashboard, the digest arrives on Monday ────────────
+const c = R.scene(7, { in: 'push-up', bg: AIP.NIGHT, name: 'connected' });
+AIP.head(c, SM.t('Connect the sources once.', 'اربط المصادر مرة واحدة.'), { y: 300, size: 60, fx: 'rise', at: .1 });
+NAMES.forEach((n, i) => c.html(win(n, [80, 60, 70], 260), { x: xs[i], y: 560, in: 'pop', at: .3 + i * .1 }));
+// glowing lines from each system into the dashboard
+const svg = c.html(`<svg width="1080" height="400" viewBox="0 0 1080 400">${xs.map(x => `<path class="aip-ln" d="M${x} 0 C ${x} 200, 540 160, 540 330" fill="none" stroke="#2EF2EE" stroke-width="5" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1" style="filter:drop-shadow(0 0 8px #2EF2EE)"/>`).join('')}</svg>`, { x: 540, y: 830 });
+const lns = [...svg.box.querySelectorAll('.aip-ln')];
+c.on(.9, 1.9, p => lns.forEach(l => l.setAttribute('stroke-dashoffset', String(1 - SM.easeFn('outCubic')(p)))));
+c.sfx('scan', .9, .3);
+const kpi = (label, value) => `<div style="flex:1;background:#EEF6F9;border-radius:18px;padding:20px 22px"><div style="font:400 24px/1.2 'Readex Pro',sans-serif;color:#2C5974">${label}</div><div style="font:400 46px/1.4 'Audiowide',sans-serif;color:#0E2440;direction:ltr;text-align:${ar ? 'right' : 'left'}">${value}</div></div>`;
+c.html(`<div style="width:900px;background:#fff;border-radius:30px;padding:30px;box-shadow:0 40px 100px rgba(0,0,0,.45);direction:${ar ? 'rtl' : 'ltr'}">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px"><div style="font:600 32px/1.2 'Readex Pro',sans-serif;color:#0E2440">${SM.t('This week', 'هذا الأسبوع')}</div><div style="font:400 24px/1 'Readex Pro',sans-serif;color:#0895A6">${SM.t('Updated live', 'يتحدّث مباشرة')}</div></div>
+  <div style="display:flex;gap:16px">${kpi(SM.t('Sales', 'المبيعات'), '84K')}${kpi(SM.t('Orders', 'الطلبات'), '312')}${kpi(SM.t('Cash in', 'التحصيل'), '61K')}</div>
+  <div style="display:flex;align-items:flex-end;gap:12px;height:150px;margin-top:24px;direction:ltr">${[40, 55, 48, 70, 66, 82, 90].map((h, i) => `<div style="flex:1;height:${h}%;border-radius:8px 8px 0 0;background:${i === 6 ? '#0895A6' : '#79C0DE'}"></div>`).join('')}</div>
+</div>`, { x: 540, y: 1340, in: 'rise', at: 1.8 });
+c.sfx('pop', 1.8, .3);
+// Monday 08:00 notification
+c.html(`<div style="width:860px;display:flex;gap:22px;align-items:center;padding:24px 28px;border-radius:30px;background:rgba(238,246,249,.96);box-shadow:0 30px 80px rgba(0,0,0,.45);direction:${ar ? 'rtl' : 'ltr'}">
+  <img src="/brands/aiphin/assets/brand/logo/icons/aiphin-avatar-ocean.png" style="width:76px;height:76px;border-radius:18px;flex:none">
+  <div><div style="font:600 28px/1.3 'Readex Pro',sans-serif;color:#0E2440">${SM.t('Monday 08:00 · Weekly digest', 'الإثنين 08:00 · الملخّص الأسبوعي')}</div>
+  <div style="font:400 26px/1.4 'Readex Pro',sans-serif;color:#2C5974">${SM.t('Sales, orders and cash in one page. Nobody rebuilt it.', 'المبيعات والطلبات والتحصيل في صفحة واحدة. ولم يُعِد أحد بناءه.')}</div></div></div>`, { x: 540, y: 1700, in: 'drop', at: 3.6 });
+c.sfx('notification', 3.6, .35);
+
+// ── 17.0–20.5 · proof point + Aiphin with the chart ─────────────────────────────────────────────
+const d = R.scene(3.5, { in: 'blur', bg: AIP.NIGHT, name: 'proof' });
+AIP.head(d, SM.t('*12 systems* connected\ninto one source of truth.', '*12 نظامًا* متصلة\nفي مصدر واحد للحقيقة.'), { y: 420, size: ar ? 60 : 58, fx: 'rise', at: .1 });
+AIP.fin(d, 'PR-06.png', { w: 900, y: 1180, at: .3, mirror: ar });
+
+AIP.endcard(R, { dur: 3.2, line: SM.t('Your Thursday, *back.*', 'يوم الخميس *عاد لك.*') });
+
+R.grain(.03).vignette(.4).safe();
+R.audio({ music: '/assets/audio/music/Paperback_Pages.mp3', musicVolume: .22 });
+R.cover(14.5);
+</script></body></html>

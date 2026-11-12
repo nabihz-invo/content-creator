@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>AIP-08 · We built Stacko</title>
+<!-- AIP-08 "We built our own product first: Stacko" · Reel 9:16 · ~23 s · EN + AR (render --lang all)
+     Real Stacko screens from the Stacko website captures (assets/screens/website-v2, en-/ar- per version), approved by the owner on 2026-11-12.
+     PR-07 (Aiphin typing). Music: Second_Cup_of_Coffee (see notes.md). No phone number. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+<script src="/brands/aiphin/reel/aiphin-reel.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'AIP-08 · We built Stacko' });
+const ar = SM.ar();
+const SCR = (n) => `/assets/screens/website-v2/${ar ? 'ar' : 'en'}-${n}.png`;
+
+// ── 0.0–3.6 · hook: Aiphin at work ───────────────────────────────────────────────────────────
+const a = R.scene(3.6, { bg: AIP.NIGHT, name: 'hook' });
+AIP.head(a, SM.t('An agency that builds\n*its own products.*', 'وكالة تبني\n*منتجاتها بنفسها.*'), { y: 420, size: ar ? 72 : 66, fx: 'rise', at: .1 });
+AIP.fin(a, 'PR-07.png', { w: 900, y: 1200, at: 0, mirror: ar });
+a.sfx('typing', .4, .3);
+
+// ── 3.6–7.8 · the problem → Stacko ───────────────────────────────────────────────────────────
+const b = R.scene(4.2, { in: 'push-up', bg: AIP.NIGHT, name: 'stacko' });
+AIP.head(b, SM.t('The stock number\nshould be right.', 'رقم المخزون\nيجب أن يكون صحيحًا.'), { y: 640, size: ar ? 68 : 64, fx: 'rise', at: .1, out: 'blur', outAt: 1.7 });
+AIP.head(b, SM.t('So we built', 'لذلك بنينا'), { y: 700, size: 60, fx: 'rise', at: 1.95 });
+b.html(`<div style="display:flex;flex-direction:column;align-items:center;gap:30px">${SM.mark('dark', 230)}<div style="font-size:150px;line-height:1">${ar ? SM.wordmarkAr('dark') : SM.wordmark('dark')}</div></div>`, { x: 540, y: 1100, in: 'pop', at: 2.3 });
+b.sfx('pop', 2.3, .4);
+
+// ── 7.8–17.4 · real Stacko screens ──────────────────────────────────────────────────────────
+const c = R.scene(9.6, { in: 'blur', bg: AIP.NIGHT, name: 'screens' });
+const cap = (t, at, outAt) => AIP.head(c, t, { y: 360, size: ar ? 58 : 56, fx: 'rise', at, out: 'blur', outAt });
+cap(SM.t('Every warehouse\non *one live map.*', 'كل المستودعات\nعلى *خريطة مباشرة واحدة.*'), .1, 3.0);
+c.device({ type: 'laptop', src: SCR('app'), w: 980, x: 540, y: 1000, in: 'rise', at: .2, out: 'fade', outAt: 3.0 });
+cap(SM.t('Ask it from\n*your phone.*', 'اسأله من\n*هاتفك.*'), 3.3, 6.2);
+c.html(`<img src="${SCR('phone')}" style="width:560px;display:block;clip-path:inset(0 round 70px);filter:drop-shadow(0 40px 80px rgba(0,0,0,.5))">`, { x: 540, y: 1150, in: 'rise', at: 3.4, out: 'fade', outAt: 6.2 });
+cap(SM.t('Each location\n*at a glance.*', 'كل موقع\n*بنظرة واحدة.*'), 6.5, 9.3);
+c.html(`<img src="${SCR('mcard')}" style="width:900px;display:block;border-radius:40px;box-shadow:0 40px 100px rgba(0,0,0,.5)">`, { x: 540, y: 1000, in: 'zoom', at: 6.6 });
+
+// ── 17.4–21.0 · the same team builds yours ──────────────────────────────────────────────────
+const d = R.scene(3.6, { in: 'push-left', bg: AIP.NIGHT, name: 'yours' });
+AIP.head(d, SM.t('The same team builds\nyour CRM, your integrations\n*and your website.*', 'الفريق نفسه يبني\nنظام CRM وربط الأنظمة\n*وموقعك الإلكتروني.*'), { y: 900, size: ar ? 58 : 54, fx: 'rise', at: .1 });
+
+AIP.endcard(R, { dur: 3.2, line: SM.t('We build *what we recommend.*', 'نبني *ما ننصح به.*') });
+
+R.grain(.03).vignette(.4).safe();
+R.audio({ music: '/assets/audio/music/Second_Cup_of_Coffee.mp3', musicVolume: .22 });
+R.cover(6.5);
+</script></body></html>

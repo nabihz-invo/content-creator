@@ -1,0 +1,65 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>AIP-01 · Meet Aiphin</title>
+<!-- AIP-01 "Meet Aiphin: one team, every expert" · Reel 9:16 · 25 s · EN + AR (render --lang all)
+     Assets: PR-01 (waving), PR-02 (pointing) from the Aiphin visual library · Music: Second_Cup_of_Coffee (see notes.md)
+     No voice-over yet: on-screen text carries it (the cloned Aiphin voice is a later pass, see notes.md). No phone number. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+<script src="/brands/aiphin/reel/aiphin-reel.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'AIP-01 · Meet Aiphin' });
+const ar = SM.ar();
+
+// ── 0.0–3.2 · Ocean glow: Aiphin waves in, hook ──────────────────────────────────────────────
+const a = R.scene(3.2, { bg: AIP.OCEAN, name: 'hello' });
+const wave = AIP.fin(a, 'PR-01.png', { w: 860, y: 1130, in: 'rise', at: 0, mirror: false, halo: false });
+a.anim(wave.layer, { r: [0, -3] }, .6, .5, 'inOutSine'); a.anim(wave.layer, { r: [-3, 2] }, 1.1, .5, 'inOutSine'); a.anim(wave.layer, { r: [2, 0] }, 1.6, .5, 'inOutSine');
+AIP.head(a, SM.t("Hi, I'm *Aiphin.*", 'مرحبًا، أنا *أيفِن.*'), { y: 380, size: ar ? 96 : 100, fx: 'rise', at: .2, hlColor: '#0E2440' });
+AIP.line(a, SM.t('Your AI teammate.', 'زميلك في الذكاء الاصطناعي.'), { y: ar ? 530 : 500, size: 52, color: '#fff', fx: 'blur', at: .9 });
+a.sfx('pop', .2, .4);
+
+// ── 3.2–7.2 · the contrast: advice OR build → we do both ──────────────────────────────────────
+const b = R.scene(4, { in: 'push-up', bg: AIP.NIGHT, name: 'both' });
+AIP.head(b, SM.t('Most agencies sell\nthe advice *or* the build.', 'معظم الوكالات تبيعك\nالاستشارة *أو* التنفيذ.'), { y: 760, size: ar ? 70 : 66, fx: 'rise', at: .1, out: 'blur', outAt: 1.9 });
+AIP.head(b, SM.t('We do *both.*', 'نحن نقدّم *الاثنين.*'), { y: 960, size: ar ? 110 : 120, fx: 'stamp', at: 2.15 });
+b.sfx('impact', 2.15, .35);
+
+// ── 7.2–18.6 · four services, one card each, Aiphin presents them ─────────────────────────────
+const c = R.scene(11.4, { in: 'blur', bg: AIP.NIGHT, name: 'services' });
+AIP.head(c, SM.t('One team for:', 'فريق واحد لـ:'), { y: 300, size: 64, fx: 'rise', at: .1 });
+const services = [
+  ['01', SM.t('Custom CRM', 'نظام CRM مخصّص'), SM.t('Built around how you sell.', 'مبني حول طريقة بيعك.')],
+  ['02', SM.t('AI integration', 'دمج الذكاء الاصطناعي'), SM.t('The WhatsApp answered at 9pm.', 'رسالة WhatsApp مُجابة في التاسعة مساءً.')],
+  ['03', SM.t('Smart website', 'موقع ذكي'), SM.t('Answers questions at 2am.', 'يجيب عن الأسئلة في الثانية فجرًا.')],
+  ['04', SM.t('Social content', 'محتوى السوشيال ميديا'), SM.t('One voice all month, in Arabic and English.', 'صوت واحد طوال الشهر، بالعربية والإنجليزية.')],
+];
+services.forEach(([n, t, d], i) => {
+  const at = .7 + i * 2.2;
+  const card = c.html(`<div style="width:900px;display:flex;align-items:center;gap:34px;padding:32px 40px;border-radius:32px;background:rgba(14,36,64,.78);border:2px solid rgba(121,192,222,.35);direction:${ar ? 'rtl' : 'ltr'}">
+      <div style="font:400 64px/1 'Audiowide',sans-serif;color:#79C0DE;flex:none">${n}</div>
+      <div><div style="font:${ar ? "700 46px/1.4 'Noto Kufi Arabic'" : "400 46px/1.2 'Audiowide'"},sans-serif;color:#fff">${t}</div>
+      <div style="font:400 32px/1.45 'Readex Pro',sans-serif;color:#C9D8E4;margin-top:8px">${d}</div></div></div>`,
+    { x: 540, y: 500 + i * 230, in: ar ? 'slide-left' : 'slide-right', at });
+  c.sfx('pop', at, .35);
+  // the active card glows, the rest dim back
+  const box = card.box.firstElementChild;
+  c.on(at, at + .3, p => { box.style.borderColor = `rgba(46,242,238,${.35 + .55 * p})`; });
+  if (i < 3) c.on(at + 2.2, at + 2.5, p => { box.style.borderColor = `rgba(121,192,222,${.9 - .55 * p})`; });
+});
+// Aiphin points from below (PR-02 points to the viewer's left; mirrored in Arabic)
+AIP.fin(c, 'PR-02.png', { w: 560, x: ar ? 290 : 790, y: 1560, mirror: ar, at: .3 });
+
+// ── 18.6–22.6 · roadmap line ──────────────────────────────────────────────────────────────────
+const d = R.scene(4, { in: 'push-left', bg: AIP.NIGHT, name: 'roadmap' });
+AIP.head(d, SM.t("We don't sell you\na roadmap.", 'نحن لا نبيعك\nخريطة طريق.'), { y: 780, size: ar ? 74 : 72, fx: 'rise', at: .1 });
+AIP.head(d, SM.t('We build it\n*and run it.*', 'نبنيها\n*ونشغّلها.*'), { y: 1100, size: ar ? 88 : 86, fx: 'blur', at: 1.4 });
+
+// ── 22.6–26.1 · end card ──────────────────────────────────────────────────────────────────────
+AIP.endcard(R, { dur: 3.5 });
+
+R.grain(.03).vignette(.4).safe();
+R.audio({ music: '/assets/audio/music/Second_Cup_of_Coffee.mp3', musicVolume: .22 });
+R.cover(2.2);
+</script></body></html>

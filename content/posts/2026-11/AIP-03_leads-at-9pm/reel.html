@@ -1,0 +1,72 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>AIP-03 · Leads at 9pm</title>
+<!-- AIP-03 "Leads at 9pm. Replies at 9:01pm." · Reel 9:16 · ~21 s · EN + AR (render --lang all)
+     Before / after on a neutral chat phone (no app logos). PR-04 (Aiphin with a phone) on the closing beat.
+     Music: The_Slowest_Hour (see notes.md). No phone number. -->
+<script src="/assets/map-elements/stacko-map-elements.js"></script>
+<script src="/studio/engine/sm-core.js"></script>
+<script src="/studio/engine/sm-components.js"></script>
+<script src="/studio/engine/sm-app.js"></script>
+<script src="/brands/aiphin/reel/aiphin-reel.js"></script>
+</head><body><script>
+const R = SM.reel({ title: 'AIP-03 · Leads at 9pm' });
+const ar = SM.ar();
+const tag = (s, txt, at, glow) => s.html(`<div style="padding:14px 34px;border-radius:40px;font:600 30px/1 'Readex Pro',sans-serif;letter-spacing:${ar ? 0 : '.14em'};${glow ? 'background:#2EF2EE;color:#0E2440' : 'background:rgba(201,216,228,.16);color:#C9D8E4;border:2px solid rgba(201,216,228,.4)'}">${txt}</div>`, { x: 540, y: 250, in: 'pop', at });
+
+// ── 0.0–5.6 · BEFORE: lead at 21:04, reply at 11:00 next day, too late ──────────────────────
+const a = R.scene(5.6, { bg: AIP.NIGHT, name: 'before' });
+tag(a, SM.t('BEFORE', 'قبل'), .05, false);
+AIP.head(a, SM.t('Lead at 9pm.\nReply at 11am.', 'عميل في التاسعة مساءً.\nردّ في الحادية عشرة صباحًا.'), { y: 420, size: ar ? 56 : 60, fx: 'rise', at: .1 });
+const p1 = AIP.phone(a, { y: 1180, w: 580, h: 1000, title: SM.t('New customer', 'عميل جديد'), sub: SM.t('online', 'متصل الآن'), at: .1 });
+p1.clock(0, '21:04');
+p1.msg(.5, SM.t('Hi, do you deliver 200 units this week? What would it cost?', 'مرحبًا، هل يمكنكم توصيل 200 قطعة هذا الأسبوع؟ وكم السعر؟'), 'them', '21:04');
+// the night passes: the clock spins to the next morning
+for (let i = 1; i <= 22; i++) { const m = Math.round(21 * 60 + 4 + (i / 22) * (14 * 60 - 4)) % (24 * 60); p1.clock(1.5 + i * .05, String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0')); }
+a.sfx('tick', 1.5, .3); a.sfx('tick', 2.0, .3); a.sfx('tick', 2.5, .3);
+p1.sub(2.6, SM.t('last seen yesterday', 'آخر ظهور أمس'));
+p1.msg(2.8, SM.t('Good morning! Yes, we can. Let me check the price.', 'صباح الخير! نعم، يمكننا ذلك. سأتحقق من السعر.'), 'us', '11:00');
+p1.msg(3.9, SM.t('Thanks, already booked elsewhere.', 'شكرًا، حجزنا من مكان آخر.'), 'them', '11:02');
+AIP.head(a, SM.t('*Too late.*', '*متأخر جدًا.*'), { y: 1780, size: 72, fx: 'stamp', at: 4.3, hlColor: '#79C0DE' });
+
+// ── 5.6–14.6 · AFTER: same message, the assistant answers in a minute and books the call ─────
+const b = R.scene(9, { in: 'wipe', bg: AIP.NIGHT, name: 'after' });
+tag(b, SM.t('AFTER', 'بعد'), .2, true);
+AIP.head(b, SM.t('Lead at 9pm.\nReply at *9:01pm.*', 'عميل في التاسعة مساءً.\nردّ في *التاسعة ودقيقة.*'), { y: 420, size: ar ? 56 : 60, fx: 'rise', at: .3 });
+const p2 = AIP.phone(b, { y: 1180, w: 580, h: 1000, title: SM.t('New customer', 'عميل جديد'), sub: SM.t('online', 'متصل الآن'), at: 0, in: 'none' });
+p2.clock(0, '21:04');
+p2.msg(.5, SM.t('Hi, do you deliver 200 units this week? What would it cost?', 'مرحبًا، هل يمكنكم توصيل 200 قطعة هذا الأسبوع؟ وكم السعر؟'), 'them', '21:04');
+p2.typing(1.2, 2.0, 'us');
+p2.clock(2.0, '21:05');
+p2.clock(4.0, '21:06');
+p2.msg(2.1, SM.t('Hi! Yes, we deliver this week. Two quick questions so I send the right price: which model, and which city?', 'أهلًا! نعم، نوصل هذا الأسبوع. سؤالان سريعان لأرسل لك السعر الصحيح: أي موديل، وإلى أي مدينة؟'), 'us', '21:05');
+p2.msg(4.0, SM.t('Model B, Beirut.', 'موديل B، بيروت.'), 'them', '21:06');
+p2.typing(4.6, 5.3, 'us');
+p2.msg(5.4, SM.t('Got it. A sales rep will call you at 9:00 tomorrow with the offer. Booked ✓', 'تمام. سيتصل بك أحد مندوبي المبيعات غدًا الساعة 9:00 مع العرض. تم الحجز ✓'), 'us', '21:06');
+b.sfx('check', 5.6, .4);
+
+// ── 14.6–18.6 · next morning: the rep starts with the full context ──────────────────────────────
+const c = R.scene(4, { in: 'push-up', bg: AIP.NIGHT, name: 'handoff' });
+AIP.head(c, SM.t('9:00. Your team starts\nwith *the full context.*', 'الساعة 9:00. فريقك يبدأ\n*بالصورة الكاملة.*'), { y: 470, size: ar ? 58 : 58, fx: 'rise', at: .1 });
+const rows = ar
+  ? [['العميل', 'عميل جديد، بيروت'], ['الطلب', 'موديل B، 200 قطعة'], ['التوصيل', 'هذا الأسبوع'], ['المتابعة', 'اتصال غدًا الساعة 9:00']]
+  : [['Customer', 'New customer, Beirut'], ['Request', '200 units, model B'], ['Delivery', 'This week'], ['Next step', 'Call at 9:00']];
+c.html(`<div style="width:860px;background:#fff;border-radius:36px;padding:44px 48px;color:#0E2440;box-shadow:0 40px 100px rgba(0,0,0,.45);direction:${ar ? 'rtl' : 'ltr'}">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:26px">
+    <div style="font:600 34px/1.2 'Readex Pro',sans-serif">${SM.t('Lead handed over', 'تم تسليم العميل')}</div>
+    <div style="padding:10px 22px;border-radius:30px;background:#EEF6F9;color:#0895A6;font:600 24px/1 'Readex Pro',sans-serif">${SM.t('Qualified', 'مؤهَّل')}</div></div>
+  ${rows.map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:20px 0;border-top:1px solid #C9D8E4;font:400 30px/1.3 'Readex Pro',sans-serif"><span style="color:#2C5974">${k}</span><span style="font-weight:600">${v}</span></div>`).join('')}
+  <div style="margin-top:22px;padding:20px 24px;border-radius:20px;background:#EEF6F9;font:400 26px/1.4 'Readex Pro',sans-serif;color:#2C5974">${SM.t('Full conversation attached (4 messages)', 'المحادثة كاملة مرفقة (4 رسائل)')}</div>
+</div>`, { x: 540, y: 1120, in: 'rise', at: .6 });
+c.sfx('notification', .6, .35);
+
+// ── 18.6–22.1 · 24/7 + Aiphin with the phone ───────────────────────────────────────────────
+const d = R.scene(3.5, { in: 'blur', bg: AIP.OCEAN, name: 'always' });
+AIP.head(d, SM.t('Answers 24/7 on chat,\nWhatsApp, email and voice.', 'ردود على مدار الساعة عبر الدردشة\nوWhatsApp والبريد والمكالمات.'), { y: 420, size: ar ? 52 : 54, fx: 'rise', at: .1, hlColor: '#0E2440' });
+AIP.fin(d, 'PR-04.png', { w: 900, y: 1200, at: .3, halo: false, mirror: ar });
+
+AIP.endcard(R, { dur: 3.2, line: SM.t('Leads at 9pm. *Replies at 9:01pm.*', 'عميل في التاسعة. *والردّ بعد دقيقة.*') });
+
+R.grain(.03).vignette(.4).safe();
+R.audio({ music: '/assets/audio/music/The_Slowest_Hour.mp3', musicVolume: .22 });
+R.cover(13.5);
+</script></body></html>

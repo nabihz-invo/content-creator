@@ -203,7 +203,7 @@ export function postPages(id, dir) {
 // ---------------------------------------------------------------------------
 // Bundling
 // ---------------------------------------------------------------------------
-const ROOT_REF = /(?<=["'(\s=,])\/(?:assets|studio|posts)\/[A-Za-z0-9._~%\-/@+]+/g;
+const ROOT_REF = /(?<=["'(\s=,])\/(?:assets|studio|posts|brands)\/[A-Za-z0-9._~%\-/@+]+/g;
 
 /** Relative src/poster/url() references (e.g. src="../img/map-en.png") made root paths, so they are bundled too. */
 function absoluteRefs(html, file) {

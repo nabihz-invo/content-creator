@@ -1,0 +1,54 @@
+/* Aiphin static posts and carousel slides, 1080x1350. Tokens and fonts come from brand.css. */
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;background:#0E2440}
+.post{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:var(--font-body);color:#fff;-webkit-font-smoothing:antialiased}
+.post.night{background:var(--bg-night)}
+.post.ocean{background:var(--bg-ocean)}
+.post.foam{background:var(--foam);color:var(--abyss)}
+.post[dir=rtl]{font-family:var(--font-body)}
+
+/* faint grid texture on dark posts */
+.post.night::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(121,192,222,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(121,192,222,.06) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(90% 70% at 50% 40%,#000 30%,transparent 80%)}
+
+/* logo: top-left EN, top-right AR */
+.top{position:absolute;top:64px;left:64px;right:64px;display:flex;align-items:center;z-index:5}
+.post[dir=rtl] .top{justify-content:flex-start}
+.top img{height:40px;display:block}
+.post[dir=rtl] .top img{height:58px}
+
+/* type */
+.kicker{position:absolute;left:64px;font:600 26px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--dolphin)}
+.post[dir=rtl] .kicker{left:auto;right:64px;letter-spacing:0;font-size:28px}
+.h1{position:absolute;left:64px;right:64px;font:400 76px/1.14 'Audiowide',var(--font-body);letter-spacing:.02em;color:#fff}
+.h1.xl{font-size:96px}
+.post[dir=rtl] .h1{font:700 70px/1.42 var(--font-display-ar);letter-spacing:0}
+.post[dir=rtl] .h1.xl{font-size:84px}
+.h1 em{font-style:normal;color:var(--glow)}
+.post.foam .h1{color:var(--abyss)} .post.foam .h1 em{color:var(--signal)}
+.sub{position:absolute;left:64px;right:64px;font:400 34px/1.45 var(--font-body);color:var(--visor)}
+.post[dir=rtl] .sub{font-size:36px;line-height:1.6}
+.post.foam .sub{color:var(--deep-sea)}
+.ltr{direction:ltr;unicode-bidi:isolate}
+
+/* the dolphin */
+.fin{position:absolute;z-index:2}
+.fin.halo{filter:drop-shadow(0 0 70px rgba(46,242,238,.28))}
+.mirror{transform:scaleX(-1)}
+
+/* cards */
+.card{position:absolute;background:rgba(14,36,64,.72);border:2px solid rgba(121,192,222,.35);border-radius:28px;padding:34px 38px;backdrop-filter:blur(6px)}
+.card.light{background:#fff;border-color:var(--visor);color:var(--abyss);box-shadow:0 30px 60px rgba(14,36,64,.25)}
+.num{font:400 120px/1 'Audiowide',sans-serif;color:var(--dolphin);opacity:.9}
+
+/* carousel bar (slides 1..n-1) and footer (last slide / statics) */
+.bar,.foot{position:absolute;left:64px;right:64px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font:400 26px/1 var(--font-body);color:var(--visor);z-index:5}
+.post[dir=rtl] .bar,.post[dir=rtl] .foot{font-size:28px}
+.dots{display:flex;gap:12px}
+.dots i{width:12px;height:12px;border-radius:50%;background:rgba(201,216,228,.35)}
+.dots i.on{background:var(--glow);width:34px;border-radius:6px}
+.post.foam .dots i.on{background:var(--signal)}
+.bar b{color:#fff;font-weight:600}
+.foot .site{font:400 30px/1 'Audiowide',sans-serif;letter-spacing:.05em;color:#fff}
+.post.foam .foot,.post.foam .bar{color:var(--deep-sea)} .post.foam .foot .site{color:var(--abyss)}
+.post.foam .bar b{color:var(--abyss)}
