@@ -1,0 +1,5 @@
+A supplier invoice tells you what's coming. It doesn't put the goods on your shelf.
+
+In Stacko, an uploaded invoice creates an incoming shipment. While it's at sea and in customs, it counts as in transit, with an ETA. When the truck reaches the warehouse, the units are added to on hand.
+
+You sell from what's on the shelf and plan with what's on the way. Two numbers, never mixed.

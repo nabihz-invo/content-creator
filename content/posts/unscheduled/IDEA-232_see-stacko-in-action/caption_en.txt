@@ -1,0 +1,6 @@
+This is Stacko.
+
+Every warehouse on one live map. Open a warehouse and low stock comes first. Staff log a move with one message from the phone, and the truck drives on the map with a live ETA. Upload a supplier invoice and AI drafts the incoming shipment; nothing is recorded until a person approves it.
+
+Your stock, always in sight.
+www.stacko-lb.com

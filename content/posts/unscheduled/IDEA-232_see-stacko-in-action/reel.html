@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>IDEA-232 · See Stacko in action</title>
+    <!-- Profile kit (11 Nov 2026): the pinned product demo. Built from the website product recordings in
+         assets/clips/website (app.mp4 live map + panel, how.mp4 one transfer, inv.mp4 invoice → draft), demo data.
+         Cropped so the old header logo, the website's step cards (they name Telegram), the "Illustration · demo data"
+         badge and the "EXAMPLE" / "demo data" labels stay out of frame. No voice; music only.
+         Render: node studio/render.mjs <this file> --lang all -->
+    <script src="/assets/map-elements/stacko-map-elements.js"></script>
+    <script src="/studio/engine/sm-core.js"></script>
+    <script src="/studio/engine/sm-components.js"></script>
+    <script src="/studio/engine/sm-app.js"></script>
+  </head>
+  <body>
+    <script>
+      const R = SM.reel({ title: "IDEA-232 · See Stacko in action" });
+      const T = SM.t;
+      // A cropped window on a clip: source rect [cx, cy, cw, ch] shown at width w, centred on (x, y).
+      function clip(s, src, sw, sh, [cx, cy, cw, ch], o) {
+        const k = o.w / cw, h = Math.round(ch * k);
+        const box = s.html(`<div style="position:relative;width:${o.w}px;height:${h}px;overflow:hidden;border-radius:${o.radius ?? 28}px;box-shadow:${o.shadow ?? "0 30px 80px rgba(3,9,18,.5)"};background:#fff"></div>`, { x: o.x, y: o.y, in: o.in || "rise", at: o.at || 0 });
+        const frame = box.box.firstChild;
+        const v = s._video(frame, src, { at: o.at || 0, offset: o.offset || 0 });
+        v.style.cssText = `position:absolute;left:${-cx * k}px;top:${-cy * k}px;width:${sw * k}px;height:${sh * k}px;max-width:none`;
+        (o.patches || []).forEach(([px, py, pw, ph, c]) => {
+          const p = document.createElement("div");
+          p.style.cssText = `position:absolute;left:${(px - cx) * k}px;top:${(py - cy) * k}px;width:${pw * k}px;height:${ph * k}px;background:${c || "#fff"}`;
+          frame.appendChild(p);
+        });
+        return box;
+      }
+      const CAP = (s, list) => list.forEach(([en, ar, a, b]) => s.text(T(en, ar), { y: 1690, size: 40, weight: 600, style: "pill", fx: "fade", at: a, out: "fade", outAt: b, w: 940 }));
+      const APP = "/assets/clips/website/app.mp4", HOW = "/assets/clips/website/how.mp4", INV = "/assets/clips/website/inv.mp4";
+
+      // ── 1 · Hook (0–2.4 s) ───────────────────────────────────────────────────────────────────────────
+      const a = R.scene(2.4, { bg: "night", name: "hook" });
+      a.dotMorph({ count: 360, y: 1080, steps: [{ at: 0, shape: "explode" }, { at: 0.2, shape: { icon: "map", size: 460 }, dur: 0.9 }] });
+      a.text(T("See Stacko *in action.*", "شوف ستاكو *وهو شغّال.*"), { y: 420, size: 96, fx: "rise", at: 0.1, w: 940 });
+      a.text(T("Map, transfers and invoices, in 30 seconds.", "الخريطة والتحويلات والفواتير، بـ30 ثانية."), { y: 590, size: 42, fx: "fade", at: 0.6, w: 900, color: "#C9D8E4" });
+
+      // ── 2 · The live map (2.4–7.6 s) ─────────────────────────────────────────────────────────────────
+      const b = R.scene(5.2, { in: "zoom-through", bg: "night", name: "map" });
+      b.text(T("Every warehouse, *live on one map.*", "كل مستودعاتك، *مباشرة عخريطة وحدة.*"), { y: 300, size: 76, fx: "blur", at: 0.1, w: 960 });
+      clip(b, APP, 2400, 1454, [1480, 22, 920, 150], { x: 540, y: 520, w: 1000, at: 0.3, radius: 22 });
+      clip(b, APP, 2400, 1454, [20, 190, 1640, 1250], { x: 540, y: 1100, w: 1000, at: 0.5 });
+      CAP(b, [["Units in stock, in transit and low-stock lines, at a glance.", "الكميات بالمخازن، اللي عالطريق، والأصناف الناقصة، بنظرة وحدة.", 0.6, 4.9]]);
+
+      // ── 3 · Open a warehouse (7.6–11.8 s) ────────────────────────────────────────────────────────────
+      const c = R.scene(4.2, { in: "push-left", bg: "night", name: "panel" });
+      c.text(T("Open a warehouse.\nLow stock *comes first.*", "افتح أي مستودع،\nوالناقص *بيطلع أوّل.*"), { y: 300, size: 76, fx: "rise", at: 0.1, w: 1000 });
+      clip(c, APP, 2400, 1454, [1690, 180, 710, 1270], { x: 540, y: 1090, w: 580, at: 0.2, offset: 5, patches: [[1700, 726, 600, 52]] });
+      CAP(c, [["Capacity, inbound, outbound and a search across 10,000+ SKUs.", "السعة، الداخل والطالع، وبحث بأكتر من 10,000 صنف.", 0.4, 4.0]]);
+
+      // ── 4 · One message (11.8–15.0 s) ────────────────────────────────────────────────────────────────
+      const d = R.scene(3.2, { in: "cut", bg: "night", name: "message" });
+      d.text(T("Staff log a move *with one message.*", "الفريق بيسجّل الحركة *برسالة وحدة.*"), { y: 300, size: 74, fx: "blur", at: 0.05, w: 960 });
+      const ch = d.chat({ x: 540, y: 1130, w: 600, title: "Stacko", sub: T("Beirut team", "فريق بيروت"), in: "rise", at: 0.15 });
+      ch.type(0.4, T("sent 40 LED strips from Beirut to Sidon", "بعتت 40 لمبة LED من بيروت لصيدا"), { cps: 30 });
+      ch.bot(1.9, T("Got it. Transfer drafted for Karim to approve.", "تمام. حضّرت التحويلة ليوافق عليها كريم."), { typing: 0.4 });
+      CAP(d, [["From the phone, in about 10 seconds.", "من التلفون، بحوالي 10 ثواني.", 0.3, 3.0]]);
+
+      // ── 5 · The truck drives (15.0–22.0 s) ───────────────────────────────────────────────────────────
+      const e = R.scene(7.0, { in: "flash", bg: "#13355A", name: "truck" });
+      // how.mp4 is 1920×2400: the step cards sit in its left 40 % and the badge bottom-right, so only the map side is shown.
+      clip(e, HOW, 1920, 2400, [780, 150, 1140, 2027], { x: 540, y: 960, w: 1080, at: 0, offset: 2.8, radius: 0, shadow: "none", in: "fade" });
+      e.fill("background:linear-gradient(180deg,rgba(11,30,58,.92) 0%,rgba(11,30,58,0) 24%,rgba(11,30,58,0) 78%,rgba(11,30,58,.9) 100%)");
+      e.text(T("The truck drives *on the map.*", "الشاحنة بتمشي *عالخريطة.*"), { y: 250, size: 80, fx: "rise", at: 0.15, w: 960, out: "fade", outAt: 5.2 });
+      e.text(T("Stock lands *in Sidon.*", "البضاعة وصلت *عصيدا.*"), { y: 250, size: 80, fx: "pop", at: 5.5, w: 960 });
+      CAP(e, [["Everyone sees what's on the road, with a live ETA.", "الكل بيشوف شو عالطريق، مع وقت وصول مباشر.", 0.4, 5.2], ["On arrival the units are added and the low-stock alert clears.", "أوّل ما توصل، بتنزاد الكمية وبيروح تنبيه النقص.", 5.5, 6.9]]);
+
+      // ── 6 · Invoice → draft (22.0–28.4 s) ────────────────────────────────────────────────────────────
+      const f = R.scene(6.4, { in: "flash", bg: "night", name: "invoice" });
+      f.text(T("Upload the invoice.\nAI drafts *the shipment.*", "ارفع الفاتورة،\nوالذكاء الاصطناعي *بيحضّر الشحنة.*"), { y: 285, size: 70, fx: "rise", at: 0.1, w: 1000 });
+      clip(f, INV, 2400, 1224, [0, 424, 1040, 646], { x: 540, y: 700, w: 820, at: 0.2, in: "drop", patches: [[396, 560, 220, 110]] });
+      clip(f, INV, 2400, 1224, [1362, 272, 1036, 950], { x: 540, y: 1270, w: 760, at: 1.0 });
+      CAP(f, [["PDF, Excel or a photo. New items are flagged.", "PDF أو Excel أو صورة. الأصناف الجديدة بتنعلّم.", 0.3, 3.4], ["Nothing is recorded until a person approves it.", "ما في شي بيتسجّل قبل ما حدا يوافق عليه.", 3.6, 6.2]]);
+
+      // ── 7 · End card ─────────────────────────────────────────────────────────────────────────────────
+      R.endcard("dots", { in: "dots", dur: 3.2, tagline: SM.lang === "ar" ? "ar" : "en" });
+
+      R.grain(0.02).vignette(0.4).safe();
+      R.audio({ music: "/assets/audio/music/Second_Cup_of_Coffee.mp3", musicVolume: 0.5, lufs: -14, sfxVolume: 0.5 });
+      R.cover(6.2);
+    </script>
+  </body>
+</html>
