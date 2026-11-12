@@ -34,6 +34,7 @@ import {
   type ProjectFilters,
   type ProjectListRow,
   useBrands,
+  useCardHtml,
   useCardImages,
   useProjects,
   useSignedUrls,
@@ -41,7 +42,8 @@ import {
 } from "@/lib/queries";
 import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
-import type { InputSource } from "@/types/db";
+import { HtmlPage } from "@/features/projects/HtmlPage";
+import type { ImportedMediaRow, InputSource } from "@/types/db";
 import { CsvImportDialog } from "./CsvImportDialog";
 import { NewIdeaDialog } from "./NewIdeaDialog";
 import { StageBadge, StageCards, StageHeading } from "./StageCards";
@@ -164,6 +166,7 @@ function IdeaList({ search }: { search: string }) {
   const projects = useProjects(workspaceId, filters);
   const images = useCardImages((projects.data?.rows ?? []).map((p) => p.id));
   const urls = useSignedUrls(Object.values(images.data ?? {}), "media");
+  const htmlPages = useCardHtml((projects.data?.rows ?? []).map((p) => p.id));
   const brands = useBrands(workspaceId);
   const tags = useTags(workspaceId);
 
@@ -288,6 +291,7 @@ function IdeaList({ search }: { search: string }) {
                 <ProjectCard
                   project={p}
                   image={images.data?.[p.id] ? urls.data?.[images.data[p.id]!] : undefined}
+                  page={htmlPages.data?.[p.id]}
                   selected={selected.has(p.id)}
                 />
                 {can("edit") && analyzable(p) && (
@@ -350,10 +354,13 @@ const TYPES: ContentType[] = ["video", "carousel", "static"];
 function ProjectCard({
   project: p,
   image,
+  page,
   selected,
 }: {
   project: ProjectListRow;
   image: string | undefined;
+  /** An HTML post's first page (P5-T25), shown when there is no image. */
+  page?: ImportedMediaRow;
   selected: boolean;
 }) {
   const { t, locale } = useI18n();
@@ -379,6 +386,10 @@ function ProjectCard({
             loading="lazy"
             className="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           />
+        ) : page ? (
+          <span className="absolute inset-0 p-1.5" aria-hidden>
+            <HtmlPage row={page} fill />
+          </span>
         ) : (
           <style.Icon className="size-12 opacity-70" style={{ color: style.color }} aria-hidden />
         )}

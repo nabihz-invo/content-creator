@@ -68,8 +68,9 @@ Task status values: `todo` · `in-progress` · `done` · `blocked` · `deferred`
 
 ## 3a. Owner's notes on ideas (check every session)
 
-The owner reviews pending ideas in the CRM (**Idea review** page) and leaves notes with the
-Comment button. At the start of every session, before other work:
+The owner reviews posts on their project page (approve / request changes). The **Idea review** page
+was removed on 2026-11-11, so new notes no longer come from its Comment button; older open notes and
+posts sent back still show in the list below. At the start of every session, before other work:
 
 1. `node --env-file=workers/.env scripts/ideas/feedback.mjs list`
 2. For each open note: revise the idea as asked (title and/or text; keep the plan ID prefix in

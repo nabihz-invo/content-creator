@@ -14,6 +14,14 @@ Template:
 
 ---
 
+## 2026-11-11 — P5-T25 HTML thumbnails in the inbox; Idea review page removed — in progress
+- Agent/branch: local Claude Code (main)
+- Why: owner: HTML posts showed on the project page but not on the inbox cards; remove the Idea review page.
+- Changes: `useCardHtml` (first HTML page per project, EN first) and the inbox `ProjectCard` shows it scaled in the card when there is no image; removed `/ideas` (route, nav item, `IdeaReviewPage`, `usePendingIdeas`, `useIdeaComments`, `needs-review` + its test). CLAUDE.md §3a updated (notes no longer come from that page).
+- Verification: CRM typecheck, ESLint, vitest (17) and build pass.
+
+---
+
 ## 2026-11-10 — P5-T25 Finished posts reviewed as HTML — in progress
 - Agent/branch: local Claude Code (main, uncommitted)
 - Why: storage is full (972 MiB of ~1 GB) because every finished post goes up as PNG/MP4 and is downloaded and deleted after approval. The owner asked to upload HTML instead, review it in the CRM and render the PNGs locally once approved.
