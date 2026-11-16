@@ -757,7 +757,95 @@ def d3009():
             story4(pid, l, i + 1, len(fr), t(he, ha), t(se, sa), inners[i])
 
 
-FNS = [dec01, d3006, d3015, d3025, res03, res07, jan01, jan02, d3029, d3011, d3020, ued01, ued05, ued06, d3004, d3009]
+def objection(l, n, q, a):
+    t = T(l)
+    return [card(f'<div class="lab" style="color:#B4233C">{t("Objection", "الاعتراض")} {L(n)}</div><b class="t" style="font-size:42px">{q}</b>', 0),
+            card(f'<div class="lab">{t("Our answer", "جوابنا")}</div><div style="font-size:33px;line-height:1.45;margin-top:8px">{a}</div>', 0)]
+
+
+# ---------------------------------------------------------------- EDU-73 (owner review 12 Nov: Arabic answers rewritten, no long dashes)
+def edu73():
+    pid = "EDU-73"
+    h = ("The 6 objections<br><em>we hear most.</em>", "أكتر 6 اعتراضات<br><em>منسمعها.</em>")
+    s = ("And our honest answers.", "وأجوبتنا الصادقة.")
+    obs = [("“We already have a system.”", "«عنّا برنامج أصلاً.»",
+            "Good, keep it. Stacko adds to it: the live map, logging from the phone and AI drafts on top of what you use.", "إذا عندك برنامجك، خلّيه ونحنا منزيد عليه: الخريطة المباشرة، التسجيل من التلفون، ومسودّات الذكاء الاصطناعي."),
+           ("“It's too expensive.”", "«غالي كتير.»",
+            "You get a trial period. If you don't see the change, your money is yours.", "عندك مهلة تجريبية، وإذا ما شفت التغيير، مصرياتك إلك."),
+           ("“My team won't use it.”", "«فريقي ما رح يستعملو.»",
+            "Each role sees only what it needs. Staff log a move with one message from the phone.", "كل دور بيشوف اللي بيلزمو بس. والموظّفين بيسجّلوا الحركة برسالة وحدة من التلفون."),
+           ("“We're too small.”", "«نحنا صغار.»",
+            "One location and one person? You may not need us yet. Several locations and a team? You probably do.", "موقع واحد وشخص واحد؟ يمكن ما بتحتاجنا بعد. كذا موقع وفريق؟ على الأرجح إيه."),
+           ("“AI will make mistakes.”", "«الذكاء الاصطناعي رح يغلط.»",
+            "Sometimes. That's why it only makes drafts, flags what it isn't sure of, and a person approves.", "أحياناً. لهيك هوّي بيعمل مسودّات بس، بيعلّم الشي المش أكيد منّو، وشخص من فريقك بيوافق."),
+           ("“What if we switch later?”", "«وإذا بدنا نغيّر بعدين؟»",
+            "Your data is yours. If you leave, you take your records with you.", "معلوماتك إلك. وإذا فلّيت، بتاخد سجلاتك معك.")]
+    sl = [(f"Objection {i + 1}", f"الاعتراض {i + 1}") for i in range(6)]
+    last = ("Have a<br><em>different objection?</em>", "عندك<br><em>اعتراض تاني؟</em>")
+    cap = ("The 6 objections we hear most, and our honest answers.\n\n1. \"We already have a system.\" Good, keep it. Stacko adds the live map, logging from the phone and AI drafts on top.\n"
+           "2. \"It's too expensive.\" You get a trial period. If you don't see the change, your money is yours.\n3. \"My team won't use it.\" Each role sees only what it needs, and staff log a move with one message.\n"
+           "4. \"We're too small.\" One location and one person? Maybe not yet. Several locations and a team? Probably.\n5. \"AI will make mistakes.\" It only makes drafts, flags what it isn't sure of, and a person approves.\n"
+           "6. \"What if we switch later?\" Your data is yours.\n\nHave a different one? We're ready to listen and answer every question.",
+           "أكتر 6 اعتراضات منسمعها، وأجوبتنا الصادقة.\n\n1. «عنّا برنامج أصلاً.» إذا عندك برنامجك، خلّيه ونحنا منزيد عليه.\n2. «غالي كتير.» عندك مهلة تجريبية، وإذا ما شفت التغيير، مصرياتك إلك.\n"
+           "3. «فريقي ما رح يستعملو.» كل دور بيشوف اللي بيلزمو بس، والموظّفين بيسجّلوا برسالة وحدة.\n4. «نحنا صغار.» موقع واحد وشخص واحد؟ يمكن مش هلّق. كذا موقع وفريق؟ على الأرجح إيه.\n"
+           "5. «الذكاء الاصطناعي رح يغلط.» بيعمل مسودّات بس، بيعلّم الشي المش أكيد، وشخص بيوافق.\n6. «وإذا بدنا نغيّر بعدين؟» معلوماتك إلك.\n\nعندك اعتراض تاني؟ جاهزين نسمعك ونرد ع كل استفساراتك.")
+    reg(pid, "6-objections-hear-most", None, "Carousel", h, s, cap, slides=[h] + sl + [last],
+        note="Owner review 12 Nov 2026 (Arabic answers): 1 'إذا عندك برنامجك خلّيه ونحنا منزيد عليه' (ERP left off the visual: 'a system'), "
+             "2 'غالي كتير' answered with the trial period and money back (owner's statement), last slide 'جيبو معك ونحنا منسمعك' and 'جاهزين نرد ع كل استفساراتك'. "
+             "Rebuilt from the v2 copy.json without long dashes, Concept tags or the Book-a-meeting button. CHECK the trial terms before publishing.")
+    for l in LS:
+        t = T(l)
+        B = BGI("BG-56")
+        slides = [dict(bg=PII("OB-22"), h=h[l == "ar"], s=s[l == "ar"], cover=True)]
+        for i, (qe, qa, ae, aa) in enumerate(obs):
+            slides.append(dict(bg=B, h=t(f"Objection <em>{i + 1}.</em>", f"الاعتراض <em>{L(i + 1)}.</em>"), col=objection(l, i + 1, t(qe, qa), t(ae, aa)), col_top=420))
+        slides.append(fin(l, last[l == "ar"], t("We're ready to listen and answer every question.", "جاهزين نسمعك ونرد ع كل استفساراتك.")))
+        car(pid, l, slides, "6 objections", css=R4_CSS)
+
+
+# ---------------------------------------------------------------- EDU-09 (owner review 12 Nov: no long dashes, no demo/illustration tags on the last slide)
+def edu09():
+    pid = "EDU-09"
+    h = ("3 warehouses. 1,200 SKUs.<br><em>1 spreadsheet.</em>", f"{L(3)} مستودعات. {L('1,200')} صنف.<br><em>شيت وحدة.</em>")
+    s = ("The distributor's math never adds up.", "حسابات الموزّع عمرها ما بتظبط.")
+    sl = [("The distributor's<br><em>daily reality.</em>", "يوميّات<br><em>الموزّع.</em>"), ("So you do<br><em>what everyone does.</em>", "فبتعمل<br><em>متل الكل.</em>"),
+          ("The cost isn't<br><em>the 20 minutes.</em>", f"الكلفة مش<br><em>الـ{L(20)} دقيقة.</em>"), ("It's not a stock problem.<br><em>It's a visibility problem.</em>", "مش مشكلة بضاعة.<br><em>هيّي مشكلة رؤية.</em>"),
+          ("One map. Every warehouse.<br><em>Every move.</em>", "خريطة وحدة. كل مستودع.<br><em>كل حركة.</em>"), ("Built for distributors<br><em>first.</em>", "معمول للموزّعين<br><em>أوّل شي.</em>"),
+          ("Running<br><em>2+ warehouses?</em>", "عندك<br><em>مستودعين أو أكتر؟</em>")]
+    cap = ("3 warehouses. 1,200 SKUs. 1 spreadsheet.\n\nA rep asks for 200 units by Thursday. You probably have the stock, but it's split across three warehouses and nobody has updated the file since Tuesday. "
+           "So: three calls, two group chats, one sticky note and an \"I think we can.\"\n\nThe cost isn't the 20 minutes. It's the order you declined, the duplicate purchase, the customer who calls your competitor first.\n\n"
+           "Distributors don't have a stock problem. They have a visibility problem. Stacko puts every warehouse and every move on one live map, and each person sees what they need.",
+           "3 مستودعات. 1,200 صنف. شيت وحدة.\n\nمندوب بيطلب 200 قطعة قبل الخميس. البضاعة على الأرجح موجودة، بس موزّعة على 3 مستودعات وما حدا حدّث الملف من التلاتا. "
+           "فبتعمل: 3 تلفونات، مجموعتين، ورقة صغيرة، و«بظنّ منقدر».\n\nالكلفة مش الـ20 دقيقة. هيّي الطلبية اللي رفضتها، الشراء المكرّر، والزبون اللي صار يتّصل بمنافسك أوّل.\n\n"
+           "الموزّعين ما عندهم مشكلة بضاعة. عندهم مشكلة رؤية. ستاكو بيحطّ كل مستودع وكل حركة على خريطة وحدة مباشرة، وكل واحد بيشوف اللي بيلزمو.")
+    reg(pid, "3-warehouses-1-200", None, "Carousel", h, s, cap, slides=[h] + sl,
+        note="Owner review 12 Nov 2026: long dashes removed from every slide; last slide has no demo/illustration tag (and no Book-a-meeting button). "
+             "'Sound familiar?' dropped (no closing questions). Rebuilt from the v2 copy.json with the round-4 layouts. Weekday 'Thursday/Tuesday' kept only in the caption story.")
+    for l in LS:
+        t = T(l)
+        B = BGI("BG-57")
+        sheet = card(f'<div class="lab">{t("stock_FINAL_v7.xlsx · last saved Tue 4:12 PM", "stock_FINAL_v7.xlsx · آخر حفظ التلاتا 4:12")}</div>' +
+                     "".join(f'<div class="rw2"><b>{L(w)}</b><span class="sp">{a}</span><span class="{c}">{v}</span></div>' for w, a, v, c in
+                             (("WH-01", t("LED Strip 5m", "لمبات LED"), "420", "num"), ("WH-02", t("LED Strip 5m", "لمبات LED"), "?", "zero"), ("WH-03", t("LED Strip 5m", "لمبات LED"), "180", "num"))), 0)
+        calls = U.rowscard([(L("WH-01"), t("Call Rami", "اتّصل برامي"), "📞", "sp"), (L("WH-02"), t("Call Lina", "اتّصل بلينا"), "📞", "sp"), (L("WH-03"), t("Message Omar", "ابعت لعمر"), "💬", "sp")],
+                           lab=t("200 units by Thursday?", f"{L(200)} قطعة قبل الخميس؟"), top_=0)
+        cost = U.rowscard([(t("Declined order", "طلبية مرفوضة"), t("couldn't confirm stock", "ما قدرت تأكّد الكميات"), "✕", "zero"), (t("Duplicate purchase", "شراء مكرّر"), t("nobody saw the inbound shipment", "ما حدا شاف الشحنة الجايي"), "✕", "zero"),
+                           (t("Lost customer", "زبون راح"), t("now calls your competitor first", "صار يتّصل بمنافسك أوّل"), "✕", "zero")], top_=0)
+        scattered = U.rowscard([(t("Files", "ملفات"), t("seven versions of the truth", "سبع نسخ من الحقيقة"), "", "sp"), (t("Branches", "فروع"), t("each with its own count", "كل واحد إلو عدّه"), "", "sp"), (t("People", "ناس"), t("the rest is in someone's head", "والباقي براس حدا"), "", "sp")], top_=0)
+        built = U.rowscard([(t("Several locations", "كذا موقع"), "", "✓", "okc"), (t("Thousands of SKUs", "آلاف الأصناف"), "", "✓", "okc"), (t("Frequent moves", "حركات كتير"), "", "✓", "okc"), (t("A view per role", "شاشة لكل دور"), "", "✓", "okc")], top_=0)
+        slides = [dict(bg=PII("SC-14"), h=h[l == "ar"], s=s[l == "ar"], cover=True),
+                  dict(bg=B, h=sl[0][l == "ar"], col=[sheet, EX(t("A rep needs 200 units by Thursday. The stock is split across three warehouses.", f"مندوب بدّو {L(200)} قطعة قبل الخميس. والبضاعة موزّعة على تلات مستودعات."))], col_top=430),
+                  dict(bg=B, h=sl[1][l == "ar"], col=[calls, EX(t("Call, call, message, wait, add it up on a sticky note: \"I think we can.\"", "تلفون، تلفون، رسالة، انطر، اجمع عورقة صغيرة: «بظنّ منقدر»."))], col_top=430),
+                  dict(bg=B, h=sl[2][l == "ar"], col=[cost], col_top=450),
+                  dict(bg=B, h=sl[3][l == "ar"], col=[scattered, EX(t("The stock exists and the moves happened. The data is just scattered.", "البضاعة موجودة والحركات صارت. بس الداتا مفرّقة."))], col_top=450),
+                  dict(bg=B, h=sl[4][l == "ar"], col=[U.mapcard(0), EX(t("Tap a warehouse, see what's there, trace what moved and when.", "اكبس عمستودع، شوف شو فيه، واعرف شو تحرّك وإيمتى."))], col_top=430),
+                  dict(bg=B, h=sl[5][l == "ar"], col=[built], col_top=450),
+                  fin(l, sl[6][l == "ar"], t("Stacko is the stock management system built for several warehouses: every location and every move on one live map.",
+                                              "ستاكو هو نظام إدارة المخازن المعمول للشركات اللي عندها أكتر من مستودع: كل موقع وكل حركة عخريطة وحدة مباشرة."), "light")]
+        car(pid, l, slides, "3 warehouses", theme="light", css=R4_CSS)
+
+
+FNS = [dec01, d3006, d3015, d3025, res03, res07, jan01, jan02, d3029, d3011, d3020, ued01, ued05, ued06, d3004, d3009, edu73, edu09]
 
 if __name__ == "__main__":
     a = sys.argv[1:]

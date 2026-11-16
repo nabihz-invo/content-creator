@@ -50,6 +50,14 @@ svg.ic{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.7;str
 [dir=rtl] .n b{direction:ltr}
 [dir=rtl] .stale{font-size:23px}
 [dir=rtl] .lw{direction:rtl}
+.cmp{position:absolute;left:64px;right:64px;top:800px;display:flex;flex-direction:column;gap:22px}
+.cmp .rw{display:flex;align-items:center;gap:26px;border-radius:26px;padding:28px 32px}
+.cmp .rw b{flex:none;font-size:34px;font-weight:600}
+.cmp .rw span{font-size:32px;line-height:1.35}
+.cmp .bad{background:rgba(14,36,64,.72);border:2px solid rgba(201,216,228,.3);color:#fff}
+.cmp .bad b{color:#F5A524}
+.cmp .good{background:#fff;color:#0E2440}
+.cmp .good b{color:#0895A6}
 </style></head><body>
 <div class="post dark">
 
@@ -60,25 +68,7 @@ svg.ic{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.7;str
  <div class="n hi"><b>1</b><span>spreadsheet.</span></div>
 </div>
 <p class="prob">Every move waits for someone to update the file.</p>
-<div class="cards">
- <div class="cd6 today"><h3>Today</h3>
-  <div class="sh"><div class="sr"><span dir="ltr">WH-01</span><span><u></u></span><span><u></u></span></div><div class="sr"><span dir="ltr">WH-02</span><span class="x">?</span><span><u></u></span></div><div class="sr"><span dir="ltr">WH-03</span><span><u></u></span><span><u></u></span></div></div>
-  <div class="stale">Last updated: 3 days ago</div></div>
- <div class="cd6 live" dir="ltr">
-  <svg class="mp" viewBox="0 0 464 328"><path d="M112 262C190 276 290 276 362 240" fill="none" stroke="#0895A6" stroke-width="5" stroke-linecap="round"/></svg>
-  <h3>With Stacko</h3>
-  <img src="../img/wh.svg" alt="" style="left:188px;top:62px;width:84px">
-  <img src="../img/wh.svg" alt="" style="left:30px;top:192px;width:84px">
-  <img src="../img/wh.svg" alt="" style="left:352px;top:176px;width:84px">
-  <img src="../img/truck.svg" alt="" style="left:208px;top:232px;width:56px">
-  <i class="dotg" style="left:178px;top:262px"></i>
-  <div class="et" style="left:176px;top:188px">ETA 1h 20m</div>
-  <div class="wp" style="left:42px;top:286px">WH-01</div>
-  <div class="wp" style="left:278px;top:92px">WH-02</div>
-  <div class="wp" style="left:366px;top:266px">WH-03</div>
-  <div class="lw" style="left:288px;top:128px">Low stock</div>
- </div>
-</div>
+<div class="cmp"><div class="rw bad"><b>Today</b><span>Call each warehouse, then update one file. Last updated 3 days ago.</span></div><div class="rw good"><b>With Stacko</b><span>Every warehouse on one live map, updated with every move.</span></div></div>
 <p class="q3">With Stacko, see all 3 warehouses on one live map.</p>
 <div class="top"><div class="lockup"><img src="/assets/brand/logo/mark-dark.svg" alt=""><div class="word">stack<i>o</i></div></div></div>
 <div class="foot"><div class="by">A product by <b><span>AI</span>PHIN</b></div><div>www.stacko-lb.com</div></div>

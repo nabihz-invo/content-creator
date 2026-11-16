@@ -1,12 +1,10 @@
-The 6 objections we hear most. And our honest answers.
+The 6 objections we hear most, and our honest answers.
 
-1️⃣ "We already have an ERP." → Good. Keep it. Stacko can layer on top or work as a full system.
-2️⃣ "It's probably too expensive." → We haven't finalized pricing. We scope by location, users, AI volume. If it's not a fit, we'll say so.
-3️⃣ "My team won't use it." → Role-scoped views mean each person sees exactly what they need.
-4️⃣ "We're too small." → If you have one location and one person, you might not need us yet. Multiple locations? Probably.
-5️⃣ "AI will make mistakes." → Yes. Every AI does. Ours creates drafts, flags uncertainty, and requires human approval.
-6️⃣ "What if we want to switch later?" → Your data is yours. We define retention before you sign.
+1. "We already have a system." Good, keep it. Stacko adds the live map, logging from the phone and AI drafts on top.
+2. "It's too expensive." You get a trial period. If you don't see the change, your money is yours.
+3. "My team won't use it." Each role sees only what it needs, and staff log a move with one message.
+4. "We're too small." One location and one person? Maybe not yet. Several locations and a team? Probably.
+5. "AI will make mistakes." It only makes drafts, flags what it isn't sure of, and a person approves.
+6. "What if we switch later?" Your data is yours.
 
-Have a different objection? Bring it to a meeting. We'd rather answer it than have you wonder.
-
-👉 Book a meeting — link in bio.
+Have a different one? We're ready to listen and answer every question.
